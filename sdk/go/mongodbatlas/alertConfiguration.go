@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -269,8 +269,7 @@ type AlertConfiguration struct {
 
 // NewAlertConfiguration registers a new resource with the given unique name, arguments, and options.
 func NewAlertConfiguration(ctx *pulumi.Context,
-	name string, args *AlertConfigurationArgs, opts ...pulumi.ResourceOption,
-) (*AlertConfiguration, error) {
+	name string, args *AlertConfigurationArgs, opts ...pulumi.ResourceOption) (*AlertConfiguration, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -293,8 +292,7 @@ func NewAlertConfiguration(ctx *pulumi.Context,
 // GetAlertConfiguration gets an existing AlertConfiguration resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetAlertConfiguration(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *AlertConfigurationState, opts ...pulumi.ResourceOption,
-) (*AlertConfiguration, error) {
+	name string, id pulumi.IDInput, state *AlertConfigurationState, opts ...pulumi.ResourceOption) (*AlertConfiguration, error) {
 	var resource AlertConfiguration
 	err := ctx.ReadResource("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, id, state, &resource, opts...)
 	if err != nil {

@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -114,8 +114,7 @@ type AdvancedCluster struct {
 
 // NewAdvancedCluster registers a new resource with the given unique name, arguments, and options.
 func NewAdvancedCluster(ctx *pulumi.Context,
-	name string, args *AdvancedClusterArgs, opts ...pulumi.ResourceOption,
-) (*AdvancedCluster, error) {
+	name string, args *AdvancedClusterArgs, opts ...pulumi.ResourceOption) (*AdvancedCluster, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -141,8 +140,7 @@ func NewAdvancedCluster(ctx *pulumi.Context,
 // GetAdvancedCluster gets an existing AdvancedCluster resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetAdvancedCluster(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *AdvancedClusterState, opts ...pulumi.ResourceOption,
-) (*AdvancedCluster, error) {
+	name string, id pulumi.IDInput, state *AdvancedClusterState, opts ...pulumi.ResourceOption) (*AdvancedCluster, error) {
 	var resource AdvancedCluster
 	err := ctx.ReadResource("mongodbatlas:index/advancedCluster:AdvancedCluster", name, id, state, &resource, opts...)
 	if err != nil {

@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -530,8 +530,7 @@ type Cluster struct {
 
 // NewCluster registers a new resource with the given unique name, arguments, and options.
 func NewCluster(ctx *pulumi.Context,
-	name string, args *ClusterArgs, opts ...pulumi.ResourceOption,
-) (*Cluster, error) {
+	name string, args *ClusterArgs, opts ...pulumi.ResourceOption) (*Cluster, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -557,8 +556,7 @@ func NewCluster(ctx *pulumi.Context,
 // GetCluster gets an existing Cluster resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCluster(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ClusterState, opts ...pulumi.ResourceOption,
-) (*Cluster, error) {
+	name string, id pulumi.IDInput, state *ClusterState, opts ...pulumi.ResourceOption) (*Cluster, error) {
 	var resource Cluster
 	err := ctx.ReadResource("mongodbatlas:index/cluster:Cluster", name, id, state, &resource, opts...)
 	if err != nil {

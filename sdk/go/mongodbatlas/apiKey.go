@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -81,8 +81,7 @@ type ApiKey struct {
 
 // NewApiKey registers a new resource with the given unique name, arguments, and options.
 func NewApiKey(ctx *pulumi.Context,
-	name string, args *ApiKeyArgs, opts ...pulumi.ResourceOption,
-) (*ApiKey, error) {
+	name string, args *ApiKeyArgs, opts ...pulumi.ResourceOption) (*ApiKey, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -112,8 +111,7 @@ func NewApiKey(ctx *pulumi.Context,
 // GetApiKey gets an existing ApiKey resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetApiKey(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ApiKeyState, opts ...pulumi.ResourceOption,
-) (*ApiKey, error) {
+	name string, id pulumi.IDInput, state *ApiKeyState, opts ...pulumi.ResourceOption) (*ApiKey, error) {
 	var resource ApiKey
 	err := ctx.ReadResource("mongodbatlas:index/apiKey:ApiKey", name, id, state, &resource, opts...)
 	if err != nil {

@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -99,8 +99,7 @@ type ClusterOutageSimulation struct {
 
 // NewClusterOutageSimulation registers a new resource with the given unique name, arguments, and options.
 func NewClusterOutageSimulation(ctx *pulumi.Context,
-	name string, args *ClusterOutageSimulationArgs, opts ...pulumi.ResourceOption,
-) (*ClusterOutageSimulation, error) {
+	name string, args *ClusterOutageSimulationArgs, opts ...pulumi.ResourceOption) (*ClusterOutageSimulation, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -126,8 +125,7 @@ func NewClusterOutageSimulation(ctx *pulumi.Context,
 // GetClusterOutageSimulation gets an existing ClusterOutageSimulation resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetClusterOutageSimulation(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ClusterOutageSimulationState, opts ...pulumi.ResourceOption,
-) (*ClusterOutageSimulation, error) {
+	name string, id pulumi.IDInput, state *ClusterOutageSimulationState, opts ...pulumi.ResourceOption) (*ClusterOutageSimulation, error) {
 	var resource ClusterOutageSimulation
 	err := ctx.ReadResource("mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation", name, id, state, &resource, opts...)
 	if err != nil {

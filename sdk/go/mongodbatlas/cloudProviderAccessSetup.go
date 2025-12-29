@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -139,8 +139,7 @@ type CloudProviderAccessSetup struct {
 
 // NewCloudProviderAccessSetup registers a new resource with the given unique name, arguments, and options.
 func NewCloudProviderAccessSetup(ctx *pulumi.Context,
-	name string, args *CloudProviderAccessSetupArgs, opts ...pulumi.ResourceOption,
-) (*CloudProviderAccessSetup, error) {
+	name string, args *CloudProviderAccessSetupArgs, opts ...pulumi.ResourceOption) (*CloudProviderAccessSetup, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -163,8 +162,7 @@ func NewCloudProviderAccessSetup(ctx *pulumi.Context,
 // GetCloudProviderAccessSetup gets an existing CloudProviderAccessSetup resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudProviderAccessSetup(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudProviderAccessSetupState, opts ...pulumi.ResourceOption,
-) (*CloudProviderAccessSetup, error) {
+	name string, id pulumi.IDInput, state *CloudProviderAccessSetupState, opts ...pulumi.ResourceOption) (*CloudProviderAccessSetup, error) {
 	var resource CloudProviderAccessSetup
 	err := ctx.ReadResource("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup", name, id, state, &resource, opts...)
 	if err != nil {

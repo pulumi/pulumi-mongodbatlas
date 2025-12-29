@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -32,8 +32,7 @@ type CloudProviderAccessAuthorization struct {
 
 // NewCloudProviderAccessAuthorization registers a new resource with the given unique name, arguments, and options.
 func NewCloudProviderAccessAuthorization(ctx *pulumi.Context,
-	name string, args *CloudProviderAccessAuthorizationArgs, opts ...pulumi.ResourceOption,
-) (*CloudProviderAccessAuthorization, error) {
+	name string, args *CloudProviderAccessAuthorizationArgs, opts ...pulumi.ResourceOption) (*CloudProviderAccessAuthorization, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -56,8 +55,7 @@ func NewCloudProviderAccessAuthorization(ctx *pulumi.Context,
 // GetCloudProviderAccessAuthorization gets an existing CloudProviderAccessAuthorization resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudProviderAccessAuthorization(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudProviderAccessAuthorizationState, opts ...pulumi.ResourceOption,
-) (*CloudProviderAccessAuthorization, error) {
+	name string, id pulumi.IDInput, state *CloudProviderAccessAuthorizationState, opts ...pulumi.ResourceOption) (*CloudProviderAccessAuthorization, error) {
 	var resource CloudProviderAccessAuthorization
 	err := ctx.ReadResource("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization", name, id, state, &resource, opts...)
 	if err != nil {

@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -64,8 +64,7 @@ type CustomDnsConfigurationClusterAws struct {
 
 // NewCustomDnsConfigurationClusterAws registers a new resource with the given unique name, arguments, and options.
 func NewCustomDnsConfigurationClusterAws(ctx *pulumi.Context,
-	name string, args *CustomDnsConfigurationClusterAwsArgs, opts ...pulumi.ResourceOption,
-) (*CustomDnsConfigurationClusterAws, error) {
+	name string, args *CustomDnsConfigurationClusterAwsArgs, opts ...pulumi.ResourceOption) (*CustomDnsConfigurationClusterAws, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -88,8 +87,7 @@ func NewCustomDnsConfigurationClusterAws(ctx *pulumi.Context,
 // GetCustomDnsConfigurationClusterAws gets an existing CustomDnsConfigurationClusterAws resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCustomDnsConfigurationClusterAws(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CustomDnsConfigurationClusterAwsState, opts ...pulumi.ResourceOption,
-) (*CustomDnsConfigurationClusterAws, error) {
+	name string, id pulumi.IDInput, state *CustomDnsConfigurationClusterAwsState, opts ...pulumi.ResourceOption) (*CustomDnsConfigurationClusterAws, error) {
 	var resource CustomDnsConfigurationClusterAws
 	err := ctx.ReadResource("mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws", name, id, state, &resource, opts...)
 	if err != nil {

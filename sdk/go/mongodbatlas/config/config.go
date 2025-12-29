@@ -15,7 +15,6 @@ var _ = internal.GetEnvOrDefault
 func GetAccessToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:accessToken")
 }
-
 func GetAssumeRole(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:assumeRole")
 }

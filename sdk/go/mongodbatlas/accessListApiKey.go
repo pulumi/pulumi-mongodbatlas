@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -96,8 +96,7 @@ type AccessListApiKey struct {
 
 // NewAccessListApiKey registers a new resource with the given unique name, arguments, and options.
 func NewAccessListApiKey(ctx *pulumi.Context,
-	name string, args *AccessListApiKeyArgs, opts ...pulumi.ResourceOption,
-) (*AccessListApiKey, error) {
+	name string, args *AccessListApiKeyArgs, opts ...pulumi.ResourceOption) (*AccessListApiKey, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -120,8 +119,7 @@ func NewAccessListApiKey(ctx *pulumi.Context,
 // GetAccessListApiKey gets an existing AccessListApiKey resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetAccessListApiKey(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *AccessListApiKeyState, opts ...pulumi.ResourceOption,
-) (*AccessListApiKey, error) {
+	name string, id pulumi.IDInput, state *AccessListApiKeyState, opts ...pulumi.ResourceOption) (*AccessListApiKey, error) {
 	var resource AccessListApiKey
 	err := ctx.ReadResource("mongodbatlas:index/accessListApiKey:AccessListApiKey", name, id, state, &resource, opts...)
 	if err != nil {

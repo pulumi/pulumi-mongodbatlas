@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -64,8 +64,7 @@ type CloudBackupSchedule struct {
 
 // NewCloudBackupSchedule registers a new resource with the given unique name, arguments, and options.
 func NewCloudBackupSchedule(ctx *pulumi.Context,
-	name string, args *CloudBackupScheduleArgs, opts ...pulumi.ResourceOption,
-) (*CloudBackupSchedule, error) {
+	name string, args *CloudBackupScheduleArgs, opts ...pulumi.ResourceOption) (*CloudBackupSchedule, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -88,8 +87,7 @@ func NewCloudBackupSchedule(ctx *pulumi.Context,
 // GetCloudBackupSchedule gets an existing CloudBackupSchedule resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudBackupSchedule(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudBackupScheduleState, opts ...pulumi.ResourceOption,
-) (*CloudBackupSchedule, error) {
+	name string, id pulumi.IDInput, state *CloudBackupScheduleState, opts ...pulumi.ResourceOption) (*CloudBackupSchedule, error) {
 	var resource CloudBackupSchedule
 	err := ctx.ReadResource("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule", name, id, state, &resource, opts...)
 	if err != nil {

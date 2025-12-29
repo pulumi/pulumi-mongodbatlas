@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -138,8 +138,7 @@ type CloudBackupSnapshot struct {
 
 // NewCloudBackupSnapshot registers a new resource with the given unique name, arguments, and options.
 func NewCloudBackupSnapshot(ctx *pulumi.Context,
-	name string, args *CloudBackupSnapshotArgs, opts ...pulumi.ResourceOption,
-) (*CloudBackupSnapshot, error) {
+	name string, args *CloudBackupSnapshotArgs, opts ...pulumi.ResourceOption) (*CloudBackupSnapshot, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -168,8 +167,7 @@ func NewCloudBackupSnapshot(ctx *pulumi.Context,
 // GetCloudBackupSnapshot gets an existing CloudBackupSnapshot resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudBackupSnapshot(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudBackupSnapshotState, opts ...pulumi.ResourceOption,
-) (*CloudBackupSnapshot, error) {
+	name string, id pulumi.IDInput, state *CloudBackupSnapshotState, opts ...pulumi.ResourceOption) (*CloudBackupSnapshot, error) {
 	var resource CloudBackupSnapshot
 	err := ctx.ReadResource("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", name, id, state, &resource, opts...)
 	if err != nil {

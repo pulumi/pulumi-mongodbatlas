@@ -5,9 +5,9 @@ package mongodbatlas
 
 import (
 	"context"
-	"errors"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -194,8 +194,7 @@ type CustomDbRole struct {
 
 // NewCustomDbRole registers a new resource with the given unique name, arguments, and options.
 func NewCustomDbRole(ctx *pulumi.Context,
-	name string, args *CustomDbRoleArgs, opts ...pulumi.ResourceOption,
-) (*CustomDbRole, error) {
+	name string, args *CustomDbRoleArgs, opts ...pulumi.ResourceOption) (*CustomDbRole, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -218,8 +217,7 @@ func NewCustomDbRole(ctx *pulumi.Context,
 // GetCustomDbRole gets an existing CustomDbRole resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCustomDbRole(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CustomDbRoleState, opts ...pulumi.ResourceOption,
-) (*CustomDbRole, error) {
+	name string, id pulumi.IDInput, state *CustomDbRoleState, opts ...pulumi.ResourceOption) (*CustomDbRole, error) {
 	var resource CustomDbRole
 	err := ctx.ReadResource("mongodbatlas:index/customDbRole:CustomDbRole", name, id, state, &resource, opts...)
 	if err != nil {
