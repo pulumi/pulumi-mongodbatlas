@@ -17,7 +17,7 @@ package main
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 
-	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
+	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v4"
 )
 
 func start() {

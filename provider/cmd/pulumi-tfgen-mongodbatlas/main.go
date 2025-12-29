@@ -14,7 +14,7 @@
 
 package main
 
-import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v3/cmd/pulumi-tfgen-mongodbatlas/init"
+import _ "github.com/pulumi/pulumi-mongodbatlas/provider/v4/cmd/pulumi-tfgen-mongodbatlas/init"
 
 func main() {
 	start()

@@ -1,5 +1,5 @@
 provider: mongodbatlas
-major-version: 3
+major-version: 4
 esc:
     enabled: true
 env:
