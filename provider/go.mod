@@ -8,8 +8,8 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/mongodb/terraform-provider-mongodbatlas v1.30.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.118.0
-	github.com/pulumi/pulumi/sdk/v3 v3.209.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.118.1-0.20251229231105-6e9343f84afc
+	github.com/pulumi/pulumi/sdk/v3 v3.213.0
 )
 
 require (
@@ -152,12 +152,11 @@ require (
 	github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10 // indirect
 	github.com/posener/complete v1.2.3 // indirect
 	github.com/pulumi/appdash v0.0.0-20231130102222-75f619a67231 // indirect
-	github.com/pulumi/esc v0.20.0 // indirect
+	github.com/pulumi/esc v0.21.0 // indirect
 	github.com/pulumi/inflector v0.2.1 // indirect
 	github.com/pulumi/pulumi-java/pkg v1.12.0 // indirect
 	github.com/pulumi/pulumi-yaml v1.19.1 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.209.0 // indirect
-	github.com/pulumi/schema-tools v0.1.2 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.213.0 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
@@ -172,7 +171,7 @@ require (
 	github.com/spf13/afero v1.10.0 // indirect
 	github.com/spf13/cast v1.9.2 // indirect
 	github.com/spf13/cobra v1.10.1 // indirect
-	github.com/spf13/pflag v1.0.9 // indirect
+	github.com/spf13/pflag v1.0.10 // indirect
 	github.com/spiffe/go-spiffe/v2 v2.6.0 // indirect
 	github.com/teekennedy/goldmark-markdown v0.3.0 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
