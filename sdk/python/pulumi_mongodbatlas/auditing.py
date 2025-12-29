@@ -201,8 +201,6 @@ class Auditing(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: Auditing
-
         `Auditing` provides an Auditing resource. This allows auditing to be created.
 
         ## Example Usage
@@ -243,8 +241,6 @@ class Auditing(pulumi.CustomResource):
                  args: AuditingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: Auditing
-
         `Auditing` provides an Auditing resource. This allows auditing to be created.
 
         ## Example Usage

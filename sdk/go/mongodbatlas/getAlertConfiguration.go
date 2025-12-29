@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: AlertConfiguration
-//
 // `AlertConfiguration` describes an Alert Configuration.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -24,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -79,7 +77,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -167,6 +165,8 @@ type LookupAlertConfigurationResult struct {
 	Notifications          []GetAlertConfigurationNotification          `pulumi:"notifications"`
 	Outputs                []GetAlertConfigurationOutput                `pulumi:"outputs"`
 	ProjectId              string                                       `pulumi:"projectId"`
+	// Severity of the event.
+	SeverityOverride string `pulumi:"severityOverride"`
 	// Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
 	ThresholdConfigs []GetAlertConfigurationThresholdConfig `pulumi:"thresholdConfigs"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -257,6 +257,11 @@ func (o LookupAlertConfigurationResultOutput) Outputs() GetAlertConfigurationOut
 
 func (o LookupAlertConfigurationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Severity of the event.
+func (o LookupAlertConfigurationResultOutput) SeverityOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAlertConfigurationResult) string { return v.SeverityOverride }).(pulumi.StringOutput)
 }
 
 // Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.

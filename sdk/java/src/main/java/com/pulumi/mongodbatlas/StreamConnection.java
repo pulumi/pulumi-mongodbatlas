@@ -21,8 +21,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.StreamConnection
- * 
  * `mongodbatlas.StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
  * 
  * &gt; **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.
@@ -55,7 +53,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName("InstanceName")
+ *             .workspaceName("WorkspaceName")
  *             .connectionName("ConnectionName")
  *             .type("Cluster")
  *             .clusterName("Cluster0")
@@ -65,6 +63,9 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### Further Examples
+ * - Atlas Stream Connection
  * 
  * ### Example Cross Project Cluster Connection
  * 
@@ -92,7 +93,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName("InstanceName")
+ *             .workspaceName("WorskpaceName")
  *             .connectionName("ConnectionName")
  *             .type("Cluster")
  *             .clusterName("OtherCluster")
@@ -132,7 +133,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName("NewInstance")
+ *             .workspaceName("NewWorkspace")
  *             .connectionName("KafkaConnection")
  *             .type("Kafka")
  *             .authentication(StreamConnectionAuthenticationArgs.builder()
@@ -145,6 +146,65 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .config(Map.of("auto.offset.reset", "latest"))
  *             .bootstrapServers("localhost:9091,localhost:9092")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example Kafka SASL OAuthbearer Connection
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingAccessArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example_kafka_oauthbearer = new StreamConnection("example-kafka-oauthbearer", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .instanceName(example.instanceName())
+ *             .connectionName("KafkaOAuthbearerConnection")
+ *             .type("Kafka")
+ *             .authentication(StreamConnectionAuthenticationArgs.builder()
+ *                 .mechanism("OAUTHBEARER")
+ *                 .method("OIDC")
+ *                 .tokenEndpointUrl("https://example.com/oauth/token")
+ *                 .clientId("auth0Client")
+ *                 .clientSecret(kafkaClientSecret)
+ *                 .scope("read:messages write:messages")
+ *                 .saslOauthbearerExtensions("logicalCluster=lkc-kmom,identityPoolId=pool-lAr")
+ *                 .build())
+ *             .bootstrapServers("localhost:9092,localhost:9092")
+ *             .config(Map.of("auto.offset.reset", "earliest"))
+ *             .security(StreamConnectionSecurityArgs.builder()
+ *                 .protocol("SASL_PLAINTEXT")
+ *                 .build())
+ *             .networking(StreamConnectionNetworkingArgs.builder()
+ *                 .access(StreamConnectionNetworkingAccessArgs.builder()
+ *                     .type("PUBLIC")
+ *                     .build())
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -180,7 +240,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName("NewInstance")
+ *             .workspaceName("NewWorkspace")
  *             .connectionName("KafkaConnection")
  *             .type("Kafka")
  *             .authentication(StreamConnectionAuthenticationArgs.builder()
@@ -228,7 +288,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName("NewInstance")
+ *             .workspaceName("NewWorkspace")
  *             .connectionName("AWSLambdaConnection")
  *             .type("AWSLambda")
  *             .aws(StreamConnectionAwsArgs.builder()
@@ -267,7 +327,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example_https = new StreamConnection("example-https", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.instanceName())
  *             .connectionName("https_connection_tf_new")
  *             .type("Https")
  *             .url("https://example.com")
@@ -284,7 +344,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
+ * You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test &#34;DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection&#34;
@@ -332,14 +392,14 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.config);
     }
     /**
-     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      * 
      */
     @Export(name="connectionName", refs={String.class}, tree="[0]")
     private Output<String> connectionName;
 
     /**
-     * @return Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * @return Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      * 
      */
     public Output<String> connectionName() {
@@ -358,18 +418,22 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.headers);
     }
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     @Export(name="instanceName", refs={String.class}, tree="[0]")
-    private Output<String> instanceName;
+    private Output</* @Nullable */ String> instanceName;
 
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
      * 
      */
-    public Output<String> instanceName() {
-        return this.instanceName;
+    public Output<Optional<String>> instanceName() {
+        return Codegen.optional(this.instanceName);
     }
     @Export(name="networking", refs={StreamConnectionNetworking.class}, tree="[0]")
     private Output<StreamConnectionNetworking> networking;
@@ -400,12 +464,16 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
      * 
+     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
      * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * 
+     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
      */
     public Output<String> type() {
@@ -416,6 +484,20 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
 
     public Output<Optional<String>> url() {
         return Codegen.optional(this.url);
+    }
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
+    @Export(name="workspaceName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> workspaceName;
+
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
+    public Output<Optional<String>> workspaceName() {
+        return Codegen.optional(this.workspaceName);
     }
 
     /**

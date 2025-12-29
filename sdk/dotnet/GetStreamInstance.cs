@@ -12,9 +12,38 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamInstance
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamInstance
+        /// &gt; **DEPRECATED:** This data source is deprecated. Please use `mongodbatlas.StreamWorkspace` instead.
         /// 
         /// `mongodbatlas.StreamInstance` describes a stream instance.
+        /// 
+        /// ## Migration to StreamWorkspace
+        /// 
+        /// To migrate from `mongodbatlas.StreamInstance` to `mongodbatlas.StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // New (recommended)
+        ///     var example = Mongodbatlas.GetStreamWorkspace.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
+        ///     });
+        /// 
+        ///     // Old (deprecated)
+        ///     var exampleGetStreamInstance = Mongodbatlas.GetStreamInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ## Example Usage
         /// 
@@ -39,9 +68,38 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamInstanceResult>("mongodbatlas:index/getStreamInstance:getStreamInstance", args ?? new GetStreamInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamInstance
+        /// &gt; **DEPRECATED:** This data source is deprecated. Please use `mongodbatlas.StreamWorkspace` instead.
         /// 
         /// `mongodbatlas.StreamInstance` describes a stream instance.
+        /// 
+        /// ## Migration to StreamWorkspace
+        /// 
+        /// To migrate from `mongodbatlas.StreamInstance` to `mongodbatlas.StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // New (recommended)
+        ///     var example = Mongodbatlas.GetStreamWorkspace.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
+        ///     });
+        /// 
+        ///     // Old (deprecated)
+        ///     var exampleGetStreamInstance = Mongodbatlas.GetStreamInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ## Example Usage
         /// 
@@ -66,9 +124,38 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamInstanceResult>("mongodbatlas:index/getStreamInstance:getStreamInstance", args ?? new GetStreamInstanceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamInstance
+        /// &gt; **DEPRECATED:** This data source is deprecated. Please use `mongodbatlas.StreamWorkspace` instead.
         /// 
         /// `mongodbatlas.StreamInstance` describes a stream instance.
+        /// 
+        /// ## Migration to StreamWorkspace
+        /// 
+        /// To migrate from `mongodbatlas.StreamInstance` to `mongodbatlas.StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // New (recommended)
+        ///     var example = Mongodbatlas.GetStreamWorkspace.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
+        ///     });
+        /// 
+        ///     // Old (deprecated)
+        ///     var exampleGetStreamInstance = Mongodbatlas.GetStreamInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ## Example Usage
         /// 

@@ -2,11 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.EncryptionAtRestPrivateEndpoint
- *
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
  *
  * > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
@@ -93,6 +93,10 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Further Examples
+ * - AWS KMS Encryption at Rest Private Endpoint
+ * - Azure Key Vault Encryption at Rest Private Endpoint
+ *
  * ## Import
  *
  * Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
@@ -134,6 +138,10 @@ export class EncryptionAtRestPrivateEndpoint extends pulumi.CustomResource {
      */
     declare public readonly cloudProvider: pulumi.Output<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean>;
+    /**
      * Error message for failures associated with the Encryption At Rest private endpoint.
      */
     declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
@@ -153,6 +161,7 @@ export class EncryptionAtRestPrivateEndpoint extends pulumi.CustomResource {
      * State of the Encryption At Rest private endpoint.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
+    declare public readonly timeouts: pulumi.Output<outputs.EncryptionAtRestPrivateEndpointTimeouts | undefined>;
 
     /**
      * Create a EncryptionAtRestPrivateEndpoint resource with the given unique name, arguments, and options.
@@ -168,11 +177,13 @@ export class EncryptionAtRestPrivateEndpoint extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as EncryptionAtRestPrivateEndpointState | undefined;
             resourceInputs["cloudProvider"] = state?.cloudProvider;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["errorMessage"] = state?.errorMessage;
             resourceInputs["privateEndpointConnectionName"] = state?.privateEndpointConnectionName;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["regionName"] = state?.regionName;
             resourceInputs["status"] = state?.status;
+            resourceInputs["timeouts"] = state?.timeouts;
         } else {
             const args = argsOrState as EncryptionAtRestPrivateEndpointArgs | undefined;
             if (args?.cloudProvider === undefined && !opts.urn) {
@@ -185,8 +196,10 @@ export class EncryptionAtRestPrivateEndpoint extends pulumi.CustomResource {
                 throw new Error("Missing required property 'regionName'");
             }
             resourceInputs["cloudProvider"] = args?.cloudProvider;
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["regionName"] = args?.regionName;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["errorMessage"] = undefined /*out*/;
             resourceInputs["privateEndpointConnectionName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
@@ -204,6 +217,10 @@ export interface EncryptionAtRestPrivateEndpointState {
      * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
     cloudProvider?: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Error message for failures associated with the Encryption At Rest private endpoint.
      */
@@ -224,6 +241,7 @@ export interface EncryptionAtRestPrivateEndpointState {
      * State of the Encryption At Rest private endpoint.
      */
     status?: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.EncryptionAtRestPrivateEndpointTimeouts>;
 }
 
 /**
@@ -235,6 +253,10 @@ export interface EncryptionAtRestPrivateEndpointArgs {
      */
     cloudProvider: pulumi.Input<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
@@ -242,4 +264,5 @@ export interface EncryptionAtRestPrivateEndpointArgs {
      * Cloud provider region in which the Encryption At Rest private endpoint is located.
      */
     regionName: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.EncryptionAtRestPrivateEndpointTimeouts>;
 }

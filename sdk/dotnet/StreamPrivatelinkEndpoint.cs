@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.StreamPrivatelinkEndpoint
-    /// 
     /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
     /// 
     /// ## Example Usage
@@ -211,6 +209,53 @@ namespace Pulumi.Mongodbatlas
     ///     };
     /// });
     /// ```
+    /// 
+    /// ### GCP Confluent Privatelink
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "GCP",
+    ///         Vendor = "CONFLUENT",
+    ///         Region = gcpRegion,
+    ///         DnsDomain = confluentDnsDomain,
+    ///         DnsSubDomains = confluentDnsSubdomains,
+    ///         ServiceAttachmentUris = new[]
+    ///         {
+    ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+    ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+    ///         },
+    ///     });
+    /// 
+    ///     var gcpConfluent = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Id = gcpConfluentStreamPrivatelinkEndpoint.Id,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["privatelinkEndpointId"] = gcpConfluentStreamPrivatelinkEndpoint.Id,
+    ///         ["privatelinkEndpointState"] = gcpConfluent.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+    ///         ["serviceAttachmentUris"] = gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris,
+    ///     };
+    /// });
+    /// ```
+    /// 
+    /// ### Further Examples
+    /// - AWS Confluent PrivateLink
+    /// - Confluent Dedicated Cluster
+    /// - AWS MSK PrivateLink
+    /// - AWS S3 PrivateLink
+    /// - GCP Confluent PrivateLink
+    /// - Azure PrivateLink
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")]
     public partial class StreamPrivatelinkEndpoint : global::Pulumi.CustomResource
@@ -268,7 +313,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderAccountId { get; private set; } = null!;
 
         /// <summary>
-        /// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        /// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -278,6 +323,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+        /// </summary>
+        [Output("serviceAttachmentUris")]
+        public Output<ImmutableArray<string>> ServiceAttachmentUris { get; private set; } = null!;
 
         /// <summary>
         /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
@@ -297,6 +348,8 @@ namespace Pulumi.Mongodbatlas
         /// 	* **AWS**: MSK, CONFLUENT, and S3
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
+        /// 
+        /// 	* **GCP**: CONFLUENT
         /// </summary>
         [Output("vendor")]
         public Output<string> Vendor { get; private set; } = null!;
@@ -382,7 +435,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        /// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -392,6 +445,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("serviceAttachmentUris")]
+        private InputList<string>? _serviceAttachmentUris;
+
+        /// <summary>
+        /// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+        /// </summary>
+        public InputList<string> ServiceAttachmentUris
+        {
+            get => _serviceAttachmentUris ?? (_serviceAttachmentUris = new InputList<string>());
+            set => _serviceAttachmentUris = value;
+        }
 
         /// <summary>
         /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
@@ -405,6 +470,8 @@ namespace Pulumi.Mongodbatlas
         /// 	* **AWS**: MSK, CONFLUENT, and S3
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
+        /// 
+        /// 	* **GCP**: CONFLUENT
         /// </summary>
         [Input("vendor", required: true)]
         public Input<string> Vendor { get; set; } = null!;
@@ -476,7 +543,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderAccountId { get; set; }
 
         /// <summary>
-        /// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        /// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
@@ -486,6 +553,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("serviceAttachmentUris")]
+        private InputList<string>? _serviceAttachmentUris;
+
+        /// <summary>
+        /// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+        /// </summary>
+        public InputList<string> ServiceAttachmentUris
+        {
+            get => _serviceAttachmentUris ?? (_serviceAttachmentUris = new InputList<string>());
+            set => _serviceAttachmentUris = value;
+        }
 
         /// <summary>
         /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
@@ -505,6 +584,8 @@ namespace Pulumi.Mongodbatlas
         /// 	* **AWS**: MSK, CONFLUENT, and S3
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
+        /// 
+        /// 	* **GCP**: CONFLUENT
         /// </summary>
         [Input("vendor")]
         public Input<string>? Vendor { get; set; }

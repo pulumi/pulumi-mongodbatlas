@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFlexSnapshot
- *
  * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
  *
  * ## Example Usage
@@ -78,8 +76,6 @@ export interface GetFlexSnapshotResult {
     readonly status: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getFlexSnapshot
- *
  * `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
  *
  * ## Example Usage

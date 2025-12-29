@@ -10,6 +10,7 @@ import java.util.Objects;
 
 @CustomType
 public final class GetStreamInstancesResultStreamConfig {
+    private String maxTierSize;
     /**
      * @return Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      * 
@@ -17,6 +18,9 @@ public final class GetStreamInstancesResultStreamConfig {
     private String tier;
 
     private GetStreamInstancesResultStreamConfig() {}
+    public String maxTierSize() {
+        return this.maxTierSize;
+    }
     /**
      * @return Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      * 
@@ -34,13 +38,23 @@ public final class GetStreamInstancesResultStreamConfig {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String maxTierSize;
         private String tier;
         public Builder() {}
         public Builder(GetStreamInstancesResultStreamConfig defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.maxTierSize = defaults.maxTierSize;
     	      this.tier = defaults.tier;
         }
 
+        @CustomType.Setter
+        public Builder maxTierSize(String maxTierSize) {
+            if (maxTierSize == null) {
+              throw new MissingRequiredPropertyException("GetStreamInstancesResultStreamConfig", "maxTierSize");
+            }
+            this.maxTierSize = maxTierSize;
+            return this;
+        }
         @CustomType.Setter
         public Builder tier(String tier) {
             if (tier == null) {
@@ -51,6 +65,7 @@ public final class GetStreamInstancesResultStreamConfig {
         }
         public GetStreamInstancesResultStreamConfig build() {
             final var _resultValue = new GetStreamInstancesResultStreamConfig();
+            _resultValue.maxTierSize = maxTierSize;
             _resultValue.tier = tier;
             return _resultValue;
         }

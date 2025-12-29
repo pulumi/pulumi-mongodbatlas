@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -18,23 +19,62 @@ public final class CloudProviderAccessSetupArgs extends com.pulumi.resources.Res
 
     public static final CloudProviderAccessSetupArgs Empty = new CloudProviderAccessSetupArgs();
 
+    /**
+     * azure related configurations
+     * 
+     */
     @Import(name="azureConfigs")
     private @Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs;
 
+    /**
+     * @return azure related configurations
+     * 
+     */
     public Optional<Output<List<CloudProviderAccessSetupAzureConfigArgs>>> azureConfigs() {
         return Optional.ofNullable(this.azureConfigs);
     }
 
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
+
+    /**
+     * The unique ID for the project
+     * 
+     */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
+    /**
+     * @return The unique ID for the project
+     * 
+     */
     public Output<String> projectId() {
         return this.projectId;
     }
 
+    /**
+     * The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+     * 
+     */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
+    /**
+     * @return The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+     * 
+     */
     public Output<String> providerName() {
         return this.providerName;
     }
@@ -43,6 +83,7 @@ public final class CloudProviderAccessSetupArgs extends com.pulumi.resources.Res
 
     private CloudProviderAccessSetupArgs(CloudProviderAccessSetupArgs $) {
         this.azureConfigs = $.azureConfigs;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
     }
@@ -65,33 +106,96 @@ public final class CloudProviderAccessSetupArgs extends com.pulumi.resources.Res
             $ = new CloudProviderAccessSetupArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureConfigs(@Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs) {
             $.azureConfigs = azureConfigs;
             return this;
         }
 
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureConfigs(List<CloudProviderAccessSetupAzureConfigArgs> azureConfigs) {
             return azureConfigs(Output.of(azureConfigs));
         }
 
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureConfigs(CloudProviderAccessSetupAzureConfigArgs... azureConfigs) {
             return azureConfigs(List.of(azureConfigs));
         }
 
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
+        }
+
+        /**
+         * @param projectId The unique ID for the project
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
+        /**
+         * @param projectId The unique ID for the project
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param providerName The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder providerName(Output<String> providerName) {
             $.providerName = providerName;
             return this;
         }
 
+        /**
+         * @param providerName The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder providerName(String providerName) {
             return providerName(Output.of(providerName));
         }

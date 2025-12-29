@@ -12,9 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetRolesOrgId
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getRolesOrgId
-        /// 
-        /// `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+        /// `mongodbatlas.getRolesOrgId` allows to retrieve the Org ID of the authenticated user.
         /// 
         /// ## Example Usage
         /// 
@@ -40,9 +38,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRolesOrgIdResult>("mongodbatlas:index/getRolesOrgId:getRolesOrgId", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getRolesOrgId
-        /// 
-        /// `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+        /// `mongodbatlas.getRolesOrgId` allows to retrieve the Org ID of the authenticated user.
         /// 
         /// ## Example Usage
         /// 
@@ -68,9 +64,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetRolesOrgIdResult>("mongodbatlas:index/getRolesOrgId:getRolesOrgId", InvokeArgs.Empty, options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getRolesOrgId
-        /// 
-        /// `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+        /// `mongodbatlas.getRolesOrgId` allows to retrieve the Org ID of the authenticated user.
         /// 
         /// ## Example Usage
         /// 
@@ -105,7 +99,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The ID of the organization you want to retrieve associated to an API Key.
+        /// The ID of the organization you want to retrieve, which is associated with the Service Account or Programmatic API Key (PAK) of the authenticated user.
         /// </summary>
         public readonly string OrgId;
 

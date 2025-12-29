@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: Auditing
-//
 // `Auditing` provides an Auditing resource. This allows auditing to be created.
 //
 // ## Example Usage
@@ -23,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -75,7 +73,8 @@ type Auditing struct {
 
 // NewAuditing registers a new resource with the given unique name, arguments, and options.
 func NewAuditing(ctx *pulumi.Context,
-	name string, args *AuditingArgs, opts ...pulumi.ResourceOption) (*Auditing, error) {
+	name string, args *AuditingArgs, opts ...pulumi.ResourceOption,
+) (*Auditing, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -95,7 +94,8 @@ func NewAuditing(ctx *pulumi.Context,
 // GetAuditing gets an existing Auditing resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetAuditing(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *AuditingState, opts ...pulumi.ResourceOption) (*Auditing, error) {
+	name string, id pulumi.IDInput, state *AuditingState, opts ...pulumi.ResourceOption,
+) (*Auditing, error) {
 	var resource Auditing
 	err := ctx.ReadResource("mongodbatlas:index/auditing:Auditing", name, id, state, &resource, opts...)
 	if err != nil {

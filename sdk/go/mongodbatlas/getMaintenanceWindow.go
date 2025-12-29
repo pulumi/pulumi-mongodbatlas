@@ -7,15 +7,15 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: MaintenanceWindow
-//
 // `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 //
 // ## Examples Usage
 //
@@ -24,7 +24,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -54,7 +54,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -63,7 +63,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testMaintenanceWindow, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
 //				ProjectId: pulumi.String("<your-project-id>"),
-//				StartAsap: pulumi.Bool(true),
+//				StartAsap: true,
 //			})
 //			if err != nil {
 //				return err
@@ -98,7 +98,7 @@ type LookupMaintenanceWindowResult struct {
 	AutoDeferOnceEnabled bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 	HourOfDay int `pulumi:"hourOfDay"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -107,7 +107,7 @@ type LookupMaintenanceWindowResult struct {
 	ProjectId         string `pulumi:"projectId"`
 	// (Optional) Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours []GetMaintenanceWindowProtectedHour `pulumi:"protectedHours"`
-	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+	// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap bool `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId string `pulumi:"timeZoneId"`
@@ -157,7 +157,7 @@ func (o LookupMaintenanceWindowResultOutput) DayOfWeek() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.DayOfWeek }).(pulumi.IntOutput)
 }
 
-// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 func (o LookupMaintenanceWindowResultOutput) HourOfDay() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.HourOfDay }).(pulumi.IntOutput)
 }
@@ -181,7 +181,7 @@ func (o LookupMaintenanceWindowResultOutput) ProtectedHours() GetMaintenanceWind
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) []GetMaintenanceWindowProtectedHour { return v.ProtectedHours }).(GetMaintenanceWindowProtectedHourArrayOutput)
 }
 
-// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
 func (o LookupMaintenanceWindowResultOutput) StartAsap() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) bool { return v.StartAsap }).(pulumi.BoolOutput)
 }

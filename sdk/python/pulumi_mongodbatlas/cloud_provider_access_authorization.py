@@ -27,6 +27,10 @@ class CloudProviderAccessAuthorizationArgs:
                  azure: Optional[pulumi.Input['CloudProviderAccessAuthorizationAzureArgs']] = None):
         """
         The set of arguments for constructing a CloudProviderAccessAuthorization resource.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+               
+               Conditional
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "role_id", role_id)
@@ -38,6 +42,9 @@ class CloudProviderAccessAuthorizationArgs:
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -47,6 +54,11 @@ class CloudProviderAccessAuthorizationArgs:
     @_builtins.property
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+
+        Conditional
+        """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
@@ -84,6 +96,12 @@ class _CloudProviderAccessAuthorizationState:
                  role_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.
+        :param pulumi.Input[_builtins.str] authorized_date: Date on which this role was authorized.
+        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]] feature_usages: Atlas features this AWS IAM role is linked to.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+               
+               Conditional
         """
         if authorized_date is not None:
             pulumi.set(__self__, "authorized_date", authorized_date)
@@ -103,6 +121,9 @@ class _CloudProviderAccessAuthorizationState:
     @_builtins.property
     @pulumi.getter(name="authorizedDate")
     def authorized_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Date on which this role was authorized.
+        """
         return pulumi.get(self, "authorized_date")
 
     @authorized_date.setter
@@ -130,6 +151,9 @@ class _CloudProviderAccessAuthorizationState:
     @_builtins.property
     @pulumi.getter(name="featureUsages")
     def feature_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]]]:
+        """
+        Atlas features this AWS IAM role is linked to.
+        """
         return pulumi.get(self, "feature_usages")
 
     @feature_usages.setter
@@ -148,6 +172,9 @@ class _CloudProviderAccessAuthorizationState:
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -157,6 +184,11 @@ class _CloudProviderAccessAuthorizationState:
     @_builtins.property
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+
+        Conditional
+        """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
@@ -179,6 +211,10 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
         Create a CloudProviderAccessAuthorization resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+               
+               Conditional
         """
         ...
     @overload
@@ -251,6 +287,12 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] authorized_date: Date on which this role was authorized.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict']]]] feature_usages: Atlas features this AWS IAM role is linked to.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+               
+               Conditional
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -268,6 +310,9 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="authorizedDate")
     def authorized_date(self) -> pulumi.Output[_builtins.str]:
+        """
+        Date on which this role was authorized.
+        """
         return pulumi.get(self, "authorized_date")
 
     @_builtins.property
@@ -283,6 +328,9 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="featureUsages")
     def feature_usages(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessAuthorizationFeatureUsage']]:
+        """
+        Atlas features this AWS IAM role is linked to.
+        """
         return pulumi.get(self, "feature_usages")
 
     @_builtins.property
@@ -293,10 +341,18 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+
+        Conditional
+        """
         return pulumi.get(self, "role_id")
 

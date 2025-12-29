@@ -29,15 +29,6 @@ public final class CloudBackupScheduleCopySetting {
      */
     private @Nullable String regionName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private @Nullable String replicationSpecId;
-    /**
      * @return Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
      * 
      */
@@ -71,17 +62,6 @@ public final class CloudBackupScheduleCopySetting {
         return Optional.ofNullable(this.regionName);
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Optional<String> replicationSpecId() {
-        return Optional.ofNullable(this.replicationSpecId);
-    }
-    /**
      * @return Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
      * 
      */
@@ -108,7 +88,6 @@ public final class CloudBackupScheduleCopySetting {
         private @Nullable String cloudProvider;
         private @Nullable List<String> frequencies;
         private @Nullable String regionName;
-        private @Nullable String replicationSpecId;
         private @Nullable Boolean shouldCopyOplogs;
         private @Nullable String zoneId;
         public Builder() {}
@@ -117,7 +96,6 @@ public final class CloudBackupScheduleCopySetting {
     	      this.cloudProvider = defaults.cloudProvider;
     	      this.frequencies = defaults.frequencies;
     	      this.regionName = defaults.regionName;
-    	      this.replicationSpecId = defaults.replicationSpecId;
     	      this.shouldCopyOplogs = defaults.shouldCopyOplogs;
     	      this.zoneId = defaults.zoneId;
         }
@@ -144,12 +122,6 @@ public final class CloudBackupScheduleCopySetting {
             return this;
         }
         @CustomType.Setter
-        public Builder replicationSpecId(@Nullable String replicationSpecId) {
-
-            this.replicationSpecId = replicationSpecId;
-            return this;
-        }
-        @CustomType.Setter
         public Builder shouldCopyOplogs(@Nullable Boolean shouldCopyOplogs) {
 
             this.shouldCopyOplogs = shouldCopyOplogs;
@@ -166,7 +138,6 @@ public final class CloudBackupScheduleCopySetting {
             _resultValue.cloudProvider = cloudProvider;
             _resultValue.frequencies = frequencies;
             _resultValue.regionName = regionName;
-            _resultValue.replicationSpecId = replicationSpecId;
             _resultValue.shouldCopyOplogs = shouldCopyOplogs;
             _resultValue.zoneId = zoneId;
             return _resultValue;

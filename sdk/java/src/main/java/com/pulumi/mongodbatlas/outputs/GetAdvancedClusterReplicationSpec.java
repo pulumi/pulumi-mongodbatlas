@@ -6,7 +6,6 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpecRegionConfig;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -20,26 +19,10 @@ public final class GetAdvancedClusterReplicationSpec {
      */
     private Map<String,String> containerId;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
      * 
      */
     private String externalId;
-    /**
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private String id;
-    /**
-     * @return Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private Integer numShards;
     /**
      * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      * 
@@ -65,31 +48,11 @@ public final class GetAdvancedClusterReplicationSpec {
         return this.containerId;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     * @return Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
      * 
      */
     public String externalId() {
         return this.externalId;
-    }
-    /**
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public String id() {
-        return this.id;
-    }
-    /**
-     * @return Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Integer numShards() {
-        return this.numShards;
     }
     /**
      * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
@@ -124,8 +87,6 @@ public final class GetAdvancedClusterReplicationSpec {
     public static final class Builder {
         private Map<String,String> containerId;
         private String externalId;
-        private String id;
-        private Integer numShards;
         private List<GetAdvancedClusterReplicationSpecRegionConfig> regionConfigs;
         private String zoneId;
         private String zoneName;
@@ -134,8 +95,6 @@ public final class GetAdvancedClusterReplicationSpec {
     	      Objects.requireNonNull(defaults);
     	      this.containerId = defaults.containerId;
     	      this.externalId = defaults.externalId;
-    	      this.id = defaults.id;
-    	      this.numShards = defaults.numShards;
     	      this.regionConfigs = defaults.regionConfigs;
     	      this.zoneId = defaults.zoneId;
     	      this.zoneName = defaults.zoneName;
@@ -155,22 +114,6 @@ public final class GetAdvancedClusterReplicationSpec {
               throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "externalId");
             }
             this.externalId = externalId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "id");
-            }
-            this.id = id;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder numShards(Integer numShards) {
-            if (numShards == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpec", "numShards");
-            }
-            this.numShards = numShards;
             return this;
         }
         @CustomType.Setter
@@ -204,8 +147,6 @@ public final class GetAdvancedClusterReplicationSpec {
             final var _resultValue = new GetAdvancedClusterReplicationSpec();
             _resultValue.containerId = containerId;
             _resultValue.externalId = externalId;
-            _resultValue.id = id;
-            _resultValue.numShards = numShards;
             _resultValue.regionConfigs = regionConfigs;
             _resultValue.zoneId = zoneId;
             _resultValue.zoneName = zoneName;

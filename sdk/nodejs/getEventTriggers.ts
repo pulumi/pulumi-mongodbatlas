@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getEventTriggers
- *
  * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
 export function getEventTriggers(args: GetEventTriggersArgs, opts?: pulumi.InvokeOptions): Promise<GetEventTriggersResult> {
@@ -50,8 +48,6 @@ export interface GetEventTriggersResult {
     readonly results: outputs.GetEventTriggersResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getEventTriggers
- *
  * `mongodbatlas.getEventTriggers` describes all Event Triggers.
  */
 export function getEventTriggersOutput(args: GetEventTriggersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEventTriggersResult> {

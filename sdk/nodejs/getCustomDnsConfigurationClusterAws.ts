@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.CustomDnsConfigurationClusterAws
- *
  * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -58,8 +56,6 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
     readonly projectId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.CustomDnsConfigurationClusterAws
- *
  * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetStreamProcessorsPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -14,18 +16,22 @@ public final class GetStreamProcessorsPlainArgs extends com.pulumi.resources.Inv
     public static final GetStreamProcessorsPlainArgs Empty = new GetStreamProcessorsPlainArgs();
 
     /**
-     * Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Import(name="instanceName", required=true)
-    private String instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Import(name="instanceName")
+    private @Nullable String instanceName;
 
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    public String instanceName() {
-        return this.instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<String> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
 
     /**
@@ -43,11 +49,19 @@ public final class GetStreamProcessorsPlainArgs extends com.pulumi.resources.Inv
         return this.projectId;
     }
 
+    @Import(name="workspaceName")
+    private @Nullable String workspaceName;
+
+    public Optional<String> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
+
     private GetStreamProcessorsPlainArgs() {}
 
     private GetStreamProcessorsPlainArgs(GetStreamProcessorsPlainArgs $) {
         this.instanceName = $.instanceName;
         this.projectId = $.projectId;
+        this.workspaceName = $.workspaceName;
     }
 
     public static Builder builder() {
@@ -69,12 +83,14 @@ public final class GetStreamProcessorsPlainArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
-         * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
          */
-        public Builder instanceName(String instanceName) {
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+        public Builder instanceName(@Nullable String instanceName) {
             $.instanceName = instanceName;
             return this;
         }
@@ -90,10 +106,12 @@ public final class GetStreamProcessorsPlainArgs extends com.pulumi.resources.Inv
             return this;
         }
 
+        public Builder workspaceName(@Nullable String workspaceName) {
+            $.workspaceName = workspaceName;
+            return this;
+        }
+
         public GetStreamProcessorsPlainArgs build() {
-            if ($.instanceName == null) {
-                throw new MissingRequiredPropertyException("GetStreamProcessorsPlainArgs", "instanceName");
-            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("GetStreamProcessorsPlainArgs", "projectId");
             }

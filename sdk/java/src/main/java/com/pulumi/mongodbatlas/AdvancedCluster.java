@@ -12,15 +12,14 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterState;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterAdvancedConfiguration;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterBiConnectorConfig;
-import com.pulumi.mongodbatlas.outputs.AdvancedClusterConnectionString;
-import com.pulumi.mongodbatlas.outputs.AdvancedClusterLabel;
+import com.pulumi.mongodbatlas.outputs.AdvancedClusterConnectionStrings;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterPinnedFcv;
 import com.pulumi.mongodbatlas.outputs.AdvancedClusterReplicationSpec;
-import com.pulumi.mongodbatlas.outputs.AdvancedClusterTag;
+import com.pulumi.mongodbatlas.outputs.AdvancedClusterTimeouts;
 import java.lang.Boolean;
-import java.lang.Double;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -54,9 +53,17 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> acceptDataRisksAndForceReplicaSetReconfig() {
         return Codegen.optional(this.acceptDataRisksAndForceReplicaSetReconfig);
     }
+    /**
+     * Additional settings for an Atlas cluster.
+     * 
+     */
     @Export(name="advancedConfiguration", refs={AdvancedClusterAdvancedConfiguration.class}, tree="[0]")
     private Output<AdvancedClusterAdvancedConfiguration> advancedConfiguration;
 
+    /**
+     * @return Additional settings for an Atlas cluster.
+     * 
+     */
     public Output<AdvancedClusterAdvancedConfiguration> advancedConfiguration() {
         return this.advancedConfiguration;
     }
@@ -168,63 +175,53 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
-    @Export(name="connectionStrings", refs={List.class,AdvancedClusterConnectionString.class}, tree="[0,1]")
-    private Output<List<AdvancedClusterConnectionString>> connectionStrings;
+    @Export(name="connectionStrings", refs={AdvancedClusterConnectionStrings.class}, tree="[0]")
+    private Output<AdvancedClusterConnectionStrings> connectionStrings;
 
     /**
      * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
-    public Output<List<AdvancedClusterConnectionString>> connectionStrings() {
+    public Output<AdvancedClusterConnectionStrings> connectionStrings() {
         return this.connectionStrings;
     }
+    /**
+     * Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+     * 
+     */
     @Export(name="createDate", refs={String.class}, tree="[0]")
     private Output<String> createDate;
 
+    /**
+     * @return Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+     * 
+     */
     public Output<String> createDate() {
         return this.createDate;
     }
     /**
-     * Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
     @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> deleteOnCreateTimeout;
+    private Output<Boolean> deleteOnCreateTimeout;
 
     /**
-     * @return Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
-    public Output<Optional<Boolean>> deleteOnCreateTimeout() {
-        return Codegen.optional(this.deleteOnCreateTimeout);
+    public Output<Boolean> deleteOnCreateTimeout() {
+        return this.deleteOnCreateTimeout;
     }
     /**
-     * Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    @Export(name="diskSizeGb", refs={Double.class}, tree="[0]")
-    private Output<Double> diskSizeGb;
-
-    /**
-     * @return Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     */
-    public Output<Double> diskSizeGb() {
-        return this.diskSizeGb;
-    }
-    /**
-     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      * 
      */
     @Export(name="encryptionAtRestProvider", refs={String.class}, tree="[0]")
     private Output<String> encryptionAtRestProvider;
 
     /**
-     * @return Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+     * @return Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      * 
      */
     public Output<String> encryptionAtRestProvider() {
@@ -248,14 +245,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      */
-    @Export(name="labels", refs={List.class,AdvancedClusterLabel.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<AdvancedClusterLabel>> labels;
+    @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> labels;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      */
-    public Output<Optional<List<AdvancedClusterLabel>>> labels() {
+    public Output<Optional<Map<String,String>>> labels() {
         return Codegen.optional(this.labels);
     }
     /**
@@ -300,9 +297,17 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
     public Output<String> name() {
         return this.name;
     }
+    /**
+     * Flag that indicates whether the cluster is paused.
+     * 
+     */
     @Export(name="paused", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> paused;
 
+    /**
+     * @return Flag that indicates whether the cluster is paused.
+     * 
+     */
     public Output<Boolean> paused() {
         return this.paused;
     }
@@ -377,28 +382,28 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.replicaSetScalingStrategy;
     }
     /**
-     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replicationSpecs` a `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
      * 
      */
     @Export(name="replicationSpecs", refs={List.class,AdvancedClusterReplicationSpec.class}, tree="[0,1]")
     private Output<List<AdvancedClusterReplicationSpec>> replicationSpecs;
 
     /**
-     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replicationSpecs` a `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
      * 
      */
     public Output<List<AdvancedClusterReplicationSpec>> replicationSpecs() {
         return this.replicationSpecs;
     }
     /**
-     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
      * 
      */
     @Export(name="retainBackupsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> retainBackupsEnabled;
 
     /**
-     * @return Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     * @return Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
      * 
      */
     public Output<Optional<Boolean>> retainBackupsEnabled() {
@@ -426,7 +431,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * - DELETING
      * - DELETED
      * - REPAIRING
-     * * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
+     * * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
      * 
      */
     @Export(name="stateName", refs={String.class}, tree="[0]")
@@ -440,7 +445,7 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * - DELETING
      * - DELETED
      * - REPAIRING
-     * * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
+     * * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `regionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `&#34;providerName:regionName&#34; = &#34;containerId&#34;`. Example `AWS:US_EAST_1&#34; = &#34;61e0797dde08fb498ca11a71`.
      * 
      */
     public Output<String> stateName() {
@@ -450,14 +455,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      * 
      */
-    @Export(name="tags", refs={List.class,AdvancedClusterTag.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<AdvancedClusterTag>> tags;
+    @Export(name="tags", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> tags;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      * 
      */
-    public Output<Optional<List<AdvancedClusterTag>>> tags() {
+    public Output<Optional<Map<String,String>>> tags() {
         return Codegen.optional(this.tags);
     }
     /**
@@ -473,6 +478,36 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> terminationProtectionEnabled() {
         return this.terminationProtectionEnabled;
+    }
+    /**
+     * The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * 
+     */
+    @Export(name="timeouts", refs={AdvancedClusterTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ AdvancedClusterTimeouts> timeouts;
+
+    /**
+     * @return The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * 
+     */
+    public Output<Optional<AdvancedClusterTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
+    }
+    /**
+     * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+     * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+     * 
+     */
+    @Export(name="useEffectiveFields", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> useEffectiveFields;
+
+    /**
+     * @return Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+     * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+     * 
+     */
+    public Output<Optional<Boolean>> useEffectiveFields() {
+        return Codegen.optional(this.useEffectiveFields);
     }
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:

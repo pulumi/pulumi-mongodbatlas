@@ -47,6 +47,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string SecurityContact;
         public readonly bool SkipDefaultAlertsSettings;
+        /// <summary>
+        /// Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetOrganizationsResultUserResult> Users;
 
         [OutputConstructor]
         private GetOrganizationsResultResult(
@@ -68,7 +72,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string securityContact,
 
-            bool skipDefaultAlertsSettings)
+            bool skipDefaultAlertsSettings,
+
+            ImmutableArray<Outputs.GetOrganizationsResultUserResult> users)
         {
             ApiAccessListRequired = apiAccessListRequired;
             GenAiFeaturesEnabled = genAiFeaturesEnabled;
@@ -80,6 +86,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             RestrictEmployeeAccess = restrictEmployeeAccess;
             SecurityContact = securityContact;
             SkipDefaultAlertsSettings = skipDefaultAlertsSettings;
+            Users = users;
         }
     }
 }

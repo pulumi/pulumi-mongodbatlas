@@ -7,63 +7,51 @@ import * as outputs from "../types/output";
 
 export interface AdvancedClusterAdvancedConfiguration {
     /**
-     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+     * The minimum pre- and post-image retention time in seconds.
      */
-    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: number;
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
      * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      */
-    customOpensslCipherConfigTls12s?: string[];
+    customOpensslCipherConfigTls12s: string[];
     /**
-     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      */
-    defaultMaxTimeMs?: number;
+    customOpensslCipherConfigTls13s: string[];
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
+     * Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
      */
-    defaultReadConcern: string;
+    defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
      */
     defaultWriteConcern: string;
     /**
-     * **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    failIndexKeyTooLong: boolean;
-    /**
-     * When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
      */
     javascriptEnabled: boolean;
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
-     * - TLS1_2
+     * Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
      */
     minimumEnabledTlsProtocol: string;
     /**
-     * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     * Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
      */
     noTableScan: boolean;
     /**
      * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-     * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      */
-    oplogMinRetentionHours?: number;
+    oplogMinRetentionHours: number;
     /**
-     * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     * Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
      */
     oplogSizeMb: number;
     /**
-     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
      */
     sampleRefreshIntervalBiConnector: number;
     /**
-     * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * Number of documents per database to sample when gathering schema information.
      */
     sampleSizeBiConnector: number;
     /**
@@ -71,7 +59,7 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     tlsCipherConfigMode: string;
     /**
-     * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
      */
     transactionLifetimeLimitSeconds: number;
 }
@@ -96,23 +84,23 @@ export interface AdvancedClusterBiConnectorConfig {
     readPreference: string;
 }
 
-export interface AdvancedClusterConnectionString {
+export interface AdvancedClusterConnectionStrings {
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     private: string;
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+     * - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+     * - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+     * - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for `connection_strings.private_endpoint[#].srv_connection_string`.
+     * - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+     * - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+     * - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+     * - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
      */
-    privateEndpoints: outputs.AdvancedClusterConnectionStringPrivateEndpoint[];
+    privateEndpoints: outputs.AdvancedClusterConnectionStringsPrivateEndpoint[];
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
@@ -127,39 +115,42 @@ export interface AdvancedClusterConnectionString {
     standardSrv: string;
 }
 
-export interface AdvancedClusterConnectionStringPrivateEndpoint {
+export interface AdvancedClusterConnectionStringsPrivateEndpoint {
+    /**
+     * Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+     */
     connectionString: string;
-    endpoints: outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint[];
+    /**
+     * List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+     */
+    endpoints: outputs.AdvancedClusterConnectionStringsPrivateEndpointEndpoint[];
+    /**
+     * Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+     */
     srvConnectionString: string;
+    /**
+     * Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     */
     srvShardOptimizedConnectionString: string;
+    /**
+     * MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+     */
     type: string;
 }
 
-export interface AdvancedClusterConnectionStringPrivateEndpointEndpoint {
+export interface AdvancedClusterConnectionStringsPrivateEndpointEndpoint {
+    /**
+     * Unique string that the cloud provider uses to identify the private endpoint.
+     */
     endpointId: string;
     /**
-     * Cloud service provider on which the servers are provisioned.
-     * The possible values are:
-     * - `AWS` - Amazon AWS
-     * - `GCP` - Google Cloud Platform
-     * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * Cloud provider in which MongoDB Cloud deploys the private endpoint.
      */
     providerName: string;
+    /**
+     * Region where the private endpoint is deployed.
+     */
     region: string;
-}
-
-export interface AdvancedClusterLabel {
-    /**
-     * The key that you want to write.
-     */
-    key?: string;
-    /**
-     * The value that you want to write.
-     *
-     * > **NOTE:** MongoDB Atlas doesn't display your labels.
-     */
-    value?: string;
 }
 
 export interface AdvancedClusterPinnedFcv {
@@ -174,24 +165,14 @@ export interface AdvancedClusterPinnedFcv {
 }
 
 export interface AdvancedClusterReplicationSpec {
+    /**
+     * A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+     */
     containerId: {[key: string]: string};
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
      */
     externalId: string;
-    /**
-     * **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    id: string;
-    /**
-     * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. Omit this value if you selected a `clusterType` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `numShards` value of 1 and a `clusterType` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-     * If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    numShards?: number;
     /**
      * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
@@ -203,7 +184,7 @@ export interface AdvancedClusterReplicationSpec {
     /**
      * Name for the zone in a Global Cluster.
      */
-    zoneName?: string;
+    zoneName: string;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfig {
@@ -220,7 +201,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     autoScaling: outputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling;
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
      */
     backingProviderName?: string;
     /**
@@ -230,7 +211,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-     * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
      */
     priority: number;
     /**
@@ -239,7 +220,8 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+     * - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
      */
     providerName: string;
     /**
@@ -253,17 +235,22 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
+    /**
+     * Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+     */
     computeEnabled: boolean;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+     *
+     * **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `useEffectiveFields = true`, you can read scaled values using `effectiveAnalyticsSpecs` in the data source. When not using `useEffectiveFields`, you may need lifecycle ignore customizations for `analyticsSpecs` fields similar to the example shown in the autoScaling section.
      */
     computeMaxInstanceSize: string;
     /**
-     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
      */
     computeMinInstanceSize: string;
     /**
-     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
      */
     computeScaleDownEnabled: boolean;
     /**
@@ -294,21 +281,24 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
+    nodeCount: number;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
+    /**
+     * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+     */
     computeEnabled: boolean;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+     * Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
      */
     computeMaxInstanceSize: string;
     /**
-     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+     * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
      */
     computeMinInstanceSize: string;
     /**
-     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+     * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
      */
     computeScaleDownEnabled: boolean;
     /**
@@ -339,7 +329,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
+    nodeCount: number;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
@@ -364,20 +354,22 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
+    nodeCount: number;
 }
 
-export interface AdvancedClusterTag {
+export interface AdvancedClusterTimeouts {
     /**
-     * Constant that defines the set of the tag.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
-    key: string;
+    create?: string;
     /**
-     * Variable that belongs to the set of the tag.
-     *
-     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
      */
-    value: string;
+    delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: string;
 }
 
 export interface AlertConfigurationMatcher {
@@ -708,12 +700,6 @@ export interface CloudBackupScheduleCopySetting {
      */
     regionName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-     *
-     * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    replicationSpecId: string;
-    /**
      * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
      */
     shouldCopyOplogs: boolean;
@@ -904,12 +890,24 @@ export interface CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
 }
 
 export interface CloudProviderAccessAuthorizationAws {
+    /**
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     */
     iamAssumedRoleArn: string;
 }
 
 export interface CloudProviderAccessAuthorizationAzure {
+    /**
+     * Azure Active Directory Application ID of Atlas.
+     */
     atlasAzureAppId: string;
+    /**
+     * UUID string that identifies the Azure Service Principal.
+     */
     servicePrincipalId: string;
+    /**
+     * UUID String that identifies the Azure Active Directory Tenant ID.
+     */
     tenantId: string;
 }
 
@@ -919,23 +917,91 @@ export interface CloudProviderAccessAuthorizationFeatureUsage {
 }
 
 export interface CloudProviderAccessAuthorizationGcp {
+    /**
+     * Email address for the Google Service Account created by Atlas.
+     */
     serviceAccountForAtlas: string;
 }
 
 export interface CloudProviderAccessSetupAwsConfig {
+    /**
+     * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     */
     atlasAssumedRoleExternalId: string;
+    /**
+     * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     */
     atlasAwsAccountArn: string;
 }
 
 export interface CloudProviderAccessSetupAzureConfig {
+    /**
+     * Azure Active Directory Application ID of Atlas. This property is required when `providerName = "AZURE".`
+     */
     atlasAzureAppId: string;
+    /**
+     * UUID string that identifies the Azure Service Principal. This property is required when `providerName = "AZURE".`
+     */
     servicePrincipalId: string;
+    /**
+     * UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `providerName = "AZURE".`
+     */
     tenantId: string;
 }
 
 export interface CloudProviderAccessSetupGcpConfig {
+    /**
+     * The GCP service account email that Atlas uses.
+     */
     serviceAccountForAtlas: string;
+    /**
+     * The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+     */
     status: string;
+}
+
+export interface CloudUserOrgAssignmentRoles {
+    /**
+     * One or more organization level roles to assign the MongoDB Cloud user.
+     */
+    orgRoles?: string[];
+    /**
+     * List of project level role assignments to assign the MongoDB Cloud user.
+     */
+    projectRoleAssignments: outputs.CloudUserOrgAssignmentRolesProjectRoleAssignment[];
+}
+
+export interface CloudUserOrgAssignmentRolesProjectRoleAssignment {
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+     */
+    projectId: string;
+    /**
+     * One or more project-level roles assigned to the MongoDB Cloud user.
+     */
+    projectRoles: string[];
+}
+
+export interface CloudUserTeamAssignmentRoles {
+    /**
+     * One or more organization level roles to assign the MongoDB Cloud user.
+     */
+    orgRoles: string[];
+    /**
+     * List of project level role assignments to assign the MongoDB Cloud user.
+     */
+    projectRoleAssignments: outputs.CloudUserTeamAssignmentRolesProjectRoleAssignment[];
+}
+
+export interface CloudUserTeamAssignmentRolesProjectRoleAssignment {
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+     */
+    projectId: string;
+    /**
+     * One or more project-level roles assigned to the MongoDB Cloud user.
+     */
+    projectRoles: string[];
 }
 
 export interface ClusterAdvancedConfiguration {
@@ -970,9 +1036,8 @@ export interface ClusterAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
      * - TLS1_2
+     * - TLS1_3
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -1027,33 +1092,10 @@ export interface ClusterBiConnectorConfig {
 }
 
 export interface ClusterConnectionString {
-    /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     */
     private: string;
-    /**
-     * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-     */
     privateEndpoints: outputs.ClusterConnectionStringPrivateEndpoint[];
-    /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     */
     privateSrv: string;
-    /**
-     * Public mongodb:// connection string for this cluster.
-     */
     standard: string;
-    /**
-     * Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
-     */
     standardSrv: string;
 }
 
@@ -1269,101 +1311,6 @@ export interface CustomDbRoleInheritedRole {
     roleName: string;
 }
 
-export interface DataLakePipelineIngestionSchedule {
-    frequencyInterval: number;
-    frequencyType: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-     */
-    id: string;
-    retentionUnit: string;
-    retentionValue: number;
-}
-
-export interface DataLakePipelineSink {
-    /**
-     * Ordered fields used to physically organize data in the destination.
-     * * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-     * * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-     */
-    partitionFields?: outputs.DataLakePipelineSinkPartitionField[];
-    /**
-     * Target cloud provider for this Data Lake Pipeline.
-     */
-    provider: string;
-    /**
-     * Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-     */
-    region: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type?: string;
-}
-
-export interface DataLakePipelineSinkPartitionField {
-    fieldName: string;
-    order: number;
-}
-
-export interface DataLakePipelineSnapshot {
-    copyRegion: string;
-    createdAt: string;
-    expiresAt: string;
-    frequencyYype: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-     */
-    id: string;
-    masterKey: string;
-    mongodVersion: string;
-    policies?: string[];
-    /**
-     * Target cloud provider for this Data Lake Pipeline.
-     */
-    provider?: string;
-    replicaSetName: string;
-    size: number;
-    snapshotType: string;
-    status: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
-export interface DataLakePipelineSource {
-    /**
-     * Human-readable name that identifies the cluster.
-     */
-    clusterName?: string;
-    /**
-     * Human-readable name that identifies the collection.
-     */
-    collectionName?: string;
-    /**
-     * Human-readable name that identifies the database.
-     */
-    databaseName?: string;
-    policyItemId?: string;
-    /**
-     * The unique ID for the project to create a data lake pipeline.
-     */
-    projectId: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type?: string;
-}
-
-export interface DataLakePipelineTransformation {
-    field?: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type?: string;
-}
-
 export interface DatabaseUserLabel {
     /**
      * The key that you want to write.
@@ -1392,7 +1339,7 @@ export interface DatabaseUserRole {
 
 export interface DatabaseUserScope {
     /**
-     * Name of the cluster or Atlas Data Lake that the user has access to.
+     * Name of the cluster or Atlas Data Federation that the user has access to.
      */
     name?: string;
     /**
@@ -1506,6 +1453,17 @@ export interface EncryptionAtRestGoogleCloudKmsConfig {
     valid: boolean;
 }
 
+export interface EncryptionAtRestPrivateEndpointTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: string;
+}
+
 export interface EventTriggerEventProcessors {
     awsEventbridge?: outputs.EventTriggerEventProcessorsAwsEventbridge;
 }
@@ -1517,7 +1475,7 @@ export interface EventTriggerEventProcessorsAwsEventbridge {
 
 export interface FederatedDatabaseInstanceCloudProviderConfig {
     /**
-     * Name of the cloud service that hosts the data lake's data stores.
+     * Name of the cloud service that hosts the Atlas Data Federation data stores.
      */
     aws?: outputs.FederatedDatabaseInstanceCloudProviderConfigAws;
     /**
@@ -1723,12 +1681,19 @@ export interface FlexClusterProviderSettings {
     regionName: string;
 }
 
-export interface Get509AuthenticationDatabaseUserCertificate {
-    createdAt: string;
-    groupId: string;
-    id: number;
-    notAfter: string;
-    subject: string;
+export interface FlexClusterTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: string;
 }
 
 export interface GetAccessListApiKeysResult {
@@ -1756,34 +1721,25 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     customOpensslCipherConfigTls12s: string[];
     /**
+     * The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls13s: string[];
+    /**
      * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    defaultReadConcern: string;
-    /**
      * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
-    /**
-     * **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    failIndexKeyTooLong: boolean;
     /**
      * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      */
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
      * - TLS1_2
+     * - TLS1_3
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -1827,23 +1783,23 @@ export interface GetAdvancedClusterBiConnectorConfig {
     readPreference: string;
 }
 
-export interface GetAdvancedClusterConnectionString {
+export interface GetAdvancedClusterConnectionStrings {
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     private: string;
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+     * - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+     * - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+     * - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
+     * - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+     * - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+     * - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+     * - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
      */
-    privateEndpoints: outputs.GetAdvancedClusterConnectionStringPrivateEndpoint[];
+    privateEndpoints: outputs.GetAdvancedClusterConnectionStringsPrivateEndpoint[];
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
@@ -1858,32 +1814,42 @@ export interface GetAdvancedClusterConnectionString {
     standardSrv: string;
 }
 
-export interface GetAdvancedClusterConnectionStringPrivateEndpoint {
+export interface GetAdvancedClusterConnectionStringsPrivateEndpoint {
+    /**
+     * Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+     */
     connectionString: string;
-    endpoints: outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpoint[];
+    /**
+     * List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+     */
+    endpoints: outputs.GetAdvancedClusterConnectionStringsPrivateEndpointEndpoint[];
+    /**
+     * Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+     */
     srvConnectionString: string;
+    /**
+     * Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     */
     srvShardOptimizedConnectionString: string;
+    /**
+     * MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+     */
     type: string;
 }
 
-export interface GetAdvancedClusterConnectionStringPrivateEndpointEndpoint {
+export interface GetAdvancedClusterConnectionStringsPrivateEndpointEndpoint {
+    /**
+     * Unique string that the cloud provider uses to identify the private endpoint.
+     */
     endpointId: string;
     /**
      * Cloud service provider on which the servers are provisioned.
      */
     providerName: string;
+    /**
+     * Region where the private endpoint is deployed.
+     */
     region: string;
-}
-
-export interface GetAdvancedClusterLabel {
-    /**
-     * The key that you want to write.
-     */
-    key: string;
-    /**
-     * The value that you want to write.
-     */
-    value: string;
 }
 
 export interface GetAdvancedClusterPinnedFcv {
@@ -1903,19 +1869,9 @@ export interface GetAdvancedClusterReplicationSpec {
      */
     containerId: {[key: string]: string};
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
      */
     externalId: string;
-    /**
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    id: string;
-    /**
-     * Provide this value if you set a `clusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    numShards: number;
     /**
      * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
@@ -1934,7 +1890,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfig {
     /**
      * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
      */
-    analyticsAutoScalings: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling[];
+    analyticsAutoScaling: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling;
     /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      */
@@ -1942,11 +1898,23 @@ export interface GetAdvancedClusterReplicationSpecRegionConfig {
     /**
      * Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      */
-    autoScalings: outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScaling[];
+    autoScaling: outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScaling;
     /**
      * Cloud service provider on which you provision the host for a multi-tenant cluster.
      */
     backingProviderName: string;
+    /**
+     * Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     */
+    effectiveAnalyticsSpecs: outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs;
+    /**
+     * Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     */
+    effectiveElectableSpecs: outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs;
+    /**
+     * Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     */
+    effectiveReadOnlySpecs: outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs;
     /**
      * Hardware specifications for electable nodes in the region.
      */
@@ -2015,7 +1983,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
+    nodeCount: number;
 }
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
@@ -2042,6 +2010,81 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
     diskGbEnabled: boolean;
 }
 
+export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs {
+    /**
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     */
+    diskIops: number;
+    /**
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     */
+    diskSizeGb: number;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     */
+    ebsVolumeType: string;
+    /**
+     * Hardware specification for the instance sizes in this region.
+     */
+    instanceSize: string;
+    /**
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+     */
+    nodeCount: number;
+}
+
+export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs {
+    /**
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     */
+    diskIops: number;
+    /**
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     */
+    diskSizeGb: number;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     */
+    ebsVolumeType: string;
+    /**
+     * Hardware specification for the instance sizes in this region.
+     */
+    instanceSize: string;
+    /**
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+     */
+    nodeCount: number;
+}
+
+export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs {
+    /**
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     */
+    diskIops: number;
+    /**
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     */
+    diskSizeGb: number;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster. 
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     */
+    ebsVolumeType: string;
+    /**
+     * Hardware specification for the instance sizes in this region.
+     */
+    instanceSize: string;
+    /**
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+     */
+    nodeCount: number;
+}
+
 export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
      * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
@@ -2064,7 +2107,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
+    nodeCount: number;
 }
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
@@ -2089,27 +2132,26 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
-}
-
-export interface GetAdvancedClusterTag {
-    /**
-     * The key that you want to write.
-     */
-    key: string;
-    /**
-     * The value that you want to write.
-     */
-    value: string;
+    nodeCount: number;
 }
 
 export interface GetAdvancedClustersResult {
     /**
      * Get the advanced configuration options. See Advanced Configuration below for more details.
      */
-    advancedConfigurations: outputs.GetAdvancedClustersResultAdvancedConfiguration[];
+    advancedConfiguration: outputs.GetAdvancedClustersResultAdvancedConfiguration;
+    /**
+     * Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
+     */
     backupEnabled: boolean;
-    biConnectorConfigs: outputs.GetAdvancedClustersResultBiConnectorConfig[];
+    /**
+     * Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+     */
+    biConnectorConfig: outputs.GetAdvancedClustersResultBiConnectorConfig;
+    /**
+     * The cluster ID.
+     */
+    clusterId: string;
     /**
      * Type of the cluster that you want to create.
      */
@@ -2125,14 +2167,11 @@ export interface GetAdvancedClustersResult {
     /**
      * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
-    connectionStrings: outputs.GetAdvancedClustersResultConnectionString[];
-    createDate: string;
+    connectionStrings: outputs.GetAdvancedClustersResultConnectionStrings;
     /**
-     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
+     * Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
      */
-    diskSizeGb: number;
+    createDate: string;
     /**
      * Possible values are AWS, GCP, AZURE or NONE.
      */
@@ -2144,7 +2183,7 @@ export interface GetAdvancedClustersResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      */
-    labels: outputs.GetAdvancedClustersResultLabel[];
+    labels: {[key: string]: string};
     /**
      * Version of the cluster to deploy.
      */
@@ -2153,6 +2192,9 @@ export interface GetAdvancedClustersResult {
      * Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
      */
     mongoDbVersion: string;
+    /**
+     * Human-readable label that identifies this cluster.
+     */
     name: string;
     /**
      * Flag that indicates whether the cluster is paused or not.
@@ -2161,11 +2203,15 @@ export interface GetAdvancedClustersResult {
     /**
      * The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
      */
-    pinnedFcvs: outputs.GetAdvancedClustersResultPinnedFcv[];
+    pinnedFcv: outputs.GetAdvancedClustersResultPinnedFcv;
     /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup.
      */
     pitEnabled: boolean;
+    /**
+     * The unique ID for the project to get the clusters.
+     */
+    projectId: string;
     /**
      * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      */
@@ -2175,7 +2221,7 @@ export interface GetAdvancedClustersResult {
      */
     replicaSetScalingStrategy: string;
     /**
-     * List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
+     * List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
      */
     replicationSpecs: outputs.GetAdvancedClustersResultReplicationSpec[];
     /**
@@ -2189,11 +2235,15 @@ export interface GetAdvancedClustersResult {
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      */
-    tags: outputs.GetAdvancedClustersResultTag[];
+    tags: {[key: string]: string};
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     terminationProtectionEnabled: boolean;
+    /**
+     * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
+     */
+    useEffectiveFields?: boolean;
     /**
      * Release cadence that Atlas uses for this cluster.
      */
@@ -2210,34 +2260,25 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     customOpensslCipherConfigTls12s: string[];
     /**
+     * The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     */
+    customOpensslCipherConfigTls13s: string[];
+    /**
      * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    defaultReadConcern: string;
-    /**
      * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
-    /**
-     * **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    failIndexKeyTooLong: boolean;
     /**
      * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      */
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
      * - TLS1_2
+     * - TLS1_3
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -2281,23 +2322,23 @@ export interface GetAdvancedClustersResultBiConnectorConfig {
     readPreference: string;
 }
 
-export interface GetAdvancedClustersResultConnectionString {
+export interface GetAdvancedClustersResultConnectionStrings {
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     private: string;
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+     * - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+     * - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+     * - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
+     * - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+     * - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+     * - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+     * - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
      */
-    privateEndpoints: outputs.GetAdvancedClustersResultConnectionStringPrivateEndpoint[];
+    privateEndpoints: outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpoint[];
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
@@ -2312,32 +2353,42 @@ export interface GetAdvancedClustersResultConnectionString {
     standardSrv: string;
 }
 
-export interface GetAdvancedClustersResultConnectionStringPrivateEndpoint {
+export interface GetAdvancedClustersResultConnectionStringsPrivateEndpoint {
+    /**
+     * Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+     */
     connectionString: string;
-    endpoints: outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint[];
+    /**
+     * List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+     */
+    endpoints: outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpointEndpoint[];
+    /**
+     * Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+     */
     srvConnectionString: string;
+    /**
+     * Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+     */
     srvShardOptimizedConnectionString: string;
+    /**
+     * MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+     */
     type: string;
 }
 
-export interface GetAdvancedClustersResultConnectionStringPrivateEndpointEndpoint {
+export interface GetAdvancedClustersResultConnectionStringsPrivateEndpointEndpoint {
+    /**
+     * Unique string that the cloud provider uses to identify the private endpoint.
+     */
     endpointId: string;
     /**
      * Cloud service provider on which the servers are provisioned.
      */
     providerName: string;
+    /**
+     * Region where the private endpoint is deployed.
+     */
     region: string;
-}
-
-export interface GetAdvancedClustersResultLabel {
-    /**
-     * The key that you want to write.
-     */
-    key: string;
-    /**
-     * The value that you want to write.
-     */
-    value: string;
 }
 
 export interface GetAdvancedClustersResultPinnedFcv {
@@ -2357,19 +2408,9 @@ export interface GetAdvancedClustersResultReplicationSpec {
      */
     containerId: {[key: string]: string};
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `numShards` greater than 1) this value is not populated.
+     * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
      */
     externalId: string;
-    /**
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    id: string;
-    /**
-     * Provide this value if you set a `clusterType` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
-     *
-     * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    numShards: number;
     /**
      * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
@@ -2388,7 +2429,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfig {
     /**
      * Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
      */
-    analyticsAutoScalings: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling[];
+    analyticsAutoScaling: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling;
     /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      */
@@ -2396,11 +2437,23 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfig {
     /**
      * Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      */
-    autoScalings: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling[];
+    autoScaling: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling;
     /**
      * Cloud service provider on which you provision the host for a multi-tenant cluster.
      */
     backingProviderName: string;
+    /**
+     * Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     */
+    effectiveAnalyticsSpecs: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs;
+    /**
+     * Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     */
+    effectiveElectableSpecs: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs;
+    /**
+     * Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     */
+    effectiveReadOnlySpecs: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs;
     /**
      * Hardware specifications for electable nodes in the region.
      */
@@ -2468,7 +2521,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSp
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
+    nodeCount: number;
 }
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling {
@@ -2494,6 +2547,81 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling
     diskGbEnabled: boolean;
 }
 
+export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs {
+    /**
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     */
+    diskIops: number;
+    /**
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     */
+    diskSizeGb: number;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster.
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     */
+    ebsVolumeType: string;
+    /**
+     * Hardware specification for the instance sizes in this region.
+     */
+    instanceSize: string;
+    /**
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+     */
+    nodeCount: number;
+}
+
+export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs {
+    /**
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     */
+    diskIops: number;
+    /**
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     */
+    diskSizeGb: number;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster.
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     */
+    ebsVolumeType: string;
+    /**
+     * Hardware specification for the instance sizes in this region.
+     */
+    instanceSize: string;
+    /**
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+     */
+    nodeCount: number;
+}
+
+export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs {
+    /**
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     */
+    diskIops: number;
+    /**
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+     */
+    diskSizeGb: number;
+    /**
+     * Type of storage you want to attach to your AWS-provisioned cluster.
+     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     */
+    ebsVolumeType: string;
+    /**
+     * Hardware specification for the instance sizes in this region.
+     */
+    instanceSize: string;
+    /**
+     * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+     */
+    nodeCount: number;
+}
+
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
     /**
      * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
@@ -2516,7 +2644,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSp
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
+    nodeCount: number;
 }
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
@@ -2541,18 +2669,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: number;
-}
-
-export interface GetAdvancedClustersResultTag {
-    /**
-     * The key that you want to write.
-     */
-    key: string;
-    /**
-     * The value that you want to write.
-     */
-    value: string;
+    nodeCount: number;
 }
 
 export interface GetAlertConfigurationMatcher {
@@ -2796,6 +2913,10 @@ export interface GetAlertConfigurationsResult {
      * The unique ID for the project to get the alert configurations.
      */
     projectId: string;
+    /**
+     * Severity of the event.
+     */
+    severityOverride: string;
     /**
      * Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      */
@@ -3067,7 +3188,9 @@ export interface GetAtlasUsersResult {
      */
     createdAt: string;
     /**
-     * Email address that belongs to the MongoDB Atlas user.
+     * **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`."
+     *
+     * @deprecated This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
     emailAddress: string;
     /**
@@ -3273,12 +3396,6 @@ export interface GetCloudBackupScheduleCopySetting {
      * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
      */
     regionName: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-     *
-     * @deprecated This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    replicationSpecId: string;
     /**
      * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
      */
@@ -3719,6 +3836,50 @@ export interface GetCloudProviderAccessSetupGcpConfig {
     status: string;
 }
 
+export interface GetCloudUserOrgAssignmentRoles {
+    /**
+     * One or more organization level roles to assign the MongoDB Cloud user.
+     */
+    orgRoles: string[];
+    /**
+     * List of project level role assignments to assign the MongoDB Cloud user.
+     */
+    projectRoleAssignments: outputs.GetCloudUserOrgAssignmentRolesProjectRoleAssignment[];
+}
+
+export interface GetCloudUserOrgAssignmentRolesProjectRoleAssignment {
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+     */
+    projectId: string;
+    /**
+     * One or more project-level roles assigned to the MongoDB Cloud user.
+     */
+    projectRoles: string[];
+}
+
+export interface GetCloudUserTeamAssignmentRoles {
+    /**
+     * One or more organization level roles to assign the MongoDB Cloud user.
+     */
+    orgRoles: string[];
+    /**
+     * List of project level role assignments to assign the MongoDB Cloud user.
+     */
+    projectRoleAssignments: outputs.GetCloudUserTeamAssignmentRolesProjectRoleAssignment[];
+}
+
+export interface GetCloudUserTeamAssignmentRolesProjectRoleAssignment {
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+     */
+    projectId: string;
+    /**
+     * One or more project-level roles assigned to the MongoDB Cloud user.
+     */
+    projectRoles: string[];
+}
+
 export interface GetClusterAdvancedConfiguration {
     /**
      * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
@@ -3751,9 +3912,8 @@ export interface GetClusterAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
      * - TLS1_2
+     * - TLS1_3
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -3800,30 +3960,10 @@ export interface GetClusterBiConnectorConfig {
 export interface GetClusterConnectionString {
     awsPrivateLink: {[key: string]: string};
     awsPrivateLinkSrv: {[key: string]: string};
-    /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     */
     private: string;
     privateEndpoints: outputs.GetClusterConnectionStringPrivateEndpoint[];
-    /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-     */
     privateSrv: string;
-    /**
-     * Public mongodb:// connection string for this cluster.
-     */
     standard: string;
-    /**
-     * Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     */
     standardSrv: string;
 }
 
@@ -4003,6 +4143,18 @@ export interface GetClustersResult {
     clusterType: string;
     /**
      * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * - `connection_strings.#.standard` -   Public mongodb:// connection string for this cluster.
+     * - `connection_strings.#.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+     * - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * - `connection_strings.#.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+     * - `connection_strings.#.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+     * - `connection_strings.#.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+     * - `connection_strings.#.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+     * - `connection_strings.#.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.#.private_endpoint.#.connection_string` or `connection_strings.#.private_endpoint.#.srv_connection_string`
+     * - `connection_strings.#.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+     * - `connection_strings.#.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+     * - `connection_strings.#.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
      */
     connectionStrings: outputs.GetClustersResultConnectionString[];
     /**
@@ -4178,9 +4330,8 @@ export interface GetClustersResultAdvancedConfiguration {
     javascriptEnabled: boolean;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
      * - TLS1_2
+     * - TLS1_3
      */
     minimumEnabledTlsProtocol: string;
     /**
@@ -4224,30 +4375,10 @@ export interface GetClustersResultBiConnectorConfig {
 export interface GetClustersResultConnectionString {
     awsPrivateLink: {[key: string]: string};
     awsPrivateLinkSrv: {[key: string]: string};
-    /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     */
     private: string;
     privateEndpoints: outputs.GetClustersResultConnectionStringPrivateEndpoint[];
-    /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     * - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-     * - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-     * - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-     * - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-     * - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-     * - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-     * - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-     */
     privateSrv: string;
-    /**
-     * Public mongodb:// connection string for this cluster.
-     */
     standard: string;
-    /**
-     * Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     */
     standardSrv: string;
 }
 
@@ -4474,253 +4605,6 @@ export interface GetCustomDbRolesResultInheritedRole {
     roleName: string;
 }
 
-export interface GetDataLakePipelineIngestionSchedule {
-    frequencyInterval: number;
-    frequencyType: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-     */
-    id: string;
-    retentionUnit: string;
-    retentionValue: number;
-}
-
-export interface GetDataLakePipelineRunStat {
-    /**
-     * Total data size in bytes exported for this pipeline run.
-     */
-    bytesExported: number;
-    /**
-     * Number of docs ingested for a this pipeline run.
-     */
-    numDocs: number;
-}
-
-export interface GetDataLakePipelineRunsResult {
-    /**
-     * Backup schedule interval of the Data Lake Pipeline.
-     */
-    backupFrequencyType: string;
-    /**
-     * Timestamp that indicates when the pipeline run was created.
-     */
-    createdDate: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-     */
-    id: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-     */
-    lastUpdatedDate: string;
-    /**
-     * Processing phase of the Data Lake Pipeline.
-     */
-    phase: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
-     */
-    pipelineId: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-     */
-    pipelineRunId: string;
-    /**
-     * Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
-     */
-    snapshotId: string;
-    /**
-     * State of the pipeline run.
-     */
-    state: string;
-    /**
-     * Runtime statistics for this Data Lake Pipeline run.
-     */
-    stats: outputs.GetDataLakePipelineRunsResultStat[];
-}
-
-export interface GetDataLakePipelineRunsResultStat {
-    /**
-     * Total data size in bytes exported for this pipeline run.
-     */
-    bytesExported: number;
-    /**
-     * Number of docs ingested for a this pipeline run.
-     */
-    numDocs: number;
-}
-
-export interface GetDataLakePipelineSink {
-    /**
-     * Ordered fields used to physically organize data in the destination.
-     * * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-     * * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-     */
-    partitionFields: outputs.GetDataLakePipelineSinkPartitionField[];
-    /**
-     * Target cloud provider for this Data Lake Pipeline.
-     */
-    provider: string;
-    /**
-     * Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-     */
-    region: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
-export interface GetDataLakePipelineSinkPartitionField {
-    fieldName: string;
-    order: number;
-}
-
-export interface GetDataLakePipelineSnapshot {
-    copyRegion: string;
-    createdAt: string;
-    expiresAt: string;
-    frequencyYype: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-     */
-    id: string;
-    masterKey: string;
-    mongodVersion: string;
-    policies: string[];
-    /**
-     * Target cloud provider for this Data Lake Pipeline.
-     */
-    provider: string;
-    replicaSetName: string;
-    size: number;
-    status: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
-export interface GetDataLakePipelineSource {
-    /**
-     * Human-readable name that identifies the cluster.
-     */
-    clusterName: string;
-    /**
-     * Human-readable name that identifies the collection.
-     */
-    collectionName: string;
-    /**
-     * Human-readable name that identifies the database.
-     */
-    databaseName: string;
-    /**
-     * The unique ID for the project to create a Data Lake Pipeline.
-     */
-    projectId: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
-export interface GetDataLakePipelineTransformation {
-    field: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
-export interface GetDataLakePipelinesResult {
-    /**
-     * Timestamp that indicates when the Data Lake Pipeline was created.
-     */
-    createdDate: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-     */
-    id: string;
-    /**
-     * Timestamp that indicates the last time that the Data Lake Pipeline was updated.
-     */
-    lastUpdatedDate: string;
-    name: string;
-    /**
-     * The unique ID for the project to create a data lake pipeline.
-     */
-    projectId: string;
-    sinks: outputs.GetDataLakePipelinesResultSink[];
-    sources: outputs.GetDataLakePipelinesResultSource[];
-    /**
-     * State of this Data Lake Pipeline.
-     */
-    state: string;
-    /**
-     * Fields to be excluded for this Data Lake Pipeline.
-     * * `transformations.#.field` - Key in the document.
-     * * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
-     */
-    transformations: outputs.GetDataLakePipelinesResultTransformation[];
-}
-
-export interface GetDataLakePipelinesResultSink {
-    /**
-     * Ordered fields used to physically organize data in the destination.
-     * * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-     * * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-     */
-    partitionFields: outputs.GetDataLakePipelinesResultSinkPartitionField[];
-    /**
-     * Target cloud provider for this Data Lake Pipeline.
-     */
-    provider: string;
-    /**
-     * Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-     */
-    region: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
-export interface GetDataLakePipelinesResultSinkPartitionField {
-    fieldName: string;
-    order: number;
-}
-
-export interface GetDataLakePipelinesResultSource {
-    /**
-     * Human-readable name that identifies the cluster.
-     */
-    clusterName: string;
-    /**
-     * Human-readable name that identifies the collection.
-     */
-    collectionName: string;
-    /**
-     * Human-readable name that identifies the database.
-     */
-    databaseName: string;
-    /**
-     * The unique ID for the project to create a data lake pipeline.
-     */
-    projectId: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
-export interface GetDataLakePipelinesResultTransformation {
-    field: string;
-    /**
-     * Type of ingestion source of this Data Lake Pipeline.
-     */
-    type: string;
-}
-
 export interface GetDatabaseUserLabel {
     /**
      * The key that you want to write.
@@ -4794,7 +4678,7 @@ export interface GetDatabaseUsersResult {
      */
     roles: outputs.GetDatabaseUsersResultRole[];
     /**
-     * Array of clusters and Atlas Data Lakes that this user has access to.
+     * Array of clusters and Atlas Data Federation that this user has access to.
      */
     scopes: outputs.GetDatabaseUsersResultScope[];
     /**
@@ -5082,11 +4966,11 @@ export interface GetEventTriggersResultEventProcessorAwsEventbridge {
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfig {
-    aws: outputs.GetFederatedDatabaseInstanceCloudProviderConfigAws;
+    aws: outputs.GetFederatedDatabaseInstanceCloudProviderConfigAw[];
     azures: outputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure[];
 }
 
-export interface GetFederatedDatabaseInstanceCloudProviderConfigAws {
+export interface GetFederatedDatabaseInstanceCloudProviderConfigAw {
     /**
      * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
      */
@@ -5223,7 +5107,7 @@ export interface GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag
 }
 
 export interface GetFederatedDatabaseInstancesResult {
-    cloudProviderConfig: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfig;
+    cloudProviderConfigs: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfig[];
     dataProcessRegions: outputs.GetFederatedDatabaseInstancesResultDataProcessRegion[];
     /**
      * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
@@ -5241,9 +5125,9 @@ export interface GetFederatedDatabaseInstancesResult {
      */
     state: string;
     /**
-     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -5265,7 +5149,7 @@ export interface GetFederatedDatabaseInstancesResult {
      */
     storageDatabases: outputs.GetFederatedDatabaseInstancesResultStorageDatabase[];
     /**
-     * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+     * Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
      * * `storage_stores.#.provider` - Defines where the data is stored.
      * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -5276,7 +5160,7 @@ export interface GetFederatedDatabaseInstancesResult {
      * * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
      * * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
      * * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-     * * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+     * * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
      * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -5290,11 +5174,11 @@ export interface GetFederatedDatabaseInstancesResult {
 }
 
 export interface GetFederatedDatabaseInstancesResultCloudProviderConfig {
-    aws: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAws;
+    aws: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAw[];
     azures: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAzure[];
 }
 
-export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAws {
+export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAw {
     /**
      * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
      */
@@ -6426,6 +6310,75 @@ export interface GetOrganizationLink {
     rel: string;
 }
 
+export interface GetOrganizationUser {
+    /**
+     * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+     */
+    country: string;
+    /**
+     * Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * First or given name that belongs to the MongoDB Cloud user.
+     */
+    firstName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     */
+    id: string;
+    /**
+     * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationCreatedAt: string;
+    /**
+     * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationExpiresAt: string;
+    /**
+     * Username of the MongoDB Cloud user who sent the invitation to join the organization.
+     */
+    inviterUsername: string;
+    /**
+     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    lastAuth: string;
+    /**
+     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     */
+    lastName: string;
+    /**
+     * Mobile phone number that belongs to the MongoDB Cloud user.
+     */
+    mobileNumber: string;
+    /**
+     * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
+    orgMembershipStatus: string;
+    /**
+     * Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
+     */
+    roles: outputs.GetOrganizationUserRole[];
+    /**
+     * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+     */
+    teamIds: string[];
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
+    username: string;
+}
+
+export interface GetOrganizationUserRole {
+    orgRoles: string[];
+    projectRoleAssignments: outputs.GetOrganizationUserRoleProjectRoleAssignment[];
+}
+
+export interface GetOrganizationUserRoleProjectRoleAssignment {
+    projectId: string;
+    projectRoles: string[];
+}
+
 export interface GetOrganizationsResult {
     /**
      * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
@@ -6461,11 +6414,79 @@ export interface GetOrganizationsResult {
      */
     securityContact: string;
     skipDefaultAlertsSettings: boolean;
+    /**
+     * Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
+     */
+    users: outputs.GetOrganizationsResultUser[];
 }
 
 export interface GetOrganizationsResultLink {
     href: string;
     rel: string;
+}
+
+export interface GetOrganizationsResultUser {
+    /**
+     * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+     */
+    country: string;
+    /**
+     * Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * First or given name that belongs to the MongoDB Cloud user.
+     */
+    firstName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     */
+    id: string;
+    /**
+     * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationCreatedAt: string;
+    /**
+     * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationExpiresAt: string;
+    /**
+     * Username of the MongoDB Cloud user who sent the invitation to join the organization.
+     */
+    inviterUsername: string;
+    /**
+     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    lastAuth: string;
+    /**
+     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     */
+    lastName: string;
+    mobileNumber: string;
+    /**
+     * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
+    orgMembershipStatus: string;
+    /**
+     * Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
+     * * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+     */
+    roles: outputs.GetOrganizationsResultUserRole[];
+    teamIds: string[];
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
+    username: string;
+}
+
+export interface GetOrganizationsResultUserRole {
+    orgRoles: string[];
+    projectRoleAssignments: outputs.GetOrganizationsResultUserRoleProjectRoleAssignment[];
+}
+
+export interface GetOrganizationsResultUserRoleProjectRoleAssignment {
+    projectId: string;
+    projectRoles: string[];
 }
 
 export interface GetPrivateLinkEndpointServiceEndpoint {
@@ -6493,7 +6514,7 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
      */
     customerEndpointDnsName: string;
     /**
-     * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+     * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
      */
     endpointId: string;
     /**
@@ -6508,38 +6529,6 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
      * Human-readable label that identifies the resource type associated with this private endpoint.
      */
     type: string;
-}
-
-export interface GetPrivatelinkEndpointsServiceServerlessResult {
-    /**
-     * Unique string that identifies the private endpoint's network interface.
-     */
-    cloudProviderEndpointId: string;
-    /**
-     * Human-readable string to associate with this private endpoint.
-     */
-    comment: string;
-    /**
-     * (Required) Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [AWS PrivateLink](https://aws.amazon.com/privatelink/) feature.
-     */
-    endpointId: string;
-    /**
-     * Unique string that identifies the PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
-     */
-    endpointServiceName: string;
-    errorMessage: string;
-    /**
-     * IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
-     */
-    privateEndpointIpAddress: string;
-    /**
-     * Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
-     */
-    privateLinkServiceResourceId: string;
-    /**
-     * Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
-     */
-    status: string;
 }
 
 export interface GetProjectApiKeyProjectAssignment {
@@ -6648,6 +6637,40 @@ export interface GetProjectTeam {
     teamId: string;
 }
 
+export interface GetProjectUser {
+    /**
+     * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+     * * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     * * `firstName`- First or given name that belongs to the MongoDB Cloud user.
+     * * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     * * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     * * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+     */
+    country: string;
+    createdAt: string;
+    firstName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
+    id: string;
+    invitationCreatedAt: string;
+    invitationExpiresAt: string;
+    inviterUsername: string;
+    lastAuth: string;
+    lastName: string;
+    mobileNumber: string;
+    orgMembershipStatus: string;
+    /**
+     * One or more project-level roles assigned to the MongoDB Cloud user.
+     */
+    roles: string[];
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
+    username: string;
+}
+
 export interface GetProjectsResult {
     /**
      * The number of Atlas clusters deployed in the project.
@@ -6701,12 +6724,15 @@ export interface GetProjectsResult {
      * The limits for the specified project. See Limits.
      */
     limits: outputs.GetProjectsResultLimit[];
-    name: string;
+    name?: string;
     /**
      * The ID of the organization you want to create the project within.
      */
     orgId: string;
-    projectId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+     */
+    projectId?: string;
     /**
      * If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
@@ -6716,9 +6742,15 @@ export interface GetProjectsResult {
      */
     tags: {[key: string]: string};
     /**
-     * Returns all teams to which the authenticated user has access in the project. See Teams.
+     * **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
+     *
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
     teams: outputs.GetProjectsResultTeam[];
+    /**
+     * Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+     */
+    users: outputs.GetProjectsResultUser[];
 }
 
 export interface GetProjectsResultIpAddresses {
@@ -6767,6 +6799,44 @@ export interface GetProjectsResultTeam {
      * The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
      */
     teamId: string;
+}
+
+export interface GetProjectsResultUser {
+    /**
+     * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+     * * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     * * `firstName`- First or given name that belongs to the MongoDB Cloud user.
+     * * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     * * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     * * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+     *
+     * > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
+     *
+     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+     */
+    country: string;
+    createdAt: string;
+    firstName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
+    id: string;
+    invitationCreatedAt: string;
+    invitationExpiresAt: string;
+    inviterUsername: string;
+    lastAuth: string;
+    lastName: string;
+    mobileNumber: string;
+    orgMembershipStatus: string;
+    /**
+     * One or more project-level roles assigned to the MongoDB Cloud user.
+     */
+    roles: string[];
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
+    username: string;
 }
 
 export interface GetResourcePoliciesResourcePolicy {
@@ -6971,10 +7041,21 @@ export interface GetSearchIndexSynonym {
      */
     analyzer: string;
     /**
-     * Name of the index.
+     * Type set name.
      */
     name: string;
     sourceCollection: string;
+}
+
+export interface GetSearchIndexTypeSet {
+    /**
+     * Type set name.
+     */
+    name: string;
+    /**
+     * JSON array string describing the types for the set.
+     */
+    types: string;
 }
 
 export interface GetSearchIndexesResult {
@@ -7004,15 +7085,19 @@ export interface GetSearchIndexesResult {
      */
     indexId: string;
     /**
-     * Flag indicating whether the index uses dynamic or static mappings.
+     * Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `mappingsDynamicConfig`.
      */
     mappingsDynamic: boolean;
+    /**
+     * JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+     */
+    mappingsDynamicConfig: string;
     /**
      * Object containing one or more field specifications.
      */
     mappingsFields: string;
     /**
-     * Name of the index.
+     * Type set name.
      */
     name: string;
     /**
@@ -7039,6 +7124,10 @@ export interface GetSearchIndexesResult {
      */
     synonyms: outputs.GetSearchIndexesResultSynonym[];
     type: string;
+    /**
+     * Set of type set definitions (when present). Each item includes:
+     */
+    typeSets: outputs.GetSearchIndexesResultTypeSet[];
 }
 
 export interface GetSearchIndexesResultSynonym {
@@ -7047,10 +7136,21 @@ export interface GetSearchIndexesResultSynonym {
      */
     analyzer: string;
     /**
-     * Name of the index.
+     * Type set name.
      */
     name: string;
     sourceCollection: string;
+}
+
+export interface GetSearchIndexesResultTypeSet {
+    /**
+     * Type set name.
+     */
+    name: string;
+    /**
+     * JSON array string describing the types for the set.
+     */
+    types: string;
 }
 
 export interface GetServerlessInstanceLink {
@@ -7173,13 +7273,37 @@ export interface GetSharedTierSnapshotsResult {
 
 export interface GetStreamConnectionAuthentication {
     /**
-     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * Public identifier for the Kafka client.
+     */
+    clientId: string;
+    /**
+     * Secret known only to the Kafka client and the authorization server.
+     */
+    clientSecret: string;
+    /**
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      */
     mechanism: string;
+    /**
+     * SASL OAUTHBEARER authentication method. Value must be OIDC.
+     */
+    method: string;
     /**
      * Password of the account to connect to the Kafka cluster.
      */
     password: string;
+    /**
+     * Additional information to provide to the Kafka broker.
+     */
+    saslOauthbearerExtensions: string;
+    /**
+     * Scope of the access request to the broker specified by the Kafka clients.
+     */
+    scope: string;
+    /**
+     * OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     */
+    tokenEndpointUrl: string;
     /**
      * Username of the account to connect to the Kafka cluster.
      */
@@ -7256,7 +7380,7 @@ export interface GetStreamConnectionsResult {
      */
     config: {[key: string]: string};
     /**
-     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      */
     connectionName: string;
     /**
@@ -7269,7 +7393,9 @@ export interface GetStreamConnectionsResult {
     headers: {[key: string]: string};
     id: string;
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName: string;
     /**
@@ -7292,17 +7418,47 @@ export interface GetStreamConnectionsResult {
      * URL of the HTTPs endpoint that will be used for creating a connection.
      */
     url: string;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     */
+    workspaceName: string;
 }
 
 export interface GetStreamConnectionsResultAuthentication {
     /**
-     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * Public identifier for the Kafka client.
+     */
+    clientId: string;
+    /**
+     * Secret known only to the Kafka client and the authorization server.
+     */
+    clientSecret: string;
+    /**
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      */
     mechanism: string;
+    /**
+     * SASL OAUTHBEARER authentication method. Value must be OIDC.
+     */
+    method: string;
     /**
      * Password of the account to connect to the Kafka cluster.
      */
     password: string;
+    /**
+     * Additional information to provide to the Kafka broker.
+     */
+    saslOauthbearerExtensions: string;
+    /**
+     * Scope of the access request to the broker specified by the Kafka clients.
+     */
+    scope: string;
+    /**
+     * OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     */
+    tokenEndpointUrl: string;
     /**
      * Username of the account to connect to the Kafka cluster.
      */
@@ -7368,6 +7524,7 @@ export interface GetStreamInstanceDataProcessRegion {
 }
 
 export interface GetStreamInstanceStreamConfig {
+    maxTierSize: string;
     /**
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      */
@@ -7410,6 +7567,7 @@ export interface GetStreamInstancesResultDataProcessRegion {
 }
 
 export interface GetStreamInstancesResultStreamConfig {
+    maxTierSize: string;
     /**
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      */
@@ -7458,13 +7616,17 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     providerAccountId: string;
     /**
-     * Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+     * Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      */
     providerName: string;
     /**
      * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
     region: string;
+    /**
+     * List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+     */
+    serviceAttachmentUris: string[];
     /**
      * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      */
@@ -7479,6 +7641,8 @@ export interface GetStreamPrivatelinkEndpointsResult {
      * 	* **AWS**: MSK, CONFLUENT, and S3
      *
      * 	* **Azure**: EVENTHUB and CONFLUENT
+     *
+     * 	* **GCP**: CONFLUENT
      */
     vendor: string;
 }
@@ -7511,7 +7675,9 @@ export interface GetStreamProcessorsResult {
      */
     id: string;
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName: string;
     /**
@@ -7523,7 +7689,7 @@ export interface GetStreamProcessorsResult {
      */
     pipeline: string;
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      */
     processorName: string;
     /**
@@ -7540,6 +7706,10 @@ export interface GetStreamProcessorsResult {
      * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
     stats: string;
+    /**
+     * Label that identifies the stream processing workspace.
+     */
+    workspaceName: string;
 }
 
 export interface GetStreamProcessorsResultOptions {
@@ -7562,6 +7732,137 @@ export interface GetStreamProcessorsResultOptionsDlq {
      * Name of the database to use for the DLQ.
      */
     db: string;
+}
+
+export interface GetStreamWorkspaceDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    region: string;
+}
+
+export interface GetStreamWorkspaceStreamConfig {
+    maxTierSize: string;
+    /**
+     * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    tier: string;
+}
+
+export interface GetStreamWorkspacesResult {
+    /**
+     * Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+     */
+    dataProcessRegion: outputs.GetStreamWorkspacesResultDataProcessRegion;
+    /**
+     * List that contains the hostnames assigned to the stream workspace.
+     */
+    hostnames: string[];
+    id: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project.
+     */
+    projectId: string;
+    /**
+     * Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+     */
+    streamConfig: outputs.GetStreamWorkspacesResultStreamConfig;
+    /**
+     * Label that identifies the stream workspace.
+     */
+    workspaceName: string;
+}
+
+export interface GetStreamWorkspacesResultDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    region: string;
+}
+
+export interface GetStreamWorkspacesResultStreamConfig {
+    maxTierSize: string;
+    /**
+     * Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    tier: string;
+}
+
+export interface GetTeamUser {
+    /**
+     * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+     */
+    country: string;
+    /**
+     * Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * First or given name that belongs to the MongoDB Cloud user.
+     */
+    firstName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     */
+    id: string;
+    /**
+     * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationCreatedAt: string;
+    /**
+     * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationExpiresAt: string;
+    /**
+     * Username of the MongoDB Cloud user who sent the invitation to join the organization.
+     */
+    inviterUsername: string;
+    /**
+     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    lastAuth: string;
+    /**
+     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     */
+    lastName: string;
+    /**
+     * Mobile phone number that belongs to the MongoDB Cloud user.
+     */
+    mobileNumber: string;
+    /**
+     * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or are already active in the organization.
+     */
+    orgMembershipStatus: string;
+    /**
+     * Organization and project-level roles assigned to one MongoDB Cloud user within one organization.
+     */
+    roles: outputs.GetTeamUserRole[];
+    /**
+     * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+     */
+    teamIds: string[];
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
+    username: string;
+}
+
+export interface GetTeamUserRole {
+    orgRoles: string[];
+    projectRoleAssignments: outputs.GetTeamUserRoleProjectRoleAssignment[];
+}
+
+export interface GetTeamUserRoleProjectRoleAssignment {
+    projectId: string;
+    projectRoles: string[];
 }
 
 export interface GetThirdPartyIntegrationsResult {
@@ -7972,6 +8273,17 @@ export interface SearchIndexSynonym {
     sourceCollection: string;
 }
 
+export interface SearchIndexTypeSet {
+    /**
+     * Name of the type set.
+     */
+    name: string;
+    /**
+     * JSON array describing the types.
+     */
+    types?: string;
+}
+
 export interface ServerlessInstanceLink {
     href: string;
     rel: string;
@@ -7992,13 +8304,37 @@ export interface ServerlessInstanceTag {
 
 export interface StreamConnectionAuthentication {
     /**
-     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * Public identifier for the Kafka client.
+     */
+    clientId?: string;
+    /**
+     * Secret known only to the Kafka client and the authorization server.
+     */
+    clientSecret?: string;
+    /**
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
      */
     mechanism?: string;
+    /**
+     * SASL OAUTHBEARER authentication method. Value must be OIDC.
+     */
+    method?: string;
     /**
      * Password of the account to connect to the Kafka cluster.
      */
     password?: string;
+    /**
+     * Additional information to provide to the Kafka broker.
+     */
+    saslOauthbearerExtensions?: string;
+    /**
+     * Scope of the access request to the broker specified by the Kafka clients.
+     */
+    scope?: string;
+    /**
+     * OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     */
+    tokenEndpointUrl?: string;
     /**
      * Username of the account to connect to the Kafka cluster.
      */
@@ -8019,6 +8355,8 @@ export interface StreamConnectionDbRoleToExecute {
     role: string;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     type: string;
 }
@@ -8064,6 +8402,7 @@ export interface StreamInstanceDataProcessRegion {
 }
 
 export interface StreamInstanceStreamConfig {
+    maxTierSize: string;
     /**
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      */
@@ -8092,6 +8431,35 @@ export interface StreamProcessorOptionsDlq {
     db: string;
 }
 
+export interface StreamProcessorTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+}
+
+export interface StreamWorkspaceDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    region: string;
+}
+
+export interface StreamWorkspaceStreamConfig {
+    /**
+     * Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
+     */
+    maxTierSize: string;
+    /**
+     * Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    tier: string;
+}
+
 export interface X509AuthenticationDatabaseUserCertificate {
     createdAt: string;
     groupId: string;
@@ -8103,41 +8471,9 @@ export interface X509AuthenticationDatabaseUserCertificate {
 export namespace config {
     export interface AssumeRole {
         /**
-         * The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
-         */
-        duration?: string;
-        /**
-         * A unique identifier that might be required when you assume a role in another account.
-         */
-        externalId?: string;
-        /**
-         * IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
-         */
-        policy?: string;
-        /**
-         * Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
-         */
-        policyArns?: string[];
-        /**
          * Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
          */
         roleArn?: string;
-        /**
-         * An identifier for the assumed role session.
-         */
-        sessionName?: string;
-        /**
-         * Source identity specified by the principal assuming the role.
-         */
-        sourceIdentity?: string;
-        /**
-         * Assume role session tags.
-         */
-        tags?: {[key: string]: string};
-        /**
-         * Assume role session tag keys to pass to any subsequent sessions.
-         */
-        transitiveTagKeys?: string[];
     }
 
 }

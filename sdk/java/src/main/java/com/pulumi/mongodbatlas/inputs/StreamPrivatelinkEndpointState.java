@@ -145,14 +145,14 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
     }
 
     /**
-     * Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+     * Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      * 
      */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
 
     /**
-     * @return Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+     * @return Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      * 
      */
     public Optional<Output<String>> providerName() {
@@ -172,6 +172,21 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
+    }
+
+    /**
+     * List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+     * 
+     */
+    @Import(name="serviceAttachmentUris")
+    private @Nullable Output<List<String>> serviceAttachmentUris;
+
+    /**
+     * @return List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+     * 
+     */
+    public Optional<Output<List<String>>> serviceAttachmentUris() {
+        return Optional.ofNullable(this.serviceAttachmentUris);
     }
 
     /**
@@ -210,6 +225,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
+     *     
+     *     * **GCP**: CONFLUENT
      * 
      */
     @Import(name="vendor")
@@ -221,6 +238,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
+     *     
+     *     * **GCP**: CONFLUENT
      * 
      */
     public Optional<Output<String>> vendor() {
@@ -240,6 +259,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
         this.providerAccountId = $.providerAccountId;
         this.providerName = $.providerName;
         this.region = $.region;
+        this.serviceAttachmentUris = $.serviceAttachmentUris;
         this.serviceEndpointId = $.serviceEndpointId;
         this.state = $.state;
         this.vendor = $.vendor;
@@ -450,7 +470,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
         }
 
         /**
-         * @param providerName Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+         * @param providerName Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
          * 
          * @return builder
          * 
@@ -461,7 +481,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
         }
 
         /**
-         * @param providerName Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+         * @param providerName Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
          * 
          * @return builder
          * 
@@ -489,6 +509,37 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param serviceAttachmentUris List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAttachmentUris(@Nullable Output<List<String>> serviceAttachmentUris) {
+            $.serviceAttachmentUris = serviceAttachmentUris;
+            return this;
+        }
+
+        /**
+         * @param serviceAttachmentUris List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAttachmentUris(List<String> serviceAttachmentUris) {
+            return serviceAttachmentUris(Output.of(serviceAttachmentUris));
+        }
+
+        /**
+         * @param serviceAttachmentUris List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAttachmentUris(String... serviceAttachmentUris) {
+            return serviceAttachmentUris(List.of(serviceAttachmentUris));
         }
 
         /**
@@ -539,6 +590,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          *     * **AWS**: MSK, CONFLUENT, and S3
          *     
          *     * **Azure**: EVENTHUB and CONFLUENT
+         *     
+         *     * **GCP**: CONFLUENT
          * 
          * @return builder
          * 
@@ -554,6 +607,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          *     * **AWS**: MSK, CONFLUENT, and S3
          *     
          *     * **Azure**: EVENTHUB and CONFLUENT
+         *     
+         *     * **GCP**: CONFLUENT
          * 
          * @return builder
          * 

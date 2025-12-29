@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class CloudProviderAccessAuthorizationAwsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        /// </summary>
         [Input("iamAssumedRoleArn", required: true)]
         public Input<string> IamAssumedRoleArn { get; set; } = null!;
 

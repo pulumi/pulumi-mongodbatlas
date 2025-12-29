@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.SearchIndex
- *
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  *
  * ## Example Usage
@@ -121,6 +119,29 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
+ *
+ * ### Configurable dynamic (typeSets + dynamic object)
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const conf_dynamic = new mongodbatlas.SearchIndex("conf-dynamic", {
+ *     projectId: "<PROJECT_ID>",
+ *     clusterName: "<CLUSTER_NAME>",
+ *     collectionName: "collection_test",
+ *     database: "database_test",
+ *     name: "conf-dynamic",
+ *     type: "search",
+ *     mappingsDynamicConfig: "{ \\\"typeSet\\\": \\\"type_set_name\\\" }\n",
+ *     typeSets: [{
+ *         name: "type_set_name",
+ *         types: `[
+ *   { \\"type\\": \\"string\\" }
+ * ]
+ * `,
+ *     }],
+ * });
+ * ```
  */
 export class SearchIndex extends pulumi.CustomResource {
     /**
@@ -200,9 +221,13 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly indexId: pulumi.Output<string>;
     /**
-     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      */
     declare public readonly mappingsDynamic: pulumi.Output<boolean | undefined>;
+    /**
+     * JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+     */
+    declare public readonly mappingsDynamicConfig: pulumi.Output<string | undefined>;
     /**
      * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
@@ -235,6 +260,10 @@ export class SearchIndex extends pulumi.CustomResource {
      * Type of index: `search` or `vectorSearch`. Default type is `search`.
      */
     declare public readonly type: pulumi.Output<string | undefined>;
+    /**
+     * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+     */
+    declare public readonly typeSets: pulumi.Output<outputs.SearchIndexTypeSet[] | undefined>;
     declare public readonly waitForIndexBuildCompletion: pulumi.Output<boolean | undefined>;
 
     /**
@@ -258,6 +287,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["fields"] = state?.fields;
             resourceInputs["indexId"] = state?.indexId;
             resourceInputs["mappingsDynamic"] = state?.mappingsDynamic;
+            resourceInputs["mappingsDynamicConfig"] = state?.mappingsDynamicConfig;
             resourceInputs["mappingsFields"] = state?.mappingsFields;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
@@ -266,6 +296,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["storedSource"] = state?.storedSource;
             resourceInputs["synonyms"] = state?.synonyms;
             resourceInputs["type"] = state?.type;
+            resourceInputs["typeSets"] = state?.typeSets;
             resourceInputs["waitForIndexBuildCompletion"] = state?.waitForIndexBuildCompletion;
         } else {
             const args = argsOrState as SearchIndexArgs | undefined;
@@ -288,6 +319,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["database"] = args?.database;
             resourceInputs["fields"] = args?.fields;
             resourceInputs["mappingsDynamic"] = args?.mappingsDynamic;
+            resourceInputs["mappingsDynamicConfig"] = args?.mappingsDynamicConfig;
             resourceInputs["mappingsFields"] = args?.mappingsFields;
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
@@ -295,6 +327,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["storedSource"] = args?.storedSource;
             resourceInputs["synonyms"] = args?.synonyms;
             resourceInputs["type"] = args?.type;
+            resourceInputs["typeSets"] = args?.typeSets;
             resourceInputs["waitForIndexBuildCompletion"] = args?.waitForIndexBuildCompletion;
             resourceInputs["indexId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
@@ -358,9 +391,13 @@ export interface SearchIndexState {
      */
     indexId?: pulumi.Input<string>;
     /**
-     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      */
     mappingsDynamic?: pulumi.Input<boolean>;
+    /**
+     * JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+     */
+    mappingsDynamicConfig?: pulumi.Input<string>;
     /**
      * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
@@ -393,6 +430,10 @@ export interface SearchIndexState {
      * Type of index: `search` or `vectorSearch`. Default type is `search`.
      */
     type?: pulumi.Input<string>;
+    /**
+     * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+     */
+    typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[]>;
     waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }
 
@@ -446,9 +487,13 @@ export interface SearchIndexArgs {
      */
     fields?: pulumi.Input<string>;
     /**
-     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      */
     mappingsDynamic?: pulumi.Input<boolean>;
+    /**
+     * JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+     */
+    mappingsDynamicConfig?: pulumi.Input<string>;
     /**
      * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
@@ -477,5 +522,9 @@ export interface SearchIndexArgs {
      * Type of index: `search` or `vectorSearch`. Default type is `search`.
      */
     type?: pulumi.Input<string>;
+    /**
+     * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+     */
+    typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[]>;
     waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }

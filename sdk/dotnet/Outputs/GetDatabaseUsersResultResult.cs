@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseUsersResultRoleResult> Roles;
         /// <summary>
-        /// Array of clusters and Atlas Data Lakes that this user has access to.
+        /// Array of clusters and Atlas Data Federation that this user has access to.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseUsersResultScopeResult> Scopes;
         /// <summary>

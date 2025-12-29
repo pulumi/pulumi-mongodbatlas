@@ -35,7 +35,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string> Config;
         /// <summary>
-        /// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         /// </summary>
         public readonly string ConnectionName;
         /// <summary>
@@ -48,7 +48,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly ImmutableDictionary<string, string> Headers;
         public readonly string Id;
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
         public readonly string InstanceName;
         /// <summary>
@@ -71,6 +71,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// URL of the HTTPs endpoint that will be used for creating a connection.
         /// </summary>
         public readonly string Url;
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
+        /// </summary>
+        public readonly string WorkspaceName;
 
         [OutputConstructor]
         private GetStreamConnectionsResultResult(
@@ -104,7 +110,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string type,
 
-            string url)
+            string url,
+
+            string workspaceName)
         {
             Authentication = authentication;
             Aws = aws;
@@ -122,6 +130,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Security = security;
             Type = type;
             Url = url;
+            WorkspaceName = workspaceName;
         }
     }
 }

@@ -24,18 +24,22 @@ class CloudBackupSnapshotArgs:
                  cluster_name: pulumi.Input[_builtins.str],
                  description: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 retention_in_days: pulumi.Input[_builtins.int]):
+                 retention_in_days: pulumi.Input[_builtins.int],
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshot resource.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[_builtins.int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "retention_in_days", retention_in_days)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
@@ -85,6 +89,18 @@ class CloudBackupSnapshotArgs:
     def retention_in_days(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "retention_in_days", value)
 
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
 
 @pulumi.input_type
 class _CloudBackupSnapshotState:
@@ -92,6 +108,7 @@ class _CloudBackupSnapshotState:
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  expires_at: Optional[pulumi.Input[_builtins.str]] = None,
                  master_key_uuid: Optional[pulumi.Input[_builtins.str]] = None,
@@ -111,6 +128,7 @@ class _CloudBackupSnapshotState:
         :param pulumi.Input[_builtins.str] cloud_provider: Cloud provider that stores this snapshot.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[_builtins.str] created_at: UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
         :param pulumi.Input[_builtins.str] expires_at: UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
         :param pulumi.Input[_builtins.str] master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
@@ -132,6 +150,8 @@ class _CloudBackupSnapshotState:
             pulumi.set(__self__, "cluster_name", cluster_name)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if expires_at is not None:
@@ -196,6 +216,18 @@ class _CloudBackupSnapshotState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter
@@ -373,13 +405,12 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  retention_in_days: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
-        ## # Resource: CloudBackupSnapshot
-
         `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
@@ -422,6 +453,10 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                 "download": True,
             })
         ```
+
+        ### Further Examples
+        - Restore from backup snapshot at point in time
+        - Restore from backup snapshot using an advanced cluster resource
 
         ## Import
 
@@ -435,6 +470,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
         :param pulumi.Input[_builtins.int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
@@ -446,8 +482,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  args: CloudBackupSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: CloudBackupSnapshot
-
         `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
@@ -490,6 +524,10 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                 "download": True,
             })
         ```
+
+        ### Further Examples
+        - Restore from backup snapshot at point in time
+        - Restore from backup snapshot using an advanced cluster resource
 
         ## Import
 
@@ -516,6 +554,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  retention_in_days: Optional[pulumi.Input[_builtins.int]] = None,
@@ -531,6 +570,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
             __props__.__dict__["cluster_name"] = cluster_name
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             if description is None and not opts.urn:
                 raise TypeError("Missing required property 'description'")
             __props__.__dict__["description"] = description
@@ -566,6 +606,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
             cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             expires_at: Optional[pulumi.Input[_builtins.str]] = None,
             master_key_uuid: Optional[pulumi.Input[_builtins.str]] = None,
@@ -590,6 +631,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_provider: Cloud provider that stores this snapshot.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[_builtins.str] created_at: UTC ISO 8601 formatted point in time when Atlas took the snapshot.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
         :param pulumi.Input[_builtins.str] expires_at: UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
         :param pulumi.Input[_builtins.str] master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
@@ -612,6 +654,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         __props__.__dict__["cloud_provider"] = cloud_provider
         __props__.__dict__["cluster_name"] = cluster_name
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["description"] = description
         __props__.__dict__["expires_at"] = expires_at
         __props__.__dict__["master_key_uuid"] = master_key_uuid
@@ -651,6 +694,14 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         UTC ISO 8601 formatted point in time when Atlas took the snapshot.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
 
     @_builtins.property
     @pulumi.getter

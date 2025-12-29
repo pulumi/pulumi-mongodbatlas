@@ -22,6 +22,13 @@ __config__ = pulumi.Config('mongodbatlas')
 
 class _ExportableConfig(types.ModuleType):
     @_builtins.property
+    def access_token(self) -> Optional[str]:
+        """
+        MongoDB Atlas Access Token for Service Account.
+        """
+        return __config__.get('accessToken')
+
+    @_builtins.property
     def assume_role(self) -> Optional[str]:
         return __config__.get('assumeRole')
 
@@ -52,6 +59,20 @@ class _ExportableConfig(types.ModuleType):
         MongoDB Atlas Base URL
         """
         return __config__.get('baseUrl')
+
+    @_builtins.property
+    def client_id(self) -> Optional[str]:
+        """
+        MongoDB Atlas Client ID for Service Account.
+        """
+        return __config__.get('clientId')
+
+    @_builtins.property
+    def client_secret(self) -> Optional[str]:
+        """
+        MongoDB Atlas Client Secret for Service Account.
+        """
+        return __config__.get('clientSecret')
 
     @_builtins.property
     def is_mongodbgov_cloud(self) -> Optional[bool]:

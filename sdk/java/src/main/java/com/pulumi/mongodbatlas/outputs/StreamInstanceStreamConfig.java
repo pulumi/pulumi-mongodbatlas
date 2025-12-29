@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class StreamInstanceStreamConfig {
+    private @Nullable String maxTierSize;
     /**
      * @return Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      * 
@@ -18,6 +19,9 @@ public final class StreamInstanceStreamConfig {
     private @Nullable String tier;
 
     private StreamInstanceStreamConfig() {}
+    public Optional<String> maxTierSize() {
+        return Optional.ofNullable(this.maxTierSize);
+    }
     /**
      * @return Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      * 
@@ -35,13 +39,21 @@ public final class StreamInstanceStreamConfig {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String maxTierSize;
         private @Nullable String tier;
         public Builder() {}
         public Builder(StreamInstanceStreamConfig defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.maxTierSize = defaults.maxTierSize;
     	      this.tier = defaults.tier;
         }
 
+        @CustomType.Setter
+        public Builder maxTierSize(@Nullable String maxTierSize) {
+
+            this.maxTierSize = maxTierSize;
+            return this;
+        }
         @CustomType.Setter
         public Builder tier(@Nullable String tier) {
 
@@ -50,6 +62,7 @@ public final class StreamInstanceStreamConfig {
         }
         public StreamInstanceStreamConfig build() {
             final var _resultValue = new StreamInstanceStreamConfig();
+            _resultValue.maxTierSize = maxTierSize;
             _resultValue.tier = tier;
             return _resultValue;
         }

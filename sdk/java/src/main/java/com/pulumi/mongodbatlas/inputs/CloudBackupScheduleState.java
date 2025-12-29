@@ -26,7 +26,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     public static final CloudBackupScheduleState Empty = new CloudBackupScheduleState();
 
     /**
-     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      * 
@@ -35,7 +35,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     private @Nullable Output<Boolean> autoExportEnabled;
 
     /**
-     * @return Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+     * @return Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      * 
@@ -90,14 +90,14 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
      * 
      */
     @Import(name="export")
     private @Nullable Output<CloudBackupScheduleExportArgs> export;
 
     /**
-     * @return Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+     * @return Policy for automatically exporting Cloud Backup Snapshots. See below
      * 
      */
     public Optional<Output<CloudBackupScheduleExportArgs>> export() {
@@ -333,7 +333,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param autoExportEnabled Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+         * @param autoExportEnabled Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
          * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
          * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
          * 
@@ -346,7 +346,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param autoExportEnabled Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+         * @param autoExportEnabled Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
          * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
          * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
          * 
@@ -431,7 +431,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param export Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+         * @param export Policy for automatically exporting Cloud Backup Snapshots. See below
          * 
          * @return builder
          * 
@@ -442,7 +442,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param export Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+         * @param export Policy for automatically exporting Cloud Backup Snapshots. See below
          * 
          * @return builder
          * 

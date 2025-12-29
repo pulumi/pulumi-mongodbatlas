@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.PrivateLinkEndpointService
- *
  * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -123,8 +121,6 @@ export interface GetPrivateLinkEndpointServiceResult {
     readonly providerName: string;
 }
 /**
- * ## # Data Source: mongodbatlas.PrivateLinkEndpointService
- *
  * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

@@ -11,13 +11,13 @@ import com.pulumi.mongodbatlas.StreamProcessorArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.StreamProcessorState;
 import com.pulumi.mongodbatlas.outputs.StreamProcessorOptions;
+import com.pulumi.mongodbatlas.outputs.StreamProcessorTimeouts;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.StreamProcessor
- * 
  * `mongodbatlas.StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
  * 
  * **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
@@ -76,14 +76,14 @@ import javax.annotation.Nullable;
  * 
  *         var example_sample = new StreamConnection("example-sample", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.instanceName())
  *             .connectionName("sample_stream_solar")
  *             .type("Sample")
  *             .build());
  * 
  *         var example_cluster = new StreamConnection("example-cluster", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.instanceName())
  *             .connectionName("ClusterConnection")
  *             .type("Cluster")
  *             .clusterName(clusterName)
@@ -95,7 +95,7 @@ import javax.annotation.Nullable;
  * 
  *         var example_kafka = new StreamConnection("example-kafka", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.instanceName())
  *             .connectionName("KafkaPlaintextConnection")
  *             .type("Kafka")
  *             .authentication(StreamConnectionAuthenticationArgs.builder()
@@ -112,7 +112,7 @@ import javax.annotation.Nullable;
  * 
  *         var stream_processor_sample_example = new StreamProcessor("stream-processor-sample-example", StreamProcessorArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.instanceName())
  *             .processorName("sampleProcessorName")
  *             .pipeline(serializeJson(
  *                 jsonArray(
@@ -137,7 +137,7 @@ import javax.annotation.Nullable;
  * 
  *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.instanceName())
  *             .processorName("clusterProcessorName")
  *             .pipeline(serializeJson(
  *                 jsonArray(
@@ -158,7 +158,7 @@ import javax.annotation.Nullable;
  * 
  *         var stream_processor_kafka_to_cluster_example = new StreamProcessor("stream-processor-kafka-to-cluster-example", StreamProcessorArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.instanceName())
  *             .processorName("kafkaProcessorName")
  *             .pipeline(serializeJson(
  *                 jsonArray(
@@ -191,7 +191,7 @@ import javax.annotation.Nullable;
  * 
  *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(_instanceName)
+ *             .workspaceName(_instanceName)
  *             .build()));
  * 
  *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
@@ -199,7 +199,7 @@ import javax.annotation.Nullable;
  *             var processorName = values.t2;
  *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
  *                 .projectId(projectId)
- *                 .instanceName(instanceName)
+ *                 .workspaceName(instanceName)
  *                 .processorName(processorName)
  *                 .build());
  *         });
@@ -211,6 +211,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Atlas Stream Processor
+ * 
  * ## Import
  * 
  * Stream Processor resource can be imported using the Project ID, Stream Instance name and Stream Processor name, in the format `INSTANCE_NAME-PROJECT_ID-PROCESSOR_NAME`, e.g.
@@ -221,18 +224,36 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/streamProcessor:StreamProcessor")
 public class StreamProcessor extends com.pulumi.resources.CustomResource {
     /**
-     * Human-readable label that identifies the stream instance.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
-    @Export(name="instanceName", refs={String.class}, tree="[0]")
-    private Output<String> instanceName;
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> deleteOnCreateTimeout;
 
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
-    public Output<String> instanceName() {
-        return this.instanceName;
+    public Output<Boolean> deleteOnCreateTimeout() {
+        return this.deleteOnCreateTimeout;
+    }
+    /**
+     * Label that identifies the stream processing workspace.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Export(name="instanceName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> instanceName;
+
+    /**
+     * @return Label that identifies the stream processing workspace.
+     * 
+     */
+    public Output<Optional<String>> instanceName() {
+        return Codegen.optional(this.instanceName);
     }
     /**
      * Optional configuration for the stream processor.
@@ -263,14 +284,14 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
         return this.pipeline;
     }
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      * 
      */
     @Export(name="processorName", refs={String.class}, tree="[0]")
     private Output<String> processorName;
 
     /**
-     * @return Human-readable label that identifies the stream processor.
+     * @return Label that identifies the stream processor.
      * 
      */
     public Output<String> processorName() {
@@ -321,6 +342,26 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
      */
     public Output<String> stats() {
         return this.stats;
+    }
+    @Export(name="timeouts", refs={StreamProcessorTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ StreamProcessorTimeouts> timeouts;
+
+    public Output<Optional<StreamProcessorTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
+    }
+    /**
+     * Label that identifies the stream processing workspace.
+     * 
+     */
+    @Export(name="workspaceName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> workspaceName;
+
+    /**
+     * @return Label that identifies the stream processing workspace.
+     * 
+     */
+    public Output<Optional<String>> workspaceName() {
+        return Codegen.optional(this.workspaceName);
     }
 
     /**

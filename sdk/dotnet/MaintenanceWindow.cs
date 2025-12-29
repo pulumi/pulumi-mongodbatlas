@@ -10,13 +10,13 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.MaintenanceWindow
-    /// 
     /// `mongodbatlas.MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
     /// 
     /// &gt; **NOTE:** Only a single maintenance window resource can be defined per project.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// &gt; **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
     /// 
     /// ## Maintenance Window Considerations:
     /// 
@@ -68,6 +68,9 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - Configure Maintenance Window
+    /// 
     /// ## Import
     /// 
     /// Maintenance Window entries can be imported using project project_id, in the format `PROJECTID`, e.g.
@@ -105,7 +108,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Defer { get; private set; } = null!;
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         /// </summary>
         [Output("hourOfDay")]
         public Output<int> HourOfDay { get; private set; } = null!;
@@ -122,11 +125,14 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        /// </summary>
         [Output("protectedHours")]
         public Output<Outputs.MaintenanceWindowProtectedHours?> ProtectedHours { get; private set; } = null!;
 
         /// <summary>
-        /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        /// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         /// </summary>
         [Output("startAsap")]
         public Output<bool> StartAsap { get; private set; } = null!;
@@ -208,10 +214,10 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Defer { get; set; }
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         /// </summary>
-        [Input("hourOfDay")]
-        public Input<int>? HourOfDay { get; set; }
+        [Input("hourOfDay", required: true)]
+        public Input<int> HourOfDay { get; set; } = null!;
 
         /// <summary>
         /// The unique identifier of the project for the Maintenance Window.
@@ -219,14 +225,11 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        /// </summary>
         [Input("protectedHours")]
         public Input<Inputs.MaintenanceWindowProtectedHoursArgs>? ProtectedHours { get; set; }
-
-        /// <summary>
-        /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-        /// </summary>
-        [Input("startAsap")]
-        public Input<bool>? StartAsap { get; set; }
 
         public MaintenanceWindowArgs()
         {
@@ -261,7 +264,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Defer { get; set; }
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         /// </summary>
         [Input("hourOfDay")]
         public Input<int>? HourOfDay { get; set; }
@@ -278,11 +281,14 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        /// </summary>
         [Input("protectedHours")]
         public Input<Inputs.MaintenanceWindowProtectedHoursGetArgs>? ProtectedHours { get; set; }
 
         /// <summary>
-        /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        /// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         /// </summary>
         [Input("startAsap")]
         public Input<bool>? StartAsap { get; set; }

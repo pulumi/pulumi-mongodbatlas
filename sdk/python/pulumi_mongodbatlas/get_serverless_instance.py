@@ -229,7 +229,7 @@ def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
                             state_name: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessInstanceResult:
     """
-    **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+    > **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
     `ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -247,15 +247,6 @@ def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
     test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
         project_id="<PROJECT_ID >")
     ```
-
-    **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
-    That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
-    and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
-
-    Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
-    When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
-
-    Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 
 
     :param _builtins.bool auto_indexing: (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
@@ -299,7 +290,7 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
                                    state_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerlessInstanceResult]:
     """
-    **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+    > **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 
     `ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
@@ -317,15 +308,6 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
     test_two = mongodbatlas.get_serverless_instance(name="<SERVERLESS_INSTANCE_NAME>",
         project_id="<PROJECT_ID >")
     ```
-
-    **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\\
-    That is, the `serverless_instance` must exist before the `privatelink_endpoint_service` can be created,\\
-    and the `privatelink_endpoint_service` must exist before the `serverless_instance` gets its respective `connection_strings_private_endpoint_srv` values.
-
-    Because of this, the `serverless_instance` data source has particular value as a source of the `connection_strings_private_endpoint_srv`.\\
-    When using the data_source in-tandem with the afforementioned resources, we can create and retrieve the `connection_strings_private_endpoint_srv` in a single `pulumi up`.
-
-    Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 
 
     :param _builtins.bool auto_indexing: (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).

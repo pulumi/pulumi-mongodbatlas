@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: CloudBackupSnapshotExportBucket
-//
 // `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -29,7 +27,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -58,7 +56,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -80,6 +78,10 @@ import (
 //	}
 //
 // ```
+//
+// ### Further Examples
+// - AWS Cloud Backup Snapshot Export Bucket
+// - Azure Cloud Backup Snapshot Export Bucket
 //
 // ## Import
 //
@@ -115,7 +117,8 @@ type CloudBackupSnapshotExportBucket struct {
 
 // NewCloudBackupSnapshotExportBucket registers a new resource with the given unique name, arguments, and options.
 func NewCloudBackupSnapshotExportBucket(ctx *pulumi.Context,
-	name string, args *CloudBackupSnapshotExportBucketArgs, opts ...pulumi.ResourceOption) (*CloudBackupSnapshotExportBucket, error) {
+	name string, args *CloudBackupSnapshotExportBucketArgs, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshotExportBucket, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -141,7 +144,8 @@ func NewCloudBackupSnapshotExportBucket(ctx *pulumi.Context,
 // GetCloudBackupSnapshotExportBucket gets an existing CloudBackupSnapshotExportBucket resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudBackupSnapshotExportBucket(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudBackupSnapshotExportBucketState, opts ...pulumi.ResourceOption) (*CloudBackupSnapshotExportBucket, error) {
+	name string, id pulumi.IDInput, state *CloudBackupSnapshotExportBucketState, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshotExportBucket, error) {
 	var resource CloudBackupSnapshotExportBucket
 	err := ctx.ReadResource("mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket", name, id, state, &resource, opts...)
 	if err != nil {

@@ -243,8 +243,6 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[_builtins.str] 
                                           snapshot_restore_job_id: Optional[_builtins.str] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotRestoreJobResult:
     """
-    ## # Data Source: CloudBackupSnapshotRestoreJob
-
     `CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -312,8 +310,6 @@ def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.I
                                                  snapshot_restore_job_id: Optional[pulumi.Input[_builtins.str]] = None,
                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobResult]:
     """
-    ## # Data Source: CloudBackupSnapshotRestoreJob
-
     `CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

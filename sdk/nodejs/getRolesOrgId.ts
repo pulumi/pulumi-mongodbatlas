@@ -5,9 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getRolesOrgId
- *
- * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+ * `mongodbatlas.getRolesOrgId` allows to retrieve the Org ID of the authenticated user.
  *
  * ## Example Usage
  *
@@ -35,14 +33,12 @@ export interface GetRolesOrgIdResult {
      */
     readonly id: string;
     /**
-     * The ID of the organization you want to retrieve associated to an API Key.
+     * The ID of the organization you want to retrieve, which is associated with the Service Account or Programmatic API Key (PAK) of the authenticated user.
      */
     readonly orgId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getRolesOrgId
- *
- * `mongodbatlas.getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+ * `mongodbatlas.getRolesOrgId` allows to retrieve the Org ID of the authenticated user.
  *
  * ## Example Usage
  *

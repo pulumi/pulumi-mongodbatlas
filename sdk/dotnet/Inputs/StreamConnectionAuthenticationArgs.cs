@@ -13,10 +13,38 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class StreamConnectionAuthenticationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        /// Public identifier for the Kafka client.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        [Input("clientSecret")]
+        private Input<string>? _clientSecret;
+
+        /// <summary>
+        /// Secret known only to the Kafka client and the authorization server.
+        /// </summary>
+        public Input<string>? ClientSecret
+        {
+            get => _clientSecret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _clientSecret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
         /// </summary>
         [Input("mechanism")]
         public Input<string>? Mechanism { get; set; }
+
+        /// <summary>
+        /// SASL OAUTHBEARER authentication method. Value must be OIDC.
+        /// </summary>
+        [Input("method")]
+        public Input<string>? Method { get; set; }
 
         [Input("password")]
         private Input<string>? _password;
@@ -33,6 +61,24 @@ namespace Pulumi.Mongodbatlas.Inputs
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        /// <summary>
+        /// Additional information to provide to the Kafka broker.
+        /// </summary>
+        [Input("saslOauthbearerExtensions")]
+        public Input<string>? SaslOauthbearerExtensions { get; set; }
+
+        /// <summary>
+        /// Scope of the access request to the broker specified by the Kafka clients.
+        /// </summary>
+        [Input("scope")]
+        public Input<string>? Scope { get; set; }
+
+        /// <summary>
+        /// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+        /// </summary>
+        [Input("tokenEndpointUrl")]
+        public Input<string>? TokenEndpointUrl { get; set; }
 
         /// <summary>
         /// Username of the account to connect to the Kafka cluster.

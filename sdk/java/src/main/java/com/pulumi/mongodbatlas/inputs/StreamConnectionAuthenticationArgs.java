@@ -16,18 +16,63 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
     public static final StreamConnectionAuthenticationArgs Empty = new StreamConnectionAuthenticationArgs();
 
     /**
-     * Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * Public identifier for the Kafka client.
+     * 
+     */
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
+
+    /**
+     * @return Public identifier for the Kafka client.
+     * 
+     */
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
+    }
+
+    /**
+     * Secret known only to the Kafka client and the authorization server.
+     * 
+     */
+    @Import(name="clientSecret")
+    private @Nullable Output<String> clientSecret;
+
+    /**
+     * @return Secret known only to the Kafka client and the authorization server.
+     * 
+     */
+    public Optional<Output<String>> clientSecret() {
+        return Optional.ofNullable(this.clientSecret);
+    }
+
+    /**
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
      * 
      */
     @Import(name="mechanism")
     private @Nullable Output<String> mechanism;
 
     /**
-     * @return Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
      * 
      */
     public Optional<Output<String>> mechanism() {
         return Optional.ofNullable(this.mechanism);
+    }
+
+    /**
+     * SASL OAUTHBEARER authentication method. Value must be OIDC.
+     * 
+     */
+    @Import(name="method")
+    private @Nullable Output<String> method;
+
+    /**
+     * @return SASL OAUTHBEARER authentication method. Value must be OIDC.
+     * 
+     */
+    public Optional<Output<String>> method() {
+        return Optional.ofNullable(this.method);
     }
 
     /**
@@ -43,6 +88,51 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
      */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
+    }
+
+    /**
+     * Additional information to provide to the Kafka broker.
+     * 
+     */
+    @Import(name="saslOauthbearerExtensions")
+    private @Nullable Output<String> saslOauthbearerExtensions;
+
+    /**
+     * @return Additional information to provide to the Kafka broker.
+     * 
+     */
+    public Optional<Output<String>> saslOauthbearerExtensions() {
+        return Optional.ofNullable(this.saslOauthbearerExtensions);
+    }
+
+    /**
+     * Scope of the access request to the broker specified by the Kafka clients.
+     * 
+     */
+    @Import(name="scope")
+    private @Nullable Output<String> scope;
+
+    /**
+     * @return Scope of the access request to the broker specified by the Kafka clients.
+     * 
+     */
+    public Optional<Output<String>> scope() {
+        return Optional.ofNullable(this.scope);
+    }
+
+    /**
+     * OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     * 
+     */
+    @Import(name="tokenEndpointUrl")
+    private @Nullable Output<String> tokenEndpointUrl;
+
+    /**
+     * @return OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     * 
+     */
+    public Optional<Output<String>> tokenEndpointUrl() {
+        return Optional.ofNullable(this.tokenEndpointUrl);
     }
 
     /**
@@ -63,8 +153,14 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
     private StreamConnectionAuthenticationArgs() {}
 
     private StreamConnectionAuthenticationArgs(StreamConnectionAuthenticationArgs $) {
+        this.clientId = $.clientId;
+        this.clientSecret = $.clientSecret;
         this.mechanism = $.mechanism;
+        this.method = $.method;
         this.password = $.password;
+        this.saslOauthbearerExtensions = $.saslOauthbearerExtensions;
+        this.scope = $.scope;
+        this.tokenEndpointUrl = $.tokenEndpointUrl;
         this.username = $.username;
     }
 
@@ -87,7 +183,49 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param mechanism Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+         * @param clientId Public identifier for the Kafka client.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(@Nullable Output<String> clientId) {
+            $.clientId = clientId;
+            return this;
+        }
+
+        /**
+         * @param clientId Public identifier for the Kafka client.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(String clientId) {
+            return clientId(Output.of(clientId));
+        }
+
+        /**
+         * @param clientSecret Secret known only to the Kafka client and the authorization server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecret(@Nullable Output<String> clientSecret) {
+            $.clientSecret = clientSecret;
+            return this;
+        }
+
+        /**
+         * @param clientSecret Secret known only to the Kafka client and the authorization server.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecret(String clientSecret) {
+            return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
          * 
          * @return builder
          * 
@@ -98,13 +236,34 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param mechanism Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
          * 
          * @return builder
          * 
          */
         public Builder mechanism(String mechanism) {
             return mechanism(Output.of(mechanism));
+        }
+
+        /**
+         * @param method SASL OAUTHBEARER authentication method. Value must be OIDC.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder method(@Nullable Output<String> method) {
+            $.method = method;
+            return this;
+        }
+
+        /**
+         * @param method SASL OAUTHBEARER authentication method. Value must be OIDC.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder method(String method) {
+            return method(Output.of(method));
         }
 
         /**
@@ -126,6 +285,69 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param saslOauthbearerExtensions Additional information to provide to the Kafka broker.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder saslOauthbearerExtensions(@Nullable Output<String> saslOauthbearerExtensions) {
+            $.saslOauthbearerExtensions = saslOauthbearerExtensions;
+            return this;
+        }
+
+        /**
+         * @param saslOauthbearerExtensions Additional information to provide to the Kafka broker.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder saslOauthbearerExtensions(String saslOauthbearerExtensions) {
+            return saslOauthbearerExtensions(Output.of(saslOauthbearerExtensions));
+        }
+
+        /**
+         * @param scope Scope of the access request to the broker specified by the Kafka clients.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scope(@Nullable Output<String> scope) {
+            $.scope = scope;
+            return this;
+        }
+
+        /**
+         * @param scope Scope of the access request to the broker specified by the Kafka clients.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder scope(String scope) {
+            return scope(Output.of(scope));
+        }
+
+        /**
+         * @param tokenEndpointUrl OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenEndpointUrl(@Nullable Output<String> tokenEndpointUrl) {
+            $.tokenEndpointUrl = tokenEndpointUrl;
+            return this;
+        }
+
+        /**
+         * @param tokenEndpointUrl OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tokenEndpointUrl(String tokenEndpointUrl) {
+            return tokenEndpointUrl(Output.of(tokenEndpointUrl));
         }
 
         /**

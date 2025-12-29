@@ -7,9 +7,29 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.StreamInstance
+ * > **DEPRECATED:** This data source is deprecated. Please use `mongodbatlas.StreamWorkspace` instead.
  *
  * `mongodbatlas.StreamInstance` describes a stream instance.
+ *
+ * ## Migration to streamWorkspace
+ *
+ * To migrate from `mongodbatlas.StreamInstance` to `mongodbatlas.StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // New (recommended)
+ * const example = mongodbatlas.getStreamWorkspace({
+ *     projectId: "<PROJECT_ID>",
+ *     workspaceName: "<WORKSPACE_NAME>",
+ * });
+ * // Old (deprecated)
+ * const exampleGetStreamInstance = mongodbatlas.getStreamInstance({
+ *     projectId: "<PROJECT_ID>",
+ *     instanceName: "<INSTANCE_NAME>",
+ * });
+ * ```
  *
  * ## Example Usage
  *
@@ -66,9 +86,29 @@ export interface GetStreamInstanceResult {
     readonly streamConfig: outputs.GetStreamInstanceStreamConfig;
 }
 /**
- * ## # Data Source: mongodbatlas.StreamInstance
+ * > **DEPRECATED:** This data source is deprecated. Please use `mongodbatlas.StreamWorkspace` instead.
  *
  * `mongodbatlas.StreamInstance` describes a stream instance.
+ *
+ * ## Migration to streamWorkspace
+ *
+ * To migrate from `mongodbatlas.StreamInstance` to `mongodbatlas.StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // New (recommended)
+ * const example = mongodbatlas.getStreamWorkspace({
+ *     projectId: "<PROJECT_ID>",
+ *     workspaceName: "<WORKSPACE_NAME>",
+ * });
+ * // Old (deprecated)
+ * const exampleGetStreamInstance = mongodbatlas.getStreamInstance({
+ *     projectId: "<PROJECT_ID>",
+ *     instanceName: "<INSTANCE_NAME>",
+ * });
+ * ```
  *
  * ## Example Usage
  *

@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: SearchIndex
-//
 // `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -24,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -81,9 +79,11 @@ type LookupSearchIndexResult struct {
 	IndexId string `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings.
 	MappingsDynamic bool `pulumi:"mappingsDynamic"`
+	// JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+	MappingsDynamicConfig string `pulumi:"mappingsDynamicConfig"`
 	// Object containing one or more field specifications.
 	MappingsFields string `pulumi:"mappingsFields"`
-	// Name of the index.
+	// Type set name.
 	Name      string `pulumi:"name"`
 	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
@@ -98,6 +98,8 @@ type LookupSearchIndexResult struct {
 	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 	Synonyms []GetSearchIndexSynonym `pulumi:"synonyms"`
 	Type     string                  `pulumi:"type"`
+	// Set of type set definitions (when present). Each item includes:
+	TypeSets []GetSearchIndexTypeSet `pulumi:"typeSets"`
 }
 
 func LookupSearchIndexOutput(ctx *pulumi.Context, args LookupSearchIndexOutputArgs, opts ...pulumi.InvokeOption) LookupSearchIndexResultOutput {
@@ -180,12 +182,17 @@ func (o LookupSearchIndexResultOutput) MappingsDynamic() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) bool { return v.MappingsDynamic }).(pulumi.BoolOutput)
 }
 
+// JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+func (o LookupSearchIndexResultOutput) MappingsDynamicConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.MappingsDynamicConfig }).(pulumi.StringOutput)
+}
+
 // Object containing one or more field specifications.
 func (o LookupSearchIndexResultOutput) MappingsFields() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.MappingsFields }).(pulumi.StringOutput)
 }
 
-// Name of the index.
+// Type set name.
 func (o LookupSearchIndexResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -219,6 +226,11 @@ func (o LookupSearchIndexResultOutput) Synonyms() GetSearchIndexSynonymArrayOutp
 
 func (o LookupSearchIndexResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Set of type set definitions (when present). Each item includes:
+func (o LookupSearchIndexResultOutput) TypeSets() GetSearchIndexTypeSetArrayOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) []GetSearchIndexTypeSet { return v.TypeSets }).(GetSearchIndexTypeSetArrayOutput)
 }
 
 func init() {

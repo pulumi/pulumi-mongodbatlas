@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: CustomDbRole
-//
 // `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 //
 // > **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project's clusters support, and that are compatible with each MongoDB version used by your project's clusters. For example, if your project has MongoDB 4.2 clusters, you can't create custom roles that use actions introduced in MongoDB 4.4.
@@ -27,7 +25,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -83,7 +81,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -196,7 +194,8 @@ type CustomDbRole struct {
 
 // NewCustomDbRole registers a new resource with the given unique name, arguments, and options.
 func NewCustomDbRole(ctx *pulumi.Context,
-	name string, args *CustomDbRoleArgs, opts ...pulumi.ResourceOption) (*CustomDbRole, error) {
+	name string, args *CustomDbRoleArgs, opts ...pulumi.ResourceOption,
+) (*CustomDbRole, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -219,7 +218,8 @@ func NewCustomDbRole(ctx *pulumi.Context,
 // GetCustomDbRole gets an existing CustomDbRole resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCustomDbRole(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CustomDbRoleState, opts ...pulumi.ResourceOption) (*CustomDbRole, error) {
+	name string, id pulumi.IDInput, state *CustomDbRoleState, opts ...pulumi.ResourceOption,
+) (*CustomDbRole, error) {
 	var resource CustomDbRole
 	err := ctx.ReadResource("mongodbatlas:index/customDbRole:CustomDbRole", name, id, state, &resource, opts...)
 	if err != nil {

@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingGetArgs>? AutoScaling { get; set; }
 
         /// <summary>
-        /// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `ProviderName` is `TENANT` and `InstanceSize` is `M0`.
+        /// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `ProviderName` is `TENANT` and `InstanceSize` is `M0`, or when the `ProviderName` is `FLEX`.
         /// </summary>
         [Input("backingProviderName")]
         public Input<string>? BackingProviderName { get; set; }
@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Election priority of the region. For regions with only read-only nodes, set this value to 0.
         /// * If you have multiple `RegionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-        /// * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        /// * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         /// </summary>
         [Input("priority", required: true)]
         public Input<int> Priority { get; set; } = null!;
@@ -56,7 +56,8 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// - `AWS` - Amazon AWS
         /// - `GCP` - Google Cloud Platform
         /// - `AZURE` - Microsoft Azure
-        /// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        /// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+        /// - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;

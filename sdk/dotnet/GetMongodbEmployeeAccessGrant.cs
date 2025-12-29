@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetMongodbEmployeeAccessGrant
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
-        /// 
         /// `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
         /// 
         /// ## Example Usage
@@ -53,8 +51,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetMongodbEmployeeAccessGrantResult>("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args ?? new GetMongodbEmployeeAccessGrantArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
-        /// 
         /// `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
         /// 
         /// ## Example Usage
@@ -94,8 +90,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetMongodbEmployeeAccessGrantResult>("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args ?? new GetMongodbEmployeeAccessGrantInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
-        /// 
         /// `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
         /// 
         /// ## Example Usage

@@ -23,18 +23,28 @@ class CloudProviderAccessSetupArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
                  provider_name: pulumi.Input[_builtins.str],
-                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None):
+                 azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a CloudProviderAccessSetup resource.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]] azure_configs: azure related configurations
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
         if azure_configs is not None:
             pulumi.set(__self__, "azure_configs", azure_configs)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The unique ID for the project
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -44,6 +54,9 @@ class CloudProviderAccessSetupArgs:
     @_builtins.property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
+        """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
@@ -53,11 +66,26 @@ class CloudProviderAccessSetupArgs:
     @_builtins.property
     @pulumi.getter(name="azureConfigs")
     def azure_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]]:
+        """
+        azure related configurations
+        """
         return pulumi.get(self, "azure_configs")
 
     @azure_configs.setter
     def azure_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]]):
         pulumi.set(self, "azure_configs", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
 
 @pulumi.input_type
@@ -66,6 +94,7 @@ class _CloudProviderAccessSetupState:
                  aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]] = None,
                  azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]] = None,
                  created_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  gcp_configs: Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupGcpConfigArgs']]]] = None,
                  last_updated_date: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -73,6 +102,15 @@ class _CloudProviderAccessSetupState:
                  role_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudProviderAccessSetup resources.
+        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]] aws_configs: aws related arn roles
+        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]] azure_configs: azure related configurations
+        :param pulumi.Input[_builtins.str] created_date: Date on which this role was created.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupGcpConfigArgs']]] gcp_configs: gcp related configuration
+        :param pulumi.Input[_builtins.str] last_updated_date: Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
+        :param pulumi.Input[_builtins.str] role_id: Unique ID of this role.
         """
         if aws_configs is not None:
             pulumi.set(__self__, "aws_configs", aws_configs)
@@ -80,6 +118,8 @@ class _CloudProviderAccessSetupState:
             pulumi.set(__self__, "azure_configs", azure_configs)
         if created_date is not None:
             pulumi.set(__self__, "created_date", created_date)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if gcp_configs is not None:
             pulumi.set(__self__, "gcp_configs", gcp_configs)
         if last_updated_date is not None:
@@ -94,6 +134,9 @@ class _CloudProviderAccessSetupState:
     @_builtins.property
     @pulumi.getter(name="awsConfigs")
     def aws_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAwsConfigArgs']]]]:
+        """
+        aws related arn roles
+        """
         return pulumi.get(self, "aws_configs")
 
     @aws_configs.setter
@@ -103,6 +146,9 @@ class _CloudProviderAccessSetupState:
     @_builtins.property
     @pulumi.getter(name="azureConfigs")
     def azure_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]]]:
+        """
+        azure related configurations
+        """
         return pulumi.get(self, "azure_configs")
 
     @azure_configs.setter
@@ -112,6 +158,9 @@ class _CloudProviderAccessSetupState:
     @_builtins.property
     @pulumi.getter(name="createdDate")
     def created_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Date on which this role was created.
+        """
         return pulumi.get(self, "created_date")
 
     @created_date.setter
@@ -119,8 +168,23 @@ class _CloudProviderAccessSetupState:
         pulumi.set(self, "created_date", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
     @pulumi.getter(name="gcpConfigs")
     def gcp_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupGcpConfigArgs']]]]:
+        """
+        gcp related configuration
+        """
         return pulumi.get(self, "gcp_configs")
 
     @gcp_configs.setter
@@ -130,6 +194,9 @@ class _CloudProviderAccessSetupState:
     @_builtins.property
     @pulumi.getter(name="lastUpdatedDate")
     def last_updated_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "last_updated_date")
 
     @last_updated_date.setter
@@ -139,6 +206,9 @@ class _CloudProviderAccessSetupState:
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique ID for the project
+        """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
@@ -148,6 +218,9 @@ class _CloudProviderAccessSetupState:
     @_builtins.property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
+        """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
@@ -157,6 +230,9 @@ class _CloudProviderAccessSetupState:
     @_builtins.property
     @pulumi.getter(name="roleId")
     def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique ID of this role.
+        """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
@@ -171,13 +247,70 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a CloudProviderAccessSetup resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ### With AWS
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AWS")
+        ```
+
+        ### With Azure
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AZURE",
+            azure_configs=[{
+                "atlas_azure_app_id": "9f2deb0d-be22-4524-a403-df531868bac0",
+                "service_principal_id": "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                "tenant_id": "91402384-d71e-22f5-22dd-759e272cdc1c",
+            }])
+        ```
+
+        ### With GCP
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="GCP")
+        ```
+
+        ### Further Examples
+        - AWS Cloud Provider Access
+        - Azure Cloud Provider Access
+        - GCP Cloud Provider Access
+
+        ## Import
+
+        It can be imported using project ID, provider name and role_id in the format `project_id`-`provider_name`-`role_id`, e.g.
+
+        ```sh
+        $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]] azure_configs: azure related configurations
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
         """
         ...
     @overload
@@ -186,7 +319,59 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                  args: CloudProviderAccessSetupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CloudProviderAccessSetup resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ### With AWS
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AWS")
+        ```
+
+        ### With Azure
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="AZURE",
+            azure_configs=[{
+                "atlas_azure_app_id": "9f2deb0d-be22-4524-a403-df531868bac0",
+                "service_principal_id": "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+                "tenant_id": "91402384-d71e-22f5-22dd-759e272cdc1c",
+            }])
+        ```
+
+        ### With GCP
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_role = mongodbatlas.CloudProviderAccessSetup("test_role",
+            project_id="64259ee860c43338194b0f8e",
+            provider_name="GCP")
+        ```
+
+        ### Further Examples
+        - AWS Cloud Provider Access
+        - Azure Cloud Provider Access
+        - GCP Cloud Provider Access
+
+        ## Import
+
+        It can be imported using project ID, provider name and role_id in the format `project_id`-`provider_name`-`role_id`, e.g.
+
+        ```sh
+        $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+        ```
+
         :param str resource_name: The name of the resource.
         :param CloudProviderAccessSetupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -203,6 +388,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -215,6 +401,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
             __props__ = CloudProviderAccessSetupArgs.__new__(CloudProviderAccessSetupArgs)
 
             __props__.__dict__["azure_configs"] = azure_configs
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -239,6 +426,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
             aws_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict']]]]] = None,
             azure_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
             created_date: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             gcp_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict']]]]] = None,
             last_updated_date: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -251,6 +439,15 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict']]]] aws_configs: aws related arn roles
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]] azure_configs: azure related configurations
+        :param pulumi.Input[_builtins.str] created_date: Date on which this role was created.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict']]]] gcp_configs: gcp related configuration
+        :param pulumi.Input[_builtins.str] last_updated_date: Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
+        :param pulumi.Input[_builtins.str] role_id: Unique ID of this role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -259,6 +456,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         __props__.__dict__["aws_configs"] = aws_configs
         __props__.__dict__["azure_configs"] = azure_configs
         __props__.__dict__["created_date"] = created_date
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["gcp_configs"] = gcp_configs
         __props__.__dict__["last_updated_date"] = last_updated_date
         __props__.__dict__["project_id"] = project_id
@@ -269,40 +467,72 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="awsConfigs")
     def aws_configs(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessSetupAwsConfig']]:
+        """
+        aws related arn roles
+        """
         return pulumi.get(self, "aws_configs")
 
     @_builtins.property
     @pulumi.getter(name="azureConfigs")
     def azure_configs(self) -> pulumi.Output[Optional[Sequence['outputs.CloudProviderAccessSetupAzureConfig']]]:
+        """
+        azure related configurations
+        """
         return pulumi.get(self, "azure_configs")
 
     @_builtins.property
     @pulumi.getter(name="createdDate")
     def created_date(self) -> pulumi.Output[_builtins.str]:
+        """
+        Date on which this role was created.
+        """
         return pulumi.get(self, "created_date")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
 
     @_builtins.property
     @pulumi.getter(name="gcpConfigs")
     def gcp_configs(self) -> pulumi.Output[Sequence['outputs.CloudProviderAccessSetupGcpConfig']]:
+        """
+        gcp related configuration
+        """
         return pulumi.get(self, "gcp_configs")
 
     @_builtins.property
     @pulumi.getter(name="lastUpdatedDate")
     def last_updated_date(self) -> pulumi.Output[_builtins.str]:
+        """
+        Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "last_updated_date")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The unique ID for the project
+        """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
+        """
         return pulumi.get(self, "provider_name")
 
     @_builtins.property
     @pulumi.getter(name="roleId")
     def role_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        Unique ID of this role.
+        """
         return pulumi.get(self, "role_id")
 

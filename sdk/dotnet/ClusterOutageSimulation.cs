@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.ClusterOutageSimulation
-    /// 
     /// `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
     /// 
     /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes.
@@ -59,6 +57,9 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - Cluster Outage Simulation
+    /// 
     /// ## Import
     /// 
     /// The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
@@ -73,6 +74,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool?> DeleteOnCreateTimeout { get; private set; } = null!;
 
         /// <summary>
         /// List of settings that specify the type of cluster outage simulation.
@@ -162,6 +169,12 @@ namespace Pulumi.Mongodbatlas
         [Input("clusterName", required: true)]
         public Input<string> ClusterName { get; set; } = null!;
 
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
         [Input("outageFilters", required: true)]
         private InputList<Inputs.ClusterOutageSimulationOutageFilterArgs>? _outageFilters;
 
@@ -193,6 +206,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         [Input("outageFilters")]
         private InputList<Inputs.ClusterOutageSimulationOutageFilterGetArgs>? _outageFilters;

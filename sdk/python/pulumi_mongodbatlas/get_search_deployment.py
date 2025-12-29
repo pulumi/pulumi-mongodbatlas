@@ -114,8 +114,6 @@ def get_search_deployment(cluster_name: Optional[_builtins.str] = None,
                           project_id: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchDeploymentResult:
     """
-    ## # Data Source: SearchDeployment
-
     `SearchDeployment` describes a search node deployment.
 
     ## Example Usage
@@ -177,8 +175,6 @@ def get_search_deployment_output(cluster_name: Optional[pulumi.Input[_builtins.s
                                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSearchDeploymentResult]:
     """
-    ## # Data Source: SearchDeployment
-
     `SearchDeployment` describes a search node deployment.
 
     ## Example Usage

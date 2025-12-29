@@ -33,7 +33,7 @@ public final class GetAtlasUserArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * Email address that belongs to the MongoDB Atlas user account. You can&#39;t modify this address after creating the user.
      * 
-     * &gt; **IMPORTANT:** Either `userId` or `username` must be configurated.
+     * &gt; **IMPORTANT:** Either `userId` or `username` must be configured.
      * 
      */
     @Import(name="username")
@@ -42,7 +42,7 @@ public final class GetAtlasUserArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return Email address that belongs to the MongoDB Atlas user account. You can&#39;t modify this address after creating the user.
      * 
-     * &gt; **IMPORTANT:** Either `userId` or `username` must be configurated.
+     * &gt; **IMPORTANT:** Either `userId` or `username` must be configured.
      * 
      */
     public Optional<Output<String>> username() {
@@ -98,7 +98,7 @@ public final class GetAtlasUserArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param username Email address that belongs to the MongoDB Atlas user account. You can&#39;t modify this address after creating the user.
          * 
-         * &gt; **IMPORTANT:** Either `userId` or `username` must be configurated.
+         * &gt; **IMPORTANT:** Either `userId` or `username` must be configured.
          * 
          * @return builder
          * 
@@ -111,7 +111,7 @@ public final class GetAtlasUserArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param username Email address that belongs to the MongoDB Atlas user account. You can&#39;t modify this address after creating the user.
          * 
-         * &gt; **IMPORTANT:** Either `userId` or `username` must be configurated.
+         * &gt; **IMPORTANT:** Either `userId` or `username` must be configured.
          * 
          * @return builder
          * 

@@ -187,10 +187,6 @@ class StreamInstance(pulumi.CustomResource):
                  stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
                  __props__=None):
         """
-        ## # Resource: StreamInstance
-
-        `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
-
         ## Example Usage
 
         ```python
@@ -205,6 +201,10 @@ class StreamInstance(pulumi.CustomResource):
                 "cloud_provider": "AWS",
             })
         ```
+
+        ### Further Examples
+        - Atlas Stream Instance (Deprecated)
+        - Atlas Stream Workspace (Recommended)
 
         ## Import
 
@@ -230,10 +230,6 @@ class StreamInstance(pulumi.CustomResource):
                  args: StreamInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: StreamInstance
-
-        `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
-
         ## Example Usage
 
         ```python
@@ -248,6 +244,10 @@ class StreamInstance(pulumi.CustomResource):
                 "cloud_provider": "AWS",
             })
         ```
+
+        ### Further Examples
+        - Atlas Stream Instance (Deprecated)
+        - Atlas Stream Workspace (Recommended)
 
         ## Import
 

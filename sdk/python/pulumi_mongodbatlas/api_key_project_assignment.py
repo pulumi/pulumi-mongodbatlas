@@ -136,8 +136,6 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## # Resource: ApiKeyProjectAssignment
-
         `ApiKeyProjectAssignment` provides an API Key Project Assignment resource. The resource lets you create, edit, and delete Organization API keys assignments to projects.
 
         ## Example Usage
@@ -172,6 +170,9 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
             cidr_block="0.0.0.0/1",
             api_key_id=this.api_key_id)
         ```
+
+        ### Further Examples
+        - Assign API Key to Project
 
         ## Import
 
@@ -192,8 +193,6 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
                  args: ApiKeyProjectAssignmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: ApiKeyProjectAssignment
-
         `ApiKeyProjectAssignment` provides an API Key Project Assignment resource. The resource lets you create, edit, and delete Organization API keys assignments to projects.
 
         ## Example Usage
@@ -228,6 +227,9 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
             cidr_block="0.0.0.0/1",
             api_key_id=this.api_key_id)
         ```
+
+        ### Further Examples
+        - Assign API Key to Project
 
         ## Import
 

@@ -153,8 +153,6 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
                                     role_id: Optional[_builtins.str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudProviderAccessSetupResult:
     """
-    ## # Data Source: CloudProviderAccessSetup
-
     `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -237,8 +235,6 @@ def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[
                                            role_id: Optional[pulumi.Input[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudProviderAccessSetupResult]:
     """
-    ## # Data Source: CloudProviderAccessSetup
-
     `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

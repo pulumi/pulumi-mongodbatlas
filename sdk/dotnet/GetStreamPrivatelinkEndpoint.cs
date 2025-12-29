@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamPrivatelinkEndpoint
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
-        /// 
         /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
@@ -210,6 +208,45 @@ namespace Pulumi.Mongodbatlas
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
         ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### GCP Confluent Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "GCP",
+        ///         Vendor = "CONFLUENT",
+        ///         Region = gcpRegion,
+        ///         DnsDomain = confluentDnsDomain,
+        ///         DnsSubDomains = confluentDnsSubdomains,
+        ///         ServiceAttachmentUris = new[]
+        ///         {
+        ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+        ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpConfluent = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = gcpConfluentStreamPrivatelinkEndpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = gcpConfluentStreamPrivatelinkEndpoint.Id,
+        ///         ["privatelinkEndpointState"] = gcpConfluent.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+        ///         ["serviceAttachmentUris"] = gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris,
         ///     };
         /// });
         /// ```
@@ -218,8 +255,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
-        /// 
         /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
@@ -416,6 +451,45 @@ namespace Pulumi.Mongodbatlas
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
         ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### GCP Confluent Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "GCP",
+        ///         Vendor = "CONFLUENT",
+        ///         Region = gcpRegion,
+        ///         DnsDomain = confluentDnsDomain,
+        ///         DnsSubDomains = confluentDnsSubdomains,
+        ///         ServiceAttachmentUris = new[]
+        ///         {
+        ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+        ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpConfluent = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = gcpConfluentStreamPrivatelinkEndpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = gcpConfluentStreamPrivatelinkEndpoint.Id,
+        ///         ["privatelinkEndpointState"] = gcpConfluent.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+        ///         ["serviceAttachmentUris"] = gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris,
         ///     };
         /// });
         /// ```
@@ -424,8 +498,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
-        /// 
         /// `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
         /// 
         /// ## Example Usage
@@ -622,6 +694,45 @@ namespace Pulumi.Mongodbatlas
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
         ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### GCP Confluent Privatelink
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "GCP",
+        ///         Vendor = "CONFLUENT",
+        ///         Region = gcpRegion,
+        ///         DnsDomain = confluentDnsDomain,
+        ///         DnsSubDomains = confluentDnsSubdomains,
+        ///         ServiceAttachmentUris = new[]
+        ///         {
+        ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+        ///             "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpConfluent = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = gcpConfluentStreamPrivatelinkEndpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = gcpConfluentStreamPrivatelinkEndpoint.Id,
+        ///         ["privatelinkEndpointState"] = gcpConfluent.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+        ///         ["serviceAttachmentUris"] = gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris,
         ///     };
         /// });
         /// ```
@@ -674,6 +785,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProviderAccountId;
         public readonly string ProviderName;
         public readonly string Region;
+        public readonly ImmutableArray<string> ServiceAttachmentUris;
         public readonly string ServiceEndpointId;
         public readonly string State;
         public readonly string Vendor;
@@ -702,6 +814,8 @@ namespace Pulumi.Mongodbatlas
 
             string region,
 
+            ImmutableArray<string> serviceAttachmentUris,
+
             string serviceEndpointId,
 
             string state,
@@ -719,6 +833,7 @@ namespace Pulumi.Mongodbatlas
             ProviderAccountId = providerAccountId;
             ProviderName = providerName;
             Region = region;
+            ServiceAttachmentUris = serviceAttachmentUris;
             ServiceEndpointId = serviceEndpointId;
             State = state;
             Vendor = vendor;

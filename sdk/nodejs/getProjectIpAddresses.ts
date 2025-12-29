@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getProjectIpAddresses
- *
  * `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
  *
  * ## Example Usage
@@ -59,8 +57,6 @@ export interface GetProjectIpAddressesResult {
     readonly services: outputs.GetProjectIpAddressesServices;
 }
 /**
- * ## # Data Source: mongodbatlas.getProjectIpAddresses
- *
  * `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
  *
  * ## Example Usage

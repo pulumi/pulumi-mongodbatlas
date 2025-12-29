@@ -5,10 +5,10 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -52,11 +52,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
 //				ProjectId:       myCluster.ProjectId,
 //				ClusterName:     myCluster.Name,
-//				Description:     "myDescription",
-//				RetentionInDays: 1,
+//				Description:     pulumi.String("myDescription"),
+//				RetentionInDays: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -87,7 +87,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -118,11 +118,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
 //				ProjectId:       myCluster.ProjectId,
 //				ClusterName:     myCluster.Name,
-//				Description:     "myDescription",
-//				RetentionInDays: 1,
+//				Description:     pulumi.String("myDescription"),
+//				RetentionInDays: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -150,7 +150,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -222,7 +222,7 @@ import (
 //
 // ```
 //
-// ### Available complete examples
+// ### Further Examples
 // - Restore from backup snapshot at point in time
 // - Restore from backup snapshot using an advanced cluster resource
 //
@@ -287,7 +287,8 @@ type CloudBackupSnapshotRestoreJob struct {
 
 // NewCloudBackupSnapshotRestoreJob registers a new resource with the given unique name, arguments, and options.
 func NewCloudBackupSnapshotRestoreJob(ctx *pulumi.Context,
-	name string, args *CloudBackupSnapshotRestoreJobArgs, opts ...pulumi.ResourceOption) (*CloudBackupSnapshotRestoreJob, error) {
+	name string, args *CloudBackupSnapshotRestoreJobArgs, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshotRestoreJob, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -310,7 +311,8 @@ func NewCloudBackupSnapshotRestoreJob(ctx *pulumi.Context,
 // GetCloudBackupSnapshotRestoreJob gets an existing CloudBackupSnapshotRestoreJob resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudBackupSnapshotRestoreJob(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudBackupSnapshotRestoreJobState, opts ...pulumi.ResourceOption) (*CloudBackupSnapshotRestoreJob, error) {
+	name string, id pulumi.IDInput, state *CloudBackupSnapshotRestoreJobState, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshotRestoreJob, error) {
 	var resource CloudBackupSnapshotRestoreJob
 	err := ctx.ReadResource("mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob", name, id, state, &resource, opts...)
 	if err != nil {

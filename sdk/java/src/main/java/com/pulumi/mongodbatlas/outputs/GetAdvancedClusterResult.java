@@ -7,15 +7,13 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterAdvancedConfiguration;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterBiConnectorConfig;
-import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterConnectionString;
-import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterLabel;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterConnectionStrings;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterPinnedFcv;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterReplicationSpec;
-import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterTag;
 import java.lang.Boolean;
-import java.lang.Double;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -26,9 +24,14 @@ public final class GetAdvancedClusterResult {
      * @return Get the advanced configuration options. See Advanced Configuration below for more details.
      * 
      */
-    private List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations;
+    private GetAdvancedClusterAdvancedConfiguration advancedConfiguration;
     private Boolean backupEnabled;
-    private List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs;
+    private GetAdvancedClusterBiConnectorConfig biConnectorConfig;
+    /**
+     * @return The cluster ID.
+     * 
+     */
+    private String clusterId;
     /**
      * @return Type of the cluster that you want to create.
      * 
@@ -48,17 +51,8 @@ public final class GetAdvancedClusterResult {
      * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
-    private List<GetAdvancedClusterConnectionString> connectionStrings;
+    private GetAdvancedClusterConnectionStrings connectionStrings;
     private String createDate;
-    /**
-     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private Double diskSizeGb;
     /**
      * @return Possible values are AWS, GCP, AZURE or NONE.
      * 
@@ -78,7 +72,7 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      * 
      */
-    private List<GetAdvancedClusterLabel> labels;
+    private Map<String,String> labels;
     /**
      * @return Version of the cluster to deploy.
      * 
@@ -99,7 +93,7 @@ public final class GetAdvancedClusterResult {
      * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
      * 
      */
-    private List<GetAdvancedClusterPinnedFcv> pinnedFcvs;
+    private GetAdvancedClusterPinnedFcv pinnedFcv;
     /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
      * 
@@ -117,7 +111,7 @@ public final class GetAdvancedClusterResult {
      */
     private String replicaSetScalingStrategy;
     /**
-     * @return List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
+     * @return List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
      * 
      */
     private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
@@ -135,13 +129,13 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      * 
      */
-    private List<GetAdvancedClusterTag> tags;
+    private Map<String,String> tags;
     /**
      * @return Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won&#39;t delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      * 
      */
     private Boolean terminationProtectionEnabled;
-    private @Nullable Boolean useReplicationSpecPerShard;
+    private @Nullable Boolean useEffectiveFields;
     /**
      * @return Release cadence that Atlas uses for this cluster.
      * 
@@ -153,14 +147,21 @@ public final class GetAdvancedClusterResult {
      * @return Get the advanced configuration options. See Advanced Configuration below for more details.
      * 
      */
-    public List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations() {
-        return this.advancedConfigurations;
+    public GetAdvancedClusterAdvancedConfiguration advancedConfiguration() {
+        return this.advancedConfiguration;
     }
     public Boolean backupEnabled() {
         return this.backupEnabled;
     }
-    public List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs() {
-        return this.biConnectorConfigs;
+    public GetAdvancedClusterBiConnectorConfig biConnectorConfig() {
+        return this.biConnectorConfig;
+    }
+    /**
+     * @return The cluster ID.
+     * 
+     */
+    public String clusterId() {
+        return this.clusterId;
     }
     /**
      * @return Type of the cluster that you want to create.
@@ -187,22 +188,11 @@ public final class GetAdvancedClusterResult {
      * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * 
      */
-    public List<GetAdvancedClusterConnectionString> connectionStrings() {
+    public GetAdvancedClusterConnectionStrings connectionStrings() {
         return this.connectionStrings;
     }
     public String createDate() {
         return this.createDate;
-    }
-    /**
-     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Double diskSizeGb() {
-        return this.diskSizeGb;
     }
     /**
      * @return Possible values are AWS, GCP, AZURE or NONE.
@@ -229,7 +219,7 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      * 
      */
-    public List<GetAdvancedClusterLabel> labels() {
+    public Map<String,String> labels() {
         return this.labels;
     }
     /**
@@ -260,8 +250,8 @@ public final class GetAdvancedClusterResult {
      * @return The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
      * 
      */
-    public List<GetAdvancedClusterPinnedFcv> pinnedFcvs() {
-        return this.pinnedFcvs;
+    public GetAdvancedClusterPinnedFcv pinnedFcv() {
+        return this.pinnedFcv;
     }
     /**
      * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
@@ -288,7 +278,7 @@ public final class GetAdvancedClusterResult {
         return this.replicaSetScalingStrategy;
     }
     /**
-     * @return List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
+     * @return List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
      * 
      */
     public List<GetAdvancedClusterReplicationSpec> replicationSpecs() {
@@ -312,7 +302,7 @@ public final class GetAdvancedClusterResult {
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      * 
      */
-    public List<GetAdvancedClusterTag> tags() {
+    public Map<String,String> tags() {
         return this.tags;
     }
     /**
@@ -322,8 +312,8 @@ public final class GetAdvancedClusterResult {
     public Boolean terminationProtectionEnabled() {
         return this.terminationProtectionEnabled;
     }
-    public Optional<Boolean> useReplicationSpecPerShard() {
-        return Optional.ofNullable(this.useReplicationSpecPerShard);
+    public Optional<Boolean> useEffectiveFields() {
+        return Optional.ofNullable(this.useEffectiveFields);
     }
     /**
      * @return Release cadence that Atlas uses for this cluster.
@@ -342,24 +332,24 @@ public final class GetAdvancedClusterResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations;
+        private GetAdvancedClusterAdvancedConfiguration advancedConfiguration;
         private Boolean backupEnabled;
-        private List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs;
+        private GetAdvancedClusterBiConnectorConfig biConnectorConfig;
+        private String clusterId;
         private String clusterType;
         private String configServerManagementMode;
         private String configServerType;
-        private List<GetAdvancedClusterConnectionString> connectionStrings;
+        private GetAdvancedClusterConnectionStrings connectionStrings;
         private String createDate;
-        private Double diskSizeGb;
         private String encryptionAtRestProvider;
         private Boolean globalClusterSelfManagedSharding;
         private String id;
-        private List<GetAdvancedClusterLabel> labels;
+        private Map<String,String> labels;
         private String mongoDbMajorVersion;
         private String mongoDbVersion;
         private String name;
         private Boolean paused;
-        private List<GetAdvancedClusterPinnedFcv> pinnedFcvs;
+        private GetAdvancedClusterPinnedFcv pinnedFcv;
         private Boolean pitEnabled;
         private String projectId;
         private Boolean redactClientLogData;
@@ -367,22 +357,22 @@ public final class GetAdvancedClusterResult {
         private List<GetAdvancedClusterReplicationSpec> replicationSpecs;
         private String rootCertType;
         private String stateName;
-        private List<GetAdvancedClusterTag> tags;
+        private Map<String,String> tags;
         private Boolean terminationProtectionEnabled;
-        private @Nullable Boolean useReplicationSpecPerShard;
+        private @Nullable Boolean useEffectiveFields;
         private String versionReleaseSystem;
         public Builder() {}
         public Builder(GetAdvancedClusterResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.advancedConfigurations = defaults.advancedConfigurations;
+    	      this.advancedConfiguration = defaults.advancedConfiguration;
     	      this.backupEnabled = defaults.backupEnabled;
-    	      this.biConnectorConfigs = defaults.biConnectorConfigs;
+    	      this.biConnectorConfig = defaults.biConnectorConfig;
+    	      this.clusterId = defaults.clusterId;
     	      this.clusterType = defaults.clusterType;
     	      this.configServerManagementMode = defaults.configServerManagementMode;
     	      this.configServerType = defaults.configServerType;
     	      this.connectionStrings = defaults.connectionStrings;
     	      this.createDate = defaults.createDate;
-    	      this.diskSizeGb = defaults.diskSizeGb;
     	      this.encryptionAtRestProvider = defaults.encryptionAtRestProvider;
     	      this.globalClusterSelfManagedSharding = defaults.globalClusterSelfManagedSharding;
     	      this.id = defaults.id;
@@ -391,7 +381,7 @@ public final class GetAdvancedClusterResult {
     	      this.mongoDbVersion = defaults.mongoDbVersion;
     	      this.name = defaults.name;
     	      this.paused = defaults.paused;
-    	      this.pinnedFcvs = defaults.pinnedFcvs;
+    	      this.pinnedFcv = defaults.pinnedFcv;
     	      this.pitEnabled = defaults.pitEnabled;
     	      this.projectId = defaults.projectId;
     	      this.redactClientLogData = defaults.redactClientLogData;
@@ -401,20 +391,17 @@ public final class GetAdvancedClusterResult {
     	      this.stateName = defaults.stateName;
     	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
-    	      this.useReplicationSpecPerShard = defaults.useReplicationSpecPerShard;
+    	      this.useEffectiveFields = defaults.useEffectiveFields;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
 
         @CustomType.Setter
-        public Builder advancedConfigurations(List<GetAdvancedClusterAdvancedConfiguration> advancedConfigurations) {
-            if (advancedConfigurations == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "advancedConfigurations");
+        public Builder advancedConfiguration(GetAdvancedClusterAdvancedConfiguration advancedConfiguration) {
+            if (advancedConfiguration == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "advancedConfiguration");
             }
-            this.advancedConfigurations = advancedConfigurations;
+            this.advancedConfiguration = advancedConfiguration;
             return this;
-        }
-        public Builder advancedConfigurations(GetAdvancedClusterAdvancedConfiguration... advancedConfigurations) {
-            return advancedConfigurations(List.of(advancedConfigurations));
         }
         @CustomType.Setter
         public Builder backupEnabled(Boolean backupEnabled) {
@@ -425,15 +412,20 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder biConnectorConfigs(List<GetAdvancedClusterBiConnectorConfig> biConnectorConfigs) {
-            if (biConnectorConfigs == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "biConnectorConfigs");
+        public Builder biConnectorConfig(GetAdvancedClusterBiConnectorConfig biConnectorConfig) {
+            if (biConnectorConfig == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "biConnectorConfig");
             }
-            this.biConnectorConfigs = biConnectorConfigs;
+            this.biConnectorConfig = biConnectorConfig;
             return this;
         }
-        public Builder biConnectorConfigs(GetAdvancedClusterBiConnectorConfig... biConnectorConfigs) {
-            return biConnectorConfigs(List.of(biConnectorConfigs));
+        @CustomType.Setter
+        public Builder clusterId(String clusterId) {
+            if (clusterId == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "clusterId");
+            }
+            this.clusterId = clusterId;
+            return this;
         }
         @CustomType.Setter
         public Builder clusterType(String clusterType) {
@@ -460,15 +452,12 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder connectionStrings(List<GetAdvancedClusterConnectionString> connectionStrings) {
+        public Builder connectionStrings(GetAdvancedClusterConnectionStrings connectionStrings) {
             if (connectionStrings == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "connectionStrings");
             }
             this.connectionStrings = connectionStrings;
             return this;
-        }
-        public Builder connectionStrings(GetAdvancedClusterConnectionString... connectionStrings) {
-            return connectionStrings(List.of(connectionStrings));
         }
         @CustomType.Setter
         public Builder createDate(String createDate) {
@@ -476,14 +465,6 @@ public final class GetAdvancedClusterResult {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "createDate");
             }
             this.createDate = createDate;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder diskSizeGb(Double diskSizeGb) {
-            if (diskSizeGb == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "diskSizeGb");
-            }
-            this.diskSizeGb = diskSizeGb;
             return this;
         }
         @CustomType.Setter
@@ -511,15 +492,12 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder labels(List<GetAdvancedClusterLabel> labels) {
+        public Builder labels(Map<String,String> labels) {
             if (labels == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "labels");
             }
             this.labels = labels;
             return this;
-        }
-        public Builder labels(GetAdvancedClusterLabel... labels) {
-            return labels(List.of(labels));
         }
         @CustomType.Setter
         public Builder mongoDbMajorVersion(String mongoDbMajorVersion) {
@@ -554,15 +532,12 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder pinnedFcvs(List<GetAdvancedClusterPinnedFcv> pinnedFcvs) {
-            if (pinnedFcvs == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "pinnedFcvs");
+        public Builder pinnedFcv(GetAdvancedClusterPinnedFcv pinnedFcv) {
+            if (pinnedFcv == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "pinnedFcv");
             }
-            this.pinnedFcvs = pinnedFcvs;
+            this.pinnedFcv = pinnedFcv;
             return this;
-        }
-        public Builder pinnedFcvs(GetAdvancedClusterPinnedFcv... pinnedFcvs) {
-            return pinnedFcvs(List.of(pinnedFcvs));
         }
         @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
@@ -624,15 +599,12 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder tags(List<GetAdvancedClusterTag> tags) {
+        public Builder tags(Map<String,String> tags) {
             if (tags == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "tags");
             }
             this.tags = tags;
             return this;
-        }
-        public Builder tags(GetAdvancedClusterTag... tags) {
-            return tags(List.of(tags));
         }
         @CustomType.Setter
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
@@ -643,9 +615,9 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
-        public Builder useReplicationSpecPerShard(@Nullable Boolean useReplicationSpecPerShard) {
+        public Builder useEffectiveFields(@Nullable Boolean useEffectiveFields) {
 
-            this.useReplicationSpecPerShard = useReplicationSpecPerShard;
+            this.useEffectiveFields = useEffectiveFields;
             return this;
         }
         @CustomType.Setter
@@ -658,15 +630,15 @@ public final class GetAdvancedClusterResult {
         }
         public GetAdvancedClusterResult build() {
             final var _resultValue = new GetAdvancedClusterResult();
-            _resultValue.advancedConfigurations = advancedConfigurations;
+            _resultValue.advancedConfiguration = advancedConfiguration;
             _resultValue.backupEnabled = backupEnabled;
-            _resultValue.biConnectorConfigs = biConnectorConfigs;
+            _resultValue.biConnectorConfig = biConnectorConfig;
+            _resultValue.clusterId = clusterId;
             _resultValue.clusterType = clusterType;
             _resultValue.configServerManagementMode = configServerManagementMode;
             _resultValue.configServerType = configServerType;
             _resultValue.connectionStrings = connectionStrings;
             _resultValue.createDate = createDate;
-            _resultValue.diskSizeGb = diskSizeGb;
             _resultValue.encryptionAtRestProvider = encryptionAtRestProvider;
             _resultValue.globalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
             _resultValue.id = id;
@@ -675,7 +647,7 @@ public final class GetAdvancedClusterResult {
             _resultValue.mongoDbVersion = mongoDbVersion;
             _resultValue.name = name;
             _resultValue.paused = paused;
-            _resultValue.pinnedFcvs = pinnedFcvs;
+            _resultValue.pinnedFcv = pinnedFcv;
             _resultValue.pitEnabled = pitEnabled;
             _resultValue.projectId = projectId;
             _resultValue.redactClientLogData = redactClientLogData;
@@ -685,7 +657,7 @@ public final class GetAdvancedClusterResult {
             _resultValue.stateName = stateName;
             _resultValue.tags = tags;
             _resultValue.terminationProtectionEnabled = terminationProtectionEnabled;
-            _resultValue.useReplicationSpecPerShard = useReplicationSpecPerShard;
+            _resultValue.useEffectiveFields = useEffectiveFields;
             _resultValue.versionReleaseSystem = versionReleaseSystem;
             return _resultValue;
         }

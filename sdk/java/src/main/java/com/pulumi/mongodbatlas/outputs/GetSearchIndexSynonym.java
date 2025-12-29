@@ -16,7 +16,7 @@ public final class GetSearchIndexSynonym {
      */
     private String analyzer;
     /**
-     * @return Name of the index.
+     * @return Type set name.
      * 
      */
     private String name;
@@ -31,7 +31,7 @@ public final class GetSearchIndexSynonym {
         return this.analyzer;
     }
     /**
-     * @return Name of the index.
+     * @return Type set name.
      * 
      */
     public String name() {

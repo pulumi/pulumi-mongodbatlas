@@ -7,11 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.MaintenanceWindow
- *
  * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
  *
  * ## Examples Usage
  *
@@ -73,7 +73,7 @@ export interface GetMaintenanceWindowResult {
      */
     readonly dayOfWeek: number;
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
      */
     readonly hourOfDay: number;
     /**
@@ -90,7 +90,7 @@ export interface GetMaintenanceWindowResult {
      */
     readonly protectedHours: outputs.GetMaintenanceWindowProtectedHour[];
     /**
-     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      */
     readonly startAsap: boolean;
     /**
@@ -99,11 +99,11 @@ export interface GetMaintenanceWindowResult {
     readonly timeZoneId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.MaintenanceWindow
- *
  * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
  *
  * ## Examples Usage
  *

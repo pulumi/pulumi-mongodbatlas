@@ -7,15 +7,11 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getAdvancedClusters
-//
 // `getAdvancedClusters` returns all Advanced Clusters for a project_id.
-//
-// This page describes the current version of `getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
 //
@@ -32,14 +28,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 //				Name:        pulumi.String("cluster-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -63,13 +59,15 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.LookupAdvancedClustersOutput(ctx, mongodbatlas.GetAdvancedClustersOutputArgs{
-//				ProjectId: exampleAdvancedCluster.ProjectId,
+//				ProjectId: thisAdvancedCluster.ProjectId,
 //			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
+//
+// ## Example using effective fields with auto-scaling
 //
 // ## Example using latest sharding configurations with independent shard scaling in the cluster
 //
@@ -78,14 +76,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
 //				ProjectId:     pulumi.String("<YOUR-PROJECT-ID>"),
 //				Name:          pulumi.String("cluster-test"),
 //				BackupEnabled: pulumi.Bool(false),
@@ -125,9 +123,8 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
-//				ProjectId:                  example.ProjectId,
-//				Name:                       example.Name,
-//				UseReplicationSpecPerShard: pulumi.Bool(true),
+//				ProjectId: thisAdvancedCluster.ProjectId,
+//				Name:      thisAdvancedCluster.Name,
 //			}, nil)
 //			return nil
 //		})
@@ -142,14 +139,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example_flex, err := mongodbatlas.NewAdvancedCluster(ctx, "example-flex", &mongodbatlas.AdvancedClusterArgs{
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 //				Name:        pulumi.String("flex-cluster"),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -170,7 +167,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.LookupAdvancedClustersOutput(ctx, mongodbatlas.GetAdvancedClustersOutputArgs{
-//				ProjectId: example_flex.ProjectId,
+//				ProjectId: thisAdvancedCluster.ProjectId,
 //			}, nil)
 //			return nil
 //		})
@@ -191,8 +188,8 @@ func LookupAdvancedClusters(ctx *pulumi.Context, args *LookupAdvancedClustersArg
 type LookupAdvancedClustersArgs struct {
 	// The unique ID for the project to get the clusters.
 	ProjectId string `pulumi:"projectId"`
-	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
-	UseReplicationSpecPerShard *bool `pulumi:"useReplicationSpecPerShard"`
+	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
+	UseEffectiveFields *bool `pulumi:"useEffectiveFields"`
 }
 
 // A collection of values returned by getAdvancedClusters.
@@ -201,8 +198,8 @@ type LookupAdvancedClustersResult struct {
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Cluster. See below for more details.
-	Results                    []GetAdvancedClustersResult `pulumi:"results"`
-	UseReplicationSpecPerShard *bool                       `pulumi:"useReplicationSpecPerShard"`
+	Results            []GetAdvancedClustersResult `pulumi:"results"`
+	UseEffectiveFields *bool                       `pulumi:"useEffectiveFields"`
 }
 
 func LookupAdvancedClustersOutput(ctx *pulumi.Context, args LookupAdvancedClustersOutputArgs, opts ...pulumi.InvokeOption) LookupAdvancedClustersResultOutput {
@@ -218,8 +215,8 @@ func LookupAdvancedClustersOutput(ctx *pulumi.Context, args LookupAdvancedCluste
 type LookupAdvancedClustersOutputArgs struct {
 	// The unique ID for the project to get the clusters.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
-	UseReplicationSpecPerShard pulumi.BoolPtrInput `pulumi:"useReplicationSpecPerShard"`
+	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
+	UseEffectiveFields pulumi.BoolPtrInput `pulumi:"useEffectiveFields"`
 }
 
 func (LookupAdvancedClustersOutputArgs) ElementType() reflect.Type {
@@ -255,8 +252,8 @@ func (o LookupAdvancedClustersResultOutput) Results() GetAdvancedClustersResultA
 	return o.ApplyT(func(v LookupAdvancedClustersResult) []GetAdvancedClustersResult { return v.Results }).(GetAdvancedClustersResultArrayOutput)
 }
 
-func (o LookupAdvancedClustersResultOutput) UseReplicationSpecPerShard() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupAdvancedClustersResult) *bool { return v.UseReplicationSpecPerShard }).(pulumi.BoolPtrOutput)
+func (o LookupAdvancedClustersResultOutput) UseEffectiveFields() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupAdvancedClustersResult) *bool { return v.UseEffectiveFields }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

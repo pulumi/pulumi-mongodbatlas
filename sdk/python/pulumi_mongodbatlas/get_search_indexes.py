@@ -122,8 +122,6 @@ def get_search_indexes(cluster_name: Optional[_builtins.str] = None,
                        project_id: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSearchIndexesResult:
     """
-    ## # Data Source: get_search_indexes
-
     `get_search_indexes` describes all search indexes. This represents search indexes that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -158,8 +156,6 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[_builtins.str]
                               project_id: Optional[pulumi.Input[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSearchIndexesResult]:
     """
-    ## # Data Source: get_search_indexes
-
     `get_search_indexes` describes all search indexes. This represents search indexes that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

@@ -68,14 +68,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     }
 
     /**
-     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
+     * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
      * 
      */
     @Import(name="backingProviderName")
     private @Nullable Output<String> backingProviderName;
 
     /**
-     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
+     * @return Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
      * 
      */
     public Optional<Output<String>> backingProviderName() {
@@ -100,7 +100,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     /**
      * Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-     * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
      * 
      */
     @Import(name="priority", required=true)
@@ -109,7 +109,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
     /**
      * @return Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-     * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
      * 
      */
     public Output<Integer> priority() {
@@ -122,7 +122,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+     * - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
      * 
      */
     @Import(name="providerName", required=true)
@@ -134,7 +135,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
      * - `AWS` - Amazon AWS
      * - `GCP` - Google Cloud Platform
      * - `AZURE` - Microsoft Azure
-     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+     * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+     * - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
      * 
      */
     public Output<String> providerName() {
@@ -267,7 +269,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param backingProviderName Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
+         * @param backingProviderName Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
          * 
          * @return builder
          * 
@@ -278,7 +280,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         }
 
         /**
-         * @param backingProviderName Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `providerName` is `TENANT` and `instanceSize` is `M0`.
+         * @param backingProviderName Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
          * 
          * @return builder
          * 
@@ -311,7 +313,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         /**
          * @param priority Election priority of the region. For regions with only read-only nodes, set this value to 0.
          * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-         * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+         * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
          * 
          * @return builder
          * 
@@ -324,7 +326,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
         /**
          * @param priority Election priority of the region. For regions with only read-only nodes, set this value to 0.
          * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-         * * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+         * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
          * 
          * @return builder
          * 
@@ -339,7 +341,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
-         * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+         * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+         * - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
          * 
          * @return builder
          * 
@@ -355,7 +358,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigArgs extends com.pu
          * - `AWS` - Amazon AWS
          * - `GCP` - Google Cloud Platform
          * - `AZURE` - Microsoft Azure
-         * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+         * - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+         * - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
          * 
          * @return builder
          * 

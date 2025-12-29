@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: StreamProcessor
-//
 // `StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
 //
 // **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
@@ -32,7 +30,7 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -52,7 +50,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewStreamConnection(ctx, "example-sample", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   example.InstanceName,
+//				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("sample_stream_solar"),
 //				Type:           pulumi.String("Sample"),
 //			})
@@ -61,7 +59,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewStreamConnection(ctx, "example-cluster", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   example.InstanceName,
+//				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("ClusterConnection"),
 //				Type:           pulumi.String("Cluster"),
 //				ClusterName:    pulumi.Any(clusterName),
@@ -75,7 +73,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewStreamConnection(ctx, "example-kafka", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   example.InstanceName,
+//				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("KafkaPlaintextConnection"),
 //				Type:           pulumi.String("Kafka"),
 //				Authentication: &mongodbatlas.StreamConnectionAuthenticationArgs{
@@ -117,7 +115,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			stream_processor_sample_example, err := mongodbatlas.NewStreamProcessor(ctx, "stream-processor-sample-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
-//				InstanceName:  example.InstanceName,
+//				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("sampleProcessorName"),
 //				Pipeline:      pulumi.String(json0),
 //				State:         pulumi.String("STARTED"),
@@ -144,7 +142,7 @@ import (
 //			json1 := string(tmpJSON1)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-cluster-to-kafka-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
-//				InstanceName:  example.InstanceName,
+//				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("clusterProcessorName"),
 //				Pipeline:      pulumi.String(json1),
 //				State:         pulumi.String("CREATED"),
@@ -176,7 +174,7 @@ import (
 //			json2 := string(tmpJSON2)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-kafka-to-cluster-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
-//				InstanceName:  example.InstanceName,
+//				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("kafkaProcessorName"),
 //				Pipeline:      pulumi.String(json2),
 //				State:         pulumi.String("CREATED"),
@@ -193,8 +191,8 @@ import (
 //			}
 //			example_stream_processors := example.InstanceName.ApplyT(func(instanceName string) (mongodbatlas.GetStreamProcessorsResult, error) {
 //				return mongodbatlas.GetStreamProcessorsResult(interface{}(mongodbatlas.LookupStreamProcessors(ctx, &mongodbatlas.LookupStreamProcessorsArgs{
-//					ProjectId:    projectId,
-//					InstanceName: instanceName,
+//					ProjectId:     projectId,
+//					WorkspaceName: pulumi.StringRef(pulumi.StringRef(instanceName)),
 //				}, nil))), nil
 //			}).(mongodbatlas.GetStreamProcessorsResultOutput)
 //			example_stream_processor := pulumi.All(example.InstanceName, stream_processor_sample_example.ProcessorName).ApplyT(func(_args []interface{}) (mongodbatlas.GetStreamProcessorResult, error) {
@@ -202,7 +200,7 @@ import (
 //				processorName := _args[1].(string)
 //				return mongodbatlas.GetStreamProcessorResult(interface{}(mongodbatlas.LookupStreamProcessor(ctx, &mongodbatlas.LookupStreamProcessorArgs{
 //					ProjectId:     projectId,
-//					InstanceName:  instanceName,
+//					WorkspaceName: pulumi.StringRef(pulumi.StringRef(instanceName)),
 //					ProcessorName: processorName,
 //				}, nil))), nil
 //			}).(mongodbatlas.GetStreamProcessorResultOutput)
@@ -218,6 +216,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Atlas Stream Processor
+//
 // ## Import
 //
 // Stream Processor resource can be imported using the Project ID, Stream Instance name and Stream Processor name, in the format `INSTANCE_NAME-PROJECT_ID-PROCESSOR_NAME`, e.g.
@@ -226,13 +227,17 @@ import (
 type StreamProcessor struct {
 	pulumi.CustomResourceState
 
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
+	// Label that identifies the stream processing workspace.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrOutput `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline pulumi.StringOutput `pulumi:"pipeline"`
-	// Human-readable label that identifies the stream processor.
+	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringOutput `pulumi:"processorName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -241,7 +246,10 @@ type StreamProcessor struct {
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats pulumi.StringOutput `pulumi:"stats"`
+	Stats    pulumi.StringOutput              `pulumi:"stats"`
+	Timeouts StreamProcessorTimeoutsPtrOutput `pulumi:"timeouts"`
+	// Label that identifies the stream processing workspace.
+	WorkspaceName pulumi.StringPtrOutput `pulumi:"workspaceName"`
 }
 
 // NewStreamProcessor registers a new resource with the given unique name, arguments, and options.
@@ -251,9 +259,6 @@ func NewStreamProcessor(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.InstanceName == nil {
-		return nil, errors.New("invalid value for required argument 'InstanceName'")
-	}
 	if args.Pipeline == nil {
 		return nil, errors.New("invalid value for required argument 'Pipeline'")
 	}
@@ -286,13 +291,17 @@ func GetStreamProcessor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering StreamProcessor resources.
 type streamProcessorState struct {
-	// Human-readable label that identifies the stream instance.
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
+	// Label that identifies the stream processing workspace.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options *StreamProcessorOptions `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline *string `pulumi:"pipeline"`
-	// Human-readable label that identifies the stream processor.
+	// Label that identifies the stream processor.
 	ProcessorName *string `pulumi:"processorName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId *string `pulumi:"projectId"`
@@ -301,17 +310,24 @@ type streamProcessorState struct {
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State *string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats *string `pulumi:"stats"`
+	Stats    *string                  `pulumi:"stats"`
+	Timeouts *StreamProcessorTimeouts `pulumi:"timeouts"`
+	// Label that identifies the stream processing workspace.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 type StreamProcessorState struct {
-	// Human-readable label that identifies the stream instance.
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
+	// Label that identifies the stream processing workspace.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrInput
 	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline pulumi.StringPtrInput
-	// Human-readable label that identifies the stream processor.
+	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringPtrInput
@@ -320,7 +336,10 @@ type StreamProcessorState struct {
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringPtrInput
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats pulumi.StringPtrInput
+	Stats    pulumi.StringPtrInput
+	Timeouts StreamProcessorTimeoutsPtrInput
+	// Label that identifies the stream processing workspace.
+	WorkspaceName pulumi.StringPtrInput
 }
 
 func (StreamProcessorState) ElementType() reflect.Type {
@@ -328,38 +347,52 @@ func (StreamProcessorState) ElementType() reflect.Type {
 }
 
 type streamProcessorArgs struct {
-	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
+	// Label that identifies the stream processing workspace.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options *StreamProcessorOptions `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline string `pulumi:"pipeline"`
-	// Human-readable label that identifies the stream processor.
+	// Label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	//
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
-	State *string `pulumi:"state"`
+	State    *string                  `pulumi:"state"`
+	Timeouts *StreamProcessorTimeouts `pulumi:"timeouts"`
+	// Label that identifies the stream processing workspace.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 // The set of arguments for constructing a StreamProcessor resource.
 type StreamProcessorArgs struct {
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
+	// Label that identifies the stream processing workspace.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringPtrInput
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrInput
 	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 	Pipeline pulumi.StringInput
-	// Human-readable label that identifies the stream processor.
+	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
 	ProjectId pulumi.StringInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	//
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
-	State pulumi.StringPtrInput
+	State    pulumi.StringPtrInput
+	Timeouts StreamProcessorTimeoutsPtrInput
+	// Label that identifies the stream processing workspace.
+	WorkspaceName pulumi.StringPtrInput
 }
 
 func (StreamProcessorArgs) ElementType() reflect.Type {
@@ -449,9 +482,16 @@ func (o StreamProcessorOutput) ToStreamProcessorOutputWithContext(ctx context.Co
 	return o
 }
 
-// Human-readable label that identifies the stream instance.
-func (o StreamProcessorOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.InstanceName }).(pulumi.StringOutput)
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o StreamProcessorOutput) DeleteOnCreateTimeout() pulumi.BoolOutput {
+	return o.ApplyT(func(v *StreamProcessor) pulumi.BoolOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolOutput)
+}
+
+// Label that identifies the stream processing workspace.
+//
+// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+func (o StreamProcessorOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamProcessor) pulumi.StringPtrOutput { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
 // Optional configuration for the stream processor.
@@ -464,7 +504,7 @@ func (o StreamProcessorOutput) Pipeline() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Pipeline }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the stream processor.
+// Label that identifies the stream processor.
 func (o StreamProcessorOutput) ProcessorName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.ProcessorName }).(pulumi.StringOutput)
 }
@@ -484,6 +524,15 @@ func (o StreamProcessorOutput) State() pulumi.StringOutput {
 // The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 func (o StreamProcessorOutput) Stats() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Stats }).(pulumi.StringOutput)
+}
+
+func (o StreamProcessorOutput) Timeouts() StreamProcessorTimeoutsPtrOutput {
+	return o.ApplyT(func(v *StreamProcessor) StreamProcessorTimeoutsPtrOutput { return v.Timeouts }).(StreamProcessorTimeoutsPtrOutput)
+}
+
+// Label that identifies the stream processing workspace.
+func (o StreamProcessorOutput) WorkspaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamProcessor) pulumi.StringPtrOutput { return v.WorkspaceName }).(pulumi.StringPtrOutput)
 }
 
 type StreamProcessorArrayOutput struct{ *pulumi.OutputState }

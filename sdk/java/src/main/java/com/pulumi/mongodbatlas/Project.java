@@ -22,8 +22,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.Project
- * 
  * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
  * 
  * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
@@ -40,7 +38,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
  * import com.pulumi.mongodbatlas.Project;
  * import com.pulumi.mongodbatlas.ProjectArgs;
- * import com.pulumi.mongodbatlas.inputs.ProjectTeamArgs;
  * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
  * import java.util.List;
  * import java.util.ArrayList;
@@ -61,17 +58,6 @@ import javax.annotation.Nullable;
  *             .name("project-name")
  *             .orgId(test.orgId())
  *             .projectOwnerId("<OWNER_ACCOUNT_ID>")
- *             .teams(            
- *                 ProjectTeamArgs.builder()
- *                     .teamId("5e0fa8c99ccf641c722fe645")
- *                     .roleNames("GROUP_OWNER")
- *                     .build(),
- *                 ProjectTeamArgs.builder()
- *                     .teamId("5e1dd7b4f2a30ba80a70cd4rw")
- *                     .roleNames(                    
- *                         "GROUP_READ_ONLY",
- *                         "GROUP_DATA_ACCESS_READ_WRITE")
- *                     .build())
  *             .limits(            
  *                 ProjectLimitArgs.builder()
  *                     .name("atlas.project.deployment.clusters")
@@ -94,6 +80,9 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### Further Examples
+ * - Atlas Project with custom limits
  * 
  * ## Import
  * 
@@ -331,6 +320,12 @@ public class Project extends com.pulumi.resources.CustomResource {
     public Output<Optional<Map<String,String>>> tags() {
         return Codegen.optional(this.tags);
     }
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
     @Export(name="teams", refs={List.class,ProjectTeam.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectTeam>> teams;
 

@@ -13,7 +13,13 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class CloudProviderAccessSetupGcpConfig
     {
+        /// <summary>
+        /// The GCP service account email that Atlas uses.
+        /// </summary>
         public readonly string? ServiceAccountForAtlas;
+        /// <summary>
+        /// The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        /// </summary>
         public readonly string? Status;
 
         [OutputConstructor]

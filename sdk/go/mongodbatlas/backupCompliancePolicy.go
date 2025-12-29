@@ -5,10 +5,10 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,7 +19,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -153,6 +153,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Backup Compliance Policy
+//
 // ## Import
 //
 // Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.
@@ -202,7 +205,8 @@ type BackupCompliancePolicy struct {
 
 // NewBackupCompliancePolicy registers a new resource with the given unique name, arguments, and options.
 func NewBackupCompliancePolicy(ctx *pulumi.Context,
-	name string, args *BackupCompliancePolicyArgs, opts ...pulumi.ResourceOption) (*BackupCompliancePolicy, error) {
+	name string, args *BackupCompliancePolicyArgs, opts ...pulumi.ResourceOption,
+) (*BackupCompliancePolicy, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -231,7 +235,8 @@ func NewBackupCompliancePolicy(ctx *pulumi.Context,
 // GetBackupCompliancePolicy gets an existing BackupCompliancePolicy resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetBackupCompliancePolicy(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *BackupCompliancePolicyState, opts ...pulumi.ResourceOption) (*BackupCompliancePolicy, error) {
+	name string, id pulumi.IDInput, state *BackupCompliancePolicyState, opts ...pulumi.ResourceOption,
+) (*BackupCompliancePolicy, error) {
 	var resource BackupCompliancePolicy
 	err := ctx.ReadResource("mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy", name, id, state, &resource, opts...)
 	if err != nil {

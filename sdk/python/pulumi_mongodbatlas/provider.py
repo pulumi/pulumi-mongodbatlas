@@ -20,11 +20,14 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
+                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  assume_role: Optional[pulumi.Input['ProviderAssumeRoleArgs']] = None,
                  aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  is_mongodbgov_cloud: Optional[pulumi.Input[_builtins.bool]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -34,10 +37,13 @@ class ProviderArgs:
                  sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[_builtins.str] access_token: MongoDB Atlas Access Token for Service Account.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS API Access Key.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS API Access Secret Key.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS Security Token Service provided session token.
         :param pulumi.Input[_builtins.str] base_url: MongoDB Atlas Base URL
+        :param pulumi.Input[_builtins.str] client_id: MongoDB Atlas Client ID for Service Account.
+        :param pulumi.Input[_builtins.str] client_secret: MongoDB Atlas Client Secret for Service Account.
         :param pulumi.Input[_builtins.bool] is_mongodbgov_cloud: MongoDB Atlas Base URL default to gov
         :param pulumi.Input[_builtins.str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[_builtins.str] public_key: MongoDB Atlas Programmatic Public Key
@@ -46,6 +52,8 @@ class ProviderArgs:
         :param pulumi.Input[_builtins.str] secret_name: Name of secret stored in AWS Secret Manager.
         :param pulumi.Input[_builtins.str] sts_endpoint: AWS Security Token Service endpoint. Required for cross-AWS region or cross-AWS account secrets.
         """
+        if access_token is not None:
+            pulumi.set(__self__, "access_token", access_token)
         if assume_role is not None:
             pulumi.set(__self__, "assume_role", assume_role)
         if aws_access_key_id is not None:
@@ -56,6 +64,10 @@ class ProviderArgs:
             pulumi.set(__self__, "aws_session_token", aws_session_token)
         if base_url is not None:
             pulumi.set(__self__, "base_url", base_url)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
         if is_mongodbgov_cloud is not None:
             pulumi.set(__self__, "is_mongodbgov_cloud", is_mongodbgov_cloud)
         if private_key is not None:
@@ -70,6 +82,18 @@ class ProviderArgs:
             pulumi.set(__self__, "secret_name", secret_name)
         if sts_endpoint is not None:
             pulumi.set(__self__, "sts_endpoint", sts_endpoint)
+
+    @_builtins.property
+    @pulumi.getter(name="accessToken")
+    def access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        MongoDB Atlas Access Token for Service Account.
+        """
+        return pulumi.get(self, "access_token")
+
+    @access_token.setter
+    def access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="assumeRole")
@@ -127,6 +151,30 @@ class ProviderArgs:
     @base_url.setter
     def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "base_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        MongoDB Atlas Client ID for Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        MongoDB Atlas Client Secret for Service Account.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="isMongodbgovCloud")
@@ -219,11 +267,14 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  assume_role: Optional[pulumi.Input[Union['ProviderAssumeRoleArgs', 'ProviderAssumeRoleArgsDict']]] = None,
                  aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  is_mongodbgov_cloud: Optional[pulumi.Input[_builtins.bool]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -240,10 +291,13 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] access_token: MongoDB Atlas Access Token for Service Account.
         :param pulumi.Input[_builtins.str] aws_access_key_id: AWS API Access Key.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS API Access Secret Key.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS Security Token Service provided session token.
         :param pulumi.Input[_builtins.str] base_url: MongoDB Atlas Base URL
+        :param pulumi.Input[_builtins.str] client_id: MongoDB Atlas Client ID for Service Account.
+        :param pulumi.Input[_builtins.str] client_secret: MongoDB Atlas Client Secret for Service Account.
         :param pulumi.Input[_builtins.bool] is_mongodbgov_cloud: MongoDB Atlas Base URL default to gov
         :param pulumi.Input[_builtins.str] private_key: MongoDB Atlas Programmatic Private Key
         :param pulumi.Input[_builtins.str] public_key: MongoDB Atlas Programmatic Public Key
@@ -279,11 +333,14 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
                  assume_role: Optional[pulumi.Input[Union['ProviderAssumeRoleArgs', 'ProviderAssumeRoleArgsDict']]] = None,
                  aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
                  aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
                  base_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  is_mongodbgov_cloud: Optional[pulumi.Input[_builtins.bool]] = None,
                  private_key: Optional[pulumi.Input[_builtins.str]] = None,
                  public_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -300,11 +357,14 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
+            __props__.__dict__["access_token"] = access_token
             __props__.__dict__["assume_role"] = pulumi.Output.from_input(assume_role).apply(pulumi.runtime.to_json) if assume_role is not None else None
             __props__.__dict__["aws_access_key_id"] = aws_access_key_id
             __props__.__dict__["aws_secret_access_key"] = aws_secret_access_key
             __props__.__dict__["aws_session_token"] = aws_session_token
             __props__.__dict__["base_url"] = base_url
+            __props__.__dict__["client_id"] = client_id
+            __props__.__dict__["client_secret"] = client_secret
             __props__.__dict__["is_mongodbgov_cloud"] = pulumi.Output.from_input(is_mongodbgov_cloud).apply(pulumi.runtime.to_json) if is_mongodbgov_cloud is not None else None
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
             __props__.__dict__["public_key"] = public_key
@@ -319,6 +379,14 @@ class Provider(pulumi.ProviderResource):
             resource_name,
             __props__,
             opts)
+
+    @_builtins.property
+    @pulumi.getter(name="accessToken")
+    def access_token(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        MongoDB Atlas Access Token for Service Account.
+        """
+        return pulumi.get(self, "access_token")
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
@@ -351,6 +419,22 @@ class Provider(pulumi.ProviderResource):
         MongoDB Atlas Base URL
         """
         return pulumi.get(self, "base_url")
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        MongoDB Atlas Client ID for Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        MongoDB Atlas Client Secret for Service Account.
+        """
+        return pulumi.get(self, "client_secret")
 
     @_builtins.property
     @pulumi.getter(name="privateKey")

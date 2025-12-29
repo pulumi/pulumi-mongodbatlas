@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +18,8 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
+	// MongoDB Atlas Access Token for Service Account.
+	AccessToken pulumi.StringPtrOutput `pulumi:"accessToken"`
 	// AWS API Access Key.
 	AwsAccessKeyId pulumi.StringPtrOutput `pulumi:"awsAccessKeyId"`
 	// AWS API Access Secret Key.
@@ -26,6 +28,10 @@ type Provider struct {
 	AwsSessionToken pulumi.StringPtrOutput `pulumi:"awsSessionToken"`
 	// MongoDB Atlas Base URL
 	BaseUrl pulumi.StringPtrOutput `pulumi:"baseUrl"`
+	// MongoDB Atlas Client ID for Service Account.
+	ClientId pulumi.StringPtrOutput `pulumi:"clientId"`
+	// MongoDB Atlas Client Secret for Service Account.
+	ClientSecret pulumi.StringPtrOutput `pulumi:"clientSecret"`
 	// MongoDB Atlas Programmatic Private Key
 	PrivateKey pulumi.StringPtrOutput `pulumi:"privateKey"`
 	// MongoDB Atlas Programmatic Public Key
@@ -64,7 +70,9 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	AssumeRole *ProviderAssumeRole `pulumi:"assumeRole"`
+	// MongoDB Atlas Access Token for Service Account.
+	AccessToken *string             `pulumi:"accessToken"`
+	AssumeRole  *ProviderAssumeRole `pulumi:"assumeRole"`
 	// AWS API Access Key.
 	AwsAccessKeyId *string `pulumi:"awsAccessKeyId"`
 	// AWS API Access Secret Key.
@@ -73,6 +81,10 @@ type providerArgs struct {
 	AwsSessionToken *string `pulumi:"awsSessionToken"`
 	// MongoDB Atlas Base URL
 	BaseUrl *string `pulumi:"baseUrl"`
+	// MongoDB Atlas Client ID for Service Account.
+	ClientId *string `pulumi:"clientId"`
+	// MongoDB Atlas Client Secret for Service Account.
+	ClientSecret *string `pulumi:"clientSecret"`
 	// MongoDB Atlas Base URL default to gov
 	IsMongodbgovCloud *bool `pulumi:"isMongodbgovCloud"`
 	// MongoDB Atlas Programmatic Private Key
@@ -91,7 +103,9 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	AssumeRole ProviderAssumeRolePtrInput
+	// MongoDB Atlas Access Token for Service Account.
+	AccessToken pulumi.StringPtrInput
+	AssumeRole  ProviderAssumeRolePtrInput
 	// AWS API Access Key.
 	AwsAccessKeyId pulumi.StringPtrInput
 	// AWS API Access Secret Key.
@@ -100,6 +114,10 @@ type ProviderArgs struct {
 	AwsSessionToken pulumi.StringPtrInput
 	// MongoDB Atlas Base URL
 	BaseUrl pulumi.StringPtrInput
+	// MongoDB Atlas Client ID for Service Account.
+	ClientId pulumi.StringPtrInput
+	// MongoDB Atlas Client Secret for Service Account.
+	ClientSecret pulumi.StringPtrInput
 	// MongoDB Atlas Base URL default to gov
 	IsMongodbgovCloud pulumi.BoolPtrInput
 	// MongoDB Atlas Programmatic Private Key
@@ -176,6 +194,11 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
+// MongoDB Atlas Access Token for Service Account.
+func (o ProviderOutput) AccessToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AccessToken }).(pulumi.StringPtrOutput)
+}
+
 // AWS API Access Key.
 func (o ProviderOutput) AwsAccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AwsAccessKeyId }).(pulumi.StringPtrOutput)
@@ -194,6 +217,16 @@ func (o ProviderOutput) AwsSessionToken() pulumi.StringPtrOutput {
 // MongoDB Atlas Base URL
 func (o ProviderOutput) BaseUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.BaseUrl }).(pulumi.StringPtrOutput)
+}
+
+// MongoDB Atlas Client ID for Service Account.
+func (o ProviderOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// MongoDB Atlas Client Secret for Service Account.
+func (o ProviderOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ClientSecret }).(pulumi.StringPtrOutput)
 }
 
 // MongoDB Atlas Programmatic Private Key

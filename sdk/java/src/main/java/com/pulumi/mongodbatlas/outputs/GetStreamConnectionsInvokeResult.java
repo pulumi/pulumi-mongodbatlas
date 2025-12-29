@@ -23,10 +23,12 @@ public final class GetStreamConnectionsInvokeResult {
     @Deprecated /* This parameter is deprecated. */
     private String id;
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    private String instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    private @Nullable String instanceName;
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
     /**
@@ -44,6 +46,11 @@ public final class GetStreamConnectionsInvokeResult {
      * 
      */
     private Integer totalCount;
+    /**
+     * @return Label that identifies the stream processing workspace.
+     * 
+     */
+    private @Nullable String workspaceName;
 
     private GetStreamConnectionsInvokeResult() {}
     /**
@@ -56,11 +63,13 @@ public final class GetStreamConnectionsInvokeResult {
         return this.id;
     }
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    public String instanceName() {
-        return this.instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<String> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
     public Optional<Integer> itemsPerPage() {
         return Optional.ofNullable(this.itemsPerPage);
@@ -89,6 +98,13 @@ public final class GetStreamConnectionsInvokeResult {
     public Integer totalCount() {
         return this.totalCount;
     }
+    /**
+     * @return Label that identifies the stream processing workspace.
+     * 
+     */
+    public Optional<String> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -100,12 +116,13 @@ public final class GetStreamConnectionsInvokeResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private String instanceName;
+        private @Nullable String instanceName;
         private @Nullable Integer itemsPerPage;
         private @Nullable Integer pageNum;
         private String projectId;
         private List<GetStreamConnectionsResult> results;
         private Integer totalCount;
+        private @Nullable String workspaceName;
         public Builder() {}
         public Builder(GetStreamConnectionsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -116,6 +133,7 @@ public final class GetStreamConnectionsInvokeResult {
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
     	      this.totalCount = defaults.totalCount;
+    	      this.workspaceName = defaults.workspaceName;
         }
 
         @CustomType.Setter
@@ -127,10 +145,8 @@ public final class GetStreamConnectionsInvokeResult {
             return this;
         }
         @CustomType.Setter
-        public Builder instanceName(String instanceName) {
-            if (instanceName == null) {
-              throw new MissingRequiredPropertyException("GetStreamConnectionsInvokeResult", "instanceName");
-            }
+        public Builder instanceName(@Nullable String instanceName) {
+
             this.instanceName = instanceName;
             return this;
         }
@@ -173,6 +189,12 @@ public final class GetStreamConnectionsInvokeResult {
             this.totalCount = totalCount;
             return this;
         }
+        @CustomType.Setter
+        public Builder workspaceName(@Nullable String workspaceName) {
+
+            this.workspaceName = workspaceName;
+            return this;
+        }
         public GetStreamConnectionsInvokeResult build() {
             final var _resultValue = new GetStreamConnectionsInvokeResult();
             _resultValue.id = id;
@@ -182,6 +204,7 @@ public final class GetStreamConnectionsInvokeResult {
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             _resultValue.totalCount = totalCount;
+            _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }
     }

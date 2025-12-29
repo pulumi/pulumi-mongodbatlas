@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: CloudBackupSnapshotExportJob
-//
 // `CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -27,7 +25,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -71,7 +69,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -133,6 +131,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Cloud Backup Snapshot Export Job
+//
 // ## Import
 //
 // Cloud Backup Snapshot Export Backup entries can be imported using project project_id, cluster_name and export_job_id (Unique identifier of the snapshot export job), in the format `PROJECTID-CLUSTERNAME-EXPORTJOBID`, e.g.
@@ -177,7 +178,8 @@ type CloudBackupSnapshotExportJob struct {
 
 // NewCloudBackupSnapshotExportJob registers a new resource with the given unique name, arguments, and options.
 func NewCloudBackupSnapshotExportJob(ctx *pulumi.Context,
-	name string, args *CloudBackupSnapshotExportJobArgs, opts ...pulumi.ResourceOption) (*CloudBackupSnapshotExportJob, error) {
+	name string, args *CloudBackupSnapshotExportJobArgs, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshotExportJob, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -206,7 +208,8 @@ func NewCloudBackupSnapshotExportJob(ctx *pulumi.Context,
 // GetCloudBackupSnapshotExportJob gets an existing CloudBackupSnapshotExportJob resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudBackupSnapshotExportJob(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudBackupSnapshotExportJobState, opts ...pulumi.ResourceOption) (*CloudBackupSnapshotExportJob, error) {
+	name string, id pulumi.IDInput, state *CloudBackupSnapshotExportJobState, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshotExportJob, error) {
 	var resource CloudBackupSnapshotExportJob
 	err := ctx.ReadResource("mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob", name, id, state, &resource, opts...)
 	if err != nil {

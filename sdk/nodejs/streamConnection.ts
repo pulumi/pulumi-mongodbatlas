@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.StreamConnection
- *
  * `mongodbatlas.StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
  *
  * > **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.
@@ -23,12 +21,15 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.StreamConnection("test", {
  *     projectId: projectId,
- *     instanceName: "InstanceName",
+ *     workspaceName: "WorkspaceName",
  *     connectionName: "ConnectionName",
  *     type: "Cluster",
  *     clusterName: "Cluster0",
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Atlas Stream Connection
  *
  * ### Example Cross Project Cluster Connection
  *
@@ -38,7 +39,7 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.StreamConnection("test", {
  *     projectId: projectId,
- *     instanceName: "InstanceName",
+ *     workspaceName: "WorskpaceName",
  *     connectionName: "ConnectionName",
  *     type: "Cluster",
  *     clusterName: "OtherCluster",
@@ -54,7 +55,7 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.StreamConnection("test", {
  *     projectId: projectId,
- *     instanceName: "NewInstance",
+ *     workspaceName: "NewWorkspace",
  *     connectionName: "KafkaConnection",
  *     type: "Kafka",
  *     authentication: {
@@ -72,6 +73,41 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Kafka SASL OAuthbearer Connection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_kafka_oauthbearer = new mongodbatlas.StreamConnection("example-kafka-oauthbearer", {
+ *     projectId: projectId,
+ *     instanceName: example.instanceName,
+ *     connectionName: "KafkaOAuthbearerConnection",
+ *     type: "Kafka",
+ *     authentication: {
+ *         mechanism: "OAUTHBEARER",
+ *         method: "OIDC",
+ *         tokenEndpointUrl: "https://example.com/oauth/token",
+ *         clientId: "auth0Client",
+ *         clientSecret: kafkaClientSecret,
+ *         scope: "read:messages write:messages",
+ *         saslOauthbearerExtensions: "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
+ *     },
+ *     bootstrapServers: "localhost:9092,localhost:9092",
+ *     config: {
+ *         "auto.offset.reset": "earliest",
+ *     },
+ *     security: {
+ *         protocol: "SASL_PLAINTEXT",
+ *     },
+ *     networking: {
+ *         access: {
+ *             type: "PUBLIC",
+ *         },
+ *     },
+ * });
+ * ```
+ *
  * ### Example Kafka SASL SSL Connection
  *
  * ```typescript
@@ -80,7 +116,7 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.StreamConnection("test", {
  *     projectId: projectId,
- *     instanceName: "NewInstance",
+ *     workspaceName: "NewWorkspace",
  *     connectionName: "KafkaConnection",
  *     type: "Kafka",
  *     authentication: {
@@ -107,7 +143,7 @@ import * as utilities from "./utilities";
  *
  * const test = new mongodbatlas.StreamConnection("test", {
  *     projectId: projectId,
- *     instanceName: "NewInstance",
+ *     workspaceName: "NewWorkspace",
  *     connectionName: "AWSLambdaConnection",
  *     type: "AWSLambda",
  *     aws: {
@@ -124,7 +160,7 @@ import * as utilities from "./utilities";
  *
  * const example_https = new mongodbatlas.StreamConnection("example-https", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "https_connection_tf_new",
  *     type: "Https",
  *     url: "https://example.com",
@@ -137,7 +173,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
+ * You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
  *
  * ```sh
  * $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
@@ -180,15 +216,17 @@ export class StreamConnection extends pulumi.CustomResource {
     declare public readonly clusterProjectId: pulumi.Output<string | undefined>;
     declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      */
     declare public readonly connectionName: pulumi.Output<string>;
     declare public readonly dbRoleToExecute: pulumi.Output<outputs.StreamConnectionDbRoleToExecute | undefined>;
     declare public readonly headers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    declare public readonly instanceName: pulumi.Output<string>;
+    declare public readonly instanceName: pulumi.Output<string | undefined>;
     declare public readonly networking: pulumi.Output<outputs.StreamConnectionNetworking>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
@@ -197,9 +235,15 @@ export class StreamConnection extends pulumi.CustomResource {
     declare public readonly security: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     declare public readonly type: pulumi.Output<string>;
     declare public readonly url: pulumi.Output<string | undefined>;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
+    declare public readonly workspaceName: pulumi.Output<string | undefined>;
 
     /**
      * Create a StreamConnection resource with the given unique name, arguments, and options.
@@ -229,13 +273,11 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["security"] = state?.security;
             resourceInputs["type"] = state?.type;
             resourceInputs["url"] = state?.url;
+            resourceInputs["workspaceName"] = state?.workspaceName;
         } else {
             const args = argsOrState as StreamConnectionArgs | undefined;
             if (args?.connectionName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'connectionName'");
-            }
-            if (args?.instanceName === undefined && !opts.urn) {
-                throw new Error("Missing required property 'instanceName'");
             }
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
@@ -258,6 +300,7 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["security"] = args?.security;
             resourceInputs["type"] = args?.type;
             resourceInputs["url"] = args?.url;
+            resourceInputs["workspaceName"] = args?.workspaceName;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(StreamConnection.__pulumiType, name, resourceInputs, opts);
@@ -275,13 +318,15 @@ export interface StreamConnectionState {
     clusterProjectId?: pulumi.Input<string>;
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      */
     connectionName?: pulumi.Input<string>;
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName?: pulumi.Input<string>;
     networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
@@ -292,9 +337,15 @@ export interface StreamConnectionState {
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     type?: pulumi.Input<string>;
     url?: pulumi.Input<string>;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
+    workspaceName?: pulumi.Input<string>;
 }
 
 /**
@@ -308,15 +359,17 @@ export interface StreamConnectionArgs {
     clusterProjectId?: pulumi.Input<string>;
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      */
     connectionName: pulumi.Input<string>;
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string>;
     networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
@@ -325,7 +378,13 @@ export interface StreamConnectionArgs {
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     type: pulumi.Input<string>;
     url?: pulumi.Input<string>;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
+    workspaceName?: pulumi.Input<string>;
 }

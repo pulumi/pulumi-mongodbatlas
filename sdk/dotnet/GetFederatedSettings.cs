@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedSettings
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFederatedSettings
-        /// 
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
         /// 
         /// 
@@ -39,8 +37,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsResult>("mongodbatlas:index/getFederatedSettings:getFederatedSettings", args ?? new GetFederatedSettingsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFederatedSettings
-        /// 
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
         /// 
         /// 
@@ -66,8 +62,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsResult>("mongodbatlas:index/getFederatedSettings:getFederatedSettings", args ?? new GetFederatedSettingsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFederatedSettings
-        /// 
         /// `mongodbatlas.getFederatedSettings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.
         /// 
         /// 

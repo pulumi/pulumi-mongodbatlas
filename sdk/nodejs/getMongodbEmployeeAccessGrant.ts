@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
- *
  * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
  *
  * ## Example Usage
@@ -72,8 +70,6 @@ export interface GetMongodbEmployeeAccessGrantResult {
     readonly projectId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.MongodbEmployeeAccessGrant
- *
  * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
  *
  * ## Example Usage

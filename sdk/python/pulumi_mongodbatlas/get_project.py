@@ -27,7 +27,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None):
+    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None, users=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -82,6 +82,9 @@ class GetProjectResult:
         if teams and not isinstance(teams, list):
             raise TypeError("Expected argument 'teams' to be a list")
         pulumi.set(__self__, "teams", teams)
+        if users and not isinstance(users, list):
+            raise TypeError("Expected argument 'users' to be a list")
+        pulumi.set(__self__, "users", users)
 
     @_builtins.property
     @pulumi.getter(name="clusterCount")
@@ -102,6 +105,10 @@ class GetProjectResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
@@ -217,11 +224,20 @@ class GetProjectResult:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def teams(self) -> Sequence['outputs.GetProjectTeamResult']:
         """
-        Returns all teams to which the authenticated user has access in the project. See Teams.
+        **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
         """
         return pulumi.get(self, "teams")
+
+    @_builtins.property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetProjectUserResult']:
+        """
+        Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+        """
+        return pulumi.get(self, "users")
 
 
 class AwaitableGetProjectResult(GetProjectResult):
@@ -247,15 +263,14 @@ class AwaitableGetProjectResult(GetProjectResult):
             project_id=self.project_id,
             region_usage_restrictions=self.region_usage_restrictions,
             tags=self.tags,
-            teams=self.teams)
+            teams=self.teams,
+            users=self.users)
 
 
 def get_project(name: Optional[_builtins.str] = None,
                 project_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
-    ## # Data Source: Project
-
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -271,19 +286,6 @@ def get_project(name: Optional[_builtins.str] = None,
     test_project = mongodbatlas.Project("test",
         name="project-name",
         org_id=test.org_id,
-        teams=[
-            {
-                "team_id": "5e0fa8c99ccf641c722fe645",
-                "role_names": ["GROUP_OWNER"],
-            },
-            {
-                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                "role_names": [
-                    "GROUP_READ_ONLY",
-                    "GROUP_DATA_ACCESS_READ_WRITE",
-                ],
-            },
-        ],
         limits=[{
             "name": "atlas.project.deployment.clusters",
             "value": 26,
@@ -299,19 +301,6 @@ def get_project(name: Optional[_builtins.str] = None,
     test_project = mongodbatlas.Project("test",
         name="project-name",
         org_id="<ORG_ID>",
-        teams=[
-            {
-                "team_id": "5e0fa8c99ccf641c722fe645",
-                "role_names": ["GROUP_OWNER"],
-            },
-            {
-                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                "role_names": [
-                    "GROUP_READ_ONLY",
-                    "GROUP_DATA_ACCESS_READ_WRITE",
-                ],
-            },
-        ],
         limits=[{
             "name": "atlas.project.deployment.clusters",
             "value": 26,
@@ -349,13 +338,12 @@ def get_project(name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         region_usage_restrictions=pulumi.get(__ret__, 'region_usage_restrictions'),
         tags=pulumi.get(__ret__, 'tags'),
-        teams=pulumi.get(__ret__, 'teams'))
+        teams=pulumi.get(__ret__, 'teams'),
+        users=pulumi.get(__ret__, 'users'))
 def get_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectResult]:
     """
-    ## # Data Source: Project
-
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -371,19 +359,6 @@ def get_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     test_project = mongodbatlas.Project("test",
         name="project-name",
         org_id=test.org_id,
-        teams=[
-            {
-                "team_id": "5e0fa8c99ccf641c722fe645",
-                "role_names": ["GROUP_OWNER"],
-            },
-            {
-                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                "role_names": [
-                    "GROUP_READ_ONLY",
-                    "GROUP_DATA_ACCESS_READ_WRITE",
-                ],
-            },
-        ],
         limits=[{
             "name": "atlas.project.deployment.clusters",
             "value": 26,
@@ -399,19 +374,6 @@ def get_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     test_project = mongodbatlas.Project("test",
         name="project-name",
         org_id="<ORG_ID>",
-        teams=[
-            {
-                "team_id": "5e0fa8c99ccf641c722fe645",
-                "role_names": ["GROUP_OWNER"],
-            },
-            {
-                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                "role_names": [
-                    "GROUP_READ_ONLY",
-                    "GROUP_DATA_ACCESS_READ_WRITE",
-                ],
-            },
-        ],
         limits=[{
             "name": "atlas.project.deployment.clusters",
             "value": 26,
@@ -448,4 +410,5 @@ def get_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = N
         project_id=pulumi.get(__response__, 'project_id'),
         region_usage_restrictions=pulumi.get(__response__, 'region_usage_restrictions'),
         tags=pulumi.get(__response__, 'tags'),
-        teams=pulumi.get(__response__, 'teams')))
+        teams=pulumi.get(__response__, 'teams'),
+        users=pulumi.get(__response__, 'users')))

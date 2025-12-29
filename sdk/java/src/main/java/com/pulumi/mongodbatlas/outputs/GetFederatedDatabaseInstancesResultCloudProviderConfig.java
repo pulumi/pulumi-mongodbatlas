@@ -5,18 +5,18 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAws;
+import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAw;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAzure;
 import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetFederatedDatabaseInstancesResultCloudProviderConfig {
-    private GetFederatedDatabaseInstancesResultCloudProviderConfigAws aws;
+    private List<GetFederatedDatabaseInstancesResultCloudProviderConfigAw> aws;
     private List<GetFederatedDatabaseInstancesResultCloudProviderConfigAzure> azures;
 
     private GetFederatedDatabaseInstancesResultCloudProviderConfig() {}
-    public GetFederatedDatabaseInstancesResultCloudProviderConfigAws aws() {
+    public List<GetFederatedDatabaseInstancesResultCloudProviderConfigAw> aws() {
         return this.aws;
     }
     public List<GetFederatedDatabaseInstancesResultCloudProviderConfigAzure> azures() {
@@ -32,7 +32,7 @@ public final class GetFederatedDatabaseInstancesResultCloudProviderConfig {
     }
     @CustomType.Builder
     public static final class Builder {
-        private GetFederatedDatabaseInstancesResultCloudProviderConfigAws aws;
+        private List<GetFederatedDatabaseInstancesResultCloudProviderConfigAw> aws;
         private List<GetFederatedDatabaseInstancesResultCloudProviderConfigAzure> azures;
         public Builder() {}
         public Builder(GetFederatedDatabaseInstancesResultCloudProviderConfig defaults) {
@@ -42,12 +42,15 @@ public final class GetFederatedDatabaseInstancesResultCloudProviderConfig {
         }
 
         @CustomType.Setter
-        public Builder aws(GetFederatedDatabaseInstancesResultCloudProviderConfigAws aws) {
+        public Builder aws(List<GetFederatedDatabaseInstancesResultCloudProviderConfigAw> aws) {
             if (aws == null) {
               throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResultCloudProviderConfig", "aws");
             }
             this.aws = aws;
             return this;
+        }
+        public Builder aws(GetFederatedDatabaseInstancesResultCloudProviderConfigAw... aws) {
+            return aws(List.of(aws));
         }
         @CustomType.Setter
         public Builder azures(List<GetFederatedDatabaseInstancesResultCloudProviderConfigAzure> azures) {

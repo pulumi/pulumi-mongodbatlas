@@ -87,8 +87,6 @@ def get_flex_restore_jobs(name: Optional[_builtins.str] = None,
                           project_id: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFlexRestoreJobsResult:
     """
-    ## # Data Source: get_flex_restore_jobs
-
     `get_flex_restore_jobs` returns all flex restore job of a flex cluster.
 
     ## Example Usage
@@ -126,8 +124,6 @@ def get_flex_restore_jobs_output(name: Optional[pulumi.Input[_builtins.str]] = N
                                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexRestoreJobsResult]:
     """
-    ## # Data Source: get_flex_restore_jobs
-
     `get_flex_restore_jobs` returns all flex restore job of a flex cluster.
 
     ## Example Usage

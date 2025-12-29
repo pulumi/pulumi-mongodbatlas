@@ -25,7 +25,7 @@ public final class GetMaintenanceWindowResult {
      */
     private Integer dayOfWeek;
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
     private Integer hourOfDay;
@@ -46,7 +46,7 @@ public final class GetMaintenanceWindowResult {
      */
     private List<GetMaintenanceWindowProtectedHour> protectedHours;
     /**
-     * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * @return Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     private Boolean startAsap;
@@ -72,7 +72,7 @@ public final class GetMaintenanceWindowResult {
         return this.dayOfWeek;
     }
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
     public Integer hourOfDay() {
@@ -103,7 +103,7 @@ public final class GetMaintenanceWindowResult {
         return this.protectedHours;
     }
     /**
-     * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * @return Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     public Boolean startAsap() {

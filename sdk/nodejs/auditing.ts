@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.Auditing
- *
  * `mongodbatlas.Auditing` provides an Auditing resource. This allows auditing to be created.
  *
  * ## Example Usage

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +39,8 @@ type PrivateLinkEndpointService struct {
 	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
 	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	AzureStatus pulumi.StringOutput `pulumi:"azureStatus"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolOutput `pulumi:"deleteRequested"`
 	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
@@ -132,6 +134,8 @@ type privateLinkEndpointServiceState struct {
 	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
 	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	AzureStatus *string `pulumi:"azureStatus"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested *bool `pulumi:"deleteRequested"`
 	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
@@ -184,6 +188,8 @@ type PrivateLinkEndpointServiceState struct {
 	// * `FAILED` - Atlas failed to accept the connection your private endpoint.
 	// * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 	AzureStatus pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
 	DeleteRequested pulumi.BoolPtrInput
 	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
@@ -224,6 +230,8 @@ func (PrivateLinkEndpointServiceState) ElementType() reflect.Type {
 }
 
 type privateLinkEndpointServiceArgs struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
 	EndpointServiceId string `pulumi:"endpointServiceId"`
 	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
@@ -242,6 +250,8 @@ type privateLinkEndpointServiceArgs struct {
 
 // The set of arguments for constructing a PrivateLinkEndpointService resource.
 type PrivateLinkEndpointServiceArgs struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
 	EndpointServiceId pulumi.StringInput
 	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
@@ -365,6 +375,11 @@ func (o PrivateLinkEndpointServiceOutput) AwsConnectionStatus() pulumi.StringOut
 // * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
 func (o PrivateLinkEndpointServiceOutput) AzureStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.AzureStatus }).(pulumi.StringOutput)
+}
+
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o PrivateLinkEndpointServiceOutput) DeleteOnCreateTimeout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.BoolPtrOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolPtrOutput)
 }
 
 // Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.

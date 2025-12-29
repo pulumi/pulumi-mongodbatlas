@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamProcessor
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamProcessor
-        /// 
         /// `mongodbatlas.StreamProcessor` describes a stream processor.
         /// 
         /// ## Example Usage
@@ -42,7 +40,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_sample = new Mongodbatlas.StreamConnection("example-sample", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "sample_stream_solar",
         ///         Type = "Sample",
         ///     });
@@ -50,7 +48,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_cluster = new Mongodbatlas.StreamConnection("example-cluster", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "ClusterConnection",
         ///         Type = "Cluster",
         ///         ClusterName = clusterName,
@@ -64,7 +62,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_kafka = new Mongodbatlas.StreamConnection("example-kafka", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "KafkaPlaintextConnection",
         ///         Type = "Kafka",
         ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
@@ -87,7 +85,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_sample_example = new Mongodbatlas.StreamProcessor("stream-processor-sample-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "sampleProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -118,7 +116,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "clusterProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -144,7 +142,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_kafka_to_cluster_example = new Mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "kafkaProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -185,13 +183,13 @@ namespace Pulumi.Mongodbatlas
         ///     var example_stream_processors = Mongodbatlas.GetStreamProcessors.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///     });
         /// 
         ///     var example_stream_processor = Mongodbatlas.GetStreamProcessor.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = stream_processor_sample_example.ProcessorName,
         ///     });
         /// 
@@ -207,8 +205,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamProcessorResult>("mongodbatlas:index/getStreamProcessor:getStreamProcessor", args ?? new GetStreamProcessorArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamProcessor
-        /// 
         /// `mongodbatlas.StreamProcessor` describes a stream processor.
         /// 
         /// ## Example Usage
@@ -237,7 +233,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_sample = new Mongodbatlas.StreamConnection("example-sample", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "sample_stream_solar",
         ///         Type = "Sample",
         ///     });
@@ -245,7 +241,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_cluster = new Mongodbatlas.StreamConnection("example-cluster", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "ClusterConnection",
         ///         Type = "Cluster",
         ///         ClusterName = clusterName,
@@ -259,7 +255,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_kafka = new Mongodbatlas.StreamConnection("example-kafka", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "KafkaPlaintextConnection",
         ///         Type = "Kafka",
         ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
@@ -282,7 +278,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_sample_example = new Mongodbatlas.StreamProcessor("stream-processor-sample-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "sampleProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -313,7 +309,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "clusterProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -339,7 +335,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_kafka_to_cluster_example = new Mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "kafkaProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -380,13 +376,13 @@ namespace Pulumi.Mongodbatlas
         ///     var example_stream_processors = Mongodbatlas.GetStreamProcessors.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///     });
         /// 
         ///     var example_stream_processor = Mongodbatlas.GetStreamProcessor.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = stream_processor_sample_example.ProcessorName,
         ///     });
         /// 
@@ -402,8 +398,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamProcessorResult>("mongodbatlas:index/getStreamProcessor:getStreamProcessor", args ?? new GetStreamProcessorInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamProcessor
-        /// 
         /// `mongodbatlas.StreamProcessor` describes a stream processor.
         /// 
         /// ## Example Usage
@@ -432,7 +426,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_sample = new Mongodbatlas.StreamConnection("example-sample", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "sample_stream_solar",
         ///         Type = "Sample",
         ///     });
@@ -440,7 +434,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_cluster = new Mongodbatlas.StreamConnection("example-cluster", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "ClusterConnection",
         ///         Type = "Cluster",
         ///         ClusterName = clusterName,
@@ -454,7 +448,7 @@ namespace Pulumi.Mongodbatlas
         ///     var example_kafka = new Mongodbatlas.StreamConnection("example-kafka", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ConnectionName = "KafkaPlaintextConnection",
         ///         Type = "Kafka",
         ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
@@ -477,7 +471,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_sample_example = new Mongodbatlas.StreamProcessor("stream-processor-sample-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "sampleProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -508,7 +502,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "clusterProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -534,7 +528,7 @@ namespace Pulumi.Mongodbatlas
         ///     var stream_processor_kafka_to_cluster_example = new Mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "kafkaProcessorName",
         ///         Pipeline = JsonSerializer.Serialize(new[]
         ///         {
@@ -575,13 +569,13 @@ namespace Pulumi.Mongodbatlas
         ///     var example_stream_processors = Mongodbatlas.GetStreamProcessors.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///     });
         /// 
         ///     var example_stream_processor = Mongodbatlas.GetStreamProcessor.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
-        ///         InstanceName = example.InstanceName,
+        ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = stream_processor_sample_example.ProcessorName,
         ///     });
         /// 
@@ -600,14 +594,11 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamProcessorArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Human-readable label that identifies the stream instance.
-        /// </summary>
-        [Input("instanceName", required: true)]
-        public string InstanceName { get; set; } = null!;
+        [Input("instanceName")]
+        public string? InstanceName { get; set; }
 
         /// <summary>
-        /// Human-readable label that identifies the stream processor.
+        /// Label that identifies the stream processor.
         /// </summary>
         [Input("processorName", required: true)]
         public string ProcessorName { get; set; } = null!;
@@ -618,6 +609,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        [Input("workspaceName")]
+        public string? WorkspaceName { get; set; }
+
         public GetStreamProcessorArgs()
         {
         }
@@ -626,14 +620,11 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamProcessorInvokeArgs : global::Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Human-readable label that identifies the stream instance.
-        /// </summary>
-        [Input("instanceName", required: true)]
-        public Input<string> InstanceName { get; set; } = null!;
+        [Input("instanceName")]
+        public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// Human-readable label that identifies the stream processor.
+        /// Label that identifies the stream processor.
         /// </summary>
         [Input("processorName", required: true)]
         public Input<string> ProcessorName { get; set; } = null!;
@@ -643,6 +634,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        [Input("workspaceName")]
+        public Input<string>? WorkspaceName { get; set; }
 
         public GetStreamProcessorInvokeArgs()
         {
@@ -655,14 +649,11 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamProcessorResult
     {
         public readonly string Id;
-        /// <summary>
-        /// Human-readable label that identifies the stream instance.
-        /// </summary>
-        public readonly string InstanceName;
+        public readonly string? InstanceName;
         public readonly Outputs.GetStreamProcessorOptionsResult Options;
         public readonly string Pipeline;
         /// <summary>
-        /// Human-readable label that identifies the stream processor.
+        /// Label that identifies the stream processor.
         /// </summary>
         public readonly string ProcessorName;
         /// <summary>
@@ -671,12 +662,13 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         public readonly string State;
         public readonly string Stats;
+        public readonly string? WorkspaceName;
 
         [OutputConstructor]
         private GetStreamProcessorResult(
             string id,
 
-            string instanceName,
+            string? instanceName,
 
             Outputs.GetStreamProcessorOptionsResult options,
 
@@ -688,7 +680,9 @@ namespace Pulumi.Mongodbatlas
 
             string state,
 
-            string stats)
+            string stats,
+
+            string? workspaceName)
         {
             Id = id;
             InstanceName = instanceName;
@@ -698,6 +692,7 @@ namespace Pulumi.Mongodbatlas
             ProjectId = projectId;
             State = state;
             Stats = stats;
+            WorkspaceName = workspaceName;
         }
     }
 }

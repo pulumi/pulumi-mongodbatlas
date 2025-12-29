@@ -27,16 +27,19 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configurations=None, backup_enabled=None, bi_connector_configs=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, disk_size_gb=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcvs=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_replication_spec_per_shard=None, version_release_system=None):
-        if advanced_configurations and not isinstance(advanced_configurations, list):
-            raise TypeError("Expected argument 'advanced_configurations' to be a list")
-        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
+    def __init__(__self__, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_effective_fields=None, version_release_system=None):
+        if advanced_configuration and not isinstance(advanced_configuration, dict):
+            raise TypeError("Expected argument 'advanced_configuration' to be a dict")
+        pulumi.set(__self__, "advanced_configuration", advanced_configuration)
         if backup_enabled and not isinstance(backup_enabled, bool):
             raise TypeError("Expected argument 'backup_enabled' to be a bool")
         pulumi.set(__self__, "backup_enabled", backup_enabled)
-        if bi_connector_configs and not isinstance(bi_connector_configs, list):
-            raise TypeError("Expected argument 'bi_connector_configs' to be a list")
-        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
+        if bi_connector_config and not isinstance(bi_connector_config, dict):
+            raise TypeError("Expected argument 'bi_connector_config' to be a dict")
+        pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+        if cluster_id and not isinstance(cluster_id, str):
+            raise TypeError("Expected argument 'cluster_id' to be a str")
+        pulumi.set(__self__, "cluster_id", cluster_id)
         if cluster_type and not isinstance(cluster_type, str):
             raise TypeError("Expected argument 'cluster_type' to be a str")
         pulumi.set(__self__, "cluster_type", cluster_type)
@@ -46,15 +49,12 @@ class GetAdvancedClusterResult:
         if config_server_type and not isinstance(config_server_type, str):
             raise TypeError("Expected argument 'config_server_type' to be a str")
         pulumi.set(__self__, "config_server_type", config_server_type)
-        if connection_strings and not isinstance(connection_strings, list):
-            raise TypeError("Expected argument 'connection_strings' to be a list")
+        if connection_strings and not isinstance(connection_strings, dict):
+            raise TypeError("Expected argument 'connection_strings' to be a dict")
         pulumi.set(__self__, "connection_strings", connection_strings)
         if create_date and not isinstance(create_date, str):
             raise TypeError("Expected argument 'create_date' to be a str")
         pulumi.set(__self__, "create_date", create_date)
-        if disk_size_gb and not isinstance(disk_size_gb, float):
-            raise TypeError("Expected argument 'disk_size_gb' to be a float")
-        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider and not isinstance(encryption_at_rest_provider, str):
             raise TypeError("Expected argument 'encryption_at_rest_provider' to be a str")
         pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
@@ -64,8 +64,8 @@ class GetAdvancedClusterResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if labels and not isinstance(labels, list):
-            raise TypeError("Expected argument 'labels' to be a list")
+        if labels and not isinstance(labels, dict):
+            raise TypeError("Expected argument 'labels' to be a dict")
         pulumi.set(__self__, "labels", labels)
         if mongo_db_major_version and not isinstance(mongo_db_major_version, str):
             raise TypeError("Expected argument 'mongo_db_major_version' to be a str")
@@ -79,9 +79,9 @@ class GetAdvancedClusterResult:
         if paused and not isinstance(paused, bool):
             raise TypeError("Expected argument 'paused' to be a bool")
         pulumi.set(__self__, "paused", paused)
-        if pinned_fcvs and not isinstance(pinned_fcvs, list):
-            raise TypeError("Expected argument 'pinned_fcvs' to be a list")
-        pulumi.set(__self__, "pinned_fcvs", pinned_fcvs)
+        if pinned_fcv and not isinstance(pinned_fcv, dict):
+            raise TypeError("Expected argument 'pinned_fcv' to be a dict")
+        pulumi.set(__self__, "pinned_fcv", pinned_fcv)
         if pit_enabled and not isinstance(pit_enabled, bool):
             raise TypeError("Expected argument 'pit_enabled' to be a bool")
         pulumi.set(__self__, "pit_enabled", pit_enabled)
@@ -103,26 +103,26 @@ class GetAdvancedClusterResult:
         if state_name and not isinstance(state_name, str):
             raise TypeError("Expected argument 'state_name' to be a str")
         pulumi.set(__self__, "state_name", state_name)
-        if tags and not isinstance(tags, list):
-            raise TypeError("Expected argument 'tags' to be a list")
+        if tags and not isinstance(tags, dict):
+            raise TypeError("Expected argument 'tags' to be a dict")
         pulumi.set(__self__, "tags", tags)
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
-        if use_replication_spec_per_shard and not isinstance(use_replication_spec_per_shard, bool):
-            raise TypeError("Expected argument 'use_replication_spec_per_shard' to be a bool")
-        pulumi.set(__self__, "use_replication_spec_per_shard", use_replication_spec_per_shard)
+        if use_effective_fields and not isinstance(use_effective_fields, bool):
+            raise TypeError("Expected argument 'use_effective_fields' to be a bool")
+        pulumi.set(__self__, "use_effective_fields", use_effective_fields)
         if version_release_system and not isinstance(version_release_system, str):
             raise TypeError("Expected argument 'version_release_system' to be a str")
         pulumi.set(__self__, "version_release_system", version_release_system)
 
     @_builtins.property
-    @pulumi.getter(name="advancedConfigurations")
-    def advanced_configurations(self) -> Sequence['outputs.GetAdvancedClusterAdvancedConfigurationResult']:
+    @pulumi.getter(name="advancedConfiguration")
+    def advanced_configuration(self) -> 'outputs.GetAdvancedClusterAdvancedConfigurationResult':
         """
         Get the advanced configuration options. See Advanced Configuration below for more details.
         """
-        return pulumi.get(self, "advanced_configurations")
+        return pulumi.get(self, "advanced_configuration")
 
     @_builtins.property
     @pulumi.getter(name="backupEnabled")
@@ -130,9 +130,17 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "backup_enabled")
 
     @_builtins.property
-    @pulumi.getter(name="biConnectorConfigs")
-    def bi_connector_configs(self) -> Sequence['outputs.GetAdvancedClusterBiConnectorConfigResult']:
-        return pulumi.get(self, "bi_connector_configs")
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> 'outputs.GetAdvancedClusterBiConnectorConfigResult':
+        return pulumi.get(self, "bi_connector_config")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
 
     @_builtins.property
     @pulumi.getter(name="clusterType")
@@ -160,7 +168,7 @@ class GetAdvancedClusterResult:
 
     @_builtins.property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringResult']:
+    def connection_strings(self) -> 'outputs.GetAdvancedClusterConnectionStringsResult':
         """
         Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
@@ -170,15 +178,6 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="createDate")
     def create_date(self) -> _builtins.str:
         return pulumi.get(self, "create_date")
-
-    @_builtins.property
-    @pulumi.getter(name="diskSizeGb")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def disk_size_gb(self) -> _builtins.float:
-        """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        """
-        return pulumi.get(self, "disk_size_gb")
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
@@ -206,7 +205,7 @@ class GetAdvancedClusterResult:
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Sequence['outputs.GetAdvancedClusterLabelResult']:
+    def labels(self) -> Mapping[str, _builtins.str]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
         """
@@ -242,12 +241,12 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "paused")
 
     @_builtins.property
-    @pulumi.getter(name="pinnedFcvs")
-    def pinned_fcvs(self) -> Sequence['outputs.GetAdvancedClusterPinnedFcvResult']:
+    @pulumi.getter(name="pinnedFcv")
+    def pinned_fcv(self) -> 'outputs.GetAdvancedClusterPinnedFcvResult':
         """
         The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
         """
-        return pulumi.get(self, "pinned_fcvs")
+        return pulumi.get(self, "pinned_fcv")
 
     @_builtins.property
     @pulumi.getter(name="pitEnabled")
@@ -282,7 +281,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecResult']:
         """
-        List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
+        List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
         """
         return pulumi.get(self, "replication_specs")
 
@@ -304,7 +303,7 @@ class GetAdvancedClusterResult:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Sequence['outputs.GetAdvancedClusterTagResult']:
+    def tags(self) -> Mapping[str, _builtins.str]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
@@ -319,9 +318,9 @@ class GetAdvancedClusterResult:
         return pulumi.get(self, "termination_protection_enabled")
 
     @_builtins.property
-    @pulumi.getter(name="useReplicationSpecPerShard")
-    def use_replication_spec_per_shard(self) -> Optional[_builtins.bool]:
-        return pulumi.get(self, "use_replication_spec_per_shard")
+    @pulumi.getter(name="useEffectiveFields")
+    def use_effective_fields(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "use_effective_fields")
 
     @_builtins.property
     @pulumi.getter(name="versionReleaseSystem")
@@ -338,15 +337,15 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
         if False:
             yield self
         return GetAdvancedClusterResult(
-            advanced_configurations=self.advanced_configurations,
+            advanced_configuration=self.advanced_configuration,
             backup_enabled=self.backup_enabled,
-            bi_connector_configs=self.bi_connector_configs,
+            bi_connector_config=self.bi_connector_config,
+            cluster_id=self.cluster_id,
             cluster_type=self.cluster_type,
             config_server_management_mode=self.config_server_management_mode,
             config_server_type=self.config_server_type,
             connection_strings=self.connection_strings,
             create_date=self.create_date,
-            disk_size_gb=self.disk_size_gb,
             encryption_at_rest_provider=self.encryption_at_rest_provider,
             global_cluster_self_managed_sharding=self.global_cluster_self_managed_sharding,
             id=self.id,
@@ -355,7 +354,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             mongo_db_version=self.mongo_db_version,
             name=self.name,
             paused=self.paused,
-            pinned_fcvs=self.pinned_fcvs,
+            pinned_fcv=self.pinned_fcv,
             pit_enabled=self.pit_enabled,
             project_id=self.project_id,
             redact_client_log_data=self.redact_client_log_data,
@@ -365,14 +364,13 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             state_name=self.state_name,
             tags=self.tags,
             termination_protection_enabled=self.termination_protection_enabled,
-            use_replication_spec_per_shard=self.use_replication_spec_per_shard,
+            use_effective_fields=self.use_effective_fields,
             version_release_system=self.version_release_system)
 
 
 def get_advanced_cluster(name: Optional[_builtins.str] = None,
-                         pit_enabled: Optional[_builtins.bool] = None,
                          project_id: Optional[_builtins.str] = None,
-                         use_replication_spec_per_shard: Optional[_builtins.bool] = None,
+                         use_effective_fields: Optional[_builtins.bool] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClusterResult:
     """
     ## Example Usage
@@ -381,7 +379,7 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         cluster_type="REPLICASET",
@@ -396,8 +394,44 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
-        name=example_advanced_cluster.name)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
+    ```
+
+    ## Example using effective fields with auto-scaling
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
+        project_id="<YOUR-PROJECT-ID>",
+        name="auto-scale-cluster",
+        cluster_type="REPLICASET",
+        use_effective_fields=True,
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+                "auto_scaling": {
+                    "compute_enabled": True,
+                    "compute_scale_down_enabled": True,
+                    "compute_min_instance_size": "M10",
+                    "compute_max_instance_size": "M30",
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_EAST_1",
+            }],
+        }])
+    # Read effective values after Atlas auto-scales the cluster
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name,
+        use_effective_fields=True)
+    pulumi.export("configuredInstanceSize", this.replication_specs[0].region_configs[0].electable_specs.instance_size)
+    pulumi.export("actualInstanceSize", this.replication_specs[0].region_configs[0].effective_electable_specs.instance_size)
     ```
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
@@ -406,7 +440,7 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         backup_enabled=False,
@@ -437,9 +471,8 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
                 }],
             },
         ])
-    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
-        name=example_advanced_cluster.name,
-        use_replication_spec_per_shard=True)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
     ```
 
     ## Example using Flex cluster
@@ -448,7 +481,7 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_flex = mongodbatlas.AdvancedCluster("example-flex",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="flex-cluster",
         cluster_type="REPLICASET",
@@ -460,34 +493,32 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_cluster_output(project_id=example_flex.project_id,
-        name=example_flex.name)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
     ```
 
 
     :param _builtins.str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-    :param _builtins.bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
     :param _builtins.str project_id: The unique ID for the project to create the cluster.
-    :param _builtins.bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+    :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
     """
     __args__ = dict()
     __args__['name'] = name
-    __args__['pitEnabled'] = pit_enabled
     __args__['projectId'] = project_id
-    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
+    __args__['useEffectiveFields'] = use_effective_fields
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAdvancedCluster:getAdvancedCluster', __args__, opts=opts, typ=GetAdvancedClusterResult).value
 
     return AwaitableGetAdvancedClusterResult(
-        advanced_configurations=pulumi.get(__ret__, 'advanced_configurations'),
+        advanced_configuration=pulumi.get(__ret__, 'advanced_configuration'),
         backup_enabled=pulumi.get(__ret__, 'backup_enabled'),
-        bi_connector_configs=pulumi.get(__ret__, 'bi_connector_configs'),
+        bi_connector_config=pulumi.get(__ret__, 'bi_connector_config'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
         cluster_type=pulumi.get(__ret__, 'cluster_type'),
         config_server_management_mode=pulumi.get(__ret__, 'config_server_management_mode'),
         config_server_type=pulumi.get(__ret__, 'config_server_type'),
         connection_strings=pulumi.get(__ret__, 'connection_strings'),
         create_date=pulumi.get(__ret__, 'create_date'),
-        disk_size_gb=pulumi.get(__ret__, 'disk_size_gb'),
         encryption_at_rest_provider=pulumi.get(__ret__, 'encryption_at_rest_provider'),
         global_cluster_self_managed_sharding=pulumi.get(__ret__, 'global_cluster_self_managed_sharding'),
         id=pulumi.get(__ret__, 'id'),
@@ -496,7 +527,7 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
         mongo_db_version=pulumi.get(__ret__, 'mongo_db_version'),
         name=pulumi.get(__ret__, 'name'),
         paused=pulumi.get(__ret__, 'paused'),
-        pinned_fcvs=pulumi.get(__ret__, 'pinned_fcvs'),
+        pinned_fcv=pulumi.get(__ret__, 'pinned_fcv'),
         pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
         project_id=pulumi.get(__ret__, 'project_id'),
         redact_client_log_data=pulumi.get(__ret__, 'redact_client_log_data'),
@@ -506,12 +537,11 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
         state_name=pulumi.get(__ret__, 'state_name'),
         tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
-        use_replication_spec_per_shard=pulumi.get(__ret__, 'use_replication_spec_per_shard'),
+        use_effective_fields=pulumi.get(__ret__, 'use_effective_fields'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
 def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                pit_enabled: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                use_replication_spec_per_shard: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+                                use_effective_fields: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
     ## Example Usage
@@ -520,7 +550,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         cluster_type="REPLICASET",
@@ -535,8 +565,44 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
-        name=example_advanced_cluster.name)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
+    ```
+
+    ## Example using effective fields with auto-scaling
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
+        project_id="<YOUR-PROJECT-ID>",
+        name="auto-scale-cluster",
+        cluster_type="REPLICASET",
+        use_effective_fields=True,
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+                "auto_scaling": {
+                    "compute_enabled": True,
+                    "compute_scale_down_enabled": True,
+                    "compute_min_instance_size": "M10",
+                    "compute_max_instance_size": "M30",
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_EAST_1",
+            }],
+        }])
+    # Read effective values after Atlas auto-scales the cluster
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name,
+        use_effective_fields=True)
+    pulumi.export("configuredInstanceSize", this.replication_specs[0].region_configs[0].electable_specs.instance_size)
+    pulumi.export("actualInstanceSize", this.replication_specs[0].region_configs[0].effective_electable_specs.instance_size)
     ```
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
@@ -545,7 +611,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         backup_enabled=False,
@@ -576,9 +642,8 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
                 }],
             },
         ])
-    example = mongodbatlas.get_advanced_cluster_output(project_id=example_advanced_cluster.project_id,
-        name=example_advanced_cluster.name,
-        use_replication_spec_per_shard=True)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
     ```
 
     ## Example using Flex cluster
@@ -587,7 +652,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_flex = mongodbatlas.AdvancedCluster("example-flex",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="flex-cluster",
         cluster_type="REPLICASET",
@@ -599,33 +664,31 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_cluster_output(project_id=example_flex.project_id,
-        name=example_flex.name)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
     ```
 
 
     :param _builtins.str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-    :param _builtins.bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
     :param _builtins.str project_id: The unique ID for the project to create the cluster.
-    :param _builtins.bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling.
+    :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
     """
     __args__ = dict()
     __args__['name'] = name
-    __args__['pitEnabled'] = pit_enabled
     __args__['projectId'] = project_id
-    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
+    __args__['useEffectiveFields'] = use_effective_fields
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAdvancedCluster:getAdvancedCluster', __args__, opts=opts, typ=GetAdvancedClusterResult)
     return __ret__.apply(lambda __response__: GetAdvancedClusterResult(
-        advanced_configurations=pulumi.get(__response__, 'advanced_configurations'),
+        advanced_configuration=pulumi.get(__response__, 'advanced_configuration'),
         backup_enabled=pulumi.get(__response__, 'backup_enabled'),
-        bi_connector_configs=pulumi.get(__response__, 'bi_connector_configs'),
+        bi_connector_config=pulumi.get(__response__, 'bi_connector_config'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
         cluster_type=pulumi.get(__response__, 'cluster_type'),
         config_server_management_mode=pulumi.get(__response__, 'config_server_management_mode'),
         config_server_type=pulumi.get(__response__, 'config_server_type'),
         connection_strings=pulumi.get(__response__, 'connection_strings'),
         create_date=pulumi.get(__response__, 'create_date'),
-        disk_size_gb=pulumi.get(__response__, 'disk_size_gb'),
         encryption_at_rest_provider=pulumi.get(__response__, 'encryption_at_rest_provider'),
         global_cluster_self_managed_sharding=pulumi.get(__response__, 'global_cluster_self_managed_sharding'),
         id=pulumi.get(__response__, 'id'),
@@ -634,7 +697,7 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
         mongo_db_version=pulumi.get(__response__, 'mongo_db_version'),
         name=pulumi.get(__response__, 'name'),
         paused=pulumi.get(__response__, 'paused'),
-        pinned_fcvs=pulumi.get(__response__, 'pinned_fcvs'),
+        pinned_fcv=pulumi.get(__response__, 'pinned_fcv'),
         pit_enabled=pulumi.get(__response__, 'pit_enabled'),
         project_id=pulumi.get(__response__, 'project_id'),
         redact_client_log_data=pulumi.get(__response__, 'redact_client_log_data'),
@@ -644,5 +707,5 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
         state_name=pulumi.get(__response__, 'state_name'),
         tags=pulumi.get(__response__, 'tags'),
         termination_protection_enabled=pulumi.get(__response__, 'termination_protection_enabled'),
-        use_replication_spec_per_shard=pulumi.get(__response__, 'use_replication_spec_per_shard'),
+        use_effective_fields=pulumi.get(__response__, 'use_effective_fields'),
         version_release_system=pulumi.get(__response__, 'version_release_system')))

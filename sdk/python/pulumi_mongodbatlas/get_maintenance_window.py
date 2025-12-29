@@ -76,7 +76,7 @@ class GetMaintenanceWindowResult:
     @pulumi.getter(name="hourOfDay")
     def hour_of_day(self) -> _builtins.int:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         """
         return pulumi.get(self, "hour_of_day")
 
@@ -113,7 +113,7 @@ class GetMaintenanceWindowResult:
     @pulumi.getter(name="startAsap")
     def start_asap(self) -> _builtins.bool:
         """
-        Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         return pulumi.get(self, "start_asap")
 
@@ -146,11 +146,11 @@ class AwaitableGetMaintenanceWindowResult(GetMaintenanceWindowResult):
 def get_maintenance_window(project_id: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMaintenanceWindowResult:
     """
-    ## # Data Source: MaintenanceWindow
-
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
     ## Examples Usage
 
@@ -197,11 +197,11 @@ def get_maintenance_window(project_id: Optional[_builtins.str] = None,
 def get_maintenance_window_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMaintenanceWindowResult]:
     """
-    ## # Data Source: MaintenanceWindow
-
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+    > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
     ## Examples Usage
 

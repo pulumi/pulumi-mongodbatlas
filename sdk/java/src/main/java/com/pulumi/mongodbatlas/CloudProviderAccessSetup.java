@@ -13,58 +13,262 @@ import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupState;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAwsConfig;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupAzureConfig;
 import com.pulumi.mongodbatlas.outputs.CloudProviderAccessSetupGcpConfig;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * ## Example Usage
+ * 
+ * ### With AWS
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+ *             .projectId("64259ee860c43338194b0f8e")
+ *             .providerName("AWS")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Azure
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+ *             .projectId("64259ee860c43338194b0f8e")
+ *             .providerName("AZURE")
+ *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+ *                 .atlasAzureAppId("9f2deb0d-be22-4524-a403-df531868bac0")
+ *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
+ *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With GCP
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var testRole = new CloudProviderAccessSetup("testRole", CloudProviderAccessSetupArgs.builder()
+ *             .projectId("64259ee860c43338194b0f8e")
+ *             .providerName("GCP")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Further Examples
+ * - AWS Cloud Provider Access
+ * - Azure Cloud Provider Access
+ * - GCP Cloud Provider Access
+ * 
+ * ## Import
+ * 
+ * It can be imported using project ID, provider name and role_id in the format `project_id`-`provider_name`-`role_id`, e.g.
+ * 
+ * ```sh
+ * $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+ * ```
+ * 
+ */
 @ResourceType(type="mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")
 public class CloudProviderAccessSetup extends com.pulumi.resources.CustomResource {
+    /**
+     * aws related arn roles
+     * 
+     */
     @Export(name="awsConfigs", refs={List.class,CloudProviderAccessSetupAwsConfig.class}, tree="[0,1]")
     private Output<List<CloudProviderAccessSetupAwsConfig>> awsConfigs;
 
+    /**
+     * @return aws related arn roles
+     * 
+     */
     public Output<List<CloudProviderAccessSetupAwsConfig>> awsConfigs() {
         return this.awsConfigs;
     }
+    /**
+     * azure related configurations
+     * 
+     */
     @Export(name="azureConfigs", refs={List.class,CloudProviderAccessSetupAzureConfig.class}, tree="[0,1]")
     private Output</* @Nullable */ List<CloudProviderAccessSetupAzureConfig>> azureConfigs;
 
+    /**
+     * @return azure related configurations
+     * 
+     */
     public Output<Optional<List<CloudProviderAccessSetupAzureConfig>>> azureConfigs() {
         return Codegen.optional(this.azureConfigs);
     }
+    /**
+     * Date on which this role was created.
+     * 
+     */
     @Export(name="createdDate", refs={String.class}, tree="[0]")
     private Output<String> createdDate;
 
+    /**
+     * @return Date on which this role was created.
+     * 
+     */
     public Output<String> createdDate() {
         return this.createdDate;
     }
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> deleteOnCreateTimeout() {
+        return Codegen.optional(this.deleteOnCreateTimeout);
+    }
+    /**
+     * gcp related configuration
+     * 
+     */
     @Export(name="gcpConfigs", refs={List.class,CloudProviderAccessSetupGcpConfig.class}, tree="[0,1]")
     private Output<List<CloudProviderAccessSetupGcpConfig>> gcpConfigs;
 
+    /**
+     * @return gcp related configuration
+     * 
+     */
     public Output<List<CloudProviderAccessSetupGcpConfig>> gcpConfigs() {
         return this.gcpConfigs;
     }
+    /**
+     * Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     @Export(name="lastUpdatedDate", refs={String.class}, tree="[0]")
     private Output<String> lastUpdatedDate;
 
+    /**
+     * @return Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public Output<String> lastUpdatedDate() {
         return this.lastUpdatedDate;
     }
+    /**
+     * The unique ID for the project
+     * 
+     */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
+    /**
+     * @return The unique ID for the project
+     * 
+     */
     public Output<String> projectId() {
         return this.projectId;
     }
+    /**
+     * The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+     * 
+     */
     @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
+    /**
+     * @return The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+     * 
+     */
     public Output<String> providerName() {
         return this.providerName;
     }
+    /**
+     * Unique ID of this role.
+     * 
+     */
     @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
+    /**
+     * @return Unique ID of this role.
+     * 
+     */
     public Output<String> roleId() {
         return this.roleId;
     }

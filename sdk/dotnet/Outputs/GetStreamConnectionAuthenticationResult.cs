@@ -14,13 +14,37 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetStreamConnectionAuthenticationResult
     {
         /// <summary>
-        /// Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        /// Public identifier for the Kafka client.
+        /// </summary>
+        public readonly string ClientId;
+        /// <summary>
+        /// Secret known only to the Kafka client and the authorization server.
+        /// </summary>
+        public readonly string ClientSecret;
+        /// <summary>
+        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
         /// </summary>
         public readonly string Mechanism;
+        /// <summary>
+        /// SASL OAUTHBEARER authentication method. Value must be OIDC.
+        /// </summary>
+        public readonly string Method;
         /// <summary>
         /// Password of the account to connect to the Kafka cluster.
         /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// Additional information to provide to the Kafka broker.
+        /// </summary>
+        public readonly string SaslOauthbearerExtensions;
+        /// <summary>
+        /// Scope of the access request to the broker specified by the Kafka clients.
+        /// </summary>
+        public readonly string Scope;
+        /// <summary>
+        /// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+        /// </summary>
+        public readonly string TokenEndpointUrl;
         /// <summary>
         /// Username of the account to connect to the Kafka cluster.
         /// </summary>
@@ -28,14 +52,32 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetStreamConnectionAuthenticationResult(
+            string clientId,
+
+            string clientSecret,
+
             string mechanism,
+
+            string method,
 
             string password,
 
+            string saslOauthbearerExtensions,
+
+            string scope,
+
+            string tokenEndpointUrl,
+
             string username)
         {
+            ClientId = clientId;
+            ClientSecret = clientSecret;
             Mechanism = mechanism;
+            Method = method;
             Password = password;
+            SaslOauthbearerExtensions = saslOauthbearerExtensions;
+            Scope = scope;
+            TokenEndpointUrl = tokenEndpointUrl;
             Username = username;
         }
     }

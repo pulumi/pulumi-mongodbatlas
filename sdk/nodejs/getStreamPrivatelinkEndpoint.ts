@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
- *
  * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
  *
  * ## Example Usage
@@ -117,6 +115,32 @@ import * as utilities from "./utilities";
  *     serviceEndpointId: serviceEndpointId,
  * });
  * export const privatelinkEndpointId = _this.id;
+ * ```
+ *
+ * ### GCP Confluent Privatelink
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const gcpConfluentStreamPrivatelinkEndpoint = new mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     vendor: "CONFLUENT",
+ *     region: gcpRegion,
+ *     dnsDomain: confluentDnsDomain,
+ *     dnsSubDomains: confluentDnsSubdomains,
+ *     serviceAttachmentUris: [
+ *         "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+ *         "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+ *     ],
+ * });
+ * const gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * export const privatelinkEndpointId = gcpConfluentStreamPrivatelinkEndpoint.id;
+ * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
+ * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
  * ```
  */
 export function getStreamPrivatelinkEndpoint(args: GetStreamPrivatelinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamPrivatelinkEndpointResult> {
@@ -150,13 +174,12 @@ export interface GetStreamPrivatelinkEndpointResult {
     readonly providerAccountId: string;
     readonly providerName: string;
     readonly region: string;
+    readonly serviceAttachmentUris: string[];
     readonly serviceEndpointId: string;
     readonly state: string;
     readonly vendor: string;
 }
 /**
- * ## # Data Source: mongodbatlas.StreamPrivatelinkEndpoint
- *
  * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
  *
  * ## Example Usage
@@ -267,6 +290,32 @@ export interface GetStreamPrivatelinkEndpointResult {
  *     serviceEndpointId: serviceEndpointId,
  * });
  * export const privatelinkEndpointId = _this.id;
+ * ```
+ *
+ * ### GCP Confluent Privatelink
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const gcpConfluentStreamPrivatelinkEndpoint = new mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     vendor: "CONFLUENT",
+ *     region: gcpRegion,
+ *     dnsDomain: confluentDnsDomain,
+ *     dnsSubDomains: confluentDnsSubdomains,
+ *     serviceAttachmentUris: [
+ *         "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+ *         "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+ *     ],
+ * });
+ * const gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * export const privatelinkEndpointId = gcpConfluentStreamPrivatelinkEndpoint.id;
+ * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
+ * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
  * ```
  */
 export function getStreamPrivatelinkEndpointOutput(args: GetStreamPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamPrivatelinkEndpointResult> {

@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.SearchIndexSynonymArgs;
+import com.pulumi.mongodbatlas.inputs.SearchIndexTypeSetArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -124,18 +125,33 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      * 
      */
     @Import(name="mappingsDynamic")
     private @Nullable Output<Boolean> mappingsDynamic;
 
     /**
-     * @return Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * @return Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      * 
      */
     public Optional<Output<Boolean>> mappingsDynamic() {
         return Optional.ofNullable(this.mappingsDynamic);
+    }
+
+    /**
+     * JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    @Import(name="mappingsDynamicConfig")
+    private @Nullable Output<String> mappingsDynamicConfig;
+
+    /**
+     * @return JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    public Optional<Output<String>> mappingsDynamicConfig() {
+        return Optional.ofNullable(this.mappingsDynamicConfig);
     }
 
     /**
@@ -258,6 +274,21 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+     * 
+     */
+    @Import(name="typeSets")
+    private @Nullable Output<List<SearchIndexTypeSetArgs>> typeSets;
+
+    /**
+     * @return One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+     * 
+     */
+    public Optional<Output<List<SearchIndexTypeSetArgs>>> typeSets() {
+        return Optional.ofNullable(this.typeSets);
+    }
+
     @Import(name="waitForIndexBuildCompletion")
     private @Nullable Output<Boolean> waitForIndexBuildCompletion;
 
@@ -276,6 +307,7 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         this.fields = $.fields;
         this.indexId = $.indexId;
         this.mappingsDynamic = $.mappingsDynamic;
+        this.mappingsDynamicConfig = $.mappingsDynamicConfig;
         this.mappingsFields = $.mappingsFields;
         this.name = $.name;
         this.projectId = $.projectId;
@@ -284,6 +316,7 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         this.storedSource = $.storedSource;
         this.synonyms = $.synonyms;
         this.type = $.type;
+        this.typeSets = $.typeSets;
         this.waitForIndexBuildCompletion = $.waitForIndexBuildCompletion;
     }
 
@@ -453,7 +486,7 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsDynamic Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+         * @param mappingsDynamic Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
          * 
          * @return builder
          * 
@@ -464,13 +497,34 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param mappingsDynamic Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+         * @param mappingsDynamic Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
          * 
          * @return builder
          * 
          */
         public Builder mappingsDynamic(Boolean mappingsDynamic) {
             return mappingsDynamic(Output.of(mappingsDynamic));
+        }
+
+        /**
+         * @param mappingsDynamicConfig JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mappingsDynamicConfig(@Nullable Output<String> mappingsDynamicConfig) {
+            $.mappingsDynamicConfig = mappingsDynamicConfig;
+            return this;
+        }
+
+        /**
+         * @param mappingsDynamicConfig JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mappingsDynamicConfig(String mappingsDynamicConfig) {
+            return mappingsDynamicConfig(Output.of(mappingsDynamicConfig));
         }
 
         /**
@@ -649,6 +703,37 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        /**
+         * @param typeSets One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder typeSets(@Nullable Output<List<SearchIndexTypeSetArgs>> typeSets) {
+            $.typeSets = typeSets;
+            return this;
+        }
+
+        /**
+         * @param typeSets One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder typeSets(List<SearchIndexTypeSetArgs> typeSets) {
+            return typeSets(Output.of(typeSets));
+        }
+
+        /**
+         * @param typeSets One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder typeSets(SearchIndexTypeSetArgs... typeSets) {
+            return typeSets(List.of(typeSets));
         }
 
         public Builder waitForIndexBuildCompletion(@Nullable Output<Boolean> waitForIndexBuildCompletion) {

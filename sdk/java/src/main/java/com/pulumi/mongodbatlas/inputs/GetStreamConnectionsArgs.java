@@ -18,18 +18,26 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
     public static final GetStreamConnectionsArgs Empty = new GetStreamConnectionsArgs();
 
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Import(name="instanceName", required=true)
-    private Output<String> instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Import(name="instanceName")
+    private @Nullable Output<String> instanceName;
 
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    public Output<String> instanceName() {
-        return this.instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<Output<String>> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
 
     /**
@@ -77,6 +85,25 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
         return this.projectId;
     }
 
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     * 
+     */
+    @Import(name="workspaceName")
+    private @Nullable Output<String> workspaceName;
+
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     * 
+     */
+    public Optional<Output<String>> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
+
     private GetStreamConnectionsArgs() {}
 
     private GetStreamConnectionsArgs(GetStreamConnectionsArgs $) {
@@ -84,6 +111,7 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
         this.itemsPerPage = $.itemsPerPage;
         this.pageNum = $.pageNum;
         this.projectId = $.projectId;
+        this.workspaceName = $.workspaceName;
     }
 
     public static Builder builder() {
@@ -105,22 +133,30 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
+         * @param instanceName Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
          */
-        public Builder instanceName(Output<String> instanceName) {
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+        public Builder instanceName(@Nullable Output<String> instanceName) {
             $.instanceName = instanceName;
             return this;
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
+         * @param instanceName Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
         public Builder instanceName(String instanceName) {
             return instanceName(Output.of(instanceName));
         }
@@ -188,10 +224,32 @@ public final class GetStreamConnectionsArgs extends com.pulumi.resources.InvokeA
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param workspaceName Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+         * 
+         * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder workspaceName(@Nullable Output<String> workspaceName) {
+            $.workspaceName = workspaceName;
+            return this;
+        }
+
+        /**
+         * @param workspaceName Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+         * 
+         * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder workspaceName(String workspaceName) {
+            return workspaceName(Output.of(workspaceName));
+        }
+
         public GetStreamConnectionsArgs build() {
-            if ($.instanceName == null) {
-                throw new MissingRequiredPropertyException("GetStreamConnectionsArgs", "instanceName");
-            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("GetStreamConnectionsArgs", "projectId");
             }

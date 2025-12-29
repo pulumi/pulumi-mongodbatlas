@@ -5,7 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAws;
+import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAw;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure;
 import java.util.List;
 import java.util.Objects;
@@ -16,9 +16,9 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig extends com.p
     public static final GetFederatedDatabaseInstanceCloudProviderConfig Empty = new GetFederatedDatabaseInstanceCloudProviderConfig();
 
     @Import(name="aws", required=true)
-    private GetFederatedDatabaseInstanceCloudProviderConfigAws aws;
+    private List<GetFederatedDatabaseInstanceCloudProviderConfigAw> aws;
 
-    public GetFederatedDatabaseInstanceCloudProviderConfigAws aws() {
+    public List<GetFederatedDatabaseInstanceCloudProviderConfigAw> aws() {
         return this.aws;
     }
 
@@ -54,9 +54,13 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig extends com.p
             $ = new GetFederatedDatabaseInstanceCloudProviderConfig(Objects.requireNonNull(defaults));
         }
 
-        public Builder aws(GetFederatedDatabaseInstanceCloudProviderConfigAws aws) {
+        public Builder aws(List<GetFederatedDatabaseInstanceCloudProviderConfigAw> aws) {
             $.aws = aws;
             return this;
+        }
+
+        public Builder aws(GetFederatedDatabaseInstanceCloudProviderConfigAw... aws) {
+            return aws(List.of(aws));
         }
 
         public Builder azures(List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures) {

@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetOnlineArchives
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OnlineArchive
-        /// 
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -47,7 +45,7 @@ namespace Pulumi.Mongodbatlas
         /// * `DataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `DataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
         /// * `Schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-        /// * `PartitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// * `PartitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// * `Paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// * `State` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         /// 
@@ -84,8 +82,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OnlineArchive
-        /// 
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -119,7 +115,7 @@ namespace Pulumi.Mongodbatlas
         /// * `DataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `DataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
         /// * `Schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-        /// * `PartitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// * `PartitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// * `Paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// * `State` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         /// 
@@ -156,8 +152,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OnlineArchive
-        /// 
         /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -191,7 +185,7 @@ namespace Pulumi.Mongodbatlas
         /// * `DataExpirationRule` - Rule for specifying when data should be deleted from the archive. See data expiration rule.
         /// * `DataProcessRegion` - Settings to configure the region where you wish to store your archived data. See data process region.
         /// * `Schedule` - Regular frequency and duration when archiving process occurs. See schedule.
-        /// * `PartitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// * `PartitionFields` - Fields to use to partition data. You can specify up to two frequently queried fields to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// * `Paused` - State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         /// * `State` - Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         /// 

@@ -4,7 +4,6 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
@@ -35,7 +34,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
-    private String instanceSize;
+    private @Nullable String instanceSize;
     /**
      * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
@@ -70,8 +69,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
-    public String instanceSize() {
-        return this.instanceSize;
+    public Optional<String> instanceSize() {
+        return Optional.ofNullable(this.instanceSize);
     }
     /**
      * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -93,7 +92,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
         private @Nullable Integer diskIops;
         private @Nullable Double diskSizeGb;
         private @Nullable String ebsVolumeType;
-        private String instanceSize;
+        private @Nullable String instanceSize;
         private @Nullable Integer nodeCount;
         public Builder() {}
         public Builder(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs defaults) {
@@ -124,10 +123,8 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
             return this;
         }
         @CustomType.Setter
-        public Builder instanceSize(String instanceSize) {
-            if (instanceSize == null) {
-              throw new MissingRequiredPropertyException("AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs", "instanceSize");
-            }
+        public Builder instanceSize(@Nullable String instanceSize) {
+
             this.instanceSize = instanceSize;
             return this;
         }

@@ -12,9 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectInvitation
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ProjectInvitation
-        /// 
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
         /// 
@@ -53,9 +53,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ProjectInvitation
-        /// 
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
         /// 
@@ -94,9 +94,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectInvitationResult>("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args ?? new GetProjectInvitationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ProjectInvitation
-        /// 
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
         /// 

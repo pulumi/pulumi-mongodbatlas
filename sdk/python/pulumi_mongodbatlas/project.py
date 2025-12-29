@@ -81,6 +81,9 @@ class ProjectArgs:
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if teams is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""", DeprecationWarning)
+            pulumi.log.warn("""teams is deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
+        if teams is not None:
             pulumi.set(__self__, "teams", teams)
         if with_default_alerts_settings is not None:
             pulumi.set(__self__, "with_default_alerts_settings", with_default_alerts_settings)
@@ -241,6 +244,7 @@ class ProjectArgs:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
 
@@ -339,6 +343,9 @@ class _ProjectState:
             pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if teams is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""", DeprecationWarning)
+            pulumi.log.warn("""teams is deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
         if teams is not None:
             pulumi.set(__self__, "teams", teams)
         if with_default_alerts_settings is not None:
@@ -537,6 +544,7 @@ class _ProjectState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
 
@@ -580,8 +588,6 @@ class Project(pulumi.CustomResource):
                  with_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        ## # Resource: Project
-
         `Project` provides a Project resource. This allows project to be created.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
@@ -597,19 +603,6 @@ class Project(pulumi.CustomResource):
             name="project-name",
             org_id=test.org_id,
             project_owner_id="<OWNER_ACCOUNT_ID>",
-            teams=[
-                {
-                    "team_id": "5e0fa8c99ccf641c722fe645",
-                    "role_names": ["GROUP_OWNER"],
-                },
-                {
-                    "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                    "role_names": [
-                        "GROUP_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                },
-            ],
             limits=[
                 {
                     "name": "atlas.project.deployment.clusters",
@@ -628,6 +621,9 @@ class Project(pulumi.CustomResource):
             is_schema_advisor_enabled=True,
             is_slow_operation_thresholding_enabled=True)
         ```
+
+        ### Further Examples
+        - Atlas Project with custom limits
 
         ## Import
 
@@ -661,8 +657,6 @@ class Project(pulumi.CustomResource):
                  args: ProjectArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: Project
-
         `Project` provides a Project resource. This allows project to be created.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
@@ -678,19 +672,6 @@ class Project(pulumi.CustomResource):
             name="project-name",
             org_id=test.org_id,
             project_owner_id="<OWNER_ACCOUNT_ID>",
-            teams=[
-                {
-                    "team_id": "5e0fa8c99ccf641c722fe645",
-                    "role_names": ["GROUP_OWNER"],
-                },
-                {
-                    "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                    "role_names": [
-                        "GROUP_READ_ONLY",
-                        "GROUP_DATA_ACCESS_READ_WRITE",
-                    ],
-                },
-            ],
             limits=[
                 {
                     "name": "atlas.project.deployment.clusters",
@@ -709,6 +690,9 @@ class Project(pulumi.CustomResource):
             is_schema_advisor_enabled=True,
             is_slow_operation_thresholding_enabled=True)
         ```
+
+        ### Further Examples
+        - Atlas Project with custom limits
 
         ## Import
 
@@ -983,6 +967,7 @@ class Project(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def teams(self) -> pulumi.Output[Optional[Sequence['outputs.ProjectTeam']]]:
         return pulumi.get(self, "teams")
 

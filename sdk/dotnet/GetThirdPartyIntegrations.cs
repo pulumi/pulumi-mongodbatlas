@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetThirdPartyIntegrations
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getThirdPartyIntegrations
-        /// 
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
         /// applied across the project. 
         /// 
@@ -56,8 +54,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getThirdPartyIntegrations
-        /// 
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
         /// applied across the project. 
         /// 
@@ -100,8 +96,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetThirdPartyIntegrationsResult>("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args ?? new GetThirdPartyIntegrationsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getThirdPartyIntegrations
-        /// 
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
         /// applied across the project. 
         /// 

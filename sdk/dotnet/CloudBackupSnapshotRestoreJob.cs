@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
+    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -112,7 +112,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.Index.CloudProviderSnapshot("test", new()
+    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -200,7 +200,7 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### Available complete examples
+    /// ### Further Examples
     /// - Restore from backup snapshot at point in time
     /// - Restore from backup snapshot using an advanced cluster resource
     /// 

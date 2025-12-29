@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.MongodbEmployeeAccessGrant
- *
  * `mongodbatlas.MongodbEmployeeAccessGrant` provides a MongoDB Employee Access Grant resource. The resource lets you create, delete, update and import a MongoDB employee access grant.
  *
  * ## Example Usage
@@ -30,6 +28,9 @@ import * as utilities from "./utilities";
  * export const grantType = dsExample.then(dsExample => dsExample.grantType);
  * export const expirationTime = dsExample.then(dsExample => dsExample.expirationTime);
  * ```
+ *
+ * ### Further Examples
+ * - Grant log access to MongoDB employees
  *
  * ## Import
  *

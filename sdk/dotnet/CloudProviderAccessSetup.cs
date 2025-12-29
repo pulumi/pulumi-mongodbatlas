@@ -9,30 +9,142 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Mongodbatlas
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ### With AWS
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+    ///     {
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Azure
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+    ///     {
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "AZURE",
+    ///         AzureConfigs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudProviderAccessSetupAzureConfigArgs
+    ///             {
+    ///                 AtlasAzureAppId = "9f2deb0d-be22-4524-a403-df531868bac0",
+    ///                 ServicePrincipalId = "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+    ///                 TenantId = "91402384-d71e-22f5-22dd-759e272cdc1c",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With GCP
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var testRole = new Mongodbatlas.CloudProviderAccessSetup("test_role", new()
+    ///     {
+    ///         ProjectId = "64259ee860c43338194b0f8e",
+    ///         ProviderName = "GCP",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Further Examples
+    /// - AWS Cloud Provider Access
+    /// - Azure Cloud Provider Access
+    /// - GCP Cloud Provider Access
+    /// 
+    /// ## Import
+    /// 
+    /// It can be imported using project ID, provider name and role_id in the format `project_id`-`provider_name`-`role_id`, e.g.
+    /// 
+    /// ```sh
+    /// $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+    /// ```
+    /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup")]
     public partial class CloudProviderAccessSetup : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// aws related arn roles
+        /// </summary>
         [Output("awsConfigs")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessSetupAwsConfig>> AwsConfigs { get; private set; } = null!;
 
+        /// <summary>
+        /// azure related configurations
+        /// </summary>
         [Output("azureConfigs")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessSetupAzureConfig>> AzureConfigs { get; private set; } = null!;
 
+        /// <summary>
+        /// Date on which this role was created.
+        /// </summary>
         [Output("createdDate")]
         public Output<string> CreatedDate { get; private set; } = null!;
 
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool?> DeleteOnCreateTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// gcp related configuration
+        /// </summary>
         [Output("gcpConfigs")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessSetupGcpConfig>> GcpConfigs { get; private set; } = null!;
 
+        /// <summary>
+        /// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         [Output("lastUpdatedDate")]
         public Output<string> LastUpdatedDate { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique ID for the project
+        /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `ProviderName` will result in destruction of the existing resource and the creation of a new resource.
+        /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
 
+        /// <summary>
+        /// Unique ID of this role.
+        /// </summary>
         [Output("roleId")]
         public Output<string> RoleId { get; private set; } = null!;
 
@@ -84,15 +196,31 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("azureConfigs")]
         private InputList<Inputs.CloudProviderAccessSetupAzureConfigArgs>? _azureConfigs;
+
+        /// <summary>
+        /// azure related configurations
+        /// </summary>
         public InputList<Inputs.CloudProviderAccessSetupAzureConfigArgs> AzureConfigs
         {
             get => _azureConfigs ?? (_azureConfigs = new InputList<Inputs.CloudProviderAccessSetupAzureConfigArgs>());
             set => _azureConfigs = value;
         }
 
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
+        /// The unique ID for the project
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `ProviderName` will result in destruction of the existing resource and the creation of a new resource.
+        /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
 
@@ -106,6 +234,10 @@ namespace Pulumi.Mongodbatlas
     {
         [Input("awsConfigs")]
         private InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs>? _awsConfigs;
+
+        /// <summary>
+        /// aws related arn roles
+        /// </summary>
         public InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs> AwsConfigs
         {
             get => _awsConfigs ?? (_awsConfigs = new InputList<Inputs.CloudProviderAccessSetupAwsConfigGetArgs>());
@@ -114,32 +246,61 @@ namespace Pulumi.Mongodbatlas
 
         [Input("azureConfigs")]
         private InputList<Inputs.CloudProviderAccessSetupAzureConfigGetArgs>? _azureConfigs;
+
+        /// <summary>
+        /// azure related configurations
+        /// </summary>
         public InputList<Inputs.CloudProviderAccessSetupAzureConfigGetArgs> AzureConfigs
         {
             get => _azureConfigs ?? (_azureConfigs = new InputList<Inputs.CloudProviderAccessSetupAzureConfigGetArgs>());
             set => _azureConfigs = value;
         }
 
+        /// <summary>
+        /// Date on which this role was created.
+        /// </summary>
         [Input("createdDate")]
         public Input<string>? CreatedDate { get; set; }
 
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
         [Input("gcpConfigs")]
         private InputList<Inputs.CloudProviderAccessSetupGcpConfigGetArgs>? _gcpConfigs;
+
+        /// <summary>
+        /// gcp related configuration
+        /// </summary>
         public InputList<Inputs.CloudProviderAccessSetupGcpConfigGetArgs> GcpConfigs
         {
             get => _gcpConfigs ?? (_gcpConfigs = new InputList<Inputs.CloudProviderAccessSetupGcpConfigGetArgs>());
             set => _gcpConfigs = value;
         }
 
+        /// <summary>
+        /// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         [Input("lastUpdatedDate")]
         public Input<string>? LastUpdatedDate { get; set; }
 
+        /// <summary>
+        /// The unique ID for the project
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `ProviderName` will result in destruction of the existing resource and the creation of a new resource.
+        /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }
 
+        /// <summary>
+        /// Unique ID of this role.
+        /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 

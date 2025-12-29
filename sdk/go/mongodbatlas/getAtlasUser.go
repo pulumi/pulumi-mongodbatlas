@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getAtlasUser
-//
 // `getAtlasUser` Provides a MongoDB Atlas User.
+//
+// > **DEPRECATION:** This data source is deprecated. Use `CloudUserOrgAssignment` to read organization user assignments. See the Migration Guide: Migrate off deprecated `getAtlasUser` and `getAtlasUsers`.
 //
 // > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
 //
@@ -25,7 +25,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -50,7 +50,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -84,7 +84,7 @@ type GetAtlasUserArgs struct {
 	UserId *string `pulumi:"userId"`
 	// Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
 	//
-	// > **IMPORTANT:** Either `userId` or `username` must be configurated.
+	// > **IMPORTANT:** Either `userId` or `username` must be configured.
 	Username *string `pulumi:"username"`
 }
 
@@ -94,7 +94,9 @@ type GetAtlasUserResult struct {
 	Country string `pulumi:"country"`
 	// Date and time when the current account is created. This value is in the ISO 8601 timestamp format in UTC.
 	CreatedAt string `pulumi:"createdAt"`
-	// Email address that belongs to the MongoDB Atlas user.
+	// **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `getAtlasUser` and `getAtlasUsers`."
+	//
+	// Deprecated: This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 	EmailAddress string `pulumi:"emailAddress"`
 	// First or given name that belongs to the MongoDB Atlas user.
 	FirstName string `pulumi:"firstName"`
@@ -134,7 +136,7 @@ type GetAtlasUserOutputArgs struct {
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 	// Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
 	//
-	// > **IMPORTANT:** Either `userId` or `username` must be configurated.
+	// > **IMPORTANT:** Either `userId` or `username` must be configured.
 	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
@@ -167,7 +169,9 @@ func (o GetAtlasUserResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAtlasUserResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Email address that belongs to the MongoDB Atlas user.
+// **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `getAtlasUser` and `getAtlasUsers`."
+//
+// Deprecated: This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 func (o GetAtlasUserResultOutput) EmailAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAtlasUserResult) string { return v.EmailAddress }).(pulumi.StringOutput)
 }

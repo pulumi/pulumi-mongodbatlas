@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.PushBasedLogExportState;
 import com.pulumi.mongodbatlas.outputs.PushBasedLogExportTimeouts;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -88,6 +89,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Push-Based Log Export
+ * 
  * ## Import
  * 
  * Push-based log export resource can be imported using the project ID, e.g.
@@ -124,6 +128,20 @@ public class PushBasedLogExport extends com.pulumi.resources.CustomResource {
      */
     public Output<String> createDate() {
         return this.createDate;
+    }
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Output<Boolean> deleteOnCreateTimeout() {
+        return this.deleteOnCreateTimeout;
     }
     /**
      * ID of the AWS IAM role that is used to write to the S3 bucket.

@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['EncryptionAtRestPrivateEndpointArgs', 'EncryptionAtRestPrivateEndpoint']
 
@@ -21,16 +23,23 @@ class EncryptionAtRestPrivateEndpointArgs:
     def __init__(__self__, *,
                  cloud_provider: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 region_name: pulumi.Input[_builtins.str]):
+                 region_name: pulumi.Input[_builtins.str],
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
+                 timeouts: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a EncryptionAtRestPrivateEndpoint resource.
         :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] region_name: Cloud provider region in which the Encryption At Rest private endpoint is located.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "region_name", region_name)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
@@ -68,19 +77,43 @@ class EncryptionAtRestPrivateEndpointArgs:
     def region_name(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "region_name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
 
 @pulumi.input_type
 class _EncryptionAtRestPrivateEndpointState:
     def __init__(__self__, *,
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  error_message: Optional[pulumi.Input[_builtins.str]] = None,
                  private_endpoint_connection_name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeouts: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering EncryptionAtRestPrivateEndpoint resources.
         :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] error_message: Error message for failures associated with the Encryption At Rest private endpoint.
         :param pulumi.Input[_builtins.str] private_endpoint_connection_name: Connection name of the Azure Private Endpoint.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -89,6 +122,8 @@ class _EncryptionAtRestPrivateEndpointState:
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if error_message is not None:
             pulumi.set(__self__, "error_message", error_message)
         if private_endpoint_connection_name is not None:
@@ -99,6 +134,8 @@ class _EncryptionAtRestPrivateEndpointState:
             pulumi.set(__self__, "region_name", region_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
@@ -111,6 +148,18 @@ class _EncryptionAtRestPrivateEndpointState:
     @cloud_provider.setter
     def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="errorMessage")
@@ -172,6 +221,15 @@ class _EncryptionAtRestPrivateEndpointState:
     def status(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "status", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
 
 @pulumi.type_token("mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint")
 class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
@@ -180,12 +238,12 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeouts: Optional[pulumi.Input[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        ## # Resource: EncryptionAtRestPrivateEndpoint
-
         `EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
 
         > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
@@ -267,6 +325,10 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             cloud_provider="AWS",
             region_name=atlas_aws_region)
         ```
+
+        ### Further Examples
+        - AWS KMS Encryption at Rest Private Endpoint
+        - Azure Key Vault Encryption at Rest Private Endpoint
 
         ## Import
 
@@ -279,6 +341,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] region_name: Cloud provider region in which the Encryption At Rest private endpoint is located.
         """
@@ -289,8 +352,6 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
                  args: EncryptionAtRestPrivateEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: EncryptionAtRestPrivateEndpoint
-
         `EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
 
         > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
@@ -372,6 +433,10 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             cloud_provider="AWS",
             region_name=atlas_aws_region)
         ```
+
+        ### Further Examples
+        - AWS KMS Encryption at Rest Private Endpoint
+        - Azure Key Vault Encryption at Rest Private Endpoint
 
         ## Import
 
@@ -397,8 +462,10 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeouts: Optional[pulumi.Input[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -411,12 +478,14 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             if cloud_provider is None and not opts.urn:
                 raise TypeError("Missing required property 'cloud_provider'")
             __props__.__dict__["cloud_provider"] = cloud_provider
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             if region_name is None and not opts.urn:
                 raise TypeError("Missing required property 'region_name'")
             __props__.__dict__["region_name"] = region_name
+            __props__.__dict__["timeouts"] = timeouts
             __props__.__dict__["error_message"] = None
             __props__.__dict__["private_endpoint_connection_name"] = None
             __props__.__dict__["status"] = None
@@ -431,11 +500,13 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             error_message: Optional[pulumi.Input[_builtins.str]] = None,
             private_endpoint_connection_name: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             region_name: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None) -> 'EncryptionAtRestPrivateEndpoint':
+            status: Optional[pulumi.Input[_builtins.str]] = None,
+            timeouts: Optional[pulumi.Input[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None) -> 'EncryptionAtRestPrivateEndpoint':
         """
         Get an existing EncryptionAtRestPrivateEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -444,6 +515,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] error_message: Error message for failures associated with the Encryption At Rest private endpoint.
         :param pulumi.Input[_builtins.str] private_endpoint_connection_name: Connection name of the Azure Private Endpoint.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -455,11 +527,13 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         __props__ = _EncryptionAtRestPrivateEndpointState.__new__(_EncryptionAtRestPrivateEndpointState)
 
         __props__.__dict__["cloud_provider"] = cloud_provider
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["error_message"] = error_message
         __props__.__dict__["private_endpoint_connection_name"] = private_endpoint_connection_name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region_name"] = region_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["timeouts"] = timeouts
         return EncryptionAtRestPrivateEndpoint(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -469,6 +543,14 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
 
     @_builtins.property
     @pulumi.getter(name="errorMessage")
@@ -509,4 +591,9 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         State of the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Output[Optional['outputs.EncryptionAtRestPrivateEndpointTimeouts']]:
+        return pulumi.get(self, "timeouts")
 

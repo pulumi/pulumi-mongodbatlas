@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFlexSnapshots
- *
  * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
  *
  * ## Example Usage
@@ -72,8 +70,6 @@ export interface GetFlexSnapshotsResult {
     readonly results: outputs.GetFlexSnapshotsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getFlexSnapshots
- *
  * `mongodbatlas.getFlexSnapshots` returns all snapshots of a flex cluster.
  *
  * ## Example Usage

@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace.
         /// </summary>
         public readonly string InstanceName;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Pipeline;
         /// <summary>
-        /// Human-readable label that identifies the stream processor.
+        /// Label that identifies the stream processor.
         /// </summary>
         public readonly string ProcessorName;
         /// <summary>
@@ -47,6 +47,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         /// </summary>
         public readonly string Stats;
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
+        public readonly string WorkspaceName;
 
         [OutputConstructor]
         private GetStreamProcessorsResultResult(
@@ -64,7 +68,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string state,
 
-            string stats)
+            string stats,
+
+            string workspaceName)
         {
             Id = id;
             InstanceName = instanceName;
@@ -74,6 +80,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ProjectId = projectId;
             State = state;
             Stats = stats;
+            WorkspaceName = workspaceName;
         }
     }
 }

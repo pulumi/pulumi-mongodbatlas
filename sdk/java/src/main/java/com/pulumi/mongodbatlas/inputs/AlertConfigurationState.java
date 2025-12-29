@@ -125,6 +125,21 @@ public final class AlertConfigurationState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.projectId);
     }
 
+    /**
+     * Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+     * 
+     */
+    @Import(name="severityOverride")
+    private @Nullable Output<String> severityOverride;
+
+    /**
+     * @return Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+     * 
+     */
+    public Optional<Output<String>> severityOverride() {
+        return Optional.ofNullable(this.severityOverride);
+    }
+
     @Import(name="thresholdConfig")
     private @Nullable Output<AlertConfigurationThresholdConfigArgs> thresholdConfig;
 
@@ -158,6 +173,7 @@ public final class AlertConfigurationState extends com.pulumi.resources.Resource
         this.metricThresholdConfig = $.metricThresholdConfig;
         this.notifications = $.notifications;
         this.projectId = $.projectId;
+        this.severityOverride = $.severityOverride;
         this.thresholdConfig = $.thresholdConfig;
         this.updated = $.updated;
     }
@@ -326,6 +342,27 @@ public final class AlertConfigurationState extends com.pulumi.resources.Resource
          */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
+        }
+
+        /**
+         * @param severityOverride Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder severityOverride(@Nullable Output<String> severityOverride) {
+            $.severityOverride = severityOverride;
+            return this;
+        }
+
+        /**
+         * @param severityOverride Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder severityOverride(String severityOverride) {
+            return severityOverride(Output.of(severityOverride));
         }
 
         public Builder thresholdConfig(@Nullable Output<AlertConfigurationThresholdConfigArgs> thresholdConfig) {

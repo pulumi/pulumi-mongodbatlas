@@ -8,191 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: EventTrigger
-//
-// `EventTrigger` provides a Event Trigger resource.
-//
-// Note: If the `appId` changes in the EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
-//
-// ## Example Usage
-//
-// ### S
-//
-// ### Example Usage: Database Trigger with Function
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-//				ProjectId:  pulumi.String("PROJECT ID"),
-//				AppId:      pulumi.String("APPLICATION ID"),
-//				Name:       pulumi.String("NAME OF THE TRIGGER"),
-//				Type:       pulumi.String("DATABASE"),
-//				FunctionId: pulumi.String("FUNCTION ID"),
-//				Disabled:   pulumi.Bool(false),
-//				ConfigOperationTypes: pulumi.StringArray{
-//					pulumi.String("INSERT"),
-//					pulumi.String("UPDATE"),
-//				},
-//				ConfigDatabase:   pulumi.String("DATABASE NAME"),
-//				ConfigCollection: pulumi.String("COLLECTION NAME"),
-//				ConfigServiceId:  pulumi.String("SERVICE ID"),
-//				ConfigMatch: pulumi.String(`{
-//	  \"updateDescription.updatedFields\": {
-//	    \"status\": \"blocked\"
-//	  }
-//	}
-//
-// `),
-//
-//				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
-//				ConfigFullDocument:       pulumi.Bool(false),
-//				ConfigFullDocumentBefore: pulumi.Bool(false),
-//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
-//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
-//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
-//						ConfigRegion:    pulumi.String("AWS REGIOn"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example Usage: Database Trigger with EventBridge
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-//				ProjectId: pulumi.String("PROJECT ID"),
-//				AppId:     pulumi.String("APPLICATION ID"),
-//				Name:      pulumi.String("NAME OF THE TRIGGER"),
-//				Type:      pulumi.String("DATABASE"),
-//				Disabled:  pulumi.Bool(false),
-//				Unordered: pulumi.Bool(false),
-//				ConfigOperationTypes: pulumi.StringArray{
-//					pulumi.String("INSERT"),
-//					pulumi.String("UPDATE"),
-//				},
-//				ConfigOperationType: pulumi.String("LOGIN"),
-//				ConfigProviders: pulumi.StringArray{
-//					pulumi.String("anon-user"),
-//				},
-//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
-//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
-//				ConfigServiceId:          pulumi.String("1"),
-//				ConfigMatch:              pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
-//				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
-//				ConfigFullDocument:       pulumi.Bool(false),
-//				ConfigFullDocumentBefore: pulumi.Bool(false),
-//				ConfigSchedule:           pulumi.String("*"),
-//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
-//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
-//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
-//						ConfigRegion:    pulumi.String("AWS REGIOn"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example Usage: Authentication Trigger
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-//				ProjectId:           pulumi.String("PROJECT ID"),
-//				AppId:               pulumi.String("APPLICATION ID"),
-//				Name:                pulumi.String("NAME OF THE TRIGGER"),
-//				Type:                pulumi.String("AUTHENTICATION"),
-//				FunctionId:          pulumi.String("1"),
-//				Disabled:            pulumi.Bool(false),
-//				ConfigOperationType: pulumi.String("LOGIN"),
-//				ConfigProviders: pulumi.StringArray{
-//					pulumi.String("anon-user"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example Usage: Scheduled Trigger
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
-//				ProjectId:      pulumi.String("PROJECT ID"),
-//				AppId:          pulumi.String("APPLICATION ID"),
-//				Name:           pulumi.String("NAME OF THE TRIGGER"),
-//				Type:           pulumi.String("SCHEDULED"),
-//				FunctionId:     pulumi.String("1"),
-//				Disabled:       pulumi.Bool(false),
-//				ConfigSchedule: pulumi.String("*"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
@@ -216,22 +35,22 @@ type EventTrigger struct {
 	ConfigFullDocumentBefore pulumi.BoolOutput `pulumi:"configFullDocumentBefore"`
 	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch pulumi.StringOutput `pulumi:"configMatch"`
-	// Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType pulumi.StringOutput `pulumi:"configOperationType"`
-	// Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes pulumi.StringArrayOutput `pulumi:"configOperationTypes"`
 	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject pulumi.StringOutput `pulumi:"configProject"`
-	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders pulumi.StringArrayOutput `pulumi:"configProviders"`
-	// Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
 	ConfigSchedule     pulumi.StringOutput `pulumi:"configSchedule"`
 	ConfigScheduleType pulumi.StringOutput `pulumi:"configScheduleType"`
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId pulumi.StringOutput `pulumi:"configServiceId"`
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled pulumi.BoolOutput `pulumi:"disabled"`
-	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
 	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
 	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors EventTriggerEventProcessorsPtrOutput `pulumi:"eventProcessors"`
@@ -302,22 +121,22 @@ type eventTriggerState struct {
 	ConfigFullDocumentBefore *bool `pulumi:"configFullDocumentBefore"`
 	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch *string `pulumi:"configMatch"`
-	// Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType *string `pulumi:"configOperationType"`
-	// Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes []string `pulumi:"configOperationTypes"`
 	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject *string `pulumi:"configProject"`
-	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders []string `pulumi:"configProviders"`
-	// Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
 	ConfigSchedule     *string `pulumi:"configSchedule"`
 	ConfigScheduleType *string `pulumi:"configScheduleType"`
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId *string `pulumi:"configServiceId"`
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled *bool `pulumi:"disabled"`
-	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
 	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
 	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors *EventTriggerEventProcessors `pulumi:"eventProcessors"`
@@ -350,22 +169,22 @@ type EventTriggerState struct {
 	ConfigFullDocumentBefore pulumi.BoolPtrInput
 	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch pulumi.StringPtrInput
-	// Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType pulumi.StringPtrInput
-	// Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes pulumi.StringArrayInput
 	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject pulumi.StringPtrInput
-	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders pulumi.StringArrayInput
-	// Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
 	ConfigSchedule     pulumi.StringPtrInput
 	ConfigScheduleType pulumi.StringPtrInput
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId pulumi.StringPtrInput
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled pulumi.BoolPtrInput
-	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
 	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
 	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors EventTriggerEventProcessorsPtrInput
@@ -402,21 +221,21 @@ type eventTriggerArgs struct {
 	ConfigFullDocumentBefore *bool `pulumi:"configFullDocumentBefore"`
 	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch *string `pulumi:"configMatch"`
-	// Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType *string `pulumi:"configOperationType"`
-	// Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes []string `pulumi:"configOperationTypes"`
 	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject *string `pulumi:"configProject"`
-	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders []string `pulumi:"configProviders"`
-	// Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
 	ConfigSchedule *string `pulumi:"configSchedule"`
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId *string `pulumi:"configServiceId"`
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled *bool `pulumi:"disabled"`
-	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
 	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
 	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors *EventTriggerEventProcessors `pulumi:"eventProcessors"`
@@ -446,21 +265,21 @@ type EventTriggerArgs struct {
 	ConfigFullDocumentBefore pulumi.BoolPtrInput
 	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch pulumi.StringPtrInput
-	// Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType pulumi.StringPtrInput
-	// Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes pulumi.StringArrayInput
 	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject pulumi.StringPtrInput
-	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders pulumi.StringArrayInput
-	// Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
 	ConfigSchedule pulumi.StringPtrInput
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId pulumi.StringPtrInput
 	// Default: `false` If `true`, the trigger is disabled.
 	Disabled pulumi.BoolPtrInput
-	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+	// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
 	// * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
 	// * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 	EventProcessors EventTriggerEventProcessorsPtrInput
@@ -593,12 +412,12 @@ func (o EventTriggerOutput) ConfigMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigMatch }).(pulumi.StringOutput)
 }
 
-// Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 func (o EventTriggerOutput) ConfigOperationType() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigOperationType }).(pulumi.StringOutput)
 }
 
-// Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 func (o EventTriggerOutput) ConfigOperationTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringArrayOutput { return v.ConfigOperationTypes }).(pulumi.StringArrayOutput)
 }
@@ -608,12 +427,12 @@ func (o EventTriggerOutput) ConfigProject() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigProject }).(pulumi.StringOutput)
 }
 
-// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 func (o EventTriggerOutput) ConfigProviders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringArrayOutput { return v.ConfigProviders }).(pulumi.StringArrayOutput)
 }
 
-// Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
 func (o EventTriggerOutput) ConfigSchedule() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigSchedule }).(pulumi.StringOutput)
 }
@@ -632,7 +451,7 @@ func (o EventTriggerOutput) Disabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.BoolOutput { return v.Disabled }).(pulumi.BoolOutput)
 }
 
-// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+// An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
 // * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
 // * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
 func (o EventTriggerOutput) EventProcessors() EventTriggerEventProcessorsPtrOutput {

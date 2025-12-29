@@ -13,8 +13,17 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class CloudProviderAccessSetupAzureConfig
     {
+        /// <summary>
+        /// Azure Active Directory Application ID of Atlas. This property is required when `ProviderName = "AZURE".`
+        /// </summary>
         public readonly string AtlasAzureAppId;
+        /// <summary>
+        /// UUID string that identifies the Azure Service Principal. This property is required when `ProviderName = "AZURE".`
+        /// </summary>
         public readonly string ServicePrincipalId;
+        /// <summary>
+        /// UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `ProviderName = "AZURE".`
+        /// </summary>
         public readonly string TenantId;
 
         [OutputConstructor]

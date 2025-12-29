@@ -57,6 +57,9 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - Migrate Project Invitation to Cloud User Project Assignment
+    /// 
     /// ## Import
     /// 
     /// ~&gt; __IMPORTANT:__

@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class CloudProviderAccessAuthorizationAzure {
+    /**
+     * @return Azure Active Directory Application ID of Atlas.
+     * 
+     */
     private String atlasAzureAppId;
+    /**
+     * @return UUID string that identifies the Azure Service Principal.
+     * 
+     */
     private String servicePrincipalId;
+    /**
+     * @return UUID String that identifies the Azure Active Directory Tenant ID.
+     * 
+     */
     private String tenantId;
 
     private CloudProviderAccessAuthorizationAzure() {}
+    /**
+     * @return Azure Active Directory Application ID of Atlas.
+     * 
+     */
     public String atlasAzureAppId() {
         return this.atlasAzureAppId;
     }
+    /**
+     * @return UUID string that identifies the Azure Service Principal.
+     * 
+     */
     public String servicePrincipalId() {
         return this.servicePrincipalId;
     }
+    /**
+     * @return UUID String that identifies the Azure Active Directory Tenant ID.
+     * 
+     */
     public String tenantId() {
         return this.tenantId;
     }

@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.FederatedSettingsIdentityProvider
- *
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
  *
  * ## Example Usage
@@ -50,6 +48,8 @@ import * as utilities from "./utilities";
  *     userClaim: "sub",
  * });
  * ```
+ * ### Further Examples
+ * - Azure Federated Settings Identity Provider
  *
  * ## Import
  *

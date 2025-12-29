@@ -21,9 +21,17 @@ import javax.annotation.Nullable;
 
 @ResourceType(type="mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization")
 public class CloudProviderAccessAuthorization extends com.pulumi.resources.CustomResource {
+    /**
+     * Date on which this role was authorized.
+     * 
+     */
     @Export(name="authorizedDate", refs={String.class}, tree="[0]")
     private Output<String> authorizedDate;
 
+    /**
+     * @return Date on which this role was authorized.
+     * 
+     */
     public Output<String> authorizedDate() {
         return this.authorizedDate;
     }
@@ -39,9 +47,17 @@ public class CloudProviderAccessAuthorization extends com.pulumi.resources.Custo
     public Output<Optional<CloudProviderAccessAuthorizationAzure>> azure() {
         return Codegen.optional(this.azure);
     }
+    /**
+     * Atlas features this AWS IAM role is linked to.
+     * 
+     */
     @Export(name="featureUsages", refs={List.class,CloudProviderAccessAuthorizationFeatureUsage.class}, tree="[0,1]")
     private Output<List<CloudProviderAccessAuthorizationFeatureUsage>> featureUsages;
 
+    /**
+     * @return Atlas features this AWS IAM role is linked to.
+     * 
+     */
     public Output<List<CloudProviderAccessAuthorizationFeatureUsage>> featureUsages() {
         return this.featureUsages;
     }
@@ -51,15 +67,35 @@ public class CloudProviderAccessAuthorization extends com.pulumi.resources.Custo
     public Output<List<CloudProviderAccessAuthorizationGcp>> gcps() {
         return this.gcps;
     }
+    /**
+     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
+    /**
+     * @return The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     */
     public Output<String> projectId() {
         return this.projectId;
     }
+    /**
+     * The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     * Conditional
+     * 
+     */
     @Export(name="roleId", refs={String.class}, tree="[0]")
     private Output<String> roleId;
 
+    /**
+     * @return The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     * Conditional
+     * 
+     */
     public Output<String> roleId() {
         return this.roleId;
     }

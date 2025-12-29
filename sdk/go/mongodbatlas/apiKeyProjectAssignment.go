@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: ApiKeyProjectAssignment
-//
 // `ApiKeyProjectAssignment` provides an API Key Project Assignment resource. The resource lets you create, edit, and delete Organization API keys assignments to projects.
 //
 // ## Example Usage
@@ -25,7 +23,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -91,6 +89,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Assign API Key to Project
+//
 // ## Import
 //
 // API Key Project Assignment resource can be imported using the project ID and API key ID, in the format `{PROJECT_ID}/{API_KEY_ID}`, e.g.
@@ -109,7 +110,8 @@ type ApiKeyProjectAssignment struct {
 
 // NewApiKeyProjectAssignment registers a new resource with the given unique name, arguments, and options.
 func NewApiKeyProjectAssignment(ctx *pulumi.Context,
-	name string, args *ApiKeyProjectAssignmentArgs, opts ...pulumi.ResourceOption) (*ApiKeyProjectAssignment, error) {
+	name string, args *ApiKeyProjectAssignmentArgs, opts ...pulumi.ResourceOption,
+) (*ApiKeyProjectAssignment, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -135,7 +137,8 @@ func NewApiKeyProjectAssignment(ctx *pulumi.Context,
 // GetApiKeyProjectAssignment gets an existing ApiKeyProjectAssignment resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetApiKeyProjectAssignment(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ApiKeyProjectAssignmentState, opts ...pulumi.ResourceOption) (*ApiKeyProjectAssignment, error) {
+	name string, id pulumi.IDInput, state *ApiKeyProjectAssignmentState, opts ...pulumi.ResourceOption,
+) (*ApiKeyProjectAssignment, error) {
 	var resource ApiKeyProjectAssignment
 	err := ctx.ReadResource("mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment", name, id, state, &resource, opts...)
 	if err != nil {

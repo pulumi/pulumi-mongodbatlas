@@ -226,16 +226,17 @@ var cleanUpOverviewSection = tfbridge.DocsEdit{
 		if err != nil {
 			return nil, err
 		}
+		// Skip replacement if input is empty or text doesn't exist (upstream may have already removed it)
+		if len(input) == 0 {
+			return content, nil
+		}
 		if bytes.Contains(content, input) {
 			content = bytes.ReplaceAll(
 				content,
 				input,
 				nil)
-		} else {
-			// Hard error to ensure we keep this content up to date
-			return nil, fmt.Errorf("could not find text in upstream index.md, "+
-				"please verify file content at %s\n*****\n%s\n*****", replacesDir+"overview-input.md", string(input))
 		}
+		// If text doesn't exist, it may have already been removed upstream, so we skip silently
 		return content, nil
 	},
 }

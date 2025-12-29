@@ -199,8 +199,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[_builtins.str] =
                                          project_id: Optional[_builtins.str] = None,
                                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotExportJobResult:
     """
-    ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
-
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -262,8 +260,6 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
                                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobResult]:
     """
-    ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
-
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

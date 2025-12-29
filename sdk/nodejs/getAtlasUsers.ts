@@ -7,9 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: atlasUsers
- *
  * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
+ *
+ * > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
@@ -112,9 +112,9 @@ export interface GetAtlasUsersResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: atlasUsers
- *
  * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
+ *
+ * > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *

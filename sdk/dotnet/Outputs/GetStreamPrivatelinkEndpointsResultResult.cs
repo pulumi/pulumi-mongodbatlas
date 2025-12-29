@@ -54,13 +54,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProviderAccountId;
         /// <summary>
-        /// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        /// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         /// </summary>
         public readonly string ProviderName;
         /// <summary>
         /// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `Arn`.
         /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+        /// </summary>
+        public readonly ImmutableArray<string> ServiceAttachmentUris;
         /// <summary>
         /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         /// </summary>
@@ -75,6 +79,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// 	* **AWS**: MSK, CONFLUENT, and S3
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
+        /// 
+        /// 	* **GCP**: CONFLUENT
         /// </summary>
         public readonly string Vendor;
 
@@ -102,6 +108,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string region,
 
+            ImmutableArray<string> serviceAttachmentUris,
+
             string serviceEndpointId,
 
             string state,
@@ -119,6 +127,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ProviderAccountId = providerAccountId;
             ProviderName = providerName;
             Region = region;
+            ServiceAttachmentUris = serviceAttachmentUris;
             ServiceEndpointId = serviceEndpointId;
             State = state;
             Vendor = vendor;

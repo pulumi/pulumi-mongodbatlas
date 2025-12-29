@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexSynonym;
+import com.pulumi.mongodbatlas.outputs.GetSearchIndexTypeSet;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -47,12 +48,17 @@ public final class GetSearchIndexResult {
      */
     private Boolean mappingsDynamic;
     /**
+     * @return JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    private String mappingsDynamicConfig;
+    /**
      * @return Object containing one or more field specifications.
      * 
      */
     private String mappingsFields;
     /**
-     * @return Name of the index.
+     * @return Type set name.
      * 
      */
     private String name;
@@ -81,6 +87,11 @@ public final class GetSearchIndexResult {
      */
     private List<GetSearchIndexSynonym> synonyms;
     private String type;
+    /**
+     * @return Set of type set definitions (when present). Each item includes:
+     * 
+     */
+    private List<GetSearchIndexTypeSet> typeSets;
 
     private GetSearchIndexResult() {}
     /**
@@ -135,6 +146,13 @@ public final class GetSearchIndexResult {
         return this.mappingsDynamic;
     }
     /**
+     * @return JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    public String mappingsDynamicConfig() {
+        return this.mappingsDynamicConfig;
+    }
+    /**
      * @return Object containing one or more field specifications.
      * 
      */
@@ -142,7 +160,7 @@ public final class GetSearchIndexResult {
         return this.mappingsFields;
     }
     /**
-     * @return Name of the index.
+     * @return Type set name.
      * 
      */
     public String name() {
@@ -185,6 +203,13 @@ public final class GetSearchIndexResult {
     public String type() {
         return this.type;
     }
+    /**
+     * @return Set of type set definitions (when present). Each item includes:
+     * 
+     */
+    public List<GetSearchIndexTypeSet> typeSets() {
+        return this.typeSets;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -204,6 +229,7 @@ public final class GetSearchIndexResult {
         private String id;
         private String indexId;
         private Boolean mappingsDynamic;
+        private String mappingsDynamicConfig;
         private String mappingsFields;
         private String name;
         private String projectId;
@@ -212,6 +238,7 @@ public final class GetSearchIndexResult {
         private String storedSource;
         private List<GetSearchIndexSynonym> synonyms;
         private String type;
+        private List<GetSearchIndexTypeSet> typeSets;
         public Builder() {}
         public Builder(GetSearchIndexResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -224,6 +251,7 @@ public final class GetSearchIndexResult {
     	      this.id = defaults.id;
     	      this.indexId = defaults.indexId;
     	      this.mappingsDynamic = defaults.mappingsDynamic;
+    	      this.mappingsDynamicConfig = defaults.mappingsDynamicConfig;
     	      this.mappingsFields = defaults.mappingsFields;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
@@ -232,6 +260,7 @@ public final class GetSearchIndexResult {
     	      this.storedSource = defaults.storedSource;
     	      this.synonyms = defaults.synonyms;
     	      this.type = defaults.type;
+    	      this.typeSets = defaults.typeSets;
         }
 
         @CustomType.Setter
@@ -307,6 +336,14 @@ public final class GetSearchIndexResult {
             return this;
         }
         @CustomType.Setter
+        public Builder mappingsDynamicConfig(String mappingsDynamicConfig) {
+            if (mappingsDynamicConfig == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexResult", "mappingsDynamicConfig");
+            }
+            this.mappingsDynamicConfig = mappingsDynamicConfig;
+            return this;
+        }
+        @CustomType.Setter
         public Builder mappingsFields(String mappingsFields) {
             if (mappingsFields == null) {
               throw new MissingRequiredPropertyException("GetSearchIndexResult", "mappingsFields");
@@ -373,6 +410,17 @@ public final class GetSearchIndexResult {
             this.type = type;
             return this;
         }
+        @CustomType.Setter
+        public Builder typeSets(List<GetSearchIndexTypeSet> typeSets) {
+            if (typeSets == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexResult", "typeSets");
+            }
+            this.typeSets = typeSets;
+            return this;
+        }
+        public Builder typeSets(GetSearchIndexTypeSet... typeSets) {
+            return typeSets(List.of(typeSets));
+        }
         public GetSearchIndexResult build() {
             final var _resultValue = new GetSearchIndexResult();
             _resultValue.analyzer = analyzer;
@@ -384,6 +432,7 @@ public final class GetSearchIndexResult {
             _resultValue.id = id;
             _resultValue.indexId = indexId;
             _resultValue.mappingsDynamic = mappingsDynamic;
+            _resultValue.mappingsDynamicConfig = mappingsDynamicConfig;
             _resultValue.mappingsFields = mappingsFields;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
@@ -392,6 +441,7 @@ public final class GetSearchIndexResult {
             _resultValue.storedSource = storedSource;
             _resultValue.synonyms = synonyms;
             _resultValue.type = type;
+            _resultValue.typeSets = typeSets;
             return _resultValue;
         }
     }

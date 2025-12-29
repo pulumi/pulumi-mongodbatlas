@@ -71,8 +71,6 @@ class AwaitableGetStreamPrivatelinkEndpointsResult(GetStreamPrivatelinkEndpoints
 def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamPrivatelinkEndpointsResult:
     """
-    ## # Data Source: get_stream_privatelink_endpoints
-
     `get_stream_privatelink_endpoints` describes a Privatelink Endpoint for Streams.
 
     ## Example Usage
@@ -169,6 +167,29 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
         region=region,
         service_endpoint_id=service_endpoint_id)
     pulumi.export("privatelinkEndpointId", this.id)
+    ```
+
+    ### GCP Confluent Privatelink
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    gcp_confluent_stream_privatelink_endpoint = mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent",
+        project_id=project_id,
+        provider_name="GCP",
+        vendor="CONFLUENT",
+        region=gcp_region,
+        dns_domain=confluent_dns_domain,
+        dns_sub_domains=confluent_dns_subdomains,
+        service_attachment_uris=[
+            "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+            "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+        ])
+    gcp_confluent = gcp_confluent_stream_privatelink_endpoint.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+        id=id))
+    pulumi.export("privatelinkEndpointId", gcp_confluent_stream_privatelink_endpoint.id)
+    pulumi.export("privatelinkEndpointState", gcp_confluent.state)
+    pulumi.export("serviceAttachmentUris", gcp_confluent_stream_privatelink_endpoint.service_attachment_uris)
     ```
     """
     __args__ = dict()
@@ -183,8 +204,6 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
 def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamPrivatelinkEndpointsResult]:
     """
-    ## # Data Source: get_stream_privatelink_endpoints
-
     `get_stream_privatelink_endpoints` describes a Privatelink Endpoint for Streams.
 
     ## Example Usage
@@ -281,6 +300,29 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_b
         region=region,
         service_endpoint_id=service_endpoint_id)
     pulumi.export("privatelinkEndpointId", this.id)
+    ```
+
+    ### GCP Confluent Privatelink
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    gcp_confluent_stream_privatelink_endpoint = mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent",
+        project_id=project_id,
+        provider_name="GCP",
+        vendor="CONFLUENT",
+        region=gcp_region,
+        dns_domain=confluent_dns_domain,
+        dns_sub_domains=confluent_dns_subdomains,
+        service_attachment_uris=[
+            "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+            "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
+        ])
+    gcp_confluent = gcp_confluent_stream_privatelink_endpoint.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+        id=id))
+    pulumi.export("privatelinkEndpointId", gcp_confluent_stream_privatelink_endpoint.id)
+    pulumi.export("privatelinkEndpointState", gcp_confluent.state)
+    pulumi.export("serviceAttachmentUris", gcp_confluent_stream_privatelink_endpoint.service_attachment_uris)
     ```
     """
     __args__ = dict()

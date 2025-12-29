@@ -16,14 +16,14 @@ public final class DatabaseUserScopeArgs extends com.pulumi.resources.ResourceAr
     public static final DatabaseUserScopeArgs Empty = new DatabaseUserScopeArgs();
 
     /**
-     * Name of the cluster or Atlas Data Lake that the user has access to.
+     * Name of the cluster or Atlas Data Federation that the user has access to.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Name of the cluster or Atlas Data Lake that the user has access to.
+     * @return Name of the cluster or Atlas Data Federation that the user has access to.
      * 
      */
     public Optional<Output<String>> name() {
@@ -71,7 +71,7 @@ public final class DatabaseUserScopeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param name Name of the cluster or Atlas Data Lake that the user has access to.
+         * @param name Name of the cluster or Atlas Data Federation that the user has access to.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class DatabaseUserScopeArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param name Name of the cluster or Atlas Data Lake that the user has access to.
+         * @param name Name of the cluster or Atlas Data Federation that the user has access to.
          * 
          * @return builder
          * 

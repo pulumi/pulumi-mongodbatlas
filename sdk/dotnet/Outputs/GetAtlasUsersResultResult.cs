@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// Email address that belongs to the MongoDB Atlas user.
+        /// **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`."
         /// </summary>
         public readonly string EmailAddress;
         /// <summary>

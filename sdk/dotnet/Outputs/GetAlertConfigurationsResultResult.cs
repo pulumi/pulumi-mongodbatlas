@@ -48,6 +48,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
+        /// Severity of the event.
+        /// </summary>
+        public readonly string SeverityOverride;
+        /// <summary>
         /// Threshold that triggers an alert. Required if `EventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultThresholdConfigResult> ThresholdConfigs;
@@ -78,6 +82,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string projectId,
 
+            string severityOverride,
+
             ImmutableArray<Outputs.GetAlertConfigurationsResultThresholdConfigResult> thresholdConfigs,
 
             string updated)
@@ -92,6 +98,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Notifications = notifications;
             Outputs = outputs;
             ProjectId = projectId;
+            SeverityOverride = severityOverride;
             ThresholdConfigs = thresholdConfigs;
             Updated = updated;
         }

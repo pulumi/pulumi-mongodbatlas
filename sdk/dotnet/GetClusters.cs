@@ -12,9 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetClusters
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getClusters
-        /// 
         /// `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+        /// 
+        /// &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.getAdvancedClusters`. For more details, see our migration guide.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `ContainerId` for each region utilized by the cluster. For retrieving the `ContainerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
@@ -73,9 +73,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClustersResult>("mongodbatlas:index/getClusters:getClusters", args ?? new GetClustersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getClusters
-        /// 
         /// `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+        /// 
+        /// &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.getAdvancedClusters`. For more details, see our migration guide.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `ContainerId` for each region utilized by the cluster. For retrieving the `ContainerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
@@ -134,9 +134,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetClustersResult>("mongodbatlas:index/getClusters:getClusters", args ?? new GetClustersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getClusters
-        /// 
         /// `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+        /// 
+        /// &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.getAdvancedClusters`. For more details, see our migration guide.
         /// 
         /// &gt; **IMPORTANT:**
         /// &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `ContainerId` for each region utilized by the cluster. For retrieving the `ContainerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.

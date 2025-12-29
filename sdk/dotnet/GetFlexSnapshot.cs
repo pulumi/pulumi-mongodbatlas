@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetFlexSnapshot
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexSnapshot
-        /// 
         /// `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
         /// 
         /// ## Example Usage
@@ -55,8 +53,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFlexSnapshotResult>("mongodbatlas:index/getFlexSnapshot:getFlexSnapshot", args ?? new GetFlexSnapshotArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexSnapshot
-        /// 
         /// `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
         /// 
         /// ## Example Usage
@@ -98,8 +94,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetFlexSnapshotResult>("mongodbatlas:index/getFlexSnapshot:getFlexSnapshot", args ?? new GetFlexSnapshotInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexSnapshot
-        /// 
         /// `mongodbatlas.getFlexSnapshot` describes a flex snapshot.
         /// 
         /// ## Example Usage

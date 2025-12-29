@@ -7,13 +7,11 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getRolesOrgId
-//
-// `getRolesOrgId` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+// `getRolesOrgId` allows to retrieve the Org ID of the authenticated user.
 //
 // ## Example Usage
 //
@@ -23,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -54,7 +52,7 @@ func GetRolesOrgId(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetRolesO
 type GetRolesOrgIdResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// The ID of the organization you want to retrieve associated to an API Key.
+	// The ID of the organization you want to retrieve, which is associated with the Service Account or Programmatic API Key (PAK) of the authenticated user.
 	OrgId string `pulumi:"orgId"`
 }
 
@@ -85,7 +83,7 @@ func (o GetRolesOrgIdResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRolesOrgIdResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The ID of the organization you want to retrieve associated to an API Key.
+// The ID of the organization you want to retrieve, which is associated with the Service Account or Programmatic API Key (PAK) of the authenticated user.
 func (o GetRolesOrgIdResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRolesOrgIdResult) string { return v.OrgId }).(pulumi.StringOutput)
 }

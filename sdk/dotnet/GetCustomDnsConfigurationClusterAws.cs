@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetCustomDnsConfigurationClusterAws
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDnsConfigurationClusterAws
-        /// 
         /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -47,8 +45,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDnsConfigurationClusterAws
-        /// 
         /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -82,8 +78,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDnsConfigurationClusterAwsResult>("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args ?? new GetCustomDnsConfigurationClusterAwsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDnsConfigurationClusterAws
-        /// 
         /// `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

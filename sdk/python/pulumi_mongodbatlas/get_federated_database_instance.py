@@ -28,10 +28,10 @@ class GetFederatedDatabaseInstanceResult:
     """
     A collection of values returned by getFederatedDatabaseInstance.
     """
-    def __init__(__self__, cloud_provider_config=None, data_process_regions=None, hostnames=None, id=None, name=None, project_id=None, state=None, storage_databases=None, storage_stores=None):
-        if cloud_provider_config and not isinstance(cloud_provider_config, dict):
-            raise TypeError("Expected argument 'cloud_provider_config' to be a dict")
-        pulumi.set(__self__, "cloud_provider_config", cloud_provider_config)
+    def __init__(__self__, cloud_provider_configs=None, data_process_regions=None, hostnames=None, id=None, name=None, project_id=None, state=None, storage_databases=None, storage_stores=None):
+        if cloud_provider_configs and not isinstance(cloud_provider_configs, list):
+            raise TypeError("Expected argument 'cloud_provider_configs' to be a list")
+        pulumi.set(__self__, "cloud_provider_configs", cloud_provider_configs)
         if data_process_regions and not isinstance(data_process_regions, list):
             raise TypeError("Expected argument 'data_process_regions' to be a list")
         pulumi.set(__self__, "data_process_regions", data_process_regions)
@@ -58,9 +58,9 @@ class GetFederatedDatabaseInstanceResult:
         pulumi.set(__self__, "storage_stores", storage_stores)
 
     @_builtins.property
-    @pulumi.getter(name="cloudProviderConfig")
-    def cloud_provider_config(self) -> 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult':
-        return pulumi.get(self, "cloud_provider_config")
+    @pulumi.getter(name="cloudProviderConfigs")
+    def cloud_provider_configs(self) -> Sequence['outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult']:
+        return pulumi.get(self, "cloud_provider_configs")
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegions")
@@ -107,9 +107,9 @@ class GetFederatedDatabaseInstanceResult:
     @pulumi.getter(name="storageDatabases")
     def storage_databases(self) -> Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseResult']:
         """
-        Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+        Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
         * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-        * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+        * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
         * `storage_databases.#.collections.#.name` - Name of the collection.
         * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
         * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -135,7 +135,7 @@ class GetFederatedDatabaseInstanceResult:
     @pulumi.getter(name="storageStores")
     def storage_stores(self) -> Sequence['outputs.GetFederatedDatabaseInstanceStorageStoreResult']:
         """
-        Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+        Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
         * `storage_stores.#.name` - Name of the data store.
         * `storage_stores.#.provider` - Defines where the data is stored.
         * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -146,7 +146,7 @@ class GetFederatedDatabaseInstanceResult:
         * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
         * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
         * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-        * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+        * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
         * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
         * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
         * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -165,7 +165,7 @@ class AwaitableGetFederatedDatabaseInstanceResult(GetFederatedDatabaseInstanceRe
         if False:
             yield self
         return GetFederatedDatabaseInstanceResult(
-            cloud_provider_config=self.cloud_provider_config,
+            cloud_provider_configs=self.cloud_provider_configs,
             data_process_regions=self.data_process_regions,
             hostnames=self.hostnames,
             id=self.id,
@@ -176,13 +176,11 @@ class AwaitableGetFederatedDatabaseInstanceResult(GetFederatedDatabaseInstanceRe
             storage_stores=self.storage_stores)
 
 
-def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']] = None,
+def get_federated_database_instance(cloud_provider_configs: Optional[Sequence[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
                                     name: Optional[_builtins.str] = None,
                                     project_id: Optional[_builtins.str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedDatabaseInstanceResult:
     """
-    ## # Data Source: FederatedDatabaseInstance
-
     `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -201,6 +199,21 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
 
+    ### S With Amazon S3 Bucket As Storage Database
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
+        name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
+        cloud_provider_configs=[{
+            "aws": [{
+                "test_s3_bucket": "Amazon S3 Bucket Name",
+            }],
+        }])
+    ```
+
     ## Example of Azure Blob Storage as storage database
 
     ```python
@@ -209,11 +222,11 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
 
     test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
         name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
-        cloud_provider_config={
+        cloud_provider_configs=[{
             "azures": [{
                 "role_id": "<AZURE_ROLE_ID>",
             }],
-        })
+        }])
     ```
 
 
@@ -221,14 +234,14 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
     :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
     """
     __args__ = dict()
-    __args__['cloudProviderConfig'] = cloud_provider_config
+    __args__['cloudProviderConfigs'] = cloud_provider_configs
     __args__['name'] = name
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance', __args__, opts=opts, typ=GetFederatedDatabaseInstanceResult).value
 
     return AwaitableGetFederatedDatabaseInstanceResult(
-        cloud_provider_config=pulumi.get(__ret__, 'cloud_provider_config'),
+        cloud_provider_configs=pulumi.get(__ret__, 'cloud_provider_configs'),
         data_process_regions=pulumi.get(__ret__, 'data_process_regions'),
         hostnames=pulumi.get(__ret__, 'hostnames'),
         id=pulumi.get(__ret__, 'id'),
@@ -237,13 +250,11 @@ def get_federated_database_instance(cloud_provider_config: Optional[Union['GetFe
         state=pulumi.get(__ret__, 'state'),
         storage_databases=pulumi.get(__ret__, 'storage_databases'),
         storage_stores=pulumi.get(__ret__, 'storage_stores'))
-def get_federated_database_instance_output(cloud_provider_config: Optional[pulumi.Input[Optional[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]]] = None,
+def get_federated_database_instance_output(cloud_provider_configs: Optional[pulumi.Input[Optional[Sequence[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]]]] = None,
                                            name: Optional[pulumi.Input[_builtins.str]] = None,
                                            project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedDatabaseInstanceResult]:
     """
-    ## # Data Source: FederatedDatabaseInstance
-
     `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -262,6 +273,21 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
         name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
     ```
 
+    ### S With Amazon S3 Bucket As Storage Database
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
+        name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
+        cloud_provider_configs=[{
+            "aws": [{
+                "test_s3_bucket": "Amazon S3 Bucket Name",
+            }],
+        }])
+    ```
+
     ## Example of Azure Blob Storage as storage database
 
     ```python
@@ -270,11 +296,11 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
 
     test = mongodbatlas.get_federated_database_instance(project_id="<PROJECT_ID>",
         name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
-        cloud_provider_config={
+        cloud_provider_configs=[{
             "azures": [{
                 "role_id": "<AZURE_ROLE_ID>",
             }],
-        })
+        }])
     ```
 
 
@@ -282,13 +308,13 @@ def get_federated_database_instance_output(cloud_provider_config: Optional[pulum
     :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
     """
     __args__ = dict()
-    __args__['cloudProviderConfig'] = cloud_provider_config
+    __args__['cloudProviderConfigs'] = cloud_provider_configs
     __args__['name'] = name
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance', __args__, opts=opts, typ=GetFederatedDatabaseInstanceResult)
     return __ret__.apply(lambda __response__: GetFederatedDatabaseInstanceResult(
-        cloud_provider_config=pulumi.get(__response__, 'cloud_provider_config'),
+        cloud_provider_configs=pulumi.get(__response__, 'cloud_provider_configs'),
         data_process_regions=pulumi.get(__response__, 'data_process_regions'),
         hostnames=pulumi.get(__response__, 'hostnames'),
         id=pulumi.get(__response__, 'id'),

@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: AlertConfiguration
-//
 // `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -25,7 +23,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -79,7 +77,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -131,7 +129,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -194,7 +192,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -228,6 +226,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Alert Configuration
+//
 // ## Import
 //
 // Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
@@ -258,15 +259,18 @@ type AlertConfiguration struct {
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrOutput `pulumi:"metricThresholdConfig"`
 	Notifications         AlertConfigurationNotificationArrayOutput        `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
-	ProjectId       pulumi.StringOutput                        `pulumi:"projectId"`
-	ThresholdConfig AlertConfigurationThresholdConfigPtrOutput `pulumi:"thresholdConfig"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+	SeverityOverride pulumi.StringPtrOutput                     `pulumi:"severityOverride"`
+	ThresholdConfig  AlertConfigurationThresholdConfigPtrOutput `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringOutput `pulumi:"updated"`
 }
 
 // NewAlertConfiguration registers a new resource with the given unique name, arguments, and options.
 func NewAlertConfiguration(ctx *pulumi.Context,
-	name string, args *AlertConfigurationArgs, opts ...pulumi.ResourceOption) (*AlertConfiguration, error) {
+	name string, args *AlertConfigurationArgs, opts ...pulumi.ResourceOption,
+) (*AlertConfiguration, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -289,7 +293,8 @@ func NewAlertConfiguration(ctx *pulumi.Context,
 // GetAlertConfiguration gets an existing AlertConfiguration resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetAlertConfiguration(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *AlertConfigurationState, opts ...pulumi.ResourceOption) (*AlertConfiguration, error) {
+	name string, id pulumi.IDInput, state *AlertConfigurationState, opts ...pulumi.ResourceOption,
+) (*AlertConfiguration, error) {
 	var resource AlertConfiguration
 	err := ctx.ReadResource("mongodbatlas:index/alertConfiguration:AlertConfiguration", name, id, state, &resource, opts...)
 	if err != nil {
@@ -316,8 +321,10 @@ type alertConfigurationState struct {
 	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
 	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
-	ProjectId       *string                            `pulumi:"projectId"`
-	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
+	ProjectId *string `pulumi:"projectId"`
+	// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+	SeverityOverride *string                            `pulumi:"severityOverride"`
+	ThresholdConfig  *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated *string `pulumi:"updated"`
 }
@@ -339,8 +346,10 @@ type AlertConfigurationState struct {
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
 	Notifications         AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
-	ProjectId       pulumi.StringPtrInput
-	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
+	ProjectId pulumi.StringPtrInput
+	// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+	SeverityOverride pulumi.StringPtrInput
+	ThresholdConfig  AlertConfigurationThresholdConfigPtrInput
 	// Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
 	Updated pulumi.StringPtrInput
 }
@@ -362,8 +371,10 @@ type alertConfigurationArgs struct {
 	MetricThresholdConfig *AlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfig"`
 	Notifications         []AlertConfigurationNotification         `pulumi:"notifications"`
 	// The ID of the project where the alert configuration will create.
-	ProjectId       string                             `pulumi:"projectId"`
-	ThresholdConfig *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
+	ProjectId string `pulumi:"projectId"`
+	// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+	SeverityOverride *string                            `pulumi:"severityOverride"`
+	ThresholdConfig  *AlertConfigurationThresholdConfig `pulumi:"thresholdConfig"`
 }
 
 // The set of arguments for constructing a AlertConfiguration resource.
@@ -380,8 +391,10 @@ type AlertConfigurationArgs struct {
 	MetricThresholdConfig AlertConfigurationMetricThresholdConfigPtrInput
 	Notifications         AlertConfigurationNotificationArrayInput
 	// The ID of the project where the alert configuration will create.
-	ProjectId       pulumi.StringInput
-	ThresholdConfig AlertConfigurationThresholdConfigPtrInput
+	ProjectId pulumi.StringInput
+	// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+	SeverityOverride pulumi.StringPtrInput
+	ThresholdConfig  AlertConfigurationThresholdConfigPtrInput
 }
 
 func (AlertConfigurationArgs) ElementType() reflect.Type {
@@ -512,6 +525,11 @@ func (o AlertConfigurationOutput) Notifications() AlertConfigurationNotification
 // The ID of the project where the alert configuration will create.
 func (o AlertConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+func (o AlertConfigurationOutput) SeverityOverride() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AlertConfiguration) pulumi.StringPtrOutput { return v.SeverityOverride }).(pulumi.StringPtrOutput)
 }
 
 func (o AlertConfigurationOutput) ThresholdConfig() AlertConfigurationThresholdConfigPtrOutput {

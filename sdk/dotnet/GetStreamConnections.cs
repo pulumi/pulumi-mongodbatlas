@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamConnections
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getStreamConnections
-        /// 
         /// `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
         /// 
         /// ## Example Usage
@@ -29,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         ///     var test = Mongodbatlas.GetStreamConnections.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
         ///     });
         /// 
         /// });
@@ -39,8 +37,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamConnectionsResult>("mongodbatlas:index/getStreamConnections:getStreamConnections", args ?? new GetStreamConnectionsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getStreamConnections
-        /// 
         /// `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
         /// 
         /// ## Example Usage
@@ -56,7 +52,7 @@ namespace Pulumi.Mongodbatlas
         ///     var test = Mongodbatlas.GetStreamConnections.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
         ///     });
         /// 
         /// });
@@ -66,8 +62,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamConnectionsResult>("mongodbatlas:index/getStreamConnections:getStreamConnections", args ?? new GetStreamConnectionsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getStreamConnections
-        /// 
         /// `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
         /// 
         /// ## Example Usage
@@ -83,7 +77,7 @@ namespace Pulumi.Mongodbatlas
         ///     var test = Mongodbatlas.GetStreamConnections.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
         ///     });
         /// 
         /// });
@@ -97,10 +91,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamConnectionsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
-        [Input("instanceName", required: true)]
-        public string InstanceName { get; set; } = null!;
+        [Input("instanceName")]
+        public string? InstanceName { get; set; }
 
         /// <summary>
         /// Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
@@ -120,6 +114,14 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
+        /// </summary>
+        [Input("workspaceName")]
+        public string? WorkspaceName { get; set; }
+
         public GetStreamConnectionsArgs()
         {
         }
@@ -129,10 +131,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamConnectionsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
-        [Input("instanceName", required: true)]
-        public Input<string> InstanceName { get; set; } = null!;
+        [Input("instanceName")]
+        public Input<string>? InstanceName { get; set; }
 
         /// <summary>
         /// Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
@@ -152,6 +154,14 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
+        /// </summary>
+        [Input("workspaceName")]
+        public Input<string>? WorkspaceName { get; set; }
+
         public GetStreamConnectionsInvokeArgs()
         {
         }
@@ -163,10 +173,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamConnectionsResult
     {
         public readonly string Id;
-        /// <summary>
-        /// Human-readable label that identifies the stream instance.
-        /// </summary>
-        public readonly string InstanceName;
+        public readonly string? InstanceName;
         public readonly int? ItemsPerPage;
         public readonly int? PageNum;
         /// <summary>
@@ -181,12 +188,16 @@ namespace Pulumi.Mongodbatlas
         /// Count of the total number of items in the result set. The count might be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
+        public readonly string? WorkspaceName;
 
         [OutputConstructor]
         private GetStreamConnectionsResult(
             string id,
 
-            string instanceName,
+            string? instanceName,
 
             int? itemsPerPage,
 
@@ -196,7 +207,9 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetStreamConnectionsResultResult> results,
 
-            int totalCount)
+            int totalCount,
+
+            string? workspaceName)
         {
             Id = id;
             InstanceName = instanceName;
@@ -205,6 +218,7 @@ namespace Pulumi.Mongodbatlas
             ProjectId = projectId;
             Results = results;
             TotalCount = totalCount;
+            WorkspaceName = workspaceName;
         }
     }
 }

@@ -645,6 +645,9 @@ class BackupCompliancePolicy(pulumi.CustomResource):
             }])
         ```
 
+        ### Further Examples
+        - Backup Compliance Policy
+
         ## Import
 
         Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.
@@ -774,6 +777,9 @@ class BackupCompliancePolicy(pulumi.CustomResource):
                 "retention_value": 1,
             }])
         ```
+
+        ### Further Examples
+        - Backup Compliance Policy
 
         ## Import
 

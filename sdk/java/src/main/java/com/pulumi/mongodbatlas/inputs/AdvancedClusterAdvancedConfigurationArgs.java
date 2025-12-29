@@ -20,14 +20,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     public static final AdvancedClusterAdvancedConfigurationArgs Empty = new AdvancedClusterAdvancedConfigurationArgs();
 
     /**
-     * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+     * The minimum pre- and post-image retention time in seconds.
      * 
      */
     @Import(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
     private @Nullable Output<Integer> changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
 
     /**
-     * @return The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+     * @return The minimum pre- and post-image retention time in seconds.
      * 
      */
     public Optional<Output<Integer>> changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
@@ -50,14 +50,29 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     * 
+     */
+    @Import(name="customOpensslCipherConfigTls13s")
+    private @Nullable Output<List<String>> customOpensslCipherConfigTls13s;
+
+    /**
+     * @return The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     * 
+     */
+    public Optional<Output<List<String>>> customOpensslCipherConfigTls13s() {
+        return Optional.ofNullable(this.customOpensslCipherConfigTls13s);
+    }
+
+    /**
+     * Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     @Import(name="defaultMaxTimeMs")
     private @Nullable Output<Integer> defaultMaxTimeMs;
 
     /**
-     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * @return Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     public Optional<Output<Integer>> defaultMaxTimeMs() {
@@ -65,37 +80,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    @Import(name="defaultReadConcern")
-    private @Nullable Output<String> defaultReadConcern;
-
-    /**
-     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Optional<Output<String>> defaultReadConcern() {
-        return Optional.ofNullable(this.defaultReadConcern);
-    }
-
-    /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
      * 
      */
     @Import(name="defaultWriteConcern")
     private @Nullable Output<String> defaultWriteConcern;
 
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * @return Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
      * 
      */
     public Optional<Output<String>> defaultWriteConcern() {
@@ -103,37 +95,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    @Import(name="failIndexKeyTooLong")
-    private @Nullable Output<Boolean> failIndexKeyTooLong;
-
-    /**
-     * @return **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Optional<Output<Boolean>> failIndexKeyTooLong() {
-        return Optional.ofNullable(this.failIndexKeyTooLong);
-    }
-
-    /**
-     * When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
      * 
      */
     @Import(name="javascriptEnabled")
     private @Nullable Output<Boolean> javascriptEnabled;
 
     /**
-     * @return When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * @return Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
      * 
      */
     public Optional<Output<Boolean>> javascriptEnabled() {
@@ -141,20 +110,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
-     * - TLS1_2
+     * Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
      * 
      */
     @Import(name="minimumEnabledTlsProtocol")
     private @Nullable Output<String> minimumEnabledTlsProtocol;
 
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
-     * - TLS1_2
+     * @return Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
      * 
      */
     public Optional<Output<String>> minimumEnabledTlsProtocol() {
@@ -162,14 +125,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     * Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
      * 
      */
     @Import(name="noTableScan")
     private @Nullable Output<Boolean> noTableScan;
 
     /**
-     * @return When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     * @return Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
      * 
      */
     public Optional<Output<Boolean>> noTableScan() {
@@ -178,7 +141,6 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
 
     /**
      * Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      * 
      */
     @Import(name="oplogMinRetentionHours")
@@ -186,7 +148,6 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
 
     /**
      * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      * 
      */
     public Optional<Output<Double>> oplogMinRetentionHours() {
@@ -194,14 +155,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     * Storage limit of cluster&#39;s oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
      * 
      */
     @Import(name="oplogSizeMb")
     private @Nullable Output<Integer> oplogSizeMb;
 
     /**
-     * @return The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     * @return Storage limit of cluster&#39;s oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
      * 
      */
     public Optional<Output<Integer>> oplogSizeMb() {
@@ -209,14 +170,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
      * 
      */
     @Import(name="sampleRefreshIntervalBiConnector")
     private @Nullable Output<Integer> sampleRefreshIntervalBiConnector;
 
     /**
-     * @return Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * @return Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
      * 
      */
     public Optional<Output<Integer>> sampleRefreshIntervalBiConnector() {
@@ -224,14 +185,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * Number of documents per database to sample when gathering schema information.
      * 
      */
     @Import(name="sampleSizeBiConnector")
     private @Nullable Output<Integer> sampleSizeBiConnector;
 
     /**
-     * @return Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * @return Number of documents per database to sample when gathering schema information.
      * 
      */
     public Optional<Output<Integer>> sampleSizeBiConnector() {
@@ -254,14 +215,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
      * 
      */
     @Import(name="transactionLifetimeLimitSeconds")
     private @Nullable Output<Integer> transactionLifetimeLimitSeconds;
 
     /**
-     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * @return Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
      * 
      */
     public Optional<Output<Integer>> transactionLifetimeLimitSeconds() {
@@ -273,10 +234,9 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     private AdvancedClusterAdvancedConfigurationArgs(AdvancedClusterAdvancedConfigurationArgs $) {
         this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = $.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         this.customOpensslCipherConfigTls12s = $.customOpensslCipherConfigTls12s;
+        this.customOpensslCipherConfigTls13s = $.customOpensslCipherConfigTls13s;
         this.defaultMaxTimeMs = $.defaultMaxTimeMs;
-        this.defaultReadConcern = $.defaultReadConcern;
         this.defaultWriteConcern = $.defaultWriteConcern;
-        this.failIndexKeyTooLong = $.failIndexKeyTooLong;
         this.javascriptEnabled = $.javascriptEnabled;
         this.minimumEnabledTlsProtocol = $.minimumEnabledTlsProtocol;
         this.noTableScan = $.noTableScan;
@@ -307,7 +267,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param changeStreamOptionsPreAndPostImagesExpireAfterSeconds The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+         * @param changeStreamOptionsPreAndPostImagesExpireAfterSeconds The minimum pre- and post-image retention time in seconds.
          * 
          * @return builder
          * 
@@ -318,7 +278,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param changeStreamOptionsPreAndPostImagesExpireAfterSeconds The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+         * @param changeStreamOptionsPreAndPostImagesExpireAfterSeconds The minimum pre- and post-image retention time in seconds.
          * 
          * @return builder
          * 
@@ -359,7 +319,38 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+         * @param customOpensslCipherConfigTls13s The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customOpensslCipherConfigTls13s(@Nullable Output<List<String>> customOpensslCipherConfigTls13s) {
+            $.customOpensslCipherConfigTls13s = customOpensslCipherConfigTls13s;
+            return this;
+        }
+
+        /**
+         * @param customOpensslCipherConfigTls13s The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customOpensslCipherConfigTls13s(List<String> customOpensslCipherConfigTls13s) {
+            return customOpensslCipherConfigTls13s(Output.of(customOpensslCipherConfigTls13s));
+        }
+
+        /**
+         * @param customOpensslCipherConfigTls13s The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customOpensslCipherConfigTls13s(String... customOpensslCipherConfigTls13s) {
+            return customOpensslCipherConfigTls13s(List.of(customOpensslCipherConfigTls13s));
+        }
+
+        /**
+         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
          * 
          * @return builder
          * 
@@ -370,7 +361,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+         * @param defaultMaxTimeMs Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
          * 
          * @return builder
          * 
@@ -380,36 +371,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param defaultReadConcern [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder defaultReadConcern(@Nullable Output<String> defaultReadConcern) {
-            $.defaultReadConcern = defaultReadConcern;
-            return this;
-        }
-
-        /**
-         * @param defaultReadConcern [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder defaultReadConcern(String defaultReadConcern) {
-            return defaultReadConcern(Output.of(defaultReadConcern));
-        }
-
-        /**
-         * @param defaultWriteConcern [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+         * @param defaultWriteConcern Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
          * 
          * @return builder
          * 
@@ -420,7 +382,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param defaultWriteConcern [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+         * @param defaultWriteConcern Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
          * 
          * @return builder
          * 
@@ -430,36 +392,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param failIndexKeyTooLong **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder failIndexKeyTooLong(@Nullable Output<Boolean> failIndexKeyTooLong) {
-            $.failIndexKeyTooLong = failIndexKeyTooLong;
-            return this;
-        }
-
-        /**
-         * @param failIndexKeyTooLong **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder failIndexKeyTooLong(Boolean failIndexKeyTooLong) {
-            return failIndexKeyTooLong(Output.of(failIndexKeyTooLong));
-        }
-
-        /**
-         * @param javascriptEnabled When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+         * @param javascriptEnabled Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
          * 
          * @return builder
          * 
@@ -470,7 +403,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param javascriptEnabled When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+         * @param javascriptEnabled Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
          * 
          * @return builder
          * 
@@ -480,10 +413,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-         * - TLS1_0
-         * - TLS1_1
-         * - TLS1_2
+         * @param minimumEnabledTlsProtocol Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
          * 
          * @return builder
          * 
@@ -494,10 +424,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param minimumEnabledTlsProtocol Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-         * - TLS1_0
-         * - TLS1_1
-         * - TLS1_2
+         * @param minimumEnabledTlsProtocol Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
          * 
          * @return builder
          * 
@@ -507,7 +434,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param noTableScan When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+         * @param noTableScan Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
          * 
          * @return builder
          * 
@@ -518,7 +445,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param noTableScan When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+         * @param noTableScan Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
          * 
          * @return builder
          * 
@@ -529,7 +456,6 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
 
         /**
          * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-         * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
          * 
          * @return builder
          * 
@@ -541,7 +467,6 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
 
         /**
          * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-         * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
          * 
          * @return builder
          * 
@@ -551,7 +476,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param oplogSizeMb The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+         * @param oplogSizeMb Storage limit of cluster&#39;s oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
          * 
          * @return builder
          * 
@@ -562,7 +487,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param oplogSizeMb The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+         * @param oplogSizeMb Storage limit of cluster&#39;s oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
          * 
          * @return builder
          * 
@@ -572,7 +497,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param sampleRefreshIntervalBiConnector Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+         * @param sampleRefreshIntervalBiConnector Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
          * 
          * @return builder
          * 
@@ -583,7 +508,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param sampleRefreshIntervalBiConnector Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+         * @param sampleRefreshIntervalBiConnector Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
          * 
          * @return builder
          * 
@@ -593,7 +518,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param sampleSizeBiConnector Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+         * @param sampleSizeBiConnector Number of documents per database to sample when gathering schema information.
          * 
          * @return builder
          * 
@@ -604,7 +529,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param sampleSizeBiConnector Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+         * @param sampleSizeBiConnector Number of documents per database to sample when gathering schema information.
          * 
          * @return builder
          * 
@@ -635,7 +560,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param transactionLifetimeLimitSeconds Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+         * @param transactionLifetimeLimitSeconds Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
          * 
          * @return builder
          * 
@@ -646,7 +571,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param transactionLifetimeLimitSeconds Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+         * @param transactionLifetimeLimitSeconds Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
          * 
          * @return builder
          * 

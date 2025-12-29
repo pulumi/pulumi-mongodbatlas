@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamAccountDetails
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getStreamAccountDetails
-        /// 
         /// `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
         /// 
         /// ## Example Usage
@@ -48,8 +46,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamAccountDetailsResult>("mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails", args ?? new GetStreamAccountDetailsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getStreamAccountDetails
-        /// 
         /// `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
         /// 
         /// ## Example Usage
@@ -84,8 +80,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamAccountDetailsResult>("mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails", args ?? new GetStreamAccountDetailsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getStreamAccountDetails
-        /// 
         /// `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
         /// 
         /// ## Example Usage

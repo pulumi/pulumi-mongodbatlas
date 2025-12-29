@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getSearchIndexes
- *
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -75,8 +73,6 @@ export interface GetSearchIndexesResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getSearchIndexes
- *
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetTeam
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Team
-        /// 
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
@@ -82,8 +80,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Team
-        /// 
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
@@ -152,8 +148,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetTeamResult>("mongodbatlas:index/getTeam:getTeam", args ?? new GetTeamInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Team
-        /// 
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
@@ -297,9 +291,13 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string TeamId;
         /// <summary>
-        /// The users who are part of the organization.
+        /// **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         /// </summary>
         public readonly ImmutableArray<string> Usernames;
+        /// <summary>
+        /// Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetTeamUserResult> Users;
 
         [OutputConstructor]
         private GetTeamResult(
@@ -311,13 +309,16 @@ namespace Pulumi.Mongodbatlas
 
             string teamId,
 
-            ImmutableArray<string> usernames)
+            ImmutableArray<string> usernames,
+
+            ImmutableArray<Outputs.GetTeamUserResult> users)
         {
             Id = id;
             Name = name;
             OrgId = orgId;
             TeamId = teamId;
             Usernames = usernames;
+            Users = users;
         }
     }
 }

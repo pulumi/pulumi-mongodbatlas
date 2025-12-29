@@ -16,9 +16,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Get the advanced configuration options. See Advanced Configuration below for more details.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultAdvancedConfigurationResult> AdvancedConfigurations;
+        public readonly Outputs.GetAdvancedClustersResultAdvancedConfigurationResult AdvancedConfiguration;
+        /// <summary>
+        /// Flag that indicates whether the cluster can perform backups. If set to `True`, the cluster can perform backups. You must set this value to `True` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `False`, the cluster doesn't use backups.
+        /// </summary>
         public readonly bool BackupEnabled;
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultBiConnectorConfigResult> BiConnectorConfigs;
+        /// <summary>
+        /// Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+        /// </summary>
+        public readonly Outputs.GetAdvancedClustersResultBiConnectorConfigResult BiConnectorConfig;
+        /// <summary>
+        /// The cluster ID.
+        /// </summary>
+        public readonly string ClusterId;
         /// <summary>
         /// Type of the cluster that you want to create.
         /// </summary>
@@ -34,12 +44,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringResult> ConnectionStrings;
-        public readonly string CreateDate;
+        public readonly Outputs.GetAdvancedClustersResultConnectionStringsResult ConnectionStrings;
         /// <summary>
-        /// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        /// Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
         /// </summary>
-        public readonly double DiskSizeGb;
+        public readonly string CreateDate;
         /// <summary>
         /// Possible values are AWS, GCP, AZURE or NONE.
         /// </summary>
@@ -51,7 +60,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultLabelResult> Labels;
+        public readonly ImmutableDictionary<string, string> Labels;
         /// <summary>
         /// Version of the cluster to deploy.
         /// </summary>
@@ -60,6 +69,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         /// </summary>
         public readonly string MongoDbVersion;
+        /// <summary>
+        /// Human-readable label that identifies this cluster.
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// Flag that indicates whether the cluster is paused or not.
@@ -68,11 +80,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultPinnedFcvResult> PinnedFcvs;
+        public readonly Outputs.GetAdvancedClustersResultPinnedFcvResult PinnedFcv;
         /// <summary>
         /// Flag that indicates if the cluster uses Continuous Cloud Backup.
         /// </summary>
         public readonly bool PitEnabled;
+        /// <summary>
+        /// The unique ID for the project to get the clusters.
+        /// </summary>
+        public readonly string ProjectId;
         /// <summary>
         /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         /// </summary>
@@ -82,7 +98,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ReplicaSetScalingStrategy;
         /// <summary>
-        /// List of settings that configure your cluster regions. If `UseReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
+        /// List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecResult> ReplicationSpecs;
         /// <summary>
@@ -96,11 +112,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultTagResult> Tags;
+        public readonly ImmutableDictionary<string, string> Tags;
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
+        /// <summary>
+        /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`EffectiveElectableSpecs`, `EffectiveReadOnlySpecs`, `EffectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
+        /// </summary>
+        public readonly bool? UseEffectiveFields;
         /// <summary>
         /// Release cadence that Atlas uses for this cluster.
         /// </summary>
@@ -108,11 +128,13 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetAdvancedClustersResultResult(
-            ImmutableArray<Outputs.GetAdvancedClustersResultAdvancedConfigurationResult> advancedConfigurations,
+            Outputs.GetAdvancedClustersResultAdvancedConfigurationResult advancedConfiguration,
 
             bool backupEnabled,
 
-            ImmutableArray<Outputs.GetAdvancedClustersResultBiConnectorConfigResult> biConnectorConfigs,
+            Outputs.GetAdvancedClustersResultBiConnectorConfigResult biConnectorConfig,
+
+            string clusterId,
 
             string clusterType,
 
@@ -120,17 +142,15 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string configServerType,
 
-            ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringResult> connectionStrings,
+            Outputs.GetAdvancedClustersResultConnectionStringsResult connectionStrings,
 
             string createDate,
-
-            double diskSizeGb,
 
             string encryptionAtRestProvider,
 
             bool globalClusterSelfManagedSharding,
 
-            ImmutableArray<Outputs.GetAdvancedClustersResultLabelResult> labels,
+            ImmutableDictionary<string, string> labels,
 
             string mongoDbMajorVersion,
 
@@ -140,9 +160,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool paused,
 
-            ImmutableArray<Outputs.GetAdvancedClustersResultPinnedFcvResult> pinnedFcvs,
+            Outputs.GetAdvancedClustersResultPinnedFcvResult pinnedFcv,
 
             bool pitEnabled,
+
+            string projectId,
 
             bool redactClientLogData,
 
@@ -154,21 +176,23 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string stateName,
 
-            ImmutableArray<Outputs.GetAdvancedClustersResultTagResult> tags,
+            ImmutableDictionary<string, string> tags,
 
             bool terminationProtectionEnabled,
 
+            bool? useEffectiveFields,
+
             string versionReleaseSystem)
         {
-            AdvancedConfigurations = advancedConfigurations;
+            AdvancedConfiguration = advancedConfiguration;
             BackupEnabled = backupEnabled;
-            BiConnectorConfigs = biConnectorConfigs;
+            BiConnectorConfig = biConnectorConfig;
+            ClusterId = clusterId;
             ClusterType = clusterType;
             ConfigServerManagementMode = configServerManagementMode;
             ConfigServerType = configServerType;
             ConnectionStrings = connectionStrings;
             CreateDate = createDate;
-            DiskSizeGb = diskSizeGb;
             EncryptionAtRestProvider = encryptionAtRestProvider;
             GlobalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
             Labels = labels;
@@ -176,8 +200,9 @@ namespace Pulumi.Mongodbatlas.Outputs
             MongoDbVersion = mongoDbVersion;
             Name = name;
             Paused = paused;
-            PinnedFcvs = pinnedFcvs;
+            PinnedFcv = pinnedFcv;
             PitEnabled = pitEnabled;
+            ProjectId = projectId;
             RedactClientLogData = redactClientLogData;
             ReplicaSetScalingStrategy = replicaSetScalingStrategy;
             ReplicationSpecs = replicationSpecs;
@@ -185,6 +210,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             StateName = stateName;
             Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
+            UseEffectiveFields = useEffectiveFields;
             VersionReleaseSystem = versionReleaseSystem;
         }
     }

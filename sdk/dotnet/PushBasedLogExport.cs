@@ -66,6 +66,9 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - Push-Based Log Export
+    /// 
     /// ## Import
     /// 
     /// Push-based log export resource can be imported using the project ID, e.g.
@@ -86,6 +89,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("createDate")]
         public Output<string> CreateDate { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool> DeleteOnCreateTimeout { get; private set; } = null!;
 
         /// <summary>
         /// ID of the AWS IAM role that is used to write to the S3 bucket.
@@ -167,6 +176,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string> BucketName { get; set; } = null!;
 
         /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
         /// ID of the AWS IAM role that is used to write to the S3 bucket.
         /// </summary>
         [Input("iamRoleId", required: true)]
@@ -206,6 +221,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("createDate")]
         public Input<string>? CreateDate { get; set; }
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
         /// ID of the AWS IAM role that is used to write to the S3 bucket.

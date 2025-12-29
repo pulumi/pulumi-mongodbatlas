@@ -7,13 +7,51 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: StreamInstance
+// > **DEPRECATED:** This data source is deprecated. Please use `StreamWorkspace` instead.
 //
 // `StreamInstance` describes a stream instance.
+//
+// ## Migration to streamWorkspace
+//
+// To migrate from `StreamInstance` to `StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// New (recommended)
+//			_, err := mongodbatlas.LookupStreamWorkspace(ctx, &mongodbatlas.LookupStreamWorkspaceArgs{
+//				ProjectId:     "<PROJECT_ID>",
+//				WorkspaceName: "<WORKSPACE_NAME>",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Old (deprecated)
+//			_, err = mongodbatlas.LookupStreamInstance(ctx, &mongodbatlas.LookupStreamInstanceArgs{
+//				ProjectId:    "<PROJECT_ID>",
+//				InstanceName: "<INSTANCE_NAME>",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Example Usage
 //
@@ -22,7 +60,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

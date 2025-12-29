@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.EncryptionAtRestPrivateEndpoint
-    /// 
     /// `mongodbatlas.EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
     /// 
     /// &gt; **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
@@ -125,6 +123,10 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - AWS KMS Encryption at Rest Private Endpoint
+    /// - Azure Key Vault Encryption at Rest Private Endpoint
+    /// 
     /// ## Import
     /// 
     /// Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
@@ -141,6 +143,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("cloudProvider")]
         public Output<string> CloudProvider { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool> DeleteOnCreateTimeout { get; private set; } = null!;
 
         /// <summary>
         /// Error message for failures associated with the Encryption At Rest private endpoint.
@@ -171,6 +179,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        [Output("timeouts")]
+        public Output<Outputs.EncryptionAtRestPrivateEndpointTimeouts?> Timeouts { get; private set; } = null!;
 
 
         /// <summary>
@@ -225,6 +236,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string> CloudProvider { get; set; } = null!;
 
         /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
@@ -235,6 +252,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("regionName", required: true)]
         public Input<string> RegionName { get; set; } = null!;
+
+        [Input("timeouts")]
+        public Input<Inputs.EncryptionAtRestPrivateEndpointTimeoutsArgs>? Timeouts { get; set; }
 
         public EncryptionAtRestPrivateEndpointArgs()
         {
@@ -249,6 +269,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("cloudProvider")]
         public Input<string>? CloudProvider { get; set; }
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
         /// Error message for failures associated with the Encryption At Rest private endpoint.
@@ -279,6 +305,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("timeouts")]
+        public Input<Inputs.EncryptionAtRestPrivateEndpointTimeoutsGetArgs>? Timeouts { get; set; }
 
         public EncryptionAtRestPrivateEndpointState()
         {

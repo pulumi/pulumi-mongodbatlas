@@ -5,28 +5,35 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type CloudProviderAccessAuthorization struct {
 	pulumi.CustomResourceState
 
-	AuthorizedDate pulumi.StringOutput                                     `pulumi:"authorizedDate"`
-	Aws            CloudProviderAccessAuthorizationAwsPtrOutput            `pulumi:"aws"`
-	Azure          CloudProviderAccessAuthorizationAzurePtrOutput          `pulumi:"azure"`
-	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayOutput `pulumi:"featureUsages"`
-	Gcps           CloudProviderAccessAuthorizationGcpArrayOutput          `pulumi:"gcps"`
-	ProjectId      pulumi.StringOutput                                     `pulumi:"projectId"`
-	RoleId         pulumi.StringOutput                                     `pulumi:"roleId"`
+	// Date on which this role was authorized.
+	AuthorizedDate pulumi.StringOutput                            `pulumi:"authorizedDate"`
+	Aws            CloudProviderAccessAuthorizationAwsPtrOutput   `pulumi:"aws"`
+	Azure          CloudProviderAccessAuthorizationAzurePtrOutput `pulumi:"azure"`
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages CloudProviderAccessAuthorizationFeatureUsageArrayOutput `pulumi:"featureUsages"`
+	Gcps          CloudProviderAccessAuthorizationGcpArrayOutput          `pulumi:"gcps"`
+	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	//
+	// Conditional
+	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
 
 // NewCloudProviderAccessAuthorization registers a new resource with the given unique name, arguments, and options.
 func NewCloudProviderAccessAuthorization(ctx *pulumi.Context,
-	name string, args *CloudProviderAccessAuthorizationArgs, opts ...pulumi.ResourceOption) (*CloudProviderAccessAuthorization, error) {
+	name string, args *CloudProviderAccessAuthorizationArgs, opts ...pulumi.ResourceOption,
+) (*CloudProviderAccessAuthorization, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -49,7 +56,8 @@ func NewCloudProviderAccessAuthorization(ctx *pulumi.Context,
 // GetCloudProviderAccessAuthorization gets an existing CloudProviderAccessAuthorization resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudProviderAccessAuthorization(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudProviderAccessAuthorizationState, opts ...pulumi.ResourceOption) (*CloudProviderAccessAuthorization, error) {
+	name string, id pulumi.IDInput, state *CloudProviderAccessAuthorizationState, opts ...pulumi.ResourceOption,
+) (*CloudProviderAccessAuthorization, error) {
 	var resource CloudProviderAccessAuthorization
 	err := ctx.ReadResource("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization", name, id, state, &resource, opts...)
 	if err != nil {
@@ -60,23 +68,35 @@ func GetCloudProviderAccessAuthorization(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.
 type cloudProviderAccessAuthorizationState struct {
-	AuthorizedDate *string                                        `pulumi:"authorizedDate"`
-	Aws            *CloudProviderAccessAuthorizationAws           `pulumi:"aws"`
-	Azure          *CloudProviderAccessAuthorizationAzure         `pulumi:"azure"`
-	FeatureUsages  []CloudProviderAccessAuthorizationFeatureUsage `pulumi:"featureUsages"`
-	Gcps           []CloudProviderAccessAuthorizationGcp          `pulumi:"gcps"`
-	ProjectId      *string                                        `pulumi:"projectId"`
-	RoleId         *string                                        `pulumi:"roleId"`
+	// Date on which this role was authorized.
+	AuthorizedDate *string                                `pulumi:"authorizedDate"`
+	Aws            *CloudProviderAccessAuthorizationAws   `pulumi:"aws"`
+	Azure          *CloudProviderAccessAuthorizationAzure `pulumi:"azure"`
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages []CloudProviderAccessAuthorizationFeatureUsage `pulumi:"featureUsages"`
+	Gcps          []CloudProviderAccessAuthorizationGcp          `pulumi:"gcps"`
+	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	ProjectId *string `pulumi:"projectId"`
+	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	//
+	// Conditional
+	RoleId *string `pulumi:"roleId"`
 }
 
 type CloudProviderAccessAuthorizationState struct {
+	// Date on which this role was authorized.
 	AuthorizedDate pulumi.StringPtrInput
 	Aws            CloudProviderAccessAuthorizationAwsPtrInput
 	Azure          CloudProviderAccessAuthorizationAzurePtrInput
-	FeatureUsages  CloudProviderAccessAuthorizationFeatureUsageArrayInput
-	Gcps           CloudProviderAccessAuthorizationGcpArrayInput
-	ProjectId      pulumi.StringPtrInput
-	RoleId         pulumi.StringPtrInput
+	// Atlas features this AWS IAM role is linked to.
+	FeatureUsages CloudProviderAccessAuthorizationFeatureUsageArrayInput
+	Gcps          CloudProviderAccessAuthorizationGcpArrayInput
+	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	ProjectId pulumi.StringPtrInput
+	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	//
+	// Conditional
+	RoleId pulumi.StringPtrInput
 }
 
 func (CloudProviderAccessAuthorizationState) ElementType() reflect.Type {
@@ -84,18 +104,26 @@ func (CloudProviderAccessAuthorizationState) ElementType() reflect.Type {
 }
 
 type cloudProviderAccessAuthorizationArgs struct {
-	Aws       *CloudProviderAccessAuthorizationAws   `pulumi:"aws"`
-	Azure     *CloudProviderAccessAuthorizationAzure `pulumi:"azure"`
-	ProjectId string                                 `pulumi:"projectId"`
-	RoleId    string                                 `pulumi:"roleId"`
+	Aws   *CloudProviderAccessAuthorizationAws   `pulumi:"aws"`
+	Azure *CloudProviderAccessAuthorizationAzure `pulumi:"azure"`
+	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	ProjectId string `pulumi:"projectId"`
+	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	//
+	// Conditional
+	RoleId string `pulumi:"roleId"`
 }
 
 // The set of arguments for constructing a CloudProviderAccessAuthorization resource.
 type CloudProviderAccessAuthorizationArgs struct {
-	Aws       CloudProviderAccessAuthorizationAwsPtrInput
-	Azure     CloudProviderAccessAuthorizationAzurePtrInput
+	Aws   CloudProviderAccessAuthorizationAwsPtrInput
+	Azure CloudProviderAccessAuthorizationAzurePtrInput
+	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	ProjectId pulumi.StringInput
-	RoleId    pulumi.StringInput
+	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	//
+	// Conditional
+	RoleId pulumi.StringInput
 }
 
 func (CloudProviderAccessAuthorizationArgs) ElementType() reflect.Type {
@@ -185,6 +213,7 @@ func (o CloudProviderAccessAuthorizationOutput) ToCloudProviderAccessAuthorizati
 	return o
 }
 
+// Date on which this role was authorized.
 func (o CloudProviderAccessAuthorizationOutput) AuthorizedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorization) pulumi.StringOutput { return v.AuthorizedDate }).(pulumi.StringOutput)
 }
@@ -199,6 +228,7 @@ func (o CloudProviderAccessAuthorizationOutput) Azure() CloudProviderAccessAutho
 	}).(CloudProviderAccessAuthorizationAzurePtrOutput)
 }
 
+// Atlas features this AWS IAM role is linked to.
 func (o CloudProviderAccessAuthorizationOutput) FeatureUsages() CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorization) CloudProviderAccessAuthorizationFeatureUsageArrayOutput {
 		return v.FeatureUsages
@@ -211,10 +241,14 @@ func (o CloudProviderAccessAuthorizationOutput) Gcps() CloudProviderAccessAuthor
 	}).(CloudProviderAccessAuthorizationGcpArrayOutput)
 }
 
+// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 func (o CloudProviderAccessAuthorizationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorization) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+//
+// Conditional
 func (o CloudProviderAccessAuthorizationOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorization) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
 }

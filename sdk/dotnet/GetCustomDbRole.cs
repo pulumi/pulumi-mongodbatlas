@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetCustomDbRole
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDbRole
-        /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -74,8 +72,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDbRole
-        /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -136,8 +132,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomDbRoleResult>("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args ?? new GetCustomDbRoleInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.CustomDbRole
-        /// 
         /// `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.

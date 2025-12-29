@@ -12,11 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedClusters
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAdvancedClusters
-        /// 
         /// `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
         /// 
-        /// This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
@@ -36,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -63,11 +60,113 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
         ///     {
-        ///         ProjectId = exampleAdvancedCluster.ProjectId,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///     });
         /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example using effective fields with auto-scaling
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "auto-scale-cluster-1",
+        ///         ClusterType = "REPLICASET",
+        ///         UseEffectiveFields = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         AutoScaling = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs
+        ///                         {
+        ///                             ComputeEnabled = true,
+        ///                             ComputeScaleDownEnabled = true,
+        ///                             ComputeMinInstanceSize = "M10",
+        ///                             ComputeMaxInstanceSize = "M30",
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "US_EAST_1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var this2 = new Mongodbatlas.AdvancedCluster("this_2", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "auto-scale-cluster-2",
+        ///         ClusterType = "REPLICASET",
+        ///         UseEffectiveFields = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M20",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         AutoScaling = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs
+        ///                         {
+        ///                             ComputeEnabled = true,
+        ///                             ComputeScaleDownEnabled = true,
+        ///                             ComputeMinInstanceSize = "M20",
+        ///                             ComputeMaxInstanceSize = "M40",
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "US_WEST_2",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // Read effective values for all clusters in the project
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         UseEffectiveFields = true,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["allClusterNamesAndSizes"] = @this.Apply(@this =&gt; .Select(cluster =&gt; 
+        ///         {
+        ///             return 
+        ///             {
+        ///                 { "name", cluster.Name },
+        ///                 { "configuredSize", cluster.ReplicationSpecs[0]?.RegionConfigs[0]?.ElectableSpecs?.InstanceSize },
+        ///                 { "actualSize", cluster.ReplicationSpecs[0]?.RegionConfigs[0]?.EffectiveElectableSpecs?.InstanceSize },
+        ///             };
+        ///         }).ToList()),
+        ///     };
         /// });
         /// ```
         /// 
@@ -81,7 +180,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -128,11 +227,10 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example_asym = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
         ///     {
-        ///         ProjectId = example.ProjectId,
-        ///         Name = example.Name,
-        ///         UseReplicationSpecPerShard = true,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
+        ///         Name = thisAdvancedCluster.Name,
         ///     });
         /// 
         /// });
@@ -148,7 +246,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "flex-cluster",
@@ -171,9 +269,9 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
         ///     {
-        ///         ProjectId = example_flex.ProjectId,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///     });
         /// 
         /// });
@@ -183,11 +281,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAdvancedClusters
-        /// 
         /// `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
         /// 
-        /// This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
@@ -207,7 +302,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -234,11 +329,113 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
         ///     {
-        ///         ProjectId = exampleAdvancedCluster.ProjectId,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///     });
         /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example using effective fields with auto-scaling
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "auto-scale-cluster-1",
+        ///         ClusterType = "REPLICASET",
+        ///         UseEffectiveFields = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         AutoScaling = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs
+        ///                         {
+        ///                             ComputeEnabled = true,
+        ///                             ComputeScaleDownEnabled = true,
+        ///                             ComputeMinInstanceSize = "M10",
+        ///                             ComputeMaxInstanceSize = "M30",
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "US_EAST_1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var this2 = new Mongodbatlas.AdvancedCluster("this_2", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "auto-scale-cluster-2",
+        ///         ClusterType = "REPLICASET",
+        ///         UseEffectiveFields = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M20",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         AutoScaling = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs
+        ///                         {
+        ///                             ComputeEnabled = true,
+        ///                             ComputeScaleDownEnabled = true,
+        ///                             ComputeMinInstanceSize = "M20",
+        ///                             ComputeMaxInstanceSize = "M40",
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "US_WEST_2",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // Read effective values for all clusters in the project
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         UseEffectiveFields = true,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["allClusterNamesAndSizes"] = @this.Apply(@this =&gt; .Select(cluster =&gt; 
+        ///         {
+        ///             return 
+        ///             {
+        ///                 { "name", cluster.Name },
+        ///                 { "configuredSize", cluster.ReplicationSpecs[0]?.RegionConfigs[0]?.ElectableSpecs?.InstanceSize },
+        ///                 { "actualSize", cluster.ReplicationSpecs[0]?.RegionConfigs[0]?.EffectiveElectableSpecs?.InstanceSize },
+        ///             };
+        ///         }).ToList()),
+        ///     };
         /// });
         /// ```
         /// 
@@ -252,7 +449,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -299,11 +496,10 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example_asym = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
         ///     {
-        ///         ProjectId = example.ProjectId,
-        ///         Name = example.Name,
-        ///         UseReplicationSpecPerShard = true,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
+        ///         Name = thisAdvancedCluster.Name,
         ///     });
         /// 
         /// });
@@ -319,7 +515,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "flex-cluster",
@@ -342,9 +538,9 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
         ///     {
-        ///         ProjectId = example_flex.ProjectId,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///     });
         /// 
         /// });
@@ -354,11 +550,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAdvancedClusters
-        /// 
         /// `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
         /// 
-        /// This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
@@ -378,7 +571,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var exampleAdvancedCluster = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -405,11 +598,113 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
         ///     {
-        ///         ProjectId = exampleAdvancedCluster.ProjectId,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///     });
         /// 
+        /// });
+        /// ```
+        /// 
+        /// ## Example using effective fields with auto-scaling
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "auto-scale-cluster-1",
+        ///         ClusterType = "REPLICASET",
+        ///         UseEffectiveFields = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         AutoScaling = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs
+        ///                         {
+        ///                             ComputeEnabled = true,
+        ///                             ComputeScaleDownEnabled = true,
+        ///                             ComputeMinInstanceSize = "M10",
+        ///                             ComputeMaxInstanceSize = "M30",
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "US_EAST_1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var this2 = new Mongodbatlas.AdvancedCluster("this_2", new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         Name = "auto-scale-cluster-2",
+        ///         ClusterType = "REPLICASET",
+        ///         UseEffectiveFields = true,
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M20",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                         AutoScaling = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs
+        ///                         {
+        ///                             ComputeEnabled = true,
+        ///                             ComputeScaleDownEnabled = true,
+        ///                             ComputeMinInstanceSize = "M20",
+        ///                             ComputeMaxInstanceSize = "M40",
+        ///                         },
+        ///                         ProviderName = "AWS",
+        ///                         Priority = 7,
+        ///                         RegionName = "US_WEST_2",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     // Read effective values for all clusters in the project
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
+        ///         UseEffectiveFields = true,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["allClusterNamesAndSizes"] = @this.Apply(@this =&gt; .Select(cluster =&gt; 
+        ///         {
+        ///             return 
+        ///             {
+        ///                 { "name", cluster.Name },
+        ///                 { "configuredSize", cluster.ReplicationSpecs[0]?.RegionConfigs[0]?.ElectableSpecs?.InstanceSize },
+        ///                 { "actualSize", cluster.ReplicationSpecs[0]?.RegionConfigs[0]?.EffectiveElectableSpecs?.InstanceSize },
+        ///             };
+        ///         }).ToList()),
+        ///     };
         /// });
         /// ```
         /// 
@@ -423,7 +718,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.AdvancedCluster("example", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -470,11 +765,10 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example_asym = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
         ///     {
-        ///         ProjectId = example.ProjectId,
-        ///         Name = example.Name,
-        ///         UseReplicationSpecPerShard = true,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
+        ///         Name = thisAdvancedCluster.Name,
         ///     });
         /// 
         /// });
@@ -490,7 +784,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example_flex = new Mongodbatlas.AdvancedCluster("example-flex", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "flex-cluster",
@@ -513,9 +807,9 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var example = Mongodbatlas.GetAdvancedClusters.Invoke(new()
+        ///     var @this = Mongodbatlas.GetAdvancedClusters.Invoke(new()
         ///     {
-        ///         ProjectId = example_flex.ProjectId,
+        ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///     });
         /// 
         /// });
@@ -535,10 +829,10 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `ReplicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+        /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`EffectiveElectableSpecs`, `EffectiveReadOnlySpecs`, `EffectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
         /// </summary>
-        [Input("useReplicationSpecPerShard")]
-        public bool? UseReplicationSpecPerShard { get; set; }
+        [Input("useEffectiveFields")]
+        public bool? UseEffectiveFields { get; set; }
 
         public GetAdvancedClustersArgs()
         {
@@ -555,10 +849,10 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `ReplicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+        /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`EffectiveElectableSpecs`, `EffectiveReadOnlySpecs`, `EffectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
         /// </summary>
-        [Input("useReplicationSpecPerShard")]
-        public Input<bool>? UseReplicationSpecPerShard { get; set; }
+        [Input("useEffectiveFields")]
+        public Input<bool>? UseEffectiveFields { get; set; }
 
         public GetAdvancedClustersInvokeArgs()
         {
@@ -579,7 +873,7 @@ namespace Pulumi.Mongodbatlas
         /// A list where each represents a Cluster. See below for more details.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultResult> Results;
-        public readonly bool? UseReplicationSpecPerShard;
+        public readonly bool? UseEffectiveFields;
 
         [OutputConstructor]
         private GetAdvancedClustersResult(
@@ -589,12 +883,12 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetAdvancedClustersResultResult> results,
 
-            bool? useReplicationSpecPerShard)
+            bool? useEffectiveFields)
         {
             Id = id;
             ProjectId = projectId;
             Results = results;
-            UseReplicationSpecPerShard = useReplicationSpecPerShard;
+            UseEffectiveFields = useEffectiveFields;
         }
     }
 }

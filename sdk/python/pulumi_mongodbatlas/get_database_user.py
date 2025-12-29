@@ -135,7 +135,7 @@ class GetDatabaseUserResult:
     @pulumi.getter
     def scopes(self) -> Sequence['outputs.GetDatabaseUserScopeResult']:
         """
-        Array of clusters and Atlas Data Lakes that this user has access to.
+        Array of clusters and Atlas Data Federation that this user has access to.
         """
         return pulumi.get(self, "scopes")
 
@@ -178,8 +178,6 @@ def get_database_user(auth_database_name: Optional[_builtins.str] = None,
                       username: Optional[_builtins.str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseUserResult:
     """
-    ## # Data Source: DatabaseUser
-
     `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
@@ -272,8 +270,6 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[_builtins
                              username: Optional[pulumi.Input[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseUserResult]:
     """
-    ## # Data Source: DatabaseUser
-
     `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.

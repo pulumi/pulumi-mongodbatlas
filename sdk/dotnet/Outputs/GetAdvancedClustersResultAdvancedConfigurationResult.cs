@@ -22,30 +22,25 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<string> CustomOpensslCipherConfigTls12s;
         /// <summary>
+        /// The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `TlsCipherConfigMode` is set to `CUSTOM`.
+        /// </summary>
+        public readonly ImmutableArray<string> CustomOpensslCipherConfigTls13s;
+        /// <summary>
         /// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
         /// </summary>
         public readonly int DefaultMaxTimeMs;
         /// <summary>
-        /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `Local`. To use a custom read concern level, please refer to your driver documentation.
-        /// </summary>
-        public readonly string DefaultReadConcern;
-        /// <summary>
         /// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         /// </summary>
         public readonly string DefaultWriteConcern;
-        /// <summary>
-        /// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        /// </summary>
-        public readonly bool FailIndexKeyTooLong;
         /// <summary>
         /// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         /// </summary>
         public readonly bool JavascriptEnabled;
         /// <summary>
         /// Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        /// - TLS1_0
-        /// - TLS1_1
         /// - TLS1_2
+        /// - TLS1_3
         /// </summary>
         public readonly string MinimumEnabledTlsProtocol;
         /// <summary>
@@ -83,13 +78,11 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<string> customOpensslCipherConfigTls12s,
 
+            ImmutableArray<string> customOpensslCipherConfigTls13s,
+
             int defaultMaxTimeMs,
 
-            string defaultReadConcern,
-
             string defaultWriteConcern,
-
-            bool failIndexKeyTooLong,
 
             bool javascriptEnabled,
 
@@ -111,10 +104,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         {
             ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             CustomOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
+            CustomOpensslCipherConfigTls13s = customOpensslCipherConfigTls13s;
             DefaultMaxTimeMs = defaultMaxTimeMs;
-            DefaultReadConcern = defaultReadConcern;
             DefaultWriteConcern = defaultWriteConcern;
-            FailIndexKeyTooLong = failIndexKeyTooLong;
             JavascriptEnabled = javascriptEnabled;
             MinimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             NoTableScan = noTableScan;

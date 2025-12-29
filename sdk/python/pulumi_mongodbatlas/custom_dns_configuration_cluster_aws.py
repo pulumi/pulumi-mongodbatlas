@@ -104,8 +104,6 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: CustomDnsConfigurationClusterAws
-
         `CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
@@ -144,8 +142,6 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
                  args: CustomDnsConfigurationClusterAwsArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: CustomDnsConfigurationClusterAws
-
         `CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner

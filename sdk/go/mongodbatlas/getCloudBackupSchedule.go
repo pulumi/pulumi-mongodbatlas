@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,7 +18,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -88,7 +88,6 @@ import (
 // _ = mongodbatlas.LookupCloudBackupScheduleOutput(ctx, mongodbatlas.GetCloudBackupScheduleOutputArgs{
 // ProjectId: testCloudBackupSchedule.ProjectId,
 // ClusterName: testCloudBackupSchedule.ClusterName,
-// UseZoneIdForCopySettings: pulumi.Bool(true),
 // }, nil);
 // return nil
 // })
@@ -110,8 +109,6 @@ type LookupCloudBackupScheduleArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId string `pulumi:"projectId"`
-	// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
-	UseZoneIdForCopySettings *bool `pulumi:"useZoneIdForCopySettings"`
 }
 
 // A collection of values returned by getCloudBackupSchedule.
@@ -151,8 +148,7 @@ type LookupCloudBackupScheduleResult struct {
 	// Specifies a restore window in days for cloud backup to maintain.
 	RestoreWindowDays int `pulumi:"restoreWindowDays"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
-	UseOrgAndGroupNamesInExportPrefix bool  `pulumi:"useOrgAndGroupNamesInExportPrefix"`
-	UseZoneIdForCopySettings          *bool `pulumi:"useZoneIdForCopySettings"`
+	UseOrgAndGroupNamesInExportPrefix bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
 
 func LookupCloudBackupScheduleOutput(ctx *pulumi.Context, args LookupCloudBackupScheduleOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupScheduleResultOutput {
@@ -170,8 +166,6 @@ type LookupCloudBackupScheduleOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// The unique identifier of the project for the Atlas cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
-	UseZoneIdForCopySettings pulumi.BoolPtrInput `pulumi:"useZoneIdForCopySettings"`
 }
 
 func (LookupCloudBackupScheduleOutputArgs) ElementType() reflect.Type {
@@ -291,10 +285,6 @@ func (o LookupCloudBackupScheduleResultOutput) RestoreWindowDays() pulumi.IntOut
 // Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 func (o LookupCloudBackupScheduleResultOutput) UseOrgAndGroupNamesInExportPrefix() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.UseOrgAndGroupNamesInExportPrefix }).(pulumi.BoolOutput)
-}
-
-func (o LookupCloudBackupScheduleResultOutput) UseZoneIdForCopySettings() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupCloudBackupScheduleResult) *bool { return v.UseZoneIdForCopySettings }).(pulumi.BoolPtrOutput)
 }
 
 func init() {

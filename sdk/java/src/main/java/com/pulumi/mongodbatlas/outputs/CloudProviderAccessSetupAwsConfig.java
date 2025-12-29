@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class CloudProviderAccessSetupAwsConfig {
+    /**
+     * @return Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     * 
+     */
     private @Nullable String atlasAssumedRoleExternalId;
+    /**
+     * @return ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     * 
+     */
     private @Nullable String atlasAwsAccountArn;
 
     private CloudProviderAccessSetupAwsConfig() {}
+    /**
+     * @return Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     * 
+     */
     public Optional<String> atlasAssumedRoleExternalId() {
         return Optional.ofNullable(this.atlasAssumedRoleExternalId);
     }
+    /**
+     * @return ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     * 
+     */
     public Optional<String> atlasAwsAccountArn() {
         return Optional.ofNullable(this.atlasAwsAccountArn);
     }

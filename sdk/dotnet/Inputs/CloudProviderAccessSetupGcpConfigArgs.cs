@@ -12,9 +12,15 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class CloudProviderAccessSetupGcpConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The GCP service account email that Atlas uses.
+        /// </summary>
         [Input("serviceAccountForAtlas")]
         public Input<string>? ServiceAccountForAtlas { get; set; }
 
+        /// <summary>
+        /// The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 

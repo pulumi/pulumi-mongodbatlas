@@ -18,212 +18,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.EventTrigger
- * 
- * `mongodbatlas.EventTrigger` provides a Event Trigger resource.
- * 
- * Note: If the `appId` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app if it still exists then create itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/app-services/triggers/) to learn more.
- * 
- * ## Example Usage
- * 
- * ### S
- * 
- * ### Example Usage: Database Trigger with Function
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.EventTrigger;
- * import com.pulumi.mongodbatlas.EventTriggerArgs;
- * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsArgs;
- * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsAwsEventbridgeArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()
- *             .projectId("PROJECT ID")
- *             .appId("APPLICATION ID")
- *             .name("NAME OF THE TRIGGER")
- *             .type("DATABASE")
- *             .functionId("FUNCTION ID")
- *             .disabled(false)
- *             .configOperationTypes(            
- *                 "INSERT",
- *                 "UPDATE")
- *             .configDatabase("DATABASE NAME")
- *             .configCollection("COLLECTION NAME")
- *             .configServiceId("SERVICE ID")
- *             .configMatch("""
- * {
- *   \"updateDescription.updatedFields\": {
- *     \"status\": \"blocked\"
- *   }
- * }
- *             """)
- *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
- *             .configFullDocument(false)
- *             .configFullDocumentBefore(false)
- *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
- *                 .awsEventbridge(EventTriggerEventProcessorsAwsEventbridgeArgs.builder()
- *                     .configAccountId("AWS ACCOUNT ID")
- *                     .configRegion("AWS REGIOn")
- *                     .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * ### Example Usage: Database Trigger with EventBridge
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.EventTrigger;
- * import com.pulumi.mongodbatlas.EventTriggerArgs;
- * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsArgs;
- * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsAwsEventbridgeArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()
- *             .projectId("PROJECT ID")
- *             .appId("APPLICATION ID")
- *             .name("NAME OF THE TRIGGER")
- *             .type("DATABASE")
- *             .disabled(false)
- *             .unordered(false)
- *             .configOperationTypes(            
- *                 "INSERT",
- *                 "UPDATE")
- *             .configOperationType("LOGIN")
- *             .configProviders("anon-user")
- *             .configDatabase("DATABASE NAME")
- *             .configCollection("COLLECTION NAME")
- *             .configServiceId("1")
- *             .configMatch("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
- *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
- *             .configFullDocument(false)
- *             .configFullDocumentBefore(false)
- *             .configSchedule("*")
- *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
- *                 .awsEventbridge(EventTriggerEventProcessorsAwsEventbridgeArgs.builder()
- *                     .configAccountId("AWS ACCOUNT ID")
- *                     .configRegion("AWS REGIOn")
- *                     .build())
- *                 .build())
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * ### Example Usage: Authentication Trigger
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.EventTrigger;
- * import com.pulumi.mongodbatlas.EventTriggerArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()
- *             .projectId("PROJECT ID")
- *             .appId("APPLICATION ID")
- *             .name("NAME OF THE TRIGGER")
- *             .type("AUTHENTICATION")
- *             .functionId("1")
- *             .disabled(false)
- *             .configOperationType("LOGIN")
- *             .configProviders("anon-user")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * ### Example Usage: Scheduled Trigger
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.EventTrigger;
- * import com.pulumi.mongodbatlas.EventTriggerArgs;
- * import java.util.List;
- * import java.util.ArrayList;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var test = new EventTrigger("test", EventTriggerArgs.builder()
- *             .projectId("PROJECT ID")
- *             .appId("APPLICATION ID")
- *             .name("NAME OF THE TRIGGER")
- *             .type("SCHEDULED")
- *             .functionId("1")
- *             .disabled(false)
- *             .configSchedule("*")
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
  * ## Import
  * 
  * Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
@@ -315,28 +109,28 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
         return this.configMatch;
     }
     /**
-     * Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+     * Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      * 
      */
     @Export(name="configOperationType", refs={String.class}, tree="[0]")
     private Output<String> configOperationType;
 
     /**
-     * @return Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+     * @return Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      * 
      */
     public Output<String> configOperationType() {
         return this.configOperationType;
     }
     /**
-     * Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+     * Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      * 
      */
     @Export(name="configOperationTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> configOperationTypes;
 
     /**
-     * @return Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+     * @return Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      * 
      */
     public Output<List<String>> configOperationTypes() {
@@ -357,28 +151,28 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
         return this.configProject;
     }
     /**
-     * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
      * 
      */
     @Export(name="configProviders", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> configProviders;
 
     /**
-     * @return Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * @return Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
      * 
      */
     public Output<List<String>> configProviders() {
         return this.configProviders;
     }
     /**
-     * Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      * 
      */
     @Export(name="configSchedule", refs={String.class}, tree="[0]")
     private Output<String> configSchedule;
 
     /**
-     * @return Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * @return Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      * 
      */
     public Output<String> configSchedule() {
@@ -419,7 +213,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
         return this.disabled;
     }
     /**
-     * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+     * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      * 
@@ -428,7 +222,7 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ EventTriggerEventProcessors> eventProcessors;
 
     /**
-     * @return An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+     * @return An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      * 

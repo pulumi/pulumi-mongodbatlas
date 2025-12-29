@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization")]
     public partial class CloudProviderAccessAuthorization : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Date on which this role was authorized.
+        /// </summary>
         [Output("authorizedDate")]
         public Output<string> AuthorizedDate { get; private set; } = null!;
 
@@ -21,15 +24,26 @@ namespace Pulumi.Mongodbatlas
         [Output("azure")]
         public Output<Outputs.CloudProviderAccessAuthorizationAzure?> Azure { get; private set; } = null!;
 
+        /// <summary>
+        /// Atlas features this AWS IAM role is linked to.
+        /// </summary>
         [Output("featureUsages")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessAuthorizationFeatureUsage>> FeatureUsages { get; private set; } = null!;
 
         [Output("gcps")]
         public Output<ImmutableArray<Outputs.CloudProviderAccessAuthorizationGcp>> Gcps { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique ID for the project. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `RoleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// 
+        /// Conditional
+        /// </summary>
         [Output("roleId")]
         public Output<string> RoleId { get; private set; } = null!;
 
@@ -85,9 +99,17 @@ namespace Pulumi.Mongodbatlas
         [Input("azure")]
         public Input<Inputs.CloudProviderAccessAuthorizationAzureArgs>? Azure { get; set; }
 
+        /// <summary>
+        /// The unique ID for the project. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `RoleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// 
+        /// Conditional
+        /// </summary>
         [Input("roleId", required: true)]
         public Input<string> RoleId { get; set; } = null!;
 
@@ -99,6 +121,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class CloudProviderAccessAuthorizationState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Date on which this role was authorized.
+        /// </summary>
         [Input("authorizedDate")]
         public Input<string>? AuthorizedDate { get; set; }
 
@@ -110,6 +135,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("featureUsages")]
         private InputList<Inputs.CloudProviderAccessAuthorizationFeatureUsageGetArgs>? _featureUsages;
+
+        /// <summary>
+        /// Atlas features this AWS IAM role is linked to.
+        /// </summary>
         public InputList<Inputs.CloudProviderAccessAuthorizationFeatureUsageGetArgs> FeatureUsages
         {
             get => _featureUsages ?? (_featureUsages = new InputList<Inputs.CloudProviderAccessAuthorizationFeatureUsageGetArgs>());
@@ -124,9 +153,17 @@ namespace Pulumi.Mongodbatlas
             set => _gcps = value;
         }
 
+        /// <summary>
+        /// The unique ID for the project. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `RoleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// 
+        /// Conditional
+        /// </summary>
         [Input("roleId")]
         public Input<string>? RoleId { get; set; }
 

@@ -95,8 +95,6 @@ def get_mongodb_employee_access_grant(cluster_name: Optional[_builtins.str] = No
                                       project_id: Optional[_builtins.str] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMongodbEmployeeAccessGrantResult:
     """
-    ## # Data Source: MongodbEmployeeAccessGrant
-
     `MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
 
     ## Example Usage
@@ -137,8 +135,6 @@ def get_mongodb_employee_access_grant_output(cluster_name: Optional[pulumi.Input
                                              project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongodbEmployeeAccessGrantResult]:
     """
-    ## # Data Source: MongodbEmployeeAccessGrant
-
     `MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
 
     ## Example Usage

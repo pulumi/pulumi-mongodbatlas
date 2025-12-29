@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetApiKeyProjectAssignment
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
-        /// 
         /// `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
         /// 
         /// ## Example Usage
@@ -85,8 +83,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetApiKeyProjectAssignmentResult>("mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment", args ?? new GetApiKeyProjectAssignmentArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
-        /// 
         /// `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
         /// 
         /// ## Example Usage
@@ -158,8 +154,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetApiKeyProjectAssignmentResult>("mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment", args ?? new GetApiKeyProjectAssignmentInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
-        /// 
         /// `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
         /// 
         /// ## Example Usage

@@ -14,8 +14,6 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.MongodbEmployeeAccessGrant
- * 
  * `mongodbatlas.MongodbEmployeeAccessGrant` provides a MongoDB Employee Access Grant resource. The resource lets you create, delete, update and import a MongoDB employee access grant.
  * 
  * ## Example Usage
@@ -64,6 +62,9 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### Further Examples
+ * - Grant log access to MongoDB employees
  * 
  * ## Import
  * 

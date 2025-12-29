@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: FlexCluster
-//
 // `FlexCluster` provides a Flex Cluster resource. The resource lets you create, update, delete and import a flex cluster.
 //
 // **RECOMMENDATION:** We recommend using the `AdvancedCluster` resource instead of the `FlexCluster` resource to create and manage Flex clusters. The `AdvancedCluster` resource not only supports Flex clusters, but also supports tenant and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster resource.
@@ -21,6 +19,9 @@ import (
 // ## Example Usage
 //
 // ### S
+//
+// ### Further Examples
+// - Flex Cluster
 //
 // ## Import
 //
@@ -38,6 +39,8 @@ type FlexCluster struct {
 	ConnectionStrings FlexClusterConnectionStringsOutput `pulumi:"connectionStrings"`
 	// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
 	CreateDate pulumi.StringOutput `pulumi:"createDate"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
 	// Version of MongoDB that the instance runs.
 	MongoDbVersion pulumi.StringOutput `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the instance.
@@ -51,7 +54,8 @@ type FlexCluster struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
 	Tags pulumi.StringMapOutput `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
-	TerminationProtectionEnabled pulumi.BoolOutput `pulumi:"terminationProtectionEnabled"`
+	TerminationProtectionEnabled pulumi.BoolOutput            `pulumi:"terminationProtectionEnabled"`
+	Timeouts                     FlexClusterTimeoutsPtrOutput `pulumi:"timeouts"`
 	// Method by which the cluster maintains the MongoDB versions.
 	VersionReleaseSystem pulumi.StringOutput `pulumi:"versionReleaseSystem"`
 }
@@ -100,6 +104,8 @@ type flexClusterState struct {
 	ConnectionStrings *FlexClusterConnectionStrings `pulumi:"connectionStrings"`
 	// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
 	CreateDate *string `pulumi:"createDate"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Version of MongoDB that the instance runs.
 	MongoDbVersion *string `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the instance.
@@ -113,7 +119,8 @@ type flexClusterState struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
 	Tags map[string]string `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
-	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
+	TerminationProtectionEnabled *bool                `pulumi:"terminationProtectionEnabled"`
+	Timeouts                     *FlexClusterTimeouts `pulumi:"timeouts"`
 	// Method by which the cluster maintains the MongoDB versions.
 	VersionReleaseSystem *string `pulumi:"versionReleaseSystem"`
 }
@@ -127,6 +134,8 @@ type FlexClusterState struct {
 	ConnectionStrings FlexClusterConnectionStringsPtrInput
 	// Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
 	CreateDate pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Version of MongoDB that the instance runs.
 	MongoDbVersion pulumi.StringPtrInput
 	// Human-readable label that identifies the instance.
@@ -141,6 +150,7 @@ type FlexClusterState struct {
 	Tags pulumi.StringMapInput
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
+	Timeouts                     FlexClusterTimeoutsPtrInput
 	// Method by which the cluster maintains the MongoDB versions.
 	VersionReleaseSystem pulumi.StringPtrInput
 }
@@ -150,6 +160,8 @@ func (FlexClusterState) ElementType() reflect.Type {
 }
 
 type flexClusterArgs struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Human-readable label that identifies the instance.
 	Name *string `pulumi:"name"`
 	// Unique 24-hexadecimal character string that identifies the project.
@@ -159,11 +171,14 @@ type flexClusterArgs struct {
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
 	Tags map[string]string `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
-	TerminationProtectionEnabled *bool `pulumi:"terminationProtectionEnabled"`
+	TerminationProtectionEnabled *bool                `pulumi:"terminationProtectionEnabled"`
+	Timeouts                     *FlexClusterTimeouts `pulumi:"timeouts"`
 }
 
 // The set of arguments for constructing a FlexCluster resource.
 type FlexClusterArgs struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Human-readable label that identifies the instance.
 	Name pulumi.StringPtrInput
 	// Unique 24-hexadecimal character string that identifies the project.
@@ -174,6 +189,7 @@ type FlexClusterArgs struct {
 	Tags pulumi.StringMapInput
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolPtrInput
+	Timeouts                     FlexClusterTimeoutsPtrInput
 }
 
 func (FlexClusterArgs) ElementType() reflect.Type {
@@ -283,6 +299,11 @@ func (o FlexClusterOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *FlexCluster) pulumi.StringOutput { return v.CreateDate }).(pulumi.StringOutput)
 }
 
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o FlexClusterOutput) DeleteOnCreateTimeout() pulumi.BoolOutput {
+	return o.ApplyT(func(v *FlexCluster) pulumi.BoolOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolOutput)
+}
+
 // Version of MongoDB that the instance runs.
 func (o FlexClusterOutput) MongoDbVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *FlexCluster) pulumi.StringOutput { return v.MongoDbVersion }).(pulumi.StringOutput)
@@ -316,6 +337,10 @@ func (o FlexClusterOutput) Tags() pulumi.StringMapOutput {
 // Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
 func (o FlexClusterOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *FlexCluster) pulumi.BoolOutput { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
+}
+
+func (o FlexClusterOutput) Timeouts() FlexClusterTimeoutsPtrOutput {
+	return o.ApplyT(func(v *FlexCluster) FlexClusterTimeoutsPtrOutput { return v.Timeouts }).(FlexClusterTimeoutsPtrOutput)
 }
 
 // Method by which the cluster maintains the MongoDB versions.

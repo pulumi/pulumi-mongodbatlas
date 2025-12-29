@@ -80,18 +80,18 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
-    @Import(name="hourOfDay")
-    private @Nullable Output<Integer> hourOfDay;
+    @Import(name="hourOfDay", required=true)
+    private Output<Integer> hourOfDay;
 
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
-    public Optional<Output<Integer>> hourOfDay() {
-        return Optional.ofNullable(this.hourOfDay);
+    public Output<Integer> hourOfDay() {
+        return this.hourOfDay;
     }
 
     /**
@@ -109,26 +109,19 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         return this.projectId;
     }
 
+    /**
+     * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
     @Import(name="protectedHours")
     private @Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours;
 
+    /**
+     * @return Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
     public Optional<Output<MaintenanceWindowProtectedHoursArgs>> protectedHours() {
         return Optional.ofNullable(this.protectedHours);
-    }
-
-    /**
-     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-     * 
-     */
-    @Import(name="startAsap")
-    private @Nullable Output<Boolean> startAsap;
-
-    /**
-     * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-     * 
-     */
-    public Optional<Output<Boolean>> startAsap() {
-        return Optional.ofNullable(this.startAsap);
     }
 
     private MaintenanceWindowArgs() {}
@@ -141,7 +134,6 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         this.hourOfDay = $.hourOfDay;
         this.projectId = $.projectId;
         this.protectedHours = $.protectedHours;
-        this.startAsap = $.startAsap;
     }
 
     public static Builder builder() {
@@ -247,18 +239,18 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
          * 
          * @return builder
          * 
          */
-        public Builder hourOfDay(@Nullable Output<Integer> hourOfDay) {
+        public Builder hourOfDay(Output<Integer> hourOfDay) {
             $.hourOfDay = hourOfDay;
             return this;
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
          * 
          * @return builder
          * 
@@ -288,39 +280,33 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param protectedHours Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+         * 
+         * @return builder
+         * 
+         */
         public Builder protectedHours(@Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours) {
             $.protectedHours = protectedHours;
             return this;
         }
 
+        /**
+         * @param protectedHours Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+         * 
+         * @return builder
+         * 
+         */
         public Builder protectedHours(MaintenanceWindowProtectedHoursArgs protectedHours) {
             return protectedHours(Output.of(protectedHours));
-        }
-
-        /**
-         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder startAsap(@Nullable Output<Boolean> startAsap) {
-            $.startAsap = startAsap;
-            return this;
-        }
-
-        /**
-         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder startAsap(Boolean startAsap) {
-            return startAsap(Output.of(startAsap));
         }
 
         public MaintenanceWindowArgs build() {
             if ($.dayOfWeek == null) {
                 throw new MissingRequiredPropertyException("MaintenanceWindowArgs", "dayOfWeek");
+            }
+            if ($.hourOfDay == null) {
+                throw new MissingRequiredPropertyException("MaintenanceWindowArgs", "hourOfDay");
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("MaintenanceWindowArgs", "projectId");

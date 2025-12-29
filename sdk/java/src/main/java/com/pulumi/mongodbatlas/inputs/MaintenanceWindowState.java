@@ -79,14 +79,14 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
     @Import(name="hourOfDay")
     private @Nullable Output<Integer> hourOfDay;
 
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
     public Optional<Output<Integer>> hourOfDay() {
@@ -123,22 +123,30 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.projectId);
     }
 
+    /**
+     * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
     @Import(name="protectedHours")
     private @Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours;
 
+    /**
+     * @return Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
     public Optional<Output<MaintenanceWindowProtectedHoursArgs>> protectedHours() {
         return Optional.ofNullable(this.protectedHours);
     }
 
     /**
-     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     @Import(name="startAsap")
     private @Nullable Output<Boolean> startAsap;
 
     /**
-     * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * @return Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     public Optional<Output<Boolean>> startAsap() {
@@ -278,7 +286,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
          * 
          * @return builder
          * 
@@ -289,7 +297,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
          * 
          * @return builder
          * 
@@ -340,17 +348,29 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param protectedHours Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+         * 
+         * @return builder
+         * 
+         */
         public Builder protectedHours(@Nullable Output<MaintenanceWindowProtectedHoursArgs> protectedHours) {
             $.protectedHours = protectedHours;
             return this;
         }
 
+        /**
+         * @param protectedHours Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+         * 
+         * @return builder
+         * 
+         */
         public Builder protectedHours(MaintenanceWindowProtectedHoursArgs protectedHours) {
             return protectedHours(Output.of(protectedHours));
         }
 
         /**
-         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
          * 
          * @return builder
          * 
@@ -361,7 +381,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+         * @param startAsap Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
          * 
          * @return builder
          * 

@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.CloudBackupSnapshotExportBucket
-    /// 
     /// `mongodbatlas.CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -62,6 +60,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Further Examples
+    /// - AWS Cloud Backup Snapshot Export Bucket
+    /// - Azure Cloud Backup Snapshot Export Bucket
     /// 
     /// ## Import
     /// 

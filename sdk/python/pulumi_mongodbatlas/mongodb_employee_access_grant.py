@@ -168,8 +168,6 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: MongodbEmployeeAccessGrant
-
         `MongodbEmployeeAccessGrant` provides a MongoDB Employee Access Grant resource. The resource lets you create, delete, update and import a MongoDB employee access grant.
 
         ## Example Usage
@@ -190,6 +188,9 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         pulumi.export("grantType", ds_example.grant_type)
         pulumi.export("expirationTime", ds_example.expiration_time)
         ```
+
+        ### Further Examples
+        - Grant log access to MongoDB employees
 
         ## Import
 
@@ -211,8 +212,6 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
                  args: MongodbEmployeeAccessGrantArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: MongodbEmployeeAccessGrant
-
         `MongodbEmployeeAccessGrant` provides a MongoDB Employee Access Grant resource. The resource lets you create, delete, update and import a MongoDB employee access grant.
 
         ## Example Usage
@@ -233,6 +232,9 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         pulumi.export("grantType", ds_example.grant_type)
         pulumi.export("expirationTime", ds_example.expiration_time)
         ```
+
+        ### Further Examples
+        - Grant log access to MongoDB employees
 
         ## Import
 

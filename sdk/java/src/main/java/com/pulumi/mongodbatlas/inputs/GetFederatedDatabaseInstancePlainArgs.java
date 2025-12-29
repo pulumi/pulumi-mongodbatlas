@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfig;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -16,11 +17,11 @@ public final class GetFederatedDatabaseInstancePlainArgs extends com.pulumi.reso
 
     public static final GetFederatedDatabaseInstancePlainArgs Empty = new GetFederatedDatabaseInstancePlainArgs();
 
-    @Import(name="cloudProviderConfig")
-    private @Nullable GetFederatedDatabaseInstanceCloudProviderConfig cloudProviderConfig;
+    @Import(name="cloudProviderConfigs")
+    private @Nullable List<GetFederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfigs;
 
-    public Optional<GetFederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfig() {
-        return Optional.ofNullable(this.cloudProviderConfig);
+    public Optional<List<GetFederatedDatabaseInstanceCloudProviderConfig>> cloudProviderConfigs() {
+        return Optional.ofNullable(this.cloudProviderConfigs);
     }
 
     /**
@@ -56,7 +57,7 @@ public final class GetFederatedDatabaseInstancePlainArgs extends com.pulumi.reso
     private GetFederatedDatabaseInstancePlainArgs() {}
 
     private GetFederatedDatabaseInstancePlainArgs(GetFederatedDatabaseInstancePlainArgs $) {
-        this.cloudProviderConfig = $.cloudProviderConfig;
+        this.cloudProviderConfigs = $.cloudProviderConfigs;
         this.name = $.name;
         this.projectId = $.projectId;
     }
@@ -79,9 +80,13 @@ public final class GetFederatedDatabaseInstancePlainArgs extends com.pulumi.reso
             $ = new GetFederatedDatabaseInstancePlainArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder cloudProviderConfig(@Nullable GetFederatedDatabaseInstanceCloudProviderConfig cloudProviderConfig) {
-            $.cloudProviderConfig = cloudProviderConfig;
+        public Builder cloudProviderConfigs(@Nullable List<GetFederatedDatabaseInstanceCloudProviderConfig> cloudProviderConfigs) {
+            $.cloudProviderConfigs = cloudProviderConfigs;
             return this;
+        }
+
+        public Builder cloudProviderConfigs(GetFederatedDatabaseInstanceCloudProviderConfig... cloudProviderConfigs) {
+            return cloudProviderConfigs(List.of(cloudProviderConfigs));
         }
 
         /**

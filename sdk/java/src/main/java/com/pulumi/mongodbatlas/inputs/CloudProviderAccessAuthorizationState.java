@@ -20,9 +20,17 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
 
     public static final CloudProviderAccessAuthorizationState Empty = new CloudProviderAccessAuthorizationState();
 
+    /**
+     * Date on which this role was authorized.
+     * 
+     */
     @Import(name="authorizedDate")
     private @Nullable Output<String> authorizedDate;
 
+    /**
+     * @return Date on which this role was authorized.
+     * 
+     */
     public Optional<Output<String>> authorizedDate() {
         return Optional.ofNullable(this.authorizedDate);
     }
@@ -41,9 +49,17 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
         return Optional.ofNullable(this.azure);
     }
 
+    /**
+     * Atlas features this AWS IAM role is linked to.
+     * 
+     */
     @Import(name="featureUsages")
     private @Nullable Output<List<CloudProviderAccessAuthorizationFeatureUsageArgs>> featureUsages;
 
+    /**
+     * @return Atlas features this AWS IAM role is linked to.
+     * 
+     */
     public Optional<Output<List<CloudProviderAccessAuthorizationFeatureUsageArgs>>> featureUsages() {
         return Optional.ofNullable(this.featureUsages);
     }
@@ -55,16 +71,36 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
         return Optional.ofNullable(this.gcps);
     }
 
+    /**
+     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
+    /**
+     * @return The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     */
     public Optional<Output<String>> projectId() {
         return Optional.ofNullable(this.projectId);
     }
 
+    /**
+     * The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     * Conditional
+     * 
+     */
     @Import(name="roleId")
     private @Nullable Output<String> roleId;
 
+    /**
+     * @return The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     * Conditional
+     * 
+     */
     public Optional<Output<String>> roleId() {
         return Optional.ofNullable(this.roleId);
     }
@@ -99,11 +135,23 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
             $ = new CloudProviderAccessAuthorizationState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param authorizedDate Date on which this role was authorized.
+         * 
+         * @return builder
+         * 
+         */
         public Builder authorizedDate(@Nullable Output<String> authorizedDate) {
             $.authorizedDate = authorizedDate;
             return this;
         }
 
+        /**
+         * @param authorizedDate Date on which this role was authorized.
+         * 
+         * @return builder
+         * 
+         */
         public Builder authorizedDate(String authorizedDate) {
             return authorizedDate(Output.of(authorizedDate));
         }
@@ -126,15 +174,33 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
             return azure(Output.of(azure));
         }
 
+        /**
+         * @param featureUsages Atlas features this AWS IAM role is linked to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder featureUsages(@Nullable Output<List<CloudProviderAccessAuthorizationFeatureUsageArgs>> featureUsages) {
             $.featureUsages = featureUsages;
             return this;
         }
 
+        /**
+         * @param featureUsages Atlas features this AWS IAM role is linked to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder featureUsages(List<CloudProviderAccessAuthorizationFeatureUsageArgs> featureUsages) {
             return featureUsages(Output.of(featureUsages));
         }
 
+        /**
+         * @param featureUsages Atlas features this AWS IAM role is linked to.
+         * 
+         * @return builder
+         * 
+         */
         public Builder featureUsages(CloudProviderAccessAuthorizationFeatureUsageArgs... featureUsages) {
             return featureUsages(List.of(featureUsages));
         }
@@ -152,20 +218,48 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
             return gcps(List.of(gcps));
         }
 
+        /**
+         * @param projectId The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(@Nullable Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
+        /**
+         * @param projectId The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param roleId The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * Conditional
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleId(@Nullable Output<String> roleId) {
             $.roleId = roleId;
             return this;
         }
 
+        /**
+         * @param roleId The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * Conditional
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleId(String roleId) {
             return roleId(Output.of(roleId));
         }

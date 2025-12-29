@@ -141,9 +141,9 @@ def get_org_invitation(invitation_id: Optional[_builtins.str] = None,
                        username: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrgInvitationResult:
     """
-    ## # Data Source: OrgInvitation
-
     `OrgInvitation` describes an invitation for a user to join an Atlas organization.
+
+    > **DEPRECATION:** This data source is deprecated. Use `CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
 
 
     :param _builtins.str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
@@ -172,9 +172,9 @@ def get_org_invitation_output(invitation_id: Optional[pulumi.Input[_builtins.str
                               username: Optional[pulumi.Input[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrgInvitationResult]:
     """
-    ## # Data Source: OrgInvitation
-
     `OrgInvitation` describes an invitation for a user to join an Atlas organization.
+
+    > **DEPRECATION:** This data source is deprecated. Use `CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
 
 
     :param _builtins.str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.

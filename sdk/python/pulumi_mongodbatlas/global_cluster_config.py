@@ -92,7 +92,6 @@ class GlobalClusterConfigArgs:
 class _GlobalClusterConfigState:
     def __init__(__self__, *,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_zone_mapping: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  custom_zone_mapping_zone_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]] = None,
                  managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None,
@@ -100,7 +99,6 @@ class _GlobalClusterConfigState:
         """
         Input properties used for looking up and filtering GlobalClusterConfig resources.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Global Cluster.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_zone_mapping: (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_zone_mapping_zone_id: A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -108,11 +106,6 @@ class _GlobalClusterConfigState:
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
-        if custom_zone_mapping is not None:
-            warnings.warn("""This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""custom_zone_mapping is deprecated: This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if custom_zone_mapping is not None:
-            pulumi.set(__self__, "custom_zone_mapping", custom_zone_mapping)
         if custom_zone_mapping_zone_id is not None:
             pulumi.set(__self__, "custom_zone_mapping_zone_id", custom_zone_mapping_zone_id)
         if custom_zone_mappings is not None:
@@ -133,19 +126,6 @@ class _GlobalClusterConfigState:
     @cluster_name.setter
     def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="customZoneMapping")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def custom_zone_mapping(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
-        """
-        (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-        """
-        return pulumi.get(self, "custom_zone_mapping")
-
-    @custom_zone_mapping.setter
-    def custom_zone_mapping(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "custom_zone_mapping", value)
 
     @_builtins.property
     @pulumi.getter(name="customZoneMappingZoneId")
@@ -208,8 +188,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: GlobalClusterConfig
-
         `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -296,8 +274,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
                  args: GlobalClusterConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: GlobalClusterConfig
-
         `GlobalClusterConfig` provides a Global Cluster Configuration resource.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -406,7 +382,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
-            __props__.__dict__["custom_zone_mapping"] = None
             __props__.__dict__["custom_zone_mapping_zone_id"] = None
         super(GlobalClusterConfig, __self__).__init__(
             'mongodbatlas:index/globalClusterConfig:GlobalClusterConfig',
@@ -419,7 +394,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            custom_zone_mapping: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             custom_zone_mapping_zone_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
             managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
@@ -432,7 +406,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Global Cluster.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_zone_mapping: (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_zone_mapping_zone_id: A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
@@ -443,7 +416,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
         __props__ = _GlobalClusterConfigState.__new__(_GlobalClusterConfigState)
 
         __props__.__dict__["cluster_name"] = cluster_name
-        __props__.__dict__["custom_zone_mapping"] = custom_zone_mapping
         __props__.__dict__["custom_zone_mapping_zone_id"] = custom_zone_mapping_zone_id
         __props__.__dict__["custom_zone_mappings"] = custom_zone_mappings
         __props__.__dict__["managed_namespaces"] = managed_namespaces
@@ -457,15 +429,6 @@ class GlobalClusterConfig(pulumi.CustomResource):
         The name of the Global Cluster.
         """
         return pulumi.get(self, "cluster_name")
-
-    @_builtins.property
-    @pulumi.getter(name="customZoneMapping")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def custom_zone_mapping(self) -> pulumi.Output[Mapping[str, _builtins.str]]:
-        """
-        (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-        """
-        return pulumi.get(self, "custom_zone_mapping")
 
     @_builtins.property
     @pulumi.getter(name="customZoneMappingZoneId")

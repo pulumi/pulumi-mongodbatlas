@@ -7,13 +7,13 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.MaintenanceWindow
- *
  * `mongodbatlas.MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
  *
  * > **NOTE:** Only a single maintenance window resource can be defined per project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
  *
  * ## Maintenance Window Considerations:
  *
@@ -49,6 +49,9 @@ import * as utilities from "./utilities";
  *     defer: true,
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Configure Maintenance Window
  *
  * ## Import
  *
@@ -104,7 +107,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      */
     declare public readonly defer: pulumi.Output<boolean>;
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
      */
     declare public readonly hourOfDay: pulumi.Output<number>;
     /**
@@ -115,11 +118,14 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      * The unique identifier of the project for the Maintenance Window.
      */
     declare public readonly projectId: pulumi.Output<string>;
+    /**
+     * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     */
     declare public readonly protectedHours: pulumi.Output<outputs.MaintenanceWindowProtectedHours | undefined>;
     /**
-     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      */
-    declare public readonly startAsap: pulumi.Output<boolean>;
+    declare public /*out*/ readonly startAsap: pulumi.Output<boolean>;
     /**
      * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
      */
@@ -153,6 +159,9 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             if (args?.dayOfWeek === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dayOfWeek'");
             }
+            if (args?.hourOfDay === undefined && !opts.urn) {
+                throw new Error("Missing required property 'hourOfDay'");
+            }
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
@@ -163,8 +172,8 @@ export class MaintenanceWindow extends pulumi.CustomResource {
             resourceInputs["hourOfDay"] = args?.hourOfDay;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["protectedHours"] = args?.protectedHours;
-            resourceInputs["startAsap"] = args?.startAsap;
             resourceInputs["numberOfDeferrals"] = undefined /*out*/;
+            resourceInputs["startAsap"] = undefined /*out*/;
             resourceInputs["timeZoneId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -193,7 +202,7 @@ export interface MaintenanceWindowState {
      */
     defer?: pulumi.Input<boolean>;
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
      */
     hourOfDay?: pulumi.Input<number>;
     /**
@@ -204,9 +213,12 @@ export interface MaintenanceWindowState {
      * The unique identifier of the project for the Maintenance Window.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     */
     protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours>;
     /**
-     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      */
     startAsap?: pulumi.Input<boolean>;
     /**
@@ -236,16 +248,15 @@ export interface MaintenanceWindowArgs {
      */
     defer?: pulumi.Input<boolean>;
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
      */
-    hourOfDay?: pulumi.Input<number>;
+    hourOfDay: pulumi.Input<number>;
     /**
      * The unique identifier of the project for the Maintenance Window.
      */
     projectId: pulumi.Input<string>;
-    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours>;
     /**
-     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
      */
-    startAsap?: pulumi.Input<boolean>;
+    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours>;
 }

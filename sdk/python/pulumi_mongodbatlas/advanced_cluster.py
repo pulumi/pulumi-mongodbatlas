@@ -30,10 +30,9 @@ class AdvancedClusterArgs:
                  bi_connector_config: Optional[pulumi.Input['AdvancedClusterBiConnectorConfigArgs']] = None,
                  config_server_management_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -43,8 +42,10 @@ class AdvancedClusterArgs:
                  replica_set_scaling_strategy: Optional[pulumi.Input[_builtins.str]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_cert_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 timeouts: Optional[pulumi.Input['AdvancedClusterTimeoutsArgs']] = None,
+                 use_effective_fields: Optional[pulumi.Input[_builtins.bool]] = None,
                  version_release_system: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a AdvancedCluster resource.
@@ -54,8 +55,9 @@ class AdvancedClusterArgs:
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
         :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         :param pulumi.Input[_builtins.str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        :param pulumi.Input['AdvancedClusterAdvancedConfigurationArgs'] advanced_configuration: Additional settings for an Atlas cluster.
         :param pulumi.Input[_builtins.bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -65,21 +67,24 @@ class AdvancedClusterArgs:
                If "`backup_enabled`"  is `false` (default), the cluster doesn't use Atlas backups.
         :param pulumi.Input['AdvancedClusterBiConnectorConfigArgs'] bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. The MongoDB Connector for Business Intelligence for Atlas (BI Connector) is only available for M10 and larger clusters. The BI Connector is a powerful tool which provides users SQL-based access to their MongoDB databases. As a result, the BI Connector performs operations which may be CPU and memory intensive. Given the limited hardware resources on M10 and M20 cluster tiers, you may experience performance degradation of the cluster when enabling the BI Connector. If this occurs, upgrade to an M30 or larger cluster or disable the BI Connector. See below.
         :param pulumi.Input[_builtins.str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
-        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
-        :param pulumi.Input[_builtins.float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[_builtins.bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more information [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
         :param pulumi.Input['AdvancedClusterPinnedFcvArgs'] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input['AdvancedClusterTimeoutsArgs'] timeouts: The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+        :param pulumi.Input[_builtins.bool] use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+               **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `read_only_specs` or `analytics_specs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
         :param pulumi.Input[_builtins.str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
                - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
@@ -99,11 +104,6 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "config_server_management_mode", config_server_management_mode)
         if delete_on_create_timeout is not None:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
-        if disk_size_gb is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""disk_size_gb is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if global_cluster_self_managed_sharding is not None:
@@ -132,6 +132,10 @@ class AdvancedClusterArgs:
             pulumi.set(__self__, "tags", tags)
         if termination_protection_enabled is not None:
             pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
+        if use_effective_fields is not None:
+            pulumi.set(__self__, "use_effective_fields", use_effective_fields)
         if version_release_system is not None:
             pulumi.set(__self__, "version_release_system", version_release_system)
 
@@ -167,7 +171,7 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]:
         """
-        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         """
         return pulumi.get(self, "replication_specs")
 
@@ -190,6 +194,9 @@ class AdvancedClusterArgs:
     @_builtins.property
     @pulumi.getter(name="advancedConfiguration")
     def advanced_configuration(self) -> Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']]:
+        """
+        Additional settings for an Atlas cluster.
+        """
         return pulumi.get(self, "advanced_configuration")
 
     @advanced_configuration.setter
@@ -242,7 +249,7 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="deleteOnCreateTimeout")
     def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
@@ -251,23 +258,10 @@ class AdvancedClusterArgs:
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
-    @pulumi.getter(name="diskSizeGb")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
-        """
-        Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        """
-        return pulumi.get(self, "disk_size_gb")
-
-    @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
-        pulumi.set(self, "disk_size_gb", value)
-
-    @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
     def encryption_at_rest_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
 
@@ -289,14 +283,14 @@ class AdvancedClusterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]):
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
@@ -326,6 +320,9 @@ class AdvancedClusterArgs:
     @_builtins.property
     @pulumi.getter
     def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that indicates whether the cluster is paused.
+        """
         return pulumi.get(self, "paused")
 
     @paused.setter
@@ -384,7 +381,7 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         """
         return pulumi.get(self, "retain_backups_enabled")
 
@@ -406,14 +403,14 @@ class AdvancedClusterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]:
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]):
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
@@ -427,6 +424,31 @@ class AdvancedClusterArgs:
     @termination_protection_enabled.setter
     def termination_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "termination_protection_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['AdvancedClusterTimeoutsArgs']]:
+        """
+        The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+        """
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['AdvancedClusterTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
+    @_builtins.property
+    @pulumi.getter(name="useEffectiveFields")
+    def use_effective_fields(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `read_only_specs` or `analytics_specs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+        """
+        return pulumi.get(self, "use_effective_fields")
+
+    @use_effective_fields.setter
+    def use_effective_fields(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_effective_fields", value)
 
     @_builtins.property
     @pulumi.getter(name="versionReleaseSystem")
@@ -454,13 +476,12 @@ class _AdvancedClusterState:
                  cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
                  config_server_management_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  config_server_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]] = None,
+                 connection_strings: Optional[pulumi.Input['AdvancedClusterConnectionStringsArgs']] = None,
                  create_date: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
                  mongo_db_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -474,12 +495,15 @@ class _AdvancedClusterState:
                  retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_cert_type: Optional[pulumi.Input[_builtins.str]] = None,
                  state_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 timeouts: Optional[pulumi.Input['AdvancedClusterTimeoutsArgs']] = None,
+                 use_effective_fields: Optional[pulumi.Input[_builtins.bool]] = None,
                  version_release_system: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AdvancedCluster resources.
         :param pulumi.Input[_builtins.str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        :param pulumi.Input['AdvancedClusterAdvancedConfigurationArgs'] advanced_configuration: Additional settings for an Atlas cluster.
         :param pulumi.Input[_builtins.bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -496,22 +520,23 @@ class _AdvancedClusterState:
                - `GEOSHARDED` Global Cluster
         :param pulumi.Input[_builtins.str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param pulumi.Input[_builtins.str] config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
-        :param pulumi.Input[_builtins.float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input['AdvancedClusterConnectionStringsArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        :param pulumi.Input[_builtins.str] create_date: Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[_builtins.bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more information [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
         :param pulumi.Input['AdvancedClusterPinnedFcvArgs'] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[_builtins.str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -520,9 +545,12 @@ class _AdvancedClusterState:
                - DELETING
                - DELETED
                - REPAIRING
-               * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+               * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input['AdvancedClusterTimeoutsArgs'] timeouts: The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+        :param pulumi.Input[_builtins.bool] use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+               **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `read_only_specs` or `analytics_specs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
         :param pulumi.Input[_builtins.str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
                - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
@@ -549,11 +577,6 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "create_date", create_date)
         if delete_on_create_timeout is not None:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
-        if disk_size_gb is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""disk_size_gb is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if disk_size_gb is not None:
-            pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if encryption_at_rest_provider is not None:
             pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         if global_cluster_self_managed_sharding is not None:
@@ -590,6 +613,10 @@ class _AdvancedClusterState:
             pulumi.set(__self__, "tags", tags)
         if termination_protection_enabled is not None:
             pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
+        if use_effective_fields is not None:
+            pulumi.set(__self__, "use_effective_fields", use_effective_fields)
         if version_release_system is not None:
             pulumi.set(__self__, "version_release_system", version_release_system)
 
@@ -608,6 +635,9 @@ class _AdvancedClusterState:
     @_builtins.property
     @pulumi.getter(name="advancedConfiguration")
     def advanced_configuration(self) -> Optional[pulumi.Input['AdvancedClusterAdvancedConfigurationArgs']]:
+        """
+        Additional settings for an Atlas cluster.
+        """
         return pulumi.get(self, "advanced_configuration")
 
     @advanced_configuration.setter
@@ -698,19 +728,22 @@ class _AdvancedClusterState:
 
     @_builtins.property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]]:
+    def connection_strings(self) -> Optional[pulumi.Input['AdvancedClusterConnectionStringsArgs']]:
         """
         Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
         return pulumi.get(self, "connection_strings")
 
     @connection_strings.setter
-    def connection_strings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringArgs']]]]):
+    def connection_strings(self, value: Optional[pulumi.Input['AdvancedClusterConnectionStringsArgs']]):
         pulumi.set(self, "connection_strings", value)
 
     @_builtins.property
     @pulumi.getter(name="createDate")
     def create_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        """
         return pulumi.get(self, "create_date")
 
     @create_date.setter
@@ -721,7 +754,7 @@ class _AdvancedClusterState:
     @pulumi.getter(name="deleteOnCreateTimeout")
     def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
@@ -730,23 +763,10 @@ class _AdvancedClusterState:
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
-    @pulumi.getter(name="diskSizeGb")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
-        """
-        Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        """
-        return pulumi.get(self, "disk_size_gb")
-
-    @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
-        pulumi.set(self, "disk_size_gb", value)
-
-    @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
     def encryption_at_rest_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
 
@@ -768,14 +788,14 @@ class _AdvancedClusterState:
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]:
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterLabelArgs']]]]):
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
@@ -817,6 +837,9 @@ class _AdvancedClusterState:
     @_builtins.property
     @pulumi.getter
     def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that indicates whether the cluster is paused.
+        """
         return pulumi.get(self, "paused")
 
     @paused.setter
@@ -887,7 +910,7 @@ class _AdvancedClusterState:
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]]]:
         """
-        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         """
         return pulumi.get(self, "replication_specs")
 
@@ -899,7 +922,7 @@ class _AdvancedClusterState:
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         """
         return pulumi.get(self, "retain_backups_enabled")
 
@@ -930,7 +953,7 @@ class _AdvancedClusterState:
         - DELETING
         - DELETED
         - REPAIRING
-        * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         """
         return pulumi.get(self, "state_name")
 
@@ -940,14 +963,14 @@ class _AdvancedClusterState:
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]:
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterTagArgs']]]]):
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
@@ -961,6 +984,31 @@ class _AdvancedClusterState:
     @termination_protection_enabled.setter
     def termination_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "termination_protection_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['AdvancedClusterTimeoutsArgs']]:
+        """
+        The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+        """
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['AdvancedClusterTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
+    @_builtins.property
+    @pulumi.getter(name="useEffectiveFields")
+    def use_effective_fields(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `read_only_specs` or `analytics_specs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+        """
+        return pulumi.get(self, "use_effective_fields")
+
+    @use_effective_fields.setter
+    def use_effective_fields(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_effective_fields", value)
 
     @_builtins.property
     @pulumi.getter(name="versionReleaseSystem")
@@ -990,10 +1038,9 @@ class AdvancedCluster(pulumi.CustomResource):
                  cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
                  config_server_management_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1005,8 +1052,10 @@ class AdvancedCluster(pulumi.CustomResource):
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_cert_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 timeouts: Optional[pulumi.Input[Union['AdvancedClusterTimeoutsArgs', 'AdvancedClusterTimeoutsArgsDict']]] = None,
+                 use_effective_fields: Optional[pulumi.Input[_builtins.bool]] = None,
                  version_release_system: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -1025,6 +1074,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        :param pulumi.Input[Union['AdvancedClusterAdvancedConfigurationArgs', 'AdvancedClusterAdvancedConfigurationArgsDict']] advanced_configuration: Additional settings for an Atlas cluster.
         :param pulumi.Input[_builtins.bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -1039,23 +1089,26 @@ class AdvancedCluster(pulumi.CustomResource):
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
         :param pulumi.Input[_builtins.str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
-        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
-        :param pulumi.Input[_builtins.float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[_builtins.bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more information [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
         :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input[Union['AdvancedClusterTimeoutsArgs', 'AdvancedClusterTimeoutsArgsDict']] timeouts: The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+        :param pulumi.Input[_builtins.bool] use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+               **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `read_only_specs` or `analytics_specs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
         :param pulumi.Input[_builtins.str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
                - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
@@ -1101,10 +1154,9 @@ class AdvancedCluster(pulumi.CustomResource):
                  cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
                  config_server_management_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
                  encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  global_cluster_self_managed_sharding: Optional[pulumi.Input[_builtins.bool]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1116,8 +1168,10 @@ class AdvancedCluster(pulumi.CustomResource):
                  replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]]] = None,
                  retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  root_cert_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 timeouts: Optional[pulumi.Input[Union['AdvancedClusterTimeoutsArgs', 'AdvancedClusterTimeoutsArgsDict']]] = None,
+                 use_effective_fields: Optional[pulumi.Input[_builtins.bool]] = None,
                  version_release_system: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1137,7 +1191,6 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["cluster_type"] = cluster_type
             __props__.__dict__["config_server_management_mode"] = config_server_management_mode
             __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
-            __props__.__dict__["disk_size_gb"] = disk_size_gb
             __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
             __props__.__dict__["global_cluster_self_managed_sharding"] = global_cluster_self_managed_sharding
             __props__.__dict__["labels"] = labels
@@ -1158,6 +1211,8 @@ class AdvancedCluster(pulumi.CustomResource):
             __props__.__dict__["root_cert_type"] = root_cert_type
             __props__.__dict__["tags"] = tags
             __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
+            __props__.__dict__["timeouts"] = timeouts
+            __props__.__dict__["use_effective_fields"] = use_effective_fields
             __props__.__dict__["version_release_system"] = version_release_system
             __props__.__dict__["cluster_id"] = None
             __props__.__dict__["config_server_type"] = None
@@ -1183,13 +1238,12 @@ class AdvancedCluster(pulumi.CustomResource):
             cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
             config_server_management_mode: Optional[pulumi.Input[_builtins.str]] = None,
             config_server_type: Optional[pulumi.Input[_builtins.str]] = None,
-            connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterConnectionStringArgs', 'AdvancedClusterConnectionStringArgsDict']]]]] = None,
+            connection_strings: Optional[pulumi.Input[Union['AdvancedClusterConnectionStringsArgs', 'AdvancedClusterConnectionStringsArgsDict']]] = None,
             create_date: Optional[pulumi.Input[_builtins.str]] = None,
             delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
             encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
             global_cluster_self_managed_sharding: Optional[pulumi.Input[_builtins.bool]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
             mongo_db_version: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1203,8 +1257,10 @@ class AdvancedCluster(pulumi.CustomResource):
             retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             root_cert_type: Optional[pulumi.Input[_builtins.str]] = None,
             state_name: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+            timeouts: Optional[pulumi.Input[Union['AdvancedClusterTimeoutsArgs', 'AdvancedClusterTimeoutsArgsDict']]] = None,
+            use_effective_fields: Optional[pulumi.Input[_builtins.bool]] = None,
             version_release_system: Optional[pulumi.Input[_builtins.str]] = None) -> 'AdvancedCluster':
         """
         Get an existing AdvancedCluster resource's state with the given name, id, and optional extra
@@ -1214,6 +1270,7 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        :param pulumi.Input[Union['AdvancedClusterAdvancedConfigurationArgs', 'AdvancedClusterAdvancedConfigurationArgsDict']] advanced_configuration: Additional settings for an Atlas cluster.
         :param pulumi.Input[_builtins.bool] backup_enabled: Flag that indicates whether the cluster can perform backups.
                If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
                
@@ -1230,22 +1287,23 @@ class AdvancedCluster(pulumi.CustomResource):
                - `GEOSHARDED` Global Cluster
         :param pulumi.Input[_builtins.str] config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param pulumi.Input[_builtins.str] config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterConnectionStringArgs', 'AdvancedClusterConnectionStringArgsDict']]]] connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
-        :param pulumi.Input[_builtins.float] disk_size_gb: Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        :param pulumi.Input[Union['AdvancedClusterConnectionStringsArgs', 'AdvancedClusterConnectionStringsArgsDict']] connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        :param pulumi.Input[_builtins.str] create_date: Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         :param pulumi.Input[_builtins.bool] global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false, default) or Self-Managed Sharding (true). It can only be enabled for Global Clusters (`GEOSHARDED`). It cannot be changed once the cluster is created. Use this mode if you're an advanced user and the default configuration is too restrictive for your workload. If you select this option, you must manually configure the sharding strategy, more information [here](https://www.mongodb.com/docs/atlas/tutorial/create-global-cluster/#select-your-sharding-configuration).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterLabelArgs', 'AdvancedClusterLabelArgsDict']]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
         :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[_builtins.str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -1254,9 +1312,12 @@ class AdvancedCluster(pulumi.CustomResource):
                - DELETING
                - DELETED
                - REPAIRING
-               * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterTagArgs', 'AdvancedClusterTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+               * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param pulumi.Input[Union['AdvancedClusterTimeoutsArgs', 'AdvancedClusterTimeoutsArgsDict']] timeouts: The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+        :param pulumi.Input[_builtins.bool] use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+               **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `read_only_specs` or `analytics_specs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
         :param pulumi.Input[_builtins.str] version_release_system: Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
                - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
                - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
@@ -1276,7 +1337,6 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["connection_strings"] = connection_strings
         __props__.__dict__["create_date"] = create_date
         __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
-        __props__.__dict__["disk_size_gb"] = disk_size_gb
         __props__.__dict__["encryption_at_rest_provider"] = encryption_at_rest_provider
         __props__.__dict__["global_cluster_self_managed_sharding"] = global_cluster_self_managed_sharding
         __props__.__dict__["labels"] = labels
@@ -1295,6 +1355,8 @@ class AdvancedCluster(pulumi.CustomResource):
         __props__.__dict__["state_name"] = state_name
         __props__.__dict__["tags"] = tags
         __props__.__dict__["termination_protection_enabled"] = termination_protection_enabled
+        __props__.__dict__["timeouts"] = timeouts
+        __props__.__dict__["use_effective_fields"] = use_effective_fields
         __props__.__dict__["version_release_system"] = version_release_system
         return AdvancedCluster(resource_name, opts=opts, __props__=__props__)
 
@@ -1309,6 +1371,9 @@ class AdvancedCluster(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="advancedConfiguration")
     def advanced_configuration(self) -> pulumi.Output['outputs.AdvancedClusterAdvancedConfiguration']:
+        """
+        Additional settings for an Atlas cluster.
+        """
         return pulumi.get(self, "advanced_configuration")
 
     @_builtins.property
@@ -1371,7 +1436,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> pulumi.Output[Sequence['outputs.AdvancedClusterConnectionString']]:
+    def connection_strings(self) -> pulumi.Output['outputs.AdvancedClusterConnectionStrings']:
         """
         Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
@@ -1380,30 +1445,24 @@ class AdvancedCluster(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="createDate")
     def create_date(self) -> pulumi.Output[_builtins.str]:
+        """
+        Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        """
         return pulumi.get(self, "create_date")
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Output[_builtins.bool]:
         """
-        Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
-
-    @_builtins.property
-    @pulumi.getter(name="diskSizeGb")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def disk_size_gb(self) -> pulumi.Output[_builtins.float]:
-        """
-        Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        """
-        return pulumi.get(self, "disk_size_gb")
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
     def encryption_at_rest_provider(self) -> pulumi.Output[_builtins.str]:
         """
-        Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
+        Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].<type>Specs.instance_size` is M10 or greater and `backup_enabled` is false or omitted.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
 
@@ -1417,7 +1476,7 @@ class AdvancedCluster(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> pulumi.Output[Optional[Sequence['outputs.AdvancedClusterLabel']]]:
+    def labels(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
@@ -1450,6 +1509,9 @@ class AdvancedCluster(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def paused(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Flag that indicates whether the cluster is paused.
+        """
         return pulumi.get(self, "paused")
 
     @_builtins.property
@@ -1496,7 +1558,7 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> pulumi.Output[Sequence['outputs.AdvancedClusterReplicationSpec']]:
         """
-        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replication_specs` a `num_shards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         """
         return pulumi.get(self, "replication_specs")
 
@@ -1504,7 +1566,7 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         """
         return pulumi.get(self, "retain_backups_enabled")
 
@@ -1527,13 +1589,13 @@ class AdvancedCluster(pulumi.CustomResource):
         - DELETING
         - DELETED
         - REPAIRING
-        * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         """
         return pulumi.get(self, "state_name")
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.AdvancedClusterTag']]]:
+    def tags(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
@@ -1546,6 +1608,23 @@ class AdvancedCluster(pulumi.CustomResource):
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Output[Optional['outputs.AdvancedClusterTimeouts']]:
+        """
+        The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+        """
+        return pulumi.get(self, "timeouts")
+
+    @_builtins.property
+    @pulumi.getter(name="useEffectiveFields")
+    def use_effective_fields(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `read_only_specs` or `analytics_specs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+        """
+        return pulumi.get(self, "use_effective_fields")
 
     @_builtins.property
     @pulumi.getter(name="versionReleaseSystem")

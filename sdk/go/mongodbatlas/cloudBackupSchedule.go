@@ -5,10 +5,10 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,18 +23,18 @@ import (
 type CloudBackupSchedule struct {
 	pulumi.CustomResourceState
 
-	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
 	// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
 	// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
-	AutoExportEnabled pulumi.BoolOutput `pulumi:"autoExportEnabled"`
+	AutoExportEnabled pulumi.BoolPtrOutput `pulumi:"autoExportEnabled"`
 	// Unique identifier of the Atlas cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayOutput `pulumi:"copySettings"`
-	// Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
-	Export CloudBackupScheduleExportOutput `pulumi:"export"`
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
+	Export CloudBackupScheduleExportPtrOutput `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringOutput `pulumi:"idPolicy"`
 	// Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
@@ -64,7 +64,8 @@ type CloudBackupSchedule struct {
 
 // NewCloudBackupSchedule registers a new resource with the given unique name, arguments, and options.
 func NewCloudBackupSchedule(ctx *pulumi.Context,
-	name string, args *CloudBackupScheduleArgs, opts ...pulumi.ResourceOption) (*CloudBackupSchedule, error) {
+	name string, args *CloudBackupScheduleArgs, opts ...pulumi.ResourceOption,
+) (*CloudBackupSchedule, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -87,7 +88,8 @@ func NewCloudBackupSchedule(ctx *pulumi.Context,
 // GetCloudBackupSchedule gets an existing CloudBackupSchedule resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudBackupSchedule(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudBackupScheduleState, opts ...pulumi.ResourceOption) (*CloudBackupSchedule, error) {
+	name string, id pulumi.IDInput, state *CloudBackupScheduleState, opts ...pulumi.ResourceOption,
+) (*CloudBackupSchedule, error) {
 	var resource CloudBackupSchedule
 	err := ctx.ReadResource("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule", name, id, state, &resource, opts...)
 	if err != nil {
@@ -98,7 +100,7 @@ func GetCloudBackupSchedule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudBackupSchedule resources.
 type cloudBackupScheduleState struct {
-	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
 	// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
 	// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
@@ -108,7 +110,7 @@ type cloudBackupScheduleState struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
-	// Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export *CloudBackupScheduleExport `pulumi:"export"`
 	// Unique identifier of the backup policy.
 	IdPolicy *string `pulumi:"idPolicy"`
@@ -138,7 +140,7 @@ type cloudBackupScheduleState struct {
 }
 
 type CloudBackupScheduleState struct {
-	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
 	// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
 	// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
 	AutoExportEnabled pulumi.BoolPtrInput
@@ -148,7 +150,7 @@ type CloudBackupScheduleState struct {
 	ClusterName pulumi.StringPtrInput
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayInput
-	// Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export CloudBackupScheduleExportPtrInput
 	// Unique identifier of the backup policy.
 	IdPolicy pulumi.StringPtrInput
@@ -182,7 +184,7 @@ func (CloudBackupScheduleState) ElementType() reflect.Type {
 }
 
 type cloudBackupScheduleArgs struct {
-	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
 	// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
 	// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
@@ -190,7 +192,7 @@ type cloudBackupScheduleArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
-	// Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export *CloudBackupScheduleExport `pulumi:"export"`
 	// Daily policy item. See below
 	PolicyItemDaily *CloudBackupSchedulePolicyItemDaily `pulumi:"policyItemDaily"`
@@ -217,7 +219,7 @@ type cloudBackupScheduleArgs struct {
 
 // The set of arguments for constructing a CloudBackupSchedule resource.
 type CloudBackupScheduleArgs struct {
-	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
 	// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
 	// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
 	AutoExportEnabled pulumi.BoolPtrInput
@@ -225,7 +227,7 @@ type CloudBackupScheduleArgs struct {
 	ClusterName pulumi.StringInput
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayInput
-	// Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export CloudBackupScheduleExportPtrInput
 	// Daily policy item. See below
 	PolicyItemDaily CloudBackupSchedulePolicyItemDailyPtrInput
@@ -337,11 +339,11 @@ func (o CloudBackupScheduleOutput) ToCloudBackupScheduleOutputWithContext(ctx co
 	return o
 }
 
-// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
 // * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
 // * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
-func (o CloudBackupScheduleOutput) AutoExportEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.AutoExportEnabled }).(pulumi.BoolOutput)
+func (o CloudBackupScheduleOutput) AutoExportEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolPtrOutput { return v.AutoExportEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Unique identifier of the Atlas cluster.
@@ -359,9 +361,9 @@ func (o CloudBackupScheduleOutput) CopySettings() CloudBackupScheduleCopySetting
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleCopySettingArrayOutput { return v.CopySettings }).(CloudBackupScheduleCopySettingArrayOutput)
 }
 
-// Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
-func (o CloudBackupScheduleOutput) Export() CloudBackupScheduleExportOutput {
-	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleExportOutput { return v.Export }).(CloudBackupScheduleExportOutput)
+// Policy for automatically exporting Cloud Backup Snapshots. See below
+func (o CloudBackupScheduleOutput) Export() CloudBackupScheduleExportPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleExportPtrOutput { return v.Export }).(CloudBackupScheduleExportPtrOutput)
 }
 
 // Unique identifier of the backup policy.

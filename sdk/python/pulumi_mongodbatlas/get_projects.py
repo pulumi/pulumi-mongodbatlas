@@ -46,7 +46,7 @@ class GetProjectsResult:
 
     @_builtins.property
     @pulumi.getter
-    @_utilities.deprecated("""Please use each project's id attribute instead""")
+    @_utilities.deprecated("""This parameter is deprecated.""")
     def id(self) -> _builtins.str:
         return pulumi.get(self, "id")
 
@@ -88,8 +88,6 @@ def get_projects(items_per_page: Optional[_builtins.int] = None,
                  page_num: Optional[_builtins.int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectsResult:
     """
-    ## # Data Source: get_projects
-
     `get_projects` describes all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -104,19 +102,6 @@ def get_projects(items_per_page: Optional[_builtins.int] = None,
     test_project = mongodbatlas.Project("test",
         name="project-name",
         org_id=test.org_id,
-        teams=[
-            {
-                "team_id": "5e0fa8c99ccf641c722fe645",
-                "role_names": ["GROUP_OWNER"],
-            },
-            {
-                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                "role_names": [
-                    "GROUP_READ_ONLY",
-                    "GROUP_DATA_ACCESS_READ_WRITE",
-                ],
-            },
-        ],
         limits=[{
             "name": "atlas.project.deployment.clusters",
             "value": 26,
@@ -145,8 +130,6 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[_builtins
                         page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
     """
-    ## # Data Source: get_projects
-
     `get_projects` describes all Projects. This represents projects that have been created.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -161,19 +144,6 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[_builtins
     test_project = mongodbatlas.Project("test",
         name="project-name",
         org_id=test.org_id,
-        teams=[
-            {
-                "team_id": "5e0fa8c99ccf641c722fe645",
-                "role_names": ["GROUP_OWNER"],
-            },
-            {
-                "team_id": "5e1dd7b4f2a30ba80a70cd4rw",
-                "role_names": [
-                    "GROUP_READ_ONLY",
-                    "GROUP_DATA_ACCESS_READ_WRITE",
-                ],
-            },
-        ],
         limits=[{
             "name": "atlas.project.deployment.clusters",
             "value": 26,

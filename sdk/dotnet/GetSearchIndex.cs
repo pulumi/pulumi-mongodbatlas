@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetSearchIndex
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.SearchIndex
-        /// 
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -43,8 +41,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSearchIndexResult>("mongodbatlas:index/getSearchIndex:getSearchIndex", args ?? new GetSearchIndexArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.SearchIndex
-        /// 
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -74,8 +70,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetSearchIndexResult>("mongodbatlas:index/getSearchIndex:getSearchIndex", args ?? new GetSearchIndexInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.SearchIndex
-        /// 
         /// `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -190,11 +184,15 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool MappingsDynamic;
         /// <summary>
+        /// JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `MappingsDynamic`.
+        /// </summary>
+        public readonly string MappingsDynamicConfig;
+        /// <summary>
         /// Object containing one or more field specifications.
         /// </summary>
         public readonly string MappingsFields;
         /// <summary>
-        /// Name of the index.
+        /// Type set name.
         /// </summary>
         public readonly string Name;
         public readonly string ProjectId;
@@ -218,6 +216,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchIndexSynonymResult> Synonyms;
         public readonly string Type;
+        /// <summary>
+        /// Set of type set definitions (when present). Each item includes:
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSearchIndexTypeSetResult> TypeSets;
 
         [OutputConstructor]
         private GetSearchIndexResult(
@@ -239,6 +241,8 @@ namespace Pulumi.Mongodbatlas
 
             bool mappingsDynamic,
 
+            string mappingsDynamicConfig,
+
             string mappingsFields,
 
             string name,
@@ -253,7 +257,9 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetSearchIndexSynonymResult> synonyms,
 
-            string type)
+            string type,
+
+            ImmutableArray<Outputs.GetSearchIndexTypeSetResult> typeSets)
         {
             Analyzer = analyzer;
             Analyzers = analyzers;
@@ -264,6 +270,7 @@ namespace Pulumi.Mongodbatlas
             Id = id;
             IndexId = indexId;
             MappingsDynamic = mappingsDynamic;
+            MappingsDynamicConfig = mappingsDynamicConfig;
             MappingsFields = mappingsFields;
             Name = name;
             ProjectId = projectId;
@@ -272,6 +279,7 @@ namespace Pulumi.Mongodbatlas
             StoredSource = storedSource;
             Synonyms = synonyms;
             Type = type;
+            TypeSets = typeSets;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class DatabaseUserScope
     {
         /// <summary>
-        /// Name of the cluster or Atlas Data Lake that the user has access to.
+        /// Name of the cluster or Atlas Data Federation that the user has access to.
         /// </summary>
         public readonly string? Name;
         /// <summary>

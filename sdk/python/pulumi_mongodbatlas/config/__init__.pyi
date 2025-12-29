@@ -15,6 +15,11 @@ else:
 from .. import _utilities
 from . import outputs
 
+accessToken: Optional[str]
+"""
+MongoDB Atlas Access Token for Service Account.
+"""
+
 assumeRole: Optional[str]
 
 awsAccessKeyId: Optional[str]
@@ -35,6 +40,16 @@ AWS Security Token Service provided session token.
 baseUrl: Optional[str]
 """
 MongoDB Atlas Base URL
+"""
+
+clientId: Optional[str]
+"""
+MongoDB Atlas Client ID for Service Account.
+"""
+
+clientSecret: Optional[str]
+"""
+MongoDB Atlas Client Secret for Service Account.
 """
 
 isMongodbgovCloud: Optional[bool]

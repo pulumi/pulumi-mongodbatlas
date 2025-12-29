@@ -74,8 +74,6 @@ class AwaitableGetApiKeyProjectAssignmentsResult(GetApiKeyProjectAssignmentsResu
 def get_api_key_project_assignments(project_id: Optional[_builtins.str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiKeyProjectAssignmentsResult:
     """
-    ## # Data Source: get_api_key_project_assignments
-
     `get_api_key_project_assignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
 
     ## Example Usage
@@ -126,8 +124,6 @@ def get_api_key_project_assignments(project_id: Optional[_builtins.str] = None,
 def get_api_key_project_assignments_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiKeyProjectAssignmentsResult]:
     """
-    ## # Data Source: get_api_key_project_assignments
-
     `get_api_key_project_assignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
 
     ## Example Usage

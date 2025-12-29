@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: Team
-//
 // `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -24,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -58,7 +56,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -117,8 +115,12 @@ type LookupTeamResult struct {
 	OrgId string `pulumi:"orgId"`
 	// The unique identifier for the team.
 	TeamId string `pulumi:"teamId"`
-	// The users who are part of the organization.
+	// **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 	Usernames []string `pulumi:"usernames"`
+	// Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
+	Users []GetTeamUser `pulumi:"users"`
 }
 
 func LookupTeamOutput(ctx *pulumi.Context, args LookupTeamOutputArgs, opts ...pulumi.InvokeOption) LookupTeamResultOutput {
@@ -180,9 +182,16 @@ func (o LookupTeamResultOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamResult) string { return v.TeamId }).(pulumi.StringOutput)
 }
 
-// The users who are part of the organization.
+// **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+//
+// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 func (o LookupTeamResultOutput) Usernames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupTeamResult) []string { return v.Usernames }).(pulumi.StringArrayOutput)
+}
+
+// Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
+func (o LookupTeamResultOutput) Users() GetTeamUserArrayOutput {
+	return o.ApplyT(func(v LookupTeamResult) []GetTeamUser { return v.Users }).(GetTeamUserArrayOutput)
 }
 
 func init() {

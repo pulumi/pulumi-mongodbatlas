@@ -28,7 +28,7 @@ class GetAlertConfigurationResult:
     """
     A collection of values returned by getAlertConfiguration.
     """
-    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold_configs=None, notifications=None, outputs=None, project_id=None, threshold_configs=None, updated=None):
+    def __init__(__self__, alert_configuration_id=None, created=None, enabled=None, event_type=None, id=None, matchers=None, metric_threshold_configs=None, notifications=None, outputs=None, project_id=None, severity_override=None, threshold_configs=None, updated=None):
         if alert_configuration_id and not isinstance(alert_configuration_id, str):
             raise TypeError("Expected argument 'alert_configuration_id' to be a str")
         pulumi.set(__self__, "alert_configuration_id", alert_configuration_id)
@@ -59,6 +59,9 @@ class GetAlertConfigurationResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if severity_override and not isinstance(severity_override, str):
+            raise TypeError("Expected argument 'severity_override' to be a str")
+        pulumi.set(__self__, "severity_override", severity_override)
         if threshold_configs and not isinstance(threshold_configs, list):
             raise TypeError("Expected argument 'threshold_configs' to be a list")
         pulumi.set(__self__, "threshold_configs", threshold_configs)
@@ -132,6 +135,14 @@ class GetAlertConfigurationResult:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
+    @pulumi.getter(name="severityOverride")
+    def severity_override(self) -> _builtins.str:
+        """
+        Severity of the event.
+        """
+        return pulumi.get(self, "severity_override")
+
+    @_builtins.property
     @pulumi.getter(name="thresholdConfigs")
     def threshold_configs(self) -> Sequence['outputs.GetAlertConfigurationThresholdConfigResult']:
         """
@@ -164,6 +175,7 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
             notifications=self.notifications,
             outputs=self.outputs,
             project_id=self.project_id,
+            severity_override=self.severity_override,
             threshold_configs=self.threshold_configs,
             updated=self.updated)
 
@@ -173,8 +185,6 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
                             project_id: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
-    ## # Data Source: AlertConfiguration
-
     `AlertConfiguration` describes an Alert Configuration.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -270,6 +280,7 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
         notifications=pulumi.get(__ret__, 'notifications'),
         outputs=pulumi.get(__ret__, 'outputs'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        severity_override=pulumi.get(__ret__, 'severity_override'),
         threshold_configs=pulumi.get(__ret__, 'threshold_configs'),
         updated=pulumi.get(__ret__, 'updated'))
 def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -277,8 +288,6 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
                                    project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
-    ## # Data Source: AlertConfiguration
-
     `AlertConfiguration` describes an Alert Configuration.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -373,5 +382,6 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
         notifications=pulumi.get(__response__, 'notifications'),
         outputs=pulumi.get(__response__, 'outputs'),
         project_id=pulumi.get(__response__, 'project_id'),
+        severity_override=pulumi.get(__response__, 'severity_override'),
         threshold_configs=pulumi.get(__response__, 'threshold_configs'),
         updated=pulumi.get(__response__, 'updated')))

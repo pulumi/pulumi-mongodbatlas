@@ -20,18 +20,22 @@ __all__ = ['TeamArgs', 'Team']
 class TeamArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[_builtins.str],
-                 usernames: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
         :param pulumi.Input[_builtins.str] org_id: The unique identifier for the organization you want to associate the team with.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
         :param pulumi.Input[_builtins.str] name: The name of the team you want to create.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "usernames", usernames)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if usernames is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""", DeprecationWarning)
+            pulumi.log.warn("""usernames is deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
+        if usernames is not None:
+            pulumi.set(__self__, "usernames", usernames)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
@@ -47,18 +51,6 @@ class TeamArgs:
 
     @_builtins.property
     @pulumi.getter
-    def usernames(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
-        """
-        The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
-        """
-        return pulumi.get(self, "usernames")
-
-    @usernames.setter
-    def usernames(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
-        pulumi.set(self, "usernames", value)
-
-    @_builtins.property
-    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The name of the team you want to create.
@@ -68,6 +60,19 @@ class TeamArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
+    def usernames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+        """
+        return pulumi.get(self, "usernames")
+
+    @usernames.setter
+    def usernames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "usernames", value)
 
 
 @pulumi.input_type
@@ -82,7 +87,7 @@ class _TeamState:
         :param pulumi.Input[_builtins.str] name: The name of the team you want to create.
         :param pulumi.Input[_builtins.str] org_id: The unique identifier for the organization you want to associate the team with.
         :param pulumi.Input[_builtins.str] team_id: The unique identifier for the team.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -90,6 +95,9 @@ class _TeamState:
             pulumi.set(__self__, "org_id", org_id)
         if team_id is not None:
             pulumi.set(__self__, "team_id", team_id)
+        if usernames is not None:
+            warnings.warn("""This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""", DeprecationWarning)
+            pulumi.log.warn("""usernames is deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
         if usernames is not None:
             pulumi.set(__self__, "usernames", usernames)
 
@@ -131,9 +139,10 @@ class _TeamState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def usernames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         return pulumi.get(self, "usernames")
 
@@ -153,8 +162,6 @@ class Team(pulumi.CustomResource):
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## # Resource: Team
-
         `Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
 
         > **IMPORTANT:** MongoDB Atlas Team are limited to a maximum of 250 teams in an organization and 100 teams per project.
@@ -176,6 +183,10 @@ class Team(pulumi.CustomResource):
                 "user3@email.com",
             ])
         ```
+
+        ### Further Examples
+        - Team and user assignment (module maintainer) v1
+        - Team and user assignment (module maintainer) v2
 
         ## Import
 
@@ -190,7 +201,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The name of the team you want to create.
         :param pulumi.Input[_builtins.str] org_id: The unique identifier for the organization you want to associate the team with.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         ...
     @overload
@@ -199,8 +210,6 @@ class Team(pulumi.CustomResource):
                  args: TeamArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: Team
-
         `Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
 
         > **IMPORTANT:** MongoDB Atlas Team are limited to a maximum of 250 teams in an organization and 100 teams per project.
@@ -222,6 +231,10 @@ class Team(pulumi.CustomResource):
                 "user3@email.com",
             ])
         ```
+
+        ### Further Examples
+        - Team and user assignment (module maintainer) v1
+        - Team and user assignment (module maintainer) v2
 
         ## Import
 
@@ -263,8 +276,6 @@ class Team(pulumi.CustomResource):
             if org_id is None and not opts.urn:
                 raise TypeError("Missing required property 'org_id'")
             __props__.__dict__["org_id"] = org_id
-            if usernames is None and not opts.urn:
-                raise TypeError("Missing required property 'usernames'")
             __props__.__dict__["usernames"] = usernames
             __props__.__dict__["team_id"] = None
         super(Team, __self__).__init__(
@@ -291,7 +302,7 @@ class Team(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the team you want to create.
         :param pulumi.Input[_builtins.str] org_id: The unique identifier for the organization you want to associate the team with.
         :param pulumi.Input[_builtins.str] team_id: The unique identifier for the team.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -329,9 +340,10 @@ class Team(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def usernames(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         return pulumi.get(self, "usernames")
 

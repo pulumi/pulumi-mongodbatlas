@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  * });
- * const test = new mongodbatlas.index.CloudProviderSnapshot("test", {
+ * const test = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: myCluster.projectId,
  *     clusterName: myCluster.name,
  *     description: "myDescription",
@@ -73,7 +73,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  * });
- * const test = new mongodbatlas.index.CloudProviderSnapshot("test", {
+ * const test = new mongodbatlas.CloudBackupSnapshot("test", {
  *     projectId: myCluster.projectId,
  *     clusterName: myCluster.name,
  *     description: "myDescription",
@@ -133,7 +133,7 @@ import * as utilities from "./utilities";
  * }
  * ```
  *
- * ### Available complete examples
+ * ### Further Examples
  * - Restore from backup snapshot at point in time
  * - Restore from backup snapshot using an advanced cluster resource
  *

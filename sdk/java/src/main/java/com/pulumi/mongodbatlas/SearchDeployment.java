@@ -19,8 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.SearchDeployment
- * 
  * `mongodbatlas.SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
  * 
  * &gt; **NOTE:** For details on supported cloud providers and existing limitations you can visit the [Search Node Documentation](https://www.mongodb.com/docs/atlas/cluster-config/multi-cloud-distribution/#search-nodes-for-workload-isolation).
@@ -104,6 +102,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Atlas Cluster with dedicated Search Nodes Deployment
+ * 
  * ## Import
  * 
  * Search node resource can be imported using the project ID and cluster name, in the format `PROJECT_ID-CLUSTER_NAME`, e.g.
@@ -130,18 +131,18 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
-     * Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
     @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
-    private Output</* @Nullable */ Boolean> deleteOnCreateTimeout;
+    private Output<Boolean> deleteOnCreateTimeout;
 
     /**
-     * @return Flag that indicates whether to delete the search deployment if the creation times out, default is false.
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
-    public Output<Optional<Boolean>> deleteOnCreateTimeout() {
-        return Codegen.optional(this.deleteOnCreateTimeout);
+    public Output<Boolean> deleteOnCreateTimeout() {
+        return this.deleteOnCreateTimeout;
     }
     /**
      * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.

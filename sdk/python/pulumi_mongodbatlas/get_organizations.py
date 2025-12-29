@@ -100,8 +100,6 @@ def get_organizations(items_per_page: Optional[_builtins.int] = None,
                       page_num: Optional[_builtins.int] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationsResult:
     """
-    ## # Data Source: get_organizations
-
     `get_organizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
@@ -137,8 +135,6 @@ def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[_bui
                              page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationsResult]:
     """
-    ## # Data Source: get_organizations
-
     `get_organizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage

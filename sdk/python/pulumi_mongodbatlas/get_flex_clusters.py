@@ -77,8 +77,6 @@ class AwaitableGetFlexClustersResult(GetFlexClustersResult):
 def get_flex_clusters(project_id: Optional[_builtins.str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFlexClustersResult:
     """
-    ## # Data Source: get_flex_clusters
-
     `get_flex_clusters` returns all flex clusters in a project.
 
     **RECOMMENDATION:** We recommend using the `get_advanced_clusters` data source instead of the `get_flex_clusters` data source to retrieve Flex clusters. The `get_advanced_clusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
@@ -120,8 +118,6 @@ def get_flex_clusters(project_id: Optional[_builtins.str] = None,
 def get_flex_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexClustersResult]:
     """
-    ## # Data Source: get_flex_clusters
-
     `get_flex_clusters` returns all flex clusters in a project.
 
     **RECOMMENDATION:** We recommend using the `get_advanced_clusters` data source instead of the `get_flex_clusters` data source to retrieve Flex clusters. The `get_advanced_clusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.

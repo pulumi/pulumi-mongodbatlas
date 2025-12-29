@@ -25,33 +25,20 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
      */
     private List<String> customOpensslCipherConfigTls12s;
     /**
+     * @return The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     * 
+     */
+    private List<String> customOpensslCipherConfigTls13s;
+    /**
      * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     private Integer defaultMaxTimeMs;
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private String defaultReadConcern;
-    /**
      * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      * 
      */
     private String defaultWriteConcern;
-    /**
-     * @return **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private Boolean failIndexKeyTooLong;
     /**
      * @return When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      * 
@@ -59,9 +46,8 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
     private Boolean javascriptEnabled;
     /**
      * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
      * - TLS1_2
+     * - TLS1_3
      * 
      */
     private String minimumEnabledTlsProtocol;
@@ -117,6 +103,13 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
         return this.customOpensslCipherConfigTls12s;
     }
     /**
+     * @return The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     * 
+     */
+    public List<String> customOpensslCipherConfigTls13s() {
+        return this.customOpensslCipherConfigTls13s;
+    }
+    /**
      * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
@@ -124,33 +117,11 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
         return this.defaultMaxTimeMs;
     }
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public String defaultReadConcern() {
-        return this.defaultReadConcern;
-    }
-    /**
      * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      * 
      */
     public String defaultWriteConcern() {
         return this.defaultWriteConcern;
-    }
-    /**
-     * @return **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Boolean failIndexKeyTooLong() {
-        return this.failIndexKeyTooLong;
     }
     /**
      * @return When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
@@ -161,9 +132,8 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
     }
     /**
      * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
      * - TLS1_2
+     * - TLS1_3
      * 
      */
     public String minimumEnabledTlsProtocol() {
@@ -230,10 +200,9 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
     public static final class Builder {
         private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         private List<String> customOpensslCipherConfigTls12s;
+        private List<String> customOpensslCipherConfigTls13s;
         private Integer defaultMaxTimeMs;
-        private String defaultReadConcern;
         private String defaultWriteConcern;
-        private Boolean failIndexKeyTooLong;
         private Boolean javascriptEnabled;
         private String minimumEnabledTlsProtocol;
         private Boolean noTableScan;
@@ -248,10 +217,9 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
     	      Objects.requireNonNull(defaults);
     	      this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = defaults.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
     	      this.customOpensslCipherConfigTls12s = defaults.customOpensslCipherConfigTls12s;
+    	      this.customOpensslCipherConfigTls13s = defaults.customOpensslCipherConfigTls13s;
     	      this.defaultMaxTimeMs = defaults.defaultMaxTimeMs;
-    	      this.defaultReadConcern = defaults.defaultReadConcern;
     	      this.defaultWriteConcern = defaults.defaultWriteConcern;
-    	      this.failIndexKeyTooLong = defaults.failIndexKeyTooLong;
     	      this.javascriptEnabled = defaults.javascriptEnabled;
     	      this.minimumEnabledTlsProtocol = defaults.minimumEnabledTlsProtocol;
     	      this.noTableScan = defaults.noTableScan;
@@ -283,6 +251,17 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
             return customOpensslCipherConfigTls12s(List.of(customOpensslCipherConfigTls12s));
         }
         @CustomType.Setter
+        public Builder customOpensslCipherConfigTls13s(List<String> customOpensslCipherConfigTls13s) {
+            if (customOpensslCipherConfigTls13s == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultAdvancedConfiguration", "customOpensslCipherConfigTls13s");
+            }
+            this.customOpensslCipherConfigTls13s = customOpensslCipherConfigTls13s;
+            return this;
+        }
+        public Builder customOpensslCipherConfigTls13s(String... customOpensslCipherConfigTls13s) {
+            return customOpensslCipherConfigTls13s(List.of(customOpensslCipherConfigTls13s));
+        }
+        @CustomType.Setter
         public Builder defaultMaxTimeMs(Integer defaultMaxTimeMs) {
             if (defaultMaxTimeMs == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClustersResultAdvancedConfiguration", "defaultMaxTimeMs");
@@ -291,27 +270,11 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
             return this;
         }
         @CustomType.Setter
-        public Builder defaultReadConcern(String defaultReadConcern) {
-            if (defaultReadConcern == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClustersResultAdvancedConfiguration", "defaultReadConcern");
-            }
-            this.defaultReadConcern = defaultReadConcern;
-            return this;
-        }
-        @CustomType.Setter
         public Builder defaultWriteConcern(String defaultWriteConcern) {
             if (defaultWriteConcern == null) {
               throw new MissingRequiredPropertyException("GetAdvancedClustersResultAdvancedConfiguration", "defaultWriteConcern");
             }
             this.defaultWriteConcern = defaultWriteConcern;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder failIndexKeyTooLong(Boolean failIndexKeyTooLong) {
-            if (failIndexKeyTooLong == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClustersResultAdvancedConfiguration", "failIndexKeyTooLong");
-            }
-            this.failIndexKeyTooLong = failIndexKeyTooLong;
             return this;
         }
         @CustomType.Setter
@@ -390,10 +353,9 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
             final var _resultValue = new GetAdvancedClustersResultAdvancedConfiguration();
             _resultValue.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             _resultValue.customOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
+            _resultValue.customOpensslCipherConfigTls13s = customOpensslCipherConfigTls13s;
             _resultValue.defaultMaxTimeMs = defaultMaxTimeMs;
-            _resultValue.defaultReadConcern = defaultReadConcern;
             _resultValue.defaultWriteConcern = defaultWriteConcern;
-            _resultValue.failIndexKeyTooLong = failIndexKeyTooLong;
             _resultValue.javascriptEnabled = javascriptEnabled;
             _resultValue.minimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             _resultValue.noTableScan = noTableScan;

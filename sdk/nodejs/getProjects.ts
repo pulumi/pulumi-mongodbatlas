@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getProjects
- *
  * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -23,19 +21,6 @@ import * as utilities from "./utilities";
  * const testProject = new mongodbatlas.Project("test", {
  *     name: "project-name",
  *     orgId: test.then(test => test.orgId),
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,
@@ -75,7 +60,7 @@ export interface GetProjectsArgs {
  */
 export interface GetProjectsResult {
     /**
-     * @deprecated Please use each project's id attribute instead
+     * @deprecated This parameter is deprecated.
      */
     readonly id: string;
     readonly itemsPerPage?: number;
@@ -84,8 +69,6 @@ export interface GetProjectsResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getProjects
- *
  * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -100,19 +83,6 @@ export interface GetProjectsResult {
  * const testProject = new mongodbatlas.Project("test", {
  *     name: "project-name",
  *     orgId: test.then(test => test.orgId),
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,

@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.GlobalClusterConfig
- *
  * `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -116,12 +114,6 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
      */
     declare public readonly clusterName: pulumi.Output<string>;
     /**
-     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-     *
-     * @deprecated This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    declare public /*out*/ readonly customZoneMapping: pulumi.Output<{[key: string]: string}>;
-    /**
      * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      */
     declare public /*out*/ readonly customZoneMappingZoneId: pulumi.Output<{[key: string]: string}>;
@@ -152,7 +144,6 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as GlobalClusterConfigState | undefined;
             resourceInputs["clusterName"] = state?.clusterName;
-            resourceInputs["customZoneMapping"] = state?.customZoneMapping;
             resourceInputs["customZoneMappingZoneId"] = state?.customZoneMappingZoneId;
             resourceInputs["customZoneMappings"] = state?.customZoneMappings;
             resourceInputs["managedNamespaces"] = state?.managedNamespaces;
@@ -169,7 +160,6 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
             resourceInputs["customZoneMappings"] = args?.customZoneMappings;
             resourceInputs["managedNamespaces"] = args?.managedNamespaces;
             resourceInputs["projectId"] = args?.projectId;
-            resourceInputs["customZoneMapping"] = undefined /*out*/;
             resourceInputs["customZoneMappingZoneId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -185,12 +175,6 @@ export interface GlobalClusterConfigState {
      * The name of the Global Cluster.
      */
     clusterName?: pulumi.Input<string>;
-    /**
-     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-     *
-     * @deprecated This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     */
-    customZoneMapping?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      */

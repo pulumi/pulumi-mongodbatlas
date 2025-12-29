@@ -15,16 +15,32 @@ public final class CloudProviderAccessSetupAwsConfigArgs extends com.pulumi.reso
 
     public static final CloudProviderAccessSetupAwsConfigArgs Empty = new CloudProviderAccessSetupAwsConfigArgs();
 
+    /**
+     * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     * 
+     */
     @Import(name="atlasAssumedRoleExternalId")
     private @Nullable Output<String> atlasAssumedRoleExternalId;
 
+    /**
+     * @return Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+     * 
+     */
     public Optional<Output<String>> atlasAssumedRoleExternalId() {
         return Optional.ofNullable(this.atlasAssumedRoleExternalId);
     }
 
+    /**
+     * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     * 
+     */
     @Import(name="atlasAwsAccountArn")
     private @Nullable Output<String> atlasAwsAccountArn;
 
+    /**
+     * @return ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+     * 
+     */
     public Optional<Output<String>> atlasAwsAccountArn() {
         return Optional.ofNullable(this.atlasAwsAccountArn);
     }
@@ -54,20 +70,44 @@ public final class CloudProviderAccessSetupAwsConfigArgs extends com.pulumi.reso
             $ = new CloudProviderAccessSetupAwsConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param atlasAssumedRoleExternalId Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAssumedRoleExternalId(@Nullable Output<String> atlasAssumedRoleExternalId) {
             $.atlasAssumedRoleExternalId = atlasAssumedRoleExternalId;
             return this;
         }
 
+        /**
+         * @param atlasAssumedRoleExternalId Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAssumedRoleExternalId(String atlasAssumedRoleExternalId) {
             return atlasAssumedRoleExternalId(Output.of(atlasAssumedRoleExternalId));
         }
 
+        /**
+         * @param atlasAwsAccountArn ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAwsAccountArn(@Nullable Output<String> atlasAwsAccountArn) {
             $.atlasAwsAccountArn = atlasAwsAccountArn;
             return this;
         }
 
+        /**
+         * @param atlasAwsAccountArn ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAwsAccountArn(String atlasAwsAccountArn) {
             return atlasAwsAccountArn(Output.of(atlasAwsAccountArn));
         }

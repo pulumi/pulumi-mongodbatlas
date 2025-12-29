@@ -30,8 +30,10 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### Available complete examples
-    /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+    /// ### Further Examples
+    /// - AWS PrivateLink Endpoint
+    /// - Azure PrivateLink Endpoint
+    /// - GCP Private Service Connect Endpoint
     /// 
     /// ## Import
     /// 
@@ -45,6 +47,12 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint")]
     public partial class PrivateLinkEndpoint : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool?> DeleteOnCreateTimeout { get; private set; } = null!;
+
         /// <summary>
         /// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
         /// </summary>
@@ -192,6 +200,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class PrivateLinkEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
         /// Required 	Unique identifier for the project.
         /// </summary>
         [Input("projectId", required: true)]
@@ -218,6 +232,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class PrivateLinkEndpointState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
         [Input("endpointGroupNames")]
         private InputList<string>? _endpointGroupNames;
 

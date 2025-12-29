@@ -668,8 +668,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  user_claim: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: FederatedSettingsIdentityProvider
-
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
 
         ## Example Usage
@@ -711,6 +709,8 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             protocol="OIDC",
             user_claim="sub")
         ```
+        ### Further Examples
+        - Azure Federated Settings Identity Provider
 
         ## Import
 
@@ -751,8 +751,6 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                  args: FederatedSettingsIdentityProviderArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: FederatedSettingsIdentityProvider
-
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
 
         ## Example Usage
@@ -794,6 +792,8 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
             protocol="OIDC",
             user_claim="sub")
         ```
+        ### Further Examples
+        - Azure Federated Settings Identity Provider
 
         ## Import
 

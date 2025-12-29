@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFlexRestoreJob
- *
  * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
  *
  * ## Example Usage
@@ -82,8 +80,6 @@ export interface GetFlexRestoreJobResult {
     readonly targetProjectId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getFlexRestoreJob
- *
  * `mongodbatlas.getFlexRestoreJob` describes a flex restore job.
  *
  * ## Example Usage

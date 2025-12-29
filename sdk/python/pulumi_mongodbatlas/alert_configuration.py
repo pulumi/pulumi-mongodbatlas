@@ -27,6 +27,7 @@ class AlertConfigurationArgs:
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
                  metric_threshold_config: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']] = None,
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]] = None,
+                 severity_override: Optional[pulumi.Input[_builtins.str]] = None,
                  threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None):
         """
         The set of arguments for constructing a AlertConfiguration resource.
@@ -38,6 +39,7 @@ class AlertConfigurationArgs:
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
         :param pulumi.Input[_builtins.bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
+        :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         """
         pulumi.set(__self__, "event_type", event_type)
         pulumi.set(__self__, "project_id", project_id)
@@ -49,6 +51,8 @@ class AlertConfigurationArgs:
             pulumi.set(__self__, "metric_threshold_config", metric_threshold_config)
         if notifications is not None:
             pulumi.set(__self__, "notifications", notifications)
+        if severity_override is not None:
+            pulumi.set(__self__, "severity_override", severity_override)
         if threshold_config is not None:
             pulumi.set(__self__, "threshold_config", threshold_config)
 
@@ -121,6 +125,18 @@ class AlertConfigurationArgs:
         pulumi.set(self, "notifications", value)
 
     @_builtins.property
+    @pulumi.getter(name="severityOverride")
+    def severity_override(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+        """
+        return pulumi.get(self, "severity_override")
+
+    @severity_override.setter
+    def severity_override(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "severity_override", value)
+
+    @_builtins.property
     @pulumi.getter(name="thresholdConfig")
     def threshold_config(self) -> Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']]:
         return pulumi.get(self, "threshold_config")
@@ -141,6 +157,7 @@ class _AlertConfigurationState:
                  metric_threshold_config: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']] = None,
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity_override: Optional[pulumi.Input[_builtins.str]] = None,
                  threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None,
                  updated: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -155,6 +172,7 @@ class _AlertConfigurationState:
                
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         :param pulumi.Input[_builtins.str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         if alert_configuration_id is not None:
@@ -173,6 +191,8 @@ class _AlertConfigurationState:
             pulumi.set(__self__, "notifications", notifications)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if severity_override is not None:
+            pulumi.set(__self__, "severity_override", severity_override)
         if threshold_config is not None:
             pulumi.set(__self__, "threshold_config", threshold_config)
         if updated is not None:
@@ -271,6 +291,18 @@ class _AlertConfigurationState:
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="severityOverride")
+    def severity_override(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+        """
+        return pulumi.get(self, "severity_override")
+
+    @severity_override.setter
+    def severity_override(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "severity_override", value)
+
+    @_builtins.property
     @pulumi.getter(name="thresholdConfig")
     def threshold_config(self) -> Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']]:
         return pulumi.get(self, "threshold_config")
@@ -304,11 +336,10 @@ class AlertConfiguration(pulumi.CustomResource):
                  metric_threshold_config: Optional[pulumi.Input[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity_override: Optional[pulumi.Input[_builtins.str]] = None,
                  threshold_config: Optional[pulumi.Input[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
                  __props__=None):
         """
-        ## # Resource: AlertConfiguration
-
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -437,6 +468,9 @@ class AlertConfiguration(pulumi.CustomResource):
                 "integration_id": test.id,
             }])
         ```
+
+        ### Further Examples
+        - Alert Configuration
 
         ## Import
 
@@ -460,6 +494,7 @@ class AlertConfiguration(pulumi.CustomResource):
                
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         """
         ...
     @overload
@@ -468,8 +503,6 @@ class AlertConfiguration(pulumi.CustomResource):
                  args: AlertConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: AlertConfiguration
-
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -598,6 +631,9 @@ class AlertConfiguration(pulumi.CustomResource):
                 "integration_id": test.id,
             }])
         ```
+
+        ### Further Examples
+        - Alert Configuration
 
         ## Import
 
@@ -632,6 +668,7 @@ class AlertConfiguration(pulumi.CustomResource):
                  metric_threshold_config: Optional[pulumi.Input[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
                  notifications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 severity_override: Optional[pulumi.Input[_builtins.str]] = None,
                  threshold_config: Optional[pulumi.Input[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -652,6 +689,7 @@ class AlertConfiguration(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["severity_override"] = severity_override
             __props__.__dict__["threshold_config"] = threshold_config
             __props__.__dict__["alert_configuration_id"] = None
             __props__.__dict__["created"] = None
@@ -674,6 +712,7 @@ class AlertConfiguration(pulumi.CustomResource):
             metric_threshold_config: Optional[pulumi.Input[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
             notifications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
+            severity_override: Optional[pulumi.Input[_builtins.str]] = None,
             threshold_config: Optional[pulumi.Input[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
             updated: Optional[pulumi.Input[_builtins.str]] = None) -> 'AlertConfiguration':
         """
@@ -693,6 +732,7 @@ class AlertConfiguration(pulumi.CustomResource):
                
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         :param pulumi.Input[_builtins.str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -707,6 +747,7 @@ class AlertConfiguration(pulumi.CustomResource):
         __props__.__dict__["metric_threshold_config"] = metric_threshold_config
         __props__.__dict__["notifications"] = notifications
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["severity_override"] = severity_override
         __props__.__dict__["threshold_config"] = threshold_config
         __props__.__dict__["updated"] = updated
         return AlertConfiguration(resource_name, opts=opts, __props__=__props__)
@@ -770,6 +811,14 @@ class AlertConfiguration(pulumi.CustomResource):
         The ID of the project where the alert configuration will create.
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="severityOverride")
+    def severity_override(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+        """
+        return pulumi.get(self, "severity_override")
 
     @_builtins.property
     @pulumi.getter(name="thresholdConfig")

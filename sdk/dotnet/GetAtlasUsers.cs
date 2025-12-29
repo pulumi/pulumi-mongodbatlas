@@ -12,9 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetAtlasUsers
     {
         /// <summary>
-        /// ## # Data Source: AtlasUsers
-        /// 
         /// `AtlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `Users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -79,9 +79,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: AtlasUsers
-        /// 
         /// `AtlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `Users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
@@ -146,9 +146,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUsersResult>("mongodbatlas:index/getAtlasUsers:getAtlasUsers", args ?? new GetAtlasUsersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: AtlasUsers
-        /// 
         /// `AtlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `Users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 

@@ -111,6 +111,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Further Examples
+ * - Backup Compliance Policy
+ *
  * ## Import
  *
  * Backup Compliance Policy entries can be imported using project project_id  in the format `project_id`, e.g.

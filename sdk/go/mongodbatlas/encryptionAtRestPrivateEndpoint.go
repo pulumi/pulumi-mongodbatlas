@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: EncryptionAtRestPrivateEndpoint
-//
 // `EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
 //
 // > **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
@@ -40,7 +38,7 @@ import (
 //	"fmt"
 //
 //	"github.com/pulumi/pulumi-azapi/sdk/go/azapi"
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -98,7 +96,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -133,6 +131,10 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - AWS KMS Encryption at Rest Private Endpoint
+// - Azure Key Vault Encryption at Rest Private Endpoint
+//
 // ## Import
 //
 // Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
@@ -145,6 +147,8 @@ type EncryptionAtRestPrivateEndpoint struct {
 
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider pulumi.StringOutput `pulumi:"cloudProvider"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
 	// Error message for failures associated with the Encryption At Rest private endpoint.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
 	// Connection name of the Azure Private Endpoint.
@@ -154,7 +158,8 @@ type EncryptionAtRestPrivateEndpoint struct {
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName pulumi.StringOutput `pulumi:"regionName"`
 	// State of the Encryption At Rest private endpoint.
-	Status pulumi.StringOutput `pulumi:"status"`
+	Status   pulumi.StringOutput                              `pulumi:"status"`
+	Timeouts EncryptionAtRestPrivateEndpointTimeoutsPtrOutput `pulumi:"timeouts"`
 }
 
 // NewEncryptionAtRestPrivateEndpoint registers a new resource with the given unique name, arguments, and options.
@@ -198,6 +203,8 @@ func GetEncryptionAtRestPrivateEndpoint(ctx *pulumi.Context,
 type encryptionAtRestPrivateEndpointState struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider *string `pulumi:"cloudProvider"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Error message for failures associated with the Encryption At Rest private endpoint.
 	ErrorMessage *string `pulumi:"errorMessage"`
 	// Connection name of the Azure Private Endpoint.
@@ -207,12 +214,15 @@ type encryptionAtRestPrivateEndpointState struct {
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName *string `pulumi:"regionName"`
 	// State of the Encryption At Rest private endpoint.
-	Status *string `pulumi:"status"`
+	Status   *string                                  `pulumi:"status"`
+	Timeouts *EncryptionAtRestPrivateEndpointTimeouts `pulumi:"timeouts"`
 }
 
 type EncryptionAtRestPrivateEndpointState struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Error message for failures associated with the Encryption At Rest private endpoint.
 	ErrorMessage pulumi.StringPtrInput
 	// Connection name of the Azure Private Endpoint.
@@ -222,7 +232,8 @@ type EncryptionAtRestPrivateEndpointState struct {
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName pulumi.StringPtrInput
 	// State of the Encryption At Rest private endpoint.
-	Status pulumi.StringPtrInput
+	Status   pulumi.StringPtrInput
+	Timeouts EncryptionAtRestPrivateEndpointTimeoutsPtrInput
 }
 
 func (EncryptionAtRestPrivateEndpointState) ElementType() reflect.Type {
@@ -232,20 +243,26 @@ func (EncryptionAtRestPrivateEndpointState) ElementType() reflect.Type {
 type encryptionAtRestPrivateEndpointArgs struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
-	RegionName string `pulumi:"regionName"`
+	RegionName string                                   `pulumi:"regionName"`
+	Timeouts   *EncryptionAtRestPrivateEndpointTimeouts `pulumi:"timeouts"`
 }
 
 // The set of arguments for constructing a EncryptionAtRestPrivateEndpoint resource.
 type EncryptionAtRestPrivateEndpointArgs struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider pulumi.StringInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName pulumi.StringInput
+	Timeouts   EncryptionAtRestPrivateEndpointTimeoutsPtrInput
 }
 
 func (EncryptionAtRestPrivateEndpointArgs) ElementType() reflect.Type {
@@ -340,6 +357,11 @@ func (o EncryptionAtRestPrivateEndpointOutput) CloudProvider() pulumi.StringOutp
 	return o.ApplyT(func(v *EncryptionAtRestPrivateEndpoint) pulumi.StringOutput { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o EncryptionAtRestPrivateEndpointOutput) DeleteOnCreateTimeout() pulumi.BoolOutput {
+	return o.ApplyT(func(v *EncryptionAtRestPrivateEndpoint) pulumi.BoolOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolOutput)
+}
+
 // Error message for failures associated with the Encryption At Rest private endpoint.
 func (o EncryptionAtRestPrivateEndpointOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *EncryptionAtRestPrivateEndpoint) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
@@ -363,6 +385,12 @@ func (o EncryptionAtRestPrivateEndpointOutput) RegionName() pulumi.StringOutput 
 // State of the Encryption At Rest private endpoint.
 func (o EncryptionAtRestPrivateEndpointOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *EncryptionAtRestPrivateEndpoint) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o EncryptionAtRestPrivateEndpointOutput) Timeouts() EncryptionAtRestPrivateEndpointTimeoutsPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestPrivateEndpoint) EncryptionAtRestPrivateEndpointTimeoutsPtrOutput {
+		return v.Timeouts
+	}).(EncryptionAtRestPrivateEndpointTimeoutsPtrOutput)
 }
 
 type EncryptionAtRestPrivateEndpointArrayOutput struct{ *pulumi.OutputState }

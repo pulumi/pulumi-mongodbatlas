@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportBuckets
- *
  * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -79,8 +77,6 @@ export interface GetCloudBackupSnapshotExportBucketsResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportBuckets
- *
  * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

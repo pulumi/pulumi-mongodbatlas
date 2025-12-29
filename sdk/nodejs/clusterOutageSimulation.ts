@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.ClusterOutageSimulation
- *
  * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
  *
  * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes.
@@ -45,6 +43,9 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Cluster Outage Simulation
  *
  * ## Import
  *
@@ -84,6 +85,10 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
      * Name of the Atlas Cluster that is/will undergoing outage simulation.
      */
     declare public readonly clusterName: pulumi.Output<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean | undefined>;
     /**
      * List of settings that specify the type of cluster outage simulation.
      */
@@ -125,6 +130,7 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ClusterOutageSimulationState | undefined;
             resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["outageFilters"] = state?.outageFilters;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["simulationId"] = state?.simulationId;
@@ -142,6 +148,7 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["outageFilters"] = args?.outageFilters;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["simulationId"] = undefined /*out*/;
@@ -161,6 +168,10 @@ export interface ClusterOutageSimulationState {
      * Name of the Atlas Cluster that is/will undergoing outage simulation.
      */
     clusterName?: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * List of settings that specify the type of cluster outage simulation.
      */
@@ -197,6 +208,10 @@ export interface ClusterOutageSimulationArgs {
      * Name of the Atlas Cluster that is/will undergoing outage simulation.
      */
     clusterName: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * List of settings that specify the type of cluster outage simulation.
      */

@@ -88,7 +88,6 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = testCloudBackupSchedule.ProjectId,
         ///         ClusterName = testCloudBackupSchedule.ClusterName,
-        ///         UseZoneIdForCopySettings = true,
         ///     });
         /// 
         /// });
@@ -174,7 +173,6 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = testCloudBackupSchedule.ProjectId,
         ///         ClusterName = testCloudBackupSchedule.ClusterName,
-        ///         UseZoneIdForCopySettings = true,
         ///     });
         /// 
         /// });
@@ -260,7 +258,6 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = testCloudBackupSchedule.ProjectId,
         ///         ClusterName = testCloudBackupSchedule.ClusterName,
-        ///         UseZoneIdForCopySettings = true,
         ///     });
         /// 
         /// });
@@ -285,12 +282,6 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
-        /// <summary>
-        /// Set this field to `True` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
-        /// </summary>
-        [Input("useZoneIdForCopySettings")]
-        public bool? UseZoneIdForCopySettings { get; set; }
-
         public GetCloudBackupScheduleArgs()
         {
         }
@@ -310,12 +301,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
-
-        /// <summary>
-        /// Set this field to `True` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
-        /// </summary>
-        [Input("useZoneIdForCopySettings")]
-        public Input<bool>? UseZoneIdForCopySettings { get; set; }
 
         public GetCloudBackupScheduleInvokeArgs()
         {
@@ -395,7 +380,6 @@ namespace Pulumi.Mongodbatlas
         /// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         /// </summary>
         public readonly bool UseOrgAndGroupNamesInExportPrefix;
-        public readonly bool? UseZoneIdForCopySettings;
 
         [OutputConstructor]
         private GetCloudBackupScheduleResult(
@@ -433,9 +417,7 @@ namespace Pulumi.Mongodbatlas
 
             int restoreWindowDays,
 
-            bool useOrgAndGroupNamesInExportPrefix,
-
-            bool? useZoneIdForCopySettings)
+            bool useOrgAndGroupNamesInExportPrefix)
         {
             AutoExportEnabled = autoExportEnabled;
             ClusterId = clusterId;
@@ -455,7 +437,6 @@ namespace Pulumi.Mongodbatlas
             ReferenceMinuteOfHour = referenceMinuteOfHour;
             RestoreWindowDays = restoreWindowDays;
             UseOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
-            UseZoneIdForCopySettings = useZoneIdForCopySettings;
         }
     }
 }

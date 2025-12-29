@@ -5,29 +5,142 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ### With AWS
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "test_role", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Azure
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "test_role", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AZURE"),
+//				AzureConfigs: mongodbatlas.CloudProviderAccessSetupAzureConfigArray{
+//					&mongodbatlas.CloudProviderAccessSetupAzureConfigArgs{
+//						AtlasAzureAppId:    pulumi.String("9f2deb0d-be22-4524-a403-df531868bac0"),
+//						ServicePrincipalId: pulumi.String("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1"),
+//						TenantId:           pulumi.String("91402384-d71e-22f5-22dd-759e272cdc1c"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With GCP
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "test_role", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Further Examples
+// - AWS Cloud Provider Access
+// - Azure Cloud Provider Access
+// - GCP Cloud Provider Access
+//
+// ## Import
+//
+// It can be imported using project ID, provider name and role_id in the format `project_id`-`provider_name`-`role_id`, e.g.
+//
+// ```sh
+// $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e
+// ```
 type CloudProviderAccessSetup struct {
 	pulumi.CustomResourceState
 
-	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayOutput   `pulumi:"awsConfigs"`
-	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayOutput `pulumi:"azureConfigs"`
-	CreatedDate     pulumi.StringOutput                            `pulumi:"createdDate"`
-	GcpConfigs      CloudProviderAccessSetupGcpConfigArrayOutput   `pulumi:"gcpConfigs"`
-	LastUpdatedDate pulumi.StringOutput                            `pulumi:"lastUpdatedDate"`
-	ProjectId       pulumi.StringOutput                            `pulumi:"projectId"`
-	ProviderName    pulumi.StringOutput                            `pulumi:"providerName"`
-	RoleId          pulumi.StringOutput                            `pulumi:"roleId"`
+	// aws related arn roles
+	AwsConfigs CloudProviderAccessSetupAwsConfigArrayOutput `pulumi:"awsConfigs"`
+	// azure related configurations
+	AzureConfigs CloudProviderAccessSetupAzureConfigArrayOutput `pulumi:"azureConfigs"`
+	// Date on which this role was created.
+	CreatedDate pulumi.StringOutput `pulumi:"createdDate"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
+	// gcp related configuration
+	GcpConfigs CloudProviderAccessSetupGcpConfigArrayOutput `pulumi:"gcpConfigs"`
+	// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUpdatedDate pulumi.StringOutput `pulumi:"lastUpdatedDate"`
+	// The unique ID for the project
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+	ProviderName pulumi.StringOutput `pulumi:"providerName"`
+	// Unique ID of this role.
+	RoleId pulumi.StringOutput `pulumi:"roleId"`
 }
 
 // NewCloudProviderAccessSetup registers a new resource with the given unique name, arguments, and options.
 func NewCloudProviderAccessSetup(ctx *pulumi.Context,
-	name string, args *CloudProviderAccessSetupArgs, opts ...pulumi.ResourceOption) (*CloudProviderAccessSetup, error) {
+	name string, args *CloudProviderAccessSetupArgs, opts ...pulumi.ResourceOption,
+) (*CloudProviderAccessSetup, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -50,7 +163,8 @@ func NewCloudProviderAccessSetup(ctx *pulumi.Context,
 // GetCloudProviderAccessSetup gets an existing CloudProviderAccessSetup resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudProviderAccessSetup(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudProviderAccessSetupState, opts ...pulumi.ResourceOption) (*CloudProviderAccessSetup, error) {
+	name string, id pulumi.IDInput, state *CloudProviderAccessSetupState, opts ...pulumi.ResourceOption,
+) (*CloudProviderAccessSetup, error) {
 	var resource CloudProviderAccessSetup
 	err := ctx.ReadResource("mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup", name, id, state, &resource, opts...)
 	if err != nil {
@@ -61,25 +175,45 @@ func GetCloudProviderAccessSetup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CloudProviderAccessSetup resources.
 type cloudProviderAccessSetupState struct {
-	AwsConfigs      []CloudProviderAccessSetupAwsConfig   `pulumi:"awsConfigs"`
-	AzureConfigs    []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
-	CreatedDate     *string                               `pulumi:"createdDate"`
-	GcpConfigs      []CloudProviderAccessSetupGcpConfig   `pulumi:"gcpConfigs"`
-	LastUpdatedDate *string                               `pulumi:"lastUpdatedDate"`
-	ProjectId       *string                               `pulumi:"projectId"`
-	ProviderName    *string                               `pulumi:"providerName"`
-	RoleId          *string                               `pulumi:"roleId"`
+	// aws related arn roles
+	AwsConfigs []CloudProviderAccessSetupAwsConfig `pulumi:"awsConfigs"`
+	// azure related configurations
+	AzureConfigs []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
+	// Date on which this role was created.
+	CreatedDate *string `pulumi:"createdDate"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
+	// gcp related configuration
+	GcpConfigs []CloudProviderAccessSetupGcpConfig `pulumi:"gcpConfigs"`
+	// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUpdatedDate *string `pulumi:"lastUpdatedDate"`
+	// The unique ID for the project
+	ProjectId *string `pulumi:"projectId"`
+	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+	ProviderName *string `pulumi:"providerName"`
+	// Unique ID of this role.
+	RoleId *string `pulumi:"roleId"`
 }
 
 type CloudProviderAccessSetupState struct {
-	AwsConfigs      CloudProviderAccessSetupAwsConfigArrayInput
-	AzureConfigs    CloudProviderAccessSetupAzureConfigArrayInput
-	CreatedDate     pulumi.StringPtrInput
-	GcpConfigs      CloudProviderAccessSetupGcpConfigArrayInput
+	// aws related arn roles
+	AwsConfigs CloudProviderAccessSetupAwsConfigArrayInput
+	// azure related configurations
+	AzureConfigs CloudProviderAccessSetupAzureConfigArrayInput
+	// Date on which this role was created.
+	CreatedDate pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
+	// gcp related configuration
+	GcpConfigs CloudProviderAccessSetupGcpConfigArrayInput
+	// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	LastUpdatedDate pulumi.StringPtrInput
-	ProjectId       pulumi.StringPtrInput
-	ProviderName    pulumi.StringPtrInput
-	RoleId          pulumi.StringPtrInput
+	// The unique ID for the project
+	ProjectId pulumi.StringPtrInput
+	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+	ProviderName pulumi.StringPtrInput
+	// Unique ID of this role.
+	RoleId pulumi.StringPtrInput
 }
 
 func (CloudProviderAccessSetupState) ElementType() reflect.Type {
@@ -87,15 +221,25 @@ func (CloudProviderAccessSetupState) ElementType() reflect.Type {
 }
 
 type cloudProviderAccessSetupArgs struct {
+	// azure related configurations
 	AzureConfigs []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
-	ProjectId    string                                `pulumi:"projectId"`
-	ProviderName string                                `pulumi:"providerName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
+	// The unique ID for the project
+	ProjectId string `pulumi:"projectId"`
+	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+	ProviderName string `pulumi:"providerName"`
 }
 
 // The set of arguments for constructing a CloudProviderAccessSetup resource.
 type CloudProviderAccessSetupArgs struct {
+	// azure related configurations
 	AzureConfigs CloudProviderAccessSetupAzureConfigArrayInput
-	ProjectId    pulumi.StringInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
+	// The unique ID for the project
+	ProjectId pulumi.StringInput
+	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
 	ProviderName pulumi.StringInput
 }
 
@@ -186,36 +330,49 @@ func (o CloudProviderAccessSetupOutput) ToCloudProviderAccessSetupOutputWithCont
 	return o
 }
 
+// aws related arn roles
 func (o CloudProviderAccessSetupOutput) AwsConfigs() CloudProviderAccessSetupAwsConfigArrayOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) CloudProviderAccessSetupAwsConfigArrayOutput { return v.AwsConfigs }).(CloudProviderAccessSetupAwsConfigArrayOutput)
 }
 
+// azure related configurations
 func (o CloudProviderAccessSetupOutput) AzureConfigs() CloudProviderAccessSetupAzureConfigArrayOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) CloudProviderAccessSetupAzureConfigArrayOutput {
 		return v.AzureConfigs
 	}).(CloudProviderAccessSetupAzureConfigArrayOutput)
 }
 
+// Date on which this role was created.
 func (o CloudProviderAccessSetupOutput) CreatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.CreatedDate }).(pulumi.StringOutput)
 }
 
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o CloudProviderAccessSetupOutput) DeleteOnCreateTimeout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.BoolPtrOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolPtrOutput)
+}
+
+// gcp related configuration
 func (o CloudProviderAccessSetupOutput) GcpConfigs() CloudProviderAccessSetupGcpConfigArrayOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) CloudProviderAccessSetupGcpConfigArrayOutput { return v.GcpConfigs }).(CloudProviderAccessSetupGcpConfigArrayOutput)
 }
 
+// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o CloudProviderAccessSetupOutput) LastUpdatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.LastUpdatedDate }).(pulumi.StringOutput)
 }
 
+// The unique ID for the project
 func (o CloudProviderAccessSetupOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
 func (o CloudProviderAccessSetupOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }
 
+// Unique ID of this role.
 func (o CloudProviderAccessSetupOutput) RoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.RoleId }).(pulumi.StringOutput)
 }

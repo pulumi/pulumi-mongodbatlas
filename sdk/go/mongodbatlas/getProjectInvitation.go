@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: ProjectInvitation
-//
 // `ProjectInvitation` describes an invitation to a user to join an Atlas project.
+//
+// > **DEPRECATION:** This data source is deprecated. Use `CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
 //
@@ -26,7 +26,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

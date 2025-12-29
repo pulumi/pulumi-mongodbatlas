@@ -86,9 +86,10 @@ class GetAtlasUserResult:
 
     @_builtins.property
     @pulumi.getter(name="emailAddress")
+    @_utilities.deprecated("""This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def email_address(self) -> _builtins.str:
         """
-        Email address that belongs to the MongoDB Atlas user.
+        **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`."
         """
         return pulumi.get(self, "email_address")
 
@@ -189,9 +190,9 @@ def get_atlas_user(user_id: Optional[_builtins.str] = None,
                    username: Optional[_builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAtlasUserResult:
     """
-    ## # Data Source: get_atlas_user
-
     `get_atlas_user` Provides a MongoDB Atlas User.
+
+    > **DEPRECATION:** This data source is deprecated. Use `CloudUserOrgAssignment` to read organization user assignments. See the Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`.
 
     > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
 
@@ -217,7 +218,7 @@ def get_atlas_user(user_id: Optional[_builtins.str] = None,
     :param _builtins.str user_id: Unique 24-hexadecimal digit string that identifies this user.
     :param _builtins.str username: Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
            
-           > **IMPORTANT:** Either `user_id` or `username` must be configurated.
+           > **IMPORTANT:** Either `user_id` or `username` must be configured.
     """
     __args__ = dict()
     __args__['userId'] = user_id
@@ -243,9 +244,9 @@ def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[_builtins.str]
                           username: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAtlasUserResult]:
     """
-    ## # Data Source: get_atlas_user
-
     `get_atlas_user` Provides a MongoDB Atlas User.
+
+    > **DEPRECATION:** This data source is deprecated. Use `CloudUserOrgAssignment` to read organization user assignments. See the Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`.
 
     > **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
 
@@ -271,7 +272,7 @@ def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[_builtins.str]
     :param _builtins.str user_id: Unique 24-hexadecimal digit string that identifies this user.
     :param _builtins.str username: Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
            
-           > **IMPORTANT:** Either `user_id` or `username` must be configurated.
+           > **IMPORTANT:** Either `user_id` or `username` must be configured.
     """
     __args__ = dict()
     __args__['userId'] = user_id

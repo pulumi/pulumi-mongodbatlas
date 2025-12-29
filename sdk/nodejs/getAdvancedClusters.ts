@@ -7,11 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getAdvancedClusters
- *
  * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
- *
- * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -27,7 +23,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "cluster-test",
  *     clusterType: "REPLICASET",
@@ -43,9 +39,73 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  * });
- * const example = mongodbatlas.getAdvancedClustersOutput({
- *     projectId: exampleAdvancedCluster.projectId,
+ * const _this = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: thisAdvancedCluster.projectId,
  * });
+ * ```
+ *
+ * ## Example using effective fields with auto-scaling
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "auto-scale-cluster-1",
+ *     clusterType: "REPLICASET",
+ *     useEffectiveFields: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *             autoScaling: {
+ *                 computeEnabled: true,
+ *                 computeScaleDownEnabled: true,
+ *                 computeMinInstanceSize: "M10",
+ *                 computeMaxInstanceSize: "M30",
+ *             },
+ *             providerName: "AWS",
+ *             priority: 7,
+ *             regionName: "US_EAST_1",
+ *         }],
+ *     }],
+ * });
+ * const this2 = new mongodbatlas.AdvancedCluster("this_2", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "auto-scale-cluster-2",
+ *     clusterType: "REPLICASET",
+ *     useEffectiveFields: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M20",
+ *                 nodeCount: 3,
+ *             },
+ *             autoScaling: {
+ *                 computeEnabled: true,
+ *                 computeScaleDownEnabled: true,
+ *                 computeMinInstanceSize: "M20",
+ *                 computeMaxInstanceSize: "M40",
+ *             },
+ *             providerName: "AWS",
+ *             priority: 7,
+ *             regionName: "US_WEST_2",
+ *         }],
+ *     }],
+ * });
+ * // Read effective values for all clusters in the project
+ * const _this = mongodbatlas.getAdvancedClusters({
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     useEffectiveFields: true,
+ * });
+ * export const allClusterNamesAndSizes = _this.then(_this => .map(cluster => ({
+ *     name: cluster.name,
+ *     configuredSize: cluster.replicationSpecs?.[0]?.regionConfigs?.[0]?.electableSpecs?.instanceSize,
+ *     actualSize: cluster.replicationSpecs?.[0]?.regionConfigs?.[0]?.effectiveElectableSpecs?.instanceSize,
+ * })));
  * ```
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
@@ -54,7 +114,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example = new mongodbatlas.AdvancedCluster("example", {
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "cluster-test",
  *     backupEnabled: false,
@@ -86,10 +146,9 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const example_asym = mongodbatlas.getAdvancedClusterOutput({
- *     projectId: example.projectId,
- *     name: example.name,
- *     useReplicationSpecPerShard: true,
+ * const _this = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: thisAdvancedCluster.projectId,
+ *     name: thisAdvancedCluster.name,
  * });
  * ```
  *
@@ -99,7 +158,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example_flex = new mongodbatlas.AdvancedCluster("example-flex", {
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "flex-cluster",
  *     clusterType: "REPLICASET",
@@ -112,8 +171,8 @@ import * as utilities from "./utilities";
  *         }],
  *     }],
  * });
- * const example = mongodbatlas.getAdvancedClustersOutput({
- *     projectId: example_flex.projectId,
+ * const _this = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: thisAdvancedCluster.projectId,
  * });
  * ```
  */
@@ -121,7 +180,7 @@ export function getAdvancedClusters(args: GetAdvancedClustersArgs, opts?: pulumi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", {
         "projectId": args.projectId,
-        "useReplicationSpecPerShard": args.useReplicationSpecPerShard,
+        "useEffectiveFields": args.useEffectiveFields,
     }, opts);
 }
 
@@ -134,9 +193,9 @@ export interface GetAdvancedClustersArgs {
      */
     projectId: string;
     /**
-     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+     * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
      */
-    useReplicationSpecPerShard?: boolean;
+    useEffectiveFields?: boolean;
 }
 
 /**
@@ -152,14 +211,10 @@ export interface GetAdvancedClustersResult {
      * A list where each represents a Cluster. See below for more details.
      */
     readonly results: outputs.GetAdvancedClustersResult[];
-    readonly useReplicationSpecPerShard?: boolean;
+    readonly useEffectiveFields?: boolean;
 }
 /**
- * ## # Data Source: mongodbatlas.getAdvancedClusters
- *
  * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
- *
- * This page describes the current version of `mongodbatlas.getAdvancedClusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
@@ -175,7 +230,7 @@ export interface GetAdvancedClustersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const exampleAdvancedCluster = new mongodbatlas.AdvancedCluster("example", {
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "cluster-test",
  *     clusterType: "REPLICASET",
@@ -191,9 +246,73 @@ export interface GetAdvancedClustersResult {
  *         }],
  *     }],
  * });
- * const example = mongodbatlas.getAdvancedClustersOutput({
- *     projectId: exampleAdvancedCluster.projectId,
+ * const _this = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: thisAdvancedCluster.projectId,
  * });
+ * ```
+ *
+ * ## Example using effective fields with auto-scaling
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "auto-scale-cluster-1",
+ *     clusterType: "REPLICASET",
+ *     useEffectiveFields: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *             autoScaling: {
+ *                 computeEnabled: true,
+ *                 computeScaleDownEnabled: true,
+ *                 computeMinInstanceSize: "M10",
+ *                 computeMaxInstanceSize: "M30",
+ *             },
+ *             providerName: "AWS",
+ *             priority: 7,
+ *             regionName: "US_EAST_1",
+ *         }],
+ *     }],
+ * });
+ * const this2 = new mongodbatlas.AdvancedCluster("this_2", {
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     name: "auto-scale-cluster-2",
+ *     clusterType: "REPLICASET",
+ *     useEffectiveFields: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             electableSpecs: {
+ *                 instanceSize: "M20",
+ *                 nodeCount: 3,
+ *             },
+ *             autoScaling: {
+ *                 computeEnabled: true,
+ *                 computeScaleDownEnabled: true,
+ *                 computeMinInstanceSize: "M20",
+ *                 computeMaxInstanceSize: "M40",
+ *             },
+ *             providerName: "AWS",
+ *             priority: 7,
+ *             regionName: "US_WEST_2",
+ *         }],
+ *     }],
+ * });
+ * // Read effective values for all clusters in the project
+ * const _this = mongodbatlas.getAdvancedClusters({
+ *     projectId: "<YOUR-PROJECT-ID>",
+ *     useEffectiveFields: true,
+ * });
+ * export const allClusterNamesAndSizes = _this.then(_this => .map(cluster => ({
+ *     name: cluster.name,
+ *     configuredSize: cluster.replicationSpecs?.[0]?.regionConfigs?.[0]?.electableSpecs?.instanceSize,
+ *     actualSize: cluster.replicationSpecs?.[0]?.regionConfigs?.[0]?.effectiveElectableSpecs?.instanceSize,
+ * })));
  * ```
  *
  * ## Example using latest sharding configurations with independent shard scaling in the cluster
@@ -202,7 +321,7 @@ export interface GetAdvancedClustersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example = new mongodbatlas.AdvancedCluster("example", {
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "cluster-test",
  *     backupEnabled: false,
@@ -234,10 +353,9 @@ export interface GetAdvancedClustersResult {
  *         },
  *     ],
  * });
- * const example_asym = mongodbatlas.getAdvancedClusterOutput({
- *     projectId: example.projectId,
- *     name: example.name,
- *     useReplicationSpecPerShard: true,
+ * const _this = mongodbatlas.getAdvancedClusterOutput({
+ *     projectId: thisAdvancedCluster.projectId,
+ *     name: thisAdvancedCluster.name,
  * });
  * ```
  *
@@ -247,7 +365,7 @@ export interface GetAdvancedClustersResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example_flex = new mongodbatlas.AdvancedCluster("example-flex", {
+ * const thisAdvancedCluster = new mongodbatlas.AdvancedCluster("this", {
  *     projectId: "<YOUR-PROJECT-ID>",
  *     name: "flex-cluster",
  *     clusterType: "REPLICASET",
@@ -260,8 +378,8 @@ export interface GetAdvancedClustersResult {
  *         }],
  *     }],
  * });
- * const example = mongodbatlas.getAdvancedClustersOutput({
- *     projectId: example_flex.projectId,
+ * const _this = mongodbatlas.getAdvancedClustersOutput({
+ *     projectId: thisAdvancedCluster.projectId,
  * });
  * ```
  */
@@ -269,7 +387,7 @@ export function getAdvancedClustersOutput(args: GetAdvancedClustersOutputArgs, o
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", {
         "projectId": args.projectId,
-        "useReplicationSpecPerShard": args.useReplicationSpecPerShard,
+        "useEffectiveFields": args.useEffectiveFields,
     }, opts);
 }
 
@@ -282,7 +400,7 @@ export interface GetAdvancedClustersOutputArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+     * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
      */
-    useReplicationSpecPerShard?: pulumi.Input<boolean>;
+    useEffectiveFields?: pulumi.Input<boolean>;
 }

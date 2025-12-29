@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: StreamPrivatelinkEndpoint
-//
 // `StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
 //
 // ## Example Usage
@@ -27,7 +25,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-confluent/sdk/go/confluent"
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -149,7 +147,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -207,6 +205,59 @@ import (
 //	}
 //
 // ```
+//
+// ### GCP Confluent Privatelink
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			gcpConfluentStreamPrivatelinkEndpoint, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "gcp_confluent", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				ProviderName:  pulumi.String("GCP"),
+//				Vendor:        pulumi.String("CONFLUENT"),
+//				Region:        pulumi.Any(gcpRegion),
+//				DnsDomain:     pulumi.Any(confluentDnsDomain),
+//				DnsSubDomains: pulumi.Any(confluentDnsSubdomains),
+//				ServiceAttachmentUris: pulumi.StringArray{
+//					pulumi.String("projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1"),
+//					pulumi.String("projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gcpConfluent := gcpConfluentStreamPrivatelinkEndpoint.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
+//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.LookupStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
+//					ProjectId: projectId,
+//					Id:        id,
+//				}, nil))), nil
+//			}).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+//			ctx.Export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.ID())
+//			ctx.Export("privatelinkEndpointState", gcpConfluent.ApplyT(func(gcpConfluent mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
+//				return &gcpConfluent.State, nil
+//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("serviceAttachmentUris", gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Further Examples
+// - AWS Confluent PrivateLink
+// - Confluent Dedicated Cluster
+// - AWS MSK PrivateLink
+// - AWS S3 PrivateLink
+// - GCP Confluent PrivateLink
+// - Azure PrivateLink
 type StreamPrivatelinkEndpoint struct {
 	pulumi.CustomResourceState
 
@@ -230,10 +281,12 @@ type StreamPrivatelinkEndpoint struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId pulumi.StringOutput `pulumi:"providerAccountId"`
-	// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+	ServiceAttachmentUris pulumi.StringArrayOutput `pulumi:"serviceAttachmentUris"`
 	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 	ServiceEndpointId pulumi.StringPtrOutput `pulumi:"serviceEndpointId"`
 	// Status of the connection.
@@ -243,6 +296,8 @@ type StreamPrivatelinkEndpoint struct {
 	//     * **AWS**: MSK, CONFLUENT, and S3
 	//
 	//     * **Azure**: EVENTHUB and CONFLUENT
+	//
+	//     * **GCP**: CONFLUENT
 	Vendor pulumi.StringOutput `pulumi:"vendor"`
 }
 
@@ -305,10 +360,12 @@ type streamPrivatelinkEndpointState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId *string `pulumi:"providerAccountId"`
-	// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 	ProviderName *string `pulumi:"providerName"`
 	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region *string `pulumi:"region"`
+	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
 	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 	ServiceEndpointId *string `pulumi:"serviceEndpointId"`
 	// Status of the connection.
@@ -318,6 +375,8 @@ type streamPrivatelinkEndpointState struct {
 	//     * **AWS**: MSK, CONFLUENT, and S3
 	//
 	//     * **Azure**: EVENTHUB and CONFLUENT
+	//
+	//     * **GCP**: CONFLUENT
 	Vendor *string `pulumi:"vendor"`
 }
 
@@ -342,10 +401,12 @@ type StreamPrivatelinkEndpointState struct {
 	ProjectId pulumi.StringPtrInput
 	// Account ID from the cloud provider.
 	ProviderAccountId pulumi.StringPtrInput
-	// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 	ProviderName pulumi.StringPtrInput
 	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region pulumi.StringPtrInput
+	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+	ServiceAttachmentUris pulumi.StringArrayInput
 	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 	ServiceEndpointId pulumi.StringPtrInput
 	// Status of the connection.
@@ -355,6 +416,8 @@ type StreamPrivatelinkEndpointState struct {
 	//     * **AWS**: MSK, CONFLUENT, and S3
 	//
 	//     * **Azure**: EVENTHUB and CONFLUENT
+	//
+	//     * **GCP**: CONFLUENT
 	Vendor pulumi.StringPtrInput
 }
 
@@ -375,10 +438,12 @@ type streamPrivatelinkEndpointArgs struct {
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId string `pulumi:"projectId"`
-	// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 	ProviderName string `pulumi:"providerName"`
 	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region *string `pulumi:"region"`
+	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
 	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 	ServiceEndpointId *string `pulumi:"serviceEndpointId"`
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
@@ -386,6 +451,8 @@ type streamPrivatelinkEndpointArgs struct {
 	//     * **AWS**: MSK, CONFLUENT, and S3
 	//
 	//     * **Azure**: EVENTHUB and CONFLUENT
+	//
+	//     * **GCP**: CONFLUENT
 	Vendor string `pulumi:"vendor"`
 }
 
@@ -403,10 +470,12 @@ type StreamPrivatelinkEndpointArgs struct {
 	DnsSubDomains pulumi.StringArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
 	ProjectId pulumi.StringInput
-	// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 	ProviderName pulumi.StringInput
 	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 	Region pulumi.StringPtrInput
+	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+	ServiceAttachmentUris pulumi.StringArrayInput
 	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
 	ServiceEndpointId pulumi.StringPtrInput
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
@@ -414,6 +483,8 @@ type StreamPrivatelinkEndpointArgs struct {
 	//     * **AWS**: MSK, CONFLUENT, and S3
 	//
 	//     * **Azure**: EVENTHUB and CONFLUENT
+	//
+	//     * **GCP**: CONFLUENT
 	Vendor pulumi.StringInput
 }
 
@@ -548,7 +619,7 @@ func (o StreamPrivatelinkEndpointOutput) ProviderAccountId() pulumi.StringOutput
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.ProviderAccountId }).(pulumi.StringOutput)
 }
 
-// Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 func (o StreamPrivatelinkEndpointOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }
@@ -556,6 +627,11 @@ func (o StreamPrivatelinkEndpointOutput) ProviderName() pulumi.StringOutput {
 // The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
 func (o StreamPrivatelinkEndpointOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+func (o StreamPrivatelinkEndpointOutput) ServiceAttachmentUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringArrayOutput { return v.ServiceAttachmentUris }).(pulumi.StringArrayOutput)
 }
 
 // For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
@@ -573,6 +649,8 @@ func (o StreamPrivatelinkEndpointOutput) State() pulumi.StringOutput {
 //   - **AWS**: MSK, CONFLUENT, and S3
 //
 //   - **Azure**: EVENTHUB and CONFLUENT
+//
+//   - **GCP**: CONFLUENT
 func (o StreamPrivatelinkEndpointOutput) Vendor() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.Vendor }).(pulumi.StringOutput)
 }

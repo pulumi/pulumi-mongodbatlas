@@ -19,8 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.CloudBackupSnapshotExportJob
- * 
  * `mongodbatlas.CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -153,6 +151,9 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### Further Examples
+ * - Cloud Backup Snapshot Export Job
  * 
  * ## Import
  * 

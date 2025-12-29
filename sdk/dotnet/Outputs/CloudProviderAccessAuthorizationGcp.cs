@@ -13,6 +13,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class CloudProviderAccessAuthorizationGcp
     {
+        /// <summary>
+        /// Email address for the Google Service Account created by Atlas.
+        /// </summary>
         public readonly string? ServiceAccountForAtlas;
 
         [OutputConstructor]

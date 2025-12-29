@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.NetworkPeering
-    /// 
     /// `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
     /// 
     /// Ensure you have first created a network container if it is required for your configuration.  See the NetworkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -226,6 +224,14 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ContainerId { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// 
+        /// **AWS ONLY:**
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool?> DeleteOnCreateTimeout { get; private set; } = null!;
+
+        /// <summary>
         /// When `"status" : "FAILED"`, Atlas provides a description of the error.
         /// </summary>
         [Output("errorMessage")]
@@ -271,8 +277,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-        /// 
-        /// **AWS ONLY:**
         /// </summary>
         [Output("providerName")]
         public Output<string> ProviderName { get; private set; } = null!;
@@ -407,6 +411,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ContainerId { get; set; } = null!;
 
         /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// 
+        /// **AWS ONLY:**
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
         /// GCP project ID of the owner of the network peer.
         /// </summary>
         [Input("gcpProjectId")]
@@ -428,8 +440,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-        /// 
-        /// **AWS ONLY:**
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -523,6 +533,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ContainerId { get; set; }
 
         /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// 
+        /// **AWS ONLY:**
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
         /// When `"status" : "FAILED"`, Atlas provides a description of the error.
         /// </summary>
         [Input("errorMessage")]
@@ -568,8 +586,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-        /// 
-        /// **AWS ONLY:**
         /// </summary>
         [Input("providerName")]
         public Input<string>? ProviderName { get; set; }

@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: CloudBackupSnapshot
-//
 // `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
 // On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 //
@@ -28,7 +26,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -85,6 +83,10 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Restore from backup snapshot at point in time
+// - Restore from backup snapshot using an advanced cluster resource
+//
 // ## Import
 //
 // Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
@@ -102,6 +104,8 @@ type CloudBackupSnapshot struct {
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// Description of the on-demand snapshot.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
@@ -134,7 +138,8 @@ type CloudBackupSnapshot struct {
 
 // NewCloudBackupSnapshot registers a new resource with the given unique name, arguments, and options.
 func NewCloudBackupSnapshot(ctx *pulumi.Context,
-	name string, args *CloudBackupSnapshotArgs, opts ...pulumi.ResourceOption) (*CloudBackupSnapshot, error) {
+	name string, args *CloudBackupSnapshotArgs, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshot, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -163,7 +168,8 @@ func NewCloudBackupSnapshot(ctx *pulumi.Context,
 // GetCloudBackupSnapshot gets an existing CloudBackupSnapshot resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetCloudBackupSnapshot(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *CloudBackupSnapshotState, opts ...pulumi.ResourceOption) (*CloudBackupSnapshot, error) {
+	name string, id pulumi.IDInput, state *CloudBackupSnapshotState, opts ...pulumi.ResourceOption,
+) (*CloudBackupSnapshot, error) {
 	var resource CloudBackupSnapshot
 	err := ctx.ReadResource("mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot", name, id, state, &resource, opts...)
 	if err != nil {
@@ -180,6 +186,8 @@ type cloudBackupSnapshotState struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
 	CreatedAt *string `pulumi:"createdAt"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Description of the on-demand snapshot.
 	Description *string `pulumi:"description"`
 	// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
@@ -217,6 +225,8 @@ type CloudBackupSnapshotState struct {
 	ClusterName pulumi.StringPtrInput
 	// UTC ISO 8601 formatted point in time when Atlas took the snapshot.
 	CreatedAt pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Description of the on-demand snapshot.
 	Description pulumi.StringPtrInput
 	// UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
@@ -254,6 +264,8 @@ func (CloudBackupSnapshotState) ElementType() reflect.Type {
 type cloudBackupSnapshotArgs struct {
 	// The name of the Atlas cluster that contains the snapshots you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Description of the on-demand snapshot.
 	Description string `pulumi:"description"`
 	// The unique identifier of the project for the Atlas cluster.
@@ -266,6 +278,8 @@ type cloudBackupSnapshotArgs struct {
 type CloudBackupSnapshotArgs struct {
 	// The name of the Atlas cluster that contains the snapshots you want to retrieve.
 	ClusterName pulumi.StringInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Description of the on-demand snapshot.
 	Description pulumi.StringInput
 	// The unique identifier of the project for the Atlas cluster.
@@ -374,6 +388,11 @@ func (o CloudBackupSnapshotOutput) ClusterName() pulumi.StringOutput {
 // UTC ISO 8601 formatted point in time when Atlas took the snapshot.
 func (o CloudBackupSnapshotOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshot) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o CloudBackupSnapshotOutput) DeleteOnCreateTimeout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSnapshot) pulumi.BoolPtrOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolPtrOutput)
 }
 
 // Description of the on-demand snapshot.

@@ -27,7 +27,7 @@ class GetStreamConnectionResult:
     """
     A collection of values returned by getStreamConnection.
     """
-    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None, url=None):
+    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None, url=None, workspace_name=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
@@ -76,6 +76,9 @@ class GetStreamConnectionResult:
         if url and not isinstance(url, str):
             raise TypeError("Expected argument 'url' to be a str")
         pulumi.set(__self__, "url", url)
+        if workspace_name and not isinstance(workspace_name, str):
+            raise TypeError("Expected argument 'workspace_name' to be a str")
+        pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
     @pulumi.getter
@@ -153,7 +156,8 @@ class GetStreamConnectionResult:
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
-    def instance_name(self) -> _builtins.str:
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
+    def instance_name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "instance_name")
 
     @_builtins.property
@@ -193,6 +197,11 @@ class GetStreamConnectionResult:
         """
         return pulumi.get(self, "url")
 
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "workspace_name")
+
 
 class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
     # pylint: disable=using-constant-test
@@ -215,16 +224,16 @@ class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
             project_id=self.project_id,
             security=self.security,
             type=self.type,
-            url=self.url)
+            url=self.url,
+            workspace_name=self.workspace_name)
 
 
 def get_stream_connection(connection_name: Optional[_builtins.str] = None,
                           instance_name: Optional[_builtins.str] = None,
                           project_id: Optional[_builtins.str] = None,
+                          workspace_name: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamConnectionResult:
     """
-    ## # Data Source: StreamConnection
-
     `StreamConnection` describes a stream connection.
 
     ## Example Usage
@@ -234,19 +243,34 @@ def get_stream_connection(connection_name: Optional[_builtins.str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     example = mongodbatlas.get_stream_connection(project_id="<PROJECT_ID>",
-        instance_name="<INSTANCE_NAME>",
+        workspace_name="<WORKSPACE_NAME>",
+        connection_name="<CONNECTION_NAME>")
+    ```
+
+    ### Example using workspace_name
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example = mongodbatlas.get_stream_connection(project_id="<PROJECT_ID>",
+        workspace_name="<WORKSPACE_NAME>",
         connection_name="<CONNECTION_NAME>")
     ```
 
 
-    :param _builtins.str connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-    :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
+    :param _builtins.str connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+           
+           > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
+    :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
     """
     __args__ = dict()
     __args__['connectionName'] = connection_name
     __args__['instanceName'] = instance_name
     __args__['projectId'] = project_id
+    __args__['workspaceName'] = workspace_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getStreamConnection:getStreamConnection', __args__, opts=opts, typ=GetStreamConnectionResult).value
 
@@ -266,14 +290,14 @@ def get_stream_connection(connection_name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         security=pulumi.get(__ret__, 'security'),
         type=pulumi.get(__ret__, 'type'),
-        url=pulumi.get(__ret__, 'url'))
+        url=pulumi.get(__ret__, 'url'),
+        workspace_name=pulumi.get(__ret__, 'workspace_name'))
 def get_stream_connection_output(connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
+                                 instance_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                                 workspace_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamConnectionResult]:
     """
-    ## # Data Source: StreamConnection
-
     `StreamConnection` describes a stream connection.
 
     ## Example Usage
@@ -283,19 +307,34 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[_builtin
     import pulumi_mongodbatlas as mongodbatlas
 
     example = mongodbatlas.get_stream_connection(project_id="<PROJECT_ID>",
-        instance_name="<INSTANCE_NAME>",
+        workspace_name="<WORKSPACE_NAME>",
+        connection_name="<CONNECTION_NAME>")
+    ```
+
+    ### Example using workspace_name
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    example = mongodbatlas.get_stream_connection(project_id="<PROJECT_ID>",
+        workspace_name="<WORKSPACE_NAME>",
         connection_name="<CONNECTION_NAME>")
     ```
 
 
-    :param _builtins.str connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-    :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
+    :param _builtins.str connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+           
+           > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
+    :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
     """
     __args__ = dict()
     __args__['connectionName'] = connection_name
     __args__['instanceName'] = instance_name
     __args__['projectId'] = project_id
+    __args__['workspaceName'] = workspace_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamConnection:getStreamConnection', __args__, opts=opts, typ=GetStreamConnectionResult)
     return __ret__.apply(lambda __response__: GetStreamConnectionResult(
@@ -314,4 +353,5 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[_builtin
         project_id=pulumi.get(__response__, 'project_id'),
         security=pulumi.get(__response__, 'security'),
         type=pulumi.get(__response__, 'type'),
-        url=pulumi.get(__response__, 'url')))
+        url=pulumi.get(__response__, 'url'),
+        workspace_name=pulumi.get(__response__, 'workspace_name')))

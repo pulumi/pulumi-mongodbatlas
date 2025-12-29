@@ -18,14 +18,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string> ContainerId;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `NumShards` greater than 1) this value is not populated.
+        /// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         /// </summary>
         public readonly string ExternalId;
-        public readonly string Id;
-        /// <summary>
-        /// Provide this value if you set a `ClusterType` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
-        /// </summary>
-        public readonly int NumShards;
         /// <summary>
         /// Configuration for the hardware specifications for nodes set for a given region. Each `RegionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `RegionConfigs` object must have either an `AnalyticsSpecs` object, `ElectableSpecs` object, or `ReadOnlySpecs` object. See below.
         /// </summary>
@@ -45,10 +40,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string externalId,
 
-            string id,
-
-            int numShards,
-
             ImmutableArray<Outputs.GetAdvancedClusterReplicationSpecRegionConfigResult> regionConfigs,
 
             string zoneId,
@@ -57,8 +48,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         {
             ContainerId = containerId;
             ExternalId = externalId;
-            Id = id;
-            NumShards = numShards;
             RegionConfigs = regionConfigs;
             ZoneId = zoneId;
             ZoneName = zoneName;

@@ -22,24 +22,24 @@ __all__ = ['MaintenanceWindowArgs', 'MaintenanceWindow']
 class MaintenanceWindowArgs:
     def __init__(__self__, *,
                  day_of_week: pulumi.Input[_builtins.int],
+                 hour_of_day: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.str],
                  auto_defer: Optional[pulumi.Input[_builtins.bool]] = None,
                  auto_defer_once_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
-                 protected_hours: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']] = None,
-                 start_asap: Optional[pulumi.Input[_builtins.bool]] = None):
+                 protected_hours: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']] = None):
         """
         The set of arguments for constructing a MaintenanceWindow resource.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
         :param pulumi.Input[_builtins.bool] auto_defer: Defer any scheduled maintenance for the given project for one week.
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
-        :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        :param pulumi.Input['MaintenanceWindowProtectedHoursArgs'] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         """
         pulumi.set(__self__, "day_of_week", day_of_week)
+        pulumi.set(__self__, "hour_of_day", hour_of_day)
         pulumi.set(__self__, "project_id", project_id)
         if auto_defer is not None:
             pulumi.set(__self__, "auto_defer", auto_defer)
@@ -47,12 +47,8 @@ class MaintenanceWindowArgs:
             pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
         if defer is not None:
             pulumi.set(__self__, "defer", defer)
-        if hour_of_day is not None:
-            pulumi.set(__self__, "hour_of_day", hour_of_day)
         if protected_hours is not None:
             pulumi.set(__self__, "protected_hours", protected_hours)
-        if start_asap is not None:
-            pulumi.set(__self__, "start_asap", start_asap)
 
     @_builtins.property
     @pulumi.getter(name="dayOfWeek")
@@ -65,6 +61,18 @@ class MaintenanceWindowArgs:
     @day_of_week.setter
     def day_of_week(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "day_of_week", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hourOfDay")
+    def hour_of_day(self) -> pulumi.Input[_builtins.int]:
+        """
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        """
+        return pulumi.get(self, "hour_of_day")
+
+    @hour_of_day.setter
+    def hour_of_day(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "hour_of_day", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -115,37 +123,16 @@ class MaintenanceWindowArgs:
         pulumi.set(self, "defer", value)
 
     @_builtins.property
-    @pulumi.getter(name="hourOfDay")
-    def hour_of_day(self) -> Optional[pulumi.Input[_builtins.int]]:
-        """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
-        """
-        return pulumi.get(self, "hour_of_day")
-
-    @hour_of_day.setter
-    def hour_of_day(self, value: Optional[pulumi.Input[_builtins.int]]):
-        pulumi.set(self, "hour_of_day", value)
-
-    @_builtins.property
     @pulumi.getter(name="protectedHours")
     def protected_hours(self) -> Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]:
+        """
+        Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        """
         return pulumi.get(self, "protected_hours")
 
     @protected_hours.setter
     def protected_hours(self, value: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]):
         pulumi.set(self, "protected_hours", value)
-
-    @_builtins.property
-    @pulumi.getter(name="startAsap")
-    def start_asap(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-        """
-        return pulumi.get(self, "start_asap")
-
-    @start_asap.setter
-    def start_asap(self, value: Optional[pulumi.Input[_builtins.bool]]):
-        pulumi.set(self, "start_asap", value)
 
 
 @pulumi.input_type
@@ -167,10 +154,11 @@ class _MaintenanceWindowState:
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
-        :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        :param pulumi.Input['MaintenanceWindowProtectedHoursArgs'] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         :param pulumi.Input[_builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
         """
         if auto_defer is not None:
@@ -246,7 +234,7 @@ class _MaintenanceWindowState:
     @pulumi.getter(name="hourOfDay")
     def hour_of_day(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         """
         return pulumi.get(self, "hour_of_day")
 
@@ -281,6 +269,9 @@ class _MaintenanceWindowState:
     @_builtins.property
     @pulumi.getter(name="protectedHours")
     def protected_hours(self) -> Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]:
+        """
+        Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        """
         return pulumi.get(self, "protected_hours")
 
     @protected_hours.setter
@@ -291,7 +282,7 @@ class _MaintenanceWindowState:
     @pulumi.getter(name="startAsap")
     def start_asap(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         return pulumi.get(self, "start_asap")
 
@@ -325,16 +316,15 @@ class MaintenanceWindow(pulumi.CustomResource):
                  hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
-                 start_asap: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        ## # Resource: MaintenanceWindow
-
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
 
         > **NOTE:** Only a single maintenance window resource can be defined per project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
         ## Maintenance Window Considerations:
 
@@ -368,6 +358,9 @@ class MaintenanceWindow(pulumi.CustomResource):
             project_id="<your-project-id>",
             defer=True)
         ```
+
+        ### Further Examples
+        - Configure Maintenance Window
 
         ## Import
 
@@ -384,9 +377,9 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
-        :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         """
         ...
     @overload
@@ -395,13 +388,13 @@ class MaintenanceWindow(pulumi.CustomResource):
                  args: MaintenanceWindowArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: MaintenanceWindow
-
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
 
         > **NOTE:** Only a single maintenance window resource can be defined per project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
         ## Maintenance Window Considerations:
 
@@ -435,6 +428,9 @@ class MaintenanceWindow(pulumi.CustomResource):
             project_id="<your-project-id>",
             defer=True)
         ```
+
+        ### Further Examples
+        - Configure Maintenance Window
 
         ## Import
 
@@ -467,7 +463,6 @@ class MaintenanceWindow(pulumi.CustomResource):
                  hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
-                 start_asap: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -483,13 +478,15 @@ class MaintenanceWindow(pulumi.CustomResource):
                 raise TypeError("Missing required property 'day_of_week'")
             __props__.__dict__["day_of_week"] = day_of_week
             __props__.__dict__["defer"] = defer
+            if hour_of_day is None and not opts.urn:
+                raise TypeError("Missing required property 'hour_of_day'")
             __props__.__dict__["hour_of_day"] = hour_of_day
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["protected_hours"] = protected_hours
-            __props__.__dict__["start_asap"] = start_asap
             __props__.__dict__["number_of_deferrals"] = None
+            __props__.__dict__["start_asap"] = None
             __props__.__dict__["time_zone_id"] = None
         super(MaintenanceWindow, __self__).__init__(
             'mongodbatlas:index/maintenanceWindow:MaintenanceWindow',
@@ -522,10 +519,11 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance for the given project for one week.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
-        :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         :param pulumi.Input[_builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -580,7 +578,7 @@ class MaintenanceWindow(pulumi.CustomResource):
     @pulumi.getter(name="hourOfDay")
     def hour_of_day(self) -> pulumi.Output[_builtins.int]:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         """
         return pulumi.get(self, "hour_of_day")
 
@@ -603,13 +601,16 @@ class MaintenanceWindow(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="protectedHours")
     def protected_hours(self) -> pulumi.Output[Optional['outputs.MaintenanceWindowProtectedHours']]:
+        """
+        Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        """
         return pulumi.get(self, "protected_hours")
 
     @_builtins.property
     @pulumi.getter(name="startAsap")
     def start_asap(self) -> pulumi.Output[_builtins.bool]:
         """
-        Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         return pulumi.get(self, "start_asap")
 

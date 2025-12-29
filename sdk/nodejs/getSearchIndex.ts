@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.SearchIndex
- *
  * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -85,11 +83,15 @@ export interface GetSearchIndexResult {
      */
     readonly mappingsDynamic: boolean;
     /**
+     * JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+     */
+    readonly mappingsDynamicConfig: string;
+    /**
      * Object containing one or more field specifications.
      */
     readonly mappingsFields: string;
     /**
-     * Name of the index.
+     * Type set name.
      */
     readonly name: string;
     readonly projectId: string;
@@ -113,10 +115,12 @@ export interface GetSearchIndexResult {
      */
     readonly synonyms: outputs.GetSearchIndexSynonym[];
     readonly type: string;
+    /**
+     * Set of type set definitions (when present). Each item includes:
+     */
+    readonly typeSets: outputs.GetSearchIndexTypeSet[];
 }
 /**
- * ## # Data Source: mongodbatlas.SearchIndex
- *
  * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

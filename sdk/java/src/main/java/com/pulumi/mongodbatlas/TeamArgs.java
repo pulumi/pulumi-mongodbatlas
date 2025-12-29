@@ -48,18 +48,26 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    @Import(name="usernames", required=true)
-    private Output<List<String>> usernames;
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    @Import(name="usernames")
+    private @Nullable Output<List<String>> usernames;
 
     /**
-     * @return The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * @return **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
-    public Output<List<String>> usernames() {
-        return this.usernames;
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+    public Optional<Output<List<String>>> usernames() {
+        return Optional.ofNullable(this.usernames);
     }
 
     private TeamArgs() {}
@@ -131,32 +139,44 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param usernames The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+         * @param usernames **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * 
          */
-        public Builder usernames(Output<List<String>> usernames) {
+        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
+        public Builder usernames(@Nullable Output<List<String>> usernames) {
             $.usernames = usernames;
             return this;
         }
 
         /**
-         * @param usernames The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+         * @param usernames **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
         public Builder usernames(List<String> usernames) {
             return usernames(Output.of(usernames));
         }
 
         /**
-         * @param usernames The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+         * @param usernames **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * 
          */
+        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
         public Builder usernames(String... usernames) {
             return usernames(List.of(usernames));
         }
@@ -164,9 +184,6 @@ public final class TeamArgs extends com.pulumi.resources.ResourceArgs {
         public TeamArgs build() {
             if ($.orgId == null) {
                 throw new MissingRequiredPropertyException("TeamArgs", "orgId");
-            }
-            if ($.usernames == null) {
-                throw new MissingRequiredPropertyException("TeamArgs", "usernames");
             }
             return $;
         }

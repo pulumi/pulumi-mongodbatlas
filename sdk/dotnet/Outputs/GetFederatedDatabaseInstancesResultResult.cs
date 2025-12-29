@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetFederatedDatabaseInstancesResultResult
     {
-        public readonly Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult CloudProviderConfig;
+        public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult> CloudProviderConfigs;
         public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultDataProcessRegionResult> DataProcessRegions;
         /// <summary>
         /// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
@@ -31,9 +31,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string State;
         /// <summary>
-        /// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+        /// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
         /// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-        /// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+        /// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
         /// * `storage_databases.#.collections.#.name` - Name of the collection.
         /// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
         /// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
@@ -55,7 +55,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultStorageDatabaseResult> StorageDatabases;
         /// <summary>
-        /// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+        /// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
         /// * `storage_stores.#.name` - Name of the data store.
         /// * `storage_stores.#.provider` - Defines where the data is stored.
         /// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
         /// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
         /// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-        /// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+        /// * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
         /// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
         /// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
         /// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetFederatedDatabaseInstancesResultResult(
-            Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult cloudProviderConfig,
+            ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult> cloudProviderConfigs,
 
             ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultDataProcessRegionResult> dataProcessRegions,
 
@@ -96,7 +96,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultStorageStoreResult> storageStores)
         {
-            CloudProviderConfig = cloudProviderConfig;
+            CloudProviderConfigs = cloudProviderConfigs;
             DataProcessRegions = dataProcessRegions;
             Hostnames = hostnames;
             Name = name;

@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.FederatedQueryLimit
- *
  * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -82,8 +80,6 @@ export interface GetFederatedQueryLimitResult {
     readonly value: number;
 }
 /**
- * ## # Data Source: mongodbatlas.FederatedQueryLimit
- *
  * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.

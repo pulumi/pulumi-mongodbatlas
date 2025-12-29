@@ -75,6 +75,21 @@ export type CloudProviderAccessSetup = import("./cloudProviderAccessSetup").Clou
 export const CloudProviderAccessSetup: typeof import("./cloudProviderAccessSetup").CloudProviderAccessSetup = null as any;
 utilities.lazyLoad(exports, ["CloudProviderAccessSetup"], () => require("./cloudProviderAccessSetup"));
 
+export { CloudUserOrgAssignmentArgs, CloudUserOrgAssignmentState } from "./cloudUserOrgAssignment";
+export type CloudUserOrgAssignment = import("./cloudUserOrgAssignment").CloudUserOrgAssignment;
+export const CloudUserOrgAssignment: typeof import("./cloudUserOrgAssignment").CloudUserOrgAssignment = null as any;
+utilities.lazyLoad(exports, ["CloudUserOrgAssignment"], () => require("./cloudUserOrgAssignment"));
+
+export { CloudUserProjectAssignmentArgs, CloudUserProjectAssignmentState } from "./cloudUserProjectAssignment";
+export type CloudUserProjectAssignment = import("./cloudUserProjectAssignment").CloudUserProjectAssignment;
+export const CloudUserProjectAssignment: typeof import("./cloudUserProjectAssignment").CloudUserProjectAssignment = null as any;
+utilities.lazyLoad(exports, ["CloudUserProjectAssignment"], () => require("./cloudUserProjectAssignment"));
+
+export { CloudUserTeamAssignmentArgs, CloudUserTeamAssignmentState } from "./cloudUserTeamAssignment";
+export type CloudUserTeamAssignment = import("./cloudUserTeamAssignment").CloudUserTeamAssignment;
+export const CloudUserTeamAssignment: typeof import("./cloudUserTeamAssignment").CloudUserTeamAssignment = null as any;
+utilities.lazyLoad(exports, ["CloudUserTeamAssignment"], () => require("./cloudUserTeamAssignment"));
+
 export { ClusterArgs, ClusterState } from "./cluster";
 export type Cluster = import("./cluster").Cluster;
 export const Cluster: typeof import("./cluster").Cluster = null as any;
@@ -94,11 +109,6 @@ export { CustomDnsConfigurationClusterAwsArgs, CustomDnsConfigurationClusterAwsS
 export type CustomDnsConfigurationClusterAws = import("./customDnsConfigurationClusterAws").CustomDnsConfigurationClusterAws;
 export const CustomDnsConfigurationClusterAws: typeof import("./customDnsConfigurationClusterAws").CustomDnsConfigurationClusterAws = null as any;
 utilities.lazyLoad(exports, ["CustomDnsConfigurationClusterAws"], () => require("./customDnsConfigurationClusterAws"));
-
-export { DataLakePipelineArgs, DataLakePipelineState } from "./dataLakePipeline";
-export type DataLakePipeline = import("./dataLakePipeline").DataLakePipeline;
-export const DataLakePipeline: typeof import("./dataLakePipeline").DataLakePipeline = null as any;
-utilities.lazyLoad(exports, ["DataLakePipeline"], () => require("./dataLakePipeline"));
 
 export { DatabaseUserArgs, DatabaseUserState } from "./databaseUser";
 export type DatabaseUser = import("./databaseUser").DatabaseUser;
@@ -149,11 +159,6 @@ export { FlexClusterArgs, FlexClusterState } from "./flexCluster";
 export type FlexCluster = import("./flexCluster").FlexCluster;
 export const FlexCluster: typeof import("./flexCluster").FlexCluster = null as any;
 utilities.lazyLoad(exports, ["FlexCluster"], () => require("./flexCluster"));
-
-export { Get509AuthenticationDatabaseUserArgs, Get509AuthenticationDatabaseUserResult, Get509AuthenticationDatabaseUserOutputArgs } from "./get509AuthenticationDatabaseUser";
-export const get509AuthenticationDatabaseUser: typeof import("./get509AuthenticationDatabaseUser").get509AuthenticationDatabaseUser = null as any;
-export const get509AuthenticationDatabaseUserOutput: typeof import("./get509AuthenticationDatabaseUser").get509AuthenticationDatabaseUserOutput = null as any;
-utilities.lazyLoad(exports, ["get509AuthenticationDatabaseUser","get509AuthenticationDatabaseUserOutput"], () => require("./get509AuthenticationDatabaseUser"));
 
 export { GetAccessListApiKeyArgs, GetAccessListApiKeyResult, GetAccessListApiKeyOutputArgs } from "./getAccessListApiKey";
 export const getAccessListApiKey: typeof import("./getAccessListApiKey").getAccessListApiKey = null as any;
@@ -275,6 +280,21 @@ export const getCloudProviderAccessSetup: typeof import("./getCloudProviderAcces
 export const getCloudProviderAccessSetupOutput: typeof import("./getCloudProviderAccessSetup").getCloudProviderAccessSetupOutput = null as any;
 utilities.lazyLoad(exports, ["getCloudProviderAccessSetup","getCloudProviderAccessSetupOutput"], () => require("./getCloudProviderAccessSetup"));
 
+export { GetCloudUserOrgAssignmentArgs, GetCloudUserOrgAssignmentResult, GetCloudUserOrgAssignmentOutputArgs } from "./getCloudUserOrgAssignment";
+export const getCloudUserOrgAssignment: typeof import("./getCloudUserOrgAssignment").getCloudUserOrgAssignment = null as any;
+export const getCloudUserOrgAssignmentOutput: typeof import("./getCloudUserOrgAssignment").getCloudUserOrgAssignmentOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudUserOrgAssignment","getCloudUserOrgAssignmentOutput"], () => require("./getCloudUserOrgAssignment"));
+
+export { GetCloudUserProjectAssignmentArgs, GetCloudUserProjectAssignmentResult, GetCloudUserProjectAssignmentOutputArgs } from "./getCloudUserProjectAssignment";
+export const getCloudUserProjectAssignment: typeof import("./getCloudUserProjectAssignment").getCloudUserProjectAssignment = null as any;
+export const getCloudUserProjectAssignmentOutput: typeof import("./getCloudUserProjectAssignment").getCloudUserProjectAssignmentOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudUserProjectAssignment","getCloudUserProjectAssignmentOutput"], () => require("./getCloudUserProjectAssignment"));
+
+export { GetCloudUserTeamAssignmentArgs, GetCloudUserTeamAssignmentResult, GetCloudUserTeamAssignmentOutputArgs } from "./getCloudUserTeamAssignment";
+export const getCloudUserTeamAssignment: typeof import("./getCloudUserTeamAssignment").getCloudUserTeamAssignment = null as any;
+export const getCloudUserTeamAssignmentOutput: typeof import("./getCloudUserTeamAssignment").getCloudUserTeamAssignmentOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudUserTeamAssignment","getCloudUserTeamAssignmentOutput"], () => require("./getCloudUserTeamAssignment"));
+
 export { GetClusterArgs, GetClusterResult, GetClusterOutputArgs } from "./getCluster";
 export const getCluster: typeof import("./getCluster").getCluster = null as any;
 export const getClusterOutput: typeof import("./getCluster").getClusterOutput = null as any;
@@ -309,26 +329,6 @@ export { GetCustomDnsConfigurationClusterAwsArgs, GetCustomDnsConfigurationClust
 export const getCustomDnsConfigurationClusterAws: typeof import("./getCustomDnsConfigurationClusterAws").getCustomDnsConfigurationClusterAws = null as any;
 export const getCustomDnsConfigurationClusterAwsOutput: typeof import("./getCustomDnsConfigurationClusterAws").getCustomDnsConfigurationClusterAwsOutput = null as any;
 utilities.lazyLoad(exports, ["getCustomDnsConfigurationClusterAws","getCustomDnsConfigurationClusterAwsOutput"], () => require("./getCustomDnsConfigurationClusterAws"));
-
-export { GetDataLakePipelineArgs, GetDataLakePipelineResult, GetDataLakePipelineOutputArgs } from "./getDataLakePipeline";
-export const getDataLakePipeline: typeof import("./getDataLakePipeline").getDataLakePipeline = null as any;
-export const getDataLakePipelineOutput: typeof import("./getDataLakePipeline").getDataLakePipelineOutput = null as any;
-utilities.lazyLoad(exports, ["getDataLakePipeline","getDataLakePipelineOutput"], () => require("./getDataLakePipeline"));
-
-export { GetDataLakePipelineRunArgs, GetDataLakePipelineRunResult, GetDataLakePipelineRunOutputArgs } from "./getDataLakePipelineRun";
-export const getDataLakePipelineRun: typeof import("./getDataLakePipelineRun").getDataLakePipelineRun = null as any;
-export const getDataLakePipelineRunOutput: typeof import("./getDataLakePipelineRun").getDataLakePipelineRunOutput = null as any;
-utilities.lazyLoad(exports, ["getDataLakePipelineRun","getDataLakePipelineRunOutput"], () => require("./getDataLakePipelineRun"));
-
-export { GetDataLakePipelineRunsArgs, GetDataLakePipelineRunsResult, GetDataLakePipelineRunsOutputArgs } from "./getDataLakePipelineRuns";
-export const getDataLakePipelineRuns: typeof import("./getDataLakePipelineRuns").getDataLakePipelineRuns = null as any;
-export const getDataLakePipelineRunsOutput: typeof import("./getDataLakePipelineRuns").getDataLakePipelineRunsOutput = null as any;
-utilities.lazyLoad(exports, ["getDataLakePipelineRuns","getDataLakePipelineRunsOutput"], () => require("./getDataLakePipelineRuns"));
-
-export { GetDataLakePipelinesArgs, GetDataLakePipelinesResult, GetDataLakePipelinesOutputArgs } from "./getDataLakePipelines";
-export const getDataLakePipelines: typeof import("./getDataLakePipelines").getDataLakePipelines = null as any;
-export const getDataLakePipelinesOutput: typeof import("./getDataLakePipelines").getDataLakePipelinesOutput = null as any;
-utilities.lazyLoad(exports, ["getDataLakePipelines","getDataLakePipelinesOutput"], () => require("./getDataLakePipelines"));
 
 export { GetDatabaseUserArgs, GetDatabaseUserResult, GetDatabaseUserOutputArgs } from "./getDatabaseUser";
 export const getDatabaseUser: typeof import("./getDatabaseUser").getDatabaseUser = null as any;
@@ -545,16 +545,6 @@ export const getPrivatelinkEndpointServiceDataFederationOnlineArchives: typeof i
 export const getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput: typeof import("./getPrivatelinkEndpointServiceDataFederationOnlineArchives").getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivatelinkEndpointServiceDataFederationOnlineArchives","getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput"], () => require("./getPrivatelinkEndpointServiceDataFederationOnlineArchives"));
 
-export { GetPrivatelinkEndpointServiceServerlessArgs, GetPrivatelinkEndpointServiceServerlessResult, GetPrivatelinkEndpointServiceServerlessOutputArgs } from "./getPrivatelinkEndpointServiceServerless";
-export const getPrivatelinkEndpointServiceServerless: typeof import("./getPrivatelinkEndpointServiceServerless").getPrivatelinkEndpointServiceServerless = null as any;
-export const getPrivatelinkEndpointServiceServerlessOutput: typeof import("./getPrivatelinkEndpointServiceServerless").getPrivatelinkEndpointServiceServerlessOutput = null as any;
-utilities.lazyLoad(exports, ["getPrivatelinkEndpointServiceServerless","getPrivatelinkEndpointServiceServerlessOutput"], () => require("./getPrivatelinkEndpointServiceServerless"));
-
-export { GetPrivatelinkEndpointsServiceServerlessArgs, GetPrivatelinkEndpointsServiceServerlessResult, GetPrivatelinkEndpointsServiceServerlessOutputArgs } from "./getPrivatelinkEndpointsServiceServerless";
-export const getPrivatelinkEndpointsServiceServerless: typeof import("./getPrivatelinkEndpointsServiceServerless").getPrivatelinkEndpointsServiceServerless = null as any;
-export const getPrivatelinkEndpointsServiceServerlessOutput: typeof import("./getPrivatelinkEndpointsServiceServerless").getPrivatelinkEndpointsServiceServerlessOutput = null as any;
-utilities.lazyLoad(exports, ["getPrivatelinkEndpointsServiceServerless","getPrivatelinkEndpointsServiceServerlessOutput"], () => require("./getPrivatelinkEndpointsServiceServerless"));
-
 export { GetProjectArgs, GetProjectResult, GetProjectOutputArgs } from "./getProject";
 export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;
@@ -700,15 +690,25 @@ export const getStreamProcessors: typeof import("./getStreamProcessors").getStre
 export const getStreamProcessorsOutput: typeof import("./getStreamProcessors").getStreamProcessorsOutput = null as any;
 utilities.lazyLoad(exports, ["getStreamProcessors","getStreamProcessorsOutput"], () => require("./getStreamProcessors"));
 
+export { GetStreamWorkspaceArgs, GetStreamWorkspaceResult, GetStreamWorkspaceOutputArgs } from "./getStreamWorkspace";
+export const getStreamWorkspace: typeof import("./getStreamWorkspace").getStreamWorkspace = null as any;
+export const getStreamWorkspaceOutput: typeof import("./getStreamWorkspace").getStreamWorkspaceOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamWorkspace","getStreamWorkspaceOutput"], () => require("./getStreamWorkspace"));
+
+export { GetStreamWorkspacesArgs, GetStreamWorkspacesResult, GetStreamWorkspacesOutputArgs } from "./getStreamWorkspaces";
+export const getStreamWorkspaces: typeof import("./getStreamWorkspaces").getStreamWorkspaces = null as any;
+export const getStreamWorkspacesOutput: typeof import("./getStreamWorkspaces").getStreamWorkspacesOutput = null as any;
+utilities.lazyLoad(exports, ["getStreamWorkspaces","getStreamWorkspacesOutput"], () => require("./getStreamWorkspaces"));
+
 export { GetTeamArgs, GetTeamResult, GetTeamOutputArgs } from "./getTeam";
 export const getTeam: typeof import("./getTeam").getTeam = null as any;
 export const getTeamOutput: typeof import("./getTeam").getTeamOutput = null as any;
 utilities.lazyLoad(exports, ["getTeam","getTeamOutput"], () => require("./getTeam"));
 
-export { GetTeamsArgs, GetTeamsResult, GetTeamsOutputArgs } from "./getTeams";
-export const getTeams: typeof import("./getTeams").getTeams = null as any;
-export const getTeamsOutput: typeof import("./getTeams").getTeamsOutput = null as any;
-utilities.lazyLoad(exports, ["getTeams","getTeamsOutput"], () => require("./getTeams"));
+export { GetTeamProjectAssignmentArgs, GetTeamProjectAssignmentResult, GetTeamProjectAssignmentOutputArgs } from "./getTeamProjectAssignment";
+export const getTeamProjectAssignment: typeof import("./getTeamProjectAssignment").getTeamProjectAssignment = null as any;
+export const getTeamProjectAssignmentOutput: typeof import("./getTeamProjectAssignment").getTeamProjectAssignmentOutput = null as any;
+utilities.lazyLoad(exports, ["getTeamProjectAssignment","getTeamProjectAssignmentOutput"], () => require("./getTeamProjectAssignment"));
 
 export { GetThirdPartyIntegrationArgs, GetThirdPartyIntegrationResult, GetThirdPartyIntegrationOutputArgs } from "./getThirdPartyIntegration";
 export const getThirdPartyIntegration: typeof import("./getThirdPartyIntegration").getThirdPartyIntegration = null as any;
@@ -790,20 +790,10 @@ export type PrivateLinkEndpointService = import("./privateLinkEndpointService").
 export const PrivateLinkEndpointService: typeof import("./privateLinkEndpointService").PrivateLinkEndpointService = null as any;
 utilities.lazyLoad(exports, ["PrivateLinkEndpointService"], () => require("./privateLinkEndpointService"));
 
-export { PrivatelinkEndpointServerlessArgs, PrivatelinkEndpointServerlessState } from "./privatelinkEndpointServerless";
-export type PrivatelinkEndpointServerless = import("./privatelinkEndpointServerless").PrivatelinkEndpointServerless;
-export const PrivatelinkEndpointServerless: typeof import("./privatelinkEndpointServerless").PrivatelinkEndpointServerless = null as any;
-utilities.lazyLoad(exports, ["PrivatelinkEndpointServerless"], () => require("./privatelinkEndpointServerless"));
-
 export { PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs, PrivatelinkEndpointServiceDataFederationOnlineArchiveState } from "./privatelinkEndpointServiceDataFederationOnlineArchive";
 export type PrivatelinkEndpointServiceDataFederationOnlineArchive = import("./privatelinkEndpointServiceDataFederationOnlineArchive").PrivatelinkEndpointServiceDataFederationOnlineArchive;
 export const PrivatelinkEndpointServiceDataFederationOnlineArchive: typeof import("./privatelinkEndpointServiceDataFederationOnlineArchive").PrivatelinkEndpointServiceDataFederationOnlineArchive = null as any;
 utilities.lazyLoad(exports, ["PrivatelinkEndpointServiceDataFederationOnlineArchive"], () => require("./privatelinkEndpointServiceDataFederationOnlineArchive"));
-
-export { PrivatelinkEndpointServiceServerlessArgs, PrivatelinkEndpointServiceServerlessState } from "./privatelinkEndpointServiceServerless";
-export type PrivatelinkEndpointServiceServerless = import("./privatelinkEndpointServiceServerless").PrivatelinkEndpointServiceServerless;
-export const PrivatelinkEndpointServiceServerless: typeof import("./privatelinkEndpointServiceServerless").PrivatelinkEndpointServiceServerless = null as any;
-utilities.lazyLoad(exports, ["PrivatelinkEndpointServiceServerless"], () => require("./privatelinkEndpointServiceServerless"));
 
 export { ProjectArgs, ProjectState } from "./project";
 export type Project = import("./project").Project;
@@ -873,15 +863,20 @@ export type StreamProcessor = import("./streamProcessor").StreamProcessor;
 export const StreamProcessor: typeof import("./streamProcessor").StreamProcessor = null as any;
 utilities.lazyLoad(exports, ["StreamProcessor"], () => require("./streamProcessor"));
 
+export { StreamWorkspaceArgs, StreamWorkspaceState } from "./streamWorkspace";
+export type StreamWorkspace = import("./streamWorkspace").StreamWorkspace;
+export const StreamWorkspace: typeof import("./streamWorkspace").StreamWorkspace = null as any;
+utilities.lazyLoad(exports, ["StreamWorkspace"], () => require("./streamWorkspace"));
+
 export { TeamArgs, TeamState } from "./team";
 export type Team = import("./team").Team;
 export const Team: typeof import("./team").Team = null as any;
 utilities.lazyLoad(exports, ["Team"], () => require("./team"));
 
-export { TeamsArgs, TeamsState } from "./teams";
-export type Teams = import("./teams").Teams;
-export const Teams: typeof import("./teams").Teams = null as any;
-utilities.lazyLoad(exports, ["Teams"], () => require("./teams"));
+export { TeamProjectAssignmentArgs, TeamProjectAssignmentState } from "./teamProjectAssignment";
+export type TeamProjectAssignment = import("./teamProjectAssignment").TeamProjectAssignment;
+export const TeamProjectAssignment: typeof import("./teamProjectAssignment").TeamProjectAssignment = null as any;
+utilities.lazyLoad(exports, ["TeamProjectAssignment"], () => require("./teamProjectAssignment"));
 
 export { ThirdPartyIntegrationArgs, ThirdPartyIntegrationState } from "./thirdPartyIntegration";
 export type ThirdPartyIntegration = import("./thirdPartyIntegration").ThirdPartyIntegration;
@@ -935,6 +930,12 @@ const _module = {
                 return new CloudProviderAccessAuthorization(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup":
                 return new CloudProviderAccessSetup(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment":
+                return new CloudUserOrgAssignment(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment":
+                return new CloudUserProjectAssignment(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment":
+                return new CloudUserTeamAssignment(name, <any>undefined, { urn })
             case "mongodbatlas:index/cluster:Cluster":
                 return new Cluster(name, <any>undefined, { urn })
             case "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation":
@@ -943,8 +944,6 @@ const _module = {
                 return new CustomDbRole(name, <any>undefined, { urn })
             case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
                 return new CustomDnsConfigurationClusterAws(name, <any>undefined, { urn })
-            case "mongodbatlas:index/dataLakePipeline:DataLakePipeline":
-                return new DataLakePipeline(name, <any>undefined, { urn })
             case "mongodbatlas:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
             case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
@@ -991,12 +990,8 @@ const _module = {
                 return new PrivateLinkEndpoint(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
                 return new PrivateLinkEndpointService(name, <any>undefined, { urn })
-            case "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless":
-                return new PrivatelinkEndpointServerless(name, <any>undefined, { urn })
             case "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive":
                 return new PrivatelinkEndpointServiceDataFederationOnlineArchive(name, <any>undefined, { urn })
-            case "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless":
-                return new PrivatelinkEndpointServiceServerless(name, <any>undefined, { urn })
             case "mongodbatlas:index/project:Project":
                 return new Project(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectApiKey:ProjectApiKey":
@@ -1023,10 +1018,12 @@ const _module = {
                 return new StreamPrivatelinkEndpoint(name, <any>undefined, { urn })
             case "mongodbatlas:index/streamProcessor:StreamProcessor":
                 return new StreamProcessor(name, <any>undefined, { urn })
+            case "mongodbatlas:index/streamWorkspace:StreamWorkspace":
+                return new StreamWorkspace(name, <any>undefined, { urn })
             case "mongodbatlas:index/team:Team":
                 return new Team(name, <any>undefined, { urn })
-            case "mongodbatlas:index/teams:Teams":
-                return new Teams(name, <any>undefined, { urn })
+            case "mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment":
+                return new TeamProjectAssignment(name, <any>undefined, { urn })
             case "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration":
                 return new ThirdPartyIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser":
@@ -1050,11 +1047,13 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshot
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotRestoreJob", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessAuthorization", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudProviderAccessSetup", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudUserOrgAssignment", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudUserProjectAssignment", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudUserTeamAssignment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cluster", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/clusterOutageSimulation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDbRole", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDnsConfigurationClusterAws", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/dataLakePipeline", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRest", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/encryptionAtRestPrivateEndpoint", _module)
@@ -1078,9 +1077,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/organization", _mod
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpointRegionalMode", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpointService", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServerless", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceDataFederationOnlineArchive", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/privatelinkEndpointServiceServerless", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
@@ -1094,8 +1091,9 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamConnection", 
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamPrivatelinkEndpoint", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamProcessor", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamWorkspace", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/team", _module)
-pulumi.runtime.registerResourceModule("mongodbatlas", "index/teams", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/teamProjectAssignment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/thirdPartyIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/x509AuthenticationDatabaseUser", _module)
 pulumi.runtime.registerResourcePackage("mongodbatlas", {

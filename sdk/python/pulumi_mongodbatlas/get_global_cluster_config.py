@@ -28,13 +28,10 @@ class GetGlobalClusterConfigResult:
     """
     A collection of values returned by getGlobalClusterConfig.
     """
-    def __init__(__self__, cluster_name=None, custom_zone_mapping=None, custom_zone_mapping_zone_id=None, id=None, managed_namespaces=None, project_id=None):
+    def __init__(__self__, cluster_name=None, custom_zone_mapping_zone_id=None, id=None, managed_namespaces=None, project_id=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
-        if custom_zone_mapping and not isinstance(custom_zone_mapping, dict):
-            raise TypeError("Expected argument 'custom_zone_mapping' to be a dict")
-        pulumi.set(__self__, "custom_zone_mapping", custom_zone_mapping)
         if custom_zone_mapping_zone_id and not isinstance(custom_zone_mapping_zone_id, dict):
             raise TypeError("Expected argument 'custom_zone_mapping_zone_id' to be a dict")
         pulumi.set(__self__, "custom_zone_mapping_zone_id", custom_zone_mapping_zone_id)
@@ -52,15 +49,6 @@ class GetGlobalClusterConfigResult:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> _builtins.str:
         return pulumi.get(self, "cluster_name")
-
-    @_builtins.property
-    @pulumi.getter(name="customZoneMapping")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `custom_zone_mapping_zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def custom_zone_mapping(self) -> Mapping[str, _builtins.str]:
-        """
-        (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `custom_zone_mapping_zone_id` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-        """
-        return pulumi.get(self, "custom_zone_mapping")
 
     @_builtins.property
     @pulumi.getter(name="customZoneMappingZoneId")
@@ -99,7 +87,6 @@ class AwaitableGetGlobalClusterConfigResult(GetGlobalClusterConfigResult):
             yield self
         return GetGlobalClusterConfigResult(
             cluster_name=self.cluster_name,
-            custom_zone_mapping=self.custom_zone_mapping,
             custom_zone_mapping_zone_id=self.custom_zone_mapping_zone_id,
             id=self.id,
             managed_namespaces=self.managed_namespaces,
@@ -111,8 +98,6 @@ def get_global_cluster_config(cluster_name: Optional[_builtins.str] = None,
                               project_id: Optional[_builtins.str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalClusterConfigResult:
     """
-    ## # Data Source: GlobalClusterConfig
-
     `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -208,7 +193,6 @@ def get_global_cluster_config(cluster_name: Optional[_builtins.str] = None,
 
     return AwaitableGetGlobalClusterConfigResult(
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
-        custom_zone_mapping=pulumi.get(__ret__, 'custom_zone_mapping'),
         custom_zone_mapping_zone_id=pulumi.get(__ret__, 'custom_zone_mapping_zone_id'),
         id=pulumi.get(__ret__, 'id'),
         managed_namespaces=pulumi.get(__ret__, 'managed_namespaces'),
@@ -218,8 +202,6 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[_builti
                                      project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalClusterConfigResult]:
     """
-    ## # Data Source: GlobalClusterConfig
-
     `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -314,7 +296,6 @@ def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[_builti
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig', __args__, opts=opts, typ=GetGlobalClusterConfigResult)
     return __ret__.apply(lambda __response__: GetGlobalClusterConfigResult(
         cluster_name=pulumi.get(__response__, 'cluster_name'),
-        custom_zone_mapping=pulumi.get(__response__, 'custom_zone_mapping'),
         custom_zone_mapping_zone_id=pulumi.get(__response__, 'custom_zone_mapping_zone_id'),
         id=pulumi.get(__response__, 'id'),
         managed_namespaces=pulumi.get(__response__, 'managed_namespaces'),

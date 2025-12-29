@@ -29,6 +29,7 @@ class NetworkPeeringArgs:
                  aws_account_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_directory_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  network_name: Optional[pulumi.Input[_builtins.str]] = None,
                  resource_group_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -40,14 +41,15 @@ class NetworkPeeringArgs:
         :param pulumi.Input[_builtins.str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-               
-               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         :param pulumi.Input[_builtins.str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] aws_account_id: AWS Account ID of the owner of the peer VPC.
         :param pulumi.Input[_builtins.str] azure_directory_id: Unique identifier for an Azure AD directory.
         :param pulumi.Input[_builtins.str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+               
+               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] gcp_project_id: GCP project ID of the owner of the network peer.
         :param pulumi.Input[_builtins.str] network_name: Name of the network peer to which Atlas connects.
                
@@ -76,6 +78,8 @@ class NetworkPeeringArgs:
             pulumi.set(__self__, "azure_directory_id", azure_directory_id)
         if azure_subscription_id is not None:
             pulumi.set(__self__, "azure_subscription_id", azure_subscription_id)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if gcp_project_id is not None:
             pulumi.set(__self__, "gcp_project_id", gcp_project_id)
         if network_name is not None:
@@ -118,8 +122,6 @@ class NetworkPeeringArgs:
     def provider_name(self) -> pulumi.Input[_builtins.str]:
         """
         Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-
-        **AWS ONLY:**
         """
         return pulumi.get(self, "provider_name")
 
@@ -207,6 +209,20 @@ class NetworkPeeringArgs:
     @azure_subscription_id.setter
     def azure_subscription_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "azure_subscription_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+
+        **AWS ONLY:**
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="gcpProjectId")
@@ -298,6 +314,7 @@ class _NetworkPeeringState:
                  azure_subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
                  connection_id: Optional[pulumi.Input[_builtins.str]] = None,
                  container_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  error_message: Optional[pulumi.Input[_builtins.str]] = None,
                  error_state: Optional[pulumi.Input[_builtins.str]] = None,
                  error_state_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -322,6 +339,9 @@ class _NetworkPeeringState:
         :param pulumi.Input[_builtins.str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
         :param pulumi.Input[_builtins.str] connection_id: Unique identifier of the Atlas network peering container.
         :param pulumi.Input[_builtins.str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+               
+               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] error_message: When `"status" : "FAILED"`, Atlas provides a description of the error.
         :param pulumi.Input[_builtins.str] error_state: Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
         :param pulumi.Input[_builtins.str] error_state_name: Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
@@ -332,8 +352,6 @@ class _NetworkPeeringState:
         :param pulumi.Input[_builtins.str] peer_id: Unique identifier of the Atlas network peer.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-               
-               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[_builtins.str] route_table_cidr_block: AWS VPC CIDR block or subnet.
                
@@ -363,6 +381,8 @@ class _NetworkPeeringState:
             pulumi.set(__self__, "connection_id", connection_id)
         if container_id is not None:
             pulumi.set(__self__, "container_id", container_id)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if error_message is not None:
             pulumi.set(__self__, "error_message", error_message)
         if error_state is not None:
@@ -507,6 +527,20 @@ class _NetworkPeeringState:
         pulumi.set(self, "container_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+
+        **AWS ONLY:**
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
     @pulumi.getter(name="errorMessage")
     def error_message(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -597,8 +631,6 @@ class _NetworkPeeringState:
     def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-
-        **AWS ONLY:**
         """
         return pulumi.get(self, "provider_name")
 
@@ -695,6 +727,7 @@ class NetworkPeering(pulumi.CustomResource):
                  azure_directory_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
                  container_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  network_name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -705,8 +738,6 @@ class NetworkPeering(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: NetworkPeering
-
         `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 
         Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -830,14 +861,15 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] azure_directory_id: Unique identifier for an Azure AD directory.
         :param pulumi.Input[_builtins.str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
         :param pulumi.Input[_builtins.str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+               
+               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] gcp_project_id: GCP project ID of the owner of the network peer.
         :param pulumi.Input[_builtins.str] network_name: Name of the network peer to which Atlas connects.
                
                **AZURE ONLY:**
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-               
-               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[_builtins.str] route_table_cidr_block: AWS VPC CIDR block or subnet.
                
@@ -852,8 +884,6 @@ class NetworkPeering(pulumi.CustomResource):
                  args: NetworkPeeringArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: NetworkPeering
-
         `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 
         Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -991,6 +1021,7 @@ class NetworkPeering(pulumi.CustomResource):
                  azure_directory_id: Optional[pulumi.Input[_builtins.str]] = None,
                  azure_subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
                  container_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  network_name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1018,6 +1049,7 @@ class NetworkPeering(pulumi.CustomResource):
             if container_id is None and not opts.urn:
                 raise TypeError("Missing required property 'container_id'")
             __props__.__dict__["container_id"] = container_id
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             __props__.__dict__["gcp_project_id"] = gcp_project_id
             __props__.__dict__["network_name"] = network_name
             if project_id is None and not opts.urn:
@@ -1058,6 +1090,7 @@ class NetworkPeering(pulumi.CustomResource):
             azure_subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
             connection_id: Optional[pulumi.Input[_builtins.str]] = None,
             container_id: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             error_message: Optional[pulumi.Input[_builtins.str]] = None,
             error_state: Optional[pulumi.Input[_builtins.str]] = None,
             error_state_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1087,6 +1120,9 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] azure_subscription_id: Unique identifier of the Azure subscription in which the VNet resides.
         :param pulumi.Input[_builtins.str] connection_id: Unique identifier of the Atlas network peering container.
         :param pulumi.Input[_builtins.str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+               
+               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] error_message: When `"status" : "FAILED"`, Atlas provides a description of the error.
         :param pulumi.Input[_builtins.str] error_state: Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
         :param pulumi.Input[_builtins.str] error_state_name: Error state, if any. The VPC peering connection error state value can be one of the following: `REJECTED`, `EXPIRED`, `INVALID_ARGUMENT`.
@@ -1097,8 +1133,6 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] peer_id: Unique identifier of the Atlas network peer.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-               
-               **AWS ONLY:**
         :param pulumi.Input[_builtins.str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[_builtins.str] route_table_cidr_block: AWS VPC CIDR block or subnet.
                
@@ -1122,6 +1156,7 @@ class NetworkPeering(pulumi.CustomResource):
         __props__.__dict__["azure_subscription_id"] = azure_subscription_id
         __props__.__dict__["connection_id"] = connection_id
         __props__.__dict__["container_id"] = container_id
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["error_message"] = error_message
         __props__.__dict__["error_state"] = error_state
         __props__.__dict__["error_state_name"] = error_state_name
@@ -1213,6 +1248,16 @@ class NetworkPeering(pulumi.CustomResource):
         return pulumi.get(self, "container_id")
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+
+        **AWS ONLY:**
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @_builtins.property
     @pulumi.getter(name="errorMessage")
     def error_message(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1275,8 +1320,6 @@ class NetworkPeering(pulumi.CustomResource):
     def provider_name(self) -> pulumi.Output[_builtins.str]:
         """
         Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-
-        **AWS ONLY:**
         """
         return pulumi.get(self, "provider_name")
 

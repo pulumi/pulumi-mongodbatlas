@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.GlobalClusterConfig
-    /// 
     /// `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -124,12 +122,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
-
-        /// <summary>
-        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `CustomZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-        /// </summary>
-        [Output("customZoneMapping")]
-        public Output<ImmutableDictionary<string, string>> CustomZoneMapping { get; private set; } = null!;
 
         /// <summary>
         /// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
@@ -250,19 +242,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }
-
-        [Input("customZoneMapping")]
-        private InputMap<string>? _customZoneMapping;
-
-        /// <summary>
-        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `CustomZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-        /// </summary>
-        [Obsolete(@"This parameter is deprecated. Please transition to `CustomZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide")]
-        public InputMap<string> CustomZoneMapping
-        {
-            get => _customZoneMapping ?? (_customZoneMapping = new InputMap<string>());
-            set => _customZoneMapping = value;
-        }
 
         [Input("customZoneMappingZoneId")]
         private InputMap<string>? _customZoneMappingZoneId;

@@ -252,8 +252,6 @@ class ResourcePolicy(pulumi.CustomResource):
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]]] = None,
                  __props__=None):
         """
-        ## # Resource: ResourcePolicy
-
         `ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
 
         ## Example Usage
@@ -278,8 +276,6 @@ class ResourcePolicy(pulumi.CustomResource):
                  args: ResourcePolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: ResourcePolicy
-
         `ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
 
         ## Example Usage

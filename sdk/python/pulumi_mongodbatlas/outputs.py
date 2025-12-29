@@ -18,10 +18,9 @@ from . import outputs
 __all__ = [
     'AdvancedClusterAdvancedConfiguration',
     'AdvancedClusterBiConnectorConfig',
-    'AdvancedClusterConnectionString',
-    'AdvancedClusterConnectionStringPrivateEndpoint',
-    'AdvancedClusterConnectionStringPrivateEndpointEndpoint',
-    'AdvancedClusterLabel',
+    'AdvancedClusterConnectionStrings',
+    'AdvancedClusterConnectionStringsPrivateEndpoint',
+    'AdvancedClusterConnectionStringsPrivateEndpointEndpoint',
     'AdvancedClusterPinnedFcv',
     'AdvancedClusterReplicationSpec',
     'AdvancedClusterReplicationSpecRegionConfig',
@@ -30,7 +29,7 @@ __all__ = [
     'AdvancedClusterReplicationSpecRegionConfigAutoScaling',
     'AdvancedClusterReplicationSpecRegionConfigElectableSpecs',
     'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs',
-    'AdvancedClusterTag',
+    'AdvancedClusterTimeouts',
     'AlertConfigurationMatcher',
     'AlertConfigurationMetricThresholdConfig',
     'AlertConfigurationNotification',
@@ -59,6 +58,10 @@ __all__ = [
     'CloudProviderAccessSetupAwsConfig',
     'CloudProviderAccessSetupAzureConfig',
     'CloudProviderAccessSetupGcpConfig',
+    'CloudUserOrgAssignmentRoles',
+    'CloudUserOrgAssignmentRolesProjectRoleAssignment',
+    'CloudUserTeamAssignmentRoles',
+    'CloudUserTeamAssignmentRolesProjectRoleAssignment',
     'ClusterAdvancedConfiguration',
     'ClusterBiConnectorConfig',
     'ClusterConnectionString',
@@ -76,18 +79,13 @@ __all__ = [
     'CustomDbRoleAction',
     'CustomDbRoleActionResource',
     'CustomDbRoleInheritedRole',
-    'DataLakePipelineIngestionSchedule',
-    'DataLakePipelineSink',
-    'DataLakePipelineSinkPartitionField',
-    'DataLakePipelineSnapshot',
-    'DataLakePipelineSource',
-    'DataLakePipelineTransformation',
     'DatabaseUserLabel',
     'DatabaseUserRole',
     'DatabaseUserScope',
     'EncryptionAtRestAwsKmsConfig',
     'EncryptionAtRestAzureKeyVaultConfig',
     'EncryptionAtRestGoogleCloudKmsConfig',
+    'EncryptionAtRestPrivateEndpointTimeouts',
     'EventTriggerEventProcessors',
     'EventTriggerEventProcessorsAwsEventbridge',
     'FederatedDatabaseInstanceCloudProviderConfig',
@@ -107,6 +105,7 @@ __all__ = [
     'FlexClusterBackupSettings',
     'FlexClusterConnectionStrings',
     'FlexClusterProviderSettings',
+    'FlexClusterTimeouts',
     'GlobalClusterConfigCustomZoneMapping',
     'GlobalClusterConfigManagedNamespace',
     'LdapConfigurationUserToDnMapping',
@@ -133,6 +132,7 @@ __all__ = [
     'SearchDeploymentSpec',
     'SearchDeploymentTimeouts',
     'SearchIndexSynonym',
+    'SearchIndexTypeSet',
     'ServerlessInstanceLink',
     'ServerlessInstanceTag',
     'StreamConnectionAuthentication',
@@ -145,40 +145,44 @@ __all__ = [
     'StreamInstanceStreamConfig',
     'StreamProcessorOptions',
     'StreamProcessorOptionsDlq',
+    'StreamProcessorTimeouts',
+    'StreamWorkspaceDataProcessRegion',
+    'StreamWorkspaceStreamConfig',
     'X509AuthenticationDatabaseUserCertificate',
-    'Get509AuthenticationDatabaseUserCertificateResult',
     'GetAccessListApiKeysResultResult',
     'GetAdvancedClusterAdvancedConfigurationResult',
     'GetAdvancedClusterBiConnectorConfigResult',
-    'GetAdvancedClusterConnectionStringResult',
-    'GetAdvancedClusterConnectionStringPrivateEndpointResult',
-    'GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult',
-    'GetAdvancedClusterLabelResult',
+    'GetAdvancedClusterConnectionStringsResult',
+    'GetAdvancedClusterConnectionStringsPrivateEndpointResult',
+    'GetAdvancedClusterConnectionStringsPrivateEndpointEndpointResult',
     'GetAdvancedClusterPinnedFcvResult',
     'GetAdvancedClusterReplicationSpecResult',
     'GetAdvancedClusterReplicationSpecRegionConfigResult',
     'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult',
     'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult',
-    'GetAdvancedClusterTagResult',
     'GetAdvancedClustersResultResult',
     'GetAdvancedClustersResultAdvancedConfigurationResult',
     'GetAdvancedClustersResultBiConnectorConfigResult',
-    'GetAdvancedClustersResultConnectionStringResult',
-    'GetAdvancedClustersResultConnectionStringPrivateEndpointResult',
-    'GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult',
-    'GetAdvancedClustersResultLabelResult',
+    'GetAdvancedClustersResultConnectionStringsResult',
+    'GetAdvancedClustersResultConnectionStringsPrivateEndpointResult',
+    'GetAdvancedClustersResultConnectionStringsPrivateEndpointEndpointResult',
     'GetAdvancedClustersResultPinnedFcvResult',
     'GetAdvancedClustersResultReplicationSpecResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult',
-    'GetAdvancedClustersResultTagResult',
     'GetAlertConfigurationMatcherResult',
     'GetAlertConfigurationMetricThresholdConfigResult',
     'GetAlertConfigurationNotificationResult',
@@ -224,6 +228,10 @@ __all__ = [
     'GetCloudProviderAccessSetupAwsConfigResult',
     'GetCloudProviderAccessSetupAzureConfigResult',
     'GetCloudProviderAccessSetupGcpConfigResult',
+    'GetCloudUserOrgAssignmentRolesResult',
+    'GetCloudUserOrgAssignmentRolesProjectRoleAssignmentResult',
+    'GetCloudUserTeamAssignmentRolesResult',
+    'GetCloudUserTeamAssignmentRolesProjectRoleAssignmentResult',
     'GetClusterAdvancedConfigurationResult',
     'GetClusterBiConnectorConfigResult',
     'GetClusterConnectionStringResult',
@@ -261,20 +269,6 @@ __all__ = [
     'GetCustomDbRolesResultActionResult',
     'GetCustomDbRolesResultActionResourceResult',
     'GetCustomDbRolesResultInheritedRoleResult',
-    'GetDataLakePipelineIngestionScheduleResult',
-    'GetDataLakePipelineRunStatResult',
-    'GetDataLakePipelineRunsResultResult',
-    'GetDataLakePipelineRunsResultStatResult',
-    'GetDataLakePipelineSinkResult',
-    'GetDataLakePipelineSinkPartitionFieldResult',
-    'GetDataLakePipelineSnapshotResult',
-    'GetDataLakePipelineSourceResult',
-    'GetDataLakePipelineTransformationResult',
-    'GetDataLakePipelinesResultResult',
-    'GetDataLakePipelinesResultSinkResult',
-    'GetDataLakePipelinesResultSinkPartitionFieldResult',
-    'GetDataLakePipelinesResultSourceResult',
-    'GetDataLakePipelinesResultTransformationResult',
     'GetDatabaseUserLabelResult',
     'GetDatabaseUserRoleResult',
     'GetDatabaseUserScopeResult',
@@ -292,7 +286,7 @@ __all__ = [
     'GetEventTriggersResultEventProcessorResult',
     'GetEventTriggersResultEventProcessorAwsEventbridgeResult',
     'GetFederatedDatabaseInstanceCloudProviderConfigResult',
-    'GetFederatedDatabaseInstanceCloudProviderConfigAwsResult',
+    'GetFederatedDatabaseInstanceCloudProviderConfigAwResult',
     'GetFederatedDatabaseInstanceCloudProviderConfigAzureResult',
     'GetFederatedDatabaseInstanceDataProcessRegionResult',
     'GetFederatedDatabaseInstanceStorageDatabaseResult',
@@ -305,7 +299,7 @@ __all__ = [
     'GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult',
     'GetFederatedDatabaseInstancesResultResult',
     'GetFederatedDatabaseInstancesResultCloudProviderConfigResult',
-    'GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult',
+    'GetFederatedDatabaseInstancesResultCloudProviderConfigAwResult',
     'GetFederatedDatabaseInstancesResultCloudProviderConfigAzureResult',
     'GetFederatedDatabaseInstancesResultDataProcessRegionResult',
     'GetFederatedDatabaseInstancesResultStorageDatabaseResult',
@@ -368,11 +362,16 @@ __all__ = [
     'GetOnlineArchivesResultPartitionFieldResult',
     'GetOnlineArchivesResultScheduleResult',
     'GetOrganizationLinkResult',
+    'GetOrganizationUserResult',
+    'GetOrganizationUserRoleResult',
+    'GetOrganizationUserRoleProjectRoleAssignmentResult',
     'GetOrganizationsResultResult',
     'GetOrganizationsResultLinkResult',
+    'GetOrganizationsResultUserResult',
+    'GetOrganizationsResultUserRoleResult',
+    'GetOrganizationsResultUserRoleProjectRoleAssignmentResult',
     'GetPrivateLinkEndpointServiceEndpointResult',
     'GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult',
-    'GetPrivatelinkEndpointsServiceServerlessResultResult',
     'GetProjectApiKeyProjectAssignmentResult',
     'GetProjectApiKeysResultResult',
     'GetProjectApiKeysResultProjectAssignmentResult',
@@ -381,12 +380,14 @@ __all__ = [
     'GetProjectIpAddressesServicesClusterResult',
     'GetProjectLimitResult',
     'GetProjectTeamResult',
+    'GetProjectUserResult',
     'GetProjectsResultResult',
     'GetProjectsResultIpAddressesResult',
     'GetProjectsResultIpAddressesServicesResult',
     'GetProjectsResultIpAddressesServicesClusterResult',
     'GetProjectsResultLimitResult',
     'GetProjectsResultTeamResult',
+    'GetProjectsResultUserResult',
     'GetResourcePoliciesResourcePolicyResult',
     'GetResourcePoliciesResourcePolicyCreatedByUserResult',
     'GetResourcePoliciesResourcePolicyLastUpdatedByUserResult',
@@ -400,8 +401,10 @@ __all__ = [
     'GetResourcePolicyPolicyResult',
     'GetSearchDeploymentSpecResult',
     'GetSearchIndexSynonymResult',
+    'GetSearchIndexTypeSetResult',
     'GetSearchIndexesResultResult',
     'GetSearchIndexesResultSynonymResult',
+    'GetSearchIndexesResultTypeSetResult',
     'GetServerlessInstanceLinkResult',
     'GetServerlessInstanceTagResult',
     'GetServerlessInstancesResultResult',
@@ -433,6 +436,14 @@ __all__ = [
     'GetStreamProcessorsResultResult',
     'GetStreamProcessorsResultOptionsResult',
     'GetStreamProcessorsResultOptionsDlqResult',
+    'GetStreamWorkspaceDataProcessRegionResult',
+    'GetStreamWorkspaceStreamConfigResult',
+    'GetStreamWorkspacesResultResult',
+    'GetStreamWorkspacesResultDataProcessRegionResult',
+    'GetStreamWorkspacesResultStreamConfigResult',
+    'GetTeamUserResult',
+    'GetTeamUserRoleResult',
+    'GetTeamUserRoleProjectRoleAssignmentResult',
     'GetThirdPartyIntegrationsResultResult',
     'GetX509AuthenticationDatabaseUserCertificateResult',
 ]
@@ -446,14 +457,12 @@ class AdvancedClusterAdvancedConfiguration(dict):
             suggest = "change_stream_options_pre_and_post_images_expire_after_seconds"
         elif key == "customOpensslCipherConfigTls12s":
             suggest = "custom_openssl_cipher_config_tls12s"
+        elif key == "customOpensslCipherConfigTls13s":
+            suggest = "custom_openssl_cipher_config_tls13s"
         elif key == "defaultMaxTimeMs":
             suggest = "default_max_time_ms"
-        elif key == "defaultReadConcern":
-            suggest = "default_read_concern"
         elif key == "defaultWriteConcern":
             suggest = "default_write_concern"
-        elif key == "failIndexKeyTooLong":
-            suggest = "fail_index_key_too_long"
         elif key == "javascriptEnabled":
             suggest = "javascript_enabled"
         elif key == "minimumEnabledTlsProtocol":
@@ -487,10 +496,9 @@ class AdvancedClusterAdvancedConfiguration(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[_builtins.int] = None,
                  custom_openssl_cipher_config_tls12s: Optional[Sequence[_builtins.str]] = None,
+                 custom_openssl_cipher_config_tls13s: Optional[Sequence[_builtins.str]] = None,
                  default_max_time_ms: Optional[_builtins.int] = None,
-                 default_read_concern: Optional[_builtins.str] = None,
                  default_write_concern: Optional[_builtins.str] = None,
-                 fail_index_key_too_long: Optional[_builtins.bool] = None,
                  javascript_enabled: Optional[_builtins.bool] = None,
                  minimum_enabled_tls_protocol: Optional[_builtins.str] = None,
                  no_table_scan: Optional[_builtins.bool] = None,
@@ -501,38 +509,31 @@ class AdvancedClusterAdvancedConfiguration(dict):
                  tls_cipher_config_mode: Optional[_builtins.str] = None,
                  transaction_lifetime_limit_seconds: Optional[_builtins.int] = None):
         """
-        :param _builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        :param _builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds.
         :param Sequence[_builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
-        :param _builtins.int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param _builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        :param _builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param _builtins.bool fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        :param _builtins.bool javascript_enabled: When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-        :param _builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
-               - TLS1_2
-        :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param Sequence[_builtins.str] custom_openssl_cipher_config_tls13s: The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        :param _builtins.int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
+        :param _builtins.str default_write_concern: Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
+        :param _builtins.bool javascript_enabled: Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
+        :param _builtins.str minimum_enabled_tls_protocol: Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
+        :param _builtins.bool no_table_scan: Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
         :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-               * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-        :param _builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-        :param _builtins.int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        :param _builtins.int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param _builtins.int oplog_size_mb: Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
+        :param _builtins.int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
+        :param _builtins.int sample_size_bi_connector: Number of documents per database to sample when gathering schema information.
         :param _builtins.str tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
-        :param _builtins.int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        :param _builtins.int transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         if custom_openssl_cipher_config_tls12s is not None:
             pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
+        if custom_openssl_cipher_config_tls13s is not None:
+            pulumi.set(__self__, "custom_openssl_cipher_config_tls13s", custom_openssl_cipher_config_tls13s)
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
-        if default_read_concern is not None:
-            pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
             pulumi.set(__self__, "default_write_concern", default_write_concern)
-        if fail_index_key_too_long is not None:
-            pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
             pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         if minimum_enabled_tls_protocol is not None:
@@ -556,7 +557,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
     def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[_builtins.int]:
         """
-        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        The minimum pre- and post-image retention time in seconds.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
@@ -569,44 +570,34 @@ class AdvancedClusterAdvancedConfiguration(dict):
         return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @_builtins.property
+    @pulumi.getter(name="customOpensslCipherConfigTls13s")
+    def custom_openssl_cipher_config_tls13s(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls13s")
+
+    @_builtins.property
     @pulumi.getter(name="defaultMaxTimeMs")
     def default_max_time_ms(self) -> Optional[_builtins.int]:
         """
-        Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+        Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
         """
         return pulumi.get(self, "default_max_time_ms")
-
-    @_builtins.property
-    @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def default_read_concern(self) -> Optional[_builtins.str]:
-        """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        """
-        return pulumi.get(self, "default_read_concern")
 
     @_builtins.property
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[_builtins.str]:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
         """
         return pulumi.get(self, "default_write_concern")
-
-    @_builtins.property
-    @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def fail_index_key_too_long(self) -> Optional[_builtins.bool]:
-        """
-        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        """
-        return pulumi.get(self, "fail_index_key_too_long")
 
     @_builtins.property
     @pulumi.getter(name="javascriptEnabled")
     def javascript_enabled(self) -> Optional[_builtins.bool]:
         """
-        When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
         """
         return pulumi.get(self, "javascript_enabled")
 
@@ -614,10 +605,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="minimumEnabledTlsProtocol")
     def minimum_enabled_tls_protocol(self) -> Optional[_builtins.str]:
         """
-        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
-        - TLS1_2
+        Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -625,7 +613,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="noTableScan")
     def no_table_scan(self) -> Optional[_builtins.bool]:
         """
-        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
         """
         return pulumi.get(self, "no_table_scan")
 
@@ -634,7 +622,6 @@ class AdvancedClusterAdvancedConfiguration(dict):
     def oplog_min_retention_hours(self) -> Optional[_builtins.float]:
         """
         Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-        * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 
@@ -642,7 +629,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="oplogSizeMb")
     def oplog_size_mb(self) -> Optional[_builtins.int]:
         """
-        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
         """
         return pulumi.get(self, "oplog_size_mb")
 
@@ -650,7 +637,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="sampleRefreshIntervalBiConnector")
     def sample_refresh_interval_bi_connector(self) -> Optional[_builtins.int]:
         """
-        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
         """
         return pulumi.get(self, "sample_refresh_interval_bi_connector")
 
@@ -658,7 +645,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="sampleSizeBiConnector")
     def sample_size_bi_connector(self) -> Optional[_builtins.int]:
         """
-        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        Number of documents per database to sample when gathering schema information.
         """
         return pulumi.get(self, "sample_size_bi_connector")
 
@@ -674,7 +661,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
     def transaction_lifetime_limit_seconds(self) -> Optional[_builtins.int]:
         """
-        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
         """
         return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
@@ -746,7 +733,7 @@ class AdvancedClusterBiConnectorConfig(dict):
 
 
 @pulumi.output_type
-class AdvancedClusterConnectionString(dict):
+class AdvancedClusterConnectionStrings(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -758,33 +745,33 @@ class AdvancedClusterConnectionString(dict):
             suggest = "standard_srv"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionString. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionStrings. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AdvancedClusterConnectionString.__key_warning(key)
+        AdvancedClusterConnectionStrings.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AdvancedClusterConnectionString.__key_warning(key)
+        AdvancedClusterConnectionStrings.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  private: Optional[_builtins.str] = None,
-                 private_endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']] = None,
+                 private_endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringsPrivateEndpoint']] = None,
                  private_srv: Optional[_builtins.str] = None,
                  standard: Optional[_builtins.str] = None,
                  standard_srv: Optional[_builtins.str] = None):
         """
         :param _builtins.str private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param Sequence['AdvancedClusterConnectionStringPrivateEndpointArgs'] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        :param Sequence['AdvancedClusterConnectionStringsPrivateEndpointArgs'] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+               - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+               - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for `connection_strings.private_endpoint[#].srv_connection_string`.
+               - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+               - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         :param _builtins.str private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         :param _builtins.str standard: Public mongodb:// connection string for this cluster.
         :param _builtins.str standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
@@ -810,17 +797,17 @@ class AdvancedClusterConnectionString(dict):
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpoint']]:
+    def private_endpoints(self) -> Optional[Sequence['outputs.AdvancedClusterConnectionStringsPrivateEndpoint']]:
         """
         Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+        - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for `connection_strings.private_endpoint[#].srv_connection_string`.
+        - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+        - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         """
         return pulumi.get(self, "private_endpoints")
 
@@ -850,7 +837,7 @@ class AdvancedClusterConnectionString(dict):
 
 
 @pulumi.output_type
-class AdvancedClusterConnectionStringPrivateEndpoint(dict):
+class AdvancedClusterConnectionStringsPrivateEndpoint(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -862,22 +849,29 @@ class AdvancedClusterConnectionStringPrivateEndpoint(dict):
             suggest = "srv_shard_optimized_connection_string"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionStringPrivateEndpoint. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionStringsPrivateEndpoint. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AdvancedClusterConnectionStringPrivateEndpoint.__key_warning(key)
+        AdvancedClusterConnectionStringsPrivateEndpoint.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AdvancedClusterConnectionStringPrivateEndpoint.__key_warning(key)
+        AdvancedClusterConnectionStringsPrivateEndpoint.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
                  connection_string: Optional[_builtins.str] = None,
-                 endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint']] = None,
+                 endpoints: Optional[Sequence['outputs.AdvancedClusterConnectionStringsPrivateEndpointEndpoint']] = None,
                  srv_connection_string: Optional[_builtins.str] = None,
                  srv_shard_optimized_connection_string: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str connection_string: Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        :param Sequence['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs'] endpoints: List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        :param _builtins.str srv_connection_string: Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        :param _builtins.str srv_shard_optimized_connection_string: Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        :param _builtins.str type: MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         if connection_string is not None:
             pulumi.set(__self__, "connection_string", connection_string)
         if endpoints is not None:
@@ -892,31 +886,46 @@ class AdvancedClusterConnectionStringPrivateEndpoint(dict):
     @_builtins.property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> Optional[_builtins.str]:
+        """
+        Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        """
         return pulumi.get(self, "connection_string")
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[Sequence['outputs.AdvancedClusterConnectionStringPrivateEndpointEndpoint']]:
+    def endpoints(self) -> Optional[Sequence['outputs.AdvancedClusterConnectionStringsPrivateEndpointEndpoint']]:
+        """
+        List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        """
         return pulumi.get(self, "endpoints")
 
     @_builtins.property
     @pulumi.getter(name="srvConnectionString")
     def srv_connection_string(self) -> Optional[_builtins.str]:
+        """
+        Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        """
         return pulumi.get(self, "srv_connection_string")
 
     @_builtins.property
     @pulumi.getter(name="srvShardOptimizedConnectionString")
     def srv_shard_optimized_connection_string(self) -> Optional[_builtins.str]:
+        """
+        Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        """
         return pulumi.get(self, "srv_shard_optimized_connection_string")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[_builtins.str]:
+        """
+        MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         return pulumi.get(self, "type")
 
 
 @pulumi.output_type
-class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
+class AdvancedClusterConnectionStringsPrivateEndpointEndpoint(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -926,14 +935,14 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
             suggest = "provider_name"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionStringPrivateEndpointEndpoint. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterConnectionStringsPrivateEndpointEndpoint. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        AdvancedClusterConnectionStringPrivateEndpointEndpoint.__key_warning(key)
+        AdvancedClusterConnectionStringsPrivateEndpointEndpoint.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        AdvancedClusterConnectionStringPrivateEndpointEndpoint.__key_warning(key)
+        AdvancedClusterConnectionStringsPrivateEndpointEndpoint.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -941,12 +950,9 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
                  provider_name: Optional[_builtins.str] = None,
                  region: Optional[_builtins.str] = None):
         """
-        :param _builtins.str provider_name: Cloud service provider on which the servers are provisioned.
-               The possible values are:
-               - `AWS` - Amazon AWS
-               - `GCP` - Google Cloud Platform
-               - `AZURE` - Microsoft Azure
-               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        :param _builtins.str endpoint_id: Unique string that the cloud provider uses to identify the private endpoint.
+        :param _builtins.str provider_name: Cloud provider in which MongoDB Cloud deploys the private endpoint.
+        :param _builtins.str region: Region where the private endpoint is deployed.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -958,60 +964,26 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpoint(dict):
     @_builtins.property
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[_builtins.str]:
+        """
+        Unique string that the cloud provider uses to identify the private endpoint.
+        """
         return pulumi.get(self, "endpoint_id")
 
     @_builtins.property
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[_builtins.str]:
         """
-        Cloud service provider on which the servers are provisioned.
-        The possible values are:
-        - `AWS` - Amazon AWS
-        - `GCP` - Google Cloud Platform
-        - `AZURE` - Microsoft Azure
-        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        Cloud provider in which MongoDB Cloud deploys the private endpoint.
         """
         return pulumi.get(self, "provider_name")
 
     @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[_builtins.str]:
+        """
+        Region where the private endpoint is deployed.
+        """
         return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class AdvancedClusterLabel(dict):
-    def __init__(__self__, *,
-                 key: Optional[_builtins.str] = None,
-                 value: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str key: The key that you want to write.
-        :param _builtins.str value: The value that you want to write.
-               
-               > **NOTE:** MongoDB Atlas doesn't display your labels.
-        """
-        if key is not None:
-            pulumi.set(__self__, "key", key)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> Optional[_builtins.str]:
-        """
-        The key that you want to write.
-        """
-        return pulumi.get(self, "key")
-
-    @_builtins.property
-    @pulumi.getter
-    def value(self) -> Optional[_builtins.str]:
-        """
-        The value that you want to write.
-
-        > **NOTE:** MongoDB Atlas doesn't display your labels.
-        """
-        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1072,8 +1044,6 @@ class AdvancedClusterReplicationSpec(dict):
             suggest = "container_id"
         elif key == "externalId":
             suggest = "external_id"
-        elif key == "numShards":
-            suggest = "num_shards"
         elif key == "zoneId":
             suggest = "zone_id"
         elif key == "zoneName":
@@ -1094,16 +1064,12 @@ class AdvancedClusterReplicationSpec(dict):
                  region_configs: Sequence['outputs.AdvancedClusterReplicationSpecRegionConfig'],
                  container_id: Optional[Mapping[str, _builtins.str]] = None,
                  external_id: Optional[_builtins.str] = None,
-                 id: Optional[_builtins.str] = None,
-                 num_shards: Optional[_builtins.int] = None,
                  zone_id: Optional[_builtins.str] = None,
                  zone_name: Optional[_builtins.str] = None):
         """
         :param Sequence['AdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
-        :param _builtins.str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
-        :param _builtins.str id: **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
-        :param _builtins.int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-               If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+        :param Mapping[str, _builtins.str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        :param _builtins.str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         :param _builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param _builtins.str zone_name: Name for the zone in a Global Cluster.
         """
@@ -1112,10 +1078,6 @@ class AdvancedClusterReplicationSpec(dict):
             pulumi.set(__self__, "container_id", container_id)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if num_shards is not None:
-            pulumi.set(__self__, "num_shards", num_shards)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
         if zone_name is not None:
@@ -1132,34 +1094,18 @@ class AdvancedClusterReplicationSpec(dict):
     @_builtins.property
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        """
         return pulumi.get(self, "container_id")
 
     @_builtins.property
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         """
         return pulumi.get(self, "external_id")
-
-    @_builtins.property
-    @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def id(self) -> Optional[_builtins.str]:
-        """
-        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def num_shards(self) -> Optional[_builtins.int]:
-        """
-        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-        If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
-        """
-        return pulumi.get(self, "num_shards")
 
     @_builtins.property
     @pulumi.getter(name="zoneId")
@@ -1224,18 +1170,19 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         """
         :param _builtins.int priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
                * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-               * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+               * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         :param _builtins.str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+               - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         :param _builtins.str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
-        :param _builtins.str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+        :param _builtins.str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
         :param 'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
@@ -1261,7 +1208,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         """
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-        * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         """
         return pulumi.get(self, "priority")
 
@@ -1274,7 +1221,8 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+        - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1314,7 +1262,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[_builtins.str]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -1369,9 +1317,12 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
                  compute_scale_down_enabled: Optional[_builtins.bool] = None,
                  disk_gb_enabled: Optional[_builtins.bool] = None):
         """
-        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
-        :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
-        :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        :param _builtins.bool compute_enabled: Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+               
+               **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `use_effective_fields = true`, you can read scaled values using `effective_analytics_specs` in the data source. When not using `use_effective_fields`, you may need lifecycle ignore customizations for `analytics_specs` fields similar to the example shown in the auto_scaling section.
+        :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
+        :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
@@ -1388,13 +1339,18 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
     def compute_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        """
         return pulumi.get(self, "compute_enabled")
 
     @_builtins.property
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> Optional[_builtins.str]:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+
+        **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `use_effective_fields = true`, you can read scaled values using `effective_analytics_specs` in the data source. When not using `use_effective_fields`, you may need lifecycle ignore customizations for `analytics_specs` fields similar to the example shown in the auto_scaling section.
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -1402,7 +1358,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
     @pulumi.getter(name="computeMinInstanceSize")
     def compute_min_instance_size(self) -> Optional[_builtins.str]:
         """
-        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         """
         return pulumi.get(self, "compute_min_instance_size")
 
@@ -1410,7 +1366,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
     @pulumi.getter(name="computeScaleDownEnabled")
     def compute_scale_down_enabled(self) -> Optional[_builtins.bool]:
         """
-        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         """
         return pulumi.get(self, "compute_scale_down_enabled")
 
@@ -1428,14 +1384,14 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "instanceSize":
-            suggest = "instance_size"
-        elif key == "diskIops":
+        if key == "diskIops":
             suggest = "disk_iops"
         elif key == "diskSizeGb":
             suggest = "disk_size_gb"
         elif key == "ebsVolumeType":
             suggest = "ebs_volume_type"
+        elif key == "instanceSize":
+            suggest = "instance_size"
         elif key == "nodeCount":
             suggest = "node_count"
 
@@ -1451,37 +1407,30 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 instance_size: _builtins.str,
                  disk_iops: Optional[_builtins.int] = None,
                  disk_size_gb: Optional[_builtins.float] = None,
                  ebs_volume_type: Optional[_builtins.str] = None,
+                 instance_size: Optional[_builtins.str] = None,
                  node_count: Optional[_builtins.int] = None):
         """
-        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if instance_size is not None:
+            pulumi.set(__self__, "instance_size", instance_size)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
-
-    @_builtins.property
-    @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> _builtins.str:
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
-        return pulumi.get(self, "instance_size")
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -1508,6 +1457,14 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
         * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
         return pulumi.get(self, "ebs_volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> Optional[_builtins.str]:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
+        return pulumi.get(self, "instance_size")
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
@@ -1552,9 +1509,10 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
                  compute_scale_down_enabled: Optional[_builtins.bool] = None,
                  disk_gb_enabled: Optional[_builtins.bool] = None):
         """
-        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
-        :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
-        :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        :param _builtins.bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        :param _builtins.str compute_max_instance_size: Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
+        :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
+        :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
@@ -1571,13 +1529,16 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
     def compute_enabled(self) -> Optional[_builtins.bool]:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        """
         return pulumi.get(self, "compute_enabled")
 
     @_builtins.property
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> Optional[_builtins.str]:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -1585,7 +1546,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
     @pulumi.getter(name="computeMinInstanceSize")
     def compute_min_instance_size(self) -> Optional[_builtins.str]:
         """
-        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         """
         return pulumi.get(self, "compute_min_instance_size")
 
@@ -1593,7 +1554,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
     @pulumi.getter(name="computeScaleDownEnabled")
     def compute_scale_down_enabled(self) -> Optional[_builtins.bool]:
         """
-        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         """
         return pulumi.get(self, "compute_scale_down_enabled")
 
@@ -1611,14 +1572,14 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "instanceSize":
-            suggest = "instance_size"
-        elif key == "diskIops":
+        if key == "diskIops":
             suggest = "disk_iops"
         elif key == "diskSizeGb":
             suggest = "disk_size_gb"
         elif key == "ebsVolumeType":
             suggest = "ebs_volume_type"
+        elif key == "instanceSize":
+            suggest = "instance_size"
         elif key == "nodeCount":
             suggest = "node_count"
 
@@ -1634,37 +1595,30 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 instance_size: _builtins.str,
                  disk_iops: Optional[_builtins.int] = None,
                  disk_size_gb: Optional[_builtins.float] = None,
                  ebs_volume_type: Optional[_builtins.str] = None,
+                 instance_size: Optional[_builtins.str] = None,
                  node_count: Optional[_builtins.int] = None):
         """
-        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if instance_size is not None:
+            pulumi.set(__self__, "instance_size", instance_size)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
-
-    @_builtins.property
-    @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> _builtins.str:
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
-        return pulumi.get(self, "instance_size")
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -1693,6 +1647,14 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
         return pulumi.get(self, "ebs_volume_type")
 
     @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> Optional[_builtins.str]:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[_builtins.int]:
         """
@@ -1706,14 +1668,14 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "instanceSize":
-            suggest = "instance_size"
-        elif key == "diskIops":
+        if key == "diskIops":
             suggest = "disk_iops"
         elif key == "diskSizeGb":
             suggest = "disk_size_gb"
         elif key == "ebsVolumeType":
             suggest = "ebs_volume_type"
+        elif key == "instanceSize":
+            suggest = "instance_size"
         elif key == "nodeCount":
             suggest = "node_count"
 
@@ -1729,37 +1691,30 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 instance_size: _builtins.str,
                  disk_iops: Optional[_builtins.int] = None,
                  disk_size_gb: Optional[_builtins.float] = None,
                  ebs_volume_type: Optional[_builtins.str] = None,
+                 instance_size: Optional[_builtins.str] = None,
                  node_count: Optional[_builtins.int] = None):
         """
-        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if instance_size is not None:
+            pulumi.set(__self__, "instance_size", instance_size)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
-
-    @_builtins.property
-    @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> _builtins.str:
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
-        return pulumi.get(self, "instance_size")
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -1788,6 +1743,14 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
         return pulumi.get(self, "ebs_volume_type")
 
     @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> Optional[_builtins.str]:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[_builtins.int]:
         """
@@ -1797,36 +1760,46 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
 
 
 @pulumi.output_type
-class AdvancedClusterTag(dict):
+class AdvancedClusterTimeouts(dict):
     def __init__(__self__, *,
-                 key: _builtins.str,
-                 value: _builtins.str):
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
         """
-        :param _builtins.str key: Constant that defines the set of the tag.
-        :param _builtins.str value: Variable that belongs to the set of the tag.
-               
-               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> _builtins.str:
+    def create(self) -> Optional[_builtins.str]:
         """
-        Constant that defines the set of the tag.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
-        return pulumi.get(self, "key")
+        return pulumi.get(self, "create")
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> _builtins.str:
+    def delete(self) -> Optional[_builtins.str]:
         """
-        Variable that belongs to the set of the tag.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
 
-        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
         """
-        return pulumi.get(self, "value")
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
 
 
 @pulumi.output_type
@@ -2962,8 +2935,6 @@ class CloudBackupScheduleCopySetting(dict):
             suggest = "cloud_provider"
         elif key == "regionName":
             suggest = "region_name"
-        elif key == "replicationSpecId":
-            suggest = "replication_spec_id"
         elif key == "shouldCopyOplogs":
             suggest = "should_copy_oplogs"
         elif key == "zoneId":
@@ -2984,14 +2955,12 @@ class CloudBackupScheduleCopySetting(dict):
                  cloud_provider: Optional[_builtins.str] = None,
                  frequencies: Optional[Sequence[_builtins.str]] = None,
                  region_name: Optional[_builtins.str] = None,
-                 replication_spec_id: Optional[_builtins.str] = None,
                  should_copy_oplogs: Optional[_builtins.bool] = None,
                  zone_id: Optional[_builtins.str] = None):
         """
         :param _builtins.str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[_builtins.str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param _builtins.str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param _builtins.str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param _builtins.bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param _builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
@@ -3001,8 +2970,6 @@ class CloudBackupScheduleCopySetting(dict):
             pulumi.set(__self__, "frequencies", frequencies)
         if region_name is not None:
             pulumi.set(__self__, "region_name", region_name)
-        if replication_spec_id is not None:
-            pulumi.set(__self__, "replication_spec_id", replication_spec_id)
         if should_copy_oplogs is not None:
             pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
         if zone_id is not None:
@@ -3031,15 +2998,6 @@ class CloudBackupScheduleCopySetting(dict):
         Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         """
         return pulumi.get(self, "region_name")
-
-    @_builtins.property
-    @pulumi.getter(name="replicationSpecId")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def replication_spec_id(self) -> Optional[_builtins.str]:
-        """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
-        """
-        return pulumi.get(self, "replication_spec_id")
 
     @_builtins.property
     @pulumi.getter(name="shouldCopyOplogs")
@@ -3811,11 +3769,17 @@ class CloudProviderAccessAuthorizationAws(dict):
 
     def __init__(__self__, *,
                  iam_assumed_role_arn: _builtins.str):
+        """
+        :param _builtins.str iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
         pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
 
     @_builtins.property
     @pulumi.getter(name="iamAssumedRoleArn")
     def iam_assumed_role_arn(self) -> _builtins.str:
+        """
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
         return pulumi.get(self, "iam_assumed_role_arn")
 
 
@@ -3846,6 +3810,11 @@ class CloudProviderAccessAuthorizationAzure(dict):
                  atlas_azure_app_id: _builtins.str,
                  service_principal_id: _builtins.str,
                  tenant_id: _builtins.str):
+        """
+        :param _builtins.str atlas_azure_app_id: Azure Active Directory Application ID of Atlas.
+        :param _builtins.str service_principal_id: UUID string that identifies the Azure Service Principal.
+        :param _builtins.str tenant_id: UUID String that identifies the Azure Active Directory Tenant ID.
+        """
         pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
         pulumi.set(__self__, "service_principal_id", service_principal_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -3853,16 +3822,25 @@ class CloudProviderAccessAuthorizationAzure(dict):
     @_builtins.property
     @pulumi.getter(name="atlasAzureAppId")
     def atlas_azure_app_id(self) -> _builtins.str:
+        """
+        Azure Active Directory Application ID of Atlas.
+        """
         return pulumi.get(self, "atlas_azure_app_id")
 
     @_builtins.property
     @pulumi.getter(name="servicePrincipalId")
     def service_principal_id(self) -> _builtins.str:
+        """
+        UUID string that identifies the Azure Service Principal.
+        """
         return pulumi.get(self, "service_principal_id")
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> _builtins.str:
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID.
+        """
         return pulumi.get(self, "tenant_id")
 
 
@@ -3927,12 +3905,18 @@ class CloudProviderAccessAuthorizationGcp(dict):
 
     def __init__(__self__, *,
                  service_account_for_atlas: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str service_account_for_atlas: Email address for the Google Service Account created by Atlas.
+        """
         if service_account_for_atlas is not None:
             pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountForAtlas")
     def service_account_for_atlas(self) -> Optional[_builtins.str]:
+        """
+        Email address for the Google Service Account created by Atlas.
+        """
         return pulumi.get(self, "service_account_for_atlas")
 
 
@@ -3960,6 +3944,10 @@ class CloudProviderAccessSetupAwsConfig(dict):
     def __init__(__self__, *,
                  atlas_assumed_role_external_id: Optional[_builtins.str] = None,
                  atlas_aws_account_arn: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        :param _builtins.str atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
         if atlas_assumed_role_external_id is not None:
             pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
         if atlas_aws_account_arn is not None:
@@ -3968,11 +3956,17 @@ class CloudProviderAccessSetupAwsConfig(dict):
     @_builtins.property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
     def atlas_assumed_role_external_id(self) -> Optional[_builtins.str]:
+        """
+        Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        """
         return pulumi.get(self, "atlas_assumed_role_external_id")
 
     @_builtins.property
     @pulumi.getter(name="atlasAwsAccountArn")
     def atlas_aws_account_arn(self) -> Optional[_builtins.str]:
+        """
+        ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
         return pulumi.get(self, "atlas_aws_account_arn")
 
 
@@ -4003,6 +3997,11 @@ class CloudProviderAccessSetupAzureConfig(dict):
                  atlas_azure_app_id: _builtins.str,
                  service_principal_id: _builtins.str,
                  tenant_id: _builtins.str):
+        """
+        :param _builtins.str atlas_azure_app_id: Azure Active Directory Application ID of Atlas. This property is required when `provider_name = "AZURE".`
+        :param _builtins.str service_principal_id: UUID string that identifies the Azure Service Principal. This property is required when `provider_name = "AZURE".`
+        :param _builtins.str tenant_id: UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `provider_name = "AZURE".`
+        """
         pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
         pulumi.set(__self__, "service_principal_id", service_principal_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -4010,16 +4009,25 @@ class CloudProviderAccessSetupAzureConfig(dict):
     @_builtins.property
     @pulumi.getter(name="atlasAzureAppId")
     def atlas_azure_app_id(self) -> _builtins.str:
+        """
+        Azure Active Directory Application ID of Atlas. This property is required when `provider_name = "AZURE".`
+        """
         return pulumi.get(self, "atlas_azure_app_id")
 
     @_builtins.property
     @pulumi.getter(name="servicePrincipalId")
     def service_principal_id(self) -> _builtins.str:
+        """
+        UUID string that identifies the Azure Service Principal. This property is required when `provider_name = "AZURE".`
+        """
         return pulumi.get(self, "service_principal_id")
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> _builtins.str:
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `provider_name = "AZURE".`
+        """
         return pulumi.get(self, "tenant_id")
 
 
@@ -4045,6 +4053,10 @@ class CloudProviderAccessSetupGcpConfig(dict):
     def __init__(__self__, *,
                  service_account_for_atlas: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str service_account_for_atlas: The GCP service account email that Atlas uses.
+        :param _builtins.str status: The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        """
         if service_account_for_atlas is not None:
             pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
         if status is not None:
@@ -4053,12 +4065,218 @@ class CloudProviderAccessSetupGcpConfig(dict):
     @_builtins.property
     @pulumi.getter(name="serviceAccountForAtlas")
     def service_account_for_atlas(self) -> Optional[_builtins.str]:
+        """
+        The GCP service account email that Atlas uses.
+        """
         return pulumi.get(self, "service_account_for_atlas")
 
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[_builtins.str]:
+        """
+        The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class CloudUserOrgAssignmentRoles(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "orgRoles":
+            suggest = "org_roles"
+        elif key == "projectRoleAssignments":
+            suggest = "project_role_assignments"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudUserOrgAssignmentRoles. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudUserOrgAssignmentRoles.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudUserOrgAssignmentRoles.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 org_roles: Optional[Sequence[_builtins.str]] = None,
+                 project_role_assignments: Optional[Sequence['outputs.CloudUserOrgAssignmentRolesProjectRoleAssignment']] = None):
+        """
+        :param Sequence[_builtins.str] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
+        :param Sequence['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs'] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        if org_roles is not None:
+            pulumi.set(__self__, "org_roles", org_roles)
+        if project_role_assignments is not None:
+            pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "org_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Optional[Sequence['outputs.CloudUserOrgAssignmentRolesProjectRoleAssignment']]:
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_role_assignments")
+
+
+@pulumi.output_type
+class CloudUserOrgAssignmentRolesProjectRoleAssignment(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "projectRoles":
+            suggest = "project_roles"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudUserOrgAssignmentRolesProjectRoleAssignment. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudUserOrgAssignmentRolesProjectRoleAssignment.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudUserOrgAssignmentRolesProjectRoleAssignment.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 project_id: Optional[_builtins.str] = None,
+                 project_roles: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        :param Sequence[_builtins.str] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if project_roles is not None:
+            pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_roles")
+
+
+@pulumi.output_type
+class CloudUserTeamAssignmentRoles(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "orgRoles":
+            suggest = "org_roles"
+        elif key == "projectRoleAssignments":
+            suggest = "project_role_assignments"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudUserTeamAssignmentRoles. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudUserTeamAssignmentRoles.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudUserTeamAssignmentRoles.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 org_roles: Optional[Sequence[_builtins.str]] = None,
+                 project_role_assignments: Optional[Sequence['outputs.CloudUserTeamAssignmentRolesProjectRoleAssignment']] = None):
+        """
+        :param Sequence[_builtins.str] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
+        :param Sequence['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs'] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        if org_roles is not None:
+            pulumi.set(__self__, "org_roles", org_roles)
+        if project_role_assignments is not None:
+            pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "org_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Optional[Sequence['outputs.CloudUserTeamAssignmentRolesProjectRoleAssignment']]:
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_role_assignments")
+
+
+@pulumi.output_type
+class CloudUserTeamAssignmentRolesProjectRoleAssignment(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "projectId":
+            suggest = "project_id"
+        elif key == "projectRoles":
+            suggest = "project_roles"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudUserTeamAssignmentRolesProjectRoleAssignment. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudUserTeamAssignmentRolesProjectRoleAssignment.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudUserTeamAssignmentRolesProjectRoleAssignment.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 project_id: Optional[_builtins.str] = None,
+                 project_roles: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        :param Sequence[_builtins.str] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if project_roles is not None:
+            pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_roles")
 
 
 @pulumi.output_type
@@ -4132,9 +4350,8 @@ class ClusterAdvancedConfiguration(dict):
         :param _builtins.bool fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param _builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param _builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
                - TLS1_2
+               - TLS1_3
         :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
                * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
@@ -4235,9 +4452,8 @@ class ClusterAdvancedConfiguration(dict):
     def minimum_enabled_tls_protocol(self) -> Optional[_builtins.str]:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
         - TLS1_2
+        - TLS1_3
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -4394,21 +4610,6 @@ class ClusterConnectionString(dict):
                  private_srv: Optional[_builtins.str] = None,
                  standard: Optional[_builtins.str] = None,
                  standard_srv: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param Sequence['ClusterConnectionStringPrivateEndpointArgs'] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        :param _builtins.str private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param _builtins.str standard: Public mongodb:// connection string for this cluster.
-        :param _builtins.str standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
-        """
         if private is not None:
             pulumi.set(__self__, "private", private)
         if private_endpoints is not None:
@@ -4423,49 +4624,26 @@ class ClusterConnectionString(dict):
     @_builtins.property
     @pulumi.getter
     def private(self) -> Optional[_builtins.str]:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         return pulumi.get(self, "private")
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
     def private_endpoints(self) -> Optional[Sequence['outputs.ClusterConnectionStringPrivateEndpoint']]:
-        """
-        Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        """
         return pulumi.get(self, "private_endpoints")
 
     @_builtins.property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> Optional[_builtins.str]:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         return pulumi.get(self, "private_srv")
 
     @_builtins.property
     @pulumi.getter
     def standard(self) -> Optional[_builtins.str]:
-        """
-        Public mongodb:// connection string for this cluster.
-        """
         return pulumi.get(self, "standard")
 
     @_builtins.property
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> Optional[_builtins.str]:
-        """
-        Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
-        """
         return pulumi.get(self, "standard_srv")
 
 
@@ -5356,481 +5534,6 @@ class CustomDbRoleInheritedRole(dict):
 
 
 @pulumi.output_type
-class DataLakePipelineIngestionSchedule(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "frequencyInterval":
-            suggest = "frequency_interval"
-        elif key == "frequencyType":
-            suggest = "frequency_type"
-        elif key == "retentionUnit":
-            suggest = "retention_unit"
-        elif key == "retentionValue":
-            suggest = "retention_value"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakePipelineIngestionSchedule. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakePipelineIngestionSchedule.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakePipelineIngestionSchedule.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 frequency_interval: Optional[_builtins.int] = None,
-                 frequency_type: Optional[_builtins.str] = None,
-                 id: Optional[_builtins.str] = None,
-                 retention_unit: Optional[_builtins.str] = None,
-                 retention_value: Optional[_builtins.int] = None):
-        """
-        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        if frequency_interval is not None:
-            pulumi.set(__self__, "frequency_interval", frequency_interval)
-        if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if retention_unit is not None:
-            pulumi.set(__self__, "retention_unit", retention_unit)
-        if retention_value is not None:
-            pulumi.set(__self__, "retention_value", retention_value)
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> Optional[_builtins.int]:
-        return pulumi.get(self, "frequency_interval")
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "frequency_type")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> Optional[_builtins.str]:
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "retention_unit")
-
-    @_builtins.property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> Optional[_builtins.int]:
-        return pulumi.get(self, "retention_value")
-
-
-@pulumi.output_type
-class DataLakePipelineSink(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "partitionFields":
-            suggest = "partition_fields"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakePipelineSink. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakePipelineSink.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakePipelineSink.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 partition_fields: Optional[Sequence['outputs.DataLakePipelineSinkPartitionField']] = None,
-                 provider: Optional[_builtins.str] = None,
-                 region: Optional[_builtins.str] = None,
-                 type: Optional[_builtins.str] = None):
-        """
-        :param Sequence['DataLakePipelineSinkPartitionFieldArgs'] partition_fields: Ordered fields used to physically organize data in the destination.
-               * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-               * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        :param _builtins.str provider: Target cloud provider for this Data Lake Pipeline.
-        :param _builtins.str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if partition_fields is not None:
-            pulumi.set(__self__, "partition_fields", partition_fields)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="partitionFields")
-    def partition_fields(self) -> Optional[Sequence['outputs.DataLakePipelineSinkPartitionField']]:
-        """
-        Ordered fields used to physically organize data in the destination.
-        * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-        * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        """
-        return pulumi.get(self, "partition_fields")
-
-    @_builtins.property
-    @pulumi.getter
-    def provider(self) -> Optional[_builtins.str]:
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "provider")
-
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
-        """
-        Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        """
-        return pulumi.get(self, "region")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[_builtins.str]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class DataLakePipelineSinkPartitionField(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "fieldName":
-            suggest = "field_name"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakePipelineSinkPartitionField. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakePipelineSinkPartitionField.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakePipelineSinkPartitionField.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 field_name: _builtins.str,
-                 order: _builtins.int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
-
-    @_builtins.property
-    @pulumi.getter(name="fieldName")
-    def field_name(self) -> _builtins.str:
-        return pulumi.get(self, "field_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def order(self) -> _builtins.int:
-        return pulumi.get(self, "order")
-
-
-@pulumi.output_type
-class DataLakePipelineSnapshot(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "copyRegion":
-            suggest = "copy_region"
-        elif key == "createdAt":
-            suggest = "created_at"
-        elif key == "expiresAt":
-            suggest = "expires_at"
-        elif key == "frequencyYype":
-            suggest = "frequency_yype"
-        elif key == "masterKey":
-            suggest = "master_key"
-        elif key == "mongodVersion":
-            suggest = "mongod_version"
-        elif key == "replicaSetName":
-            suggest = "replica_set_name"
-        elif key == "snapshotType":
-            suggest = "snapshot_type"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakePipelineSnapshot. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakePipelineSnapshot.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakePipelineSnapshot.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 copy_region: Optional[_builtins.str] = None,
-                 created_at: Optional[_builtins.str] = None,
-                 expires_at: Optional[_builtins.str] = None,
-                 frequency_yype: Optional[_builtins.str] = None,
-                 id: Optional[_builtins.str] = None,
-                 master_key: Optional[_builtins.str] = None,
-                 mongod_version: Optional[_builtins.str] = None,
-                 policies: Optional[Sequence[_builtins.str]] = None,
-                 provider: Optional[_builtins.str] = None,
-                 replica_set_name: Optional[_builtins.str] = None,
-                 size: Optional[_builtins.int] = None,
-                 snapshot_type: Optional[_builtins.str] = None,
-                 status: Optional[_builtins.str] = None,
-                 type: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        :param _builtins.str provider: Target cloud provider for this Data Lake Pipeline.
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if copy_region is not None:
-            pulumi.set(__self__, "copy_region", copy_region)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
-        if frequency_yype is not None:
-            pulumi.set(__self__, "frequency_yype", frequency_yype)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if master_key is not None:
-            pulumi.set(__self__, "master_key", master_key)
-        if mongod_version is not None:
-            pulumi.set(__self__, "mongod_version", mongod_version)
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if replica_set_name is not None:
-            pulumi.set(__self__, "replica_set_name", replica_set_name)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
-        if snapshot_type is not None:
-            pulumi.set(__self__, "snapshot_type", snapshot_type)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="copyRegion")
-    def copy_region(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "copy_region")
-
-    @_builtins.property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "created_at")
-
-    @_builtins.property
-    @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "expires_at")
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyYype")
-    def frequency_yype(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "frequency_yype")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> Optional[_builtins.str]:
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="masterKey")
-    def master_key(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "master_key")
-
-    @_builtins.property
-    @pulumi.getter(name="mongodVersion")
-    def mongod_version(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "mongod_version")
-
-    @_builtins.property
-    @pulumi.getter
-    def policies(self) -> Optional[Sequence[_builtins.str]]:
-        return pulumi.get(self, "policies")
-
-    @_builtins.property
-    @pulumi.getter
-    def provider(self) -> Optional[_builtins.str]:
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "provider")
-
-    @_builtins.property
-    @pulumi.getter(name="replicaSetName")
-    def replica_set_name(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "replica_set_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def size(self) -> Optional[_builtins.int]:
-        return pulumi.get(self, "size")
-
-    @_builtins.property
-    @pulumi.getter(name="snapshotType")
-    def snapshot_type(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "snapshot_type")
-
-    @_builtins.property
-    @pulumi.getter
-    def status(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "status")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[_builtins.str]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class DataLakePipelineSource(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "clusterName":
-            suggest = "cluster_name"
-        elif key == "collectionName":
-            suggest = "collection_name"
-        elif key == "databaseName":
-            suggest = "database_name"
-        elif key == "policyItemId":
-            suggest = "policy_item_id"
-        elif key == "projectId":
-            suggest = "project_id"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in DataLakePipelineSource. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        DataLakePipelineSource.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        DataLakePipelineSource.__key_warning(key)
-        return super().get(key, default)
-
-    def __init__(__self__, *,
-                 cluster_name: Optional[_builtins.str] = None,
-                 collection_name: Optional[_builtins.str] = None,
-                 database_name: Optional[_builtins.str] = None,
-                 policy_item_id: Optional[_builtins.str] = None,
-                 project_id: Optional[_builtins.str] = None,
-                 type: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str cluster_name: Human-readable name that identifies the cluster.
-        :param _builtins.str collection_name: Human-readable name that identifies the collection.
-        :param _builtins.str database_name: Human-readable name that identifies the database.
-        :param _builtins.str project_id: The unique ID for the project to create a data lake pipeline.
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
-        if collection_name is not None:
-            pulumi.set(__self__, "collection_name", collection_name)
-        if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
-        if policy_item_id is not None:
-            pulumi.set(__self__, "policy_item_id", policy_item_id)
-        if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[_builtins.str]:
-        """
-        Human-readable name that identifies the cluster.
-        """
-        return pulumi.get(self, "cluster_name")
-
-    @_builtins.property
-    @pulumi.getter(name="collectionName")
-    def collection_name(self) -> Optional[_builtins.str]:
-        """
-        Human-readable name that identifies the collection.
-        """
-        return pulumi.get(self, "collection_name")
-
-    @_builtins.property
-    @pulumi.getter(name="databaseName")
-    def database_name(self) -> Optional[_builtins.str]:
-        """
-        Human-readable name that identifies the database.
-        """
-        return pulumi.get(self, "database_name")
-
-    @_builtins.property
-    @pulumi.getter(name="policyItemId")
-    def policy_item_id(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "policy_item_id")
-
-    @_builtins.property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[_builtins.str]:
-        """
-        The unique ID for the project to create a data lake pipeline.
-        """
-        return pulumi.get(self, "project_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[_builtins.str]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class DataLakePipelineTransformation(dict):
-    def __init__(__self__, *,
-                 field: Optional[_builtins.str] = None,
-                 type: Optional[_builtins.str] = None):
-        """
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if field is not None:
-            pulumi.set(__self__, "field", field)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter
-    def field(self) -> Optional[_builtins.str]:
-        return pulumi.get(self, "field")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[_builtins.str]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
 class DatabaseUserLabel(dict):
     def __init__(__self__, *,
                  key: Optional[_builtins.str] = None,
@@ -5929,7 +5632,7 @@ class DatabaseUserScope(dict):
                  name: Optional[_builtins.str] = None,
                  type: Optional[_builtins.str] = None):
         """
-        :param _builtins.str name: Name of the cluster or Atlas Data Lake that the user has access to.
+        :param _builtins.str name: Name of the cluster or Atlas Data Federation that the user has access to.
         :param _builtins.str type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         if name is not None:
@@ -5941,7 +5644,7 @@ class DatabaseUserScope(dict):
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        Name of the cluster or Atlas Data Lake that the user has access to.
+        Name of the cluster or Atlas Data Federation that the user has access to.
         """
         return pulumi.get(self, "name")
 
@@ -6341,6 +6044,37 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
 
 
 @pulumi.output_type
+class EncryptionAtRestPrivateEndpointTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+
+@pulumi.output_type
 class EventTriggerEventProcessors(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -6416,7 +6150,7 @@ class FederatedDatabaseInstanceCloudProviderConfig(dict):
                  aws: Optional['outputs.FederatedDatabaseInstanceCloudProviderConfigAws'] = None,
                  azure: Optional['outputs.FederatedDatabaseInstanceCloudProviderConfigAzure'] = None):
         """
-        :param 'FederatedDatabaseInstanceCloudProviderConfigAwsArgs' aws: Name of the cloud service that hosts the data lake's data stores.
+        :param 'FederatedDatabaseInstanceCloudProviderConfigAwsArgs' aws: Name of the cloud service that hosts the Atlas Data Federation data stores.
         :param 'FederatedDatabaseInstanceCloudProviderConfigAzureArgs' azure: Microsoft Azure cloud service configuration.
         """
         if aws is not None:
@@ -6428,7 +6162,7 @@ class FederatedDatabaseInstanceCloudProviderConfig(dict):
     @pulumi.getter
     def aws(self) -> Optional['outputs.FederatedDatabaseInstanceCloudProviderConfigAws']:
         """
-        Name of the cloud service that hosts the data lake's data stores.
+        Name of the cloud service that hosts the Atlas Data Federation data stores.
         """
         return pulumi.get(self, "aws")
 
@@ -7443,6 +7177,49 @@ class FlexClusterProviderSettings(dict):
         Human-readable label that identifies the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
+
+
+@pulumi.output_type
+class FlexClusterTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
 
 
 @pulumi.output_type
@@ -8702,6 +8479,36 @@ class SearchIndexSynonym(dict):
 
 
 @pulumi.output_type
+class SearchIndexTypeSet(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 types: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Name of the type set.
+        :param _builtins.str types: JSON array describing the types.
+        """
+        pulumi.set(__self__, "name", name)
+        if types is not None:
+            pulumi.set(__self__, "types", types)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of the type set.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def types(self) -> Optional[_builtins.str]:
+        """
+        JSON array describing the types.
+        """
+        return pulumi.get(self, "types")
+
+
+@pulumi.output_type
 class ServerlessInstanceLink(dict):
     def __init__(__self__, *,
                  href: Optional[_builtins.str] = None,
@@ -8757,29 +8564,100 @@ class ServerlessInstanceTag(dict):
 
 @pulumi.output_type
 class StreamConnectionAuthentication(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+        elif key == "saslOauthbearerExtensions":
+            suggest = "sasl_oauthbearer_extensions"
+        elif key == "tokenEndpointUrl":
+            suggest = "token_endpoint_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionAuthentication. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionAuthentication.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionAuthentication.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 client_id: Optional[_builtins.str] = None,
+                 client_secret: Optional[_builtins.str] = None,
                  mechanism: Optional[_builtins.str] = None,
+                 method: Optional[_builtins.str] = None,
                  password: Optional[_builtins.str] = None,
+                 sasl_oauthbearer_extensions: Optional[_builtins.str] = None,
+                 scope: Optional[_builtins.str] = None,
+                 token_endpoint_url: Optional[_builtins.str] = None,
                  username: Optional[_builtins.str] = None):
         """
-        :param _builtins.str mechanism: Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param _builtins.str client_id: Public identifier for the Kafka client.
+        :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
+        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
+        :param _builtins.str scope: Scope of the access request to the broker specified by the Kafka clients.
+        :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param _builtins.str username: Username of the account to connect to the Kafka cluster.
         """
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
         if mechanism is not None:
             pulumi.set(__self__, "mechanism", mechanism)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if sasl_oauthbearer_extensions is not None:
+            pulumi.set(__self__, "sasl_oauthbearer_extensions", sasl_oauthbearer_extensions)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if token_endpoint_url is not None:
+            pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[_builtins.str]:
+        """
+        Public identifier for the Kafka client.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[_builtins.str]:
+        """
+        Secret known only to the Kafka client and the authorization server.
+        """
+        return pulumi.get(self, "client_secret")
 
     @_builtins.property
     @pulumi.getter
     def mechanism(self) -> Optional[_builtins.str]:
         """
-        Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
         """
         return pulumi.get(self, "mechanism")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> Optional[_builtins.str]:
+        """
+        SASL OAUTHBEARER authentication method. Value must be OIDC.
+        """
+        return pulumi.get(self, "method")
 
     @_builtins.property
     @pulumi.getter
@@ -8788,6 +8666,30 @@ class StreamConnectionAuthentication(dict):
         Password of the account to connect to the Kafka cluster.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="saslOauthbearerExtensions")
+    def sasl_oauthbearer_extensions(self) -> Optional[_builtins.str]:
+        """
+        Additional information to provide to the Kafka broker.
+        """
+        return pulumi.get(self, "sasl_oauthbearer_extensions")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Optional[_builtins.str]:
+        """
+        Scope of the access request to the broker specified by the Kafka clients.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpointUrl")
+    def token_endpoint_url(self) -> Optional[_builtins.str]:
+        """
+        OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+        """
+        return pulumi.get(self, "token_endpoint_url")
 
     @_builtins.property
     @pulumi.getter
@@ -8841,6 +8743,8 @@ class StreamConnectionDbRoleToExecute(dict):
         """
         :param _builtins.str role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
         :param _builtins.str type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+               
+               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -8858,6 +8762,8 @@ class StreamConnectionDbRoleToExecute(dict):
     def type(self) -> _builtins.str:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+
+        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -9023,13 +8929,38 @@ class StreamInstanceDataProcessRegion(dict):
 
 @pulumi.output_type
 class StreamInstanceStreamConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxTierSize":
+            suggest = "max_tier_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamInstanceStreamConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamInstanceStreamConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamInstanceStreamConfig.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
+                 max_tier_size: Optional[_builtins.str] = None,
                  tier: Optional[_builtins.str] = None):
         """
         :param _builtins.str tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
+        if max_tier_size is not None:
+            pulumi.set(__self__, "max_tier_size", max_tier_size)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "max_tier_size")
 
     @_builtins.property
     @pulumi.getter
@@ -9116,6 +9047,119 @@ class StreamProcessorOptionsDlq(dict):
 
 
 @pulumi.output_type
+class StreamProcessorTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+
+@pulumi.output_type
+class StreamWorkspaceDataProcessRegion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudProvider":
+            suggest = "cloud_provider"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamWorkspaceDataProcessRegion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamWorkspaceDataProcessRegion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamWorkspaceDataProcessRegion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cloud_provider: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        :param _builtins.str region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> _builtins.str:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class StreamWorkspaceStreamConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxTierSize":
+            suggest = "max_tier_size"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamWorkspaceStreamConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamWorkspaceStreamConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamWorkspaceStreamConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_tier_size: Optional[_builtins.str] = None,
+                 tier: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str max_tier_size: Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
+        :param _builtins.str tier: Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        if max_tier_size is not None:
+            pulumi.set(__self__, "max_tier_size", max_tier_size)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> Optional[_builtins.str]:
+        """
+        Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
+        """
+        return pulumi.get(self, "max_tier_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def tier(self) -> Optional[_builtins.str]:
+        """
+        Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "tier")
+
+
+@pulumi.output_type
 class X509AuthenticationDatabaseUserCertificate(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9182,46 +9226,6 @@ class X509AuthenticationDatabaseUserCertificate(dict):
 
 
 @pulumi.output_type
-class Get509AuthenticationDatabaseUserCertificateResult(dict):
-    def __init__(__self__, *,
-                 created_at: _builtins.str,
-                 group_id: _builtins.str,
-                 id: _builtins.int,
-                 not_after: _builtins.str,
-                 subject: _builtins.str):
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "not_after", not_after)
-        pulumi.set(__self__, "subject", subject)
-
-    @_builtins.property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> _builtins.str:
-        return pulumi.get(self, "created_at")
-
-    @_builtins.property
-    @pulumi.getter(name="groupId")
-    def group_id(self) -> _builtins.str:
-        return pulumi.get(self, "group_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.int:
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="notAfter")
-    def not_after(self) -> _builtins.str:
-        return pulumi.get(self, "not_after")
-
-    @_builtins.property
-    @pulumi.getter
-    def subject(self) -> _builtins.str:
-        return pulumi.get(self, "subject")
-
-
-@pulumi.output_type
 class GetAccessListApiKeysResultResult(dict):
     def __init__(__self__, *,
                  access_count: _builtins.int,
@@ -9283,10 +9287,9 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: _builtins.int,
                  custom_openssl_cipher_config_tls12s: Sequence[_builtins.str],
+                 custom_openssl_cipher_config_tls13s: Sequence[_builtins.str],
                  default_max_time_ms: _builtins.int,
-                 default_read_concern: _builtins.str,
                  default_write_concern: _builtins.str,
-                 fail_index_key_too_long: _builtins.bool,
                  javascript_enabled: _builtins.bool,
                  minimum_enabled_tls_protocol: _builtins.str,
                  no_table_scan: _builtins.bool,
@@ -9299,15 +9302,13 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         """
         :param _builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         :param Sequence[_builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        :param Sequence[_builtins.str] custom_openssl_cipher_config_tls13s: The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param _builtins.int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param _builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param _builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param _builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param _builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param _builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
                - TLS1_2
+               - TLS1_3
         :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param _builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -9318,10 +9319,9 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         """
         pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
+        pulumi.set(__self__, "custom_openssl_cipher_config_tls13s", custom_openssl_cipher_config_tls13s)
         pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
-        pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
-        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         pulumi.set(__self__, "no_table_scan", no_table_scan)
@@ -9349,6 +9349,14 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @_builtins.property
+    @pulumi.getter(name="customOpensslCipherConfigTls13s")
+    def custom_openssl_cipher_config_tls13s(self) -> Sequence[_builtins.str]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls13s")
+
+    @_builtins.property
     @pulumi.getter(name="defaultMaxTimeMs")
     def default_max_time_ms(self) -> _builtins.int:
         """
@@ -9357,30 +9365,12 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
         return pulumi.get(self, "default_max_time_ms")
 
     @_builtins.property
-    @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def default_read_concern(self) -> _builtins.str:
-        """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        """
-        return pulumi.get(self, "default_read_concern")
-
-    @_builtins.property
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> _builtins.str:
         """
         [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
-
-    @_builtins.property
-    @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def fail_index_key_too_long(self) -> _builtins.bool:
-        """
-        **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        """
-        return pulumi.get(self, "fail_index_key_too_long")
 
     @_builtins.property
     @pulumi.getter(name="javascriptEnabled")
@@ -9395,9 +9385,8 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> _builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
         - TLS1_2
+        - TLS1_3
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -9488,24 +9477,24 @@ class GetAdvancedClusterBiConnectorConfigResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClusterConnectionStringResult(dict):
+class GetAdvancedClusterConnectionStringsResult(dict):
     def __init__(__self__, *,
                  private: _builtins.str,
-                 private_endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult'],
+                 private_endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringsPrivateEndpointResult'],
                  private_srv: _builtins.str,
                  standard: _builtins.str,
                  standard_srv: _builtins.str):
         """
         :param _builtins.str private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param Sequence['GetAdvancedClusterConnectionStringPrivateEndpointArgs'] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        :param Sequence['GetAdvancedClusterConnectionStringsPrivateEndpointArgs'] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+               - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+               - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
+               - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+               - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         :param _builtins.str private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         :param _builtins.str standard: Public mongodb:// connection string for this cluster.
         :param _builtins.str standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
@@ -9526,17 +9515,17 @@ class GetAdvancedClusterConnectionStringResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointResult']:
+    def private_endpoints(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringsPrivateEndpointResult']:
         """
         Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+        - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
+        - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+        - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         """
         return pulumi.get(self, "private_endpoints")
 
@@ -9566,13 +9555,20 @@ class GetAdvancedClusterConnectionStringResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClusterConnectionStringPrivateEndpointResult(dict):
+class GetAdvancedClusterConnectionStringsPrivateEndpointResult(dict):
     def __init__(__self__, *,
                  connection_string: _builtins.str,
-                 endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult'],
+                 endpoints: Sequence['outputs.GetAdvancedClusterConnectionStringsPrivateEndpointEndpointResult'],
                  srv_connection_string: _builtins.str,
                  srv_shard_optimized_connection_string: _builtins.str,
                  type: _builtins.str):
+        """
+        :param _builtins.str connection_string: Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        :param Sequence['GetAdvancedClusterConnectionStringsPrivateEndpointEndpointArgs'] endpoints: List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        :param _builtins.str srv_connection_string: Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        :param _builtins.str srv_shard_optimized_connection_string: Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        :param _builtins.str type: MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         pulumi.set(__self__, "connection_string", connection_string)
         pulumi.set(__self__, "endpoints", endpoints)
         pulumi.set(__self__, "srv_connection_string", srv_connection_string)
@@ -9582,37 +9578,54 @@ class GetAdvancedClusterConnectionStringPrivateEndpointResult(dict):
     @_builtins.property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> _builtins.str:
+        """
+        Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        """
         return pulumi.get(self, "connection_string")
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult']:
+    def endpoints(self) -> Sequence['outputs.GetAdvancedClusterConnectionStringsPrivateEndpointEndpointResult']:
+        """
+        List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        """
         return pulumi.get(self, "endpoints")
 
     @_builtins.property
     @pulumi.getter(name="srvConnectionString")
     def srv_connection_string(self) -> _builtins.str:
+        """
+        Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        """
         return pulumi.get(self, "srv_connection_string")
 
     @_builtins.property
     @pulumi.getter(name="srvShardOptimizedConnectionString")
     def srv_shard_optimized_connection_string(self) -> _builtins.str:
+        """
+        Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        """
         return pulumi.get(self, "srv_shard_optimized_connection_string")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> _builtins.str:
+        """
+        MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         return pulumi.get(self, "type")
 
 
 @pulumi.output_type
-class GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult(dict):
+class GetAdvancedClusterConnectionStringsPrivateEndpointEndpointResult(dict):
     def __init__(__self__, *,
                  endpoint_id: _builtins.str,
                  provider_name: _builtins.str,
                  region: _builtins.str):
         """
+        :param _builtins.str endpoint_id: Unique string that the cloud provider uses to identify the private endpoint.
         :param _builtins.str provider_name: Cloud service provider on which the servers are provisioned.
+        :param _builtins.str region: Region where the private endpoint is deployed.
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -9621,6 +9634,9 @@ class GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult(dict):
     @_builtins.property
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> _builtins.str:
+        """
+        Unique string that the cloud provider uses to identify the private endpoint.
+        """
         return pulumi.get(self, "endpoint_id")
 
     @_builtins.property
@@ -9634,36 +9650,10 @@ class GetAdvancedClusterConnectionStringPrivateEndpointEndpointResult(dict):
     @_builtins.property
     @pulumi.getter
     def region(self) -> _builtins.str:
+        """
+        Region where the private endpoint is deployed.
+        """
         return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class GetAdvancedClusterLabelResult(dict):
-    def __init__(__self__, *,
-                 key: _builtins.str,
-                 value: _builtins.str):
-        """
-        :param _builtins.str key: The key that you want to write.
-        :param _builtins.str value: The value that you want to write.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        The key that you want to write.
-        """
-        return pulumi.get(self, "key")
-
-    @_builtins.property
-    @pulumi.getter
-    def value(self) -> _builtins.str:
-        """
-        The value that you want to write.
-        """
-        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -9700,23 +9690,18 @@ class GetAdvancedClusterReplicationSpecResult(dict):
     def __init__(__self__, *,
                  container_id: Mapping[str, _builtins.str],
                  external_id: _builtins.str,
-                 id: _builtins.str,
-                 num_shards: _builtins.int,
                  region_configs: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigResult'],
                  zone_id: _builtins.str,
                  zone_name: _builtins.str):
         """
         :param Mapping[str, _builtins.str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        :param _builtins.str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
-        :param _builtins.int num_shards: Provide this value if you set a `cluster_type` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
+        :param _builtins.str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         :param _builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param _builtins.str zone_name: Name for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "container_id", container_id)
         pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "num_shards", num_shards)
         pulumi.set(__self__, "region_configs", region_configs)
         pulumi.set(__self__, "zone_id", zone_id)
         pulumi.set(__self__, "zone_name", zone_name)
@@ -9733,24 +9718,9 @@ class GetAdvancedClusterReplicationSpecResult(dict):
     @pulumi.getter(name="externalId")
     def external_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         """
         return pulumi.get(self, "external_id")
-
-    @_builtins.property
-    @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def id(self) -> _builtins.str:
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def num_shards(self) -> _builtins.int:
-        """
-        Provide this value if you set a `cluster_type` of `SHARDED` or `GEOSHARDED`. **(DEPRECATED)** To learn more, see the Migration Guide.
-        """
-        return pulumi.get(self, "num_shards")
 
     @_builtins.property
     @pulumi.getter(name="regionConfigs")
@@ -9780,30 +9750,39 @@ class GetAdvancedClusterReplicationSpecResult(dict):
 @pulumi.output_type
 class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
     def __init__(__self__, *,
-                 analytics_auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
+                 analytics_auto_scaling: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult',
                  analytics_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult',
-                 auto_scalings: Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult'],
+                 auto_scaling: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult',
                  backing_provider_name: _builtins.str,
+                 effective_analytics_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult',
+                 effective_electable_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult',
+                 effective_read_only_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult',
                  electable_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult',
                  priority: _builtins.int,
                  provider_name: _builtins.str,
                  read_only_specs: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult',
                  region_name: _builtins.str):
         """
-        :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scalings: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
         :param 'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
-        :param Sequence['GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
         :param _builtins.str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsArgs' effective_analytics_specs: Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsArgs' effective_electable_specs: Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs' effective_read_only_specs: Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
         :param 'GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param _builtins.int priority: Election priority of the region.
         :param _builtins.str provider_name: Cloud service provider on which the servers are provisioned.
         :param 'GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below.
         :param _builtins.str region_name: Physical location of your MongoDB cluster.
         """
-        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
+        pulumi.set(__self__, "analytics_auto_scaling", analytics_auto_scaling)
         pulumi.set(__self__, "analytics_specs", analytics_specs)
-        pulumi.set(__self__, "auto_scalings", auto_scalings)
+        pulumi.set(__self__, "auto_scaling", auto_scaling)
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "effective_analytics_specs", effective_analytics_specs)
+        pulumi.set(__self__, "effective_electable_specs", effective_electable_specs)
+        pulumi.set(__self__, "effective_read_only_specs", effective_read_only_specs)
         pulumi.set(__self__, "electable_specs", electable_specs)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -9811,12 +9790,12 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         pulumi.set(__self__, "region_name", region_name)
 
     @_builtins.property
-    @pulumi.getter(name="analyticsAutoScalings")
-    def analytics_auto_scalings(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult']:
+    @pulumi.getter(name="analyticsAutoScaling")
+    def analytics_auto_scaling(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult':
         """
         Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
         """
-        return pulumi.get(self, "analytics_auto_scalings")
+        return pulumi.get(self, "analytics_auto_scaling")
 
     @_builtins.property
     @pulumi.getter(name="analyticsSpecs")
@@ -9827,12 +9806,12 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         return pulumi.get(self, "analytics_specs")
 
     @_builtins.property
-    @pulumi.getter(name="autoScalings")
-    def auto_scalings(self) -> Sequence['outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult']:
+    @pulumi.getter(name="autoScaling")
+    def auto_scaling(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult':
         """
         Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
         """
-        return pulumi.get(self, "auto_scalings")
+        return pulumi.get(self, "auto_scaling")
 
     @_builtins.property
     @pulumi.getter(name="backingProviderName")
@@ -9841,6 +9820,30 @@ class GetAdvancedClusterReplicationSpecRegionConfigResult(dict):
         Cloud service provider on which you provision the host for a multi-tenant cluster.
         """
         return pulumi.get(self, "backing_provider_name")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveAnalyticsSpecs")
+    def effective_analytics_specs(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult':
+        """
+        Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        """
+        return pulumi.get(self, "effective_analytics_specs")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveElectableSpecs")
+    def effective_electable_specs(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult':
+        """
+        Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        """
+        return pulumi.get(self, "effective_electable_specs")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveReadOnlySpecs")
+    def effective_read_only_specs(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult':
+        """
+        Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        """
+        return pulumi.get(self, "effective_read_only_specs")
 
     @_builtins.property
     @pulumi.getter(name="electableSpecs")
@@ -9954,7 +9957,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
                  disk_size_gb: _builtins.float,
                  ebs_volume_type: _builtins.str,
                  instance_size: _builtins.str,
-                 node_count: Optional[_builtins.int] = None):
+                 node_count: _builtins.int):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -9968,8 +9971,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "node_count", node_count)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -10007,7 +10009,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[_builtins.int]:
+    def node_count(self) -> _builtins.int:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -10079,13 +10081,13 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
+class GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: _builtins.int,
                  disk_size_gb: _builtins.float,
                  ebs_volume_type: _builtins.str,
                  instance_size: _builtins.str,
-                 node_count: Optional[_builtins.int] = None):
+                 node_count: _builtins.int):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -10099,8 +10101,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "node_count", node_count)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -10138,7 +10139,205 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[_builtins.int]:
+    def node_count(self) -> _builtins.int:
+        """
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult(dict):
+    def __init__(__self__, *,
+                 disk_iops: _builtins.int,
+                 disk_size_gb: _builtins.float,
+                 ebs_volume_type: _builtins.str,
+                 instance_size: _builtins.str,
+                 node_count: _builtins.int):
+        """
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
+        :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @_builtins.property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> _builtins.int:
+        """
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @_builtins.property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> _builtins.float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> _builtins.str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> _builtins.str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> _builtins.int:
+        """
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult(dict):
+    def __init__(__self__, *,
+                 disk_iops: _builtins.int,
+                 disk_size_gb: _builtins.float,
+                 ebs_volume_type: _builtins.str,
+                 instance_size: _builtins.str,
+                 node_count: _builtins.int):
+        """
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
+        :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @_builtins.property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> _builtins.int:
+        """
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @_builtins.property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> _builtins.float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> _builtins.str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> _builtins.str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> _builtins.int:
+        """
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
+    def __init__(__self__, *,
+                 disk_iops: _builtins.int,
+                 disk_size_gb: _builtins.float,
+                 ebs_volume_type: _builtins.str,
+                 instance_size: _builtins.str,
+                 node_count: _builtins.int):
+        """
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. 
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
+        :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @_builtins.property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> _builtins.int:
+        """
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @_builtins.property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> _builtins.float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> _builtins.str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster. 
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> _builtins.str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> _builtins.int:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -10152,7 +10351,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
                  disk_size_gb: _builtins.float,
                  ebs_volume_type: _builtins.str,
                  instance_size: _builtins.str,
-                 node_count: Optional[_builtins.int] = None):
+                 node_count: _builtins.int):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -10166,8 +10365,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "node_count", node_count)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -10205,7 +10403,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[_builtins.int]:
+    def node_count(self) -> _builtins.int:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -10213,96 +10411,75 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClusterTagResult(dict):
-    def __init__(__self__, *,
-                 key: _builtins.str,
-                 value: _builtins.str):
-        """
-        :param _builtins.str key: The key that you want to write.
-        :param _builtins.str value: The value that you want to write.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        The key that you want to write.
-        """
-        return pulumi.get(self, "key")
-
-    @_builtins.property
-    @pulumi.getter
-    def value(self) -> _builtins.str:
-        """
-        The value that you want to write.
-        """
-        return pulumi.get(self, "value")
-
-
-@pulumi.output_type
 class GetAdvancedClustersResultResult(dict):
     def __init__(__self__, *,
-                 advanced_configurations: Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult'],
+                 advanced_configuration: 'outputs.GetAdvancedClustersResultAdvancedConfigurationResult',
                  backup_enabled: _builtins.bool,
-                 bi_connector_configs: Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult'],
+                 bi_connector_config: 'outputs.GetAdvancedClustersResultBiConnectorConfigResult',
+                 cluster_id: _builtins.str,
                  cluster_type: _builtins.str,
                  config_server_management_mode: _builtins.str,
                  config_server_type: _builtins.str,
-                 connection_strings: Sequence['outputs.GetAdvancedClustersResultConnectionStringResult'],
+                 connection_strings: 'outputs.GetAdvancedClustersResultConnectionStringsResult',
                  create_date: _builtins.str,
-                 disk_size_gb: _builtins.float,
                  encryption_at_rest_provider: _builtins.str,
                  global_cluster_self_managed_sharding: _builtins.bool,
-                 labels: Sequence['outputs.GetAdvancedClustersResultLabelResult'],
+                 labels: Mapping[str, _builtins.str],
                  mongo_db_major_version: _builtins.str,
                  mongo_db_version: _builtins.str,
                  name: _builtins.str,
                  paused: _builtins.bool,
-                 pinned_fcvs: Sequence['outputs.GetAdvancedClustersResultPinnedFcvResult'],
+                 pinned_fcv: 'outputs.GetAdvancedClustersResultPinnedFcvResult',
                  pit_enabled: _builtins.bool,
+                 project_id: _builtins.str,
                  redact_client_log_data: _builtins.bool,
                  replica_set_scaling_strategy: _builtins.str,
                  replication_specs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult'],
                  root_cert_type: _builtins.str,
                  state_name: _builtins.str,
-                 tags: Sequence['outputs.GetAdvancedClustersResultTagResult'],
+                 tags: Mapping[str, _builtins.str],
                  termination_protection_enabled: _builtins.bool,
-                 version_release_system: _builtins.str):
+                 version_release_system: _builtins.str,
+                 use_effective_fields: Optional[_builtins.bool] = None):
         """
-        :param Sequence['GetAdvancedClustersResultAdvancedConfigurationArgs'] advanced_configurations: Get the advanced configuration options. See Advanced Configuration below for more details.
+        :param 'GetAdvancedClustersResultAdvancedConfigurationArgs' advanced_configuration: Get the advanced configuration options. See Advanced Configuration below for more details.
+        :param _builtins.bool backup_enabled: Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
+        :param 'GetAdvancedClustersResultBiConnectorConfigArgs' bi_connector_config: Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+        :param _builtins.str cluster_id: The cluster ID.
         :param _builtins.str cluster_type: Type of the cluster that you want to create.
         :param _builtins.str config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
         :param _builtins.str config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
-        :param Sequence['GetAdvancedClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        :param 'GetAdvancedClustersResultConnectionStringsArgs' connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        :param _builtins.str create_date: Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
         :param _builtins.str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
         :param _builtins.bool global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
-        :param Sequence['GetAdvancedClustersResultLabelArgs'] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param Mapping[str, _builtins.str] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param _builtins.str mongo_db_major_version: Version of the cluster to deploy.
         :param _builtins.str mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
+        :param _builtins.str name: Human-readable label that identifies this cluster.
         :param _builtins.bool paused: Flag that indicates whether the cluster is paused or not.
-        :param Sequence['GetAdvancedClustersResultPinnedFcvArgs'] pinned_fcvs: The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
+        :param 'GetAdvancedClustersResultPinnedFcvArgs' pinned_fcv: The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
         :param _builtins.bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
+        :param _builtins.str project_id: The unique ID for the project to get the clusters.
         :param _builtins.bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         :param _builtins.str replica_set_scaling_strategy: (Optional) Replica set scaling mode for your cluster.
-        :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
+        :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         :param _builtins.str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
         :param _builtins.str state_name: Current state of the cluster. The possible states are:
-        :param Sequence['GetAdvancedClustersResultTagArgs'] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param Mapping[str, _builtins.str] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param _builtins.bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         :param _builtins.str version_release_system: Release cadence that Atlas uses for this cluster.
+        :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
         """
-        pulumi.set(__self__, "advanced_configurations", advanced_configurations)
+        pulumi.set(__self__, "advanced_configuration", advanced_configuration)
         pulumi.set(__self__, "backup_enabled", backup_enabled)
-        pulumi.set(__self__, "bi_connector_configs", bi_connector_configs)
+        pulumi.set(__self__, "bi_connector_config", bi_connector_config)
+        pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "cluster_type", cluster_type)
         pulumi.set(__self__, "config_server_management_mode", config_server_management_mode)
         pulumi.set(__self__, "config_server_type", config_server_type)
         pulumi.set(__self__, "connection_strings", connection_strings)
         pulumi.set(__self__, "create_date", create_date)
-        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         pulumi.set(__self__, "labels", labels)
@@ -10310,8 +10487,9 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "mongo_db_version", mongo_db_version)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "paused", paused)
-        pulumi.set(__self__, "pinned_fcvs", pinned_fcvs)
+        pulumi.set(__self__, "pinned_fcv", pinned_fcv)
         pulumi.set(__self__, "pit_enabled", pit_enabled)
+        pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "redact_client_log_data", redact_client_log_data)
         pulumi.set(__self__, "replica_set_scaling_strategy", replica_set_scaling_strategy)
         pulumi.set(__self__, "replication_specs", replication_specs)
@@ -10320,24 +10498,40 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
         pulumi.set(__self__, "version_release_system", version_release_system)
+        if use_effective_fields is not None:
+            pulumi.set(__self__, "use_effective_fields", use_effective_fields)
 
     @_builtins.property
-    @pulumi.getter(name="advancedConfigurations")
-    def advanced_configurations(self) -> Sequence['outputs.GetAdvancedClustersResultAdvancedConfigurationResult']:
+    @pulumi.getter(name="advancedConfiguration")
+    def advanced_configuration(self) -> 'outputs.GetAdvancedClustersResultAdvancedConfigurationResult':
         """
         Get the advanced configuration options. See Advanced Configuration below for more details.
         """
-        return pulumi.get(self, "advanced_configurations")
+        return pulumi.get(self, "advanced_configuration")
 
     @_builtins.property
     @pulumi.getter(name="backupEnabled")
     def backup_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
+        """
         return pulumi.get(self, "backup_enabled")
 
     @_builtins.property
-    @pulumi.getter(name="biConnectorConfigs")
-    def bi_connector_configs(self) -> Sequence['outputs.GetAdvancedClustersResultBiConnectorConfigResult']:
-        return pulumi.get(self, "bi_connector_configs")
+    @pulumi.getter(name="biConnectorConfig")
+    def bi_connector_config(self) -> 'outputs.GetAdvancedClustersResultBiConnectorConfigResult':
+        """
+        Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+        """
+        return pulumi.get(self, "bi_connector_config")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> _builtins.str:
+        """
+        The cluster ID.
+        """
+        return pulumi.get(self, "cluster_id")
 
     @_builtins.property
     @pulumi.getter(name="clusterType")
@@ -10365,7 +10559,7 @@ class GetAdvancedClustersResultResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringResult']:
+    def connection_strings(self) -> 'outputs.GetAdvancedClustersResultConnectionStringsResult':
         """
         Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
@@ -10374,16 +10568,10 @@ class GetAdvancedClustersResultResult(dict):
     @_builtins.property
     @pulumi.getter(name="createDate")
     def create_date(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        """
         return pulumi.get(self, "create_date")
-
-    @_builtins.property
-    @pulumi.getter(name="diskSizeGb")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def disk_size_gb(self) -> _builtins.float:
-        """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        """
-        return pulumi.get(self, "disk_size_gb")
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
@@ -10403,7 +10591,7 @@ class GetAdvancedClustersResultResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Sequence['outputs.GetAdvancedClustersResultLabelResult']:
+    def labels(self) -> Mapping[str, _builtins.str]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
@@ -10428,6 +10616,9 @@ class GetAdvancedClustersResultResult(dict):
     @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
+        """
+        Human-readable label that identifies this cluster.
+        """
         return pulumi.get(self, "name")
 
     @_builtins.property
@@ -10439,12 +10630,12 @@ class GetAdvancedClustersResultResult(dict):
         return pulumi.get(self, "paused")
 
     @_builtins.property
-    @pulumi.getter(name="pinnedFcvs")
-    def pinned_fcvs(self) -> Sequence['outputs.GetAdvancedClustersResultPinnedFcvResult']:
+    @pulumi.getter(name="pinnedFcv")
+    def pinned_fcv(self) -> 'outputs.GetAdvancedClustersResultPinnedFcvResult':
         """
         The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
         """
-        return pulumi.get(self, "pinned_fcvs")
+        return pulumi.get(self, "pinned_fcv")
 
     @_builtins.property
     @pulumi.getter(name="pitEnabled")
@@ -10453,6 +10644,14 @@ class GetAdvancedClustersResultResult(dict):
         Flag that indicates if the cluster uses Continuous Cloud Backup.
         """
         return pulumi.get(self, "pit_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        The unique ID for the project to get the clusters.
+        """
+        return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="redactClientLogData")
@@ -10474,7 +10673,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="replicationSpecs")
     def replication_specs(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecResult']:
         """
-        List of settings that configure your cluster regions. If `use_replication_spec_per_shard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
+        List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         """
         return pulumi.get(self, "replication_specs")
 
@@ -10496,7 +10695,7 @@ class GetAdvancedClustersResultResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Sequence['outputs.GetAdvancedClustersResultTagResult']:
+    def tags(self) -> Mapping[str, _builtins.str]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
@@ -10518,16 +10717,23 @@ class GetAdvancedClustersResultResult(dict):
         """
         return pulumi.get(self, "version_release_system")
 
+    @_builtins.property
+    @pulumi.getter(name="useEffectiveFields")
+    def use_effective_fields(self) -> Optional[_builtins.bool]:
+        """
+        Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
+        """
+        return pulumi.get(self, "use_effective_fields")
+
 
 @pulumi.output_type
 class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: _builtins.int,
                  custom_openssl_cipher_config_tls12s: Sequence[_builtins.str],
+                 custom_openssl_cipher_config_tls13s: Sequence[_builtins.str],
                  default_max_time_ms: _builtins.int,
-                 default_read_concern: _builtins.str,
                  default_write_concern: _builtins.str,
-                 fail_index_key_too_long: _builtins.bool,
                  javascript_enabled: _builtins.bool,
                  minimum_enabled_tls_protocol: _builtins.str,
                  no_table_scan: _builtins.bool,
@@ -10540,15 +10746,13 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         """
         :param _builtins.int change_stream_options_pre_and_post_images_expire_after_seconds: (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
         :param Sequence[_builtins.str] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        :param Sequence[_builtins.str] custom_openssl_cipher_config_tls13s: The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         :param _builtins.int default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param _builtins.str default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         :param _builtins.str default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param _builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param _builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param _builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
                - TLS1_2
+               - TLS1_3
         :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param _builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -10559,10 +10763,9 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         """
         pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
+        pulumi.set(__self__, "custom_openssl_cipher_config_tls13s", custom_openssl_cipher_config_tls13s)
         pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
-        pulumi.set(__self__, "default_read_concern", default_read_concern)
         pulumi.set(__self__, "default_write_concern", default_write_concern)
-        pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         pulumi.set(__self__, "minimum_enabled_tls_protocol", minimum_enabled_tls_protocol)
         pulumi.set(__self__, "no_table_scan", no_table_scan)
@@ -10590,6 +10793,14 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @_builtins.property
+    @pulumi.getter(name="customOpensslCipherConfigTls13s")
+    def custom_openssl_cipher_config_tls13s(self) -> Sequence[_builtins.str]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls13s")
+
+    @_builtins.property
     @pulumi.getter(name="defaultMaxTimeMs")
     def default_max_time_ms(self) -> _builtins.int:
         """
@@ -10598,30 +10809,12 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
         return pulumi.get(self, "default_max_time_ms")
 
     @_builtins.property
-    @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def default_read_concern(self) -> _builtins.str:
-        """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        """
-        return pulumi.get(self, "default_read_concern")
-
-    @_builtins.property
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> _builtins.str:
         """
         [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
-
-    @_builtins.property
-    @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def fail_index_key_too_long(self) -> _builtins.bool:
-        """
-        **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        """
-        return pulumi.get(self, "fail_index_key_too_long")
 
     @_builtins.property
     @pulumi.getter(name="javascriptEnabled")
@@ -10636,9 +10829,8 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> _builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
         - TLS1_2
+        - TLS1_3
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -10729,24 +10921,24 @@ class GetAdvancedClustersResultBiConnectorConfigResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClustersResultConnectionStringResult(dict):
+class GetAdvancedClustersResultConnectionStringsResult(dict):
     def __init__(__self__, *,
                  private: _builtins.str,
-                 private_endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult'],
+                 private_endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpointResult'],
                  private_srv: _builtins.str,
                  standard: _builtins.str,
                  standard_srv: _builtins.str):
         """
         :param _builtins.str private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param Sequence['GetAdvancedClustersResultConnectionStringPrivateEndpointArgs'] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        :param Sequence['GetAdvancedClustersResultConnectionStringsPrivateEndpointArgs'] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+               - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+               - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
+               - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+               - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         :param _builtins.str private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         :param _builtins.str standard: Public mongodb:// connection string for this cluster.
         :param _builtins.str standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
@@ -10767,17 +10959,17 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointResult']:
+    def private_endpoints(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpointResult']:
         """
         Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+        - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
+        - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+        - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         """
         return pulumi.get(self, "private_endpoints")
 
@@ -10807,13 +10999,20 @@ class GetAdvancedClustersResultConnectionStringResult(dict):
 
 
 @pulumi.output_type
-class GetAdvancedClustersResultConnectionStringPrivateEndpointResult(dict):
+class GetAdvancedClustersResultConnectionStringsPrivateEndpointResult(dict):
     def __init__(__self__, *,
                  connection_string: _builtins.str,
-                 endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult'],
+                 endpoints: Sequence['outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpointEndpointResult'],
                  srv_connection_string: _builtins.str,
                  srv_shard_optimized_connection_string: _builtins.str,
                  type: _builtins.str):
+        """
+        :param _builtins.str connection_string: Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        :param Sequence['GetAdvancedClustersResultConnectionStringsPrivateEndpointEndpointArgs'] endpoints: List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        :param _builtins.str srv_connection_string: Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        :param _builtins.str srv_shard_optimized_connection_string: Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        :param _builtins.str type: MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         pulumi.set(__self__, "connection_string", connection_string)
         pulumi.set(__self__, "endpoints", endpoints)
         pulumi.set(__self__, "srv_connection_string", srv_connection_string)
@@ -10823,37 +11022,54 @@ class GetAdvancedClustersResultConnectionStringPrivateEndpointResult(dict):
     @_builtins.property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> _builtins.str:
+        """
+        Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        """
         return pulumi.get(self, "connection_string")
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult']:
+    def endpoints(self) -> Sequence['outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpointEndpointResult']:
+        """
+        List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        """
         return pulumi.get(self, "endpoints")
 
     @_builtins.property
     @pulumi.getter(name="srvConnectionString")
     def srv_connection_string(self) -> _builtins.str:
+        """
+        Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        """
         return pulumi.get(self, "srv_connection_string")
 
     @_builtins.property
     @pulumi.getter(name="srvShardOptimizedConnectionString")
     def srv_shard_optimized_connection_string(self) -> _builtins.str:
+        """
+        Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        """
         return pulumi.get(self, "srv_shard_optimized_connection_string")
 
     @_builtins.property
     @pulumi.getter
     def type(self) -> _builtins.str:
+        """
+        MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         return pulumi.get(self, "type")
 
 
 @pulumi.output_type
-class GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult(dict):
+class GetAdvancedClustersResultConnectionStringsPrivateEndpointEndpointResult(dict):
     def __init__(__self__, *,
                  endpoint_id: _builtins.str,
                  provider_name: _builtins.str,
                  region: _builtins.str):
         """
+        :param _builtins.str endpoint_id: Unique string that the cloud provider uses to identify the private endpoint.
         :param _builtins.str provider_name: Cloud service provider on which the servers are provisioned.
+        :param _builtins.str region: Region where the private endpoint is deployed.
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -10862,6 +11078,9 @@ class GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult(dic
     @_builtins.property
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> _builtins.str:
+        """
+        Unique string that the cloud provider uses to identify the private endpoint.
+        """
         return pulumi.get(self, "endpoint_id")
 
     @_builtins.property
@@ -10875,36 +11094,10 @@ class GetAdvancedClustersResultConnectionStringPrivateEndpointEndpointResult(dic
     @_builtins.property
     @pulumi.getter
     def region(self) -> _builtins.str:
+        """
+        Region where the private endpoint is deployed.
+        """
         return pulumi.get(self, "region")
-
-
-@pulumi.output_type
-class GetAdvancedClustersResultLabelResult(dict):
-    def __init__(__self__, *,
-                 key: _builtins.str,
-                 value: _builtins.str):
-        """
-        :param _builtins.str key: The key that you want to write.
-        :param _builtins.str value: The value that you want to write.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        The key that you want to write.
-        """
-        return pulumi.get(self, "key")
-
-    @_builtins.property
-    @pulumi.getter
-    def value(self) -> _builtins.str:
-        """
-        The value that you want to write.
-        """
-        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -10941,23 +11134,18 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
     def __init__(__self__, *,
                  container_id: Mapping[str, _builtins.str],
                  external_id: _builtins.str,
-                 id: _builtins.str,
-                 num_shards: _builtins.int,
                  region_configs: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigResult'],
                  zone_id: _builtins.str,
                  zone_name: _builtins.str):
         """
         :param Mapping[str, _builtins.str] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in `region_configs`. The Container ID is the id of the container either created programmatically by the user before any clusters existed in a project or when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
-        :param _builtins.str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
-        :param _builtins.int num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
+        :param _builtins.str external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigArgs'] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         :param _builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param _builtins.str zone_name: Name for the zone in a Global Cluster.
         """
         pulumi.set(__self__, "container_id", container_id)
         pulumi.set(__self__, "external_id", external_id)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "num_shards", num_shards)
         pulumi.set(__self__, "region_configs", region_configs)
         pulumi.set(__self__, "zone_id", zone_id)
         pulumi.set(__self__, "zone_name", zone_name)
@@ -10974,24 +11162,9 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
     @pulumi.getter(name="externalId")
     def external_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         """
         return pulumi.get(self, "external_id")
-
-    @_builtins.property
-    @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def id(self) -> _builtins.str:
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def num_shards(self) -> _builtins.int:
-        """
-        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. **(DEPRECATED)** To learn more, see the Migration Guide for more details.
-        """
-        return pulumi.get(self, "num_shards")
 
     @_builtins.property
     @pulumi.getter(name="regionConfigs")
@@ -11021,30 +11194,39 @@ class GetAdvancedClustersResultReplicationSpecResult(dict):
 @pulumi.output_type
 class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
     def __init__(__self__, *,
-                 analytics_auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult'],
+                 analytics_auto_scaling: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult',
                  analytics_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult',
-                 auto_scalings: Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult'],
+                 auto_scaling: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult',
                  backing_provider_name: _builtins.str,
+                 effective_analytics_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult',
+                 effective_electable_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsResult',
+                 effective_read_only_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult',
                  electable_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult',
                  priority: _builtins.int,
                  provider_name: _builtins.str,
                  read_only_specs: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult',
                  region_name: _builtins.str):
         """
-        :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scalings: Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
-        :param Sequence['GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs'] auto_scalings: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
         :param _builtins.str backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsArgs' effective_analytics_specs: Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsArgs' effective_electable_specs: Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs' effective_read_only_specs: Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs' electable_specs: Hardware specifications for electable nodes in the region.
         :param _builtins.int priority: Election priority of the region.
         :param _builtins.str provider_name: Cloud service provider on which the servers are provisioned.
         :param 'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs' read_only_specs: Hardware specifications for read-only nodes in the region. See below.
         :param _builtins.str region_name: Physical location of your MongoDB cluster.
         """
-        pulumi.set(__self__, "analytics_auto_scalings", analytics_auto_scalings)
+        pulumi.set(__self__, "analytics_auto_scaling", analytics_auto_scaling)
         pulumi.set(__self__, "analytics_specs", analytics_specs)
-        pulumi.set(__self__, "auto_scalings", auto_scalings)
+        pulumi.set(__self__, "auto_scaling", auto_scaling)
         pulumi.set(__self__, "backing_provider_name", backing_provider_name)
+        pulumi.set(__self__, "effective_analytics_specs", effective_analytics_specs)
+        pulumi.set(__self__, "effective_electable_specs", effective_electable_specs)
+        pulumi.set(__self__, "effective_read_only_specs", effective_read_only_specs)
         pulumi.set(__self__, "electable_specs", electable_specs)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -11052,12 +11234,12 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         pulumi.set(__self__, "region_name", region_name)
 
     @_builtins.property
-    @pulumi.getter(name="analyticsAutoScalings")
-    def analytics_auto_scalings(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult']:
+    @pulumi.getter(name="analyticsAutoScaling")
+    def analytics_auto_scaling(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult':
         """
         Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
         """
-        return pulumi.get(self, "analytics_auto_scalings")
+        return pulumi.get(self, "analytics_auto_scaling")
 
     @_builtins.property
     @pulumi.getter(name="analyticsSpecs")
@@ -11068,12 +11250,12 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         return pulumi.get(self, "analytics_specs")
 
     @_builtins.property
-    @pulumi.getter(name="autoScalings")
-    def auto_scalings(self) -> Sequence['outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult']:
+    @pulumi.getter(name="autoScaling")
+    def auto_scaling(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult':
         """
         Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
         """
-        return pulumi.get(self, "auto_scalings")
+        return pulumi.get(self, "auto_scaling")
 
     @_builtins.property
     @pulumi.getter(name="backingProviderName")
@@ -11082,6 +11264,30 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigResult(dict):
         Cloud service provider on which you provision the host for a multi-tenant cluster.
         """
         return pulumi.get(self, "backing_provider_name")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveAnalyticsSpecs")
+    def effective_analytics_specs(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult':
+        """
+        Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        """
+        return pulumi.get(self, "effective_analytics_specs")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveElectableSpecs")
+    def effective_electable_specs(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsResult':
+        """
+        Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        """
+        return pulumi.get(self, "effective_electable_specs")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveReadOnlySpecs")
+    def effective_read_only_specs(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult':
+        """
+        Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        """
+        return pulumi.get(self, "effective_read_only_specs")
 
     @_builtins.property
     @pulumi.getter(name="electableSpecs")
@@ -11193,7 +11399,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
                  disk_size_gb: _builtins.float,
                  ebs_volume_type: _builtins.str,
                  instance_size: _builtins.str,
-                 node_count: Optional[_builtins.int] = None):
+                 node_count: _builtins.int):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -11207,8 +11413,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "node_count", node_count)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -11246,7 +11451,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[_builtins.int]:
+    def node_count(self) -> _builtins.int:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -11316,13 +11521,13 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict
 
 
 @pulumi.output_type
-class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(dict):
+class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult(dict):
     def __init__(__self__, *,
                  disk_iops: _builtins.int,
                  disk_size_gb: _builtins.float,
                  ebs_volume_type: _builtins.str,
                  instance_size: _builtins.str,
-                 node_count: Optional[_builtins.int] = None):
+                 node_count: _builtins.int):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -11336,8 +11541,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "node_count", node_count)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -11375,7 +11579,205 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[_builtins.int]:
+    def node_count(self) -> _builtins.int:
+        """
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsResult(dict):
+    def __init__(__self__, *,
+                 disk_iops: _builtins.int,
+                 disk_size_gb: _builtins.float,
+                 ebs_volume_type: _builtins.str,
+                 instance_size: _builtins.str,
+                 node_count: _builtins.int):
+        """
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
+        :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @_builtins.property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> _builtins.int:
+        """
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @_builtins.property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> _builtins.float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> _builtins.str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> _builtins.str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> _builtins.int:
+        """
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult(dict):
+    def __init__(__self__, *,
+                 disk_iops: _builtins.int,
+                 disk_size_gb: _builtins.float,
+                 ebs_volume_type: _builtins.str,
+                 instance_size: _builtins.str,
+                 node_count: _builtins.int):
+        """
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
+        :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @_builtins.property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> _builtins.int:
+        """
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @_builtins.property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> _builtins.float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> _builtins.str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> _builtins.str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> _builtins.int:
+        """
+        Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(dict):
+    def __init__(__self__, *,
+                 disk_iops: _builtins.int,
+                 disk_size_gb: _builtins.float,
+                 ebs_volume_type: _builtins.str,
+                 instance_size: _builtins.str,
+                 node_count: _builtins.int):
+        """
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster.
+               * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+               * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
+        :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
+        """
+        pulumi.set(__self__, "disk_iops", disk_iops)
+        pulumi.set(__self__, "disk_size_gb", disk_size_gb)
+        pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        pulumi.set(__self__, "instance_size", instance_size)
+        pulumi.set(__self__, "node_count", node_count)
+
+    @_builtins.property
+    @pulumi.getter(name="diskIops")
+    def disk_iops(self) -> _builtins.int:
+        """
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        """
+        return pulumi.get(self, "disk_iops")
+
+    @_builtins.property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> _builtins.float:
+        """
+        Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
+        """
+        return pulumi.get(self, "disk_size_gb")
+
+    @_builtins.property
+    @pulumi.getter(name="ebsVolumeType")
+    def ebs_volume_type(self) -> _builtins.str:
+        """
+        Type of storage you want to attach to your AWS-provisioned cluster.
+        * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
+        * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        """
+        return pulumi.get(self, "ebs_volume_type")
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> _builtins.str:
+        """
+        Hardware specification for the instance sizes in this region.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @_builtins.property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> _builtins.int:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -11389,7 +11791,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
                  disk_size_gb: _builtins.float,
                  ebs_volume_type: _builtins.str,
                  instance_size: _builtins.str,
-                 node_count: Optional[_builtins.int] = None):
+                 node_count: _builtins.int):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
@@ -11403,8 +11805,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
         pulumi.set(__self__, "instance_size", instance_size)
-        if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "node_count", node_count)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -11442,40 +11843,11 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[_builtins.int]:
+    def node_count(self) -> _builtins.int:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
-
-
-@pulumi.output_type
-class GetAdvancedClustersResultTagResult(dict):
-    def __init__(__self__, *,
-                 key: _builtins.str,
-                 value: _builtins.str):
-        """
-        :param _builtins.str key: The key that you want to write.
-        :param _builtins.str value: The value that you want to write.
-        """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> _builtins.str:
-        """
-        The key that you want to write.
-        """
-        return pulumi.get(self, "key")
-
-    @_builtins.property
-    @pulumi.getter
-    def value(self) -> _builtins.str:
-        """
-        The value that you want to write.
-        """
-        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -12047,6 +12419,7 @@ class GetAlertConfigurationsResultResult(dict):
                  notifications: Sequence['outputs.GetAlertConfigurationsResultNotificationResult'],
                  outputs: Sequence['outputs.GetAlertConfigurationsResultOutputResult'],
                  project_id: _builtins.str,
+                 severity_override: _builtins.str,
                  threshold_configs: Sequence['outputs.GetAlertConfigurationsResultThresholdConfigResult'],
                  updated: _builtins.str):
         """
@@ -12058,6 +12431,7 @@ class GetAlertConfigurationsResultResult(dict):
         :param Sequence['GetAlertConfigurationsResultMetricThresholdConfigArgs'] metric_threshold_configs: The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
         :param Sequence['GetAlertConfigurationsResultOutputArgs'] outputs: Requested output string format for the alert configuration
         :param _builtins.str project_id: The unique ID for the project to get the alert configurations.
+        :param _builtins.str severity_override: Severity of the event.
         :param Sequence['GetAlertConfigurationsResultThresholdConfigArgs'] threshold_configs: Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         :param _builtins.str updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
@@ -12071,6 +12445,7 @@ class GetAlertConfigurationsResultResult(dict):
         pulumi.set(__self__, "notifications", notifications)
         pulumi.set(__self__, "outputs", outputs)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "severity_override", severity_override)
         pulumi.set(__self__, "threshold_configs", threshold_configs)
         pulumi.set(__self__, "updated", updated)
 
@@ -12147,6 +12522,14 @@ class GetAlertConfigurationsResultResult(dict):
         The unique ID for the project to get the alert configurations.
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="severityOverride")
+    def severity_override(self) -> _builtins.str:
+        """
+        Severity of the event.
+        """
+        return pulumi.get(self, "severity_override")
 
     @_builtins.property
     @pulumi.getter(name="thresholdConfigs")
@@ -12860,7 +13243,7 @@ class GetAtlasUsersResultResult(dict):
         """
         :param _builtins.str country: Two alphabet characters that identifies MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
         :param _builtins.str created_at: Date and time when the current account is created. This value is in the ISO 8601 timestamp format in UTC.
-        :param _builtins.str email_address: Email address that belongs to the MongoDB Atlas user.
+        :param _builtins.str email_address: **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`."
         :param _builtins.str first_name: First or given name that belongs to the MongoDB Atlas user.
         :param _builtins.str last_auth: Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
         :param _builtins.str last_name: Last name, family name, or surname that belongs to the MongoDB Atlas user.
@@ -12906,9 +13289,10 @@ class GetAtlasUsersResultResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="emailAddress")
+    @_utilities.deprecated("""This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username, data.mongodbatlas_team.users.username or data.mongodbatlas_project.users.username attributes`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def email_address(self) -> _builtins.str:
         """
-        Email address that belongs to the MongoDB Atlas user.
+        **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`."
         """
         return pulumi.get(self, "email_address")
 
@@ -13418,21 +13802,18 @@ class GetCloudBackupScheduleCopySettingResult(dict):
                  cloud_provider: _builtins.str,
                  frequencies: Sequence[_builtins.str],
                  region_name: _builtins.str,
-                 replication_spec_id: _builtins.str,
                  should_copy_oplogs: _builtins.bool,
                  zone_id: _builtins.str):
         """
         :param _builtins.str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param Sequence[_builtins.str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
         :param _builtins.str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param _builtins.str replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param _builtins.bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param _builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
         pulumi.set(__self__, "frequencies", frequencies)
         pulumi.set(__self__, "region_name", region_name)
-        pulumi.set(__self__, "replication_spec_id", replication_spec_id)
         pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
         pulumi.set(__self__, "zone_id", zone_id)
 
@@ -13459,15 +13840,6 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         """
         return pulumi.get(self, "region_name")
-
-    @_builtins.property
-    @pulumi.getter(name="replicationSpecId")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def replication_spec_id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
-        """
-        return pulumi.get(self, "replication_spec_id")
 
     @_builtins.property
     @pulumi.getter(name="shouldCopyOplogs")
@@ -14660,6 +15032,122 @@ class GetCloudProviderAccessSetupGcpConfigResult(dict):
 
 
 @pulumi.output_type
+class GetCloudUserOrgAssignmentRolesResult(dict):
+    def __init__(__self__, *,
+                 org_roles: Sequence[_builtins.str],
+                 project_role_assignments: Sequence['outputs.GetCloudUserOrgAssignmentRolesProjectRoleAssignmentResult']):
+        """
+        :param Sequence[_builtins.str] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
+        :param Sequence['GetCloudUserOrgAssignmentRolesProjectRoleAssignmentArgs'] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "org_roles", org_roles)
+        pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Sequence[_builtins.str]:
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "org_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Sequence['outputs.GetCloudUserOrgAssignmentRolesProjectRoleAssignmentResult']:
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_role_assignments")
+
+
+@pulumi.output_type
+class GetCloudUserOrgAssignmentRolesProjectRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str,
+                 project_roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        :param Sequence[_builtins.str] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Sequence[_builtins.str]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_roles")
+
+
+@pulumi.output_type
+class GetCloudUserTeamAssignmentRolesResult(dict):
+    def __init__(__self__, *,
+                 org_roles: Sequence[_builtins.str],
+                 project_role_assignments: Sequence['outputs.GetCloudUserTeamAssignmentRolesProjectRoleAssignmentResult']):
+        """
+        :param Sequence[_builtins.str] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
+        :param Sequence['GetCloudUserTeamAssignmentRolesProjectRoleAssignmentArgs'] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "org_roles", org_roles)
+        pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Sequence[_builtins.str]:
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "org_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Sequence['outputs.GetCloudUserTeamAssignmentRolesProjectRoleAssignmentResult']:
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_role_assignments")
+
+
+@pulumi.output_type
+class GetCloudUserTeamAssignmentRolesProjectRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str,
+                 project_roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        :param Sequence[_builtins.str] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Sequence[_builtins.str]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_roles")
+
+
+@pulumi.output_type
 class GetClusterAdvancedConfigurationResult(dict):
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: _builtins.int,
@@ -14685,9 +15173,8 @@ class GetClusterAdvancedConfigurationResult(dict):
         :param _builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param _builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param _builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
                - TLS1_2
+               - TLS1_3
         :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param _builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -14772,9 +15259,8 @@ class GetClusterAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> _builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
         - TLS1_2
+        - TLS1_3
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -14874,20 +15360,6 @@ class GetClusterConnectionStringResult(dict):
                  private_srv: _builtins.str,
                  standard: _builtins.str,
                  standard_srv: _builtins.str):
-        """
-        :param _builtins.str private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param _builtins.str private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        :param _builtins.str standard: Public mongodb:// connection string for this cluster.
-        :param _builtins.str standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-        """
         pulumi.set(__self__, "aws_private_link", aws_private_link)
         pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         pulumi.set(__self__, "private", private)
@@ -14909,9 +15381,6 @@ class GetClusterConnectionStringResult(dict):
     @_builtins.property
     @pulumi.getter
     def private(self) -> _builtins.str:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         return pulumi.get(self, "private")
 
     @_builtins.property
@@ -14922,33 +15391,16 @@ class GetClusterConnectionStringResult(dict):
     @_builtins.property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> _builtins.str:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        """
         return pulumi.get(self, "private_srv")
 
     @_builtins.property
     @pulumi.getter
     def standard(self) -> _builtins.str:
-        """
-        Public mongodb:// connection string for this cluster.
-        """
         return pulumi.get(self, "standard")
 
     @_builtins.property
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> _builtins.str:
-        """
-        Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-        """
         return pulumi.get(self, "standard_srv")
 
 
@@ -15459,6 +15911,18 @@ class GetClustersResultResult(dict):
         :param Sequence['GetClustersResultBiConnectorConfigArgs'] bi_connector_configs: Indicates BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         :param _builtins.str cluster_type: Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
         :param Sequence['GetClustersResultConnectionStringArgs'] connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+               - `connection_strings.#.standard` -   Public mongodb:// connection string for this cluster.
+               - `connection_strings.#.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+               - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+               - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+               - `connection_strings.#.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.#.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+               - `connection_strings.#.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+               - `connection_strings.#.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.#.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.#.private_endpoint.#.connection_string` or `connection_strings.#.private_endpoint.#.srv_connection_string`
+               - `connection_strings.#.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.#.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.#.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         :param _builtins.str container_id: The Network Peering Container ID.
         :param _builtins.float disk_size_gb: Indicates the size in gigabytes of the server’s root volume (AWS/GCP Only).
         :param _builtins.str encryption_at_rest_provider: Indicates whether Encryption at Rest is enabled or disabled.
@@ -15612,6 +16076,18 @@ class GetClustersResultResult(dict):
     def connection_strings(self) -> Sequence['outputs.GetClustersResultConnectionStringResult']:
         """
         Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        - `connection_strings.#.standard` -   Public mongodb:// connection string for this cluster.
+        - `connection_strings.#.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
+        - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        - `connection_strings.#.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.#.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
+        - `connection_strings.#.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
+        - `connection_strings.#.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.#.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.#.private_endpoint.#.connection_string` or `connection_strings.#.private_endpoint.#.srv_connection_string`
+        - `connection_strings.#.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.#.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.#.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
         """
         return pulumi.get(self, "connection_strings")
 
@@ -15913,9 +16389,8 @@ class GetClustersResultAdvancedConfigurationResult(dict):
         :param _builtins.bool fail_index_key_too_long: **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param _builtins.bool javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param _builtins.str minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
                - TLS1_2
+               - TLS1_3
         :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         :param _builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
@@ -15999,9 +16474,8 @@ class GetClustersResultAdvancedConfigurationResult(dict):
     def minimum_enabled_tls_protocol(self) -> _builtins.str:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
         - TLS1_2
+        - TLS1_3
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -16098,20 +16572,6 @@ class GetClustersResultConnectionStringResult(dict):
                  private_srv: _builtins.str,
                  standard: _builtins.str,
                  standard_srv: _builtins.str):
-        """
-        :param _builtins.str private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param _builtins.str private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        :param _builtins.str standard: Public mongodb:// connection string for this cluster.
-        :param _builtins.str standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-        """
         pulumi.set(__self__, "aws_private_link", aws_private_link)
         pulumi.set(__self__, "aws_private_link_srv", aws_private_link_srv)
         pulumi.set(__self__, "private", private)
@@ -16133,9 +16593,6 @@ class GetClustersResultConnectionStringResult(dict):
     @_builtins.property
     @pulumi.getter
     def private(self) -> _builtins.str:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         return pulumi.get(self, "private")
 
     @_builtins.property
@@ -16146,33 +16603,16 @@ class GetClustersResultConnectionStringResult(dict):
     @_builtins.property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> _builtins.str:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        """
         return pulumi.get(self, "private_srv")
 
     @_builtins.property
     @pulumi.getter
     def standard(self) -> _builtins.str:
-        """
-        Public mongodb:// connection string for this cluster.
-        """
         return pulumi.get(self, "standard")
 
     @_builtins.property
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> _builtins.str:
-        """
-        Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-        """
         return pulumi.get(self, "standard_srv")
 
 
@@ -16873,757 +17313,6 @@ class GetCustomDbRolesResultInheritedRoleResult(dict):
 
 
 @pulumi.output_type
-class GetDataLakePipelineIngestionScheduleResult(dict):
-    def __init__(__self__, *,
-                 frequency_interval: _builtins.int,
-                 frequency_type: _builtins.str,
-                 id: _builtins.str,
-                 retention_unit: _builtins.str,
-                 retention_value: _builtins.int):
-        """
-        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "frequency_interval", frequency_interval)
-        pulumi.set(__self__, "frequency_type", frequency_type)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "retention_unit", retention_unit)
-        pulumi.set(__self__, "retention_value", retention_value)
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> _builtins.int:
-        return pulumi.get(self, "frequency_interval")
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> _builtins.str:
-        return pulumi.get(self, "frequency_type")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> _builtins.str:
-        return pulumi.get(self, "retention_unit")
-
-    @_builtins.property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> _builtins.int:
-        return pulumi.get(self, "retention_value")
-
-
-@pulumi.output_type
-class GetDataLakePipelineRunStatResult(dict):
-    def __init__(__self__, *,
-                 bytes_exported: _builtins.int,
-                 num_docs: _builtins.int):
-        """
-        :param _builtins.int bytes_exported: Total data size in bytes exported for this pipeline run.
-        :param _builtins.int num_docs: Number of docs ingested for a this pipeline run.
-        """
-        pulumi.set(__self__, "bytes_exported", bytes_exported)
-        pulumi.set(__self__, "num_docs", num_docs)
-
-    @_builtins.property
-    @pulumi.getter(name="bytesExported")
-    def bytes_exported(self) -> _builtins.int:
-        """
-        Total data size in bytes exported for this pipeline run.
-        """
-        return pulumi.get(self, "bytes_exported")
-
-    @_builtins.property
-    @pulumi.getter(name="numDocs")
-    def num_docs(self) -> _builtins.int:
-        """
-        Number of docs ingested for a this pipeline run.
-        """
-        return pulumi.get(self, "num_docs")
-
-
-@pulumi.output_type
-class GetDataLakePipelineRunsResultResult(dict):
-    def __init__(__self__, *,
-                 backup_frequency_type: _builtins.str,
-                 created_date: _builtins.str,
-                 id: _builtins.str,
-                 last_updated_date: _builtins.str,
-                 phase: _builtins.str,
-                 pipeline_id: _builtins.str,
-                 pipeline_run_id: _builtins.str,
-                 snapshot_id: _builtins.str,
-                 state: _builtins.str,
-                 stats: Sequence['outputs.GetDataLakePipelineRunsResultStatResult']):
-        """
-        :param _builtins.str backup_frequency_type: Backup schedule interval of the Data Lake Pipeline.
-        :param _builtins.str created_date: Timestamp that indicates when the pipeline run was created.
-        :param _builtins.str id: Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-        :param _builtins.str last_updated_date: Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-        :param _builtins.str phase: Processing phase of the Data Lake Pipeline.
-        :param _builtins.str pipeline_id: Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
-        :param _builtins.str pipeline_run_id: Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-        :param _builtins.str snapshot_id: Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
-        :param _builtins.str state: State of the pipeline run.
-        :param Sequence['GetDataLakePipelineRunsResultStatArgs'] stats: Runtime statistics for this Data Lake Pipeline run.
-        """
-        pulumi.set(__self__, "backup_frequency_type", backup_frequency_type)
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "last_updated_date", last_updated_date)
-        pulumi.set(__self__, "phase", phase)
-        pulumi.set(__self__, "pipeline_id", pipeline_id)
-        pulumi.set(__self__, "pipeline_run_id", pipeline_run_id)
-        pulumi.set(__self__, "snapshot_id", snapshot_id)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "stats", stats)
-
-    @_builtins.property
-    @pulumi.getter(name="backupFrequencyType")
-    def backup_frequency_type(self) -> _builtins.str:
-        """
-        Backup schedule interval of the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "backup_frequency_type")
-
-    @_builtins.property
-    @pulumi.getter(name="createdDate")
-    def created_date(self) -> _builtins.str:
-        """
-        Timestamp that indicates when the pipeline run was created.
-        """
-        return pulumi.get(self, "created_date")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="lastUpdatedDate")
-    def last_updated_date(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-        """
-        return pulumi.get(self, "last_updated_date")
-
-    @_builtins.property
-    @pulumi.getter
-    def phase(self) -> _builtins.str:
-        """
-        Processing phase of the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "phase")
-
-    @_builtins.property
-    @pulumi.getter(name="pipelineId")
-    def pipeline_id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal character string that identifies a Data Lake Pipeline.
-        """
-        return pulumi.get(self, "pipeline_id")
-
-    @_builtins.property
-    @pulumi.getter(name="pipelineRunId")
-    def pipeline_run_id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal character string that identifies a Data Lake Pipeline run.
-        """
-        return pulumi.get(self, "pipeline_run_id")
-
-    @_builtins.property
-    @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal character string that identifies the snapshot of a cluster.
-        """
-        return pulumi.get(self, "snapshot_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def state(self) -> _builtins.str:
-        """
-        State of the pipeline run.
-        """
-        return pulumi.get(self, "state")
-
-    @_builtins.property
-    @pulumi.getter
-    def stats(self) -> Sequence['outputs.GetDataLakePipelineRunsResultStatResult']:
-        """
-        Runtime statistics for this Data Lake Pipeline run.
-        """
-        return pulumi.get(self, "stats")
-
-
-@pulumi.output_type
-class GetDataLakePipelineRunsResultStatResult(dict):
-    def __init__(__self__, *,
-                 bytes_exported: _builtins.int,
-                 num_docs: _builtins.int):
-        """
-        :param _builtins.int bytes_exported: Total data size in bytes exported for this pipeline run.
-        :param _builtins.int num_docs: Number of docs ingested for a this pipeline run.
-        """
-        pulumi.set(__self__, "bytes_exported", bytes_exported)
-        pulumi.set(__self__, "num_docs", num_docs)
-
-    @_builtins.property
-    @pulumi.getter(name="bytesExported")
-    def bytes_exported(self) -> _builtins.int:
-        """
-        Total data size in bytes exported for this pipeline run.
-        """
-        return pulumi.get(self, "bytes_exported")
-
-    @_builtins.property
-    @pulumi.getter(name="numDocs")
-    def num_docs(self) -> _builtins.int:
-        """
-        Number of docs ingested for a this pipeline run.
-        """
-        return pulumi.get(self, "num_docs")
-
-
-@pulumi.output_type
-class GetDataLakePipelineSinkResult(dict):
-    def __init__(__self__, *,
-                 partition_fields: Sequence['outputs.GetDataLakePipelineSinkPartitionFieldResult'],
-                 provider: _builtins.str,
-                 region: _builtins.str,
-                 type: _builtins.str):
-        """
-        :param Sequence['GetDataLakePipelineSinkPartitionFieldArgs'] partition_fields: Ordered fields used to physically organize data in the destination.
-               * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-               * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        :param _builtins.str provider: Target cloud provider for this Data Lake Pipeline.
-        :param _builtins.str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "partition_fields", partition_fields)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="partitionFields")
-    def partition_fields(self) -> Sequence['outputs.GetDataLakePipelineSinkPartitionFieldResult']:
-        """
-        Ordered fields used to physically organize data in the destination.
-        * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-        * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        """
-        return pulumi.get(self, "partition_fields")
-
-    @_builtins.property
-    @pulumi.getter
-    def provider(self) -> _builtins.str:
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "provider")
-
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> _builtins.str:
-        """
-        Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        """
-        return pulumi.get(self, "region")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetDataLakePipelineSinkPartitionFieldResult(dict):
-    def __init__(__self__, *,
-                 field_name: _builtins.str,
-                 order: _builtins.int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
-
-    @_builtins.property
-    @pulumi.getter(name="fieldName")
-    def field_name(self) -> _builtins.str:
-        return pulumi.get(self, "field_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def order(self) -> _builtins.int:
-        return pulumi.get(self, "order")
-
-
-@pulumi.output_type
-class GetDataLakePipelineSnapshotResult(dict):
-    def __init__(__self__, *,
-                 copy_region: _builtins.str,
-                 created_at: _builtins.str,
-                 expires_at: _builtins.str,
-                 frequency_yype: _builtins.str,
-                 id: _builtins.str,
-                 master_key: _builtins.str,
-                 mongod_version: _builtins.str,
-                 policies: Sequence[_builtins.str],
-                 provider: _builtins.str,
-                 replica_set_name: _builtins.str,
-                 size: _builtins.int,
-                 status: _builtins.str,
-                 type: _builtins.str):
-        """
-        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        :param _builtins.str provider: Target cloud provider for this Data Lake Pipeline.
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "copy_region", copy_region)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "expires_at", expires_at)
-        pulumi.set(__self__, "frequency_yype", frequency_yype)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "master_key", master_key)
-        pulumi.set(__self__, "mongod_version", mongod_version)
-        pulumi.set(__self__, "policies", policies)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "replica_set_name", replica_set_name)
-        pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="copyRegion")
-    def copy_region(self) -> _builtins.str:
-        return pulumi.get(self, "copy_region")
-
-    @_builtins.property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> _builtins.str:
-        return pulumi.get(self, "created_at")
-
-    @_builtins.property
-    @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> _builtins.str:
-        return pulumi.get(self, "expires_at")
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyYype")
-    def frequency_yype(self) -> _builtins.str:
-        return pulumi.get(self, "frequency_yype")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="masterKey")
-    def master_key(self) -> _builtins.str:
-        return pulumi.get(self, "master_key")
-
-    @_builtins.property
-    @pulumi.getter(name="mongodVersion")
-    def mongod_version(self) -> _builtins.str:
-        return pulumi.get(self, "mongod_version")
-
-    @_builtins.property
-    @pulumi.getter
-    def policies(self) -> Sequence[_builtins.str]:
-        return pulumi.get(self, "policies")
-
-    @_builtins.property
-    @pulumi.getter
-    def provider(self) -> _builtins.str:
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "provider")
-
-    @_builtins.property
-    @pulumi.getter(name="replicaSetName")
-    def replica_set_name(self) -> _builtins.str:
-        return pulumi.get(self, "replica_set_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def size(self) -> _builtins.int:
-        return pulumi.get(self, "size")
-
-    @_builtins.property
-    @pulumi.getter
-    def status(self) -> _builtins.str:
-        return pulumi.get(self, "status")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetDataLakePipelineSourceResult(dict):
-    def __init__(__self__, *,
-                 cluster_name: _builtins.str,
-                 collection_name: _builtins.str,
-                 database_name: _builtins.str,
-                 project_id: _builtins.str,
-                 type: _builtins.str):
-        """
-        :param _builtins.str cluster_name: Human-readable name that identifies the cluster.
-        :param _builtins.str collection_name: Human-readable name that identifies the collection.
-        :param _builtins.str database_name: Human-readable name that identifies the database.
-        :param _builtins.str project_id: The unique ID for the project to create a Data Lake Pipeline.
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> _builtins.str:
-        """
-        Human-readable name that identifies the cluster.
-        """
-        return pulumi.get(self, "cluster_name")
-
-    @_builtins.property
-    @pulumi.getter(name="collectionName")
-    def collection_name(self) -> _builtins.str:
-        """
-        Human-readable name that identifies the collection.
-        """
-        return pulumi.get(self, "collection_name")
-
-    @_builtins.property
-    @pulumi.getter(name="databaseName")
-    def database_name(self) -> _builtins.str:
-        """
-        Human-readable name that identifies the database.
-        """
-        return pulumi.get(self, "database_name")
-
-    @_builtins.property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> _builtins.str:
-        """
-        The unique ID for the project to create a Data Lake Pipeline.
-        """
-        return pulumi.get(self, "project_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetDataLakePipelineTransformationResult(dict):
-    def __init__(__self__, *,
-                 field: _builtins.str,
-                 type: _builtins.str):
-        """
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "field", field)
-        pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter
-    def field(self) -> _builtins.str:
-        return pulumi.get(self, "field")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetDataLakePipelinesResultResult(dict):
-    def __init__(__self__, *,
-                 created_date: _builtins.str,
-                 id: _builtins.str,
-                 last_updated_date: _builtins.str,
-                 name: _builtins.str,
-                 project_id: _builtins.str,
-                 sinks: Sequence['outputs.GetDataLakePipelinesResultSinkResult'],
-                 sources: Sequence['outputs.GetDataLakePipelinesResultSourceResult'],
-                 state: _builtins.str,
-                 transformations: Sequence['outputs.GetDataLakePipelinesResultTransformationResult']):
-        """
-        :param _builtins.str created_date: Timestamp that indicates when the Data Lake Pipeline was created.
-        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        :param _builtins.str last_updated_date: Timestamp that indicates the last time that the Data Lake Pipeline was updated.
-        :param _builtins.str project_id: The unique ID for the project to create a data lake pipeline.
-        :param _builtins.str state: State of this Data Lake Pipeline.
-        :param Sequence['GetDataLakePipelinesResultTransformationArgs'] transformations: Fields to be excluded for this Data Lake Pipeline.
-               * `transformations.#.field` - Key in the document.
-               * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "created_date", created_date)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "last_updated_date", last_updated_date)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "sinks", sinks)
-        pulumi.set(__self__, "sources", sources)
-        pulumi.set(__self__, "state", state)
-        pulumi.set(__self__, "transformations", transformations)
-
-    @_builtins.property
-    @pulumi.getter(name="createdDate")
-    def created_date(self) -> _builtins.str:
-        """
-        Timestamp that indicates when the Data Lake Pipeline was created.
-        """
-        return pulumi.get(self, "created_date")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="lastUpdatedDate")
-    def last_updated_date(self) -> _builtins.str:
-        """
-        Timestamp that indicates the last time that the Data Lake Pipeline was updated.
-        """
-        return pulumi.get(self, "last_updated_date")
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> _builtins.str:
-        return pulumi.get(self, "name")
-
-    @_builtins.property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> _builtins.str:
-        """
-        The unique ID for the project to create a data lake pipeline.
-        """
-        return pulumi.get(self, "project_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def sinks(self) -> Sequence['outputs.GetDataLakePipelinesResultSinkResult']:
-        return pulumi.get(self, "sinks")
-
-    @_builtins.property
-    @pulumi.getter
-    def sources(self) -> Sequence['outputs.GetDataLakePipelinesResultSourceResult']:
-        return pulumi.get(self, "sources")
-
-    @_builtins.property
-    @pulumi.getter
-    def state(self) -> _builtins.str:
-        """
-        State of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "state")
-
-    @_builtins.property
-    @pulumi.getter
-    def transformations(self) -> Sequence['outputs.GetDataLakePipelinesResultTransformationResult']:
-        """
-        Fields to be excluded for this Data Lake Pipeline.
-        * `transformations.#.field` - Key in the document.
-        * `transformations.#.type` - Type of transformation applied during the export of the namespace in a Data Lake Pipeline.
-        """
-        return pulumi.get(self, "transformations")
-
-
-@pulumi.output_type
-class GetDataLakePipelinesResultSinkResult(dict):
-    def __init__(__self__, *,
-                 partition_fields: Sequence['outputs.GetDataLakePipelinesResultSinkPartitionFieldResult'],
-                 provider: _builtins.str,
-                 region: _builtins.str,
-                 type: _builtins.str):
-        """
-        :param Sequence['GetDataLakePipelinesResultSinkPartitionFieldArgs'] partition_fields: Ordered fields used to physically organize data in the destination.
-               * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-               * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        :param _builtins.str provider: Target cloud provider for this Data Lake Pipeline.
-        :param _builtins.str region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "partition_fields", partition_fields)
-        pulumi.set(__self__, "provider", provider)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="partitionFields")
-    def partition_fields(self) -> Sequence['outputs.GetDataLakePipelinesResultSinkPartitionFieldResult']:
-        """
-        Ordered fields used to physically organize data in the destination.
-        * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-        * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        """
-        return pulumi.get(self, "partition_fields")
-
-    @_builtins.property
-    @pulumi.getter
-    def provider(self) -> _builtins.str:
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "provider")
-
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> _builtins.str:
-        """
-        Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        """
-        return pulumi.get(self, "region")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetDataLakePipelinesResultSinkPartitionFieldResult(dict):
-    def __init__(__self__, *,
-                 field_name: _builtins.str,
-                 order: _builtins.int):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
-
-    @_builtins.property
-    @pulumi.getter(name="fieldName")
-    def field_name(self) -> _builtins.str:
-        return pulumi.get(self, "field_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def order(self) -> _builtins.int:
-        return pulumi.get(self, "order")
-
-
-@pulumi.output_type
-class GetDataLakePipelinesResultSourceResult(dict):
-    def __init__(__self__, *,
-                 cluster_name: _builtins.str,
-                 collection_name: _builtins.str,
-                 database_name: _builtins.str,
-                 project_id: _builtins.str,
-                 type: _builtins.str):
-        """
-        :param _builtins.str cluster_name: Human-readable name that identifies the cluster.
-        :param _builtins.str collection_name: Human-readable name that identifies the collection.
-        :param _builtins.str database_name: Human-readable name that identifies the database.
-        :param _builtins.str project_id: The unique ID for the project to create a data lake pipeline.
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "cluster_name", cluster_name)
-        pulumi.set(__self__, "collection_name", collection_name)
-        pulumi.set(__self__, "database_name", database_name)
-        pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> _builtins.str:
-        """
-        Human-readable name that identifies the cluster.
-        """
-        return pulumi.get(self, "cluster_name")
-
-    @_builtins.property
-    @pulumi.getter(name="collectionName")
-    def collection_name(self) -> _builtins.str:
-        """
-        Human-readable name that identifies the collection.
-        """
-        return pulumi.get(self, "collection_name")
-
-    @_builtins.property
-    @pulumi.getter(name="databaseName")
-    def database_name(self) -> _builtins.str:
-        """
-        Human-readable name that identifies the database.
-        """
-        return pulumi.get(self, "database_name")
-
-    @_builtins.property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> _builtins.str:
-        """
-        The unique ID for the project to create a data lake pipeline.
-        """
-        return pulumi.get(self, "project_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetDataLakePipelinesResultTransformationResult(dict):
-    def __init__(__self__, *,
-                 field: _builtins.str,
-                 type: _builtins.str):
-        """
-        :param _builtins.str type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        pulumi.set(__self__, "field", field)
-        pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter
-    def field(self) -> _builtins.str:
-        return pulumi.get(self, "field")
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> _builtins.str:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-
-@pulumi.output_type
 class GetDatabaseUserLabelResult(dict):
     def __init__(__self__, *,
                  key: _builtins.str,
@@ -17745,7 +17434,7 @@ class GetDatabaseUsersResultResult(dict):
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param _builtins.str project_id: The unique ID for the project to get all database users.
         :param Sequence['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-        :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Lakes that this user has access to.
+        :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Federation that this user has access to.
         :param _builtins.str username: Username for authenticating to MongoDB.
         :param _builtins.str x509_type: X.509 method by which the provided username is authenticated.
         """
@@ -17839,7 +17528,7 @@ class GetDatabaseUsersResultResult(dict):
     @pulumi.getter
     def scopes(self) -> Sequence['outputs.GetDatabaseUsersResultScopeResult']:
         """
-        Array of clusters and Atlas Data Lakes that this user has access to.
+        Array of clusters and Atlas Data Federation that this user has access to.
         """
         return pulumi.get(self, "scopes")
 
@@ -18623,14 +18312,14 @@ class GetEventTriggersResultEventProcessorAwsEventbridgeResult(dict):
 @pulumi.output_type
 class GetFederatedDatabaseInstanceCloudProviderConfigResult(dict):
     def __init__(__self__, *,
-                 aws: 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsResult',
+                 aws: Sequence['outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwResult'],
                  azures: Sequence['outputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureResult']):
         pulumi.set(__self__, "aws", aws)
         pulumi.set(__self__, "azures", azures)
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsResult':
+    def aws(self) -> Sequence['outputs.GetFederatedDatabaseInstanceCloudProviderConfigAwResult']:
         return pulumi.get(self, "aws")
 
     @_builtins.property
@@ -18640,7 +18329,7 @@ class GetFederatedDatabaseInstanceCloudProviderConfigResult(dict):
 
 
 @pulumi.output_type
-class GetFederatedDatabaseInstanceCloudProviderConfigAwsResult(dict):
+class GetFederatedDatabaseInstanceCloudProviderConfigAwResult(dict):
     def __init__(__self__, *,
                  external_id: _builtins.str,
                  iam_assumed_role_arn: _builtins.str,
@@ -19148,7 +18837,7 @@ class GetFederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagResult(dict
 @pulumi.output_type
 class GetFederatedDatabaseInstancesResultResult(dict):
     def __init__(__self__, *,
-                 cloud_provider_config: 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult',
+                 cloud_provider_configs: Sequence['outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult'],
                  data_process_regions: Sequence['outputs.GetFederatedDatabaseInstancesResultDataProcessRegionResult'],
                  hostnames: Sequence[_builtins.str],
                  name: _builtins.str,
@@ -19162,9 +18851,9 @@ class GetFederatedDatabaseInstancesResultResult(dict):
         :param _builtins.str state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
                * `DELETED` - The Federated Database Instance was deleted.
-        :param Sequence['GetFederatedDatabaseInstancesResultStorageDatabaseArgs'] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+        :param Sequence['GetFederatedDatabaseInstancesResultStorageDatabaseArgs'] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
                * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-               * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+               * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
                * `storage_databases.#.collections.#.name` - Name of the collection.
                * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
                * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -19183,7 +18872,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                * `storage_databases.#.views.#.name` - Name of the view.
                * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
                * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
-        :param Sequence['GetFederatedDatabaseInstancesResultStorageStoreArgs'] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+        :param Sequence['GetFederatedDatabaseInstancesResultStorageStoreArgs'] storage_stores: Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
                * `storage_stores.#.name` - Name of the data store.
                * `storage_stores.#.provider` - Defines where the data is stored.
                * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -19194,7 +18883,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
                * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
                * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-               * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+               * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
                * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
                * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
                * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -19204,7 +18893,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
                * `storage_stores.#.read_preference.tags.value` - Value of the tag.
         """
-        pulumi.set(__self__, "cloud_provider_config", cloud_provider_config)
+        pulumi.set(__self__, "cloud_provider_configs", cloud_provider_configs)
         pulumi.set(__self__, "data_process_regions", data_process_regions)
         pulumi.set(__self__, "hostnames", hostnames)
         pulumi.set(__self__, "name", name)
@@ -19214,9 +18903,9 @@ class GetFederatedDatabaseInstancesResultResult(dict):
         pulumi.set(__self__, "storage_stores", storage_stores)
 
     @_builtins.property
-    @pulumi.getter(name="cloudProviderConfig")
-    def cloud_provider_config(self) -> 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult':
-        return pulumi.get(self, "cloud_provider_config")
+    @pulumi.getter(name="cloudProviderConfigs")
+    def cloud_provider_configs(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigResult']:
+        return pulumi.get(self, "cloud_provider_configs")
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegions")
@@ -19258,9 +18947,9 @@ class GetFederatedDatabaseInstancesResultResult(dict):
     @pulumi.getter(name="storageDatabases")
     def storage_databases(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseResult']:
         """
-        Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+        Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
         * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-        * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+        * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
         * `storage_databases.#.collections.#.name` - Name of the collection.
         * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
         * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -19286,7 +18975,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
     @pulumi.getter(name="storageStores")
     def storage_stores(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreResult']:
         """
-        Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+        Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
         * `storage_stores.#.name` - Name of the data store.
         * `storage_stores.#.provider` - Defines where the data is stored.
         * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -19297,7 +18986,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
         * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
         * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
         * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-        * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+        * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
         * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
         * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
         * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -19313,14 +19002,14 @@ class GetFederatedDatabaseInstancesResultResult(dict):
 @pulumi.output_type
 class GetFederatedDatabaseInstancesResultCloudProviderConfigResult(dict):
     def __init__(__self__, *,
-                 aws: 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult',
+                 aws: Sequence['outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwResult'],
                  azures: Sequence['outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAzureResult']):
         pulumi.set(__self__, "aws", aws)
         pulumi.set(__self__, "azures", azures)
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> 'outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult':
+    def aws(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwResult']:
         return pulumi.get(self, "aws")
 
     @_builtins.property
@@ -19330,7 +19019,7 @@ class GetFederatedDatabaseInstancesResultCloudProviderConfigResult(dict):
 
 
 @pulumi.output_type
-class GetFederatedDatabaseInstancesResultCloudProviderConfigAwsResult(dict):
+class GetFederatedDatabaseInstancesResultCloudProviderConfigAwResult(dict):
     def __init__(__self__, *,
                  external_id: _builtins.str,
                  iam_assumed_role_arn: _builtins.str,
@@ -22779,6 +22468,205 @@ class GetOrganizationLinkResult(dict):
 
 
 @pulumi.output_type
+class GetOrganizationUserResult(dict):
+    def __init__(__self__, *,
+                 country: _builtins.str,
+                 created_at: _builtins.str,
+                 first_name: _builtins.str,
+                 id: _builtins.str,
+                 invitation_created_at: _builtins.str,
+                 invitation_expires_at: _builtins.str,
+                 inviter_username: _builtins.str,
+                 last_auth: _builtins.str,
+                 last_name: _builtins.str,
+                 mobile_number: _builtins.str,
+                 org_membership_status: _builtins.str,
+                 roles: Sequence['outputs.GetOrganizationUserRoleResult'],
+                 team_ids: Sequence[_builtins.str],
+                 username: _builtins.str):
+        """
+        :param _builtins.str country: Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        :param _builtins.str created_at: Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str first_name: First or given name that belongs to the MongoDB Cloud user.
+        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        :param _builtins.str invitation_created_at: Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        :param _builtins.str invitation_expires_at: Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        :param _builtins.str inviter_username: Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        :param _builtins.str last_auth: Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        :param _builtins.str mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
+        :param _builtins.str org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        :param Sequence['GetOrganizationUserRoleArgs'] roles: Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
+        :param Sequence[_builtins.str] team_ids: List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+        :param _builtins.str username: Email address that represents the username of the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "invitation_created_at", invitation_created_at)
+        pulumi.set(__self__, "invitation_expires_at", invitation_expires_at)
+        pulumi.set(__self__, "inviter_username", inviter_username)
+        pulumi.set(__self__, "last_auth", last_auth)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "org_membership_status", org_membership_status)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "team_ids", team_ids)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> _builtins.str:
+        """
+        First or given name that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "first_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationCreatedAt")
+    def invitation_created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
+        return pulumi.get(self, "invitation_created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationExpiresAt")
+    def invitation_expires_at(self) -> _builtins.str:
+        """
+        Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
+        return pulumi.get(self, "invitation_expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="inviterUsername")
+    def inviter_username(self) -> _builtins.str:
+        """
+        Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        """
+        return pulumi.get(self, "inviter_username")
+
+    @_builtins.property
+    @pulumi.getter(name="lastAuth")
+    def last_auth(self) -> _builtins.str:
+        """
+        Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_auth")
+
+    @_builtins.property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> _builtins.str:
+        """
+        Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "last_name")
+
+    @_builtins.property
+    @pulumi.getter(name="mobileNumber")
+    def mobile_number(self) -> _builtins.str:
+        """
+        Mobile phone number that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "mobile_number")
+
+    @_builtins.property
+    @pulumi.getter(name="orgMembershipStatus")
+    def org_membership_status(self) -> _builtins.str:
+        """
+        String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        """
+        return pulumi.get(self, "org_membership_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence['outputs.GetOrganizationUserRoleResult']:
+        """
+        Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter(name="teamIds")
+    def team_ids(self) -> Sequence[_builtins.str]:
+        """
+        List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+        """
+        return pulumi.get(self, "team_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Email address that represents the username of the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetOrganizationUserRoleResult(dict):
+    def __init__(__self__, *,
+                 org_roles: Sequence[_builtins.str],
+                 project_role_assignments: Sequence['outputs.GetOrganizationUserRoleProjectRoleAssignmentResult']):
+        pulumi.set(__self__, "org_roles", org_roles)
+        pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "org_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Sequence['outputs.GetOrganizationUserRoleProjectRoleAssignmentResult']:
+        return pulumi.get(self, "project_role_assignments")
+
+
+@pulumi.output_type
+class GetOrganizationUserRoleProjectRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str,
+                 project_roles: Sequence[_builtins.str]):
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "project_roles")
+
+
+@pulumi.output_type
 class GetOrganizationsResultResult(dict):
     def __init__(__self__, *,
                  api_access_list_required: _builtins.bool,
@@ -22790,7 +22678,8 @@ class GetOrganizationsResultResult(dict):
                  name: _builtins.str,
                  restrict_employee_access: _builtins.bool,
                  security_contact: _builtins.str,
-                 skip_default_alerts_settings: _builtins.bool):
+                 skip_default_alerts_settings: _builtins.bool,
+                 users: Sequence['outputs.GetOrganizationsResultUserResult']):
         """
         :param _builtins.bool api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         :param _builtins.bool gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
@@ -22800,6 +22689,7 @@ class GetOrganizationsResultResult(dict):
         :param _builtins.str name: Human-readable label that identifies the organization.
         :param _builtins.bool restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param _builtins.str security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        :param Sequence['GetOrganizationsResultUserArgs'] users: Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
         """
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
         pulumi.set(__self__, "gen_ai_features_enabled", gen_ai_features_enabled)
@@ -22811,6 +22701,7 @@ class GetOrganizationsResultResult(dict):
         pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
         pulumi.set(__self__, "security_contact", security_contact)
         pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
+        pulumi.set(__self__, "users", users)
 
     @_builtins.property
     @pulumi.getter(name="apiAccessListRequired")
@@ -22886,6 +22777,14 @@ class GetOrganizationsResultResult(dict):
     def skip_default_alerts_settings(self) -> _builtins.bool:
         return pulumi.get(self, "skip_default_alerts_settings")
 
+    @_builtins.property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetOrganizationsResultUserResult']:
+        """
+        Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
+        """
+        return pulumi.get(self, "users")
+
 
 @pulumi.output_type
 class GetOrganizationsResultLinkResult(dict):
@@ -22904,6 +22803,199 @@ class GetOrganizationsResultLinkResult(dict):
     @pulumi.getter
     def rel(self) -> _builtins.str:
         return pulumi.get(self, "rel")
+
+
+@pulumi.output_type
+class GetOrganizationsResultUserResult(dict):
+    def __init__(__self__, *,
+                 country: _builtins.str,
+                 created_at: _builtins.str,
+                 first_name: _builtins.str,
+                 id: _builtins.str,
+                 invitation_created_at: _builtins.str,
+                 invitation_expires_at: _builtins.str,
+                 inviter_username: _builtins.str,
+                 last_auth: _builtins.str,
+                 last_name: _builtins.str,
+                 mobile_number: _builtins.str,
+                 org_membership_status: _builtins.str,
+                 roles: Sequence['outputs.GetOrganizationsResultUserRoleResult'],
+                 team_ids: Sequence[_builtins.str],
+                 username: _builtins.str):
+        """
+        :param _builtins.str country: Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        :param _builtins.str created_at: Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str first_name: First or given name that belongs to the MongoDB Cloud user.
+        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        :param _builtins.str invitation_created_at: Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        :param _builtins.str invitation_expires_at: Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        :param _builtins.str inviter_username: Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        :param _builtins.str last_auth: Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        :param _builtins.str org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        :param Sequence['GetOrganizationsResultUserRoleArgs'] roles: Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
+               * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+        :param _builtins.str username: Email address that represents the username of the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "invitation_created_at", invitation_created_at)
+        pulumi.set(__self__, "invitation_expires_at", invitation_expires_at)
+        pulumi.set(__self__, "inviter_username", inviter_username)
+        pulumi.set(__self__, "last_auth", last_auth)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "org_membership_status", org_membership_status)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "team_ids", team_ids)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> _builtins.str:
+        """
+        First or given name that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "first_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationCreatedAt")
+    def invitation_created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
+        return pulumi.get(self, "invitation_created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationExpiresAt")
+    def invitation_expires_at(self) -> _builtins.str:
+        """
+        Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
+        return pulumi.get(self, "invitation_expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="inviterUsername")
+    def inviter_username(self) -> _builtins.str:
+        """
+        Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        """
+        return pulumi.get(self, "inviter_username")
+
+    @_builtins.property
+    @pulumi.getter(name="lastAuth")
+    def last_auth(self) -> _builtins.str:
+        """
+        Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_auth")
+
+    @_builtins.property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> _builtins.str:
+        """
+        Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "last_name")
+
+    @_builtins.property
+    @pulumi.getter(name="mobileNumber")
+    def mobile_number(self) -> _builtins.str:
+        return pulumi.get(self, "mobile_number")
+
+    @_builtins.property
+    @pulumi.getter(name="orgMembershipStatus")
+    def org_membership_status(self) -> _builtins.str:
+        """
+        String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        """
+        return pulumi.get(self, "org_membership_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence['outputs.GetOrganizationsResultUserRoleResult']:
+        """
+        Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
+        * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter(name="teamIds")
+    def team_ids(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "team_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Email address that represents the username of the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetOrganizationsResultUserRoleResult(dict):
+    def __init__(__self__, *,
+                 org_roles: Sequence[_builtins.str],
+                 project_role_assignments: Sequence['outputs.GetOrganizationsResultUserRoleProjectRoleAssignmentResult']):
+        pulumi.set(__self__, "org_roles", org_roles)
+        pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "org_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Sequence['outputs.GetOrganizationsResultUserRoleProjectRoleAssignmentResult']:
+        return pulumi.get(self, "project_role_assignments")
+
+
+@pulumi.output_type
+class GetOrganizationsResultUserRoleProjectRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str,
+                 project_roles: Sequence[_builtins.str]):
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "project_roles")
 
 
 @pulumi.output_type
@@ -22958,7 +23050,7 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
         """
         :param _builtins.str comment: Human-readable string to associate with this private endpoint.
         :param _builtins.str customer_endpoint_dns_name: (Optional) Human-readable label to identify VPC endpoint DNS name.
-        :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+        :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
         :param _builtins.str provider_name: Human-readable label that identifies the cloud service provider.
         :param _builtins.str region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param _builtins.str type: Human-readable label that identifies the resource type associated with this private endpoint.
@@ -22990,7 +23082,7 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> _builtins.str:
         """
-        Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+        Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
         """
         return pulumi.get(self, "endpoint_id")
 
@@ -23017,97 +23109,6 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
         Human-readable label that identifies the resource type associated with this private endpoint.
         """
         return pulumi.get(self, "type")
-
-
-@pulumi.output_type
-class GetPrivatelinkEndpointsServiceServerlessResultResult(dict):
-    def __init__(__self__, *,
-                 cloud_provider_endpoint_id: _builtins.str,
-                 comment: _builtins.str,
-                 endpoint_id: _builtins.str,
-                 endpoint_service_name: _builtins.str,
-                 error_message: _builtins.str,
-                 private_endpoint_ip_address: _builtins.str,
-                 private_link_service_resource_id: _builtins.str,
-                 status: _builtins.str):
-        """
-        :param _builtins.str cloud_provider_endpoint_id: Unique string that identifies the private endpoint's network interface.
-        :param _builtins.str comment: Human-readable string to associate with this private endpoint.
-        :param _builtins.str endpoint_id: (Required) Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [AWS PrivateLink](https://aws.amazon.com/privatelink/) feature.
-        :param _builtins.str endpoint_service_name: Unique string that identifies the PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
-        :param _builtins.str private_endpoint_ip_address: IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
-        :param _builtins.str private_link_service_resource_id: Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
-        :param _builtins.str status: Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
-        """
-        pulumi.set(__self__, "cloud_provider_endpoint_id", cloud_provider_endpoint_id)
-        pulumi.set(__self__, "comment", comment)
-        pulumi.set(__self__, "endpoint_id", endpoint_id)
-        pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
-        pulumi.set(__self__, "error_message", error_message)
-        pulumi.set(__self__, "private_endpoint_ip_address", private_endpoint_ip_address)
-        pulumi.set(__self__, "private_link_service_resource_id", private_link_service_resource_id)
-        pulumi.set(__self__, "status", status)
-
-    @_builtins.property
-    @pulumi.getter(name="cloudProviderEndpointId")
-    def cloud_provider_endpoint_id(self) -> _builtins.str:
-        """
-        Unique string that identifies the private endpoint's network interface.
-        """
-        return pulumi.get(self, "cloud_provider_endpoint_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def comment(self) -> _builtins.str:
-        """
-        Human-readable string to associate with this private endpoint.
-        """
-        return pulumi.get(self, "comment")
-
-    @_builtins.property
-    @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> _builtins.str:
-        """
-        (Required) Unique 22-character alphanumeric string that identifies the private endpoint. Atlas supports AWS private endpoints using the [AWS PrivateLink](https://aws.amazon.com/privatelink/) feature.
-        """
-        return pulumi.get(self, "endpoint_id")
-
-    @_builtins.property
-    @pulumi.getter(name="endpointServiceName")
-    def endpoint_service_name(self) -> _builtins.str:
-        """
-        Unique string that identifies the PrivateLink endpoint service. MongoDB Cloud returns null while it creates the endpoint service.
-        """
-        return pulumi.get(self, "endpoint_service_name")
-
-    @_builtins.property
-    @pulumi.getter(name="errorMessage")
-    def error_message(self) -> _builtins.str:
-        return pulumi.get(self, "error_message")
-
-    @_builtins.property
-    @pulumi.getter(name="privateEndpointIpAddress")
-    def private_endpoint_ip_address(self) -> _builtins.str:
-        """
-        IPv4 address of the private endpoint in your Azure VNet that someone added to this private endpoint service.
-        """
-        return pulumi.get(self, "private_endpoint_ip_address")
-
-    @_builtins.property
-    @pulumi.getter(name="privateLinkServiceResourceId")
-    def private_link_service_resource_id(self) -> _builtins.str:
-        """
-        Root-relative path that identifies the Azure Private Link Service that MongoDB Cloud manages.
-        """
-        return pulumi.get(self, "private_link_service_resource_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def status(self) -> _builtins.str:
-        """
-        Human-readable label that indicates the current operating status of the private endpoint. Values include: RESERVATION_REQUESTED, RESERVED, INITIATING, AVAILABLE, FAILED, DELETING.
-        """
-        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -23407,6 +23408,132 @@ class GetProjectTeamResult(dict):
 
 
 @pulumi.output_type
+class GetProjectUserResult(dict):
+    def __init__(__self__, *,
+                 country: _builtins.str,
+                 created_at: _builtins.str,
+                 first_name: _builtins.str,
+                 id: _builtins.str,
+                 invitation_created_at: _builtins.str,
+                 invitation_expires_at: _builtins.str,
+                 inviter_username: _builtins.str,
+                 last_auth: _builtins.str,
+                 last_name: _builtins.str,
+                 mobile_number: _builtins.str,
+                 org_membership_status: _builtins.str,
+                 roles: Sequence[_builtins.str],
+                 username: _builtins.str):
+        """
+        :param _builtins.str country: Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+               * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+               * `firstName`- First or given name that belongs to the MongoDB Cloud user.
+               * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+               * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
+               * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+               * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        :param Sequence[_builtins.str] roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        :param _builtins.str username: Email address that represents the username of the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "invitation_created_at", invitation_created_at)
+        pulumi.set(__self__, "invitation_expires_at", invitation_expires_at)
+        pulumi.set(__self__, "inviter_username", inviter_username)
+        pulumi.set(__self__, "last_auth", last_auth)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "org_membership_status", org_membership_status)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        * `firstName`- First or given name that belongs to the MongoDB Cloud user.
+        * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> _builtins.str:
+        return pulumi.get(self, "first_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationCreatedAt")
+    def invitation_created_at(self) -> _builtins.str:
+        return pulumi.get(self, "invitation_created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationExpiresAt")
+    def invitation_expires_at(self) -> _builtins.str:
+        return pulumi.get(self, "invitation_expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="inviterUsername")
+    def inviter_username(self) -> _builtins.str:
+        return pulumi.get(self, "inviter_username")
+
+    @_builtins.property
+    @pulumi.getter(name="lastAuth")
+    def last_auth(self) -> _builtins.str:
+        return pulumi.get(self, "last_auth")
+
+    @_builtins.property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> _builtins.str:
+        return pulumi.get(self, "last_name")
+
+    @_builtins.property
+    @pulumi.getter(name="mobileNumber")
+    def mobile_number(self) -> _builtins.str:
+        return pulumi.get(self, "mobile_number")
+
+    @_builtins.property
+    @pulumi.getter(name="orgMembershipStatus")
+    def org_membership_status(self) -> _builtins.str:
+        return pulumi.get(self, "org_membership_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Email address that represents the username of the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
 class GetProjectsResultResult(dict):
     def __init__(__self__, *,
                  cluster_count: _builtins.int,
@@ -23421,12 +23548,13 @@ class GetProjectsResultResult(dict):
                  is_schema_advisor_enabled: _builtins.bool,
                  is_slow_operation_thresholding_enabled: _builtins.bool,
                  limits: Sequence['outputs.GetProjectsResultLimitResult'],
-                 name: _builtins.str,
                  org_id: _builtins.str,
-                 project_id: _builtins.str,
                  region_usage_restrictions: _builtins.str,
                  tags: Mapping[str, _builtins.str],
-                 teams: Sequence['outputs.GetProjectsResultTeamResult']):
+                 teams: Sequence['outputs.GetProjectsResultTeamResult'],
+                 users: Sequence['outputs.GetProjectsResultUserResult'],
+                 name: Optional[_builtins.str] = None,
+                 project_id: Optional[_builtins.str] = None):
         """
         :param _builtins.int cluster_count: The number of Atlas clusters deployed in the project.
         :param _builtins.str created: The ISO-8601-formatted timestamp of when Atlas created the project.
@@ -23443,7 +23571,9 @@ class GetProjectsResultResult(dict):
         :param _builtins.str org_id: The ID of the organization you want to create the project within.
         :param _builtins.str region_usage_restrictions: If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         :param Mapping[str, _builtins.str] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
-        :param Sequence['GetProjectsResultTeamArgs'] teams: Returns all teams to which the authenticated user has access in the project. See Teams.
+        :param Sequence['GetProjectsResultTeamArgs'] teams: **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
+        :param Sequence['GetProjectsResultUserArgs'] users: Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
         """
         pulumi.set(__self__, "cluster_count", cluster_count)
         pulumi.set(__self__, "created", created)
@@ -23457,12 +23587,15 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
         pulumi.set(__self__, "is_slow_operation_thresholding_enabled", is_slow_operation_thresholding_enabled)
         pulumi.set(__self__, "limits", limits)
-        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "org_id", org_id)
-        pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "region_usage_restrictions", region_usage_restrictions)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "teams", teams)
+        pulumi.set(__self__, "users", users)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
 
     @_builtins.property
     @pulumi.getter(name="clusterCount")
@@ -23563,22 +23696,12 @@ class GetProjectsResultResult(dict):
         return pulumi.get(self, "limits")
 
     @_builtins.property
-    @pulumi.getter
-    def name(self) -> _builtins.str:
-        return pulumi.get(self, "name")
-
-    @_builtins.property
     @pulumi.getter(name="orgId")
     def org_id(self) -> _builtins.str:
         """
         The ID of the organization you want to create the project within.
         """
         return pulumi.get(self, "org_id")
-
-    @_builtins.property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> _builtins.str:
-        return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="regionUsageRestrictions")
@@ -23598,11 +23721,33 @@ class GetProjectsResultResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def teams(self) -> Sequence['outputs.GetProjectsResultTeamResult']:
         """
-        Returns all teams to which the authenticated user has access in the project. See Teams.
+        **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
         """
         return pulumi.get(self, "teams")
+
+    @_builtins.property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetProjectsResultUserResult']:
+        """
+        Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+        """
+        return pulumi.get(self, "users")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+        """
+        return pulumi.get(self, "project_id")
 
 
 @pulumi.output_type
@@ -23744,6 +23889,140 @@ class GetProjectsResultTeamResult(dict):
         The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization.
         """
         return pulumi.get(self, "team_id")
+
+
+@pulumi.output_type
+class GetProjectsResultUserResult(dict):
+    def __init__(__self__, *,
+                 country: _builtins.str,
+                 created_at: _builtins.str,
+                 first_name: _builtins.str,
+                 id: _builtins.str,
+                 invitation_created_at: _builtins.str,
+                 invitation_expires_at: _builtins.str,
+                 inviter_username: _builtins.str,
+                 last_auth: _builtins.str,
+                 last_name: _builtins.str,
+                 mobile_number: _builtins.str,
+                 org_membership_status: _builtins.str,
+                 roles: Sequence[_builtins.str],
+                 username: _builtins.str):
+        """
+        :param _builtins.str country: Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+               * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+               * `firstName`- First or given name that belongs to the MongoDB Cloud user.
+               * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+               * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
+               * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+               
+               > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
+               
+               See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+               * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        :param Sequence[_builtins.str] roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        :param _builtins.str username: Email address that represents the username of the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "invitation_created_at", invitation_created_at)
+        pulumi.set(__self__, "invitation_expires_at", invitation_expires_at)
+        pulumi.set(__self__, "inviter_username", inviter_username)
+        pulumi.set(__self__, "last_auth", last_auth)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "org_membership_status", org_membership_status)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        * `firstName`- First or given name that belongs to the MongoDB Cloud user.
+        * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+
+        > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
+
+        See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> _builtins.str:
+        return pulumi.get(self, "first_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationCreatedAt")
+    def invitation_created_at(self) -> _builtins.str:
+        return pulumi.get(self, "invitation_created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationExpiresAt")
+    def invitation_expires_at(self) -> _builtins.str:
+        return pulumi.get(self, "invitation_expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="inviterUsername")
+    def inviter_username(self) -> _builtins.str:
+        return pulumi.get(self, "inviter_username")
+
+    @_builtins.property
+    @pulumi.getter(name="lastAuth")
+    def last_auth(self) -> _builtins.str:
+        return pulumi.get(self, "last_auth")
+
+    @_builtins.property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> _builtins.str:
+        return pulumi.get(self, "last_name")
+
+    @_builtins.property
+    @pulumi.getter(name="mobileNumber")
+    def mobile_number(self) -> _builtins.str:
+        return pulumi.get(self, "mobile_number")
+
+    @_builtins.property
+    @pulumi.getter(name="orgMembershipStatus")
+    def org_membership_status(self) -> _builtins.str:
+        return pulumi.get(self, "org_membership_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Email address that represents the username of the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -24278,7 +24557,7 @@ class GetSearchIndexSynonymResult(dict):
                  source_collection: _builtins.str):
         """
         :param _builtins.str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-        :param _builtins.str name: Name of the index.
+        :param _builtins.str name: Type set name.
         """
         pulumi.set(__self__, "analyzer", analyzer)
         pulumi.set(__self__, "name", name)
@@ -24296,7 +24575,7 @@ class GetSearchIndexSynonymResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Name of the index.
+        Type set name.
         """
         return pulumi.get(self, "name")
 
@@ -24304,6 +24583,35 @@ class GetSearchIndexSynonymResult(dict):
     @pulumi.getter(name="sourceCollection")
     def source_collection(self) -> _builtins.str:
         return pulumi.get(self, "source_collection")
+
+
+@pulumi.output_type
+class GetSearchIndexTypeSetResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 types: _builtins.str):
+        """
+        :param _builtins.str name: Type set name.
+        :param _builtins.str types: JSON array string describing the types for the set.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "types", types)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Type set name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def types(self) -> _builtins.str:
+        """
+        JSON array string describing the types for the set.
+        """
+        return pulumi.get(self, "types")
 
 
 @pulumi.output_type
@@ -24317,6 +24625,7 @@ class GetSearchIndexesResultResult(dict):
                  fields: _builtins.str,
                  index_id: _builtins.str,
                  mappings_dynamic: _builtins.bool,
+                 mappings_dynamic_config: _builtins.str,
                  mappings_fields: _builtins.str,
                  name: _builtins.str,
                  project_id: _builtins.str,
@@ -24324,7 +24633,8 @@ class GetSearchIndexesResultResult(dict):
                  status: _builtins.str,
                  stored_source: _builtins.str,
                  synonyms: Sequence['outputs.GetSearchIndexesResultSynonymResult'],
-                 type: _builtins.str):
+                 type: _builtins.str,
+                 type_sets: Sequence['outputs.GetSearchIndexesResultTypeSetResult']):
         """
         :param _builtins.str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         :param _builtins.str analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
@@ -24332,9 +24642,10 @@ class GetSearchIndexesResultResult(dict):
         :param _builtins.str collection_name: Name of the collection with one or more Atlas Search indexes.
         :param _builtins.str database: (Required) Name of the database the collection is in.
         :param _builtins.str index_id: The unique identifier of the Atlas Search index.
-        :param _builtins.bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings.
+        :param _builtins.bool mappings_dynamic: Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `mappings_dynamic_config`.
+        :param _builtins.str mappings_dynamic_config: JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappings_dynamic`.
         :param _builtins.str mappings_fields: Object containing one or more field specifications.
-        :param _builtins.str name: Name of the index.
+        :param _builtins.str name: Type set name.
         :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
         :param _builtins.str search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         :param _builtins.str status: Current status of the index.
@@ -24343,6 +24654,7 @@ class GetSearchIndexesResultResult(dict):
                * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
                * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
                * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+        :param Sequence['GetSearchIndexesResultTypeSetArgs'] type_sets: Set of type set definitions (when present). Each item includes:
         """
         pulumi.set(__self__, "analyzer", analyzer)
         pulumi.set(__self__, "analyzers", analyzers)
@@ -24352,6 +24664,7 @@ class GetSearchIndexesResultResult(dict):
         pulumi.set(__self__, "fields", fields)
         pulumi.set(__self__, "index_id", index_id)
         pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
+        pulumi.set(__self__, "mappings_dynamic_config", mappings_dynamic_config)
         pulumi.set(__self__, "mappings_fields", mappings_fields)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
@@ -24360,6 +24673,7 @@ class GetSearchIndexesResultResult(dict):
         pulumi.set(__self__, "stored_source", stored_source)
         pulumi.set(__self__, "synonyms", synonyms)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "type_sets", type_sets)
 
     @_builtins.property
     @pulumi.getter
@@ -24418,9 +24732,17 @@ class GetSearchIndexesResultResult(dict):
     @pulumi.getter(name="mappingsDynamic")
     def mappings_dynamic(self) -> _builtins.bool:
         """
-        Flag indicating whether the index uses dynamic or static mappings.
+        Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `mappings_dynamic_config`.
         """
         return pulumi.get(self, "mappings_dynamic")
+
+    @_builtins.property
+    @pulumi.getter(name="mappingsDynamicConfig")
+    def mappings_dynamic_config(self) -> _builtins.str:
+        """
+        JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappings_dynamic`.
+        """
+        return pulumi.get(self, "mappings_dynamic_config")
 
     @_builtins.property
     @pulumi.getter(name="mappingsFields")
@@ -24434,7 +24756,7 @@ class GetSearchIndexesResultResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Name of the index.
+        Type set name.
         """
         return pulumi.get(self, "name")
 
@@ -24486,6 +24808,14 @@ class GetSearchIndexesResultResult(dict):
     def type(self) -> _builtins.str:
         return pulumi.get(self, "type")
 
+    @_builtins.property
+    @pulumi.getter(name="typeSets")
+    def type_sets(self) -> Sequence['outputs.GetSearchIndexesResultTypeSetResult']:
+        """
+        Set of type set definitions (when present). Each item includes:
+        """
+        return pulumi.get(self, "type_sets")
+
 
 @pulumi.output_type
 class GetSearchIndexesResultSynonymResult(dict):
@@ -24495,7 +24825,7 @@ class GetSearchIndexesResultSynonymResult(dict):
                  source_collection: _builtins.str):
         """
         :param _builtins.str analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
-        :param _builtins.str name: Name of the index.
+        :param _builtins.str name: Type set name.
         """
         pulumi.set(__self__, "analyzer", analyzer)
         pulumi.set(__self__, "name", name)
@@ -24513,7 +24843,7 @@ class GetSearchIndexesResultSynonymResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Name of the index.
+        Type set name.
         """
         return pulumi.get(self, "name")
 
@@ -24521,6 +24851,35 @@ class GetSearchIndexesResultSynonymResult(dict):
     @pulumi.getter(name="sourceCollection")
     def source_collection(self) -> _builtins.str:
         return pulumi.get(self, "source_collection")
+
+
+@pulumi.output_type
+class GetSearchIndexesResultTypeSetResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 types: _builtins.str):
+        """
+        :param _builtins.str name: Type set name.
+        :param _builtins.str types: JSON array string describing the types for the set.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "types", types)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Type set name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def types(self) -> _builtins.str:
+        """
+        JSON array string describing the types for the set.
+        """
+        return pulumi.get(self, "types")
 
 
 @pulumi.output_type
@@ -24931,25 +25290,67 @@ class GetSharedTierSnapshotsResultResult(dict):
 @pulumi.output_type
 class GetStreamConnectionAuthenticationResult(dict):
     def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 client_secret: _builtins.str,
                  mechanism: _builtins.str,
+                 method: _builtins.str,
                  password: _builtins.str,
+                 sasl_oauthbearer_extensions: _builtins.str,
+                 scope: _builtins.str,
+                 token_endpoint_url: _builtins.str,
                  username: _builtins.str):
         """
-        :param _builtins.str mechanism: Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param _builtins.str client_id: Public identifier for the Kafka client.
+        :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
+        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
+        :param _builtins.str scope: Scope of the access request to the broker specified by the Kafka clients.
+        :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param _builtins.str username: Username of the account to connect to the Kafka cluster.
         """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "mechanism", mechanism)
+        pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "sasl_oauthbearer_extensions", sasl_oauthbearer_extensions)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        Public identifier for the Kafka client.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> _builtins.str:
+        """
+        Secret known only to the Kafka client and the authorization server.
+        """
+        return pulumi.get(self, "client_secret")
 
     @_builtins.property
     @pulumi.getter
     def mechanism(self) -> _builtins.str:
         """
-        Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
         """
         return pulumi.get(self, "mechanism")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> _builtins.str:
+        """
+        SASL OAUTHBEARER authentication method. Value must be OIDC.
+        """
+        return pulumi.get(self, "method")
 
     @_builtins.property
     @pulumi.getter
@@ -24958,6 +25359,30 @@ class GetStreamConnectionAuthenticationResult(dict):
         Password of the account to connect to the Kafka cluster.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="saslOauthbearerExtensions")
+    def sasl_oauthbearer_extensions(self) -> _builtins.str:
+        """
+        Additional information to provide to the Kafka broker.
+        """
+        return pulumi.get(self, "sasl_oauthbearer_extensions")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        Scope of the access request to the broker specified by the Kafka clients.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpointUrl")
+    def token_endpoint_url(self) -> _builtins.str:
+        """
+        OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+        """
+        return pulumi.get(self, "token_endpoint_url")
 
     @_builtins.property
     @pulumi.getter
@@ -25109,22 +25534,26 @@ class GetStreamConnectionsResultResult(dict):
                  project_id: _builtins.str,
                  security: 'outputs.GetStreamConnectionsResultSecurityResult',
                  type: _builtins.str,
-                 url: _builtins.str):
+                 url: _builtins.str,
+                 workspace_name: _builtins.str):
         """
         :param 'GetStreamConnectionsResultAuthenticationArgs' authentication: User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
         :param 'GetStreamConnectionsResultAwsArgs' aws: The configuration for AWS Lambda connection. See AWS
         :param _builtins.str bootstrap_servers: Comma separated list of server addresses.
         :param _builtins.str cluster_name: Name of the cluster configured for this connection.
         :param Mapping[str, _builtins.str] config: A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
-        :param _builtins.str connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        :param _builtins.str connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param 'GetStreamConnectionsResultDbRoleToExecuteArgs' db_role_to_execute: The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
         :param Mapping[str, _builtins.str] headers: A map of key-value pairs for optional headers.
-        :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
+        :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
         :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param 'GetStreamConnectionsResultSecurityArgs' security: Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
         :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         :param _builtins.str url: URL of the HTTPs endpoint that will be used for creating a connection.
+        :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+               
+               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "aws", aws)
@@ -25142,6 +25571,7 @@ class GetStreamConnectionsResultResult(dict):
         pulumi.set(__self__, "security", security)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "url", url)
+        pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
     @pulumi.getter
@@ -25192,7 +25622,7 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter(name="connectionName")
     def connection_name(self) -> _builtins.str:
         """
-        Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         """
         return pulumi.get(self, "connection_name")
 
@@ -25219,9 +25649,10 @@ class GetStreamConnectionsResultResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
     def instance_name(self) -> _builtins.str:
         """
-        Human-readable label that identifies the stream instance.
+        Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         """
         return pulumi.get(self, "instance_name")
 
@@ -25265,29 +25696,81 @@ class GetStreamConnectionsResultResult(dict):
         """
         return pulumi.get(self, "url")
 
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> _builtins.str:
+        """
+        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+
+        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
+        """
+        return pulumi.get(self, "workspace_name")
+
 
 @pulumi.output_type
 class GetStreamConnectionsResultAuthenticationResult(dict):
     def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 client_secret: _builtins.str,
                  mechanism: _builtins.str,
+                 method: _builtins.str,
                  password: _builtins.str,
+                 sasl_oauthbearer_extensions: _builtins.str,
+                 scope: _builtins.str,
+                 token_endpoint_url: _builtins.str,
                  username: _builtins.str):
         """
-        :param _builtins.str mechanism: Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param _builtins.str client_id: Public identifier for the Kafka client.
+        :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
+        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
+        :param _builtins.str scope: Scope of the access request to the broker specified by the Kafka clients.
+        :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param _builtins.str username: Username of the account to connect to the Kafka cluster.
         """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "mechanism", mechanism)
+        pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "sasl_oauthbearer_extensions", sasl_oauthbearer_extensions)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        Public identifier for the Kafka client.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> _builtins.str:
+        """
+        Secret known only to the Kafka client and the authorization server.
+        """
+        return pulumi.get(self, "client_secret")
 
     @_builtins.property
     @pulumi.getter
     def mechanism(self) -> _builtins.str:
         """
-        Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
         """
         return pulumi.get(self, "mechanism")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> _builtins.str:
+        """
+        SASL OAUTHBEARER authentication method. Value must be OIDC.
+        """
+        return pulumi.get(self, "method")
 
     @_builtins.property
     @pulumi.getter
@@ -25296,6 +25779,30 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
         Password of the account to connect to the Kafka cluster.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="saslOauthbearerExtensions")
+    def sasl_oauthbearer_extensions(self) -> _builtins.str:
+        """
+        Additional information to provide to the Kafka broker.
+        """
+        return pulumi.get(self, "sasl_oauthbearer_extensions")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        Scope of the access request to the broker specified by the Kafka clients.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpointUrl")
+    def token_endpoint_url(self) -> _builtins.str:
+        """
+        OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+        """
+        return pulumi.get(self, "token_endpoint_url")
 
     @_builtins.property
     @pulumi.getter
@@ -25461,11 +25968,18 @@ class GetStreamInstanceDataProcessRegionResult(dict):
 @pulumi.output_type
 class GetStreamInstanceStreamConfigResult(dict):
     def __init__(__self__, *,
+                 max_tier_size: _builtins.str,
                  tier: _builtins.str):
         """
         :param _builtins.str tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
+        pulumi.set(__self__, "max_tier_size", max_tier_size)
         pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> _builtins.str:
+        return pulumi.get(self, "max_tier_size")
 
     @_builtins.property
     @pulumi.getter
@@ -25577,11 +26091,18 @@ class GetStreamInstancesResultDataProcessRegionResult(dict):
 @pulumi.output_type
 class GetStreamInstancesResultStreamConfigResult(dict):
     def __init__(__self__, *,
+                 max_tier_size: _builtins.str,
                  tier: _builtins.str):
         """
         :param _builtins.str tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
+        pulumi.set(__self__, "max_tier_size", max_tier_size)
         pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> _builtins.str:
+        return pulumi.get(self, "max_tier_size")
 
     @_builtins.property
     @pulumi.getter
@@ -25606,6 +26127,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                  provider_account_id: _builtins.str,
                  provider_name: _builtins.str,
                  region: _builtins.str,
+                 service_attachment_uris: Sequence[_builtins.str],
                  service_endpoint_id: _builtins.str,
                  state: _builtins.str,
                  vendor: _builtins.str):
@@ -25623,8 +26145,9 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         :param _builtins.str interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
         :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         :param _builtins.str provider_account_id: Account ID from the cloud provider.
-        :param _builtins.str provider_name: Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        :param _builtins.str provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param _builtins.str region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+        :param Sequence[_builtins.str] service_attachment_uris: List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
         :param _builtins.str service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
         :param _builtins.str state: Status of the connection.
         :param _builtins.str vendor: Vendor that manages the endpoint. The following are the vendor values per provider:
@@ -25632,6 +26155,8 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                	* **AWS**: MSK, CONFLUENT, and S3
                
                	* **Azure**: EVENTHUB and CONFLUENT
+               
+               	* **GCP**: CONFLUENT
         """
         pulumi.set(__self__, "arn", arn)
         pulumi.set(__self__, "dns_domain", dns_domain)
@@ -25644,6 +26169,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         pulumi.set(__self__, "provider_account_id", provider_account_id)
         pulumi.set(__self__, "provider_name", provider_name)
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "service_attachment_uris", service_attachment_uris)
         pulumi.set(__self__, "service_endpoint_id", service_endpoint_id)
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "vendor", vendor)
@@ -25728,7 +26254,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="providerName")
     def provider_name(self) -> _builtins.str:
         """
-        Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+        Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         """
         return pulumi.get(self, "provider_name")
 
@@ -25739,6 +26265,14 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAttachmentUris")
+    def service_attachment_uris(self) -> Sequence[_builtins.str]:
+        """
+        List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+        """
+        return pulumi.get(self, "service_attachment_uris")
 
     @_builtins.property
     @pulumi.getter(name="serviceEndpointId")
@@ -25765,6 +26299,8 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         	* **AWS**: MSK, CONFLUENT, and S3
 
         	* **Azure**: EVENTHUB and CONFLUENT
+
+        	* **GCP**: CONFLUENT
         """
         return pulumi.get(self, "vendor")
 
@@ -25837,18 +26373,20 @@ class GetStreamProcessorsResultResult(dict):
                  processor_name: _builtins.str,
                  project_id: _builtins.str,
                  state: _builtins.str,
-                 stats: _builtins.str):
+                 stats: _builtins.str,
+                 workspace_name: _builtins.str):
         """
         :param _builtins.str id: Unique 24-hexadecimal character string that identifies the stream processor.
-        :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
+        :param _builtins.str instance_name: Label that identifies the stream processing workspace.
         :param 'GetStreamProcessorsResultOptionsArgs' options: Optional configuration for the stream processor.
         :param _builtins.str pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
-        :param _builtins.str processor_name: Human-readable label that identifies the stream processor.
+        :param _builtins.str processor_name: Label that identifies the stream processor.
         :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param _builtins.str state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
                
                **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         :param _builtins.str stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
+        :param _builtins.str workspace_name: Label that identifies the stream processing workspace.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_name", instance_name)
@@ -25858,6 +26396,7 @@ class GetStreamProcessorsResultResult(dict):
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "stats", stats)
+        pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
     @pulumi.getter
@@ -25869,9 +26408,10 @@ class GetStreamProcessorsResultResult(dict):
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
     def instance_name(self) -> _builtins.str:
         """
-        Human-readable label that identifies the stream instance.
+        Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "instance_name")
 
@@ -25895,7 +26435,7 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter(name="processorName")
     def processor_name(self) -> _builtins.str:
         """
-        Human-readable label that identifies the stream processor.
+        Label that identifies the stream processor.
         """
         return pulumi.get(self, "processor_name")
 
@@ -25924,6 +26464,14 @@ class GetStreamProcessorsResultResult(dict):
         The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         return pulumi.get(self, "stats")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> _builtins.str:
+        """
+        Label that identifies the stream processing workspace.
+        """
+        return pulumi.get(self, "workspace_name")
 
 
 @pulumi.output_type
@@ -25982,6 +26530,382 @@ class GetStreamProcessorsResultOptionsDlqResult(dict):
         Name of the database to use for the DLQ.
         """
         return pulumi.get(self, "db")
+
+
+@pulumi.output_type
+class GetStreamWorkspaceDataProcessRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        :param _builtins.str region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> _builtins.str:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetStreamWorkspaceStreamConfigResult(dict):
+    def __init__(__self__, *,
+                 max_tier_size: _builtins.str,
+                 tier: _builtins.str):
+        """
+        :param _builtins.str tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "max_tier_size", max_tier_size)
+        pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> _builtins.str:
+        return pulumi.get(self, "max_tier_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def tier(self) -> _builtins.str:
+        """
+        Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "tier")
+
+
+@pulumi.output_type
+class GetStreamWorkspacesResultResult(dict):
+    def __init__(__self__, *,
+                 data_process_region: 'outputs.GetStreamWorkspacesResultDataProcessRegionResult',
+                 hostnames: Sequence[_builtins.str],
+                 id: _builtins.str,
+                 project_id: _builtins.str,
+                 stream_config: 'outputs.GetStreamWorkspacesResultStreamConfigResult',
+                 workspace_name: _builtins.str):
+        """
+        :param 'GetStreamWorkspacesResultDataProcessRegionArgs' data_process_region: Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+        :param Sequence[_builtins.str] hostnames: List that contains the hostnames assigned to the stream workspace.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param 'GetStreamWorkspacesResultStreamConfigArgs' stream_config: Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+        :param _builtins.str workspace_name: Label that identifies the stream workspace.
+        """
+        pulumi.set(__self__, "data_process_region", data_process_region)
+        pulumi.set(__self__, "hostnames", hostnames)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "stream_config", stream_config)
+        pulumi.set(__self__, "workspace_name", workspace_name)
+
+    @_builtins.property
+    @pulumi.getter(name="dataProcessRegion")
+    def data_process_region(self) -> 'outputs.GetStreamWorkspacesResultDataProcessRegionResult':
+        """
+        Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+        """
+        return pulumi.get(self, "data_process_region")
+
+    @_builtins.property
+    @pulumi.getter
+    def hostnames(self) -> Sequence[_builtins.str]:
+        """
+        List that contains the hostnames assigned to the stream workspace.
+        """
+        return pulumi.get(self, "hostnames")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="streamConfig")
+    def stream_config(self) -> 'outputs.GetStreamWorkspacesResultStreamConfigResult':
+        """
+        Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+        """
+        return pulumi.get(self, "stream_config")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> _builtins.str:
+        """
+        Label that identifies the stream workspace.
+        """
+        return pulumi.get(self, "workspace_name")
+
+
+@pulumi.output_type
+class GetStreamWorkspacesResultDataProcessRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        :param _builtins.str region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> _builtins.str:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetStreamWorkspacesResultStreamConfigResult(dict):
+    def __init__(__self__, *,
+                 max_tier_size: _builtins.str,
+                 tier: _builtins.str):
+        """
+        :param _builtins.str tier: Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "max_tier_size", max_tier_size)
+        pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> _builtins.str:
+        return pulumi.get(self, "max_tier_size")
+
+    @_builtins.property
+    @pulumi.getter
+    def tier(self) -> _builtins.str:
+        """
+        Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "tier")
+
+
+@pulumi.output_type
+class GetTeamUserResult(dict):
+    def __init__(__self__, *,
+                 country: _builtins.str,
+                 created_at: _builtins.str,
+                 first_name: _builtins.str,
+                 id: _builtins.str,
+                 invitation_created_at: _builtins.str,
+                 invitation_expires_at: _builtins.str,
+                 inviter_username: _builtins.str,
+                 last_auth: _builtins.str,
+                 last_name: _builtins.str,
+                 mobile_number: _builtins.str,
+                 org_membership_status: _builtins.str,
+                 roles: Sequence['outputs.GetTeamUserRoleResult'],
+                 team_ids: Sequence[_builtins.str],
+                 username: _builtins.str):
+        """
+        :param _builtins.str country: Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        :param _builtins.str created_at: Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str first_name: First or given name that belongs to the MongoDB Cloud user.
+        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        :param _builtins.str invitation_created_at: Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        :param _builtins.str invitation_expires_at: Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        :param _builtins.str inviter_username: Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        :param _builtins.str last_auth: Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        :param _builtins.str mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
+        :param _builtins.str org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or are already active in the organization.
+        :param Sequence['GetTeamUserRoleArgs'] roles: Organization and project-level roles assigned to one MongoDB Cloud user within one organization.
+        :param Sequence[_builtins.str] team_ids: List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+        :param _builtins.str username: Email address that represents the username of the MongoDB Cloud user.
+        """
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "first_name", first_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "invitation_created_at", invitation_created_at)
+        pulumi.set(__self__, "invitation_expires_at", invitation_expires_at)
+        pulumi.set(__self__, "inviter_username", inviter_username)
+        pulumi.set(__self__, "last_auth", last_auth)
+        pulumi.set(__self__, "last_name", last_name)
+        pulumi.set(__self__, "mobile_number", mobile_number)
+        pulumi.set(__self__, "org_membership_status", org_membership_status)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "team_ids", team_ids)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> _builtins.str:
+        """
+        First or given name that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "first_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationCreatedAt")
+    def invitation_created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
+        return pulumi.get(self, "invitation_created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="invitationExpiresAt")
+    def invitation_expires_at(self) -> _builtins.str:
+        """
+        Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
+        return pulumi.get(self, "invitation_expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="inviterUsername")
+    def inviter_username(self) -> _builtins.str:
+        """
+        Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        """
+        return pulumi.get(self, "inviter_username")
+
+    @_builtins.property
+    @pulumi.getter(name="lastAuth")
+    def last_auth(self) -> _builtins.str:
+        """
+        Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_auth")
+
+    @_builtins.property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> _builtins.str:
+        """
+        Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "last_name")
+
+    @_builtins.property
+    @pulumi.getter(name="mobileNumber")
+    def mobile_number(self) -> _builtins.str:
+        """
+        Mobile phone number that belongs to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "mobile_number")
+
+    @_builtins.property
+    @pulumi.getter(name="orgMembershipStatus")
+    def org_membership_status(self) -> _builtins.str:
+        """
+        String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or are already active in the organization.
+        """
+        return pulumi.get(self, "org_membership_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence['outputs.GetTeamUserRoleResult']:
+        """
+        Organization and project-level roles assigned to one MongoDB Cloud user within one organization.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter(name="teamIds")
+    def team_ids(self) -> Sequence[_builtins.str]:
+        """
+        List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+        """
+        return pulumi.get(self, "team_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Email address that represents the username of the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetTeamUserRoleResult(dict):
+    def __init__(__self__, *,
+                 org_roles: Sequence[_builtins.str],
+                 project_role_assignments: Sequence['outputs.GetTeamUserRoleProjectRoleAssignmentResult']):
+        pulumi.set(__self__, "org_roles", org_roles)
+        pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "org_roles")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Sequence['outputs.GetTeamUserRoleProjectRoleAssignmentResult']:
+        return pulumi.get(self, "project_role_assignments")
+
+
+@pulumi.output_type
+class GetTeamUserRoleProjectRoleAssignmentResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str,
+                 project_roles: Sequence[_builtins.str]):
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Sequence[_builtins.str]:
+        return pulumi.get(self, "project_roles")
 
 
 @pulumi.output_type

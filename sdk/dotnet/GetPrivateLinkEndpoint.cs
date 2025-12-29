@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetPrivateLinkEndpoint
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.PrivateLinkEndpoint
-        /// 
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -55,8 +53,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.PrivateLinkEndpoint
-        /// 
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -98,8 +94,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.PrivateLinkEndpoint
-        /// 
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.

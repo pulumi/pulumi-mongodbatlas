@@ -27,7 +27,7 @@ class GetAdvancedClustersResult:
     """
     A collection of values returned by getAdvancedClusters.
     """
-    def __init__(__self__, id=None, project_id=None, results=None, use_replication_spec_per_shard=None):
+    def __init__(__self__, id=None, project_id=None, results=None, use_effective_fields=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -37,9 +37,9 @@ class GetAdvancedClustersResult:
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-        if use_replication_spec_per_shard and not isinstance(use_replication_spec_per_shard, bool):
-            raise TypeError("Expected argument 'use_replication_spec_per_shard' to be a bool")
-        pulumi.set(__self__, "use_replication_spec_per_shard", use_replication_spec_per_shard)
+        if use_effective_fields and not isinstance(use_effective_fields, bool):
+            raise TypeError("Expected argument 'use_effective_fields' to be a bool")
+        pulumi.set(__self__, "use_effective_fields", use_effective_fields)
 
     @_builtins.property
     @pulumi.getter
@@ -63,9 +63,9 @@ class GetAdvancedClustersResult:
         return pulumi.get(self, "results")
 
     @_builtins.property
-    @pulumi.getter(name="useReplicationSpecPerShard")
-    def use_replication_spec_per_shard(self) -> Optional[_builtins.bool]:
-        return pulumi.get(self, "use_replication_spec_per_shard")
+    @pulumi.getter(name="useEffectiveFields")
+    def use_effective_fields(self) -> Optional[_builtins.bool]:
+        return pulumi.get(self, "use_effective_fields")
 
 
 class AwaitableGetAdvancedClustersResult(GetAdvancedClustersResult):
@@ -77,18 +77,14 @@ class AwaitableGetAdvancedClustersResult(GetAdvancedClustersResult):
             id=self.id,
             project_id=self.project_id,
             results=self.results,
-            use_replication_spec_per_shard=self.use_replication_spec_per_shard)
+            use_effective_fields=self.use_effective_fields)
 
 
 def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
-                          use_replication_spec_per_shard: Optional[_builtins.bool] = None,
+                          use_effective_fields: Optional[_builtins.bool] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClustersResult:
     """
-    ## # Data Source: get_advanced_clusters
-
     `get_advanced_clusters` returns all Advanced Clusters for a project_id.
-
-    This page describes the current version of `get_advanced_clusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -104,7 +100,7 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         cluster_type="REPLICASET",
@@ -119,7 +115,67 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
+    this = mongodbatlas.get_advanced_clusters_output(project_id=this_advanced_cluster.project_id)
+    ```
+
+    ## Example using effective fields with auto-scaling
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
+        project_id="<YOUR-PROJECT-ID>",
+        name="auto-scale-cluster-1",
+        cluster_type="REPLICASET",
+        use_effective_fields=True,
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+                "auto_scaling": {
+                    "compute_enabled": True,
+                    "compute_scale_down_enabled": True,
+                    "compute_min_instance_size": "M10",
+                    "compute_max_instance_size": "M30",
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_EAST_1",
+            }],
+        }])
+    this2 = mongodbatlas.AdvancedCluster("this_2",
+        project_id="<YOUR-PROJECT-ID>",
+        name="auto-scale-cluster-2",
+        cluster_type="REPLICASET",
+        use_effective_fields=True,
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M20",
+                    "node_count": 3,
+                },
+                "auto_scaling": {
+                    "compute_enabled": True,
+                    "compute_scale_down_enabled": True,
+                    "compute_min_instance_size": "M20",
+                    "compute_max_instance_size": "M40",
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_WEST_2",
+            }],
+        }])
+    # Read effective values for all clusters in the project
+    this = mongodbatlas.get_advanced_clusters(project_id="<YOUR-PROJECT-ID>",
+        use_effective_fields=True)
+    pulumi.export("allClusterNamesAndSizes", [{
+        "name": cluster.name,
+        "configuredSize": cluster.replication_specs[0].region_configs[0].electable_specs.instance_size,
+        "actualSize": cluster.replication_specs[0].region_configs[0].effective_electable_specs.instance_size,
+    } for cluster in this.results])
     ```
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
@@ -128,7 +184,7 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         backup_enabled=False,
@@ -159,9 +215,8 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
                 }],
             },
         ])
-    example_asym = mongodbatlas.get_advanced_cluster_output(project_id=example.project_id,
-        name=example.name,
-        use_replication_spec_per_shard=True)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
     ```
 
     ## Example using Flex cluster
@@ -170,7 +225,7 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_flex = mongodbatlas.AdvancedCluster("example-flex",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="flex-cluster",
         cluster_type="REPLICASET",
@@ -182,16 +237,16 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_clusters_output(project_id=example_flex.project_id)
+    this = mongodbatlas.get_advanced_clusters_output(project_id=this_advanced_cluster.project_id)
     ```
 
 
     :param _builtins.str project_id: The unique ID for the project to get the clusters.
-    :param _builtins.bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+    :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
+    __args__['useEffectiveFields'] = use_effective_fields
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAdvancedClusters:getAdvancedClusters', __args__, opts=opts, typ=GetAdvancedClustersResult).value
 
@@ -199,16 +254,12 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
-        use_replication_spec_per_shard=pulumi.get(__ret__, 'use_replication_spec_per_shard'))
+        use_effective_fields=pulumi.get(__ret__, 'use_effective_fields'))
 def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                 use_replication_spec_per_shard: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+                                 use_effective_fields: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClustersResult]:
     """
-    ## # Data Source: get_advanced_clusters
-
     `get_advanced_clusters` returns all Advanced Clusters for a project_id.
-
-    This page describes the current version of `get_advanced_clusters`, the page for the **Preview for MongoDB Atlas Provider 2.0.0** can be found here.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
@@ -224,7 +275,7 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_advanced_cluster = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         cluster_type="REPLICASET",
@@ -239,7 +290,67 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_clusters_output(project_id=example_advanced_cluster.project_id)
+    this = mongodbatlas.get_advanced_clusters_output(project_id=this_advanced_cluster.project_id)
+    ```
+
+    ## Example using effective fields with auto-scaling
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
+        project_id="<YOUR-PROJECT-ID>",
+        name="auto-scale-cluster-1",
+        cluster_type="REPLICASET",
+        use_effective_fields=True,
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+                "auto_scaling": {
+                    "compute_enabled": True,
+                    "compute_scale_down_enabled": True,
+                    "compute_min_instance_size": "M10",
+                    "compute_max_instance_size": "M30",
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_EAST_1",
+            }],
+        }])
+    this2 = mongodbatlas.AdvancedCluster("this_2",
+        project_id="<YOUR-PROJECT-ID>",
+        name="auto-scale-cluster-2",
+        cluster_type="REPLICASET",
+        use_effective_fields=True,
+        replication_specs=[{
+            "region_configs": [{
+                "electable_specs": {
+                    "instance_size": "M20",
+                    "node_count": 3,
+                },
+                "auto_scaling": {
+                    "compute_enabled": True,
+                    "compute_scale_down_enabled": True,
+                    "compute_min_instance_size": "M20",
+                    "compute_max_instance_size": "M40",
+                },
+                "provider_name": "AWS",
+                "priority": 7,
+                "region_name": "US_WEST_2",
+            }],
+        }])
+    # Read effective values for all clusters in the project
+    this = mongodbatlas.get_advanced_clusters(project_id="<YOUR-PROJECT-ID>",
+        use_effective_fields=True)
+    pulumi.export("allClusterNamesAndSizes", [{
+        "name": cluster.name,
+        "configuredSize": cluster.replication_specs[0].region_configs[0].electable_specs.instance_size,
+        "actualSize": cluster.replication_specs[0].region_configs[0].effective_electable_specs.instance_size,
+    } for cluster in this.results])
     ```
 
     ## Example using latest sharding configurations with independent shard scaling in the cluster
@@ -248,7 +359,7 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example = mongodbatlas.AdvancedCluster("example",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="cluster-test",
         backup_enabled=False,
@@ -279,9 +390,8 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
                 }],
             },
         ])
-    example_asym = mongodbatlas.get_advanced_cluster_output(project_id=example.project_id,
-        name=example.name,
-        use_replication_spec_per_shard=True)
+    this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+        name=this_advanced_cluster.name)
     ```
 
     ## Example using Flex cluster
@@ -290,7 +400,7 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    example_flex = mongodbatlas.AdvancedCluster("example-flex",
+    this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
         project_id="<YOUR-PROJECT-ID>",
         name="flex-cluster",
         cluster_type="REPLICASET",
@@ -302,20 +412,20 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
                 "priority": 7,
             }],
         }])
-    example = mongodbatlas.get_advanced_clusters_output(project_id=example_flex.project_id)
+    this = mongodbatlas.get_advanced_clusters_output(project_id=this_advanced_cluster.project_id)
     ```
 
 
     :param _builtins.str project_id: The unique ID for the project to get the clusters.
-    :param _builtins.bool use_replication_spec_per_shard: Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replication_specs` object. This enables representing clusters with independent shard scaling. **Note:** If not set to true, this data source return all clusters except clusters with asymmetric shards.
+    :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
-    __args__['useReplicationSpecPerShard'] = use_replication_spec_per_shard
+    __args__['useEffectiveFields'] = use_effective_fields
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAdvancedClusters:getAdvancedClusters', __args__, opts=opts, typ=GetAdvancedClustersResult)
     return __ret__.apply(lambda __response__: GetAdvancedClustersResult(
         id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results'),
-        use_replication_spec_per_shard=pulumi.get(__response__, 'use_replication_spec_per_shard')))
+        use_effective_fields=pulumi.get(__response__, 'use_effective_fields')))

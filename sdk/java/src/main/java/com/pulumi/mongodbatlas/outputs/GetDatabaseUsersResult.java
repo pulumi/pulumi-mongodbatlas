@@ -60,7 +60,7 @@ public final class GetDatabaseUsersResult {
      */
     private List<GetDatabaseUsersResultRole> roles;
     /**
-     * @return Array of clusters and Atlas Data Lakes that this user has access to.
+     * @return Array of clusters and Atlas Data Federation that this user has access to.
      * 
      */
     private List<GetDatabaseUsersResultScope> scopes;
@@ -140,7 +140,7 @@ public final class GetDatabaseUsersResult {
         return this.roles;
     }
     /**
-     * @return Array of clusters and Atlas Data Lakes that this user has access to.
+     * @return Array of clusters and Atlas Data Federation that this user has access to.
      * 
      */
     public List<GetDatabaseUsersResultScope> scopes() {

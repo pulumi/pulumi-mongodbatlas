@@ -141,8 +141,6 @@ def get_flex_snapshot(name: Optional[_builtins.str] = None,
                       snapshot_id: Optional[_builtins.str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFlexSnapshotResult:
     """
-    ## # Data Source: get_flex_snapshot
-
     `get_flex_snapshot` describes a flex snapshot.
 
     ## Example Usage
@@ -188,8 +186,6 @@ def get_flex_snapshot_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                              snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexSnapshotResult]:
     """
-    ## # Data Source: get_flex_snapshot
-
     `get_flex_snapshot` describes a flex snapshot.
 
     ## Example Usage

@@ -17,14 +17,14 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
     public static final FederatedDatabaseInstanceCloudProviderConfigArgs Empty = new FederatedDatabaseInstanceCloudProviderConfigArgs();
 
     /**
-     * Name of the cloud service that hosts the data lake&#39;s data stores.
+     * Name of the cloud service that hosts the Atlas Data Federation data stores.
      * 
      */
     @Import(name="aws")
     private @Nullable Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws;
 
     /**
-     * @return Name of the cloud service that hosts the data lake&#39;s data stores.
+     * @return Name of the cloud service that hosts the Atlas Data Federation data stores.
      * 
      */
     public Optional<Output<FederatedDatabaseInstanceCloudProviderConfigAwsArgs>> aws() {
@@ -72,7 +72,7 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
         }
 
         /**
-         * @param aws Name of the cloud service that hosts the data lake&#39;s data stores.
+         * @param aws Name of the cloud service that hosts the Atlas Data Federation data stores.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
         }
 
         /**
-         * @param aws Name of the cloud service that hosts the data lake&#39;s data stores.
+         * @param aws Name of the cloud service that hosts the Atlas Data Federation data stores.
          * 
          * @return builder
          * 

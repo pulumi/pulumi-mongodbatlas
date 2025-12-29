@@ -8,14 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: StreamInstance
-//
-// `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
-//
 // ## Example Usage
 //
 // ```go
@@ -23,7 +19,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -46,6 +42,10 @@ import (
 //	}
 //
 // ```
+//
+// ### Further Examples
+// - Atlas Stream Instance (Deprecated)
+// - Atlas Stream Workspace (Recommended)
 //
 // ## Import
 //

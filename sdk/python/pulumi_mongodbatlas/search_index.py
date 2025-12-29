@@ -29,12 +29,14 @@ class SearchIndexArgs:
                  analyzers: Optional[pulumi.Input[_builtins.str]] = None,
                  fields: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
                  stored_source: Optional[pulumi.Input[_builtins.str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SearchIndex resource.
@@ -66,13 +68,15 @@ class SearchIndexArgs:
                EOF
                ```
         :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
-        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
+        :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
+        :param pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "collection_name", collection_name)
@@ -86,6 +90,8 @@ class SearchIndexArgs:
             pulumi.set(__self__, "fields", fields)
         if mappings_dynamic is not None:
             pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
+        if mappings_dynamic_config is not None:
+            pulumi.set(__self__, "mappings_dynamic_config", mappings_dynamic_config)
         if mappings_fields is not None:
             pulumi.set(__self__, "mappings_fields", mappings_fields)
         if name is not None:
@@ -98,6 +104,8 @@ class SearchIndexArgs:
             pulumi.set(__self__, "synonyms", synonyms)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if type_sets is not None:
+            pulumi.set(__self__, "type_sets", type_sets)
         if wait_for_index_build_completion is not None:
             pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
@@ -210,13 +218,25 @@ class SearchIndexArgs:
     @pulumi.getter(name="mappingsDynamic")
     def mappings_dynamic(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         """
         return pulumi.get(self, "mappings_dynamic")
 
     @mappings_dynamic.setter
     def mappings_dynamic(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "mappings_dynamic", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mappingsDynamicConfig")
+    def mappings_dynamic_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
+        """
+        return pulumi.get(self, "mappings_dynamic_config")
+
+    @mappings_dynamic_config.setter
+    def mappings_dynamic_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mappings_dynamic_config", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsFields")
@@ -291,6 +311,18 @@ class SearchIndexArgs:
         pulumi.set(self, "type", value)
 
     @_builtins.property
+    @pulumi.getter(name="typeSets")
+    def type_sets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]:
+        """
+        One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        """
+        return pulumi.get(self, "type_sets")
+
+    @type_sets.setter
+    def type_sets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]):
+        pulumi.set(self, "type_sets", value)
+
+    @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")
     def wait_for_index_build_completion(self) -> Optional[pulumi.Input[_builtins.bool]]:
         return pulumi.get(self, "wait_for_index_build_completion")
@@ -311,6 +343,7 @@ class _SearchIndexState:
                  fields: Optional[pulumi.Input[_builtins.str]] = None,
                  index_id: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -319,6 +352,7 @@ class _SearchIndexState:
                  stored_source: Optional[pulumi.Input[_builtins.str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SearchIndex resources.
@@ -350,7 +384,8 @@ class _SearchIndexState:
         :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
         :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] index_id: The unique identifier of the Atlas Search index.
-        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
+        :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within.
@@ -359,6 +394,7 @@ class _SearchIndexState:
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
+        :param pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         """
         if analyzer is not None:
             pulumi.set(__self__, "analyzer", analyzer)
@@ -376,6 +412,8 @@ class _SearchIndexState:
             pulumi.set(__self__, "index_id", index_id)
         if mappings_dynamic is not None:
             pulumi.set(__self__, "mappings_dynamic", mappings_dynamic)
+        if mappings_dynamic_config is not None:
+            pulumi.set(__self__, "mappings_dynamic_config", mappings_dynamic_config)
         if mappings_fields is not None:
             pulumi.set(__self__, "mappings_fields", mappings_fields)
         if name is not None:
@@ -392,6 +430,8 @@ class _SearchIndexState:
             pulumi.set(__self__, "synonyms", synonyms)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if type_sets is not None:
+            pulumi.set(__self__, "type_sets", type_sets)
         if wait_for_index_build_completion is not None:
             pulumi.set(__self__, "wait_for_index_build_completion", wait_for_index_build_completion)
 
@@ -504,13 +544,25 @@ class _SearchIndexState:
     @pulumi.getter(name="mappingsDynamic")
     def mappings_dynamic(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         """
         return pulumi.get(self, "mappings_dynamic")
 
     @mappings_dynamic.setter
     def mappings_dynamic(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "mappings_dynamic", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mappingsDynamicConfig")
+    def mappings_dynamic_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
+        """
+        return pulumi.get(self, "mappings_dynamic_config")
+
+    @mappings_dynamic_config.setter
+    def mappings_dynamic_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "mappings_dynamic_config", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsFields")
@@ -609,6 +661,18 @@ class _SearchIndexState:
         pulumi.set(self, "type", value)
 
     @_builtins.property
+    @pulumi.getter(name="typeSets")
+    def type_sets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]:
+        """
+        One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        """
+        return pulumi.get(self, "type_sets")
+
+    @type_sets.setter
+    def type_sets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]):
+        pulumi.set(self, "type_sets", value)
+
+    @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")
     def wait_for_index_build_completion(self) -> Optional[pulumi.Input[_builtins.bool]]:
         return pulumi.get(self, "wait_for_index_build_completion")
@@ -631,6 +695,7 @@ class SearchIndex(pulumi.CustomResource):
                  database: Optional[pulumi.Input[_builtins.str]] = None,
                  fields: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -638,11 +703,10 @@ class SearchIndex(pulumi.CustomResource):
                  stored_source: Optional[pulumi.Input[_builtins.str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        ## # Resource: SearchIndex
-
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
@@ -750,6 +814,28 @@ class SearchIndex(pulumi.CustomResource):
                 "analyzer": "lucene.simple",
                 "name": "synonym_test",
                 "source_collection": "collection_test",
+            }])
+        ```
+
+        ### Configurable dynamic (typeSets + dynamic object)
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        conf_dynamic = mongodbatlas.SearchIndex("conf-dynamic",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
+            collection_name="collection_test",
+            database="database_test",
+            name="conf-dynamic",
+            type="search",
+            mappings_dynamic_config="{ \\\\\\"typeSet\\\\\\": \\\\\\"type_set_name\\\\\\" }\\n",
+            type_sets=[{
+                "name": "type_set_name",
+                "types": \"\"\"[
+          { \\"type\\": \\"string\\" }
+        ]
+        \"\"\",
             }])
         ```
 
@@ -782,7 +868,8 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
         :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
-        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
+        :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within.
@@ -790,6 +877,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         """
         ...
     @overload
@@ -798,8 +886,6 @@ class SearchIndex(pulumi.CustomResource):
                  args: SearchIndexArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: SearchIndex
-
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 
         ## Example Usage
@@ -910,6 +996,28 @@ class SearchIndex(pulumi.CustomResource):
             }])
         ```
 
+        ### Configurable dynamic (typeSets + dynamic object)
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        conf_dynamic = mongodbatlas.SearchIndex("conf-dynamic",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
+            collection_name="collection_test",
+            database="database_test",
+            name="conf-dynamic",
+            type="search",
+            mappings_dynamic_config="{ \\\\\\"typeSet\\\\\\": \\\\\\"type_set_name\\\\\\" }\\n",
+            type_sets=[{
+                "name": "type_set_name",
+                "types": \"\"\"[
+          { \\"type\\": \\"string\\" }
+        ]
+        \"\"\",
+            }])
+        ```
+
         :param str resource_name: The name of the resource.
         :param SearchIndexArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -932,6 +1040,7 @@ class SearchIndex(pulumi.CustomResource):
                  database: Optional[pulumi.Input[_builtins.str]] = None,
                  fields: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
+                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -939,6 +1048,7 @@ class SearchIndex(pulumi.CustomResource):
                  stored_source: Optional[pulumi.Input[_builtins.str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
                  wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -962,6 +1072,7 @@ class SearchIndex(pulumi.CustomResource):
             __props__.__dict__["database"] = database
             __props__.__dict__["fields"] = fields
             __props__.__dict__["mappings_dynamic"] = mappings_dynamic
+            __props__.__dict__["mappings_dynamic_config"] = mappings_dynamic_config
             __props__.__dict__["mappings_fields"] = mappings_fields
             __props__.__dict__["name"] = name
             if project_id is None and not opts.urn:
@@ -971,6 +1082,7 @@ class SearchIndex(pulumi.CustomResource):
             __props__.__dict__["stored_source"] = stored_source
             __props__.__dict__["synonyms"] = synonyms
             __props__.__dict__["type"] = type
+            __props__.__dict__["type_sets"] = type_sets
             __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
             __props__.__dict__["index_id"] = None
             __props__.__dict__["status"] = None
@@ -992,6 +1104,7 @@ class SearchIndex(pulumi.CustomResource):
             fields: Optional[pulumi.Input[_builtins.str]] = None,
             index_id: Optional[pulumi.Input[_builtins.str]] = None,
             mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
+            mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
             mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1000,6 +1113,7 @@ class SearchIndex(pulumi.CustomResource):
             stored_source: Optional[pulumi.Input[_builtins.str]] = None,
             synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
+            type_sets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
             wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None) -> 'SearchIndex':
         """
         Get an existing SearchIndex resource's state with the given name, id, and optional extra
@@ -1036,7 +1150,8 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
         :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] index_id: The unique identifier of the Atlas Search index.
-        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
+        :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within.
@@ -1045,6 +1160,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1058,6 +1174,7 @@ class SearchIndex(pulumi.CustomResource):
         __props__.__dict__["fields"] = fields
         __props__.__dict__["index_id"] = index_id
         __props__.__dict__["mappings_dynamic"] = mappings_dynamic
+        __props__.__dict__["mappings_dynamic_config"] = mappings_dynamic_config
         __props__.__dict__["mappings_fields"] = mappings_fields
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
@@ -1066,6 +1183,7 @@ class SearchIndex(pulumi.CustomResource):
         __props__.__dict__["stored_source"] = stored_source
         __props__.__dict__["synonyms"] = synonyms
         __props__.__dict__["type"] = type
+        __props__.__dict__["type_sets"] = type_sets
         __props__.__dict__["wait_for_index_build_completion"] = wait_for_index_build_completion
         return SearchIndex(resource_name, opts=opts, __props__=__props__)
 
@@ -1150,9 +1268,17 @@ class SearchIndex(pulumi.CustomResource):
     @pulumi.getter(name="mappingsDynamic")
     def mappings_dynamic(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`
+        Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         """
         return pulumi.get(self, "mappings_dynamic")
+
+    @_builtins.property
+    @pulumi.getter(name="mappingsDynamicConfig")
+    def mappings_dynamic_config(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
+        """
+        return pulumi.get(self, "mappings_dynamic_config")
 
     @_builtins.property
     @pulumi.getter(name="mappingsFields")
@@ -1217,6 +1343,14 @@ class SearchIndex(pulumi.CustomResource):
         Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="typeSets")
+    def type_sets(self) -> pulumi.Output[Optional[Sequence['outputs.SearchIndexTypeSet']]]:
+        """
+        One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        """
+        return pulumi.get(self, "type_sets")
 
     @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")

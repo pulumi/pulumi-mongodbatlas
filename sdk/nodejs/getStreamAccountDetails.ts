@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getStreamAccountDetails
- *
  * `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
  *
  * ## Example Usage
@@ -75,8 +73,6 @@ export interface GetStreamAccountDetailsResult {
     readonly vpcId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getStreamAccountDetails
- *
  * `mongodbatlas.getStreamAccountDetails` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
  *
  * ## Example Usage

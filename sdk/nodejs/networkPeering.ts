@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.NetworkPeering
- *
  * `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
  *
  * Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -191,6 +189,12 @@ export class NetworkPeering extends pulumi.CustomResource {
      */
     declare public readonly containerId: pulumi.Output<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     *
+     * **AWS ONLY:**
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean | undefined>;
+    /**
      * When `"status" : "FAILED"`, Atlas provides a description of the error.
      */
     declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
@@ -222,8 +226,6 @@ export class NetworkPeering extends pulumi.CustomResource {
     declare public readonly projectId: pulumi.Output<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-     *
-     * **AWS ONLY:**
      */
     declare public readonly providerName: pulumi.Output<string>;
     /**
@@ -276,6 +278,7 @@ export class NetworkPeering extends pulumi.CustomResource {
             resourceInputs["azureSubscriptionId"] = state?.azureSubscriptionId;
             resourceInputs["connectionId"] = state?.connectionId;
             resourceInputs["containerId"] = state?.containerId;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["errorMessage"] = state?.errorMessage;
             resourceInputs["errorState"] = state?.errorState;
             resourceInputs["errorStateName"] = state?.errorStateName;
@@ -309,6 +312,7 @@ export class NetworkPeering extends pulumi.CustomResource {
             resourceInputs["azureDirectoryId"] = args?.azureDirectoryId;
             resourceInputs["azureSubscriptionId"] = args?.azureSubscriptionId;
             resourceInputs["containerId"] = args?.containerId;
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["gcpProjectId"] = args?.gcpProjectId;
             resourceInputs["networkName"] = args?.networkName;
             resourceInputs["projectId"] = args?.projectId;
@@ -370,6 +374,12 @@ export interface NetworkPeeringState {
      */
     containerId?: pulumi.Input<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     *
+     * **AWS ONLY:**
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
      * When `"status" : "FAILED"`, Atlas provides a description of the error.
      */
     errorMessage?: pulumi.Input<string>;
@@ -401,8 +411,6 @@ export interface NetworkPeeringState {
     projectId?: pulumi.Input<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-     *
-     * **AWS ONLY:**
      */
     providerName?: pulumi.Input<string>;
     /**
@@ -467,6 +475,12 @@ export interface NetworkPeeringArgs {
      */
     containerId: pulumi.Input<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     *
+     * **AWS ONLY:**
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
      * GCP project ID of the owner of the network peer.
      */
     gcpProjectId?: pulumi.Input<string>;
@@ -482,8 +496,6 @@ export interface NetworkPeeringArgs {
     projectId: pulumi.Input<string>;
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-     *
-     * **AWS ONLY:**
      */
     providerName: pulumi.Input<string>;
     /**

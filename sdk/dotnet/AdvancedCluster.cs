@@ -31,6 +31,9 @@ namespace Pulumi.Mongodbatlas
         [Output("acceptDataRisksAndForceReplicaSetReconfig")]
         public Output<string?> AcceptDataRisksAndForceReplicaSetReconfig { get; private set; } = null!;
 
+        /// <summary>
+        /// Additional settings for an Atlas cluster.
+        /// </summary>
         [Output("advancedConfiguration")]
         public Output<Outputs.AdvancedClusterAdvancedConfiguration> AdvancedConfiguration { get; private set; } = null!;
 
@@ -84,25 +87,22 @@ namespace Pulumi.Mongodbatlas
         /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
         [Output("connectionStrings")]
-        public Output<ImmutableArray<Outputs.AdvancedClusterConnectionString>> ConnectionStrings { get; private set; } = null!;
+        public Output<Outputs.AdvancedClusterConnectionStrings> ConnectionStrings { get; private set; } = null!;
 
+        /// <summary>
+        /// Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        /// </summary>
         [Output("createDate")]
         public Output<string> CreateDate { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
         /// </summary>
         [Output("deleteOnCreateTimeout")]
-        public Output<bool?> DeleteOnCreateTimeout { get; private set; } = null!;
+        public Output<bool> DeleteOnCreateTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        /// </summary>
-        [Output("diskSizeGb")]
-        public Output<double> DiskSizeGb { get; private set; } = null!;
-
-        /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
         /// </summary>
         [Output("encryptionAtRestProvider")]
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumi.Mongodbatlas
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableArray<Outputs.AdvancedClusterLabel>> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
         /// Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `VersionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `VersionReleaseSystem`: `LTS`.
@@ -137,6 +137,9 @@ namespace Pulumi.Mongodbatlas
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Flag that indicates whether the cluster is paused.
+        /// </summary>
         [Output("paused")]
         public Output<bool> Paused { get; private set; } = null!;
 
@@ -171,13 +174,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ReplicaSetScalingStrategy { get; private set; } = null!;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `ReplicationSpecs` a `NumShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         /// </summary>
         [Output("replicationSpecs")]
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         /// </summary>
         [Output("retainBackupsEnabled")]
         public Output<bool?> RetainBackupsEnabled { get; private set; } = null!;
@@ -196,7 +199,7 @@ namespace Pulumi.Mongodbatlas
         /// - DELETING
         /// - DELETED
         /// - REPAIRING
-        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `RegionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        /// * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `RegionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         [Output("stateName")]
         public Output<string> StateName { get; private set; } = null!;
@@ -205,13 +208,26 @@ namespace Pulumi.Mongodbatlas
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         /// </summary>
         [Output("tags")]
-        public Output<ImmutableArray<Outputs.AdvancedClusterTag>> Tags { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         [Output("terminationProtectionEnabled")]
         public Output<bool> TerminationProtectionEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `Ns`, `Us` (or `µs`), `Ms`, `S`, `M`, `H`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+        /// </summary>
+        [Output("timeouts")]
+        public Output<Outputs.AdvancedClusterTimeouts?> Timeouts { get; private set; } = null!;
+
+        /// <summary>
+        /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        /// **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `ReadOnlySpecs` or `AnalyticsSpecs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `NodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+        /// </summary>
+        [Output("useEffectiveFields")]
+        public Output<bool?> UseEffectiveFields { get; private set; } = null!;
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
@@ -273,6 +289,9 @@ namespace Pulumi.Mongodbatlas
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
 
+        /// <summary>
+        /// Additional settings for an Atlas cluster.
+        /// </summary>
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationArgs>? AdvancedConfiguration { get; set; }
 
@@ -311,19 +330,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConfigServerManagementMode { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
         /// </summary>
         [Input("deleteOnCreateTimeout")]
         public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        /// </summary>
-        [Input("diskSizeGb")]
-        public Input<double>? DiskSizeGb { get; set; }
-
-        /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
@@ -335,14 +348,14 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? GlobalClusterSelfManagedSharding { get; set; }
 
         [Input("labels")]
-        private InputList<Inputs.AdvancedClusterLabelArgs>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
-        public InputList<Inputs.AdvancedClusterLabelArgs> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputList<Inputs.AdvancedClusterLabelArgs>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -358,6 +371,9 @@ namespace Pulumi.Mongodbatlas
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether the cluster is paused.
+        /// </summary>
         [Input("paused")]
         public Input<bool>? Paused { get; set; }
 
@@ -395,7 +411,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `ReplicationSpecs` a `NumShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecArgs> ReplicationSpecs
         {
@@ -404,7 +420,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         /// </summary>
         [Input("retainBackupsEnabled")]
         public Input<bool>? RetainBackupsEnabled { get; set; }
@@ -416,14 +432,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? RootCertType { get; set; }
 
         [Input("tags")]
-        private InputList<Inputs.AdvancedClusterTagArgs>? _tags;
+        private InputMap<string>? _tags;
 
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         /// </summary>
-        public InputList<Inputs.AdvancedClusterTagArgs> Tags
+        public InputMap<string> Tags
         {
-            get => _tags ?? (_tags = new InputList<Inputs.AdvancedClusterTagArgs>());
+            get => _tags ?? (_tags = new InputMap<string>());
             set => _tags = value;
         }
 
@@ -432,6 +448,19 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("terminationProtectionEnabled")]
         public Input<bool>? TerminationProtectionEnabled { get; set; }
+
+        /// <summary>
+        /// The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `Ns`, `Us` (or `µs`), `Ms`, `S`, `M`, `H`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+        /// </summary>
+        [Input("timeouts")]
+        public Input<Inputs.AdvancedClusterTimeoutsArgs>? Timeouts { get; set; }
+
+        /// <summary>
+        /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        /// **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `ReadOnlySpecs` or `AnalyticsSpecs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `NodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+        /// </summary>
+        [Input("useEffectiveFields")]
+        public Input<bool>? UseEffectiveFields { get; set; }
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:
@@ -455,6 +484,9 @@ namespace Pulumi.Mongodbatlas
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
 
+        /// <summary>
+        /// Additional settings for an Atlas cluster.
+        /// </summary>
         [Input("advancedConfiguration")]
         public Input<Inputs.AdvancedClusterAdvancedConfigurationGetArgs>? AdvancedConfiguration { get; set; }
 
@@ -504,35 +536,26 @@ namespace Pulumi.Mongodbatlas
         [Input("configServerType")]
         public Input<string>? ConfigServerType { get; set; }
 
-        [Input("connectionStrings")]
-        private InputList<Inputs.AdvancedClusterConnectionStringGetArgs>? _connectionStrings;
-
         /// <summary>
         /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
-        public InputList<Inputs.AdvancedClusterConnectionStringGetArgs> ConnectionStrings
-        {
-            get => _connectionStrings ?? (_connectionStrings = new InputList<Inputs.AdvancedClusterConnectionStringGetArgs>());
-            set => _connectionStrings = value;
-        }
+        [Input("connectionStrings")]
+        public Input<Inputs.AdvancedClusterConnectionStringsGetArgs>? ConnectionStrings { get; set; }
 
+        /// <summary>
+        /// Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        /// </summary>
         [Input("createDate")]
         public Input<string>? CreateDate { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
         /// </summary>
         [Input("deleteOnCreateTimeout")]
         public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
-        /// Capacity, in gigabytes, of the host's root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can't set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-        /// </summary>
-        [Input("diskSizeGb")]
-        public Input<double>? DiskSizeGb { get; set; }
-
-        /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `BackupEnabled` is false or omitted.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
@@ -544,14 +567,14 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? GlobalClusterSelfManagedSharding { get; set; }
 
         [Input("labels")]
-        private InputList<Inputs.AdvancedClusterLabelGetArgs>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `Tags` instead.
         /// </summary>
-        public InputList<Inputs.AdvancedClusterLabelGetArgs> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputList<Inputs.AdvancedClusterLabelGetArgs>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -573,6 +596,9 @@ namespace Pulumi.Mongodbatlas
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether the cluster is paused.
+        /// </summary>
         [Input("paused")]
         public Input<bool>? Paused { get; set; }
 
@@ -610,7 +636,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `ReplicationSpecs` a `NumShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecGetArgs> ReplicationSpecs
         {
@@ -619,7 +645,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+        /// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
         /// </summary>
         [Input("retainBackupsEnabled")]
         public Input<bool>? RetainBackupsEnabled { get; set; }
@@ -638,20 +664,20 @@ namespace Pulumi.Mongodbatlas
         /// - DELETING
         /// - DELETED
         /// - REPAIRING
-        /// * `replication_specs.#.container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `RegionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
+        /// * `replication_specs[#].container_id` - A key-value map of the Network Peering Container ID(s) for the configuration specified in `RegionConfigs`. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.  The syntax is `"providerName:regionName" = "containerId"`. Example `AWS:US_EAST_1" = "61e0797dde08fb498ca11a71`.
         /// </summary>
         [Input("stateName")]
         public Input<string>? StateName { get; set; }
 
         [Input("tags")]
-        private InputList<Inputs.AdvancedClusterTagGetArgs>? _tags;
+        private InputMap<string>? _tags;
 
         /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         /// </summary>
-        public InputList<Inputs.AdvancedClusterTagGetArgs> Tags
+        public InputMap<string> Tags
         {
-            get => _tags ?? (_tags = new InputList<Inputs.AdvancedClusterTagGetArgs>());
+            get => _tags ?? (_tags = new InputMap<string>());
             set => _tags = value;
         }
 
@@ -660,6 +686,19 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("terminationProtectionEnabled")]
         public Input<bool>? TerminationProtectionEnabled { get; set; }
+
+        /// <summary>
+        /// The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `Ns`, `Us` (or `µs`), `Ms`, `S`, `M`, `H`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+        /// </summary>
+        [Input("timeouts")]
+        public Input<Inputs.AdvancedClusterTimeoutsGetArgs>? Timeouts { get; set; }
+
+        /// <summary>
+        /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        /// **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `ReadOnlySpecs` or `AnalyticsSpecs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `NodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+        /// </summary>
+        [Input("useEffectiveFields")]
+        public Input<bool>? UseEffectiveFields { get; set; }
 
         /// <summary>
         /// Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `MongoDbMajorVersion` field. Atlas accepts:

@@ -11,15 +11,45 @@ import java.util.Objects;
 @CustomType
 public final class GetStreamConnectionsResultAuthentication {
     /**
-     * @return Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Public identifier for the Kafka client.
+     * 
+     */
+    private String clientId;
+    /**
+     * @return Secret known only to the Kafka client and the authorization server.
+     * 
+     */
+    private String clientSecret;
+    /**
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      * 
      */
     private String mechanism;
+    /**
+     * @return SASL OAUTHBEARER authentication method. Value must be OIDC.
+     * 
+     */
+    private String method;
     /**
      * @return Password of the account to connect to the Kafka cluster.
      * 
      */
     private String password;
+    /**
+     * @return Additional information to provide to the Kafka broker.
+     * 
+     */
+    private String saslOauthbearerExtensions;
+    /**
+     * @return Scope of the access request to the broker specified by the Kafka clients.
+     * 
+     */
+    private String scope;
+    /**
+     * @return OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     * 
+     */
+    private String tokenEndpointUrl;
     /**
      * @return Username of the account to connect to the Kafka cluster.
      * 
@@ -28,11 +58,32 @@ public final class GetStreamConnectionsResultAuthentication {
 
     private GetStreamConnectionsResultAuthentication() {}
     /**
-     * @return Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Public identifier for the Kafka client.
+     * 
+     */
+    public String clientId() {
+        return this.clientId;
+    }
+    /**
+     * @return Secret known only to the Kafka client and the authorization server.
+     * 
+     */
+    public String clientSecret() {
+        return this.clientSecret;
+    }
+    /**
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      * 
      */
     public String mechanism() {
         return this.mechanism;
+    }
+    /**
+     * @return SASL OAUTHBEARER authentication method. Value must be OIDC.
+     * 
+     */
+    public String method() {
+        return this.method;
     }
     /**
      * @return Password of the account to connect to the Kafka cluster.
@@ -40,6 +91,27 @@ public final class GetStreamConnectionsResultAuthentication {
      */
     public String password() {
         return this.password;
+    }
+    /**
+     * @return Additional information to provide to the Kafka broker.
+     * 
+     */
+    public String saslOauthbearerExtensions() {
+        return this.saslOauthbearerExtensions;
+    }
+    /**
+     * @return Scope of the access request to the broker specified by the Kafka clients.
+     * 
+     */
+    public String scope() {
+        return this.scope;
+    }
+    /**
+     * @return OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     * 
+     */
+    public String tokenEndpointUrl() {
+        return this.tokenEndpointUrl;
     }
     /**
      * @return Username of the account to connect to the Kafka cluster.
@@ -58,17 +130,45 @@ public final class GetStreamConnectionsResultAuthentication {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String clientId;
+        private String clientSecret;
         private String mechanism;
+        private String method;
         private String password;
+        private String saslOauthbearerExtensions;
+        private String scope;
+        private String tokenEndpointUrl;
         private String username;
         public Builder() {}
         public Builder(GetStreamConnectionsResultAuthentication defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.clientId = defaults.clientId;
+    	      this.clientSecret = defaults.clientSecret;
     	      this.mechanism = defaults.mechanism;
+    	      this.method = defaults.method;
     	      this.password = defaults.password;
+    	      this.saslOauthbearerExtensions = defaults.saslOauthbearerExtensions;
+    	      this.scope = defaults.scope;
+    	      this.tokenEndpointUrl = defaults.tokenEndpointUrl;
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
+        public Builder clientId(String clientId) {
+            if (clientId == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResultAuthentication", "clientId");
+            }
+            this.clientId = clientId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientSecret(String clientSecret) {
+            if (clientSecret == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResultAuthentication", "clientSecret");
+            }
+            this.clientSecret = clientSecret;
+            return this;
+        }
         @CustomType.Setter
         public Builder mechanism(String mechanism) {
             if (mechanism == null) {
@@ -78,11 +178,43 @@ public final class GetStreamConnectionsResultAuthentication {
             return this;
         }
         @CustomType.Setter
+        public Builder method(String method) {
+            if (method == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResultAuthentication", "method");
+            }
+            this.method = method;
+            return this;
+        }
+        @CustomType.Setter
         public Builder password(String password) {
             if (password == null) {
               throw new MissingRequiredPropertyException("GetStreamConnectionsResultAuthentication", "password");
             }
             this.password = password;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder saslOauthbearerExtensions(String saslOauthbearerExtensions) {
+            if (saslOauthbearerExtensions == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResultAuthentication", "saslOauthbearerExtensions");
+            }
+            this.saslOauthbearerExtensions = saslOauthbearerExtensions;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder scope(String scope) {
+            if (scope == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResultAuthentication", "scope");
+            }
+            this.scope = scope;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tokenEndpointUrl(String tokenEndpointUrl) {
+            if (tokenEndpointUrl == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResultAuthentication", "tokenEndpointUrl");
+            }
+            this.tokenEndpointUrl = tokenEndpointUrl;
             return this;
         }
         @CustomType.Setter
@@ -95,8 +227,14 @@ public final class GetStreamConnectionsResultAuthentication {
         }
         public GetStreamConnectionsResultAuthentication build() {
             final var _resultValue = new GetStreamConnectionsResultAuthentication();
+            _resultValue.clientId = clientId;
+            _resultValue.clientSecret = clientSecret;
             _resultValue.mechanism = mechanism;
+            _resultValue.method = method;
             _resultValue.password = password;
+            _resultValue.saslOauthbearerExtensions = saslOauthbearerExtensions;
+            _resultValue.scope = scope;
+            _resultValue.tokenEndpointUrl = tokenEndpointUrl;
             _resultValue.username = username;
             return _resultValue;
         }

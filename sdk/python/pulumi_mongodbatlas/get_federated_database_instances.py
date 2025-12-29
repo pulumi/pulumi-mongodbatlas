@@ -74,8 +74,6 @@ class AwaitableGetFederatedDatabaseInstancesResult(GetFederatedDatabaseInstances
 def get_federated_database_instances(project_id: Optional[_builtins.str] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedDatabaseInstancesResult:
     """
-    ## # Data Source: get_federated_database_instances
-
     `get_federated_database_instances` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -101,8 +99,6 @@ def get_federated_database_instances(project_id: Optional[_builtins.str] = None,
 def get_federated_database_instances_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedDatabaseInstancesResult]:
     """
-    ## # Data Source: get_federated_database_instances
-
     `get_federated_database_instances` provides a Federated Database Instance data source.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

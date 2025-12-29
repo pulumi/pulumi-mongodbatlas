@@ -27,7 +27,7 @@ class GetBackupCompliancePolicyResult:
     """
     A collection of values returned by getBackupCompliancePolicy.
     """
-    def __init__(__self__, authorized_email=None, authorized_user_first_name=None, authorized_user_last_name=None, copy_protection_enabled=None, encryption_at_rest_enabled=None, id=None, on_demand_policy_item=None, pit_enabled=None, policy_item_daily=None, policy_item_hourly=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, restore_window_days=None, state=None, updated_date=None, updated_user=None):
+    def __init__(__self__, authorized_email=None, authorized_user_first_name=None, authorized_user_last_name=None, copy_protection_enabled=None, encryption_at_rest_enabled=None, id=None, on_demand_policy_items=None, pit_enabled=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, restore_window_days=None, state=None, updated_date=None, updated_user=None):
         if authorized_email and not isinstance(authorized_email, str):
             raise TypeError("Expected argument 'authorized_email' to be a str")
         pulumi.set(__self__, "authorized_email", authorized_email)
@@ -46,18 +46,18 @@ class GetBackupCompliancePolicyResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if on_demand_policy_item and not isinstance(on_demand_policy_item, dict):
-            raise TypeError("Expected argument 'on_demand_policy_item' to be a dict")
-        pulumi.set(__self__, "on_demand_policy_item", on_demand_policy_item)
+        if on_demand_policy_items and not isinstance(on_demand_policy_items, list):
+            raise TypeError("Expected argument 'on_demand_policy_items' to be a list")
+        pulumi.set(__self__, "on_demand_policy_items", on_demand_policy_items)
         if pit_enabled and not isinstance(pit_enabled, bool):
             raise TypeError("Expected argument 'pit_enabled' to be a bool")
         pulumi.set(__self__, "pit_enabled", pit_enabled)
-        if policy_item_daily and not isinstance(policy_item_daily, dict):
-            raise TypeError("Expected argument 'policy_item_daily' to be a dict")
-        pulumi.set(__self__, "policy_item_daily", policy_item_daily)
-        if policy_item_hourly and not isinstance(policy_item_hourly, dict):
-            raise TypeError("Expected argument 'policy_item_hourly' to be a dict")
-        pulumi.set(__self__, "policy_item_hourly", policy_item_hourly)
+        if policy_item_dailies and not isinstance(policy_item_dailies, list):
+            raise TypeError("Expected argument 'policy_item_dailies' to be a list")
+        pulumi.set(__self__, "policy_item_dailies", policy_item_dailies)
+        if policy_item_hourlies and not isinstance(policy_item_hourlies, list):
+            raise TypeError("Expected argument 'policy_item_hourlies' to be a list")
+        pulumi.set(__self__, "policy_item_hourlies", policy_item_hourlies)
         if policy_item_monthlies and not isinstance(policy_item_monthlies, list):
             raise TypeError("Expected argument 'policy_item_monthlies' to be a list")
         pulumi.set(__self__, "policy_item_monthlies", policy_item_monthlies)
@@ -132,12 +132,12 @@ class GetBackupCompliancePolicyResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
-    @pulumi.getter(name="onDemandPolicyItem")
-    def on_demand_policy_item(self) -> 'outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult':
+    @pulumi.getter(name="onDemandPolicyItems")
+    def on_demand_policy_items(self) -> Sequence['outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult']:
         """
         Specifications for on-demand policy.
         """
-        return pulumi.get(self, "on_demand_policy_item")
+        return pulumi.get(self, "on_demand_policy_items")
 
     @_builtins.property
     @pulumi.getter(name="pitEnabled")
@@ -148,20 +148,20 @@ class GetBackupCompliancePolicyResult:
         return pulumi.get(self, "pit_enabled")
 
     @_builtins.property
-    @pulumi.getter(name="policyItemDaily")
-    def policy_item_daily(self) -> 'outputs.GetBackupCompliancePolicyPolicyItemDailyResult':
+    @pulumi.getter(name="policyItemDailies")
+    def policy_item_dailies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemDailyResult']:
         """
         Scheduled policy using a daily frequency type, see block fields.
         """
-        return pulumi.get(self, "policy_item_daily")
+        return pulumi.get(self, "policy_item_dailies")
 
     @_builtins.property
-    @pulumi.getter(name="policyItemHourly")
-    def policy_item_hourly(self) -> 'outputs.GetBackupCompliancePolicyPolicyItemHourlyResult':
+    @pulumi.getter(name="policyItemHourlies")
+    def policy_item_hourlies(self) -> Sequence['outputs.GetBackupCompliancePolicyPolicyItemHourlyResult']:
         """
         Scheduled policy using an hourly frequency type, see block fields.
         """
-        return pulumi.get(self, "policy_item_hourly")
+        return pulumi.get(self, "policy_item_hourlies")
 
     @_builtins.property
     @pulumi.getter(name="policyItemMonthlies")
@@ -237,10 +237,10 @@ class AwaitableGetBackupCompliancePolicyResult(GetBackupCompliancePolicyResult):
             copy_protection_enabled=self.copy_protection_enabled,
             encryption_at_rest_enabled=self.encryption_at_rest_enabled,
             id=self.id,
-            on_demand_policy_item=self.on_demand_policy_item,
+            on_demand_policy_items=self.on_demand_policy_items,
             pit_enabled=self.pit_enabled,
-            policy_item_daily=self.policy_item_daily,
-            policy_item_hourly=self.policy_item_hourly,
+            policy_item_dailies=self.policy_item_dailies,
+            policy_item_hourlies=self.policy_item_hourlies,
             policy_item_monthlies=self.policy_item_monthlies,
             policy_item_weeklies=self.policy_item_weeklies,
             policy_item_yearlies=self.policy_item_yearlies,
@@ -366,10 +366,10 @@ def get_backup_compliance_policy(project_id: Optional[_builtins.str] = None,
         copy_protection_enabled=pulumi.get(__ret__, 'copy_protection_enabled'),
         encryption_at_rest_enabled=pulumi.get(__ret__, 'encryption_at_rest_enabled'),
         id=pulumi.get(__ret__, 'id'),
-        on_demand_policy_item=pulumi.get(__ret__, 'on_demand_policy_item'),
+        on_demand_policy_items=pulumi.get(__ret__, 'on_demand_policy_items'),
         pit_enabled=pulumi.get(__ret__, 'pit_enabled'),
-        policy_item_daily=pulumi.get(__ret__, 'policy_item_daily'),
-        policy_item_hourly=pulumi.get(__ret__, 'policy_item_hourly'),
+        policy_item_dailies=pulumi.get(__ret__, 'policy_item_dailies'),
+        policy_item_hourlies=pulumi.get(__ret__, 'policy_item_hourlies'),
         policy_item_monthlies=pulumi.get(__ret__, 'policy_item_monthlies'),
         policy_item_weeklies=pulumi.get(__ret__, 'policy_item_weeklies'),
         policy_item_yearlies=pulumi.get(__ret__, 'policy_item_yearlies'),
@@ -492,10 +492,10 @@ def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[_built
         copy_protection_enabled=pulumi.get(__response__, 'copy_protection_enabled'),
         encryption_at_rest_enabled=pulumi.get(__response__, 'encryption_at_rest_enabled'),
         id=pulumi.get(__response__, 'id'),
-        on_demand_policy_item=pulumi.get(__response__, 'on_demand_policy_item'),
+        on_demand_policy_items=pulumi.get(__response__, 'on_demand_policy_items'),
         pit_enabled=pulumi.get(__response__, 'pit_enabled'),
-        policy_item_daily=pulumi.get(__response__, 'policy_item_daily'),
-        policy_item_hourly=pulumi.get(__response__, 'policy_item_hourly'),
+        policy_item_dailies=pulumi.get(__response__, 'policy_item_dailies'),
+        policy_item_hourlies=pulumi.get(__response__, 'policy_item_hourlies'),
         policy_item_monthlies=pulumi.get(__response__, 'policy_item_monthlies'),
         policy_item_weeklies=pulumi.get(__response__, 'policy_item_weeklies'),
         policy_item_yearlies=pulumi.get(__response__, 'policy_item_yearlies'),

@@ -65,6 +65,10 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly azureStatus: pulumi.Output<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean | undefined>;
+    /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      */
     declare public /*out*/ readonly deleteRequested: pulumi.Output<boolean>;
@@ -141,6 +145,7 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             const state = argsOrState as PrivateLinkEndpointServiceState | undefined;
             resourceInputs["awsConnectionStatus"] = state?.awsConnectionStatus;
             resourceInputs["azureStatus"] = state?.azureStatus;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["deleteRequested"] = state?.deleteRequested;
             resourceInputs["endpointGroupName"] = state?.endpointGroupName;
             resourceInputs["endpointServiceId"] = state?.endpointServiceId;
@@ -169,6 +174,7 @@ export class PrivateLinkEndpointService extends pulumi.CustomResource {
             if (args?.providerName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerName'");
             }
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["endpointServiceId"] = args?.endpointServiceId;
             resourceInputs["endpoints"] = args?.endpoints;
             resourceInputs["gcpProjectId"] = args?.gcpProjectId;
@@ -215,6 +221,10 @@ export interface PrivateLinkEndpointServiceState {
      * * `DELETING` - Atlas is removing the connection to your private endpoint from the Private Link service.
      */
     azureStatus?: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      */
@@ -282,6 +292,10 @@ export interface PrivateLinkEndpointServiceState {
  * The set of arguments for constructing a PrivateLinkEndpointService resource.
  */
 export interface PrivateLinkEndpointServiceArgs {
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
      */

@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.CloudBackupSnapshot
- *
  * `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
  * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
  *
@@ -54,6 +52,10 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Restore from backup snapshot at point in time
+ * - Restore from backup snapshot using an advanced cluster resource
  *
  * ## Import
  *
@@ -104,6 +106,10 @@ export class CloudBackupSnapshot extends pulumi.CustomResource {
      * UTC ISO 8601 formatted point in time when Atlas took the snapshot.
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean | undefined>;
     /**
      * Description of the on-demand snapshot.
      */
@@ -177,6 +183,7 @@ export class CloudBackupSnapshot extends pulumi.CustomResource {
             resourceInputs["cloudProvider"] = state?.cloudProvider;
             resourceInputs["clusterName"] = state?.clusterName;
             resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["description"] = state?.description;
             resourceInputs["expiresAt"] = state?.expiresAt;
             resourceInputs["masterKeyUuid"] = state?.masterKeyUuid;
@@ -206,6 +213,7 @@ export class CloudBackupSnapshot extends pulumi.CustomResource {
                 throw new Error("Missing required property 'retentionInDays'");
             }
             resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["description"] = args?.description;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["retentionInDays"] = args?.retentionInDays;
@@ -244,6 +252,10 @@ export interface CloudBackupSnapshotState {
      * UTC ISO 8601 formatted point in time when Atlas took the snapshot.
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Description of the on-demand snapshot.
      */
@@ -310,6 +322,10 @@ export interface CloudBackupSnapshotArgs {
      * The name of the Atlas cluster that contains the snapshots you want to retrieve.
      */
     clusterName: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Description of the on-demand snapshot.
      */

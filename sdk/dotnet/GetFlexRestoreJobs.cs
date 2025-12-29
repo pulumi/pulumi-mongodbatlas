@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetFlexRestoreJobs
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexRestoreJobs
-        /// 
         /// `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
         /// 
         /// ## Example Usage
@@ -55,8 +53,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFlexRestoreJobsResult>("mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs", args ?? new GetFlexRestoreJobsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexRestoreJobs
-        /// 
         /// `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
         /// 
         /// ## Example Usage
@@ -98,8 +94,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetFlexRestoreJobsResult>("mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs", args ?? new GetFlexRestoreJobsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexRestoreJobs
-        /// 
         /// `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
         /// 
         /// ## Example Usage

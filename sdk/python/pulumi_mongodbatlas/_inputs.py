@@ -19,14 +19,12 @@ __all__ = [
     'AdvancedClusterAdvancedConfigurationArgsDict',
     'AdvancedClusterBiConnectorConfigArgs',
     'AdvancedClusterBiConnectorConfigArgsDict',
-    'AdvancedClusterConnectionStringArgs',
-    'AdvancedClusterConnectionStringArgsDict',
-    'AdvancedClusterConnectionStringPrivateEndpointArgs',
-    'AdvancedClusterConnectionStringPrivateEndpointArgsDict',
-    'AdvancedClusterConnectionStringPrivateEndpointEndpointArgs',
-    'AdvancedClusterConnectionStringPrivateEndpointEndpointArgsDict',
-    'AdvancedClusterLabelArgs',
-    'AdvancedClusterLabelArgsDict',
+    'AdvancedClusterConnectionStringsArgs',
+    'AdvancedClusterConnectionStringsArgsDict',
+    'AdvancedClusterConnectionStringsPrivateEndpointArgs',
+    'AdvancedClusterConnectionStringsPrivateEndpointArgsDict',
+    'AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs',
+    'AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict',
     'AdvancedClusterPinnedFcvArgs',
     'AdvancedClusterPinnedFcvArgsDict',
     'AdvancedClusterReplicationSpecArgs',
@@ -43,8 +41,8 @@ __all__ = [
     'AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict',
     'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs',
     'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict',
-    'AdvancedClusterTagArgs',
-    'AdvancedClusterTagArgsDict',
+    'AdvancedClusterTimeoutsArgs',
+    'AdvancedClusterTimeoutsArgsDict',
     'AlertConfigurationMatcherArgs',
     'AlertConfigurationMatcherArgsDict',
     'AlertConfigurationMetricThresholdConfigArgs',
@@ -101,6 +99,14 @@ __all__ = [
     'CloudProviderAccessSetupAzureConfigArgsDict',
     'CloudProviderAccessSetupGcpConfigArgs',
     'CloudProviderAccessSetupGcpConfigArgsDict',
+    'CloudUserOrgAssignmentRolesArgs',
+    'CloudUserOrgAssignmentRolesArgsDict',
+    'CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs',
+    'CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict',
+    'CloudUserTeamAssignmentRolesArgs',
+    'CloudUserTeamAssignmentRolesArgsDict',
+    'CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs',
+    'CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict',
     'ClusterAdvancedConfigurationArgs',
     'ClusterAdvancedConfigurationArgsDict',
     'ClusterBiConnectorConfigArgs',
@@ -135,18 +141,6 @@ __all__ = [
     'CustomDbRoleActionResourceArgsDict',
     'CustomDbRoleInheritedRoleArgs',
     'CustomDbRoleInheritedRoleArgsDict',
-    'DataLakePipelineIngestionScheduleArgs',
-    'DataLakePipelineIngestionScheduleArgsDict',
-    'DataLakePipelineSinkArgs',
-    'DataLakePipelineSinkArgsDict',
-    'DataLakePipelineSinkPartitionFieldArgs',
-    'DataLakePipelineSinkPartitionFieldArgsDict',
-    'DataLakePipelineSnapshotArgs',
-    'DataLakePipelineSnapshotArgsDict',
-    'DataLakePipelineSourceArgs',
-    'DataLakePipelineSourceArgsDict',
-    'DataLakePipelineTransformationArgs',
-    'DataLakePipelineTransformationArgsDict',
     'DatabaseUserLabelArgs',
     'DatabaseUserLabelArgsDict',
     'DatabaseUserRoleArgs',
@@ -159,6 +153,8 @@ __all__ = [
     'EncryptionAtRestAzureKeyVaultConfigArgsDict',
     'EncryptionAtRestGoogleCloudKmsConfigArgs',
     'EncryptionAtRestGoogleCloudKmsConfigArgsDict',
+    'EncryptionAtRestPrivateEndpointTimeoutsArgs',
+    'EncryptionAtRestPrivateEndpointTimeoutsArgsDict',
     'EventTriggerEventProcessorsArgs',
     'EventTriggerEventProcessorsArgsDict',
     'EventTriggerEventProcessorsAwsEventbridgeArgs',
@@ -197,6 +193,8 @@ __all__ = [
     'FlexClusterConnectionStringsArgsDict',
     'FlexClusterProviderSettingsArgs',
     'FlexClusterProviderSettingsArgsDict',
+    'FlexClusterTimeoutsArgs',
+    'FlexClusterTimeoutsArgsDict',
     'GlobalClusterConfigCustomZoneMappingArgs',
     'GlobalClusterConfigCustomZoneMappingArgsDict',
     'GlobalClusterConfigManagedNamespaceArgs',
@@ -251,6 +249,8 @@ __all__ = [
     'SearchDeploymentTimeoutsArgsDict',
     'SearchIndexSynonymArgs',
     'SearchIndexSynonymArgsDict',
+    'SearchIndexTypeSetArgs',
+    'SearchIndexTypeSetArgsDict',
     'ServerlessInstanceLinkArgs',
     'ServerlessInstanceLinkArgsDict',
     'ServerlessInstanceTagArgs',
@@ -275,6 +275,12 @@ __all__ = [
     'StreamProcessorOptionsArgsDict',
     'StreamProcessorOptionsDlqArgs',
     'StreamProcessorOptionsDlqArgsDict',
+    'StreamProcessorTimeoutsArgs',
+    'StreamProcessorTimeoutsArgsDict',
+    'StreamWorkspaceDataProcessRegionArgs',
+    'StreamWorkspaceDataProcessRegionArgsDict',
+    'StreamWorkspaceStreamConfigArgs',
+    'StreamWorkspaceStreamConfigArgsDict',
     'X509AuthenticationDatabaseUserCertificateArgs',
     'X509AuthenticationDatabaseUserCertificateArgsDict',
     'GetAlertConfigurationOutputArgs',
@@ -287,8 +293,8 @@ __all__ = [
     'GetCustomDbRoleInheritedRoleArgsDict',
     'GetFederatedDatabaseInstanceCloudProviderConfigArgs',
     'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict',
-    'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs',
-    'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgsDict',
+    'GetFederatedDatabaseInstanceCloudProviderConfigAwArgs',
+    'GetFederatedDatabaseInstanceCloudProviderConfigAwArgsDict',
     'GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs',
     'GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict',
     'GetGlobalClusterConfigManagedNamespaceArgs',
@@ -303,59 +309,51 @@ if not MYPY:
     class AdvancedClusterAdvancedConfigurationArgsDict(TypedDict):
         change_stream_options_pre_and_post_images_expire_after_seconds: NotRequired[pulumi.Input[_builtins.int]]
         """
-        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        The minimum pre- and post-image retention time in seconds.
         """
         custom_openssl_cipher_config_tls12s: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
         The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         """
+        custom_openssl_cipher_config_tls13s: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
         default_max_time_ms: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        """
-        default_read_concern: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+        Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
         """
         default_write_concern: NotRequired[pulumi.Input[_builtins.str]]
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
-        """
-        fail_index_key_too_long: NotRequired[pulumi.Input[_builtins.bool]]
-        """
-        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
+        Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
         """
         javascript_enabled: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
         """
         minimum_enabled_tls_protocol: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
-        - TLS1_2
+        Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
         """
         no_table_scan: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
         """
         oplog_min_retention_hours: NotRequired[pulumi.Input[_builtins.float]]
         """
         Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-        * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
         """
         oplog_size_mb: NotRequired[pulumi.Input[_builtins.int]]
         """
-        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
         """
         sample_refresh_interval_bi_connector: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
         """
         sample_size_bi_connector: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        Number of documents per database to sample when gathering schema information.
         """
         tls_cipher_config_mode: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -363,7 +361,7 @@ if not MYPY:
         """
         transaction_lifetime_limit_seconds: NotRequired[pulumi.Input[_builtins.int]]
         """
-        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
         """
 elif False:
     AdvancedClusterAdvancedConfigurationArgsDict: TypeAlias = Mapping[str, Any]
@@ -373,10 +371,9 @@ class AdvancedClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
                  change_stream_options_pre_and_post_images_expire_after_seconds: Optional[pulumi.Input[_builtins.int]] = None,
                  custom_openssl_cipher_config_tls12s: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 custom_openssl_cipher_config_tls13s: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_max_time_ms: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_read_concern: Optional[pulumi.Input[_builtins.str]] = None,
                  default_write_concern: Optional[pulumi.Input[_builtins.str]] = None,
-                 fail_index_key_too_long: Optional[pulumi.Input[_builtins.bool]] = None,
                  javascript_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  minimum_enabled_tls_protocol: Optional[pulumi.Input[_builtins.str]] = None,
                  no_table_scan: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -387,44 +384,31 @@ class AdvancedClusterAdvancedConfigurationArgs:
                  tls_cipher_config_mode: Optional[pulumi.Input[_builtins.str]] = None,
                  transaction_lifetime_limit_seconds: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        :param pulumi.Input[_builtins.int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
-        :param pulumi.Input[_builtins.int] default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
-        :param pulumi.Input[_builtins.str] default_read_concern: [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        :param pulumi.Input[_builtins.str] default_write_concern: [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
-        :param pulumi.Input[_builtins.bool] fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        :param pulumi.Input[_builtins.bool] javascript_enabled: When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
-        :param pulumi.Input[_builtins.str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
-               - TLS1_2
-        :param pulumi.Input[_builtins.bool] no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_openssl_cipher_config_tls13s: The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        :param pulumi.Input[_builtins.int] default_max_time_ms: Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
+        :param pulumi.Input[_builtins.str] default_write_concern: Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
+        :param pulumi.Input[_builtins.bool] javascript_enabled: Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
+        :param pulumi.Input[_builtins.str] minimum_enabled_tls_protocol: Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
+        :param pulumi.Input[_builtins.bool] no_table_scan: Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
         :param pulumi.Input[_builtins.float] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-               * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
-        :param pulumi.Input[_builtins.int] oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
-        :param pulumi.Input[_builtins.int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
-        :param pulumi.Input[_builtins.int] sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        :param pulumi.Input[_builtins.int] oplog_size_mb: Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
+        :param pulumi.Input[_builtins.int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
+        :param pulumi.Input[_builtins.int] sample_size_bi_connector: Number of documents per database to sample when gathering schema information.
         :param pulumi.Input[_builtins.str] tls_cipher_config_mode: The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
-        :param pulumi.Input[_builtins.int] transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        :param pulumi.Input[_builtins.int] transaction_lifetime_limit_seconds: Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
         """
         if change_stream_options_pre_and_post_images_expire_after_seconds is not None:
             pulumi.set(__self__, "change_stream_options_pre_and_post_images_expire_after_seconds", change_stream_options_pre_and_post_images_expire_after_seconds)
         if custom_openssl_cipher_config_tls12s is not None:
             pulumi.set(__self__, "custom_openssl_cipher_config_tls12s", custom_openssl_cipher_config_tls12s)
+        if custom_openssl_cipher_config_tls13s is not None:
+            pulumi.set(__self__, "custom_openssl_cipher_config_tls13s", custom_openssl_cipher_config_tls13s)
         if default_max_time_ms is not None:
             pulumi.set(__self__, "default_max_time_ms", default_max_time_ms)
-        if default_read_concern is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""default_read_concern is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if default_read_concern is not None:
-            pulumi.set(__self__, "default_read_concern", default_read_concern)
         if default_write_concern is not None:
             pulumi.set(__self__, "default_write_concern", default_write_concern)
-        if fail_index_key_too_long is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""fail_index_key_too_long is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if fail_index_key_too_long is not None:
-            pulumi.set(__self__, "fail_index_key_too_long", fail_index_key_too_long)
         if javascript_enabled is not None:
             pulumi.set(__self__, "javascript_enabled", javascript_enabled)
         if minimum_enabled_tls_protocol is not None:
@@ -448,7 +432,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
     def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+        The minimum pre- and post-image retention time in seconds.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
@@ -469,10 +453,22 @@ class AdvancedClusterAdvancedConfigurationArgs:
         pulumi.set(self, "custom_openssl_cipher_config_tls12s", value)
 
     @_builtins.property
+    @pulumi.getter(name="customOpensslCipherConfigTls13s")
+    def custom_openssl_cipher_config_tls13s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
+        """
+        return pulumi.get(self, "custom_openssl_cipher_config_tls13s")
+
+    @custom_openssl_cipher_config_tls13s.setter
+    def custom_openssl_cipher_config_tls13s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "custom_openssl_cipher_config_tls13s", value)
+
+    @_builtins.property
     @pulumi.getter(name="defaultMaxTimeMs")
     def default_max_time_ms(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+        Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
         """
         return pulumi.get(self, "default_max_time_ms")
 
@@ -481,23 +477,10 @@ class AdvancedClusterAdvancedConfigurationArgs:
         pulumi.set(self, "default_max_time_ms", value)
 
     @_builtins.property
-    @pulumi.getter(name="defaultReadConcern")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def default_read_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-        """
-        return pulumi.get(self, "default_read_concern")
-
-    @default_read_concern.setter
-    def default_read_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "default_read_concern", value)
-
-    @_builtins.property
     @pulumi.getter(name="defaultWriteConcern")
     def default_write_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
         """
         return pulumi.get(self, "default_write_concern")
 
@@ -506,23 +489,10 @@ class AdvancedClusterAdvancedConfigurationArgs:
         pulumi.set(self, "default_write_concern", value)
 
     @_builtins.property
-    @pulumi.getter(name="failIndexKeyTooLong")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def fail_index_key_too_long(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-        """
-        return pulumi.get(self, "fail_index_key_too_long")
-
-    @fail_index_key_too_long.setter
-    def fail_index_key_too_long(self, value: Optional[pulumi.Input[_builtins.bool]]):
-        pulumi.set(self, "fail_index_key_too_long", value)
-
-    @_builtins.property
     @pulumi.getter(name="javascriptEnabled")
     def javascript_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+        Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
         """
         return pulumi.get(self, "javascript_enabled")
 
@@ -534,10 +504,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="minimumEnabledTlsProtocol")
     def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
-        - TLS1_2
+        Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -549,7 +516,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="noTableScan")
     def no_table_scan(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+        Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
         """
         return pulumi.get(self, "no_table_scan")
 
@@ -562,7 +529,6 @@ class AdvancedClusterAdvancedConfigurationArgs:
     def oplog_min_retention_hours(self) -> Optional[pulumi.Input[_builtins.float]]:
         """
         Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-        * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 
@@ -574,7 +540,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="oplogSizeMb")
     def oplog_size_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+        Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
         """
         return pulumi.get(self, "oplog_size_mb")
 
@@ -586,7 +552,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="sampleRefreshIntervalBiConnector")
     def sample_refresh_interval_bi_connector(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
         """
         return pulumi.get(self, "sample_refresh_interval_bi_connector")
 
@@ -598,7 +564,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="sampleSizeBiConnector")
     def sample_size_bi_connector(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+        Number of documents per database to sample when gathering schema information.
         """
         return pulumi.get(self, "sample_size_bi_connector")
 
@@ -622,7 +588,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
     def transaction_lifetime_limit_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
-        Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+        Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
         """
         return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
@@ -711,22 +677,22 @@ class AdvancedClusterBiConnectorConfigArgs:
 
 
 if not MYPY:
-    class AdvancedClusterConnectionStringArgsDict(TypedDict):
+    class AdvancedClusterConnectionStringsArgsDict(TypedDict):
         private: NotRequired[pulumi.Input[_builtins.str]]
         """
         [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         """
-        private_endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgsDict']]]]
+        private_endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgsDict']]]]
         """
         Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+        - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for `connection_strings.private_endpoint[#].srv_connection_string`.
+        - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+        - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         """
         private_srv: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -741,27 +707,27 @@ if not MYPY:
         Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
         """
 elif False:
-    AdvancedClusterConnectionStringArgsDict: TypeAlias = Mapping[str, Any]
+    AdvancedClusterConnectionStringsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class AdvancedClusterConnectionStringArgs:
+class AdvancedClusterConnectionStringsArgs:
     def __init__(__self__, *,
                  private: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]]] = None,
+                 private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]] = None,
                  private_srv: Optional[pulumi.Input[_builtins.str]] = None,
                  standard: Optional[pulumi.Input[_builtins.str]] = None,
                  standard_srv: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
+               - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+               - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+               - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for `connection_strings.private_endpoint[#].srv_connection_string`.
+               - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+               - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+               - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+               - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+               - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         :param pulumi.Input[_builtins.str] private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         :param pulumi.Input[_builtins.str] standard: Public mongodb:// connection string for this cluster.
         :param pulumi.Input[_builtins.str] standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
@@ -791,22 +757,22 @@ class AdvancedClusterConnectionStringArgs:
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]]]:
+    def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]:
         """
         Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
+        - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
+        - `connection_strings.private_endpoint[#].srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
+        - `connection_strings.private_endpoint[#].srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for `connection_strings.private_endpoint[#].srv_connection_string`.
+        - `connection_strings.private_endpoint[#].type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
+        - `connection_strings.private_endpoint[#].endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
+        - `connection_strings.private_endpoint[#].endpoints[#].endpoint_id` - Unique identifier of the private endpoint.
+        - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
+        - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
         """
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
-    def private_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointArgs']]]]):
+    def private_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]):
         pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
@@ -847,23 +813,45 @@ class AdvancedClusterConnectionStringArgs:
 
 
 if not MYPY:
-    class AdvancedClusterConnectionStringPrivateEndpointArgsDict(TypedDict):
+    class AdvancedClusterConnectionStringsPrivateEndpointArgsDict(TypedDict):
         connection_string: NotRequired[pulumi.Input[_builtins.str]]
-        endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointEndpointArgsDict']]]]
+        """
+        Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        """
+        endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict']]]]
+        """
+        List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        """
         srv_connection_string: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        """
         srv_shard_optimized_connection_string: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        """
         type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
 elif False:
-    AdvancedClusterConnectionStringPrivateEndpointArgsDict: TypeAlias = Mapping[str, Any]
+    AdvancedClusterConnectionStringsPrivateEndpointArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class AdvancedClusterConnectionStringPrivateEndpointArgs:
+class AdvancedClusterConnectionStringsPrivateEndpointArgs:
     def __init__(__self__, *,
                  connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointEndpointArgs']]]] = None,
+                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]] = None,
                  srv_connection_string: Optional[pulumi.Input[_builtins.str]] = None,
                  srv_shard_optimized_connection_string: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] connection_string: Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]] endpoints: List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        :param pulumi.Input[_builtins.str] srv_connection_string: Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        :param pulumi.Input[_builtins.str] srv_shard_optimized_connection_string: Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        :param pulumi.Input[_builtins.str] type: MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         if connection_string is not None:
             pulumi.set(__self__, "connection_string", connection_string)
         if endpoints is not None:
@@ -878,6 +866,9 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
     @_builtins.property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
+        """
         return pulumi.get(self, "connection_string")
 
     @connection_string.setter
@@ -886,16 +877,22 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointEndpointArgs']]]]:
+    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]:
+        """
+        List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
+        """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringPrivateEndpointEndpointArgs']]]]):
+    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="srvConnectionString")
     def srv_connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
+        """
         return pulumi.get(self, "srv_connection_string")
 
     @srv_connection_string.setter
@@ -905,6 +902,9 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
     @_builtins.property
     @pulumi.getter(name="srvShardOptimizedConnectionString")
     def srv_shard_optimized_connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
+        """
         return pulumi.get(self, "srv_shard_optimized_connection_string")
 
     @srv_shard_optimized_connection_string.setter
@@ -914,6 +914,9 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
     @_builtins.property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -922,34 +925,32 @@ class AdvancedClusterConnectionStringPrivateEndpointArgs:
 
 
 if not MYPY:
-    class AdvancedClusterConnectionStringPrivateEndpointEndpointArgsDict(TypedDict):
+    class AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict(TypedDict):
         endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique string that the cloud provider uses to identify the private endpoint.
+        """
         provider_name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Cloud service provider on which the servers are provisioned.
-        The possible values are:
-        - `AWS` - Amazon AWS
-        - `GCP` - Google Cloud Platform
-        - `AZURE` - Microsoft Azure
-        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        Cloud provider in which MongoDB Cloud deploys the private endpoint.
         """
         region: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Region where the private endpoint is deployed.
+        """
 elif False:
-    AdvancedClusterConnectionStringPrivateEndpointEndpointArgsDict: TypeAlias = Mapping[str, Any]
+    AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
+class AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs:
     def __init__(__self__, *,
                  endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] provider_name: Cloud service provider on which the servers are provisioned.
-               The possible values are:
-               - `AWS` - Amazon AWS
-               - `GCP` - Google Cloud Platform
-               - `AZURE` - Microsoft Azure
-               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        :param pulumi.Input[_builtins.str] endpoint_id: Unique string that the cloud provider uses to identify the private endpoint.
+        :param pulumi.Input[_builtins.str] provider_name: Cloud provider in which MongoDB Cloud deploys the private endpoint.
+        :param pulumi.Input[_builtins.str] region: Region where the private endpoint is deployed.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -961,6 +962,9 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
     @_builtins.property
     @pulumi.getter(name="endpointId")
     def endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique string that the cloud provider uses to identify the private endpoint.
+        """
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
@@ -971,12 +975,7 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
     @pulumi.getter(name="providerName")
     def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Cloud service provider on which the servers are provisioned.
-        The possible values are:
-        - `AWS` - Amazon AWS
-        - `GCP` - Google Cloud Platform
-        - `AZURE` - Microsoft Azure
-        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        Cloud provider in which MongoDB Cloud deploys the private endpoint.
         """
         return pulumi.get(self, "provider_name")
 
@@ -987,69 +986,14 @@ class AdvancedClusterConnectionStringPrivateEndpointEndpointArgs:
     @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Region where the private endpoint is deployed.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
-
-
-if not MYPY:
-    class AdvancedClusterLabelArgsDict(TypedDict):
-        key: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The key that you want to write.
-        """
-        value: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The value that you want to write.
-
-        > **NOTE:** MongoDB Atlas doesn't display your labels.
-        """
-elif False:
-    AdvancedClusterLabelArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class AdvancedClusterLabelArgs:
-    def __init__(__self__, *,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
-        """
-        :param pulumi.Input[_builtins.str] key: The key that you want to write.
-        :param pulumi.Input[_builtins.str] value: The value that you want to write.
-               
-               > **NOTE:** MongoDB Atlas doesn't display your labels.
-        """
-        if key is not None:
-            pulumi.set(__self__, "key", key)
-        if value is not None:
-            pulumi.set(__self__, "value", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The key that you want to write.
-        """
-        return pulumi.get(self, "key")
-
-    @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "key", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The value that you want to write.
-
-        > **NOTE:** MongoDB Atlas doesn't display your labels.
-        """
-        return pulumi.get(self, "value")
-
-    @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "value", value)
 
 
 if not MYPY:
@@ -1110,18 +1054,12 @@ if not MYPY:
         Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         """
         container_id: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        """
         external_id: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
-        """
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
-        """
-        num_shards: NotRequired[pulumi.Input[_builtins.int]]
-        """
-        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-        If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         """
         zone_id: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1140,16 +1078,12 @@ class AdvancedClusterReplicationSpecArgs:
                  region_configs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]],
                  container_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_shards: Optional[pulumi.Input[_builtins.int]] = None,
                  zone_id: Optional[pulumi.Input[_builtins.str]] = None,
                  zone_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
-        :param pulumi.Input[_builtins.str] external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
-        :param pulumi.Input[_builtins.str] id: **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
-        :param pulumi.Input[_builtins.int] num_shards: Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-               If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        :param pulumi.Input[_builtins.str] external_id: Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         :param pulumi.Input[_builtins.str] zone_id: Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         :param pulumi.Input[_builtins.str] zone_name: Name for the zone in a Global Cluster.
         """
@@ -1158,16 +1092,6 @@ class AdvancedClusterReplicationSpecArgs:
             pulumi.set(__self__, "container_id", container_id)
         if external_id is not None:
             pulumi.set(__self__, "external_id", external_id)
-        if id is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""id is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if num_shards is not None:
-            warnings.warn("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""num_shards is deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if num_shards is not None:
-            pulumi.set(__self__, "num_shards", num_shards)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
         if zone_name is not None:
@@ -1188,6 +1112,9 @@ class AdvancedClusterReplicationSpecArgs:
     @_builtins.property
     @pulumi.getter(name="containerId")
     def container_id(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
+        """
         return pulumi.get(self, "container_id")
 
     @container_id.setter
@@ -1198,40 +1125,13 @@ class AdvancedClusterReplicationSpecArgs:
     @pulumi.getter(name="externalId")
     def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI. When using old sharding configuration (replication spec with `num_shards` greater than 1) this value is not populated.
+        Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         """
         return pulumi.get(self, "external_id")
 
     @external_id.setter
     def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "external_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        **(DEPRECATED)** Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI. This value is not populated (empty string) when a sharded cluster has independently scaled shards.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="numShards")
-    @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def num_shards(self) -> Optional[pulumi.Input[_builtins.int]]:
-        """
-        Provide this value if you set a `cluster_type` of SHARDED or GEOSHARDED. Omit this value if you selected a `cluster_type` of REPLICASET. This API resource accepts 1 through 50, inclusive. This parameter defaults to 1. If you specify a `num_shards` value of 1 and a `cluster_type` of SHARDED, Atlas deploys a single-shard [sharded cluster](https://docs.atlas.mongodb.com/reference/glossary/#std-term-sharded-cluster). Don't create a sharded cluster with a single shard for production environments. Single-shard sharded clusters don't provide the same benefits as multi-shard configurations.
-        If you are upgrading a replica set to a sharded cluster, you cannot increase the number of shards in the same update request. You should wait until after the cluster has completed upgrading to sharded and you have reconnected all application clients to the MongoDB router before adding additional shards. Otherwise, your data might become inconsistent once MongoDB Cloud begins distributing data across shards. To learn more, see [Convert a replica set to a sharded cluster documentation](https://www.mongodb.com/docs/atlas/scale-cluster/#convert-a-replica-set-to-a-sharded-cluster) and [Convert a replica set to a sharded cluster tutorial](https://www.mongodb.com/docs/upcoming/tutorial/convert-replica-set-to-replicated-shard-cluster). **(DEPRECATED)** To learn more, see the 1.18.0 Upgrade Guide.
-        """
-        return pulumi.get(self, "num_shards")
-
-    @num_shards.setter
-    def num_shards(self, value: Optional[pulumi.Input[_builtins.int]]):
-        pulumi.set(self, "num_shards", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneId")
@@ -1264,7 +1164,7 @@ if not MYPY:
         """
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-        * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         """
         provider_name: pulumi.Input[_builtins.str]
         """
@@ -1273,7 +1173,8 @@ if not MYPY:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+        - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         """
         region_name: pulumi.Input[_builtins.str]
         """
@@ -1293,7 +1194,7 @@ if not MYPY:
         """
         backing_provider_name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
         """
         electable_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict']]
         """
@@ -1321,18 +1222,19 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         """
         :param pulumi.Input[_builtins.int] priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
                * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-               * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+               * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         :param pulumi.Input[_builtins.str] provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
                - `AWS` - Amazon AWS
                - `GCP` - Google Cloud Platform
                - `AZURE` - Microsoft Azure
-               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+               - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+               - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[_builtins.str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
-        :param pulumi.Input[_builtins.str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+        :param pulumi.Input[_builtins.str] backing_provider_name: Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs'] electable_specs: Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs'] read_only_specs: Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
@@ -1358,7 +1260,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         """
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
-        * If your region has set `region_configs.#.electable_specs.0.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs.#.region_configs.#` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
         """
         return pulumi.get(self, "priority")
 
@@ -1375,7 +1277,8 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         - `AWS` - Amazon AWS
         - `GCP` - Google Cloud Platform
         - `AZURE` - Microsoft Azure
-        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.#.region_configs.#.backing_provider_name` to set the cloud service provider.
+        - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
+        - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
@@ -1435,7 +1338,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
     @pulumi.getter(name="backingProviderName")
     def backing_provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when a `provider_name` is `TENANT` and `instance_size` is `M0`.
+        Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
         """
         return pulumi.get(self, "backing_provider_name")
 
@@ -1471,17 +1374,22 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
 if not MYPY:
     class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict(TypedDict):
         compute_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        """
         compute_max_instance_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+
+        **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `use_effective_fields = true`, you can read scaled values using `effective_analytics_specs` in the data source. When not using `use_effective_fields`, you may need lifecycle ignore customizations for `analytics_specs` fields similar to the example shown in the auto_scaling section.
         """
         compute_min_instance_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         """
         compute_scale_down_enabled: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         """
         disk_gb_enabled: NotRequired[pulumi.Input[_builtins.bool]]
         """
@@ -1499,9 +1407,12 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
                  compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        :param pulumi.Input[_builtins.str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
-        :param pulumi.Input[_builtins.str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
-        :param pulumi.Input[_builtins.bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        :param pulumi.Input[_builtins.bool] compute_enabled: Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        :param pulumi.Input[_builtins.str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+               
+               **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `use_effective_fields = true`, you can read scaled values using `effective_analytics_specs` in the data source. When not using `use_effective_fields`, you may need lifecycle ignore customizations for `analytics_specs` fields similar to the example shown in the auto_scaling section.
+        :param pulumi.Input[_builtins.str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
+        :param pulumi.Input[_builtins.bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         :param pulumi.Input[_builtins.bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
@@ -1518,6 +1429,9 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
     def compute_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        """
         return pulumi.get(self, "compute_enabled")
 
     @compute_enabled.setter
@@ -1528,7 +1442,9 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+
+        **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `use_effective_fields = true`, you can read scaled values using `effective_analytics_specs` in the data source. When not using `use_effective_fields`, you may need lifecycle ignore customizations for `analytics_specs` fields similar to the example shown in the auto_scaling section.
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -1540,7 +1456,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
     @pulumi.getter(name="computeMinInstanceSize")
     def compute_min_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         """
         return pulumi.get(self, "compute_min_instance_size")
 
@@ -1552,7 +1468,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
     @pulumi.getter(name="computeScaleDownEnabled")
     def compute_scale_down_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         """
         return pulumi.get(self, "compute_scale_down_enabled")
 
@@ -1575,10 +1491,6 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
 
 if not MYPY:
     class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict(TypedDict):
-        instance_size: pulumi.Input[_builtins.str]
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
         disk_iops: NotRequired[pulumi.Input[_builtins.int]]
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
@@ -1593,6 +1505,10 @@ if not MYPY:
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
+        instance_size: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
         node_count: NotRequired[pulumi.Input[_builtins.int]]
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -1603,41 +1519,30 @@ elif False:
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     def __init__(__self__, *,
-                 instance_size: pulumi.Input[_builtins.str],
                  disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
                  disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
                  ebs_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_size: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if instance_size is not None:
+            pulumi.set(__self__, "instance_size", instance_size)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
-
-    @_builtins.property
-    @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> pulumi.Input[_builtins.str]:
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
-        return pulumi.get(self, "instance_size")
-
-    @instance_size.setter
-    def instance_size(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -1678,6 +1583,18 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
         pulumi.set(self, "ebs_volume_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @instance_size.setter
+    def instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_size", value)
+
+    @_builtins.property
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -1693,17 +1610,20 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
 if not MYPY:
     class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict(TypedDict):
         compute_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        """
         compute_max_instance_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
         """
         compute_min_instance_size: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         """
         compute_scale_down_enabled: NotRequired[pulumi.Input[_builtins.bool]]
         """
-        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         """
         disk_gb_enabled: NotRequired[pulumi.Input[_builtins.bool]]
         """
@@ -1721,9 +1641,10 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
                  compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        :param pulumi.Input[_builtins.str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
-        :param pulumi.Input[_builtins.str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
-        :param pulumi.Input[_builtins.bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        :param pulumi.Input[_builtins.bool] compute_enabled: Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        :param pulumi.Input[_builtins.str] compute_max_instance_size: Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
+        :param pulumi.Input[_builtins.str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
+        :param pulumi.Input[_builtins.bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         :param pulumi.Input[_builtins.bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
         """
         if compute_enabled is not None:
@@ -1740,6 +1661,9 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
     def compute_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        """
         return pulumi.get(self, "compute_enabled")
 
     @compute_enabled.setter
@@ -1750,7 +1674,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -1762,7 +1686,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @pulumi.getter(name="computeMinInstanceSize")
     def compute_min_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+        Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         """
         return pulumi.get(self, "compute_min_instance_size")
 
@@ -1774,7 +1698,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     @pulumi.getter(name="computeScaleDownEnabled")
     def compute_scale_down_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         """
         return pulumi.get(self, "compute_scale_down_enabled")
 
@@ -1797,10 +1721,6 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
 
 if not MYPY:
     class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict(TypedDict):
-        instance_size: pulumi.Input[_builtins.str]
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
         disk_iops: NotRequired[pulumi.Input[_builtins.int]]
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
@@ -1815,6 +1735,10 @@ if not MYPY:
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
+        instance_size: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
         node_count: NotRequired[pulumi.Input[_builtins.int]]
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -1825,41 +1749,30 @@ elif False:
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     def __init__(__self__, *,
-                 instance_size: pulumi.Input[_builtins.str],
                  disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
                  disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
                  ebs_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_size: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if instance_size is not None:
+            pulumi.set(__self__, "instance_size", instance_size)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
-
-    @_builtins.property
-    @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> pulumi.Input[_builtins.str]:
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
-        return pulumi.get(self, "instance_size")
-
-    @instance_size.setter
-    def instance_size(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -1898,6 +1811,18 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     @ebs_volume_type.setter
     def ebs_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "ebs_volume_type", value)
+
+    @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @instance_size.setter
+    def instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
@@ -1914,10 +1839,6 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
 
 if not MYPY:
     class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict(TypedDict):
-        instance_size: pulumi.Input[_builtins.str]
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
         disk_iops: NotRequired[pulumi.Input[_builtins.int]]
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
@@ -1932,6 +1853,10 @@ if not MYPY:
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
         * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         """
+        instance_size: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
         node_count: NotRequired[pulumi.Input[_builtins.int]]
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
@@ -1942,41 +1867,30 @@ elif False:
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     def __init__(__self__, *,
-                 instance_size: pulumi.Input[_builtins.str],
                  disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
                  disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
                  ebs_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 instance_size: Optional[pulumi.Input[_builtins.str]] = None,
                  node_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
-        pulumi.set(__self__, "instance_size", instance_size)
         if disk_iops is not None:
             pulumi.set(__self__, "disk_iops", disk_iops)
         if disk_size_gb is not None:
             pulumi.set(__self__, "disk_size_gb", disk_size_gb)
         if ebs_volume_type is not None:
             pulumi.set(__self__, "ebs_volume_type", ebs_volume_type)
+        if instance_size is not None:
+            pulumi.set(__self__, "instance_size", instance_size)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
-
-    @_builtins.property
-    @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> pulumi.Input[_builtins.str]:
-        """
-        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
-        """
-        return pulumi.get(self, "instance_size")
-
-    @instance_size.setter
-    def instance_size(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
@@ -2017,6 +1931,18 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
         pulumi.set(self, "ebs_volume_type", value)
 
     @_builtins.property
+    @pulumi.getter(name="instanceSize")
+    def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+        """
+        return pulumi.get(self, "instance_size")
+
+    @instance_size.setter
+    def instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_size", value)
+
+    @_builtins.property
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -2030,59 +1956,75 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
 
 
 if not MYPY:
-    class AdvancedClusterTagArgsDict(TypedDict):
-        key: pulumi.Input[_builtins.str]
+    class AdvancedClusterTimeoutsArgsDict(TypedDict):
+        create: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Constant that defines the set of the tag.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
-        value: pulumi.Input[_builtins.str]
+        delete: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Variable that belongs to the set of the tag.
-
-        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        update: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
 elif False:
-    AdvancedClusterTagArgsDict: TypeAlias = Mapping[str, Any]
+    AdvancedClusterTimeoutsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class AdvancedClusterTagArgs:
+class AdvancedClusterTimeoutsArgs:
     def __init__(__self__, *,
-                 key: pulumi.Input[_builtins.str],
-                 value: pulumi.Input[_builtins.str]):
+                 create: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete: Optional[pulumi.Input[_builtins.str]] = None,
+                 update: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] key: Constant that defines the set of the tag.
-        :param pulumi.Input[_builtins.str] value: Variable that belongs to the set of the tag.
-               
-               To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> pulumi.Input[_builtins.str]:
+    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Constant that defines the set of the tag.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
-        return pulumi.get(self, "key")
+        return pulumi.get(self, "create")
 
-    @key.setter
-    def key(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "key", value)
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> pulumi.Input[_builtins.str]:
+    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Variable that belongs to the set of the tag.
-
-        To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         """
-        return pulumi.get(self, "value")
+        return pulumi.get(self, "delete")
 
-    @value.setter
-    def value(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "value", value)
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "update", value)
 
 
 if not MYPY:
@@ -3588,10 +3530,6 @@ if not MYPY:
         """
         Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         """
-        replication_spec_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
-        """
         should_copy_oplogs: NotRequired[pulumi.Input[_builtins.bool]]
         """
         Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
@@ -3609,14 +3547,12 @@ class CloudBackupScheduleCopySettingArgs:
                  cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  frequencies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 replication_spec_id: Optional[pulumi.Input[_builtins.str]] = None,
                  should_copy_oplogs: Optional[pulumi.Input[_builtins.bool]] = None,
                  zone_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         :param pulumi.Input[_builtins.str] region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
-        :param pulumi.Input[_builtins.str] replication_spec_id: Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
         :param pulumi.Input[_builtins.bool] should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param pulumi.Input[_builtins.str] zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
@@ -3626,11 +3562,6 @@ class CloudBackupScheduleCopySettingArgs:
             pulumi.set(__self__, "frequencies", frequencies)
         if region_name is not None:
             pulumi.set(__self__, "region_name", region_name)
-        if replication_spec_id is not None:
-            warnings.warn("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""", DeprecationWarning)
-            pulumi.log.warn("""replication_spec_id is deprecated: This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-        if replication_spec_id is not None:
-            pulumi.set(__self__, "replication_spec_id", replication_spec_id)
         if should_copy_oplogs is not None:
             pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
         if zone_id is not None:
@@ -3671,19 +3602,6 @@ class CloudBackupScheduleCopySettingArgs:
     @region_name.setter
     def region_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="replicationSpecId")
-    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def replication_spec_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zone_id` instead. To learn more, see the 1.18.0 upgrade guide.
-        """
-        return pulumi.get(self, "replication_spec_id")
-
-    @replication_spec_id.setter
-    def replication_spec_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "replication_spec_id", value)
 
     @_builtins.property
     @pulumi.getter(name="shouldCopyOplogs")
@@ -4614,6 +4532,9 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
 if not MYPY:
     class CloudProviderAccessAuthorizationAwsArgsDict(TypedDict):
         iam_assumed_role_arn: pulumi.Input[_builtins.str]
+        """
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
 elif False:
     CloudProviderAccessAuthorizationAwsArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -4621,11 +4542,17 @@ elif False:
 class CloudProviderAccessAuthorizationAwsArgs:
     def __init__(__self__, *,
                  iam_assumed_role_arn: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] iam_assumed_role_arn: ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
         pulumi.set(__self__, "iam_assumed_role_arn", iam_assumed_role_arn)
 
     @_builtins.property
     @pulumi.getter(name="iamAssumedRoleArn")
     def iam_assumed_role_arn(self) -> pulumi.Input[_builtins.str]:
+        """
+        ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+        """
         return pulumi.get(self, "iam_assumed_role_arn")
 
     @iam_assumed_role_arn.setter
@@ -4636,8 +4563,17 @@ class CloudProviderAccessAuthorizationAwsArgs:
 if not MYPY:
     class CloudProviderAccessAuthorizationAzureArgsDict(TypedDict):
         atlas_azure_app_id: pulumi.Input[_builtins.str]
+        """
+        Azure Active Directory Application ID of Atlas.
+        """
         service_principal_id: pulumi.Input[_builtins.str]
+        """
+        UUID string that identifies the Azure Service Principal.
+        """
         tenant_id: pulumi.Input[_builtins.str]
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID.
+        """
 elif False:
     CloudProviderAccessAuthorizationAzureArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -4647,6 +4583,11 @@ class CloudProviderAccessAuthorizationAzureArgs:
                  atlas_azure_app_id: pulumi.Input[_builtins.str],
                  service_principal_id: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] atlas_azure_app_id: Azure Active Directory Application ID of Atlas.
+        :param pulumi.Input[_builtins.str] service_principal_id: UUID string that identifies the Azure Service Principal.
+        :param pulumi.Input[_builtins.str] tenant_id: UUID String that identifies the Azure Active Directory Tenant ID.
+        """
         pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
         pulumi.set(__self__, "service_principal_id", service_principal_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -4654,6 +4595,9 @@ class CloudProviderAccessAuthorizationAzureArgs:
     @_builtins.property
     @pulumi.getter(name="atlasAzureAppId")
     def atlas_azure_app_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Azure Active Directory Application ID of Atlas.
+        """
         return pulumi.get(self, "atlas_azure_app_id")
 
     @atlas_azure_app_id.setter
@@ -4663,6 +4607,9 @@ class CloudProviderAccessAuthorizationAzureArgs:
     @_builtins.property
     @pulumi.getter(name="servicePrincipalId")
     def service_principal_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        UUID string that identifies the Azure Service Principal.
+        """
         return pulumi.get(self, "service_principal_id")
 
     @service_principal_id.setter
@@ -4672,6 +4619,9 @@ class CloudProviderAccessAuthorizationAzureArgs:
     @_builtins.property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID.
+        """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
@@ -4718,6 +4668,9 @@ class CloudProviderAccessAuthorizationFeatureUsageArgs:
 if not MYPY:
     class CloudProviderAccessAuthorizationGcpArgsDict(TypedDict):
         service_account_for_atlas: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Email address for the Google Service Account created by Atlas.
+        """
 elif False:
     CloudProviderAccessAuthorizationGcpArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -4725,12 +4678,18 @@ elif False:
 class CloudProviderAccessAuthorizationGcpArgs:
     def __init__(__self__, *,
                  service_account_for_atlas: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] service_account_for_atlas: Email address for the Google Service Account created by Atlas.
+        """
         if service_account_for_atlas is not None:
             pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountForAtlas")
     def service_account_for_atlas(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Email address for the Google Service Account created by Atlas.
+        """
         return pulumi.get(self, "service_account_for_atlas")
 
     @service_account_for_atlas.setter
@@ -4741,7 +4700,13 @@ class CloudProviderAccessAuthorizationGcpArgs:
 if not MYPY:
     class CloudProviderAccessSetupAwsConfigArgsDict(TypedDict):
         atlas_assumed_role_external_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        """
         atlas_aws_account_arn: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
 elif False:
     CloudProviderAccessSetupAwsConfigArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -4750,6 +4715,10 @@ class CloudProviderAccessSetupAwsConfigArgs:
     def __init__(__self__, *,
                  atlas_assumed_role_external_id: Optional[pulumi.Input[_builtins.str]] = None,
                  atlas_aws_account_arn: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        :param pulumi.Input[_builtins.str] atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
         if atlas_assumed_role_external_id is not None:
             pulumi.set(__self__, "atlas_assumed_role_external_id", atlas_assumed_role_external_id)
         if atlas_aws_account_arn is not None:
@@ -4758,6 +4727,9 @@ class CloudProviderAccessSetupAwsConfigArgs:
     @_builtins.property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
     def atlas_assumed_role_external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique external ID Atlas uses when assuming the IAM role in your AWS account.
+        """
         return pulumi.get(self, "atlas_assumed_role_external_id")
 
     @atlas_assumed_role_external_id.setter
@@ -4767,6 +4739,9 @@ class CloudProviderAccessSetupAwsConfigArgs:
     @_builtins.property
     @pulumi.getter(name="atlasAwsAccountArn")
     def atlas_aws_account_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
+        """
         return pulumi.get(self, "atlas_aws_account_arn")
 
     @atlas_aws_account_arn.setter
@@ -4777,8 +4752,17 @@ class CloudProviderAccessSetupAwsConfigArgs:
 if not MYPY:
     class CloudProviderAccessSetupAzureConfigArgsDict(TypedDict):
         atlas_azure_app_id: pulumi.Input[_builtins.str]
+        """
+        Azure Active Directory Application ID of Atlas. This property is required when `provider_name = "AZURE".`
+        """
         service_principal_id: pulumi.Input[_builtins.str]
+        """
+        UUID string that identifies the Azure Service Principal. This property is required when `provider_name = "AZURE".`
+        """
         tenant_id: pulumi.Input[_builtins.str]
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `provider_name = "AZURE".`
+        """
 elif False:
     CloudProviderAccessSetupAzureConfigArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -4788,6 +4772,11 @@ class CloudProviderAccessSetupAzureConfigArgs:
                  atlas_azure_app_id: pulumi.Input[_builtins.str],
                  service_principal_id: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] atlas_azure_app_id: Azure Active Directory Application ID of Atlas. This property is required when `provider_name = "AZURE".`
+        :param pulumi.Input[_builtins.str] service_principal_id: UUID string that identifies the Azure Service Principal. This property is required when `provider_name = "AZURE".`
+        :param pulumi.Input[_builtins.str] tenant_id: UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `provider_name = "AZURE".`
+        """
         pulumi.set(__self__, "atlas_azure_app_id", atlas_azure_app_id)
         pulumi.set(__self__, "service_principal_id", service_principal_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -4795,6 +4784,9 @@ class CloudProviderAccessSetupAzureConfigArgs:
     @_builtins.property
     @pulumi.getter(name="atlasAzureAppId")
     def atlas_azure_app_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Azure Active Directory Application ID of Atlas. This property is required when `provider_name = "AZURE".`
+        """
         return pulumi.get(self, "atlas_azure_app_id")
 
     @atlas_azure_app_id.setter
@@ -4804,6 +4796,9 @@ class CloudProviderAccessSetupAzureConfigArgs:
     @_builtins.property
     @pulumi.getter(name="servicePrincipalId")
     def service_principal_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        UUID string that identifies the Azure Service Principal. This property is required when `provider_name = "AZURE".`
+        """
         return pulumi.get(self, "service_principal_id")
 
     @service_principal_id.setter
@@ -4813,6 +4808,9 @@ class CloudProviderAccessSetupAzureConfigArgs:
     @_builtins.property
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `provider_name = "AZURE".`
+        """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
@@ -4823,7 +4821,13 @@ class CloudProviderAccessSetupAzureConfigArgs:
 if not MYPY:
     class CloudProviderAccessSetupGcpConfigArgsDict(TypedDict):
         service_account_for_atlas: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The GCP service account email that Atlas uses.
+        """
         status: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        """
 elif False:
     CloudProviderAccessSetupGcpConfigArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -4832,6 +4836,10 @@ class CloudProviderAccessSetupGcpConfigArgs:
     def __init__(__self__, *,
                  service_account_for_atlas: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] service_account_for_atlas: The GCP service account email that Atlas uses.
+        :param pulumi.Input[_builtins.str] status: The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        """
         if service_account_for_atlas is not None:
             pulumi.set(__self__, "service_account_for_atlas", service_account_for_atlas)
         if status is not None:
@@ -4840,6 +4848,9 @@ class CloudProviderAccessSetupGcpConfigArgs:
     @_builtins.property
     @pulumi.getter(name="serviceAccountForAtlas")
     def service_account_for_atlas(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The GCP service account email that Atlas uses.
+        """
         return pulumi.get(self, "service_account_for_atlas")
 
     @service_account_for_atlas.setter
@@ -4849,11 +4860,222 @@ class CloudProviderAccessSetupGcpConfigArgs:
     @_builtins.property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+        """
         return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "status", value)
+
+
+if not MYPY:
+    class CloudUserOrgAssignmentRolesArgsDict(TypedDict):
+        org_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        project_role_assignments: NotRequired[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict']]]]
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+elif False:
+    CloudUserOrgAssignmentRolesArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CloudUserOrgAssignmentRolesArgs:
+    def __init__(__self__, *,
+                 org_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
+        :param pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        if org_roles is not None:
+            pulumi.set(__self__, "org_roles", org_roles)
+        if project_role_assignments is not None:
+            pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "org_roles")
+
+    @org_roles.setter
+    def org_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "org_roles", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]:
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_role_assignments")
+
+    @project_role_assignments.setter
+    def project_role_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]):
+        pulumi.set(self, "project_role_assignments", value)
+
+
+if not MYPY:
+    class CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict(TypedDict):
+        project_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        project_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+elif False:
+    CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs:
+    def __init__(__self__, *,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if project_roles is not None:
+            pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_roles")
+
+    @project_roles.setter
+    def project_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "project_roles", value)
+
+
+if not MYPY:
+    class CloudUserTeamAssignmentRolesArgsDict(TypedDict):
+        org_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        project_role_assignments: NotRequired[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict']]]]
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+elif False:
+    CloudUserTeamAssignmentRolesArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CloudUserTeamAssignmentRolesArgs:
+    def __init__(__self__, *,
+                 org_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
+        :param pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        if org_roles is not None:
+            pulumi.set(__self__, "org_roles", org_roles)
+        if project_role_assignments is not None:
+            pulumi.set(__self__, "project_role_assignments", project_role_assignments)
+
+    @_builtins.property
+    @pulumi.getter(name="orgRoles")
+    def org_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        One or more organization level roles to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "org_roles")
+
+    @org_roles.setter
+    def org_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "org_roles", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoleAssignments")
+    def project_role_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]:
+        """
+        List of project level role assignments to assign the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_role_assignments")
+
+    @project_role_assignments.setter
+    def project_role_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]):
+        pulumi.set(self, "project_role_assignments", value)
+
+
+if not MYPY:
+    class CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict(TypedDict):
+        project_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        project_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+elif False:
+    CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs:
+    def __init__(__self__, *,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if project_roles is not None:
+            pulumi.set(__self__, "project_roles", project_roles)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
+        """
+        return pulumi.get(self, "project_id")
+
+    @project_id.setter
+    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="projectRoles")
+    def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        One or more project-level roles assigned to the MongoDB Cloud user.
+        """
+        return pulumi.get(self, "project_roles")
+
+    @project_roles.setter
+    def project_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "project_roles", value)
 
 
 if not MYPY:
@@ -4886,9 +5108,8 @@ if not MYPY:
         minimum_enabled_tls_protocol: NotRequired[pulumi.Input[_builtins.str]]
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
         - TLS1_2
+        - TLS1_3
         """
         no_table_scan: NotRequired[pulumi.Input[_builtins.bool]]
         """
@@ -4948,9 +5169,8 @@ class ClusterAdvancedConfigurationArgs:
         :param pulumi.Input[_builtins.bool] fail_index_key_too_long: **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         :param pulumi.Input[_builtins.bool] javascript_enabled: When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         :param pulumi.Input[_builtins.str] minimum_enabled_tls_protocol: Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-               - TLS1_0
-               - TLS1_1
                - TLS1_2
+               - TLS1_3
         :param pulumi.Input[_builtins.bool] no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         :param pulumi.Input[_builtins.float] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
                * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
@@ -5085,9 +5305,8 @@ class ClusterAdvancedConfigurationArgs:
     def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-        - TLS1_0
-        - TLS1_1
         - TLS1_2
+        - TLS1_3
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
@@ -5263,33 +5482,10 @@ class ClusterBiConnectorConfigArgs:
 if not MYPY:
     class ClusterConnectionStringArgsDict(TypedDict):
         private: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         private_endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgsDict']]]]
-        """
-        Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        """
         private_srv: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         standard: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Public mongodb:// connection string for this cluster.
-        """
         standard_srv: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
-        """
 elif False:
     ClusterConnectionStringArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -5301,21 +5497,6 @@ class ClusterConnectionStringArgs:
                  private_srv: Optional[pulumi.Input[_builtins.str]] = None,
                  standard: Optional[pulumi.Input[_builtins.str]] = None,
                  standard_srv: Optional[pulumi.Input[_builtins.str]] = None):
-        """
-        :param pulumi.Input[_builtins.str] private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-               - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-               - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-               - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-               - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-               - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-               - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-               - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-               - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        :param pulumi.Input[_builtins.str] private_srv: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        :param pulumi.Input[_builtins.str] standard: Public mongodb:// connection string for this cluster.
-        :param pulumi.Input[_builtins.str] standard_srv: Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
-        """
         if private is not None:
             pulumi.set(__self__, "private", private)
         if private_endpoints is not None:
@@ -5330,9 +5511,6 @@ class ClusterConnectionStringArgs:
     @_builtins.property
     @pulumi.getter
     def private(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         return pulumi.get(self, "private")
 
     @private.setter
@@ -5342,17 +5520,6 @@ class ClusterConnectionStringArgs:
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
     def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]:
-        """
-        Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
-        - `connection_strings.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
-        - `connection_strings.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in DNS . Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don't need to: Append the seed list or Change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn't, use `connection_strings.private_endpoint[#].connection_string`
-        - `connection_strings.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster support it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[#].srvConnectionString.
-        - `connection_strings.private_endpoint.#.type` - Type of MongoDB process that you connect to with the connection strings. Atlas returns `MONGOD` for replica sets, or `MONGOS` for sharded clusters.
-        - `connection_strings.private_endpoint.#.endpoints` - Private endpoint through which you connect to Atlas when you use `connection_strings.private_endpoint[#].connection_string` or `connection_strings.private_endpoint[#].srv_connection_string`
-        - `connection_strings.private_endpoint.#.endpoints.#.endpoint_id` - Unique identifier of the private endpoint.
-        - `connection_strings.private_endpoint.#.endpoints.#.provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
-        - `connection_strings.private_endpoint.#.endpoints.#.region` - Region to which you deployed the private endpoint.
-        """
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
@@ -5362,9 +5529,6 @@ class ClusterConnectionStringArgs:
     @_builtins.property
     @pulumi.getter(name="privateSrv")
     def private_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-        """
         return pulumi.get(self, "private_srv")
 
     @private_srv.setter
@@ -5374,9 +5538,6 @@ class ClusterConnectionStringArgs:
     @_builtins.property
     @pulumi.getter
     def standard(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Public mongodb:// connection string for this cluster.
-        """
         return pulumi.get(self, "standard")
 
     @standard.setter
@@ -5386,9 +5547,6 @@ class ClusterConnectionStringArgs:
     @_builtins.property
     @pulumi.getter(name="standardSrv")
     def standard_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
-        """
         return pulumi.get(self, "standard_srv")
 
     @standard_srv.setter
@@ -6488,607 +6646,6 @@ class CustomDbRoleInheritedRoleArgs:
 
 
 if not MYPY:
-    class DataLakePipelineIngestionScheduleArgsDict(TypedDict):
-        frequency_interval: NotRequired[pulumi.Input[_builtins.int]]
-        frequency_type: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        retention_unit: NotRequired[pulumi.Input[_builtins.str]]
-        retention_value: NotRequired[pulumi.Input[_builtins.int]]
-elif False:
-    DataLakePipelineIngestionScheduleArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class DataLakePipelineIngestionScheduleArgs:
-    def __init__(__self__, *,
-                 frequency_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention_unit: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention_value: Optional[pulumi.Input[_builtins.int]] = None):
-        """
-        :param pulumi.Input[_builtins.str] id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        if frequency_interval is not None:
-            pulumi.set(__self__, "frequency_interval", frequency_interval)
-        if frequency_type is not None:
-            pulumi.set(__self__, "frequency_type", frequency_type)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if retention_unit is not None:
-            pulumi.set(__self__, "retention_unit", retention_unit)
-        if retention_value is not None:
-            pulumi.set(__self__, "retention_value", retention_value)
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
-        return pulumi.get(self, "frequency_interval")
-
-    @frequency_interval.setter
-    def frequency_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
-        pulumi.set(self, "frequency_interval", value)
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "frequency_type")
-
-    @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "frequency_type", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "retention_unit")
-
-    @retention_unit.setter
-    def retention_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "retention_unit", value)
-
-    @_builtins.property
-    @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> Optional[pulumi.Input[_builtins.int]]:
-        return pulumi.get(self, "retention_value")
-
-    @retention_value.setter
-    def retention_value(self, value: Optional[pulumi.Input[_builtins.int]]):
-        pulumi.set(self, "retention_value", value)
-
-
-if not MYPY:
-    class DataLakePipelineSinkArgsDict(TypedDict):
-        partition_fields: NotRequired[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgsDict']]]]
-        """
-        Ordered fields used to physically organize data in the destination.
-        * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-        * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        """
-        provider: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        region: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-elif False:
-    DataLakePipelineSinkArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class DataLakePipelineSinkArgs:
-    def __init__(__self__, *,
-                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]]] = None,
-                 provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
-        """
-        :param pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]] partition_fields: Ordered fields used to physically organize data in the destination.
-               * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-               * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        :param pulumi.Input[_builtins.str] provider: Target cloud provider for this Data Lake Pipeline.
-        :param pulumi.Input[_builtins.str] region: Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        :param pulumi.Input[_builtins.str] type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if partition_fields is not None:
-            pulumi.set(__self__, "partition_fields", partition_fields)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if region is not None:
-            pulumi.set(__self__, "region", region)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="partitionFields")
-    def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]]]:
-        """
-        Ordered fields used to physically organize data in the destination.
-        * `partition_fields.#.field_name` - Human-readable label that identifies the field name used to partition data.
-        * `partition_fields.#.order` - Sequence in which MongoDB Atlas slices the collection data to create partitions. The resource expresses this sequence starting with zero.
-        """
-        return pulumi.get(self, "partition_fields")
-
-    @partition_fields.setter
-    def partition_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DataLakePipelineSinkPartitionFieldArgs']]]]):
-        pulumi.set(self, "partition_fields", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def provider(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "provider")
-
-    @provider.setter
-    def provider(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "provider", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Target cloud provider region for this Data Lake Pipeline. [Supported cloud provider regions](https://www.mongodb.com/docs/datalake/limitations).
-        """
-        return pulumi.get(self, "region")
-
-    @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "region", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "type", value)
-
-
-if not MYPY:
-    class DataLakePipelineSinkPartitionFieldArgsDict(TypedDict):
-        field_name: pulumi.Input[_builtins.str]
-        order: pulumi.Input[_builtins.int]
-elif False:
-    DataLakePipelineSinkPartitionFieldArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class DataLakePipelineSinkPartitionFieldArgs:
-    def __init__(__self__, *,
-                 field_name: pulumi.Input[_builtins.str],
-                 order: pulumi.Input[_builtins.int]):
-        pulumi.set(__self__, "field_name", field_name)
-        pulumi.set(__self__, "order", order)
-
-    @_builtins.property
-    @pulumi.getter(name="fieldName")
-    def field_name(self) -> pulumi.Input[_builtins.str]:
-        return pulumi.get(self, "field_name")
-
-    @field_name.setter
-    def field_name(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "field_name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def order(self) -> pulumi.Input[_builtins.int]:
-        return pulumi.get(self, "order")
-
-    @order.setter
-    def order(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "order", value)
-
-
-if not MYPY:
-    class DataLakePipelineSnapshotArgsDict(TypedDict):
-        copy_region: NotRequired[pulumi.Input[_builtins.str]]
-        created_at: NotRequired[pulumi.Input[_builtins.str]]
-        expires_at: NotRequired[pulumi.Input[_builtins.str]]
-        frequency_yype: NotRequired[pulumi.Input[_builtins.str]]
-        id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        master_key: NotRequired[pulumi.Input[_builtins.str]]
-        mongod_version: NotRequired[pulumi.Input[_builtins.str]]
-        policies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        provider: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        replica_set_name: NotRequired[pulumi.Input[_builtins.str]]
-        size: NotRequired[pulumi.Input[_builtins.int]]
-        snapshot_type: NotRequired[pulumi.Input[_builtins.str]]
-        status: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-elif False:
-    DataLakePipelineSnapshotArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class DataLakePipelineSnapshotArgs:
-    def __init__(__self__, *,
-                 copy_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 frequency_yype: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 master_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 mongod_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
-                 snapshot_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
-        """
-        :param pulumi.Input[_builtins.str] id: Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        :param pulumi.Input[_builtins.str] provider: Target cloud provider for this Data Lake Pipeline.
-        :param pulumi.Input[_builtins.str] type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if copy_region is not None:
-            pulumi.set(__self__, "copy_region", copy_region)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
-        if expires_at is not None:
-            pulumi.set(__self__, "expires_at", expires_at)
-        if frequency_yype is not None:
-            pulumi.set(__self__, "frequency_yype", frequency_yype)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
-        if master_key is not None:
-            pulumi.set(__self__, "master_key", master_key)
-        if mongod_version is not None:
-            pulumi.set(__self__, "mongod_version", mongod_version)
-        if policies is not None:
-            pulumi.set(__self__, "policies", policies)
-        if provider is not None:
-            pulumi.set(__self__, "provider", provider)
-        if replica_set_name is not None:
-            pulumi.set(__self__, "replica_set_name", replica_set_name)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
-        if snapshot_type is not None:
-            pulumi.set(__self__, "snapshot_type", snapshot_type)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="copyRegion")
-    def copy_region(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "copy_region")
-
-    @copy_region.setter
-    def copy_region(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "copy_region", value)
-
-    @_builtins.property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "created_at")
-
-    @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "created_at", value)
-
-    @_builtins.property
-    @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "expires_at")
-
-    @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "expires_at", value)
-
-    @_builtins.property
-    @pulumi.getter(name="frequencyYype")
-    def frequency_yype(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "frequency_yype")
-
-    @frequency_yype.setter
-    def frequency_yype(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "frequency_yype", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Unique 24-hexadecimal digit string that identifies the Data Lake Pipeline.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="masterKey")
-    def master_key(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "master_key")
-
-    @master_key.setter
-    def master_key(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "master_key", value)
-
-    @_builtins.property
-    @pulumi.getter(name="mongodVersion")
-    def mongod_version(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "mongod_version")
-
-    @mongod_version.setter
-    def mongod_version(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "mongod_version", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
-        return pulumi.get(self, "policies")
-
-    @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "policies", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def provider(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Target cloud provider for this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "provider")
-
-    @provider.setter
-    def provider(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "provider", value)
-
-    @_builtins.property
-    @pulumi.getter(name="replicaSetName")
-    def replica_set_name(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "replica_set_name")
-
-    @replica_set_name.setter
-    def replica_set_name(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "replica_set_name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
-        return pulumi.get(self, "size")
-
-    @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
-        pulumi.set(self, "size", value)
-
-    @_builtins.property
-    @pulumi.getter(name="snapshotType")
-    def snapshot_type(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "snapshot_type")
-
-    @snapshot_type.setter
-    def snapshot_type(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "snapshot_type", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "status", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "type", value)
-
-
-if not MYPY:
-    class DataLakePipelineSourceArgsDict(TypedDict):
-        cluster_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Human-readable name that identifies the cluster.
-        """
-        collection_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Human-readable name that identifies the collection.
-        """
-        database_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Human-readable name that identifies the database.
-        """
-        policy_item_id: NotRequired[pulumi.Input[_builtins.str]]
-        project_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The unique ID for the project to create a data lake pipeline.
-        """
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-elif False:
-    DataLakePipelineSourceArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class DataLakePipelineSourceArgs:
-    def __init__(__self__, *,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_item_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
-        """
-        :param pulumi.Input[_builtins.str] cluster_name: Human-readable name that identifies the cluster.
-        :param pulumi.Input[_builtins.str] collection_name: Human-readable name that identifies the collection.
-        :param pulumi.Input[_builtins.str] database_name: Human-readable name that identifies the database.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a data lake pipeline.
-        :param pulumi.Input[_builtins.str] type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if cluster_name is not None:
-            pulumi.set(__self__, "cluster_name", cluster_name)
-        if collection_name is not None:
-            pulumi.set(__self__, "collection_name", collection_name)
-        if database_name is not None:
-            pulumi.set(__self__, "database_name", database_name)
-        if policy_item_id is not None:
-            pulumi.set(__self__, "policy_item_id", policy_item_id)
-        if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Human-readable name that identifies the cluster.
-        """
-        return pulumi.get(self, "cluster_name")
-
-    @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "cluster_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="collectionName")
-    def collection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Human-readable name that identifies the collection.
-        """
-        return pulumi.get(self, "collection_name")
-
-    @collection_name.setter
-    def collection_name(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "collection_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="databaseName")
-    def database_name(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Human-readable name that identifies the database.
-        """
-        return pulumi.get(self, "database_name")
-
-    @database_name.setter
-    def database_name(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "database_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="policyItemId")
-    def policy_item_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "policy_item_id")
-
-    @policy_item_id.setter
-    def policy_item_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "policy_item_id", value)
-
-    @_builtins.property
-    @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The unique ID for the project to create a data lake pipeline.
-        """
-        return pulumi.get(self, "project_id")
-
-    @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "project_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "type", value)
-
-
-if not MYPY:
-    class DataLakePipelineTransformationArgsDict(TypedDict):
-        field: NotRequired[pulumi.Input[_builtins.str]]
-        type: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-elif False:
-    DataLakePipelineTransformationArgsDict: TypeAlias = Mapping[str, Any]
-
-@pulumi.input_type
-class DataLakePipelineTransformationArgs:
-    def __init__(__self__, *,
-                 field: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
-        """
-        :param pulumi.Input[_builtins.str] type: Type of ingestion source of this Data Lake Pipeline.
-        """
-        if field is not None:
-            pulumi.set(__self__, "field", field)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-
-    @_builtins.property
-    @pulumi.getter
-    def field(self) -> Optional[pulumi.Input[_builtins.str]]:
-        return pulumi.get(self, "field")
-
-    @field.setter
-    def field(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "field", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Type of ingestion source of this Data Lake Pipeline.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "type", value)
-
-
-if not MYPY:
     class DatabaseUserLabelArgsDict(TypedDict):
         key: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -7214,7 +6771,7 @@ if not MYPY:
     class DatabaseUserScopeArgsDict(TypedDict):
         name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Name of the cluster or Atlas Data Lake that the user has access to.
+        Name of the cluster or Atlas Data Federation that the user has access to.
         """
         type: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -7229,7 +6786,7 @@ class DatabaseUserScopeArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] name: Name of the cluster or Atlas Data Lake that the user has access to.
+        :param pulumi.Input[_builtins.str] name: Name of the cluster or Atlas Data Federation that the user has access to.
         :param pulumi.Input[_builtins.str] type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         if name is not None:
@@ -7241,7 +6798,7 @@ class DatabaseUserScopeArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Name of the cluster or Atlas Data Lake that the user has access to.
+        Name of the cluster or Atlas Data Federation that the user has access to.
         """
         return pulumi.get(self, "name")
 
@@ -7779,6 +7336,58 @@ class EncryptionAtRestGoogleCloudKmsConfigArgs:
 
 
 if not MYPY:
+    class EncryptionAtRestPrivateEndpointTimeoutsArgsDict(TypedDict):
+        create: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        delete: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+elif False:
+    EncryptionAtRestPrivateEndpointTimeoutsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EncryptionAtRestPrivateEndpointTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+
+if not MYPY:
     class EventTriggerEventProcessorsArgsDict(TypedDict):
         aws_eventbridge: NotRequired[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgsDict']]
 elif False:
@@ -7841,7 +7450,7 @@ if not MYPY:
     class FederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
         aws: NotRequired[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict']]
         """
-        Name of the cloud service that hosts the data lake's data stores.
+        Name of the cloud service that hosts the Atlas Data Federation data stores.
         """
         azure: NotRequired[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict']]
         """
@@ -7856,7 +7465,7 @@ class FederatedDatabaseInstanceCloudProviderConfigArgs:
                  aws: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']] = None,
                  azure: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']] = None):
         """
-        :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs'] aws: Name of the cloud service that hosts the data lake's data stores.
+        :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs'] aws: Name of the cloud service that hosts the Atlas Data Federation data stores.
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs'] azure: Microsoft Azure cloud service configuration.
         """
         if aws is not None:
@@ -7868,7 +7477,7 @@ class FederatedDatabaseInstanceCloudProviderConfigArgs:
     @pulumi.getter
     def aws(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]:
         """
-        Name of the cloud service that hosts the data lake's data stores.
+        Name of the cloud service that hosts the Atlas Data Federation data stores.
         """
         return pulumi.get(self, "aws")
 
@@ -9131,6 +8740,78 @@ class FlexClusterProviderSettingsArgs:
 
 
 if not MYPY:
+    class FlexClusterTimeoutsArgsDict(TypedDict):
+        create: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        delete: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        update: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+elif False:
+    FlexClusterTimeoutsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class FlexClusterTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete: Optional[pulumi.Input[_builtins.str]] = None,
+                 update: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "update", value)
+
+
+if not MYPY:
     class GlobalClusterConfigCustomZoneMappingArgsDict(TypedDict):
         location: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -10320,41 +10001,9 @@ class ProjectTeamArgs:
 
 if not MYPY:
     class ProviderAssumeRoleArgsDict(TypedDict):
-        duration: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
-        """
-        external_id: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        A unique identifier that might be required when you assume a role in another account.
-        """
-        policy: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
-        """
-        policy_arns: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
-        """
         role_arn: NotRequired[pulumi.Input[_builtins.str]]
         """
         Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
-        """
-        session_name: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        An identifier for the assumed role session.
-        """
-        source_identity: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Source identity specified by the principal assuming the role.
-        """
-        tags: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-        """
-        Assume role session tags.
-        """
-        transitive_tag_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-        """
-        Assume role session tag keys to pass to any subsequent sessions.
         """
 elif False:
     ProviderAssumeRoleArgsDict: TypeAlias = Mapping[str, Any]
@@ -10362,92 +10011,12 @@ elif False:
 @pulumi.input_type
 class ProviderAssumeRoleArgs:
     def __init__(__self__, *,
-                 duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 session_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 source_identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 transitive_tag_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 role_arn: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] duration: The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
-        :param pulumi.Input[_builtins.str] external_id: A unique identifier that might be required when you assume a role in another account.
-        :param pulumi.Input[_builtins.str] policy: IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_arns: Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
         :param pulumi.Input[_builtins.str] role_arn: Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
-        :param pulumi.Input[_builtins.str] session_name: An identifier for the assumed role session.
-        :param pulumi.Input[_builtins.str] source_identity: Source identity specified by the principal assuming the role.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Assume role session tags.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] transitive_tag_keys: Assume role session tag keys to pass to any subsequent sessions.
         """
-        if duration is not None:
-            pulumi.set(__self__, "duration", duration)
-        if external_id is not None:
-            pulumi.set(__self__, "external_id", external_id)
-        if policy is not None:
-            pulumi.set(__self__, "policy", policy)
-        if policy_arns is not None:
-            pulumi.set(__self__, "policy_arns", policy_arns)
         if role_arn is not None:
             pulumi.set(__self__, "role_arn", role_arn)
-        if session_name is not None:
-            pulumi.set(__self__, "session_name", session_name)
-        if source_identity is not None:
-            pulumi.set(__self__, "source_identity", source_identity)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
-        if transitive_tag_keys is not None:
-            pulumi.set(__self__, "transitive_tag_keys", transitive_tag_keys)
-
-    @_builtins.property
-    @pulumi.getter
-    def duration(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
-        """
-        return pulumi.get(self, "duration")
-
-    @duration.setter
-    def duration(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "duration", value)
-
-    @_builtins.property
-    @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        A unique identifier that might be required when you assume a role in another account.
-        """
-        return pulumi.get(self, "external_id")
-
-    @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "external_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def policy(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
-        """
-        return pulumi.get(self, "policy")
-
-    @policy.setter
-    def policy(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "policy", value)
-
-    @_builtins.property
-    @pulumi.getter(name="policyArns")
-    def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
-        """
-        return pulumi.get(self, "policy_arns")
-
-    @policy_arns.setter
-    def policy_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "policy_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
@@ -10460,54 +10029,6 @@ class ProviderAssumeRoleArgs:
     @role_arn.setter
     def role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "role_arn", value)
-
-    @_builtins.property
-    @pulumi.getter(name="sessionName")
-    def session_name(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        An identifier for the assumed role session.
-        """
-        return pulumi.get(self, "session_name")
-
-    @session_name.setter
-    def session_name(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "session_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="sourceIdentity")
-    def source_identity(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Source identity specified by the principal assuming the role.
-        """
-        return pulumi.get(self, "source_identity")
-
-    @source_identity.setter
-    def source_identity(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "source_identity", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
-        """
-        Assume role session tags.
-        """
-        return pulumi.get(self, "tags")
-
-    @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "tags", value)
-
-    @_builtins.property
-    @pulumi.getter(name="transitiveTagKeys")
-    def transitive_tag_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        Assume role session tag keys to pass to any subsequent sessions.
-        """
-        return pulumi.get(self, "transitive_tag_keys")
-
-    @transitive_tag_keys.setter
-    def transitive_tag_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "transitive_tag_keys", value)
 
 
 if not MYPY:
@@ -10929,6 +10450,57 @@ class SearchIndexSynonymArgs:
 
 
 if not MYPY:
+    class SearchIndexTypeSetArgsDict(TypedDict):
+        name: pulumi.Input[_builtins.str]
+        """
+        Name of the type set.
+        """
+        types: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        JSON array describing the types.
+        """
+elif False:
+    SearchIndexTypeSetArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SearchIndexTypeSetArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 types: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Name of the type set.
+        :param pulumi.Input[_builtins.str] types: JSON array describing the types.
+        """
+        pulumi.set(__self__, "name", name)
+        if types is not None:
+            pulumi.set(__self__, "types", types)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Name of the type set.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def types(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        JSON array describing the types.
+        """
+        return pulumi.get(self, "types")
+
+    @types.setter
+    def types(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "types", value)
+
+
+if not MYPY:
     class ServerlessInstanceLinkArgsDict(TypedDict):
         href: NotRequired[pulumi.Input[_builtins.str]]
         rel: NotRequired[pulumi.Input[_builtins.str]]
@@ -11022,13 +10594,37 @@ class ServerlessInstanceTagArgs:
 
 if not MYPY:
     class StreamConnectionAuthenticationArgsDict(TypedDict):
+        client_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Public identifier for the Kafka client.
+        """
+        client_secret: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Secret known only to the Kafka client and the authorization server.
+        """
         mechanism: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        """
+        method: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        SASL OAUTHBEARER authentication method. Value must be OIDC.
         """
         password: NotRequired[pulumi.Input[_builtins.str]]
         """
         Password of the account to connect to the Kafka cluster.
+        """
+        sasl_oauthbearer_extensions: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Additional information to provide to the Kafka broker.
+        """
+        scope: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Scope of the access request to the broker specified by the Kafka clients.
+        """
+        token_endpoint_url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         """
         username: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -11040,32 +10636,92 @@ elif False:
 @pulumi.input_type
 class StreamConnectionAuthenticationArgs:
     def __init__(__self__, *,
+                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
                  mechanism: Optional[pulumi.Input[_builtins.str]] = None,
+                 method: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 sasl_oauthbearer_extensions: Optional[pulumi.Input[_builtins.str]] = None,
+                 scope: Optional[pulumi.Input[_builtins.str]] = None,
+                 token_endpoint_url: Optional[pulumi.Input[_builtins.str]] = None,
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] mechanism: Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param pulumi.Input[_builtins.str] client_id: Public identifier for the Kafka client.
+        :param pulumi.Input[_builtins.str] client_secret: Secret known only to the Kafka client and the authorization server.
+        :param pulumi.Input[_builtins.str] mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        :param pulumi.Input[_builtins.str] method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param pulumi.Input[_builtins.str] password: Password of the account to connect to the Kafka cluster.
+        :param pulumi.Input[_builtins.str] sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
+        :param pulumi.Input[_builtins.str] scope: Scope of the access request to the broker specified by the Kafka clients.
+        :param pulumi.Input[_builtins.str] token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param pulumi.Input[_builtins.str] username: Username of the account to connect to the Kafka cluster.
         """
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
         if mechanism is not None:
             pulumi.set(__self__, "mechanism", mechanism)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if sasl_oauthbearer_extensions is not None:
+            pulumi.set(__self__, "sasl_oauthbearer_extensions", sasl_oauthbearer_extensions)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if token_endpoint_url is not None:
+            pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Public identifier for the Kafka client.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Secret known only to the Kafka client and the authorization server.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter
     def mechanism(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
         """
         return pulumi.get(self, "mechanism")
 
     @mechanism.setter
     def mechanism(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "mechanism", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        SASL OAUTHBEARER authentication method. Value must be OIDC.
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
@@ -11078,6 +10734,42 @@ class StreamConnectionAuthenticationArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="saslOauthbearerExtensions")
+    def sasl_oauthbearer_extensions(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Additional information to provide to the Kafka broker.
+        """
+        return pulumi.get(self, "sasl_oauthbearer_extensions")
+
+    @sasl_oauthbearer_extensions.setter
+    def sasl_oauthbearer_extensions(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "sasl_oauthbearer_extensions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Scope of the access request to the broker specified by the Kafka clients.
+        """
+        return pulumi.get(self, "scope")
+
+    @scope.setter
+    def scope(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "scope", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpointUrl")
+    def token_endpoint_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+        """
+        return pulumi.get(self, "token_endpoint_url")
+
+    @token_endpoint_url.setter
+    def token_endpoint_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "token_endpoint_url", value)
 
     @_builtins.property
     @pulumi.getter
@@ -11132,6 +10824,8 @@ if not MYPY:
         type: pulumi.Input[_builtins.str]
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+
+        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
 elif False:
     StreamConnectionDbRoleToExecuteArgsDict: TypeAlias = Mapping[str, Any]
@@ -11144,6 +10838,8 @@ class StreamConnectionDbRoleToExecuteArgs:
         """
         :param pulumi.Input[_builtins.str] role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+               
+               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -11165,6 +10861,8 @@ class StreamConnectionDbRoleToExecuteArgs:
     def type(self) -> pulumi.Input[_builtins.str]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+
+        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -11359,6 +11057,7 @@ class StreamInstanceDataProcessRegionArgs:
 
 if not MYPY:
     class StreamInstanceStreamConfigArgsDict(TypedDict):
+        max_tier_size: NotRequired[pulumi.Input[_builtins.str]]
         tier: NotRequired[pulumi.Input[_builtins.str]]
         """
         Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
@@ -11369,12 +11068,24 @@ elif False:
 @pulumi.input_type
 class StreamInstanceStreamConfigArgs:
     def __init__(__self__, *,
+                 max_tier_size: Optional[pulumi.Input[_builtins.str]] = None,
                  tier: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
+        if max_tier_size is not None:
+            pulumi.set(__self__, "max_tier_size", max_tier_size)
         if tier is not None:
             pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "max_tier_size")
+
+    @max_tier_size.setter
+    def max_tier_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "max_tier_size", value)
 
     @_builtins.property
     @pulumi.getter
@@ -11487,6 +11198,140 @@ class StreamProcessorOptionsDlqArgs:
     @db.setter
     def db(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "db", value)
+
+
+if not MYPY:
+    class StreamProcessorTimeoutsArgsDict(TypedDict):
+        create: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+elif False:
+    StreamProcessorTimeoutsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class StreamProcessorTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+
+if not MYPY:
+    class StreamWorkspaceDataProcessRegionArgsDict(TypedDict):
+        cloud_provider: pulumi.Input[_builtins.str]
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        region: pulumi.Input[_builtins.str]
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+elif False:
+    StreamWorkspaceDataProcessRegionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class StreamWorkspaceDataProcessRegionArgs:
+    def __init__(__self__, *,
+                 cloud_provider: pulumi.Input[_builtins.str],
+                 region: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        :param pulumi.Input[_builtins.str] region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> pulumi.Input[_builtins.str]:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @cloud_provider.setter
+    def cloud_provider(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "cloud_provider", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> pulumi.Input[_builtins.str]:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "region", value)
+
+
+if not MYPY:
+    class StreamWorkspaceStreamConfigArgsDict(TypedDict):
+        max_tier_size: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
+        """
+        tier: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+elif False:
+    StreamWorkspaceStreamConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class StreamWorkspaceStreamConfigArgs:
+    def __init__(__self__, *,
+                 max_tier_size: Optional[pulumi.Input[_builtins.str]] = None,
+                 tier: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] max_tier_size: Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
+        :param pulumi.Input[_builtins.str] tier: Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        if max_tier_size is not None:
+            pulumi.set(__self__, "max_tier_size", max_tier_size)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTierSize")
+    def max_tier_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
+        """
+        return pulumi.get(self, "max_tier_size")
+
+    @max_tier_size.setter
+    def max_tier_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "max_tier_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tier", value)
 
 
 if not MYPY:
@@ -11805,7 +11650,7 @@ class GetCustomDbRoleInheritedRoleArgs:
 
 if not MYPY:
     class GetFederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
-        aws: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgsDict'
+        aws: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAwArgsDict']
         azures: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict']
 elif False:
     GetFederatedDatabaseInstanceCloudProviderConfigArgsDict: TypeAlias = Mapping[str, Any]
@@ -11813,18 +11658,18 @@ elif False:
 @pulumi.input_type
 class GetFederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
-                 aws: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs',
+                 aws: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAwArgs'],
                  azures: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs']):
         pulumi.set(__self__, "aws", aws)
         pulumi.set(__self__, "azures", azures)
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs':
+    def aws(self) -> Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAwArgs']:
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: 'GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs'):
+    def aws(self, value: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAwArgs']):
         pulumi.set(self, "aws", value)
 
     @_builtins.property
@@ -11838,7 +11683,7 @@ class GetFederatedDatabaseInstanceCloudProviderConfigArgs:
 
 
 if not MYPY:
-    class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgsDict(TypedDict):
+    class GetFederatedDatabaseInstanceCloudProviderConfigAwArgsDict(TypedDict):
         external_id: _builtins.str
         """
         Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
@@ -11860,10 +11705,10 @@ if not MYPY:
         """
         test_s3_bucket: NotRequired[_builtins.str]
 elif False:
-    GetFederatedDatabaseInstanceCloudProviderConfigAwsArgsDict: TypeAlias = Mapping[str, Any]
+    GetFederatedDatabaseInstanceCloudProviderConfigAwArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs:
+class GetFederatedDatabaseInstanceCloudProviderConfigAwArgs:
     def __init__(__self__, *,
                  external_id: _builtins.str,
                  iam_assumed_role_arn: _builtins.str,

@@ -17,9 +17,13 @@ public final class GetStreamProcessorsResult {
      */
     private String id;
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Label that identifies the stream processing workspace.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private String instanceName;
     /**
      * @return Optional configuration for the stream processor.
@@ -32,7 +36,7 @@ public final class GetStreamProcessorsResult {
      */
     private String pipeline;
     /**
-     * @return Human-readable label that identifies the stream processor.
+     * @return Label that identifies the stream processor.
      * 
      */
     private String processorName;
@@ -53,6 +57,11 @@ public final class GetStreamProcessorsResult {
      * 
      */
     private String stats;
+    /**
+     * @return Label that identifies the stream processing workspace.
+     * 
+     */
+    private String workspaceName;
 
     private GetStreamProcessorsResult() {}
     /**
@@ -63,9 +72,13 @@ public final class GetStreamProcessorsResult {
         return this.id;
     }
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Label that identifies the stream processing workspace.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     public String instanceName() {
         return this.instanceName;
     }
@@ -84,7 +97,7 @@ public final class GetStreamProcessorsResult {
         return this.pipeline;
     }
     /**
-     * @return Human-readable label that identifies the stream processor.
+     * @return Label that identifies the stream processor.
      * 
      */
     public String processorName() {
@@ -113,6 +126,13 @@ public final class GetStreamProcessorsResult {
     public String stats() {
         return this.stats;
     }
+    /**
+     * @return Label that identifies the stream processing workspace.
+     * 
+     */
+    public String workspaceName() {
+        return this.workspaceName;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -131,6 +151,7 @@ public final class GetStreamProcessorsResult {
         private String projectId;
         private String state;
         private String stats;
+        private String workspaceName;
         public Builder() {}
         public Builder(GetStreamProcessorsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -142,6 +163,7 @@ public final class GetStreamProcessorsResult {
     	      this.projectId = defaults.projectId;
     	      this.state = defaults.state;
     	      this.stats = defaults.stats;
+    	      this.workspaceName = defaults.workspaceName;
         }
 
         @CustomType.Setter
@@ -208,6 +230,14 @@ public final class GetStreamProcessorsResult {
             this.stats = stats;
             return this;
         }
+        @CustomType.Setter
+        public Builder workspaceName(String workspaceName) {
+            if (workspaceName == null) {
+              throw new MissingRequiredPropertyException("GetStreamProcessorsResult", "workspaceName");
+            }
+            this.workspaceName = workspaceName;
+            return this;
+        }
         public GetStreamProcessorsResult build() {
             final var _resultValue = new GetStreamProcessorsResult();
             _resultValue.id = id;
@@ -218,6 +248,7 @@ public final class GetStreamProcessorsResult {
             _resultValue.projectId = projectId;
             _resultValue.state = state;
             _resultValue.stats = stats;
+            _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }
     }

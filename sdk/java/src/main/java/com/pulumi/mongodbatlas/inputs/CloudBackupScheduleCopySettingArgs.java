@@ -63,29 +63,6 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    @Import(name="replicationSpecId")
-    private @Nullable Output<String> replicationSpecId;
-
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Optional<Output<String>> replicationSpecId() {
-        return Optional.ofNullable(this.replicationSpecId);
-    }
-
-    /**
      * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
      * 
      */
@@ -121,7 +98,6 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
         this.cloudProvider = $.cloudProvider;
         this.frequencies = $.frequencies;
         this.regionName = $.regionName;
-        this.replicationSpecId = $.replicationSpecId;
         this.shouldCopyOplogs = $.shouldCopyOplogs;
         this.zoneId = $.zoneId;
     }
@@ -215,35 +191,6 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
          */
         public Builder regionName(String regionName) {
             return regionName(Output.of(regionName));
-        }
-
-        /**
-         * @param replicationSpecId Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder replicationSpecId(@Nullable Output<String> replicationSpecId) {
-            $.replicationSpecId = replicationSpecId;
-            return this;
-        }
-
-        /**
-         * @param replicationSpecId Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `zoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please transition to `copy_settings.#.zone_id`. To learn more, see our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder replicationSpecId(String replicationSpecId) {
-            return replicationSpecId(Output.of(replicationSpecId));
         }
 
         /**

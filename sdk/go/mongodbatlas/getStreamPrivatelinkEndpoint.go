@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: StreamPrivatelinkEndpoint
-//
 // `StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
 //
 // ## Example Usage
@@ -26,7 +24,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-confluent/sdk/go/confluent"
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -148,7 +146,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -206,6 +204,51 @@ import (
 //	}
 //
 // ```
+//
+// ### GCP Confluent Privatelink
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			gcpConfluentStreamPrivatelinkEndpoint, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "gcp_confluent", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				ProviderName:  pulumi.String("GCP"),
+//				Vendor:        pulumi.String("CONFLUENT"),
+//				Region:        pulumi.Any(gcpRegion),
+//				DnsDomain:     pulumi.Any(confluentDnsDomain),
+//				DnsSubDomains: pulumi.Any(confluentDnsSubdomains),
+//				ServiceAttachmentUris: pulumi.StringArray{
+//					pulumi.String("projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1"),
+//					pulumi.String("projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gcpConfluent := gcpConfluentStreamPrivatelinkEndpoint.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
+//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.LookupStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
+//					ProjectId: projectId,
+//					Id:        id,
+//				}, nil))), nil
+//			}).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+//			ctx.Export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.ID())
+//			ctx.Export("privatelinkEndpointState", gcpConfluent.ApplyT(func(gcpConfluent mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
+//				return &gcpConfluent.State, nil
+//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("serviceAttachmentUris", gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupStreamPrivatelinkEndpoint(ctx *pulumi.Context, args *LookupStreamPrivatelinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupStreamPrivatelinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamPrivatelinkEndpointResult
@@ -235,6 +278,7 @@ type LookupStreamPrivatelinkEndpointResult struct {
 	ProviderAccountId     string   `pulumi:"providerAccountId"`
 	ProviderName          string   `pulumi:"providerName"`
 	Region                string   `pulumi:"region"`
+	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
 	ServiceEndpointId     string   `pulumi:"serviceEndpointId"`
 	State                 string   `pulumi:"state"`
 	Vendor                string   `pulumi:"vendor"`
@@ -316,6 +360,10 @@ func (o LookupStreamPrivatelinkEndpointResultOutput) ProviderName() pulumi.Strin
 
 func (o LookupStreamPrivatelinkEndpointResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o LookupStreamPrivatelinkEndpointResultOutput) ServiceAttachmentUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) []string { return v.ServiceAttachmentUris }).(pulumi.StringArrayOutput)
 }
 
 func (o LookupStreamPrivatelinkEndpointResultOutput) ServiceEndpointId() pulumi.StringOutput {

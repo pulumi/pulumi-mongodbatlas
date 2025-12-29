@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         /// </summary>
-        public readonly int? NodeCount;
+        public readonly int NodeCount;
 
         [OutputConstructor]
         private GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string instanceSize,
 
-            int? nodeCount)
+            int nodeCount)
         {
             DiskIops = diskIops;
             DiskSizeGb = diskSizeGb;

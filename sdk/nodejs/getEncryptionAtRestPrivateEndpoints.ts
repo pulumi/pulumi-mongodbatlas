@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
- *
  * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
  *
  * ## Example Usage
@@ -87,8 +85,6 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
     readonly results: outputs.GetEncryptionAtRestPrivateEndpointsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
- *
  * `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
  *
  * ## Example Usage

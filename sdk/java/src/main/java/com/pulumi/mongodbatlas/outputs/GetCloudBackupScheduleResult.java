@@ -17,8 +17,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetCloudBackupScheduleResult {
@@ -106,7 +104,6 @@ public final class GetCloudBackupScheduleResult {
      * 
      */
     private Boolean useOrgAndGroupNamesInExportPrefix;
-    private @Nullable Boolean useZoneIdForCopySettings;
 
     private GetCloudBackupScheduleResult() {}
     /**
@@ -229,9 +226,6 @@ public final class GetCloudBackupScheduleResult {
     public Boolean useOrgAndGroupNamesInExportPrefix() {
         return this.useOrgAndGroupNamesInExportPrefix;
     }
-    public Optional<Boolean> useZoneIdForCopySettings() {
-        return Optional.ofNullable(this.useZoneIdForCopySettings);
-    }
 
     public static Builder builder() {
         return new Builder();
@@ -260,7 +254,6 @@ public final class GetCloudBackupScheduleResult {
         private Integer referenceMinuteOfHour;
         private Integer restoreWindowDays;
         private Boolean useOrgAndGroupNamesInExportPrefix;
-        private @Nullable Boolean useZoneIdForCopySettings;
         public Builder() {}
         public Builder(GetCloudBackupScheduleResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -282,7 +275,6 @@ public final class GetCloudBackupScheduleResult {
     	      this.referenceMinuteOfHour = defaults.referenceMinuteOfHour;
     	      this.restoreWindowDays = defaults.restoreWindowDays;
     	      this.useOrgAndGroupNamesInExportPrefix = defaults.useOrgAndGroupNamesInExportPrefix;
-    	      this.useZoneIdForCopySettings = defaults.useZoneIdForCopySettings;
         }
 
         @CustomType.Setter
@@ -450,12 +442,6 @@ public final class GetCloudBackupScheduleResult {
             this.useOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
             return this;
         }
-        @CustomType.Setter
-        public Builder useZoneIdForCopySettings(@Nullable Boolean useZoneIdForCopySettings) {
-
-            this.useZoneIdForCopySettings = useZoneIdForCopySettings;
-            return this;
-        }
         public GetCloudBackupScheduleResult build() {
             final var _resultValue = new GetCloudBackupScheduleResult();
             _resultValue.autoExportEnabled = autoExportEnabled;
@@ -476,7 +462,6 @@ public final class GetCloudBackupScheduleResult {
             _resultValue.referenceMinuteOfHour = referenceMinuteOfHour;
             _resultValue.restoreWindowDays = restoreWindowDays;
             _resultValue.useOrgAndGroupNamesInExportPrefix = useOrgAndGroupNamesInExportPrefix;
-            _resultValue.useZoneIdForCopySettings = useZoneIdForCopySettings;
             return _resultValue;
         }
     }

@@ -8,14 +8,13 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterAdvancedConfigurationArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterBiConnectorConfigArgs;
-import com.pulumi.mongodbatlas.inputs.AdvancedClusterLabelArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterPinnedFcvArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
-import com.pulumi.mongodbatlas.inputs.AdvancedClusterTagArgs;
+import com.pulumi.mongodbatlas.inputs.AdvancedClusterTimeoutsArgs;
 import java.lang.Boolean;
-import java.lang.Double;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -40,9 +39,17 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.acceptDataRisksAndForceReplicaSetReconfig);
     }
 
+    /**
+     * Additional settings for an Atlas cluster.
+     * 
+     */
     @Import(name="advancedConfiguration")
     private @Nullable Output<AdvancedClusterAdvancedConfigurationArgs> advancedConfiguration;
 
+    /**
+     * @return Additional settings for an Atlas cluster.
+     * 
+     */
     public Optional<Output<AdvancedClusterAdvancedConfigurationArgs>> advancedConfiguration() {
         return Optional.ofNullable(this.advancedConfiguration);
     }
@@ -128,14 +135,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
     @Import(name="deleteOnCreateTimeout")
     private @Nullable Output<Boolean> deleteOnCreateTimeout;
 
     /**
-     * @return Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
     public Optional<Output<Boolean>> deleteOnCreateTimeout() {
@@ -143,37 +150,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    @Import(name="diskSizeGb")
-    private @Nullable Output<Double> diskSizeGb;
-
-    /**
-     * @return Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Optional<Output<Double>> diskSizeGb() {
-        return Optional.ofNullable(this.diskSizeGb);
-    }
-
-    /**
-     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      * 
      */
     @Import(name="encryptionAtRestProvider")
     private @Nullable Output<String> encryptionAtRestProvider;
 
     /**
-     * @return Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+     * @return Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      * 
      */
     public Optional<Output<String>> encryptionAtRestProvider() {
@@ -200,13 +184,13 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      * 
      */
     @Import(name="labels")
-    private @Nullable Output<List<AdvancedClusterLabelArgs>> labels;
+    private @Nullable Output<Map<String,String>> labels;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      * 
      */
-    public Optional<Output<List<AdvancedClusterLabelArgs>>> labels() {
+    public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
 
@@ -240,9 +224,17 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * Flag that indicates whether the cluster is paused.
+     * 
+     */
     @Import(name="paused")
     private @Nullable Output<Boolean> paused;
 
+    /**
+     * @return Flag that indicates whether the cluster is paused.
+     * 
+     */
     public Optional<Output<Boolean>> paused() {
         return Optional.ofNullable(this.paused);
     }
@@ -323,14 +315,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replicationSpecs` a `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
      * 
      */
     @Import(name="replicationSpecs", required=true)
     private Output<List<AdvancedClusterReplicationSpecArgs>> replicationSpecs;
 
     /**
-     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replicationSpecs` a `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
      * 
      */
     public Output<List<AdvancedClusterReplicationSpecArgs>> replicationSpecs() {
@@ -338,14 +330,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
      * 
      */
     @Import(name="retainBackupsEnabled")
     private @Nullable Output<Boolean> retainBackupsEnabled;
 
     /**
-     * @return Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+     * @return Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
      * 
      */
     public Optional<Output<Boolean>> retainBackupsEnabled() {
@@ -372,13 +364,13 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      * 
      */
     @Import(name="tags")
-    private @Nullable Output<List<AdvancedClusterTagArgs>> tags;
+    private @Nullable Output<Map<String,String>> tags;
 
     /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      * 
      */
-    public Optional<Output<List<AdvancedClusterTagArgs>>> tags() {
+    public Optional<Output<Map<String,String>>> tags() {
         return Optional.ofNullable(this.tags);
     }
 
@@ -395,6 +387,38 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<Boolean>> terminationProtectionEnabled() {
         return Optional.ofNullable(this.terminationProtectionEnabled);
+    }
+
+    /**
+     * The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * 
+     */
+    @Import(name="timeouts")
+    private @Nullable Output<AdvancedClusterTimeoutsArgs> timeouts;
+
+    /**
+     * @return The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * 
+     */
+    public Optional<Output<AdvancedClusterTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
+    /**
+     * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+     * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+     * 
+     */
+    @Import(name="useEffectiveFields")
+    private @Nullable Output<Boolean> useEffectiveFields;
+
+    /**
+     * @return Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+     * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+     * 
+     */
+    public Optional<Output<Boolean>> useEffectiveFields() {
+        return Optional.ofNullable(this.useEffectiveFields);
     }
 
     /**
@@ -426,7 +450,6 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.clusterType = $.clusterType;
         this.configServerManagementMode = $.configServerManagementMode;
         this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
-        this.diskSizeGb = $.diskSizeGb;
         this.encryptionAtRestProvider = $.encryptionAtRestProvider;
         this.globalClusterSelfManagedSharding = $.globalClusterSelfManagedSharding;
         this.labels = $.labels;
@@ -443,6 +466,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.rootCertType = $.rootCertType;
         this.tags = $.tags;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
+        this.timeouts = $.timeouts;
+        this.useEffectiveFields = $.useEffectiveFields;
         this.versionReleaseSystem = $.versionReleaseSystem;
     }
 
@@ -485,11 +510,23 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
             return acceptDataRisksAndForceReplicaSetReconfig(Output.of(acceptDataRisksAndForceReplicaSetReconfig));
         }
 
+        /**
+         * @param advancedConfiguration Additional settings for an Atlas cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder advancedConfiguration(@Nullable Output<AdvancedClusterAdvancedConfigurationArgs> advancedConfiguration) {
             $.advancedConfiguration = advancedConfiguration;
             return this;
         }
 
+        /**
+         * @param advancedConfiguration Additional settings for an Atlas cluster.
+         * 
+         * @return builder
+         * 
+         */
         public Builder advancedConfiguration(AdvancedClusterAdvancedConfigurationArgs advancedConfiguration) {
             return advancedConfiguration(Output.of(advancedConfiguration));
         }
@@ -599,7 +636,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param deleteOnCreateTimeout Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
          * 
          * @return builder
          * 
@@ -610,7 +647,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param deleteOnCreateTimeout Flag that indicates whether to delete the cluster if the cluster creation times out. Default is false.
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
          * 
          * @return builder
          * 
@@ -620,36 +657,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param diskSizeGb Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder diskSizeGb(@Nullable Output<Double> diskSizeGb) {
-            $.diskSizeGb = diskSizeGb;
-            return this;
-        }
-
-        /**
-         * @param diskSizeGb Capacity, in gigabytes, of the host&#39;s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (4 TB). This value must be a positive number. You can&#39;t set this value with clusters with local [NVMe SSDs](https://docs.atlas.mongodb.com/cluster-tier/#std-label-nvme-storage). The minimum disk size for dedicated clusters is 10 GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value. If your cluster includes Azure nodes, this value must correspond to an existing Azure disk type (8, 16, 32, 64, 128, 256, 512, 1024, 2048, or 4095). Atlas calculates storage charges differently depending on whether you choose the default value or a custom value. The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require additional storage space beyond this limitation, consider [upgrading your cluster](https://docs.atlas.mongodb.com/scale-cluster/#std-label-scale-cluster-instance) to a higher tier. If your cluster spans cloud service providers, this value defaults to the minimum default of the providers involved. **(DEPRECATED)** Use `replication_specs.#.region_configs.#.(analytics_specs|electable_specs|read_only_specs).disk_size_gb` instead. To learn more, see the 1.18.0 upgrade guide.
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-         * 
-         */
-        @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-        public Builder diskSizeGb(Double diskSizeGb) {
-            return diskSizeGb(Output.of(diskSizeGb));
-        }
-
-        /**
-         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
          * 
          * @return builder
          * 
@@ -660,7 +668,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs.#.region_configs.#.&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
          * 
          * @return builder
          * 
@@ -696,7 +704,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder labels(@Nullable Output<List<AdvancedClusterLabelArgs>> labels) {
+        public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
@@ -707,18 +715,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder labels(List<AdvancedClusterLabelArgs> labels) {
+        public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
-        }
-
-        /**
-         * @param labels Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder labels(AdvancedClusterLabelArgs... labels) {
-            return labels(List.of(labels));
         }
 
         /**
@@ -763,11 +761,23 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
             return name(Output.of(name));
         }
 
+        /**
+         * @param paused Flag that indicates whether the cluster is paused.
+         * 
+         * @return builder
+         * 
+         */
         public Builder paused(@Nullable Output<Boolean> paused) {
             $.paused = paused;
             return this;
         }
 
+        /**
+         * @param paused Flag that indicates whether the cluster is paused.
+         * 
+         * @return builder
+         * 
+         */
         public Builder paused(Boolean paused) {
             return paused(Output.of(paused));
         }
@@ -878,7 +888,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replicationSpecs` a `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
          * 
          * @return builder
          * 
@@ -889,7 +899,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replicationSpecs` a `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
          * 
          * @return builder
          * 
@@ -899,7 +909,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. If for each `replicationSpecs` a `numShards` is configured with a value greater than 1 (using deprecated sharding configurations), then each object represents a zone with one or more shards. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
          * 
          * @return builder
          * 
@@ -909,7 +919,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
          * 
          * @return builder
          * 
@@ -920,7 +930,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster
+         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
          * 
          * @return builder
          * 
@@ -956,7 +966,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder tags(@Nullable Output<List<AdvancedClusterTagArgs>> tags) {
+        public Builder tags(@Nullable Output<Map<String,String>> tags) {
             $.tags = tags;
             return this;
         }
@@ -967,18 +977,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * @return builder
          * 
          */
-        public Builder tags(List<AdvancedClusterTagArgs> tags) {
+        public Builder tags(Map<String,String> tags) {
             return tags(Output.of(tags));
-        }
-
-        /**
-         * @param tags Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder tags(AdvancedClusterTagArgs... tags) {
-            return tags(List.of(tags));
         }
 
         /**
@@ -1000,6 +1000,50 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
             return terminationProtectionEnabled(Output.of(terminationProtectionEnabled));
+        }
+
+        /**
+         * @param timeouts The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeouts(@Nullable Output<AdvancedClusterTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        /**
+         * @param timeouts The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeouts(AdvancedClusterTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
+        }
+
+        /**
+         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+         * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useEffectiveFields(@Nullable Output<Boolean> useEffectiveFields) {
+            $.useEffectiveFields = useEffectiveFields;
+            return this;
+        }
+
+        /**
+         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+         * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useEffectiveFields(Boolean useEffectiveFields) {
+            return useEffectiveFields(Output.of(useEffectiveFields));
         }
 
         /**

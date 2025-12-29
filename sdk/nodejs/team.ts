@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.Team
- *
  * `mongodbatlas.Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
  *
  * > **IMPORTANT:** MongoDB Atlas Team are limited to a maximum of 250 teams in an organization and 100 teams per project.
@@ -29,6 +27,10 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Team and user assignment (module maintainer) v1
+ * - Team and user assignment (module maintainer) v2
  *
  * ## Import
  *
@@ -80,7 +82,9 @@ export class Team extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly teamId: pulumi.Output<string>;
     /**
-     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     *
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
     declare public readonly usernames: pulumi.Output<string[]>;
 
@@ -105,9 +109,6 @@ export class Team extends pulumi.CustomResource {
             const args = argsOrState as TeamArgs | undefined;
             if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
-            }
-            if (args?.usernames === undefined && !opts.urn) {
-                throw new Error("Missing required property 'usernames'");
             }
             resourceInputs["name"] = args?.name;
             resourceInputs["orgId"] = args?.orgId;
@@ -136,7 +137,9 @@ export interface TeamState {
      */
     teamId?: pulumi.Input<string>;
     /**
-     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     *
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
     usernames?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -154,7 +157,9 @@ export interface TeamArgs {
      */
     orgId: pulumi.Input<string>;
     /**
-     * The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+     * **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     *
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
-    usernames: pulumi.Input<pulumi.Input<string>[]>;
+    usernames?: pulumi.Input<pulumi.Input<string>[]>;
 }

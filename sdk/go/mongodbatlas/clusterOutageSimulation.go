@@ -5,15 +5,13 @@ package mongodbatlas
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
-	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: ClusterOutageSimulation
-//
 // `ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
 //
 // Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes.
@@ -36,7 +34,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -66,6 +64,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Cluster Outage Simulation
+//
 // ## Import
 //
 // The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
@@ -76,6 +77,8 @@ type ClusterOutageSimulation struct {
 
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayOutput `pulumi:"outageFilters"`
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
@@ -96,7 +99,8 @@ type ClusterOutageSimulation struct {
 
 // NewClusterOutageSimulation registers a new resource with the given unique name, arguments, and options.
 func NewClusterOutageSimulation(ctx *pulumi.Context,
-	name string, args *ClusterOutageSimulationArgs, opts ...pulumi.ResourceOption) (*ClusterOutageSimulation, error) {
+	name string, args *ClusterOutageSimulationArgs, opts ...pulumi.ResourceOption,
+) (*ClusterOutageSimulation, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -122,7 +126,8 @@ func NewClusterOutageSimulation(ctx *pulumi.Context,
 // GetClusterOutageSimulation gets an existing ClusterOutageSimulation resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
 func GetClusterOutageSimulation(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *ClusterOutageSimulationState, opts ...pulumi.ResourceOption) (*ClusterOutageSimulation, error) {
+	name string, id pulumi.IDInput, state *ClusterOutageSimulationState, opts ...pulumi.ResourceOption,
+) (*ClusterOutageSimulation, error) {
 	var resource ClusterOutageSimulation
 	err := ctx.ReadResource("mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation", name, id, state, &resource, opts...)
 	if err != nil {
@@ -135,6 +140,8 @@ func GetClusterOutageSimulation(ctx *pulumi.Context,
 type clusterOutageSimulationState struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName *string `pulumi:"clusterName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters []ClusterOutageSimulationOutageFilter `pulumi:"outageFilters"`
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
@@ -156,6 +163,8 @@ type clusterOutageSimulationState struct {
 type ClusterOutageSimulationState struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayInput
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
@@ -181,6 +190,8 @@ func (ClusterOutageSimulationState) ElementType() reflect.Type {
 type clusterOutageSimulationArgs struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName string `pulumi:"clusterName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters []ClusterOutageSimulationOutageFilter `pulumi:"outageFilters"`
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
@@ -191,6 +202,8 @@ type clusterOutageSimulationArgs struct {
 type ClusterOutageSimulationArgs struct {
 	// Name of the Atlas Cluster that is/will undergoing outage simulation.
 	ClusterName pulumi.StringInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayInput
 	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
@@ -287,6 +300,11 @@ func (o ClusterOutageSimulationOutput) ToClusterOutageSimulationOutputWithContex
 // Name of the Atlas Cluster that is/will undergoing outage simulation.
 func (o ClusterOutageSimulationOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClusterOutageSimulation) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o ClusterOutageSimulationOutput) DeleteOnCreateTimeout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ClusterOutageSimulation) pulumi.BoolPtrOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolPtrOutput)
 }
 
 // List of settings that specify the type of cluster outage simulation.

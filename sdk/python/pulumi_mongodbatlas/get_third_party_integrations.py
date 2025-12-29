@@ -77,8 +77,6 @@ class AwaitableGetThirdPartyIntegrationsResult(GetThirdPartyIntegrationsResult):
 def get_third_party_integrations(project_id: Optional[_builtins.str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetThirdPartyIntegrationsResult:
     """
-    ## # Data Source: get_third_party_integrations
-
     `get_third_party_integrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
     applied across the project.
 
@@ -117,8 +115,6 @@ def get_third_party_integrations(project_id: Optional[_builtins.str] = None,
 def get_third_party_integrations_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetThirdPartyIntegrationsResult]:
     """
-    ## # Data Source: get_third_party_integrations
-
     `get_third_party_integrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
     applied across the project.
 
