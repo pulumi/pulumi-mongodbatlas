@@ -227,6 +227,9 @@ class ProjectInvitation(pulumi.CustomResource):
             ])
         ```
 
+        ### Further Examples
+        - Migrate Project Invitation to Cloud User Project Assignment
+
         ## Import
 
         ~> __IMPORTANT:__
@@ -277,6 +280,9 @@ class ProjectInvitation(pulumi.CustomResource):
                 "GROUP_DATA_ACCESS_READ_ONLY",
             ])
         ```
+
+        ### Further Examples
+        - Migrate Project Invitation to Cloud User Project Assignment
 
         ## Import
 

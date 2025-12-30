@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.AlertConfiguration
- *
  * `mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -144,6 +142,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Further Examples
+ * - Alert Configuration
+ *
  * ## Import
  *
  * Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
@@ -212,6 +213,10 @@ export class AlertConfiguration extends pulumi.CustomResource {
      * The ID of the project where the alert configuration will create.
      */
     declare public readonly projectId: pulumi.Output<string>;
+    /**
+     * Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+     */
+    declare public readonly severityOverride: pulumi.Output<string | undefined>;
     declare public readonly thresholdConfig: pulumi.Output<outputs.AlertConfigurationThresholdConfig | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -239,6 +244,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
             resourceInputs["metricThresholdConfig"] = state?.metricThresholdConfig;
             resourceInputs["notifications"] = state?.notifications;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["severityOverride"] = state?.severityOverride;
             resourceInputs["thresholdConfig"] = state?.thresholdConfig;
             resourceInputs["updated"] = state?.updated;
         } else {
@@ -255,6 +261,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
             resourceInputs["metricThresholdConfig"] = args?.metricThresholdConfig;
             resourceInputs["notifications"] = args?.notifications;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["severityOverride"] = args?.severityOverride;
             resourceInputs["thresholdConfig"] = args?.thresholdConfig;
             resourceInputs["alertConfigurationId"] = undefined /*out*/;
             resourceInputs["created"] = undefined /*out*/;
@@ -297,6 +304,10 @@ export interface AlertConfigurationState {
      * The ID of the project where the alert configuration will create.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+     */
+    severityOverride?: pulumi.Input<string>;
     thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -328,5 +339,9 @@ export interface AlertConfigurationArgs {
      * The ID of the project where the alert configuration will create.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+     */
+    severityOverride?: pulumi.Input<string>;
     thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
 }

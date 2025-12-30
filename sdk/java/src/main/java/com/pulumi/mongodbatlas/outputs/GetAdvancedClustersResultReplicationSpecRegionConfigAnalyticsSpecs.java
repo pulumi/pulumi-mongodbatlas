@@ -9,8 +9,6 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
@@ -40,7 +38,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalytics
      * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
-    private @Nullable Integer nodeCount;
+    private Integer nodeCount;
 
     private GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs() {}
     /**
@@ -77,8 +75,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalytics
      * @return Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      * 
      */
-    public Optional<Integer> nodeCount() {
-        return Optional.ofNullable(this.nodeCount);
+    public Integer nodeCount() {
+        return this.nodeCount;
     }
 
     public static Builder builder() {
@@ -94,7 +92,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalytics
         private Double diskSizeGb;
         private String ebsVolumeType;
         private String instanceSize;
-        private @Nullable Integer nodeCount;
+        private Integer nodeCount;
         public Builder() {}
         public Builder(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs defaults) {
     	      Objects.requireNonNull(defaults);
@@ -138,8 +136,10 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAnalytics
             return this;
         }
         @CustomType.Setter
-        public Builder nodeCount(@Nullable Integer nodeCount) {
-
+        public Builder nodeCount(Integer nodeCount) {
+            if (nodeCount == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs", "nodeCount");
+            }
             this.nodeCount = nodeCount;
             return this;
         }

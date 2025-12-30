@@ -34,6 +34,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Further Examples
+ * - Migrate Project Invitation to Cloud User Project Assignment
+ *
  * ## Import
  *
  * ~> __IMPORTANT:__

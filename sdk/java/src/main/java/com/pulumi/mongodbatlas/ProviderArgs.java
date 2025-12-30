@@ -17,6 +17,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final ProviderArgs Empty = new ProviderArgs();
 
+    /**
+     * MongoDB Atlas Access Token for Service Account.
+     * 
+     */
+    @Import(name="accessToken")
+    private @Nullable Output<String> accessToken;
+
+    /**
+     * @return MongoDB Atlas Access Token for Service Account.
+     * 
+     */
+    public Optional<Output<String>> accessToken() {
+        return Optional.ofNullable(this.accessToken);
+    }
+
     @Import(name="assumeRole", json=true)
     private @Nullable Output<ProviderAssumeRoleArgs> assumeRole;
 
@@ -82,6 +97,36 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> baseUrl() {
         return Optional.ofNullable(this.baseUrl);
+    }
+
+    /**
+     * MongoDB Atlas Client ID for Service Account.
+     * 
+     */
+    @Import(name="clientId")
+    private @Nullable Output<String> clientId;
+
+    /**
+     * @return MongoDB Atlas Client ID for Service Account.
+     * 
+     */
+    public Optional<Output<String>> clientId() {
+        return Optional.ofNullable(this.clientId);
+    }
+
+    /**
+     * MongoDB Atlas Client Secret for Service Account.
+     * 
+     */
+    @Import(name="clientSecret")
+    private @Nullable Output<String> clientSecret;
+
+    /**
+     * @return MongoDB Atlas Client Secret for Service Account.
+     * 
+     */
+    public Optional<Output<String>> clientSecret() {
+        return Optional.ofNullable(this.clientSecret);
     }
 
     /**
@@ -192,11 +237,14 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
+        this.accessToken = $.accessToken;
         this.assumeRole = $.assumeRole;
         this.awsAccessKeyId = $.awsAccessKeyId;
         this.awsSecretAccessKey = $.awsSecretAccessKey;
         this.awsSessionToken = $.awsSessionToken;
         this.baseUrl = $.baseUrl;
+        this.clientId = $.clientId;
+        this.clientSecret = $.clientSecret;
         this.isMongodbgovCloud = $.isMongodbgovCloud;
         this.privateKey = $.privateKey;
         this.publicKey = $.publicKey;
@@ -222,6 +270,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ProviderArgs defaults) {
             $ = new ProviderArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param accessToken MongoDB Atlas Access Token for Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessToken(@Nullable Output<String> accessToken) {
+            $.accessToken = accessToken;
+            return this;
+        }
+
+        /**
+         * @param accessToken MongoDB Atlas Access Token for Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessToken(String accessToken) {
+            return accessToken(Output.of(accessToken));
         }
 
         public Builder assumeRole(@Nullable Output<ProviderAssumeRoleArgs> assumeRole) {
@@ -315,6 +384,48 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder baseUrl(String baseUrl) {
             return baseUrl(Output.of(baseUrl));
+        }
+
+        /**
+         * @param clientId MongoDB Atlas Client ID for Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(@Nullable Output<String> clientId) {
+            $.clientId = clientId;
+            return this;
+        }
+
+        /**
+         * @param clientId MongoDB Atlas Client ID for Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientId(String clientId) {
+            return clientId(Output.of(clientId));
+        }
+
+        /**
+         * @param clientSecret MongoDB Atlas Client Secret for Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecret(@Nullable Output<String> clientSecret) {
+            $.clientSecret = clientSecret;
+            return this;
+        }
+
+        /**
+         * @param clientSecret MongoDB Atlas Client Secret for Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clientSecret(String clientSecret) {
+            return clientSecret(Output.of(clientSecret));
         }
 
         /**

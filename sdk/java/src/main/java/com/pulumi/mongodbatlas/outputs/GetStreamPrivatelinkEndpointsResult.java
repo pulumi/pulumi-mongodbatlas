@@ -61,7 +61,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String providerAccountId;
     /**
-     * @return Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+     * @return Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      * 
      */
     private String providerName;
@@ -70,6 +70,11 @@ public final class GetStreamPrivatelinkEndpointsResult {
      * 
      */
     private String region;
+    /**
+     * @return List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+     * 
+     */
+    private List<String> serviceAttachmentUris;
     /**
      * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
      * 
@@ -86,6 +91,8 @@ public final class GetStreamPrivatelinkEndpointsResult {
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
+     *     
+     *     * **GCP**: CONFLUENT
      * 
      */
     private String vendor;
@@ -159,7 +166,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         return this.providerAccountId;
     }
     /**
-     * @return Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+     * @return Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      * 
      */
     public String providerName() {
@@ -171,6 +178,13 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     public String region() {
         return this.region;
+    }
+    /**
+     * @return List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+     * 
+     */
+    public List<String> serviceAttachmentUris() {
+        return this.serviceAttachmentUris;
     }
     /**
      * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
@@ -192,6 +206,8 @@ public final class GetStreamPrivatelinkEndpointsResult {
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
+     *     
+     *     * **GCP**: CONFLUENT
      * 
      */
     public String vendor() {
@@ -218,6 +234,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         private String providerAccountId;
         private String providerName;
         private String region;
+        private List<String> serviceAttachmentUris;
         private String serviceEndpointId;
         private String state;
         private String vendor;
@@ -235,6 +252,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
     	      this.providerAccountId = defaults.providerAccountId;
     	      this.providerName = defaults.providerName;
     	      this.region = defaults.region;
+    	      this.serviceAttachmentUris = defaults.serviceAttachmentUris;
     	      this.serviceEndpointId = defaults.serviceEndpointId;
     	      this.state = defaults.state;
     	      this.vendor = defaults.vendor;
@@ -332,6 +350,17 @@ public final class GetStreamPrivatelinkEndpointsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder serviceAttachmentUris(List<String> serviceAttachmentUris) {
+            if (serviceAttachmentUris == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "serviceAttachmentUris");
+            }
+            this.serviceAttachmentUris = serviceAttachmentUris;
+            return this;
+        }
+        public Builder serviceAttachmentUris(String... serviceAttachmentUris) {
+            return serviceAttachmentUris(List.of(serviceAttachmentUris));
+        }
+        @CustomType.Setter
         public Builder serviceEndpointId(String serviceEndpointId) {
             if (serviceEndpointId == null) {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "serviceEndpointId");
@@ -368,6 +397,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
             _resultValue.providerAccountId = providerAccountId;
             _resultValue.providerName = providerName;
             _resultValue.region = region;
+            _resultValue.serviceAttachmentUris = serviceAttachmentUris;
             _resultValue.serviceEndpointId = serviceEndpointId;
             _resultValue.state = state;
             _resultValue.vendor = vendor;

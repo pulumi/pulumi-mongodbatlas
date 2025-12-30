@@ -8,11 +8,11 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// **WARNING:** This resource is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+// > **DEPRECATION:** This resource is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 //
 // `ServerlessInstance` provides a Serverless Instance resource. This allows serverless instances to be created.
 //
@@ -27,7 +27,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -49,15 +49,6 @@ import (
 //	}
 //
 // ```
-//
-// **NOTE:**  `ServerlessInstance` and `PrivatelinkEndpointServiceServerless` resources have a circular dependency in some respects.\
-// That is, the `serverlessInstance` must exist before the `privatelinkEndpointService` can be created,\
-// and the `privatelinkEndpointService` must exist before the `serverlessInstance` gets its respective `connectionStringsPrivateEndpointSrv` values.
-//
-// Because of this, the `serverlessInstance` data source has particular value as a source of the `connectionStringsPrivateEndpointSrv`.\
-// When using the dataSource in-tandem with the afforementioned resources, we can create and retrieve the `connectionStringsPrivateEndpointSrv` in a single `pulumi up`.
-//
-// Follow this example to setup private connection to a serverless instance using aws vpc and get the connection strings in a single `pulumi up`
 //
 // ## Import
 //

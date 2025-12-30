@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: Project
-//
 // `Project` provides a Project resource. This allows project to be created.
 //
 // > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
@@ -25,7 +23,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -40,21 +38,6 @@ import (
 //				Name:           pulumi.String("project-name"),
 //				OrgId:          pulumi.String(test.OrgId),
 //				ProjectOwnerId: pulumi.String("<OWNER_ACCOUNT_ID>"),
-//				Teams: mongodbatlas.ProjectTeamArray{
-//					&mongodbatlas.ProjectTeamArgs{
-//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_OWNER"),
-//						},
-//					},
-//					&mongodbatlas.ProjectTeamArgs{
-//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_READ_ONLY"),
-//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-//						},
-//					},
-//				},
 //				Limits: mongodbatlas.ProjectLimitArray{
 //					&mongodbatlas.ProjectLimitArgs{
 //						Name:  pulumi.String("atlas.project.deployment.clusters"),
@@ -81,6 +64,9 @@ import (
 //	}
 //
 // ```
+//
+// ### Further Examples
+// - Atlas Project with custom limits
 //
 // ## Import
 //
@@ -127,7 +113,8 @@ type Project struct {
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions pulumi.StringOutput `pulumi:"regionUsageRestrictions"`
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-	Tags  pulumi.StringMapOutput `pulumi:"tags"`
+	Tags pulumi.StringMapOutput `pulumi:"tags"`
+	// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 	Teams ProjectTeamArrayOutput `pulumi:"teams"`
 	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings pulumi.BoolOutput `pulumi:"withDefaultAlertsSettings"`
@@ -200,8 +187,9 @@ type projectState struct {
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions *string `pulumi:"regionUsageRestrictions"`
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-	Tags  map[string]string `pulumi:"tags"`
-	Teams []ProjectTeam     `pulumi:"teams"`
+	Tags map[string]string `pulumi:"tags"`
+	// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+	Teams []ProjectTeam `pulumi:"teams"`
 	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings *bool `pulumi:"withDefaultAlertsSettings"`
 }
@@ -241,7 +229,8 @@ type ProjectState struct {
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions pulumi.StringPtrInput
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-	Tags  pulumi.StringMapInput
+	Tags pulumi.StringMapInput
+	// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 	Teams ProjectTeamArrayInput
 	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings pulumi.BoolPtrInput
@@ -278,8 +267,9 @@ type projectArgs struct {
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions *string `pulumi:"regionUsageRestrictions"`
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-	Tags  map[string]string `pulumi:"tags"`
-	Teams []ProjectTeam     `pulumi:"teams"`
+	Tags map[string]string `pulumi:"tags"`
+	// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+	Teams []ProjectTeam `pulumi:"teams"`
 	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings *bool `pulumi:"withDefaultAlertsSettings"`
 }
@@ -312,7 +302,8 @@ type ProjectArgs struct {
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions pulumi.StringPtrInput
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
-	Tags  pulumi.StringMapInput
+	Tags pulumi.StringMapInput
+	// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 	Teams ProjectTeamArrayInput
 	// Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
 	WithDefaultAlertsSettings pulumi.BoolPtrInput
@@ -488,6 +479,7 @@ func (o ProjectOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }
 
+// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 func (o ProjectOutput) Teams() ProjectTeamArrayOutput {
 	return o.ApplyT(func(v *Project) ProjectTeamArrayOutput { return v.Teams }).(ProjectTeamArrayOutput)
 }

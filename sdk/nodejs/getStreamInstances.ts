@@ -7,9 +7,27 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getStreamInstances
+ * > **DEPRECATED:** This data source is deprecated. Please use `mongodbatlas.getStreamWorkspaces` instead.
  *
  * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
+ *
+ * ## Migration to streamWorkspaces
+ *
+ * To migrate from `mongodbatlas.getStreamInstances` to `mongodbatlas.getStreamWorkspaces`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // New (recommended)
+ * const example = mongodbatlas.getStreamWorkspaces({
+ *     projectId: "<PROJECT_ID>",
+ * });
+ * // Old (deprecated)
+ * const exampleGetStreamInstances = mongodbatlas.getStreamInstances({
+ *     projectId: "<PROJECT_ID>",
+ * });
+ * ```
  *
  * ## Example Usage
  *
@@ -73,9 +91,27 @@ export interface GetStreamInstancesResult {
     readonly totalCount: number;
 }
 /**
- * ## # Data Source: mongodbatlas.getStreamInstances
+ * > **DEPRECATED:** This data source is deprecated. Please use `mongodbatlas.getStreamWorkspaces` instead.
  *
  * `mongodbatlas.getStreamInstances` describes the stream instances defined in a project.
+ *
+ * ## Migration to streamWorkspaces
+ *
+ * To migrate from `mongodbatlas.getStreamInstances` to `mongodbatlas.getStreamWorkspaces`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // New (recommended)
+ * const example = mongodbatlas.getStreamWorkspaces({
+ *     projectId: "<PROJECT_ID>",
+ * });
+ * // Old (deprecated)
+ * const exampleGetStreamInstances = mongodbatlas.getStreamInstances({
+ *     projectId: "<PROJECT_ID>",
+ * });
+ * ```
  *
  * ## Example Usage
  *

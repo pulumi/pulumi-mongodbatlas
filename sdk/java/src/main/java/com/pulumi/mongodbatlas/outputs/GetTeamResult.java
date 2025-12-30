@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetTeamUser;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -28,10 +29,19 @@ public final class GetTeamResult {
      */
     private String teamId;
     /**
-     * @return The users who are part of the organization.
+     * @return **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
     private List<String> usernames;
+    /**
+     * @return Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
+     * 
+     */
+    private List<GetTeamUser> users;
 
     private GetTeamResult() {}
     /**
@@ -59,11 +69,22 @@ public final class GetTeamResult {
         return this.teamId;
     }
     /**
-     * @return The users who are part of the organization.
+     * @return **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
     public List<String> usernames() {
         return this.usernames;
+    }
+    /**
+     * @return Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
+     * 
+     */
+    public List<GetTeamUser> users() {
+        return this.users;
     }
 
     public static Builder builder() {
@@ -80,6 +101,7 @@ public final class GetTeamResult {
         private String orgId;
         private String teamId;
         private List<String> usernames;
+        private List<GetTeamUser> users;
         public Builder() {}
         public Builder(GetTeamResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -88,6 +110,7 @@ public final class GetTeamResult {
     	      this.orgId = defaults.orgId;
     	      this.teamId = defaults.teamId;
     	      this.usernames = defaults.usernames;
+    	      this.users = defaults.users;
         }
 
         @CustomType.Setter
@@ -133,6 +156,17 @@ public final class GetTeamResult {
         public Builder usernames(String... usernames) {
             return usernames(List.of(usernames));
         }
+        @CustomType.Setter
+        public Builder users(List<GetTeamUser> users) {
+            if (users == null) {
+              throw new MissingRequiredPropertyException("GetTeamResult", "users");
+            }
+            this.users = users;
+            return this;
+        }
+        public Builder users(GetTeamUser... users) {
+            return users(List.of(users));
+        }
         public GetTeamResult build() {
             final var _resultValue = new GetTeamResult();
             _resultValue.id = id;
@@ -140,6 +174,7 @@ public final class GetTeamResult {
             _resultValue.orgId = orgId;
             _resultValue.teamId = teamId;
             _resultValue.usernames = usernames;
+            _resultValue.users = users;
             return _resultValue;
         }
     }

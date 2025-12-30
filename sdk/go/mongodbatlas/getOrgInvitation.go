@@ -7,13 +7,13 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: OrgInvitation
-//
 // `OrgInvitation` describes an invitation for a user to join an Atlas organization.
+//
+// > **DEPRECATION:** This data source is deprecated. Use `CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
 func LookupOrgInvitation(ctx *pulumi.Context, args *LookupOrgInvitationArgs, opts ...pulumi.InvokeOption) (*LookupOrgInvitationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupOrgInvitationResult

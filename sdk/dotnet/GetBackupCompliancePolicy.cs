@@ -555,7 +555,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Specifications for on-demand policy.
         /// </summary>
-        public readonly Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult OnDemandPolicyItem;
+        public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult> OnDemandPolicyItems;
         /// <summary>
         /// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         /// </summary>
@@ -563,11 +563,11 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Scheduled policy using a daily frequency type, see block fields.
         /// </summary>
-        public readonly Outputs.GetBackupCompliancePolicyPolicyItemDailyResult PolicyItemDaily;
+        public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemDailyResult> PolicyItemDailies;
         /// <summary>
         /// Scheduled policy using an hourly frequency type, see block fields.
         /// </summary>
-        public readonly Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult PolicyItemHourly;
+        public readonly ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult> PolicyItemHourlies;
         /// <summary>
         /// Scheduled policy using a monthly frequency type, see block fields.
         /// </summary>
@@ -612,13 +612,13 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
-            Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult onDemandPolicyItem,
+            ImmutableArray<Outputs.GetBackupCompliancePolicyOnDemandPolicyItemResult> onDemandPolicyItems,
 
             bool pitEnabled,
 
-            Outputs.GetBackupCompliancePolicyPolicyItemDailyResult policyItemDaily,
+            ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemDailyResult> policyItemDailies,
 
-            Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult policyItemHourly,
+            ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemHourlyResult> policyItemHourlies,
 
             ImmutableArray<Outputs.GetBackupCompliancePolicyPolicyItemMonthlyResult> policyItemMonthlies,
 
@@ -642,10 +642,10 @@ namespace Pulumi.Mongodbatlas
             CopyProtectionEnabled = copyProtectionEnabled;
             EncryptionAtRestEnabled = encryptionAtRestEnabled;
             Id = id;
-            OnDemandPolicyItem = onDemandPolicyItem;
+            OnDemandPolicyItems = onDemandPolicyItems;
             PitEnabled = pitEnabled;
-            PolicyItemDaily = policyItemDaily;
-            PolicyItemHourly = policyItemHourly;
+            PolicyItemDailies = policyItemDailies;
+            PolicyItemHourlies = policyItemHourlies;
             PolicyItemMonthlies = policyItemMonthlies;
             PolicyItemWeeklies = policyItemWeeklies;
             PolicyItemYearlies = policyItemYearlies;

@@ -114,8 +114,6 @@ def get_cloud_backup_snapshots(cluster_name: Optional[_builtins.str] = None,
                                project_id: Optional[_builtins.str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotsResult:
     """
-    ## # Data Source: get_cloud_backup_snapshots
-
     `get_cloud_backup_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -149,8 +147,6 @@ def get_cloud_backup_snapshots_output(cluster_name: Optional[pulumi.Input[_built
                                       project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotsResult]:
     """
-    ## # Data Source: get_cloud_backup_snapshots
-
     `get_cloud_backup_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

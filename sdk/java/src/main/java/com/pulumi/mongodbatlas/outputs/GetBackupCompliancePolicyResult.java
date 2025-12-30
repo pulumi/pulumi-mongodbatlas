@@ -53,7 +53,7 @@ public final class GetBackupCompliancePolicyResult {
      * @return Specifications for on-demand policy.
      * 
      */
-    private GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
+    private List<GetBackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItems;
     /**
      * @return Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      * 
@@ -63,12 +63,12 @@ public final class GetBackupCompliancePolicyResult {
      * @return Scheduled policy using a daily frequency type, see block fields.
      * 
      */
-    private GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
+    private List<GetBackupCompliancePolicyPolicyItemDaily> policyItemDailies;
     /**
      * @return Scheduled policy using an hourly frequency type, see block fields.
      * 
      */
-    private GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
+    private List<GetBackupCompliancePolicyPolicyItemHourly> policyItemHourlies;
     /**
      * @return Scheduled policy using a monthly frequency type, see block fields.
      * 
@@ -153,8 +153,8 @@ public final class GetBackupCompliancePolicyResult {
      * @return Specifications for on-demand policy.
      * 
      */
-    public GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem() {
-        return this.onDemandPolicyItem;
+    public List<GetBackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItems() {
+        return this.onDemandPolicyItems;
     }
     /**
      * @return Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -167,15 +167,15 @@ public final class GetBackupCompliancePolicyResult {
      * @return Scheduled policy using a daily frequency type, see block fields.
      * 
      */
-    public GetBackupCompliancePolicyPolicyItemDaily policyItemDaily() {
-        return this.policyItemDaily;
+    public List<GetBackupCompliancePolicyPolicyItemDaily> policyItemDailies() {
+        return this.policyItemDailies;
     }
     /**
      * @return Scheduled policy using an hourly frequency type, see block fields.
      * 
      */
-    public GetBackupCompliancePolicyPolicyItemHourly policyItemHourly() {
-        return this.policyItemHourly;
+    public List<GetBackupCompliancePolicyPolicyItemHourly> policyItemHourlies() {
+        return this.policyItemHourlies;
     }
     /**
      * @return Scheduled policy using a monthly frequency type, see block fields.
@@ -245,10 +245,10 @@ public final class GetBackupCompliancePolicyResult {
         private Boolean copyProtectionEnabled;
         private Boolean encryptionAtRestEnabled;
         private String id;
-        private GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem;
+        private List<GetBackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItems;
         private Boolean pitEnabled;
-        private GetBackupCompliancePolicyPolicyItemDaily policyItemDaily;
-        private GetBackupCompliancePolicyPolicyItemHourly policyItemHourly;
+        private List<GetBackupCompliancePolicyPolicyItemDaily> policyItemDailies;
+        private List<GetBackupCompliancePolicyPolicyItemHourly> policyItemHourlies;
         private List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies;
         private List<GetBackupCompliancePolicyPolicyItemWeekly> policyItemWeeklies;
         private List<GetBackupCompliancePolicyPolicyItemYearly> policyItemYearlies;
@@ -266,10 +266,10 @@ public final class GetBackupCompliancePolicyResult {
     	      this.copyProtectionEnabled = defaults.copyProtectionEnabled;
     	      this.encryptionAtRestEnabled = defaults.encryptionAtRestEnabled;
     	      this.id = defaults.id;
-    	      this.onDemandPolicyItem = defaults.onDemandPolicyItem;
+    	      this.onDemandPolicyItems = defaults.onDemandPolicyItems;
     	      this.pitEnabled = defaults.pitEnabled;
-    	      this.policyItemDaily = defaults.policyItemDaily;
-    	      this.policyItemHourly = defaults.policyItemHourly;
+    	      this.policyItemDailies = defaults.policyItemDailies;
+    	      this.policyItemHourlies = defaults.policyItemHourlies;
     	      this.policyItemMonthlies = defaults.policyItemMonthlies;
     	      this.policyItemWeeklies = defaults.policyItemWeeklies;
     	      this.policyItemYearlies = defaults.policyItemYearlies;
@@ -329,12 +329,15 @@ public final class GetBackupCompliancePolicyResult {
             return this;
         }
         @CustomType.Setter
-        public Builder onDemandPolicyItem(GetBackupCompliancePolicyOnDemandPolicyItem onDemandPolicyItem) {
-            if (onDemandPolicyItem == null) {
-              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "onDemandPolicyItem");
+        public Builder onDemandPolicyItems(List<GetBackupCompliancePolicyOnDemandPolicyItem> onDemandPolicyItems) {
+            if (onDemandPolicyItems == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "onDemandPolicyItems");
             }
-            this.onDemandPolicyItem = onDemandPolicyItem;
+            this.onDemandPolicyItems = onDemandPolicyItems;
             return this;
+        }
+        public Builder onDemandPolicyItems(GetBackupCompliancePolicyOnDemandPolicyItem... onDemandPolicyItems) {
+            return onDemandPolicyItems(List.of(onDemandPolicyItems));
         }
         @CustomType.Setter
         public Builder pitEnabled(Boolean pitEnabled) {
@@ -345,20 +348,26 @@ public final class GetBackupCompliancePolicyResult {
             return this;
         }
         @CustomType.Setter
-        public Builder policyItemDaily(GetBackupCompliancePolicyPolicyItemDaily policyItemDaily) {
-            if (policyItemDaily == null) {
-              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemDaily");
+        public Builder policyItemDailies(List<GetBackupCompliancePolicyPolicyItemDaily> policyItemDailies) {
+            if (policyItemDailies == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemDailies");
             }
-            this.policyItemDaily = policyItemDaily;
+            this.policyItemDailies = policyItemDailies;
             return this;
         }
+        public Builder policyItemDailies(GetBackupCompliancePolicyPolicyItemDaily... policyItemDailies) {
+            return policyItemDailies(List.of(policyItemDailies));
+        }
         @CustomType.Setter
-        public Builder policyItemHourly(GetBackupCompliancePolicyPolicyItemHourly policyItemHourly) {
-            if (policyItemHourly == null) {
-              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemHourly");
+        public Builder policyItemHourlies(List<GetBackupCompliancePolicyPolicyItemHourly> policyItemHourlies) {
+            if (policyItemHourlies == null) {
+              throw new MissingRequiredPropertyException("GetBackupCompliancePolicyResult", "policyItemHourlies");
             }
-            this.policyItemHourly = policyItemHourly;
+            this.policyItemHourlies = policyItemHourlies;
             return this;
+        }
+        public Builder policyItemHourlies(GetBackupCompliancePolicyPolicyItemHourly... policyItemHourlies) {
+            return policyItemHourlies(List.of(policyItemHourlies));
         }
         @CustomType.Setter
         public Builder policyItemMonthlies(List<GetBackupCompliancePolicyPolicyItemMonthly> policyItemMonthlies) {
@@ -441,10 +450,10 @@ public final class GetBackupCompliancePolicyResult {
             _resultValue.copyProtectionEnabled = copyProtectionEnabled;
             _resultValue.encryptionAtRestEnabled = encryptionAtRestEnabled;
             _resultValue.id = id;
-            _resultValue.onDemandPolicyItem = onDemandPolicyItem;
+            _resultValue.onDemandPolicyItems = onDemandPolicyItems;
             _resultValue.pitEnabled = pitEnabled;
-            _resultValue.policyItemDaily = policyItemDaily;
-            _resultValue.policyItemHourly = policyItemHourly;
+            _resultValue.policyItemDailies = policyItemDailies;
+            _resultValue.policyItemHourlies = policyItemHourlies;
             _resultValue.policyItemMonthlies = policyItemMonthlies;
             _resultValue.policyItemWeeklies = policyItemWeeklies;
             _resultValue.policyItemYearlies = policyItemYearlies;

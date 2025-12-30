@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class DatabaseUserScope {
     /**
-     * @return Name of the cluster or Atlas Data Lake that the user has access to.
+     * @return Name of the cluster or Atlas Data Federation that the user has access to.
      * 
      */
     private @Nullable String name;
@@ -24,7 +24,7 @@ public final class DatabaseUserScope {
 
     private DatabaseUserScope() {}
     /**
-     * @return Name of the cluster or Atlas Data Lake that the user has access to.
+     * @return Name of the cluster or Atlas Data Federation that the user has access to.
      * 
      */
     public Optional<String> name() {

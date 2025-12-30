@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,6 +49,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CloudProviderAccessAuthorization{}
 	case "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup":
 		r = &CloudProviderAccessSetup{}
+	case "mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment":
+		r = &CloudUserOrgAssignment{}
+	case "mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment":
+		r = &CloudUserProjectAssignment{}
+	case "mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment":
+		r = &CloudUserTeamAssignment{}
 	case "mongodbatlas:index/cluster:Cluster":
 		r = &Cluster{}
 	case "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation":
@@ -57,8 +63,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CustomDbRole{}
 	case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
 		r = &CustomDnsConfigurationClusterAws{}
-	case "mongodbatlas:index/dataLakePipeline:DataLakePipeline":
-		r = &DataLakePipeline{}
 	case "mongodbatlas:index/databaseUser:DatabaseUser":
 		r = &DatabaseUser{}
 	case "mongodbatlas:index/encryptionAtRest:EncryptionAtRest":
@@ -105,12 +109,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &PrivateLinkEndpoint{}
 	case "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService":
 		r = &PrivateLinkEndpointService{}
-	case "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless":
-		r = &PrivatelinkEndpointServerless{}
 	case "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive":
 		r = &PrivatelinkEndpointServiceDataFederationOnlineArchive{}
-	case "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless":
-		r = &PrivatelinkEndpointServiceServerless{}
 	case "mongodbatlas:index/project:Project":
 		r = &Project{}
 	case "mongodbatlas:index/projectApiKey:ProjectApiKey":
@@ -137,10 +137,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &StreamPrivatelinkEndpoint{}
 	case "mongodbatlas:index/streamProcessor:StreamProcessor":
 		r = &StreamProcessor{}
+	case "mongodbatlas:index/streamWorkspace:StreamWorkspace":
+		r = &StreamWorkspace{}
 	case "mongodbatlas:index/team:Team":
 		r = &Team{}
-	case "mongodbatlas:index/teams:Teams":
-		r = &Teams{}
+	case "mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment":
+		r = &TeamProjectAssignment{}
 	case "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration":
 		r = &ThirdPartyIntegration{}
 	case "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser":
@@ -248,6 +250,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/cloudUserOrgAssignment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/cloudUserProjectAssignment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/cloudUserTeamAssignment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/cluster",
 		&module{version},
 	)
@@ -264,11 +281,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/customDnsConfigurationClusterAws",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
-		"index/dataLakePipeline",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -388,17 +400,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/privatelinkEndpointServerless",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
 		"index/privatelinkEndpointServiceDataFederationOnlineArchive",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"mongodbatlas",
-		"index/privatelinkEndpointServiceServerless",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -468,12 +470,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/streamWorkspace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/team",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
-		"index/teams",
+		"index/teamProjectAssignment",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

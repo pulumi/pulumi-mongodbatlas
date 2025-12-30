@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.CloudBackupSnapshot
-    /// 
     /// `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
     /// On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
     /// 
@@ -79,6 +77,10 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - Restore from backup snapshot at point in time
+    /// - Restore from backup snapshot using an advanced cluster resource
+    /// 
     /// ## Import
     /// 
     /// Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
@@ -108,6 +110,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool?> DeleteOnCreateTimeout { get; private set; } = null!;
 
         /// <summary>
         /// Description of the on-demand snapshot.
@@ -246,6 +254,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
         /// Description of the on-demand snapshot.
         /// </summary>
         [Input("description", required: true)]
@@ -288,6 +302,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
         /// Description of the on-demand snapshot.

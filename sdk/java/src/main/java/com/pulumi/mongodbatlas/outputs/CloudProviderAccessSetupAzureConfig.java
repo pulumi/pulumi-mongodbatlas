@@ -10,17 +10,41 @@ import java.util.Objects;
 
 @CustomType
 public final class CloudProviderAccessSetupAzureConfig {
+    /**
+     * @return Azure Active Directory Application ID of Atlas. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     private String atlasAzureAppId;
+    /**
+     * @return UUID string that identifies the Azure Service Principal. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     private String servicePrincipalId;
+    /**
+     * @return UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     private String tenantId;
 
     private CloudProviderAccessSetupAzureConfig() {}
+    /**
+     * @return Azure Active Directory Application ID of Atlas. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     public String atlasAzureAppId() {
         return this.atlasAzureAppId;
     }
+    /**
+     * @return UUID string that identifies the Azure Service Principal. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     public String servicePrincipalId() {
         return this.servicePrincipalId;
     }
+    /**
+     * @return UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     public String tenantId() {
         return this.tenantId;
     }

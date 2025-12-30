@@ -208,6 +208,9 @@ class ApiKey(pulumi.CustomResource):
             role_names=["ORG_READ_ONLY"])
         ```
 
+        ### Further Examples
+        - Create Programmatic API Key
+
         ## ## Attributes Reference
 
         In addition to all arguments above, the following attributes are exported:
@@ -253,6 +256,9 @@ class ApiKey(pulumi.CustomResource):
             org_id="<ORG_ID>",
             role_names=["ORG_READ_ONLY"])
         ```
+
+        ### Further Examples
+        - Create Programmatic API Key
 
         ## ## Attributes Reference
 

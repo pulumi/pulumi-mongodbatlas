@@ -74,8 +74,6 @@ class AwaitableGetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult(G
 def get_privatelink_endpoint_service_data_federation_online_archives(project_id: Optional[_builtins.str] = None,
                                                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult:
     """
-    ## # Data Source: get_privatelink_endpoint_service_data_federation_online_archives
-
     `get_privatelink_endpoint_service_data_federation_online_archives` describes Private Endpoint Service resources for Data Federation and Online Archive.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -114,8 +112,6 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
 def get_privatelink_endpoint_service_data_federation_online_archives_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                                                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult]:
     """
-    ## # Data Source: get_privatelink_endpoint_service_data_federation_online_archives
-
     `get_privatelink_endpoint_service_data_federation_online_archives` describes Private Endpoint Service resources for Data Federation and Online Archive.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

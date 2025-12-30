@@ -23,12 +23,12 @@ namespace Pulumi.Mongodbatlas
     public partial class CloudBackupSchedule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `False`. Value can be one of the following:
+        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
         /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         /// </summary>
         [Output("autoExportEnabled")]
-        public Output<bool> AutoExportEnabled { get; private set; } = null!;
+        public Output<bool?> AutoExportEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifier of the Atlas cluster.
@@ -49,10 +49,10 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CloudBackupScheduleCopySetting>> CopySettings { get; private set; } = null!;
 
         /// <summary>
-        /// Policy for automatically exporting Cloud Backup Snapshots. `AutoExportEnabled` must be set to true when defining this attribute. See below
+        /// Policy for automatically exporting Cloud Backup Snapshots. See below
         /// </summary>
         [Output("export")]
-        public Output<Outputs.CloudBackupScheduleExport> Export { get; private set; } = null!;
+        public Output<Outputs.CloudBackupScheduleExport?> Export { get; private set; } = null!;
 
         /// <summary>
         /// Unique identifier of the backup policy.
@@ -176,7 +176,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class CloudBackupScheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `False`. Value can be one of the following:
+        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
         /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         /// </summary>
@@ -202,7 +202,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Policy for automatically exporting Cloud Backup Snapshots. `AutoExportEnabled` must be set to true when defining this attribute. See below
+        /// Policy for automatically exporting Cloud Backup Snapshots. See below
         /// </summary>
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportArgs>? Export { get; set; }
@@ -297,7 +297,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class CloudBackupScheduleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `False`. Value can be one of the following:
+        /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
         /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         /// </summary>
@@ -329,7 +329,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Policy for automatically exporting Cloud Backup Snapshots. `AutoExportEnabled` must be set to true when defining this attribute. See below
+        /// Policy for automatically exporting Cloud Backup Snapshots. See below
         /// </summary>
         [Input("export")]
         public Input<Inputs.CloudBackupScheduleExportGetArgs>? Export { get; set; }

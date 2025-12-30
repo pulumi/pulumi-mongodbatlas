@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetTeamResult',
@@ -26,7 +27,7 @@ class GetTeamResult:
     """
     A collection of values returned by getTeam.
     """
-    def __init__(__self__, id=None, name=None, org_id=None, team_id=None, usernames=None):
+    def __init__(__self__, id=None, name=None, org_id=None, team_id=None, usernames=None, users=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -42,6 +43,9 @@ class GetTeamResult:
         if usernames and not isinstance(usernames, list):
             raise TypeError("Expected argument 'usernames' to be a list")
         pulumi.set(__self__, "usernames", usernames)
+        if users and not isinstance(users, list):
+            raise TypeError("Expected argument 'users' to be a list")
+        pulumi.set(__self__, "users", users)
 
     @_builtins.property
     @pulumi.getter
@@ -74,11 +78,20 @@ class GetTeamResult:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
     def usernames(self) -> Sequence[_builtins.str]:
         """
-        The users who are part of the organization.
+        **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         return pulumi.get(self, "usernames")
+
+    @_builtins.property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetTeamUserResult']:
+        """
+        Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
+        """
+        return pulumi.get(self, "users")
 
 
 class AwaitableGetTeamResult(GetTeamResult):
@@ -91,7 +104,8 @@ class AwaitableGetTeamResult(GetTeamResult):
             name=self.name,
             org_id=self.org_id,
             team_id=self.team_id,
-            usernames=self.usernames)
+            usernames=self.usernames,
+            users=self.users)
 
 
 def get_team(name: Optional[_builtins.str] = None,
@@ -99,8 +113,6 @@ def get_team(name: Optional[_builtins.str] = None,
              team_id: Optional[_builtins.str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTeamResult:
     """
-    ## # Data Source: Team
-
     `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -158,14 +170,13 @@ def get_team(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         org_id=pulumi.get(__ret__, 'org_id'),
         team_id=pulumi.get(__ret__, 'team_id'),
-        usernames=pulumi.get(__ret__, 'usernames'))
+        usernames=pulumi.get(__ret__, 'usernames'),
+        users=pulumi.get(__ret__, 'users'))
 def get_team_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                     org_id: Optional[pulumi.Input[_builtins.str]] = None,
                     team_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamResult]:
     """
-    ## # Data Source: Team
-
     `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
@@ -222,4 +233,5 @@ def get_team_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None
         name=pulumi.get(__response__, 'name'),
         org_id=pulumi.get(__response__, 'org_id'),
         team_id=pulumi.get(__response__, 'team_id'),
-        usernames=pulumi.get(__response__, 'usernames')))
+        usernames=pulumi.get(__response__, 'usernames'),
+        users=pulumi.get(__response__, 'users')))

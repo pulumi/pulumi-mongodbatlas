@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetStreamConnection
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamConnection
-        /// 
         /// `mongodbatlas.StreamConnection` describes a stream connection.
         /// 
         /// ## Example Usage
@@ -29,7 +27,27 @@ namespace Pulumi.Mongodbatlas
         ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
+        ///         ConnectionName = "&lt;CONNECTION_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Example using WorkspaceName
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
         ///         ConnectionName = "&lt;CONNECTION_NAME&gt;",
         ///     });
         /// 
@@ -40,8 +58,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamConnectionResult>("mongodbatlas:index/getStreamConnection:getStreamConnection", args ?? new GetStreamConnectionArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamConnection
-        /// 
         /// `mongodbatlas.StreamConnection` describes a stream connection.
         /// 
         /// ## Example Usage
@@ -57,7 +73,27 @@ namespace Pulumi.Mongodbatlas
         ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
+        ///         ConnectionName = "&lt;CONNECTION_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Example using WorkspaceName
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
         ///         ConnectionName = "&lt;CONNECTION_NAME&gt;",
         ///     });
         /// 
@@ -68,8 +104,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamConnectionResult>("mongodbatlas:index/getStreamConnection:getStreamConnection", args ?? new GetStreamConnectionInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.StreamConnection
-        /// 
         /// `mongodbatlas.StreamConnection` describes a stream connection.
         /// 
         /// ## Example Usage
@@ -85,7 +119,27 @@ namespace Pulumi.Mongodbatlas
         ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
-        ///         InstanceName = "&lt;INSTANCE_NAME&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
+        ///         ConnectionName = "&lt;CONNECTION_NAME&gt;",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Example using WorkspaceName
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
         ///         ConnectionName = "&lt;CONNECTION_NAME&gt;",
         ///     });
         /// 
@@ -100,22 +154,30 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamConnectionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Input("connectionName", required: true)]
         public string ConnectionName { get; set; } = null!;
 
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
-        [Input("instanceName", required: true)]
-        public string InstanceName { get; set; } = null!;
+        [Input("instanceName")]
+        public string? InstanceName { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
+        [Input("workspaceName")]
+        public string? WorkspaceName { get; set; }
 
         public GetStreamConnectionArgs()
         {
@@ -126,22 +188,30 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamConnectionInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Input("connectionName", required: true)]
         public Input<string> ConnectionName { get; set; } = null!;
 
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
-        [Input("instanceName", required: true)]
-        public Input<string> InstanceName { get; set; } = null!;
+        [Input("instanceName")]
+        public Input<string>? InstanceName { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
+        [Input("workspaceName")]
+        public Input<string>? WorkspaceName { get; set; }
 
         public GetStreamConnectionInvokeArgs()
         {
@@ -187,7 +257,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableDictionary<string, string> Headers;
         public readonly string Id;
-        public readonly string InstanceName;
+        public readonly string? InstanceName;
         /// <summary>
         /// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
         /// </summary>
@@ -205,6 +275,7 @@ namespace Pulumi.Mongodbatlas
         /// URL of the HTTPs endpoint that will be used for creating a connection.
         /// </summary>
         public readonly string Url;
+        public readonly string? WorkspaceName;
 
         [OutputConstructor]
         private GetStreamConnectionResult(
@@ -228,7 +299,7 @@ namespace Pulumi.Mongodbatlas
 
             string id,
 
-            string instanceName,
+            string? instanceName,
 
             Outputs.GetStreamConnectionNetworkingResult networking,
 
@@ -238,7 +309,9 @@ namespace Pulumi.Mongodbatlas
 
             string type,
 
-            string url)
+            string url,
+
+            string? workspaceName)
         {
             Authentication = authentication;
             Aws = aws;
@@ -256,6 +329,7 @@ namespace Pulumi.Mongodbatlas
             Security = security;
             Type = type;
             Url = url;
+            WorkspaceName = workspaceName;
         }
     }
 }

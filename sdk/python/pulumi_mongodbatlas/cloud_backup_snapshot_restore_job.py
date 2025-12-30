@@ -384,15 +384,15 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     },
                 }],
             }])
-        test = mongodbatlas.index.CloudProviderSnapshot("test",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
-            description=myDescription,
+            description="myDescription",
             retention_in_days=1)
         test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
-            project_id=test["projectId"],
-            cluster_name=test["clusterName"],
-            snapshot_id=test["snapshotId"],
+            project_id=test.project_id,
+            cluster_name=test.cluster_name,
+            snapshot_id=test.snapshot_id,
             delivery_type_config={
                 "automated": True,
                 "target_cluster_name": "MyCluster",
@@ -422,15 +422,15 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     },
                 }],
             }])
-        test = mongodbatlas.index.CloudProviderSnapshot("test",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
-            description=myDescription,
+            description="myDescription",
             retention_in_days=1)
         test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
-            project_id=test["projectId"],
-            cluster_name=test["clusterName"],
-            snapshot_id=test["snapshotId"],
+            project_id=test.project_id,
+            cluster_name=test.cluster_name,
+            snapshot_id=test.snapshot_id,
             delivery_type_config={
                 "download": True,
             })
@@ -476,7 +476,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 }))
         ```
 
-        ### Available complete examples
+        ### Further Examples
         - Restore from backup snapshot at point in time
         - Restore from backup snapshot using an advanced cluster resource
 
@@ -535,15 +535,15 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     },
                 }],
             }])
-        test = mongodbatlas.index.CloudProviderSnapshot("test",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
-            description=myDescription,
+            description="myDescription",
             retention_in_days=1)
         test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
-            project_id=test["projectId"],
-            cluster_name=test["clusterName"],
-            snapshot_id=test["snapshotId"],
+            project_id=test.project_id,
+            cluster_name=test.cluster_name,
+            snapshot_id=test.snapshot_id,
             delivery_type_config={
                 "automated": True,
                 "target_cluster_name": "MyCluster",
@@ -573,15 +573,15 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     },
                 }],
             }])
-        test = mongodbatlas.index.CloudProviderSnapshot("test",
+        test = mongodbatlas.CloudBackupSnapshot("test",
             project_id=my_cluster.project_id,
             cluster_name=my_cluster.name,
-            description=myDescription,
+            description="myDescription",
             retention_in_days=1)
         test_cloud_backup_snapshot_restore_job = mongodbatlas.CloudBackupSnapshotRestoreJob("test",
-            project_id=test["projectId"],
-            cluster_name=test["clusterName"],
-            snapshot_id=test["snapshotId"],
+            project_id=test.project_id,
+            cluster_name=test.cluster_name,
+            snapshot_id=test.snapshot_id,
             delivery_type_config={
                 "download": True,
             })
@@ -627,7 +627,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                 }))
         ```
 
-        ### Available complete examples
+        ### Further Examples
         - Restore from backup snapshot at point in time
         - Restore from backup snapshot using an advanced cluster resource
 

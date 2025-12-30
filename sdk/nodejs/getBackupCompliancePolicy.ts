@@ -159,7 +159,7 @@ export interface GetBackupCompliancePolicyResult {
     /**
      * Specifications for on-demand policy.
      */
-    readonly onDemandPolicyItem: outputs.GetBackupCompliancePolicyOnDemandPolicyItem;
+    readonly onDemandPolicyItems: outputs.GetBackupCompliancePolicyOnDemandPolicyItem[];
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
@@ -167,11 +167,11 @@ export interface GetBackupCompliancePolicyResult {
     /**
      * Scheduled policy using a daily frequency type, see block fields.
      */
-    readonly policyItemDaily: outputs.GetBackupCompliancePolicyPolicyItemDaily;
+    readonly policyItemDailies: outputs.GetBackupCompliancePolicyPolicyItemDaily[];
     /**
      * Scheduled policy using an hourly frequency type, see block fields.
      */
-    readonly policyItemHourly: outputs.GetBackupCompliancePolicyPolicyItemHourly;
+    readonly policyItemHourlies: outputs.GetBackupCompliancePolicyPolicyItemHourly[];
     /**
      * Scheduled policy using a monthly frequency type, see block fields.
      */

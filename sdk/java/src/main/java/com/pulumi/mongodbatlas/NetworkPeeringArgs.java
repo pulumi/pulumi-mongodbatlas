@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -129,6 +130,25 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     * **AWS ONLY:**
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     * **AWS ONLY:**
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
+
+    /**
      * GCP project ID of the owner of the network peer.
      * 
      */
@@ -180,16 +200,12 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
      * 
-     * **AWS ONLY:**
-     * 
      */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
     /**
      * @return Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-     * 
-     * **AWS ONLY:**
      * 
      */
     public Output<String> providerName() {
@@ -271,6 +287,7 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         this.azureDirectoryId = $.azureDirectoryId;
         this.azureSubscriptionId = $.azureSubscriptionId;
         this.containerId = $.containerId;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.gcpProjectId = $.gcpProjectId;
         this.networkName = $.networkName;
         this.projectId = $.projectId;
@@ -456,6 +473,31 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * **AWS ONLY:**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * **AWS ONLY:**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
+        }
+
+        /**
          * @param gcpProjectId GCP project ID of the owner of the network peer.
          * 
          * @return builder
@@ -525,8 +567,6 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
         /**
          * @param providerName Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
          * 
-         * **AWS ONLY:**
-         * 
          * @return builder
          * 
          */
@@ -537,8 +577,6 @@ public final class NetworkPeeringArgs extends com.pulumi.resources.ResourceArgs 
 
         /**
          * @param providerName Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-         * 
-         * **AWS ONLY:**
          * 
          * @return builder
          * 

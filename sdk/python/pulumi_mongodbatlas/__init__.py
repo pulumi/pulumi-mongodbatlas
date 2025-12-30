@@ -20,11 +20,13 @@ from .cloud_backup_snapshot_export_job import *
 from .cloud_backup_snapshot_restore_job import *
 from .cloud_provider_access_authorization import *
 from .cloud_provider_access_setup import *
+from .cloud_user_org_assignment import *
+from .cloud_user_project_assignment import *
+from .cloud_user_team_assignment import *
 from .cluster import *
 from .cluster_outage_simulation import *
 from .custom_db_role import *
 from .custom_dns_configuration_cluster_aws import *
-from .data_lake_pipeline import *
 from .database_user import *
 from .encryption_at_rest import *
 from .encryption_at_rest_private_endpoint import *
@@ -35,7 +37,6 @@ from .federated_settings_identity_provider import *
 from .federated_settings_org_config import *
 from .federated_settings_org_role_mapping import *
 from .flex_cluster import *
-from .get509_authentication_database_user import *
 from .get_access_list_api_key import *
 from .get_access_list_api_keys import *
 from .get_advanced_cluster import *
@@ -60,6 +61,9 @@ from .get_cloud_backup_snapshot_restore_job import *
 from .get_cloud_backup_snapshot_restore_jobs import *
 from .get_cloud_backup_snapshots import *
 from .get_cloud_provider_access_setup import *
+from .get_cloud_user_org_assignment import *
+from .get_cloud_user_project_assignment import *
+from .get_cloud_user_team_assignment import *
 from .get_cluster import *
 from .get_cluster_outage_simulation import *
 from .get_clusters import *
@@ -67,10 +71,6 @@ from .get_control_plane_ip_addresses import *
 from .get_custom_db_role import *
 from .get_custom_db_roles import *
 from .get_custom_dns_configuration_cluster_aws import *
-from .get_data_lake_pipeline import *
-from .get_data_lake_pipeline_run import *
-from .get_data_lake_pipeline_runs import *
-from .get_data_lake_pipelines import *
 from .get_database_user import *
 from .get_database_users import *
 from .get_encryption_at_rest import *
@@ -114,8 +114,6 @@ from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
 from .get_privatelink_endpoint_service_data_federation_online_archive import *
 from .get_privatelink_endpoint_service_data_federation_online_archives import *
-from .get_privatelink_endpoint_service_serverless import *
-from .get_privatelink_endpoints_service_serverless import *
 from .get_project import *
 from .get_project_api_key import *
 from .get_project_api_keys import *
@@ -145,8 +143,10 @@ from .get_stream_privatelink_endpoint import *
 from .get_stream_privatelink_endpoints import *
 from .get_stream_processor import *
 from .get_stream_processors import *
+from .get_stream_workspace import *
+from .get_stream_workspaces import *
 from .get_team import *
-from .get_teams import *
+from .get_team_project_assignment import *
 from .get_third_party_integration import *
 from .get_third_party_integrations import *
 from .get_x509_authentication_database_user import *
@@ -163,9 +163,7 @@ from .organization import *
 from .private_endpoint_regional_mode import *
 from .private_link_endpoint import *
 from .private_link_endpoint_service import *
-from .privatelink_endpoint_serverless import *
 from .privatelink_endpoint_service_data_federation_online_archive import *
-from .privatelink_endpoint_service_serverless import *
 from .project import *
 from .project_api_key import *
 from .project_invitation import *
@@ -180,8 +178,9 @@ from .stream_connection import *
 from .stream_instance import *
 from .stream_privatelink_endpoint import *
 from .stream_processor import *
+from .stream_workspace import *
 from .team import *
-from .teams import *
+from .team_project_assignment import *
 from .third_party_integration import *
 from .x509_authentication_database_user import *
 from ._inputs import *
@@ -311,6 +310,30 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/cloudUserOrgAssignment",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment": "CloudUserOrgAssignment"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/cloudUserProjectAssignment",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment": "CloudUserProjectAssignment"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/cloudUserTeamAssignment",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment": "CloudUserTeamAssignment"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/cluster",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -339,14 +362,6 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws": "CustomDnsConfigurationClusterAws"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/dataLakePipeline",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/dataLakePipeline:DataLakePipeline": "DataLakePipeline"
   }
  },
  {
@@ -535,26 +550,10 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
-  "mod": "index/privatelinkEndpointServerless",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless": "PrivatelinkEndpointServerless"
-  }
- },
- {
-  "pkg": "mongodbatlas",
   "mod": "index/privatelinkEndpointServiceDataFederationOnlineArchive",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive": "PrivatelinkEndpointServiceDataFederationOnlineArchive"
-  }
- },
- {
-  "pkg": "mongodbatlas",
-  "mod": "index/privatelinkEndpointServiceServerless",
-  "fqn": "pulumi_mongodbatlas",
-  "classes": {
-   "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless": "PrivatelinkEndpointServiceServerless"
   }
  },
  {
@@ -663,6 +662,14 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/streamWorkspace",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/streamWorkspace:StreamWorkspace": "StreamWorkspace"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/team",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -671,10 +678,10 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
-  "mod": "index/teams",
+  "mod": "index/teamProjectAssignment",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
-   "mongodbatlas:index/teams:Teams": "Teams"
+   "mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment": "TeamProjectAssignment"
   }
  },
  {

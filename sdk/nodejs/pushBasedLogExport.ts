@@ -48,6 +48,9 @@ import * as utilities from "./utilities";
  * }
  * ```
  *
+ * ### Further Examples
+ * - Push-Based Log Export
+ *
  * ## Import
  *
  * Push-based log export resource can be imported using the project ID, e.g.
@@ -91,6 +94,10 @@ export class PushBasedLogExport extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createDate: pulumi.Output<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean>;
+    /**
      * ID of the AWS IAM role that is used to write to the S3 bucket.
      */
     declare public readonly iamRoleId: pulumi.Output<string>;
@@ -123,6 +130,7 @@ export class PushBasedLogExport extends pulumi.CustomResource {
             const state = argsOrState as PushBasedLogExportState | undefined;
             resourceInputs["bucketName"] = state?.bucketName;
             resourceInputs["createDate"] = state?.createDate;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["iamRoleId"] = state?.iamRoleId;
             resourceInputs["prefixPath"] = state?.prefixPath;
             resourceInputs["projectId"] = state?.projectId;
@@ -140,6 +148,7 @@ export class PushBasedLogExport extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["bucketName"] = args?.bucketName;
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["iamRoleId"] = args?.iamRoleId;
             resourceInputs["prefixPath"] = args?.prefixPath;
             resourceInputs["projectId"] = args?.projectId;
@@ -164,6 +173,10 @@ export interface PushBasedLogExportState {
      * Date and time that this feature was enabled on.
      */
     createDate?: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * ID of the AWS IAM role that is used to write to the S3 bucket.
      */
@@ -191,6 +204,10 @@ export interface PushBasedLogExportArgs {
      * The name of the bucket to which the agent sends the logs to.
      */
     bucketName: pulumi.Input<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * ID of the AWS IAM role that is used to write to the S3 bucket.
      */

@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: SearchIndex
-//
 // `SearchIndex` provides a Search Index resource. This allows indexes to be created.
 //
 // ## Example Usage
@@ -24,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -56,7 +54,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -94,7 +92,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -185,6 +183,43 @@ import (
 //	}
 //
 // ```
+//
+// ### Configurable dynamic (typeSets + dynamic object)
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "conf-dynamic", &mongodbatlas.SearchIndexArgs{
+//				ProjectId:             pulumi.String("<PROJECT_ID>"),
+//				ClusterName:           pulumi.String("<CLUSTER_NAME>"),
+//				CollectionName:        pulumi.String("collection_test"),
+//				Database:              pulumi.String("database_test"),
+//				Name:                  pulumi.String("conf-dynamic"),
+//				Type:                  pulumi.String("search"),
+//				MappingsDynamicConfig: pulumi.String("{ \\\"typeSet\\\": \\\"type_set_name\\\" }\n"),
+//				TypeSets: mongodbatlas.SearchIndexTypeSetArray{
+//					&mongodbatlas.SearchIndexTypeSetArgs{
+//						Name:  pulumi.String("type_set_name"),
+//						Types: pulumi.String("[\n  { \\\"type\\\": \\\"string\\\" }\n]\n"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type SearchIndex struct {
 	pulumi.CustomResourceState
 
@@ -202,8 +237,10 @@ type SearchIndex struct {
 	Fields pulumi.StringPtrOutput `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index.
 	IndexId pulumi.StringOutput `pulumi:"indexId"`
-	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+	// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 	MappingsDynamic pulumi.BoolPtrOutput `pulumi:"mappingsDynamic"`
+	// JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+	MappingsDynamicConfig pulumi.StringPtrOutput `pulumi:"mappingsDynamicConfig"`
 	// attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrOutput `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
@@ -219,8 +256,10 @@ type SearchIndex struct {
 	// Synonyms mapping definition to use in this index.
 	Synonyms SearchIndexSynonymArrayOutput `pulumi:"synonyms"`
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
-	Type                        pulumi.StringPtrOutput `pulumi:"type"`
-	WaitForIndexBuildCompletion pulumi.BoolPtrOutput   `pulumi:"waitForIndexBuildCompletion"`
+	Type pulumi.StringPtrOutput `pulumi:"type"`
+	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+	TypeSets                    SearchIndexTypeSetArrayOutput `pulumi:"typeSets"`
+	WaitForIndexBuildCompletion pulumi.BoolPtrOutput          `pulumi:"waitForIndexBuildCompletion"`
 }
 
 // NewSearchIndex registers a new resource with the given unique name, arguments, and options.
@@ -279,8 +318,10 @@ type searchIndexState struct {
 	Fields *string `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index.
 	IndexId *string `pulumi:"indexId"`
-	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+	// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
+	// JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+	MappingsDynamicConfig *string `pulumi:"mappingsDynamicConfig"`
 	// attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
@@ -296,8 +337,10 @@ type searchIndexState struct {
 	// Synonyms mapping definition to use in this index.
 	Synonyms []SearchIndexSynonym `pulumi:"synonyms"`
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
-	Type                        *string `pulumi:"type"`
-	WaitForIndexBuildCompletion *bool   `pulumi:"waitForIndexBuildCompletion"`
+	Type *string `pulumi:"type"`
+	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+	TypeSets                    []SearchIndexTypeSet `pulumi:"typeSets"`
+	WaitForIndexBuildCompletion *bool                `pulumi:"waitForIndexBuildCompletion"`
 }
 
 type SearchIndexState struct {
@@ -315,8 +358,10 @@ type SearchIndexState struct {
 	Fields pulumi.StringPtrInput
 	// The unique identifier of the Atlas Search index.
 	IndexId pulumi.StringPtrInput
-	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+	// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 	MappingsDynamic pulumi.BoolPtrInput
+	// JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+	MappingsDynamicConfig pulumi.StringPtrInput
 	// attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
@@ -332,7 +377,9 @@ type SearchIndexState struct {
 	// Synonyms mapping definition to use in this index.
 	Synonyms SearchIndexSynonymArrayInput
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
-	Type                        pulumi.StringPtrInput
+	Type pulumi.StringPtrInput
+	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+	TypeSets                    SearchIndexTypeSetArrayInput
 	WaitForIndexBuildCompletion pulumi.BoolPtrInput
 }
 
@@ -353,8 +400,10 @@ type searchIndexArgs struct {
 	Database string `pulumi:"database"`
 	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
 	Fields *string `pulumi:"fields"`
-	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+	// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
+	// JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+	MappingsDynamicConfig *string `pulumi:"mappingsDynamicConfig"`
 	// attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
@@ -368,8 +417,10 @@ type searchIndexArgs struct {
 	// Synonyms mapping definition to use in this index.
 	Synonyms []SearchIndexSynonym `pulumi:"synonyms"`
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
-	Type                        *string `pulumi:"type"`
-	WaitForIndexBuildCompletion *bool   `pulumi:"waitForIndexBuildCompletion"`
+	Type *string `pulumi:"type"`
+	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+	TypeSets                    []SearchIndexTypeSet `pulumi:"typeSets"`
+	WaitForIndexBuildCompletion *bool                `pulumi:"waitForIndexBuildCompletion"`
 }
 
 // The set of arguments for constructing a SearchIndex resource.
@@ -386,8 +437,10 @@ type SearchIndexArgs struct {
 	Database pulumi.StringInput
 	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
 	Fields pulumi.StringPtrInput
-	// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+	// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 	MappingsDynamic pulumi.BoolPtrInput
+	// JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+	MappingsDynamicConfig pulumi.StringPtrInput
 	// attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
@@ -401,7 +454,9 @@ type SearchIndexArgs struct {
 	// Synonyms mapping definition to use in this index.
 	Synonyms SearchIndexSynonymArrayInput
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
-	Type                        pulumi.StringPtrInput
+	Type pulumi.StringPtrInput
+	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+	TypeSets                    SearchIndexTypeSetArrayInput
 	WaitForIndexBuildCompletion pulumi.BoolPtrInput
 }
 
@@ -527,9 +582,14 @@ func (o SearchIndexOutput) IndexId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.IndexId }).(pulumi.StringOutput)
 }
 
-// Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 func (o SearchIndexOutput) MappingsDynamic() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.BoolPtrOutput { return v.MappingsDynamic }).(pulumi.BoolPtrOutput)
+}
+
+// JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+func (o SearchIndexOutput) MappingsDynamicConfig() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.MappingsDynamicConfig }).(pulumi.StringPtrOutput)
 }
 
 // attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
@@ -570,6 +630,11 @@ func (o SearchIndexOutput) Synonyms() SearchIndexSynonymArrayOutput {
 // Type of index: `search` or `vectorSearch`. Default type is `search`.
 func (o SearchIndexOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+func (o SearchIndexOutput) TypeSets() SearchIndexTypeSetArrayOutput {
+	return o.ApplyT(func(v *SearchIndex) SearchIndexTypeSetArrayOutput { return v.TypeSets }).(SearchIndexTypeSetArrayOutput)
 }
 
 func (o SearchIndexOutput) WaitForIndexBuildCompletion() pulumi.BoolPtrOutput {

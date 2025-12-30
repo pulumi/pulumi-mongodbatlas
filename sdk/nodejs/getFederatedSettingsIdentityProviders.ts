@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFederatedSettingsIdentityProviders
- *
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
  * Note: This implementation returns a maximum of 100 results.
@@ -63,8 +61,6 @@ export interface GetFederatedSettingsIdentityProvidersResult {
     readonly results: outputs.GetFederatedSettingsIdentityProvidersResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getFederatedSettingsIdentityProviders
- *
  * `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
  * Note: This implementation returns a maximum of 100 results.

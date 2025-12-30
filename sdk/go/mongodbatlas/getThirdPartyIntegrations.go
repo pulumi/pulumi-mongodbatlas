@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getThirdPartyIntegrations
-//
 // `getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
 // applied across the project.
 //
@@ -25,7 +23,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

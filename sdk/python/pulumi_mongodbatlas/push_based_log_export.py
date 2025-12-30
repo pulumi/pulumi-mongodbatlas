@@ -24,6 +24,7 @@ class PushBasedLogExportArgs:
                  bucket_name: pulumi.Input[_builtins.str],
                  iam_role_id: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
                  timeouts: Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']] = None):
         """
@@ -31,11 +32,14 @@ class PushBasedLogExportArgs:
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket to which the agent sends the logs to.
         :param pulumi.Input[_builtins.str] iam_role_id: ID of the AWS IAM role that is used to write to the S3 bucket.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] prefix_path: S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         pulumi.set(__self__, "iam_role_id", iam_role_id)
         pulumi.set(__self__, "project_id", project_id)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if prefix_path is not None:
             pulumi.set(__self__, "prefix_path", prefix_path)
         if timeouts is not None:
@@ -78,6 +82,18 @@ class PushBasedLogExportArgs:
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
     @pulumi.getter(name="prefixPath")
     def prefix_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -104,6 +120,7 @@ class _PushBasedLogExportState:
     def __init__(__self__, *,
                  bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
                  create_date: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -113,6 +130,7 @@ class _PushBasedLogExportState:
         Input properties used for looking up and filtering PushBasedLogExport resources.
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket to which the agent sends the logs to.
         :param pulumi.Input[_builtins.str] create_date: Date and time that this feature was enabled on.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] iam_role_id: ID of the AWS IAM role that is used to write to the S3 bucket.
         :param pulumi.Input[_builtins.str] prefix_path: S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -122,6 +140,8 @@ class _PushBasedLogExportState:
             pulumi.set(__self__, "bucket_name", bucket_name)
         if create_date is not None:
             pulumi.set(__self__, "create_date", create_date)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if iam_role_id is not None:
             pulumi.set(__self__, "iam_role_id", iam_role_id)
         if prefix_path is not None:
@@ -156,6 +176,18 @@ class _PushBasedLogExportState:
     @create_date.setter
     def create_date(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "create_date", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")
@@ -222,6 +254,7 @@ class PushBasedLogExport(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -259,6 +292,9 @@ class PushBasedLogExport(pulumi.CustomResource):
         pulumi.export("test", test.prefix_path)
         ```
 
+        ### Further Examples
+        - Push-Based Log Export
+
         ## Import
 
         Push-based log export resource can be imported using the project ID, e.g.
@@ -268,6 +304,7 @@ class PushBasedLogExport(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket to which the agent sends the logs to.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] iam_role_id: ID of the AWS IAM role that is used to write to the S3 bucket.
         :param pulumi.Input[_builtins.str] prefix_path: S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -310,6 +347,9 @@ class PushBasedLogExport(pulumi.CustomResource):
         pulumi.export("test", test.prefix_path)
         ```
 
+        ### Further Examples
+        - Push-Based Log Export
+
         ## Import
 
         Push-based log export resource can be imported using the project ID, e.g.
@@ -332,6 +372,7 @@ class PushBasedLogExport(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -348,6 +389,7 @@ class PushBasedLogExport(pulumi.CustomResource):
             if bucket_name is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket_name'")
             __props__.__dict__["bucket_name"] = bucket_name
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             if iam_role_id is None and not opts.urn:
                 raise TypeError("Missing required property 'iam_role_id'")
             __props__.__dict__["iam_role_id"] = iam_role_id
@@ -370,6 +412,7 @@ class PushBasedLogExport(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
             create_date: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
             prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -384,6 +427,7 @@ class PushBasedLogExport(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket to which the agent sends the logs to.
         :param pulumi.Input[_builtins.str] create_date: Date and time that this feature was enabled on.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] iam_role_id: ID of the AWS IAM role that is used to write to the S3 bucket.
         :param pulumi.Input[_builtins.str] prefix_path: S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -395,6 +439,7 @@ class PushBasedLogExport(pulumi.CustomResource):
 
         __props__.__dict__["bucket_name"] = bucket_name
         __props__.__dict__["create_date"] = create_date
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["iam_role_id"] = iam_role_id
         __props__.__dict__["prefix_path"] = prefix_path
         __props__.__dict__["project_id"] = project_id
@@ -417,6 +462,14 @@ class PushBasedLogExport(pulumi.CustomResource):
         Date and time that this feature was enabled on.
         """
         return pulumi.get(self, "create_date")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")

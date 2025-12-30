@@ -8,17 +8,17 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: MaintenanceWindow
-//
 // `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
 //
 // > **NOTE:** Only a single maintenance window resource can be defined per project.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 //
 // ## Maintenance Window Considerations:
 //
@@ -35,7 +35,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -65,7 +65,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -84,6 +84,9 @@ import (
 //	}
 //
 // ```
+//
+// ### Further Examples
+// - Configure Maintenance Window
 //
 // ## Import
 //
@@ -104,14 +107,15 @@ type MaintenanceWindow struct {
 	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolOutput `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 	HourOfDay pulumi.IntOutput `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntOutput `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId      pulumi.StringOutput                      `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrOutput `pulumi:"protectedHours"`
-	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+	// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap pulumi.BoolOutput `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId pulumi.StringOutput `pulumi:"timeZoneId"`
@@ -126,6 +130,9 @@ func NewMaintenanceWindow(ctx *pulumi.Context,
 
 	if args.DayOfWeek == nil {
 		return nil, errors.New("invalid value for required argument 'DayOfWeek'")
+	}
+	if args.HourOfDay == nil {
+		return nil, errors.New("invalid value for required argument 'HourOfDay'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -161,14 +168,15 @@ type maintenanceWindowState struct {
 	DayOfWeek *int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer *bool `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 	HourOfDay *int `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals *int `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId      *string                          `pulumi:"projectId"`
+	ProjectId *string `pulumi:"projectId"`
+	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
-	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+	// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap *bool `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId *string `pulumi:"timeZoneId"`
@@ -183,14 +191,15 @@ type MaintenanceWindowState struct {
 	DayOfWeek pulumi.IntPtrInput
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolPtrInput
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 	HourOfDay pulumi.IntPtrInput
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntPtrInput
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId      pulumi.StringPtrInput
+	ProjectId pulumi.StringPtrInput
+	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
-	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+	// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
 	StartAsap pulumi.BoolPtrInput
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId pulumi.StringPtrInput
@@ -209,13 +218,12 @@ type maintenanceWindowArgs struct {
 	DayOfWeek int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer *bool `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
-	HourOfDay *int `pulumi:"hourOfDay"`
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+	HourOfDay int `pulumi:"hourOfDay"`
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId      string                           `pulumi:"projectId"`
+	ProjectId string `pulumi:"projectId"`
+	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
-	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-	StartAsap *bool `pulumi:"startAsap"`
 }
 
 // The set of arguments for constructing a MaintenanceWindow resource.
@@ -228,13 +236,12 @@ type MaintenanceWindowArgs struct {
 	DayOfWeek pulumi.IntInput
 	// Defer the next scheduled maintenance for the given project for one week.
 	Defer pulumi.BoolPtrInput
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
-	HourOfDay pulumi.IntPtrInput
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+	HourOfDay pulumi.IntInput
 	// The unique identifier of the project for the Maintenance Window.
-	ProjectId      pulumi.StringInput
+	ProjectId pulumi.StringInput
+	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
-	// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
-	StartAsap pulumi.BoolPtrInput
 }
 
 func (MaintenanceWindowArgs) ElementType() reflect.Type {
@@ -344,7 +351,7 @@ func (o MaintenanceWindowOutput) Defer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.Defer }).(pulumi.BoolOutput)
 }
 
-// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 func (o MaintenanceWindowOutput) HourOfDay() pulumi.IntOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.HourOfDay }).(pulumi.IntOutput)
 }
@@ -359,11 +366,12 @@ func (o MaintenanceWindowOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 func (o MaintenanceWindowOutput) ProtectedHours() MaintenanceWindowProtectedHoursPtrOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) MaintenanceWindowProtectedHoursPtrOutput { return v.ProtectedHours }).(MaintenanceWindowProtectedHoursPtrOutput)
 }
 
-// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
 func (o MaintenanceWindowOutput) StartAsap() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.StartAsap }).(pulumi.BoolOutput)
 }

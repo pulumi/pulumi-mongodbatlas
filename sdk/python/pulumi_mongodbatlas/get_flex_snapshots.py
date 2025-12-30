@@ -87,8 +87,6 @@ def get_flex_snapshots(name: Optional[_builtins.str] = None,
                        project_id: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFlexSnapshotsResult:
     """
-    ## # Data Source: get_flex_snapshots
-
     `get_flex_snapshots` returns all snapshots of a flex cluster.
 
     ## Example Usage
@@ -126,8 +124,6 @@ def get_flex_snapshots_output(name: Optional[pulumi.Input[_builtins.str]] = None
                               project_id: Optional[pulumi.Input[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexSnapshotsResult]:
     """
-    ## # Data Source: get_flex_snapshots
-
     `get_flex_snapshots` returns all snapshots of a flex cluster.
 
     ## Example Usage

@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAwsConfigArgs;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
 import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupGcpConfigArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -19,58 +20,137 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
 
     public static final CloudProviderAccessSetupState Empty = new CloudProviderAccessSetupState();
 
+    /**
+     * aws related arn roles
+     * 
+     */
     @Import(name="awsConfigs")
     private @Nullable Output<List<CloudProviderAccessSetupAwsConfigArgs>> awsConfigs;
 
+    /**
+     * @return aws related arn roles
+     * 
+     */
     public Optional<Output<List<CloudProviderAccessSetupAwsConfigArgs>>> awsConfigs() {
         return Optional.ofNullable(this.awsConfigs);
     }
 
+    /**
+     * azure related configurations
+     * 
+     */
     @Import(name="azureConfigs")
     private @Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs;
 
+    /**
+     * @return azure related configurations
+     * 
+     */
     public Optional<Output<List<CloudProviderAccessSetupAzureConfigArgs>>> azureConfigs() {
         return Optional.ofNullable(this.azureConfigs);
     }
 
+    /**
+     * Date on which this role was created.
+     * 
+     */
     @Import(name="createdDate")
     private @Nullable Output<String> createdDate;
 
+    /**
+     * @return Date on which this role was created.
+     * 
+     */
     public Optional<Output<String>> createdDate() {
         return Optional.ofNullable(this.createdDate);
     }
 
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
+
+    /**
+     * gcp related configuration
+     * 
+     */
     @Import(name="gcpConfigs")
     private @Nullable Output<List<CloudProviderAccessSetupGcpConfigArgs>> gcpConfigs;
 
+    /**
+     * @return gcp related configuration
+     * 
+     */
     public Optional<Output<List<CloudProviderAccessSetupGcpConfigArgs>>> gcpConfigs() {
         return Optional.ofNullable(this.gcpConfigs);
     }
 
+    /**
+     * Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     @Import(name="lastUpdatedDate")
     private @Nullable Output<String> lastUpdatedDate;
 
+    /**
+     * @return Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public Optional<Output<String>> lastUpdatedDate() {
         return Optional.ofNullable(this.lastUpdatedDate);
     }
 
+    /**
+     * The unique ID for the project
+     * 
+     */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
+    /**
+     * @return The unique ID for the project
+     * 
+     */
     public Optional<Output<String>> projectId() {
         return Optional.ofNullable(this.projectId);
     }
 
+    /**
+     * The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+     * 
+     */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
 
+    /**
+     * @return The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+     * 
+     */
     public Optional<Output<String>> providerName() {
         return Optional.ofNullable(this.providerName);
     }
 
+    /**
+     * Unique ID of this role.
+     * 
+     */
     @Import(name="roleId")
     private @Nullable Output<String> roleId;
 
+    /**
+     * @return Unique ID of this role.
+     * 
+     */
     public Optional<Output<String>> roleId() {
         return Optional.ofNullable(this.roleId);
     }
@@ -81,6 +161,7 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
         this.awsConfigs = $.awsConfigs;
         this.azureConfigs = $.azureConfigs;
         this.createdDate = $.createdDate;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.gcpConfigs = $.gcpConfigs;
         this.lastUpdatedDate = $.lastUpdatedDate;
         this.projectId = $.projectId;
@@ -106,86 +187,221 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
             $ = new CloudProviderAccessSetupState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param awsConfigs aws related arn roles
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsConfigs(@Nullable Output<List<CloudProviderAccessSetupAwsConfigArgs>> awsConfigs) {
             $.awsConfigs = awsConfigs;
             return this;
         }
 
+        /**
+         * @param awsConfigs aws related arn roles
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsConfigs(List<CloudProviderAccessSetupAwsConfigArgs> awsConfigs) {
             return awsConfigs(Output.of(awsConfigs));
         }
 
+        /**
+         * @param awsConfigs aws related arn roles
+         * 
+         * @return builder
+         * 
+         */
         public Builder awsConfigs(CloudProviderAccessSetupAwsConfigArgs... awsConfigs) {
             return awsConfigs(List.of(awsConfigs));
         }
 
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureConfigs(@Nullable Output<List<CloudProviderAccessSetupAzureConfigArgs>> azureConfigs) {
             $.azureConfigs = azureConfigs;
             return this;
         }
 
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureConfigs(List<CloudProviderAccessSetupAzureConfigArgs> azureConfigs) {
             return azureConfigs(Output.of(azureConfigs));
         }
 
+        /**
+         * @param azureConfigs azure related configurations
+         * 
+         * @return builder
+         * 
+         */
         public Builder azureConfigs(CloudProviderAccessSetupAzureConfigArgs... azureConfigs) {
             return azureConfigs(List.of(azureConfigs));
         }
 
+        /**
+         * @param createdDate Date on which this role was created.
+         * 
+         * @return builder
+         * 
+         */
         public Builder createdDate(@Nullable Output<String> createdDate) {
             $.createdDate = createdDate;
             return this;
         }
 
+        /**
+         * @param createdDate Date on which this role was created.
+         * 
+         * @return builder
+         * 
+         */
         public Builder createdDate(String createdDate) {
             return createdDate(Output.of(createdDate));
         }
 
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
+        }
+
+        /**
+         * @param gcpConfigs gcp related configuration
+         * 
+         * @return builder
+         * 
+         */
         public Builder gcpConfigs(@Nullable Output<List<CloudProviderAccessSetupGcpConfigArgs>> gcpConfigs) {
             $.gcpConfigs = gcpConfigs;
             return this;
         }
 
+        /**
+         * @param gcpConfigs gcp related configuration
+         * 
+         * @return builder
+         * 
+         */
         public Builder gcpConfigs(List<CloudProviderAccessSetupGcpConfigArgs> gcpConfigs) {
             return gcpConfigs(Output.of(gcpConfigs));
         }
 
+        /**
+         * @param gcpConfigs gcp related configuration
+         * 
+         * @return builder
+         * 
+         */
         public Builder gcpConfigs(CloudProviderAccessSetupGcpConfigArgs... gcpConfigs) {
             return gcpConfigs(List.of(gcpConfigs));
         }
 
+        /**
+         * @param lastUpdatedDate Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lastUpdatedDate(@Nullable Output<String> lastUpdatedDate) {
             $.lastUpdatedDate = lastUpdatedDate;
             return this;
         }
 
+        /**
+         * @param lastUpdatedDate Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lastUpdatedDate(String lastUpdatedDate) {
             return lastUpdatedDate(Output.of(lastUpdatedDate));
         }
 
+        /**
+         * @param projectId The unique ID for the project
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(@Nullable Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
+        /**
+         * @param projectId The unique ID for the project
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param providerName The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder providerName(@Nullable Output<String> providerName) {
             $.providerName = providerName;
             return this;
         }
 
+        /**
+         * @param providerName The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder providerName(String providerName) {
             return providerName(Output.of(providerName));
         }
 
+        /**
+         * @param roleId Unique ID of this role.
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleId(@Nullable Output<String> roleId) {
             $.roleId = roleId;
             return this;
         }
 
+        /**
+         * @param roleId Unique ID of this role.
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleId(String roleId) {
             return roleId(Output.of(roleId));
         }

@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getStreamConnections
-//
 // `getStreamConnections` describes all connections of a stream instance for the specified project.
 //
 // ## Example Usage
@@ -22,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -30,8 +28,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupStreamConnections(ctx, &mongodbatlas.LookupStreamConnectionsArgs{
-//				ProjectId:    "<PROJECT_ID>",
-//				InstanceName: "<INSTANCE_NAME>",
+//				ProjectId:     "<PROJECT_ID>",
+//				WorkspaceName: pulumi.StringRef("<WORKSPACE_NAME>"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -53,30 +51,38 @@ func LookupStreamConnections(ctx *pulumi.Context, args *LookupStreamConnectionsA
 
 // A collection of arguments for invoking getStreamConnections.
 type LookupStreamConnectionsArgs struct {
-	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string `pulumi:"instanceName"`
 	// Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 // A collection of values returned by getStreamConnections.
 type LookupStreamConnectionsResult struct {
 	// Deprecated: This parameter is deprecated.
 	Id string `pulumi:"id"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
-	ItemsPerPage *int   `pulumi:"itemsPerPage"`
-	PageNum      *int   `pulumi:"pageNum"`
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string `pulumi:"instanceName"`
+	ItemsPerPage *int    `pulumi:"itemsPerPage"`
+	PageNum      *int    `pulumi:"pageNum"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each element contains a stream connection.
 	Results []GetStreamConnectionsResult `pulumi:"results"`
 	// Count of the total number of items in the result set. The count might be greater than the number of objects in the results array if the entire result set is paginated.
 	TotalCount int `pulumi:"totalCount"`
+	// Label that identifies the stream processing workspace.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 func LookupStreamConnectionsOutput(ctx *pulumi.Context, args LookupStreamConnectionsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamConnectionsResultOutput {
@@ -90,14 +96,20 @@ func LookupStreamConnectionsOutput(ctx *pulumi.Context, args LookupStreamConnect
 
 // A collection of arguments for invoking getStreamConnections.
 type LookupStreamConnectionsOutputArgs struct {
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
 	// Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+	WorkspaceName pulumi.StringPtrInput `pulumi:"workspaceName"`
 }
 
 func (LookupStreamConnectionsOutputArgs) ElementType() reflect.Type {
@@ -124,9 +136,9 @@ func (o LookupStreamConnectionsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the stream instance.
-func (o LookupStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
+// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+func (o LookupStreamConnectionsResultOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupStreamConnectionsResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupStreamConnectionsResultOutput) ItemsPerPage() pulumi.IntPtrOutput {
@@ -150,6 +162,11 @@ func (o LookupStreamConnectionsResultOutput) Results() GetStreamConnectionsResul
 // Count of the total number of items in the result set. The count might be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupStreamConnectionsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupStreamConnectionsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// Label that identifies the stream processing workspace.
+func (o LookupStreamConnectionsResultOutput) WorkspaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupStreamConnectionsResult) *string { return v.WorkspaceName }).(pulumi.StringPtrOutput)
 }
 
 func init() {

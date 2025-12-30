@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.ApiKeyProjectAssignment
- *
  * `mongodbatlas.ApiKeyProjectAssignment` provides an API Key Project Assignment resource. The resource lets you create, edit, and delete Organization API keys assignments to projects.
  *
  * ## Example Usage
@@ -47,6 +45,9 @@ import * as utilities from "./utilities";
  *     apiKeyId: _this.apiKeyId,
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Assign API Key to Project
  *
  * ## Import
  *

@@ -27,7 +27,7 @@ class GetStreamProcessorResult:
     """
     A collection of values returned by getStreamProcessor.
     """
-    def __init__(__self__, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None):
+    def __init__(__self__, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None, workspace_name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -52,6 +52,9 @@ class GetStreamProcessorResult:
         if stats and not isinstance(stats, str):
             raise TypeError("Expected argument 'stats' to be a str")
         pulumi.set(__self__, "stats", stats)
+        if workspace_name and not isinstance(workspace_name, str):
+            raise TypeError("Expected argument 'workspace_name' to be a str")
+        pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
     @pulumi.getter
@@ -60,10 +63,8 @@ class GetStreamProcessorResult:
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
-    def instance_name(self) -> _builtins.str:
-        """
-        Human-readable label that identifies the stream instance.
-        """
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
+    def instance_name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "instance_name")
 
     @_builtins.property
@@ -80,7 +81,7 @@ class GetStreamProcessorResult:
     @pulumi.getter(name="processorName")
     def processor_name(self) -> _builtins.str:
         """
-        Human-readable label that identifies the stream processor.
+        Label that identifies the stream processor.
         """
         return pulumi.get(self, "processor_name")
 
@@ -102,6 +103,11 @@ class GetStreamProcessorResult:
     def stats(self) -> _builtins.str:
         return pulumi.get(self, "stats")
 
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "workspace_name")
+
 
 class AwaitableGetStreamProcessorResult(GetStreamProcessorResult):
     # pylint: disable=using-constant-test
@@ -116,16 +122,16 @@ class AwaitableGetStreamProcessorResult(GetStreamProcessorResult):
             processor_name=self.processor_name,
             project_id=self.project_id,
             state=self.state,
-            stats=self.stats)
+            stats=self.stats,
+            workspace_name=self.workspace_name)
 
 
 def get_stream_processor(instance_name: Optional[_builtins.str] = None,
                          processor_name: Optional[_builtins.str] = None,
                          project_id: Optional[_builtins.str] = None,
+                         workspace_name: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamProcessorResult:
     """
-    ## # Data Source: StreamProcessor
-
     `StreamProcessor` describes a stream processor.
 
     ## Example Usage
@@ -145,12 +151,12 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         })
     example_sample = mongodbatlas.StreamConnection("example-sample",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         connection_name="sample_stream_solar",
         type="Sample")
     example_cluster = mongodbatlas.StreamConnection("example-cluster",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         connection_name="ClusterConnection",
         type="Cluster",
         cluster_name=cluster_name,
@@ -160,7 +166,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         })
     example_kafka = mongodbatlas.StreamConnection("example-kafka",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         connection_name="KafkaPlaintextConnection",
         type="Kafka",
         authentication={
@@ -177,7 +183,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         })
     stream_processor_sample_example = mongodbatlas.StreamProcessor("stream-processor-sample-example",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         processor_name="sampleProcessorName",
         pipeline=json.dumps([
             {
@@ -199,7 +205,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         state="STARTED")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         processor_name="clusterProcessorName",
         pipeline=json.dumps([
             {
@@ -217,7 +223,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         state="CREATED")
     stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         processor_name="kafkaProcessorName",
         pipeline=json.dumps([
             {
@@ -246,12 +252,12 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
             },
         })
     example_stream_processors = example.instance_name.apply(lambda instance_name: mongodbatlas.get_stream_processors_output(project_id=project_id,
-        instance_name=instance_name))
+        workspace_name=instance_name))
     example_stream_processor = pulumi.Output.all(
         instance_name=example.instance_name,
         processor_name=stream_processor_sample_example.processor_name
     ).apply(lambda resolved_outputs: mongodbatlas.get_stream_processor_output(project_id=project_id,
-        instance_name=resolved_outputs['instance_name'],
+        workspace_name=resolved_outputs['instance_name'],
         processor_name=resolved_outputs['processor_name']))
 
     pulumi.export("streamProcessorsState", example_stream_processor.state)
@@ -259,14 +265,14 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
-    :param _builtins.str processor_name: Human-readable label that identifies the stream processor.
+    :param _builtins.str processor_name: Label that identifies the stream processor.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name
     __args__['processorName'] = processor_name
     __args__['projectId'] = project_id
+    __args__['workspaceName'] = workspace_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult).value
 
@@ -278,14 +284,14 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         processor_name=pulumi.get(__ret__, 'processor_name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'),
-        stats=pulumi.get(__ret__, 'stats'))
-def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.str]] = None,
+        stats=pulumi.get(__ret__, 'stats'),
+        workspace_name=pulumi.get(__ret__, 'workspace_name'))
+def get_stream_processor_output(instance_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                 processor_name: Optional[pulumi.Input[_builtins.str]] = None,
                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                                workspace_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamProcessorResult]:
     """
-    ## # Data Source: StreamProcessor
-
     `StreamProcessor` describes a stream processor.
 
     ## Example Usage
@@ -305,12 +311,12 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
         })
     example_sample = mongodbatlas.StreamConnection("example-sample",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         connection_name="sample_stream_solar",
         type="Sample")
     example_cluster = mongodbatlas.StreamConnection("example-cluster",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         connection_name="ClusterConnection",
         type="Cluster",
         cluster_name=cluster_name,
@@ -320,7 +326,7 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
         })
     example_kafka = mongodbatlas.StreamConnection("example-kafka",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         connection_name="KafkaPlaintextConnection",
         type="Kafka",
         authentication={
@@ -337,7 +343,7 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
         })
     stream_processor_sample_example = mongodbatlas.StreamProcessor("stream-processor-sample-example",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         processor_name="sampleProcessorName",
         pipeline=json.dumps([
             {
@@ -359,7 +365,7 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
         state="STARTED")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         processor_name="clusterProcessorName",
         pipeline=json.dumps([
             {
@@ -377,7 +383,7 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
         state="CREATED")
     stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
         project_id=project_id,
-        instance_name=example.instance_name,
+        workspace_name=example.instance_name,
         processor_name="kafkaProcessorName",
         pipeline=json.dumps([
             {
@@ -406,12 +412,12 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
             },
         })
     example_stream_processors = example.instance_name.apply(lambda instance_name: mongodbatlas.get_stream_processors_output(project_id=project_id,
-        instance_name=instance_name))
+        workspace_name=instance_name))
     example_stream_processor = pulumi.Output.all(
         instance_name=example.instance_name,
         processor_name=stream_processor_sample_example.processor_name
     ).apply(lambda resolved_outputs: mongodbatlas.get_stream_processor_output(project_id=project_id,
-        instance_name=resolved_outputs['instance_name'],
+        workspace_name=resolved_outputs['instance_name'],
         processor_name=resolved_outputs['processor_name']))
 
     pulumi.export("streamProcessorsState", example_stream_processor.state)
@@ -419,14 +425,14 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
     ```
 
 
-    :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
-    :param _builtins.str processor_name: Human-readable label that identifies the stream processor.
+    :param _builtins.str processor_name: Label that identifies the stream processor.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name
     __args__['processorName'] = processor_name
     __args__['projectId'] = project_id
+    __args__['workspaceName'] = workspace_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult)
     return __ret__.apply(lambda __response__: GetStreamProcessorResult(
@@ -437,4 +443,5 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[_builtins.s
         processor_name=pulumi.get(__response__, 'processor_name'),
         project_id=pulumi.get(__response__, 'project_id'),
         state=pulumi.get(__response__, 'state'),
-        stats=pulumi.get(__response__, 'stats')))
+        stats=pulumi.get(__response__, 'stats'),
+        workspace_name=pulumi.get(__response__, 'workspace_name')))

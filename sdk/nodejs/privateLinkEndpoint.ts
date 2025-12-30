@@ -18,8 +18,10 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Available complete examples
- * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+ * ### Further Examples
+ * - AWS PrivateLink Endpoint
+ * - Azure PrivateLink Endpoint
+ * - GCP Private Service Connect Endpoint
  *
  * ## Import
  *
@@ -58,6 +60,10 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
         return obj['__pulumiType'] === PrivateLinkEndpoint.__pulumiType;
     }
 
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean | undefined>;
     /**
      * GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
      */
@@ -144,6 +150,7 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateLinkEndpointState | undefined;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["endpointGroupNames"] = state?.endpointGroupNames;
             resourceInputs["endpointServiceName"] = state?.endpointServiceName;
             resourceInputs["errorMessage"] = state?.errorMessage;
@@ -169,6 +176,7 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
             if (args?.region === undefined && !opts.urn) {
                 throw new Error("Missing required property 'region'");
             }
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["providerName"] = args?.providerName;
             resourceInputs["region"] = args?.region;
@@ -193,6 +201,10 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
  * Input properties used for looking up and filtering PrivateLinkEndpoint resources.
  */
 export interface PrivateLinkEndpointState {
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
      */
@@ -271,6 +283,10 @@ export interface PrivateLinkEndpointState {
  * The set of arguments for constructing a PrivateLinkEndpoint resource.
  */
 export interface PrivateLinkEndpointArgs {
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Required 	Unique identifier for the project.
      */

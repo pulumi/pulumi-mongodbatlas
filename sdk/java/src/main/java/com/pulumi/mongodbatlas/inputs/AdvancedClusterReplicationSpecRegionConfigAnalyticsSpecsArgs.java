@@ -5,7 +5,6 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
@@ -71,15 +70,15 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
-    @Import(name="instanceSize", required=true)
-    private Output<String> instanceSize;
+    @Import(name="instanceSize")
+    private @Nullable Output<String> instanceSize;
 
     /**
      * @return Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as &#34;base nodes&#34;) within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      * 
      */
-    public Output<String> instanceSize() {
-        return this.instanceSize;
+    public Optional<Output<String>> instanceSize() {
+        return Optional.ofNullable(this.instanceSize);
     }
 
     /**
@@ -198,7 +197,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
          * @return builder
          * 
          */
-        public Builder instanceSize(Output<String> instanceSize) {
+        public Builder instanceSize(@Nullable Output<String> instanceSize) {
             $.instanceSize = instanceSize;
             return this;
         }
@@ -235,9 +234,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         public AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs build() {
-            if ($.instanceSize == null) {
-                throw new MissingRequiredPropertyException("AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs", "instanceSize");
-            }
             return $;
         }
     }

@@ -19,6 +19,12 @@ namespace Pulumi.Mongodbatlas
     public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
+        /// MongoDB Atlas Access Token for Service Account.
+        /// </summary>
+        [Output("accessToken")]
+        public Output<string?> AccessToken { get; private set; } = null!;
+
+        /// <summary>
         /// AWS API Access Key.
         /// </summary>
         [Output("awsAccessKeyId")]
@@ -41,6 +47,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("baseUrl")]
         public Output<string?> BaseUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// MongoDB Atlas Client ID for Service Account.
+        /// </summary>
+        [Output("clientId")]
+        public Output<string?> ClientId { get; private set; } = null!;
+
+        /// <summary>
+        /// MongoDB Atlas Client Secret for Service Account.
+        /// </summary>
+        [Output("clientSecret")]
+        public Output<string?> ClientSecret { get; private set; } = null!;
 
         /// <summary>
         /// MongoDB Atlas Programmatic Private Key
@@ -116,6 +134,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// MongoDB Atlas Access Token for Service Account.
+        /// </summary>
+        [Input("accessToken")]
+        public Input<string>? AccessToken { get; set; }
+
         [Input("assumeRole", json: true)]
         public Input<Inputs.ProviderAssumeRoleArgs>? AssumeRole { get; set; }
 
@@ -142,6 +166,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("baseUrl")]
         public Input<string>? BaseUrl { get; set; }
+
+        /// <summary>
+        /// MongoDB Atlas Client ID for Service Account.
+        /// </summary>
+        [Input("clientId")]
+        public Input<string>? ClientId { get; set; }
+
+        /// <summary>
+        /// MongoDB Atlas Client Secret for Service Account.
+        /// </summary>
+        [Input("clientSecret")]
+        public Input<string>? ClientSecret { get; set; }
 
         /// <summary>
         /// MongoDB Atlas Base URL default to gov

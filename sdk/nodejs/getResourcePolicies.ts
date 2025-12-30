@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getResourcePolicies
- *
  * `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
  *
  * ## Example Usage
@@ -52,8 +50,6 @@ export interface GetResourcePoliciesResult {
     readonly results: outputs.GetResourcePoliciesResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getResourcePolicies
- *
  * `mongodbatlas.getResourcePolicies` returns all resource policies in an organization.
  *
  * ## Example Usage

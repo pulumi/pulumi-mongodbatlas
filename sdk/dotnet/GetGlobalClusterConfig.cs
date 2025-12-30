@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetGlobalClusterConfig
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.GlobalClusterConfig
-        /// 
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
         /// 
         /// 
@@ -149,8 +147,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetGlobalClusterConfigResult>("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args ?? new GetGlobalClusterConfigArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.GlobalClusterConfig
-        /// 
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
         /// 
         /// 
@@ -286,8 +282,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetGlobalClusterConfigResult>("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args ?? new GetGlobalClusterConfigInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.GlobalClusterConfig
-        /// 
         /// `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
         /// 
         /// 
@@ -494,10 +488,6 @@ namespace Pulumi.Mongodbatlas
     {
         public readonly string ClusterName;
         /// <summary>
-        /// (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `CustomZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-        /// </summary>
-        public readonly ImmutableDictionary<string, string> CustomZoneMapping;
-        /// <summary>
         /// A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         /// </summary>
         public readonly ImmutableDictionary<string, string> CustomZoneMappingZoneId;
@@ -515,8 +505,6 @@ namespace Pulumi.Mongodbatlas
         private GetGlobalClusterConfigResult(
             string clusterName,
 
-            ImmutableDictionary<string, string> customZoneMapping,
-
             ImmutableDictionary<string, string> customZoneMappingZoneId,
 
             string id,
@@ -526,7 +514,6 @@ namespace Pulumi.Mongodbatlas
             string projectId)
         {
             ClusterName = clusterName;
-            CustomZoneMapping = customZoneMapping;
             CustomZoneMappingZoneId = customZoneMappingZoneId;
             Id = id;
             ManagedNamespaces = managedNamespaces;

@@ -73,6 +73,21 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
+
+    /**
      * Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
      * 
      */
@@ -297,6 +312,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     private PrivateLinkEndpointServiceState(PrivateLinkEndpointServiceState $) {
         this.awsConnectionStatus = $.awsConnectionStatus;
         this.azureStatus = $.azureStatus;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.deleteRequested = $.deleteRequested;
         this.endpointGroupName = $.endpointGroupName;
         this.endpointServiceId = $.endpointServiceId;
@@ -395,6 +411,27 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
          */
         public Builder azureStatus(String azureStatus) {
             return azureStatus(Output.of(azureStatus));
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
         }
 
         /**

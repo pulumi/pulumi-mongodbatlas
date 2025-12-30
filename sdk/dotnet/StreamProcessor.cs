@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.StreamProcessor
-    /// 
     /// `mongodbatlas.StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
     /// 
     /// **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
@@ -46,7 +44,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_sample = new Mongodbatlas.StreamConnection("example-sample", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ConnectionName = "sample_stream_solar",
     ///         Type = "Sample",
     ///     });
@@ -54,7 +52,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_cluster = new Mongodbatlas.StreamConnection("example-cluster", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ConnectionName = "ClusterConnection",
     ///         Type = "Cluster",
     ///         ClusterName = clusterName,
@@ -68,7 +66,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_kafka = new Mongodbatlas.StreamConnection("example-kafka", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ConnectionName = "KafkaPlaintextConnection",
     ///         Type = "Kafka",
     ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
@@ -91,7 +89,7 @@ namespace Pulumi.Mongodbatlas
     ///     var stream_processor_sample_example = new Mongodbatlas.StreamProcessor("stream-processor-sample-example", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ProcessorName = "sampleProcessorName",
     ///         Pipeline = JsonSerializer.Serialize(new[]
     ///         {
@@ -122,7 +120,7 @@ namespace Pulumi.Mongodbatlas
     ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ProcessorName = "clusterProcessorName",
     ///         Pipeline = JsonSerializer.Serialize(new[]
     ///         {
@@ -148,7 +146,7 @@ namespace Pulumi.Mongodbatlas
     ///     var stream_processor_kafka_to_cluster_example = new Mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ProcessorName = "kafkaProcessorName",
     ///         Pipeline = JsonSerializer.Serialize(new[]
     ///         {
@@ -189,13 +187,13 @@ namespace Pulumi.Mongodbatlas
     ///     var example_stream_processors = Mongodbatlas.GetStreamProcessors.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///     });
     /// 
     ///     var example_stream_processor = Mongodbatlas.GetStreamProcessor.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ProcessorName = stream_processor_sample_example.ProcessorName,
     ///     });
     /// 
@@ -207,6 +205,9 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - Atlas Stream Processor
+    /// 
     /// ## Import
     /// 
     /// Stream Processor resource can be imported using the Project ID, Stream Instance name and Stream Processor name, in the format `INSTANCE_NAME-PROJECT_ID-PROCESSOR_NAME`, e.g.
@@ -217,10 +218,16 @@ namespace Pulumi.Mongodbatlas
     public partial class StreamProcessor : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool> DeleteOnCreateTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
         /// </summary>
         [Output("instanceName")]
-        public Output<string> InstanceName { get; private set; } = null!;
+        public Output<string?> InstanceName { get; private set; } = null!;
 
         /// <summary>
         /// Optional configuration for the stream processor.
@@ -235,7 +242,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Pipeline { get; private set; } = null!;
 
         /// <summary>
-        /// Human-readable label that identifies the stream processor.
+        /// Label that identifies the stream processor.
         /// </summary>
         [Output("processorName")]
         public Output<string> ProcessorName { get; private set; } = null!;
@@ -259,6 +266,15 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("stats")]
         public Output<string> Stats { get; private set; } = null!;
+
+        [Output("timeouts")]
+        public Output<Outputs.StreamProcessorTimeouts?> Timeouts { get; private set; } = null!;
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
+        [Output("workspaceName")]
+        public Output<string?> WorkspaceName { get; private set; } = null!;
 
 
         /// <summary>
@@ -307,10 +323,16 @@ namespace Pulumi.Mongodbatlas
     public sealed class StreamProcessorArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
         /// </summary>
-        [Input("instanceName", required: true)]
-        public Input<string> InstanceName { get; set; } = null!;
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
+        [Input("instanceName")]
+        public Input<string>? InstanceName { get; set; }
 
         /// <summary>
         /// Optional configuration for the stream processor.
@@ -325,7 +347,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Pipeline { get; set; } = null!;
 
         /// <summary>
-        /// Human-readable label that identifies the stream processor.
+        /// Label that identifies the stream processor.
         /// </summary>
         [Input("processorName", required: true)]
         public Input<string> ProcessorName { get; set; } = null!;
@@ -344,6 +366,15 @@ namespace Pulumi.Mongodbatlas
         [Input("state")]
         public Input<string>? State { get; set; }
 
+        [Input("timeouts")]
+        public Input<Inputs.StreamProcessorTimeoutsArgs>? Timeouts { get; set; }
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
+        [Input("workspaceName")]
+        public Input<string>? WorkspaceName { get; set; }
+
         public StreamProcessorArgs()
         {
         }
@@ -353,7 +384,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class StreamProcessorState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
@@ -371,7 +408,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Pipeline { get; set; }
 
         /// <summary>
-        /// Human-readable label that identifies the stream processor.
+        /// Label that identifies the stream processor.
         /// </summary>
         [Input("processorName")]
         public Input<string>? ProcessorName { get; set; }
@@ -395,6 +432,15 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("stats")]
         public Input<string>? Stats { get; set; }
+
+        [Input("timeouts")]
+        public Input<Inputs.StreamProcessorTimeoutsGetArgs>? Timeouts { get; set; }
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
+        [Input("workspaceName")]
+        public Input<string>? WorkspaceName { get; set; }
 
         public StreamProcessorState()
         {

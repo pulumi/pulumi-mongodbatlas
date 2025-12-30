@@ -34,12 +34,26 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudProviderAccessAuthorization.__pulumiType;
     }
 
+    /**
+     * Date on which this role was authorized.
+     */
     declare public /*out*/ readonly authorizedDate: pulumi.Output<string>;
     declare public readonly aws: pulumi.Output<outputs.CloudProviderAccessAuthorizationAws | undefined>;
     declare public readonly azure: pulumi.Output<outputs.CloudProviderAccessAuthorizationAzure | undefined>;
+    /**
+     * Atlas features this AWS IAM role is linked to.
+     */
     declare public /*out*/ readonly featureUsages: pulumi.Output<outputs.CloudProviderAccessAuthorizationFeatureUsage[]>;
     declare public /*out*/ readonly gcps: pulumi.Output<outputs.CloudProviderAccessAuthorizationGcp[]>;
+    /**
+     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     */
     declare public readonly projectId: pulumi.Output<string>;
+    /**
+     * The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     *
+     * Conditional
+     */
     declare public readonly roleId: pulumi.Output<string>;
 
     /**
@@ -87,12 +101,26 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudProviderAccessAuthorization resources.
  */
 export interface CloudProviderAccessAuthorizationState {
+    /**
+     * Date on which this role was authorized.
+     */
     authorizedDate?: pulumi.Input<string>;
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
     azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
+    /**
+     * Atlas features this AWS IAM role is linked to.
+     */
     featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
     gcps?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationGcp>[]>;
+    /**
+     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     */
     projectId?: pulumi.Input<string>;
+    /**
+     * The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     *
+     * Conditional
+     */
     roleId?: pulumi.Input<string>;
 }
 
@@ -102,6 +130,14 @@ export interface CloudProviderAccessAuthorizationState {
 export interface CloudProviderAccessAuthorizationArgs {
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
     azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
+    /**
+     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     */
     projectId: pulumi.Input<string>;
+    /**
+     * The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     *
+     * Conditional
+     */
     roleId: pulumi.Input<string>;
 }

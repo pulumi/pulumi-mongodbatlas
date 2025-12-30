@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getApiKeyProjectAssignments
-//
 // `getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
 //
 // ## Example Usage
@@ -24,7 +22,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

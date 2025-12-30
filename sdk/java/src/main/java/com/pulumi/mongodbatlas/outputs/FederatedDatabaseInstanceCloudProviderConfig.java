@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class FederatedDatabaseInstanceCloudProviderConfig {
     /**
-     * @return Name of the cloud service that hosts the data lake&#39;s data stores.
+     * @return Name of the cloud service that hosts the Atlas Data Federation data stores.
      * 
      */
     private @Nullable FederatedDatabaseInstanceCloudProviderConfigAws aws;
@@ -25,7 +25,7 @@ public final class FederatedDatabaseInstanceCloudProviderConfig {
 
     private FederatedDatabaseInstanceCloudProviderConfig() {}
     /**
-     * @return Name of the cloud service that hosts the data lake&#39;s data stores.
+     * @return Name of the cloud service that hosts the Atlas Data Federation data stores.
      * 
      */
     public Optional<FederatedDatabaseInstanceCloudProviderConfigAws> aws() {

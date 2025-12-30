@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
- *
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
  *
  * ## Example Usage
@@ -104,8 +102,6 @@ export interface GetEncryptionAtRestPrivateEndpointResult {
     readonly status: string;
 }
 /**
- * ## # Data Source: mongodbatlas.EncryptionAtRestPrivateEndpoint
- *
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.
  *
  * ## Example Usage

@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetApiKeyProjectAssignments
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
-        /// 
         /// `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
         /// 
         /// ## Example Usage
@@ -85,8 +83,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetApiKeyProjectAssignmentsResult>("mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments", args ?? new GetApiKeyProjectAssignmentsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
-        /// 
         /// `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
         /// 
         /// ## Example Usage
@@ -158,8 +154,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetApiKeyProjectAssignmentsResult>("mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments", args ?? new GetApiKeyProjectAssignmentsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
-        /// 
         /// `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
         /// 
         /// ## Example Usage

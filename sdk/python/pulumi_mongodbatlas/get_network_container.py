@@ -203,8 +203,6 @@ def get_network_container(container_id: Optional[_builtins.str] = None,
                           project_id: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkContainerResult:
     """
-    ## # Data Source: NetworkContainer
-
     `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
 
     > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
@@ -257,8 +255,6 @@ def get_network_container_output(container_id: Optional[pulumi.Input[_builtins.s
                                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkContainerResult]:
     """
-    ## # Data Source: NetworkContainer
-
     `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
 
     > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.

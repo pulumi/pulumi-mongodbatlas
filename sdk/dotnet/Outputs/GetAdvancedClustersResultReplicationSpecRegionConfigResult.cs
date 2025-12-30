@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult> AnalyticsAutoScalings;
+        public readonly Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult AnalyticsAutoScaling;
         /// <summary>
         /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
         /// </summary>
@@ -24,11 +24,23 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult> AutoScalings;
+        public readonly Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult AutoScaling;
         /// <summary>
         /// Cloud service provider on which you provision the host for a multi-tenant cluster.
         /// </summary>
         public readonly string BackingProviderName;
+        /// <summary>
+        /// Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        /// </summary>
+        public readonly Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult EffectiveAnalyticsSpecs;
+        /// <summary>
+        /// Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        /// </summary>
+        public readonly Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsResult EffectiveElectableSpecs;
+        /// <summary>
+        /// Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+        /// </summary>
+        public readonly Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult EffectiveReadOnlySpecs;
         /// <summary>
         /// Hardware specifications for electable nodes in the region.
         /// </summary>
@@ -52,13 +64,19 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetAdvancedClustersResultReplicationSpecRegionConfigResult(
-            ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult> analyticsAutoScalings,
+            Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult analyticsAutoScaling,
 
             Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult analyticsSpecs,
 
-            ImmutableArray<Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult> autoScalings,
+            Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult autoScaling,
 
             string backingProviderName,
+
+            Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult effectiveAnalyticsSpecs,
+
+            Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsResult effectiveElectableSpecs,
+
+            Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult effectiveReadOnlySpecs,
 
             Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult electableSpecs,
 
@@ -70,10 +88,13 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string regionName)
         {
-            AnalyticsAutoScalings = analyticsAutoScalings;
+            AnalyticsAutoScaling = analyticsAutoScaling;
             AnalyticsSpecs = analyticsSpecs;
-            AutoScalings = autoScalings;
+            AutoScaling = autoScaling;
             BackingProviderName = backingProviderName;
+            EffectiveAnalyticsSpecs = effectiveAnalyticsSpecs;
+            EffectiveElectableSpecs = effectiveElectableSpecs;
+            EffectiveReadOnlySpecs = effectiveReadOnlySpecs;
             ElectableSpecs = electableSpecs;
             Priority = priority;
             ProviderName = providerName;

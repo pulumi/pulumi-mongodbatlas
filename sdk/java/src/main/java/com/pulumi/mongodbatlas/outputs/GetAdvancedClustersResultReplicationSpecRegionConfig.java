@@ -8,11 +8,13 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 
 @CustomType
@@ -21,7 +23,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
      * 
      */
-    private List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
+    private GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling;
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      * 
@@ -31,12 +33,27 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      * 
      */
-    private List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings;
+    private GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling autoScaling;
     /**
      * @return Cloud service provider on which you provision the host for a multi-tenant cluster.
      * 
      */
     private String backingProviderName;
+    /**
+     * @return Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     * 
+     */
+    private GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs effectiveAnalyticsSpecs;
+    /**
+     * @return Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     * 
+     */
+    private GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs effectiveElectableSpecs;
+    /**
+     * @return Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     * 
+     */
+    private GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs effectiveReadOnlySpecs;
     /**
      * @return Hardware specifications for electable nodes in the region.
      * 
@@ -68,8 +85,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
      * 
      */
-    public List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings() {
-        return this.analyticsAutoScalings;
+    public GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling() {
+        return this.analyticsAutoScaling;
     }
     /**
      * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
@@ -82,8 +99,8 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      * @return Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
      * 
      */
-    public List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings() {
-        return this.autoScalings;
+    public GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling autoScaling() {
+        return this.autoScaling;
     }
     /**
      * @return Cloud service provider on which you provision the host for a multi-tenant cluster.
@@ -91,6 +108,27 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
      */
     public String backingProviderName() {
         return this.backingProviderName;
+    }
+    /**
+     * @return Effective hardware specifications for analytics nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     * 
+     */
+    public GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs effectiveAnalyticsSpecs() {
+        return this.effectiveAnalyticsSpecs;
+    }
+    /**
+     * @return Effective hardware specifications for electable nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     * 
+     */
+    public GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs effectiveElectableSpecs() {
+        return this.effectiveElectableSpecs;
+    }
+    /**
+     * @return Effective hardware specifications for read-only nodes in the region, reflecting actual Atlas-managed values including auto-scaling changes. See below.
+     * 
+     */
+    public GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs effectiveReadOnlySpecs() {
+        return this.effectiveReadOnlySpecs;
     }
     /**
      * @return Hardware specifications for electable nodes in the region.
@@ -137,10 +175,13 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
     }
     @CustomType.Builder
     public static final class Builder {
-        private List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling;
         private GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
-        private List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling autoScaling;
         private String backingProviderName;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs effectiveAnalyticsSpecs;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs effectiveElectableSpecs;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs effectiveReadOnlySpecs;
         private GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs electableSpecs;
         private Integer priority;
         private String providerName;
@@ -149,10 +190,13 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         public Builder() {}
         public Builder(GetAdvancedClustersResultReplicationSpecRegionConfig defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.analyticsAutoScalings = defaults.analyticsAutoScalings;
+    	      this.analyticsAutoScaling = defaults.analyticsAutoScaling;
     	      this.analyticsSpecs = defaults.analyticsSpecs;
-    	      this.autoScalings = defaults.autoScalings;
+    	      this.autoScaling = defaults.autoScaling;
     	      this.backingProviderName = defaults.backingProviderName;
+    	      this.effectiveAnalyticsSpecs = defaults.effectiveAnalyticsSpecs;
+    	      this.effectiveElectableSpecs = defaults.effectiveElectableSpecs;
+    	      this.effectiveReadOnlySpecs = defaults.effectiveReadOnlySpecs;
     	      this.electableSpecs = defaults.electableSpecs;
     	      this.priority = defaults.priority;
     	      this.providerName = defaults.providerName;
@@ -161,15 +205,12 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         }
 
         @CustomType.Setter
-        public Builder analyticsAutoScalings(List<GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling> analyticsAutoScalings) {
-            if (analyticsAutoScalings == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "analyticsAutoScalings");
+        public Builder analyticsAutoScaling(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling) {
+            if (analyticsAutoScaling == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "analyticsAutoScaling");
             }
-            this.analyticsAutoScalings = analyticsAutoScalings;
+            this.analyticsAutoScaling = analyticsAutoScaling;
             return this;
-        }
-        public Builder analyticsAutoScalings(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling... analyticsAutoScalings) {
-            return analyticsAutoScalings(List.of(analyticsAutoScalings));
         }
         @CustomType.Setter
         public Builder analyticsSpecs(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs) {
@@ -180,15 +221,12 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
             return this;
         }
         @CustomType.Setter
-        public Builder autoScalings(List<GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling> autoScalings) {
-            if (autoScalings == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "autoScalings");
+        public Builder autoScaling(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling autoScaling) {
+            if (autoScaling == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "autoScaling");
             }
-            this.autoScalings = autoScalings;
+            this.autoScaling = autoScaling;
             return this;
-        }
-        public Builder autoScalings(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling... autoScalings) {
-            return autoScalings(List.of(autoScalings));
         }
         @CustomType.Setter
         public Builder backingProviderName(String backingProviderName) {
@@ -196,6 +234,30 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
               throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "backingProviderName");
             }
             this.backingProviderName = backingProviderName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder effectiveAnalyticsSpecs(GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs effectiveAnalyticsSpecs) {
+            if (effectiveAnalyticsSpecs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "effectiveAnalyticsSpecs");
+            }
+            this.effectiveAnalyticsSpecs = effectiveAnalyticsSpecs;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder effectiveElectableSpecs(GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs effectiveElectableSpecs) {
+            if (effectiveElectableSpecs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "effectiveElectableSpecs");
+            }
+            this.effectiveElectableSpecs = effectiveElectableSpecs;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder effectiveReadOnlySpecs(GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs effectiveReadOnlySpecs) {
+            if (effectiveReadOnlySpecs == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfig", "effectiveReadOnlySpecs");
+            }
+            this.effectiveReadOnlySpecs = effectiveReadOnlySpecs;
             return this;
         }
         @CustomType.Setter
@@ -240,10 +302,13 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfig {
         }
         public GetAdvancedClustersResultReplicationSpecRegionConfig build() {
             final var _resultValue = new GetAdvancedClustersResultReplicationSpecRegionConfig();
-            _resultValue.analyticsAutoScalings = analyticsAutoScalings;
+            _resultValue.analyticsAutoScaling = analyticsAutoScaling;
             _resultValue.analyticsSpecs = analyticsSpecs;
-            _resultValue.autoScalings = autoScalings;
+            _resultValue.autoScaling = autoScaling;
             _resultValue.backingProviderName = backingProviderName;
+            _resultValue.effectiveAnalyticsSpecs = effectiveAnalyticsSpecs;
+            _resultValue.effectiveElectableSpecs = effectiveElectableSpecs;
+            _resultValue.effectiveReadOnlySpecs = effectiveReadOnlySpecs;
             _resultValue.electableSpecs = electableSpecs;
             _resultValue.priority = priority;
             _resultValue.providerName = providerName;

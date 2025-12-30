@@ -105,9 +105,25 @@ def get_stream_instance(instance_name: Optional[_builtins.str] = None,
                         project_id: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamInstanceResult:
     """
-    ## # Data Source: StreamInstance
+    > **DEPRECATED:** This data source is deprecated. Please use `StreamWorkspace` instead.
 
     `StreamInstance` describes a stream instance.
+
+    ## Migration to stream_workspace
+
+    To migrate from `StreamInstance` to `StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # New (recommended)
+    example = mongodbatlas.get_stream_workspace(project_id="<PROJECT_ID>",
+        workspace_name="<WORKSPACE_NAME>")
+    # Old (deprecated)
+    example_get_stream_instance = mongodbatlas.get_stream_instance(project_id="<PROJECT_ID>",
+        instance_name="<INSTANCE_NAME>")
+    ```
 
     ## Example Usage
 
@@ -140,9 +156,25 @@ def get_stream_instance_output(instance_name: Optional[pulumi.Input[_builtins.st
                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamInstanceResult]:
     """
-    ## # Data Source: StreamInstance
+    > **DEPRECATED:** This data source is deprecated. Please use `StreamWorkspace` instead.
 
     `StreamInstance` describes a stream instance.
+
+    ## Migration to stream_workspace
+
+    To migrate from `StreamInstance` to `StreamWorkspace`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # New (recommended)
+    example = mongodbatlas.get_stream_workspace(project_id="<PROJECT_ID>",
+        workspace_name="<WORKSPACE_NAME>")
+    # Old (deprecated)
+    example_get_stream_instance = mongodbatlas.get_stream_instance(project_id="<PROJECT_ID>",
+        instance_name="<INSTANCE_NAME>")
+    ```
 
     ## Example Usage
 

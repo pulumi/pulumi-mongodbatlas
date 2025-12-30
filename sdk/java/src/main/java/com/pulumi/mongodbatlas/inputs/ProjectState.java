@@ -270,9 +270,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tags);
     }
 
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
     @Import(name="teams")
     private @Nullable Output<List<ProjectTeamArgs>> teams;
 
+    /**
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
     public Optional<Output<List<ProjectTeamArgs>>> teams() {
         return Optional.ofNullable(this.teams);
     }
@@ -677,15 +689,39 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
             return tags(Output.of(tags));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
         public Builder teams(@Nullable Output<List<ProjectTeamArgs>> teams) {
             $.teams = teams;
             return this;
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
         public Builder teams(List<ProjectTeamArgs> teams) {
             return teams(Output.of(teams));
         }
 
+        /**
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
         public Builder teams(ProjectTeamArgs... teams) {
             return teams(List.of(teams));
         }

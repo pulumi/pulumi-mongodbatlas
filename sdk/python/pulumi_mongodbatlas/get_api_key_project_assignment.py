@@ -86,8 +86,6 @@ def get_api_key_project_assignment(api_key_id: Optional[_builtins.str] = None,
                                    project_id: Optional[_builtins.str] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiKeyProjectAssignmentResult:
     """
-    ## # Data Source: ApiKeyProjectAssignment
-
     `ApiKeyProjectAssignment` describes an API Key Project Assignment.
 
     ## Example Usage
@@ -142,8 +140,6 @@ def get_api_key_project_assignment_output(api_key_id: Optional[pulumi.Input[_bui
                                           project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiKeyProjectAssignmentResult]:
     """
-    ## # Data Source: ApiKeyProjectAssignment
-
     `ApiKeyProjectAssignment` describes an API Key Project Assignment.
 
     ## Example Usage

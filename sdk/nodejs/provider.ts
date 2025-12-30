@@ -28,6 +28,10 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
+     * MongoDB Atlas Access Token for Service Account.
+     */
+    declare public readonly accessToken: pulumi.Output<string | undefined>;
+    /**
      * AWS API Access Key.
      */
     declare public readonly awsAccessKeyId: pulumi.Output<string | undefined>;
@@ -43,6 +47,14 @@ export class Provider extends pulumi.ProviderResource {
      * MongoDB Atlas Base URL
      */
     declare public readonly baseUrl: pulumi.Output<string | undefined>;
+    /**
+     * MongoDB Atlas Client ID for Service Account.
+     */
+    declare public readonly clientId: pulumi.Output<string | undefined>;
+    /**
+     * MongoDB Atlas Client Secret for Service Account.
+     */
+    declare public readonly clientSecret: pulumi.Output<string | undefined>;
     /**
      * MongoDB Atlas Programmatic Private Key
      */
@@ -79,11 +91,14 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
+            resourceInputs["accessToken"] = args?.accessToken;
             resourceInputs["assumeRole"] = pulumi.output(args?.assumeRole).apply(JSON.stringify);
             resourceInputs["awsAccessKeyId"] = args?.awsAccessKeyId;
             resourceInputs["awsSecretAccessKey"] = args?.awsSecretAccessKey;
             resourceInputs["awsSessionToken"] = args?.awsSessionToken;
             resourceInputs["baseUrl"] = args?.baseUrl;
+            resourceInputs["clientId"] = args?.clientId;
+            resourceInputs["clientSecret"] = args?.clientSecret;
             resourceInputs["isMongodbgovCloud"] = pulumi.output(args?.isMongodbgovCloud).apply(JSON.stringify);
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
             resourceInputs["publicKey"] = args?.publicKey;
@@ -112,6 +127,10 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * MongoDB Atlas Access Token for Service Account.
+     */
+    accessToken?: pulumi.Input<string>;
     assumeRole?: pulumi.Input<inputs.ProviderAssumeRole>;
     /**
      * AWS API Access Key.
@@ -129,6 +148,14 @@ export interface ProviderArgs {
      * MongoDB Atlas Base URL
      */
     baseUrl?: pulumi.Input<string>;
+    /**
+     * MongoDB Atlas Client ID for Service Account.
+     */
+    clientId?: pulumi.Input<string>;
+    /**
+     * MongoDB Atlas Client Secret for Service Account.
+     */
+    clientSecret?: pulumi.Input<string>;
     /**
      * MongoDB Atlas Base URL default to gov
      */

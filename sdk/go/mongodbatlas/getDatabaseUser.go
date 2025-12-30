@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: DatabaseUser
-//
 // `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
 //
 // Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
@@ -26,7 +24,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -79,7 +77,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -152,7 +150,7 @@ type LookupDatabaseUserResult struct {
 	ProjectId    string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles []GetDatabaseUserRole `pulumi:"roles"`
-	// Array of clusters and Atlas Data Lakes that this user has access to.
+	// Array of clusters and Atlas Data Federation that this user has access to.
 	Scopes   []GetDatabaseUserScope `pulumi:"scopes"`
 	Username string                 `pulumi:"username"`
 	// X.509 method by which the provided username is authenticated.
@@ -242,7 +240,7 @@ func (o LookupDatabaseUserResultOutput) Roles() GetDatabaseUserRoleArrayOutput {
 	return o.ApplyT(func(v LookupDatabaseUserResult) []GetDatabaseUserRole { return v.Roles }).(GetDatabaseUserRoleArrayOutput)
 }
 
-// Array of clusters and Atlas Data Lakes that this user has access to.
+// Array of clusters and Atlas Data Federation that this user has access to.
 func (o LookupDatabaseUserResultOutput) Scopes() GetDatabaseUserScopeArrayOutput {
 	return o.ApplyT(func(v LookupDatabaseUserResult) []GetDatabaseUserScope { return v.Scopes }).(GetDatabaseUserScopeArrayOutput)
 }

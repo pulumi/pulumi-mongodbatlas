@@ -294,8 +294,6 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
                  post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## # Resource: FederatedSettingsOrgConfig
-
         `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
         ## Example Usage
@@ -316,6 +314,10 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
             identity_provider_id="0oaqyt9fc2ySTWnA0357")
         org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["id"])
         ```
+
+        ### Further Examples
+        - Azure Federated Identity Provider with Org Config
+        - Federated Settings Org Role Mappings
 
         ## Import
 
@@ -345,8 +347,6 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
                  args: FederatedSettingsOrgConfigArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: FederatedSettingsOrgConfig
-
         `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
 
         ## Example Usage
@@ -367,6 +367,10 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
             identity_provider_id="0oaqyt9fc2ySTWnA0357")
         org_configs_ds = mongodbatlas.get_federated_settings_org_configs(federation_settings_id=org_connection_mongodbatlas_federated_settings_org_config["id"])
         ```
+
+        ### Further Examples
+        - Azure Federated Identity Provider with Org Config
+        - Federated Settings Org Role Mappings
 
         ## Import
 

@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.StreamProcessor
- *
  * `mongodbatlas.StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
  *
  * **NOTE**: When updating an Atlas Stream Processor, the following behavior applies:
@@ -34,13 +32,13 @@ import * as utilities from "./utilities";
  * });
  * const example_sample = new mongodbatlas.StreamConnection("example-sample", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "sample_stream_solar",
  *     type: "Sample",
  * });
  * const example_cluster = new mongodbatlas.StreamConnection("example-cluster", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "ClusterConnection",
  *     type: "Cluster",
  *     clusterName: clusterName,
@@ -51,7 +49,7 @@ import * as utilities from "./utilities";
  * });
  * const example_kafka = new mongodbatlas.StreamConnection("example-kafka", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "KafkaPlaintextConnection",
  *     type: "Kafka",
  *     authentication: {
@@ -69,7 +67,7 @@ import * as utilities from "./utilities";
  * });
  * const stream_processor_sample_example = new mongodbatlas.StreamProcessor("stream-processor-sample-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -92,7 +90,7 @@ import * as utilities from "./utilities";
  * });
  * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -111,7 +109,7 @@ import * as utilities from "./utilities";
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -142,16 +140,19 @@ import * as utilities from "./utilities";
  * });
  * const example_stream_processors = example.instanceName.apply(instanceName => mongodbatlas.getStreamProcessorsOutput({
  *     projectId: projectId,
- *     instanceName: instanceName,
+ *     workspaceName: instanceName,
  * }));
  * const example_stream_processor = pulumi.all([example.instanceName, stream_processor_sample_example.processorName]).apply(([instanceName, processorName]) => mongodbatlas.getStreamProcessorOutput({
  *     projectId: projectId,
- *     instanceName: instanceName,
+ *     workspaceName: instanceName,
  *     processorName: processorName,
  * }));
  * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
  * export const streamProcessorsResults = example_stream_processors.apply(example_stream_processors => example_stream_processors.results);
  * ```
+ *
+ * ### Further Examples
+ * - Atlas Stream Processor
  *
  * ## Import
  *
@@ -188,9 +189,15 @@ export class StreamProcessor extends pulumi.CustomResource {
     }
 
     /**
-     * Human-readable label that identifies the stream instance.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    declare public readonly instanceName: pulumi.Output<string>;
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean>;
+    /**
+     * Label that identifies the stream processing workspace.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
+     */
+    declare public readonly instanceName: pulumi.Output<string | undefined>;
     /**
      * Optional configuration for the stream processor.
      */
@@ -200,7 +207,7 @@ export class StreamProcessor extends pulumi.CustomResource {
      */
     declare public readonly pipeline: pulumi.Output<string>;
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      */
     declare public readonly processorName: pulumi.Output<string>;
     /**
@@ -217,6 +224,11 @@ export class StreamProcessor extends pulumi.CustomResource {
      * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
     declare public /*out*/ readonly stats: pulumi.Output<string>;
+    declare public readonly timeouts: pulumi.Output<outputs.StreamProcessorTimeouts | undefined>;
+    /**
+     * Label that identifies the stream processing workspace.
+     */
+    declare public readonly workspaceName: pulumi.Output<string | undefined>;
 
     /**
      * Create a StreamProcessor resource with the given unique name, arguments, and options.
@@ -231,6 +243,7 @@ export class StreamProcessor extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as StreamProcessorState | undefined;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["instanceName"] = state?.instanceName;
             resourceInputs["options"] = state?.options;
             resourceInputs["pipeline"] = state?.pipeline;
@@ -238,11 +251,10 @@ export class StreamProcessor extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["state"] = state?.state;
             resourceInputs["stats"] = state?.stats;
+            resourceInputs["timeouts"] = state?.timeouts;
+            resourceInputs["workspaceName"] = state?.workspaceName;
         } else {
             const args = argsOrState as StreamProcessorArgs | undefined;
-            if (args?.instanceName === undefined && !opts.urn) {
-                throw new Error("Missing required property 'instanceName'");
-            }
             if (args?.pipeline === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipeline'");
             }
@@ -252,12 +264,15 @@ export class StreamProcessor extends pulumi.CustomResource {
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["instanceName"] = args?.instanceName;
             resourceInputs["options"] = args?.options;
             resourceInputs["pipeline"] = args?.pipeline;
             resourceInputs["processorName"] = args?.processorName;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["state"] = args?.state;
+            resourceInputs["timeouts"] = args?.timeouts;
+            resourceInputs["workspaceName"] = args?.workspaceName;
             resourceInputs["stats"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -270,7 +285,13 @@ export class StreamProcessor extends pulumi.CustomResource {
  */
 export interface StreamProcessorState {
     /**
-     * Human-readable label that identifies the stream instance.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
+     * Label that identifies the stream processing workspace.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName?: pulumi.Input<string>;
     /**
@@ -282,7 +303,7 @@ export interface StreamProcessorState {
      */
     pipeline?: pulumi.Input<string>;
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      */
     processorName?: pulumi.Input<string>;
     /**
@@ -299,6 +320,11 @@ export interface StreamProcessorState {
      * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
     stats?: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts>;
+    /**
+     * Label that identifies the stream processing workspace.
+     */
+    workspaceName?: pulumi.Input<string>;
 }
 
 /**
@@ -306,9 +332,15 @@ export interface StreamProcessorState {
  */
 export interface StreamProcessorArgs {
     /**
-     * Human-readable label that identifies the stream instance.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    instanceName: pulumi.Input<string>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
+     * Label that identifies the stream processing workspace.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
+     */
+    instanceName?: pulumi.Input<string>;
     /**
      * Optional configuration for the stream processor.
      */
@@ -318,7 +350,7 @@ export interface StreamProcessorArgs {
      */
     pipeline: pulumi.Input<string>;
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      */
     processorName: pulumi.Input<string>;
     /**
@@ -331,4 +363,9 @@ export interface StreamProcessorArgs {
      * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      */
     state?: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts>;
+    /**
+     * Label that identifies the stream processing workspace.
+     */
+    workspaceName?: pulumi.Input<string>;
 }

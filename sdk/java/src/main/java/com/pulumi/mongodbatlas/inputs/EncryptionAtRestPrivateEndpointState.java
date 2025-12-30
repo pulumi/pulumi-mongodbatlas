@@ -5,6 +5,8 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.EncryptionAtRestPrivateEndpointTimeoutsArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -28,6 +30,21 @@ public final class EncryptionAtRestPrivateEndpointState extends com.pulumi.resou
      */
     public Optional<Output<String>> cloudProvider() {
         return Optional.ofNullable(this.cloudProvider);
+    }
+
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
     }
 
     /**
@@ -105,15 +122,24 @@ public final class EncryptionAtRestPrivateEndpointState extends com.pulumi.resou
         return Optional.ofNullable(this.status);
     }
 
+    @Import(name="timeouts")
+    private @Nullable Output<EncryptionAtRestPrivateEndpointTimeoutsArgs> timeouts;
+
+    public Optional<Output<EncryptionAtRestPrivateEndpointTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
     private EncryptionAtRestPrivateEndpointState() {}
 
     private EncryptionAtRestPrivateEndpointState(EncryptionAtRestPrivateEndpointState $) {
         this.cloudProvider = $.cloudProvider;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.errorMessage = $.errorMessage;
         this.privateEndpointConnectionName = $.privateEndpointConnectionName;
         this.projectId = $.projectId;
         this.regionName = $.regionName;
         this.status = $.status;
+        this.timeouts = $.timeouts;
     }
 
     public static Builder builder() {
@@ -153,6 +179,27 @@ public final class EncryptionAtRestPrivateEndpointState extends com.pulumi.resou
          */
         public Builder cloudProvider(String cloudProvider) {
             return cloudProvider(Output.of(cloudProvider));
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
         }
 
         /**
@@ -258,6 +305,15 @@ public final class EncryptionAtRestPrivateEndpointState extends com.pulumi.resou
          */
         public Builder status(String status) {
             return status(Output.of(status));
+        }
+
+        public Builder timeouts(@Nullable Output<EncryptionAtRestPrivateEndpointTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        public Builder timeouts(EncryptionAtRestPrivateEndpointTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
         }
 
         public EncryptionAtRestPrivateEndpointState build() {

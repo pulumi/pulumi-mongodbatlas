@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjects
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getProjects
-        /// 
         /// `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -34,26 +32,6 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         Name = "project-name",
         ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
-        ///         Teams = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_OWNER",
-        ///                 },
-        ///             },
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_READ_ONLY",
-        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                 },
-        ///             },
-        ///         },
         ///         Limits = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectLimitArgs
@@ -77,8 +55,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getProjects
-        /// 
         /// `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -99,26 +75,6 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         Name = "project-name",
         ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
-        ///         Teams = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_OWNER",
-        ///                 },
-        ///             },
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_READ_ONLY",
-        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                 },
-        ///             },
-        ///         },
         ///         Limits = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectLimitArgs
@@ -142,8 +98,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectsResult>("mongodbatlas:index/getProjects:getProjects", args ?? new GetProjectsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getProjects
-        /// 
         /// `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -164,26 +118,6 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         Name = "project-name",
         ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
-        ///         Teams = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 TeamId = "5e0fa8c99ccf641c722fe645",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_OWNER",
-        ///                 },
-        ///             },
-        ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-        ///             {
-        ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
-        ///                 RoleNames = new[]
-        ///                 {
-        ///                     "GROUP_READ_ONLY",
-        ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-        ///                 },
-        ///             },
-        ///         },
         ///         Limits = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.ProjectLimitArgs

@@ -22,6 +22,7 @@ public final class GetStreamPrivatelinkEndpointResult {
     private String providerAccountId;
     private String providerName;
     private String region;
+    private List<String> serviceAttachmentUris;
     private String serviceEndpointId;
     private String state;
     private String vendor;
@@ -60,6 +61,9 @@ public final class GetStreamPrivatelinkEndpointResult {
     public String region() {
         return this.region;
     }
+    public List<String> serviceAttachmentUris() {
+        return this.serviceAttachmentUris;
+    }
     public String serviceEndpointId() {
         return this.serviceEndpointId;
     }
@@ -90,6 +94,7 @@ public final class GetStreamPrivatelinkEndpointResult {
         private String providerAccountId;
         private String providerName;
         private String region;
+        private List<String> serviceAttachmentUris;
         private String serviceEndpointId;
         private String state;
         private String vendor;
@@ -107,6 +112,7 @@ public final class GetStreamPrivatelinkEndpointResult {
     	      this.providerAccountId = defaults.providerAccountId;
     	      this.providerName = defaults.providerName;
     	      this.region = defaults.region;
+    	      this.serviceAttachmentUris = defaults.serviceAttachmentUris;
     	      this.serviceEndpointId = defaults.serviceEndpointId;
     	      this.state = defaults.state;
     	      this.vendor = defaults.vendor;
@@ -204,6 +210,17 @@ public final class GetStreamPrivatelinkEndpointResult {
             return this;
         }
         @CustomType.Setter
+        public Builder serviceAttachmentUris(List<String> serviceAttachmentUris) {
+            if (serviceAttachmentUris == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "serviceAttachmentUris");
+            }
+            this.serviceAttachmentUris = serviceAttachmentUris;
+            return this;
+        }
+        public Builder serviceAttachmentUris(String... serviceAttachmentUris) {
+            return serviceAttachmentUris(List.of(serviceAttachmentUris));
+        }
+        @CustomType.Setter
         public Builder serviceEndpointId(String serviceEndpointId) {
             if (serviceEndpointId == null) {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "serviceEndpointId");
@@ -240,6 +257,7 @@ public final class GetStreamPrivatelinkEndpointResult {
             _resultValue.providerAccountId = providerAccountId;
             _resultValue.providerName = providerName;
             _resultValue.region = region;
+            _resultValue.serviceAttachmentUris = serviceAttachmentUris;
             _resultValue.serviceEndpointId = serviceEndpointId;
             _resultValue.state = state;
             _resultValue.vendor = vendor;

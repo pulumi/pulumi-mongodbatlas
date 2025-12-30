@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Project
- *
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -24,19 +22,6 @@ import * as utilities from "./utilities";
  * const testProject = new mongodbatlas.Project("test", {
  *     name: "project-name",
  *     orgId: test.then(test => test.orgId),
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,
@@ -55,19 +40,6 @@ import * as utilities from "./utilities";
  * const testProject = new mongodbatlas.Project("test", {
  *     name: "project-name",
  *     orgId: "<ORG_ID>",
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,
@@ -115,6 +87,10 @@ export interface GetProjectResult {
      * The ISO-8601-formatted timestamp of when Atlas created the project.
      */
     readonly created: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
     readonly id: string;
     /**
      * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
@@ -174,13 +150,17 @@ export interface GetProjectResult {
      */
     readonly tags: {[key: string]: string};
     /**
-     * Returns all teams to which the authenticated user has access in the project. See Teams.
+     * **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
+     *
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
     readonly teams: outputs.GetProjectTeam[];
+    /**
+     * Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+     */
+    readonly users: outputs.GetProjectUser[];
 }
 /**
- * ## # Data Source: mongodbatlas.Project
- *
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -196,19 +176,6 @@ export interface GetProjectResult {
  * const testProject = new mongodbatlas.Project("test", {
  *     name: "project-name",
  *     orgId: test.then(test => test.orgId),
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,
@@ -227,19 +194,6 @@ export interface GetProjectResult {
  * const testProject = new mongodbatlas.Project("test", {
  *     name: "project-name",
  *     orgId: "<ORG_ID>",
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
  *     limits: [{
  *         name: "atlas.project.deployment.clusters",
  *         value: 26,

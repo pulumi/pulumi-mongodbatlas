@@ -61,12 +61,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The limits for the specified project. See Limits.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProjectsResultLimitResult> Limits;
-        public readonly string Name;
+        public readonly string? Name;
         /// <summary>
         /// The ID of the organization you want to create the project within.
         /// </summary>
         public readonly string OrgId;
-        public readonly string ProjectId;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+        /// </summary>
+        public readonly string? ProjectId;
         /// <summary>
         /// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         /// </summary>
@@ -76,9 +79,13 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableDictionary<string, string> Tags;
         /// <summary>
-        /// Returns all teams to which the authenticated user has access in the project. See Teams.
+        /// **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetProjectsResultTeamResult> Teams;
+        /// <summary>
+        /// Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetProjectsResultUserResult> Users;
 
         [OutputConstructor]
         private GetProjectsResultResult(
@@ -106,17 +113,19 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetProjectsResultLimitResult> limits,
 
-            string name,
+            string? name,
 
             string orgId,
 
-            string projectId,
+            string? projectId,
 
             string regionUsageRestrictions,
 
             ImmutableDictionary<string, string> tags,
 
-            ImmutableArray<Outputs.GetProjectsResultTeamResult> teams)
+            ImmutableArray<Outputs.GetProjectsResultTeamResult> teams,
+
+            ImmutableArray<Outputs.GetProjectsResultUserResult> users)
         {
             ClusterCount = clusterCount;
             Created = created;
@@ -136,6 +145,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             RegionUsageRestrictions = regionUsageRestrictions;
             Tags = tags;
             Teams = teams;
+            Users = users;
         }
     }
 }

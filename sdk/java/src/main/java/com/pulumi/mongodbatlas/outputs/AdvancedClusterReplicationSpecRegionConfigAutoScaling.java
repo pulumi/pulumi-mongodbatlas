@@ -12,19 +12,23 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AdvancedClusterReplicationSpecRegionConfigAutoScaling {
+    /**
+     * @return Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+     * 
+     */
     private @Nullable Boolean computeEnabled;
     /**
-     * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+     * @return Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `&#34;replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled&#34; : true`.
      * 
      */
     private @Nullable String computeMaxInstanceSize;
     /**
-     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
      * 
      */
     private @Nullable String computeMinInstanceSize;
     /**
-     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
      * 
      */
     private @Nullable Boolean computeScaleDownEnabled;
@@ -35,25 +39,29 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScaling {
     private @Nullable Boolean diskGbEnabled;
 
     private AdvancedClusterReplicationSpecRegionConfigAutoScaling() {}
+    /**
+     * @return Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+     * 
+     */
     public Optional<Boolean> computeEnabled() {
         return Optional.ofNullable(this.computeEnabled);
     }
     /**
-     * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+     * @return Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `&#34;replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled&#34; : true`.
      * 
      */
     public Optional<String> computeMaxInstanceSize() {
         return Optional.ofNullable(this.computeMaxInstanceSize);
     }
     /**
-     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
      * 
      */
     public Optional<String> computeMinInstanceSize() {
         return Optional.ofNullable(this.computeMinInstanceSize);
     }
     /**
-     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
      * 
      */
     public Optional<Boolean> computeScaleDownEnabled() {

@@ -113,8 +113,6 @@ class AwaitableGetEncryptionAtRestResult(GetEncryptionAtRestResult):
 def get_encryption_at_rest(project_id: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncryptionAtRestResult:
     """
-    ## # Data Source: EncryptionAtRest
-
     `EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
 
     [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
@@ -235,8 +233,6 @@ def get_encryption_at_rest(project_id: Optional[_builtins.str] = None,
 def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptionAtRestResult]:
     """
-    ## # Data Source: EncryptionAtRest
-
     `EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
 
     [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)

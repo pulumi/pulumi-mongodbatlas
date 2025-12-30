@@ -21,17 +21,21 @@ class PrivateLinkEndpointArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
                  provider_name: pulumi.Input[_builtins.str],
-                 region: pulumi.Input[_builtins.str]):
+                 region: pulumi.Input[_builtins.str],
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a PrivateLinkEndpoint resource.
         :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
         pulumi.set(__self__, "region", region)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -70,10 +74,23 @@ class PrivateLinkEndpointArgs:
     def region(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "region", value)
 
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
 
 @pulumi.input_type
 class _PrivateLinkEndpointState:
     def __init__(__self__, *,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  endpoint_group_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  endpoint_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  error_message: Optional[pulumi.Input[_builtins.str]] = None,
@@ -90,6 +107,7 @@ class _PrivateLinkEndpointState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateLinkEndpoint resources.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoint_group_names: GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
         :param pulumi.Input[_builtins.str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         :param pulumi.Input[_builtins.str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
@@ -123,6 +141,8 @@ class _PrivateLinkEndpointState:
                * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
                * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
         """
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if endpoint_group_names is not None:
             pulumi.set(__self__, "endpoint_group_names", endpoint_group_names)
         if endpoint_service_name is not None:
@@ -151,6 +171,18 @@ class _PrivateLinkEndpointState:
             pulumi.set(__self__, "service_attachment_names", service_attachment_names)
         if status is not None:
             pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointGroupNames")
@@ -343,6 +375,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -360,8 +393,10 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             region="US_EAST_1")
         ```
 
-        ### Available complete examples
-        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        ### Further Examples
+        - AWS PrivateLink Endpoint
+        - Azure PrivateLink Endpoint
+        - GCP Private Service Connect Endpoint
 
         ## Import
 
@@ -374,6 +409,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
@@ -398,8 +434,10 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             region="US_EAST_1")
         ```
 
-        ### Available complete examples
-        - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        ### Further Examples
+        - AWS PrivateLink Endpoint
+        - Azure PrivateLink Endpoint
+        - GCP Private Service Connect Endpoint
 
         ## Import
 
@@ -425,6 +463,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -437,6 +476,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PrivateLinkEndpointArgs.__new__(PrivateLinkEndpointArgs)
 
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -467,6 +507,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             endpoint_group_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             endpoint_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             error_message: Optional[pulumi.Input[_builtins.str]] = None,
@@ -488,6 +529,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoint_group_names: GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
         :param pulumi.Input[_builtins.str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
         :param pulumi.Input[_builtins.str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
@@ -525,6 +567,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
 
         __props__ = _PrivateLinkEndpointState.__new__(_PrivateLinkEndpointState)
 
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["endpoint_group_names"] = endpoint_group_names
         __props__.__dict__["endpoint_service_name"] = endpoint_service_name
         __props__.__dict__["error_message"] = error_message
@@ -540,6 +583,14 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         __props__.__dict__["service_attachment_names"] = service_attachment_names
         __props__.__dict__["status"] = status
         return PrivateLinkEndpoint(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
 
     @_builtins.property
     @pulumi.getter(name="endpointGroupNames")

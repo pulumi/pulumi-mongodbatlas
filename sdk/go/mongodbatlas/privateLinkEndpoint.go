@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,7 +19,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -40,8 +40,10 @@ import (
 //
 // ```
 //
-// ### Available complete examples
-// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+// ### Further Examples
+// - AWS PrivateLink Endpoint
+// - Azure PrivateLink Endpoint
+// - GCP Private Service Connect Endpoint
 //
 // ## Import
 //
@@ -54,6 +56,8 @@ import (
 type PrivateLinkEndpoint struct {
 	pulumi.CustomResourceState
 
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
 	EndpointGroupNames pulumi.StringArrayOutput `pulumi:"endpointGroupNames"`
 	// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
@@ -141,6 +145,8 @@ func GetPrivateLinkEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PrivateLinkEndpoint resources.
 type privateLinkEndpointState struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
 	EndpointGroupNames []string `pulumi:"endpointGroupNames"`
 	// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
@@ -190,6 +196,8 @@ type privateLinkEndpointState struct {
 }
 
 type PrivateLinkEndpointState struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
 	EndpointGroupNames pulumi.StringArrayInput
 	// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
@@ -243,6 +251,8 @@ func (PrivateLinkEndpointState) ElementType() reflect.Type {
 }
 
 type privateLinkEndpointArgs struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Required 	Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
@@ -254,6 +264,8 @@ type privateLinkEndpointArgs struct {
 
 // The set of arguments for constructing a PrivateLinkEndpoint resource.
 type PrivateLinkEndpointArgs struct {
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Required 	Unique identifier for the project.
 	ProjectId pulumi.StringInput
 	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
@@ -348,6 +360,11 @@ func (o PrivateLinkEndpointOutput) ToPrivateLinkEndpointOutput() PrivateLinkEndp
 
 func (o PrivateLinkEndpointOutput) ToPrivateLinkEndpointOutputWithContext(ctx context.Context) PrivateLinkEndpointOutput {
 	return o
+}
+
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o PrivateLinkEndpointOutput) DeleteOnCreateTimeout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpoint) pulumi.BoolPtrOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolPtrOutput)
 }
 
 // GCP network endpoint groups corresponding to the Private Service Connect endpoint service.

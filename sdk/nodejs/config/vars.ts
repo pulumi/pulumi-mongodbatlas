@@ -9,6 +9,17 @@ import * as utilities from "../utilities";
 declare var exports: any;
 const __config = new pulumi.Config("mongodbatlas");
 
+/**
+ * MongoDB Atlas Access Token for Service Account.
+ */
+export declare const accessToken: string | undefined;
+Object.defineProperty(exports, "accessToken", {
+    get() {
+        return __config.get("accessToken");
+    },
+    enumerable: true,
+});
+
 export declare const assumeRole: outputs.config.AssumeRole | undefined;
 Object.defineProperty(exports, "assumeRole", {
     get() {
@@ -57,6 +68,28 @@ export declare const baseUrl: string | undefined;
 Object.defineProperty(exports, "baseUrl", {
     get() {
         return __config.get("baseUrl");
+    },
+    enumerable: true,
+});
+
+/**
+ * MongoDB Atlas Client ID for Service Account.
+ */
+export declare const clientId: string | undefined;
+Object.defineProperty(exports, "clientId", {
+    get() {
+        return __config.get("clientId");
+    },
+    enumerable: true,
+});
+
+/**
+ * MongoDB Atlas Client Secret for Service Account.
+ */
+export declare const clientSecret: string | undefined;
+Object.defineProperty(exports, "clientSecret", {
+    get() {
+        return __config.get("clientSecret");
     },
     enumerable: true,
 });

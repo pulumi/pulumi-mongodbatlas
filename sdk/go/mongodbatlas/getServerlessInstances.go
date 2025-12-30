@@ -7,11 +7,11 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+// > **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
 //
 // `getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 //
@@ -27,7 +27,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

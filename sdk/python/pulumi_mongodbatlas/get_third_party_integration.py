@@ -260,8 +260,6 @@ def get_third_party_integration(project_id: Optional[_builtins.str] = None,
                                 type: Optional[_builtins.str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetThirdPartyIntegrationResult:
     """
-    ## # Data Source: ThirdPartyIntegration
-
     `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -322,8 +320,6 @@ def get_third_party_integration_output(project_id: Optional[pulumi.Input[_builti
                                        type: Optional[pulumi.Input[_builtins.str]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
     """
-    ## # Data Source: ThirdPartyIntegration
-
     `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

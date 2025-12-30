@@ -100,8 +100,6 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
                                project_id: Optional[_builtins.str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectIpAccessListResult:
     """
-    ## # Data Source: ProjectIpAccessList
-
     `ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -195,8 +193,6 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
                                       project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectIpAccessListResult]:
     """
-    ## # Data Source: ProjectIpAccessList
-
     `ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -75,6 +75,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Push-Based Log Export
+//
 // ## Import
 //
 // Push-based log export resource can be imported using the project ID, e.g.
@@ -87,6 +90,8 @@ type PushBasedLogExport struct {
 	BucketName pulumi.StringOutput `pulumi:"bucketName"`
 	// Date and time that this feature was enabled on.
 	CreateDate pulumi.StringOutput `pulumi:"createDate"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
 	// ID of the AWS IAM role that is used to write to the S3 bucket.
 	IamRoleId pulumi.StringOutput `pulumi:"iamRoleId"`
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
@@ -141,6 +146,8 @@ type pushBasedLogExportState struct {
 	BucketName *string `pulumi:"bucketName"`
 	// Date and time that this feature was enabled on.
 	CreateDate *string `pulumi:"createDate"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// ID of the AWS IAM role that is used to write to the S3 bucket.
 	IamRoleId *string `pulumi:"iamRoleId"`
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
@@ -157,6 +164,8 @@ type PushBasedLogExportState struct {
 	BucketName pulumi.StringPtrInput
 	// Date and time that this feature was enabled on.
 	CreateDate pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// ID of the AWS IAM role that is used to write to the S3 bucket.
 	IamRoleId pulumi.StringPtrInput
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
@@ -175,6 +184,8 @@ func (PushBasedLogExportState) ElementType() reflect.Type {
 type pushBasedLogExportArgs struct {
 	// The name of the bucket to which the agent sends the logs to.
 	BucketName string `pulumi:"bucketName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// ID of the AWS IAM role that is used to write to the S3 bucket.
 	IamRoleId string `pulumi:"iamRoleId"`
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
@@ -188,6 +199,8 @@ type pushBasedLogExportArgs struct {
 type PushBasedLogExportArgs struct {
 	// The name of the bucket to which the agent sends the logs to.
 	BucketName pulumi.StringInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// ID of the AWS IAM role that is used to write to the S3 bucket.
 	IamRoleId pulumi.StringInput
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
@@ -292,6 +305,11 @@ func (o PushBasedLogExportOutput) BucketName() pulumi.StringOutput {
 // Date and time that this feature was enabled on.
 func (o PushBasedLogExportOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *PushBasedLogExport) pulumi.StringOutput { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o PushBasedLogExportOutput) DeleteOnCreateTimeout() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PushBasedLogExport) pulumi.BoolOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolOutput)
 }
 
 // ID of the AWS IAM role that is used to write to the S3 bucket.

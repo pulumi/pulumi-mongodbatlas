@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSnapshotRestoreJob
- *
  * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -132,8 +130,6 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
     readonly timestamp: string;
 }
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSnapshotRestoreJob
- *
  * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

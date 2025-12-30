@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedSettingsIdentityProvider
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedSettingsIdentityProvider
-        /// 
         /// `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
         /// 
         /// ## Example Usage
@@ -55,8 +53,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProviderResult>("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args ?? new GetFederatedSettingsIdentityProviderArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedSettingsIdentityProvider
-        /// 
         /// `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
         /// 
         /// ## Example Usage
@@ -98,8 +94,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProviderResult>("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args ?? new GetFederatedSettingsIdentityProviderInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedSettingsIdentityProvider
-        /// 
         /// `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
         /// 
         /// ## Example Usage

@@ -17,8 +17,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.ThirdPartyIntegration
- * 
  * `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -64,6 +62,9 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### Further Examples
+ * - Third-Party Integration Examples
  * 
  * ## Import
  * 

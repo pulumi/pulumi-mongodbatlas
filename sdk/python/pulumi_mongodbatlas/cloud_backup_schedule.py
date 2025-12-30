@@ -40,11 +40,11 @@ class CloudBackupScheduleArgs:
         The set of arguments for constructing a CloudBackupSchedule resource.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
-        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. See below
         :param pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs'] policy_item_daily: Daily policy item. See below
         :param pulumi.Input['CloudBackupSchedulePolicyItemHourlyArgs'] policy_item_hourly: Hourly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]] policy_item_monthlies: Monthly policy item. See below
@@ -112,7 +112,7 @@ class CloudBackupScheduleArgs:
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
         * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         """
@@ -138,7 +138,7 @@ class CloudBackupScheduleArgs:
     @pulumi.getter
     def export(self) -> Optional[pulumi.Input['CloudBackupScheduleExportArgs']]:
         """
-        Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        Policy for automatically exporting Cloud Backup Snapshots. See below
         """
         return pulumi.get(self, "export")
 
@@ -287,13 +287,13 @@ class _CloudBackupScheduleState:
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSchedule resources.
-        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[_builtins.str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        :param pulumi.Input['CloudBackupScheduleExportArgs'] export: Policy for automatically exporting Cloud Backup Snapshots. See below
         :param pulumi.Input[_builtins.str] id_policy: Unique identifier of the backup policy.
         :param pulumi.Input[_builtins.str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
         :param pulumi.Input['CloudBackupSchedulePolicyItemDailyArgs'] policy_item_daily: Daily policy item. See below
@@ -348,7 +348,7 @@ class _CloudBackupScheduleState:
     @pulumi.getter(name="autoExportEnabled")
     def auto_export_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
         * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         """
@@ -398,7 +398,7 @@ class _CloudBackupScheduleState:
     @pulumi.getter
     def export(self) -> Optional[pulumi.Input['CloudBackupScheduleExportArgs']]:
         """
-        Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        Policy for automatically exporting Cloud Backup Snapshots. See below
         """
         return pulumi.get(self, "export")
 
@@ -594,12 +594,12 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict']]]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. See below
         :param pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']] policy_item_daily: Daily policy item. See below
         :param pulumi.Input[Union['CloudBackupSchedulePolicyItemHourlyArgs', 'CloudBackupSchedulePolicyItemHourlyArgsDict']] policy_item_hourly: Hourly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Monthly policy item. See below
@@ -723,13 +723,13 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         :param pulumi.Input[_builtins.str] cluster_id: Unique identifier of the Atlas cluster.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupScheduleCopySettingArgs', 'CloudBackupScheduleCopySettingArgsDict']]]] copy_settings: List that contains a document for each copy setting item in the desired backup policy. See below
-        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        :param pulumi.Input[Union['CloudBackupScheduleExportArgs', 'CloudBackupScheduleExportArgsDict']] export: Policy for automatically exporting Cloud Backup Snapshots. See below
         :param pulumi.Input[_builtins.str] id_policy: Unique identifier of the backup policy.
         :param pulumi.Input[_builtins.str] next_snapshot: Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
         :param pulumi.Input[Union['CloudBackupSchedulePolicyItemDailyArgs', 'CloudBackupSchedulePolicyItemDailyArgsDict']] policy_item_daily: Daily policy item. See below
@@ -769,9 +769,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="autoExportEnabled")
-    def auto_export_enabled(self) -> pulumi.Output[_builtins.bool]:
+    def auto_export_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+        Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
         * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
         """
@@ -803,9 +803,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def export(self) -> pulumi.Output['outputs.CloudBackupScheduleExport']:
+    def export(self) -> pulumi.Output[Optional['outputs.CloudBackupScheduleExport']]:
         """
-        Policy for automatically exporting Cloud Backup Snapshots. `auto_export_enabled` must be set to true when defining this attribute. See below
+        Policy for automatically exporting Cloud Backup Snapshots. See below
         """
         return pulumi.get(self, "export")
 

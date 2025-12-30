@@ -376,8 +376,6 @@ class NetworkContainer(pulumi.CustomResource):
                  regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        ## # Resource: NetworkContainer
-
         `NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. You must delete network peering containers before creating clusters in your project. You can't delete a network peering container if your project contains clusters. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.
 
          Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `container_id`).
@@ -431,6 +429,9 @@ class NetworkContainer(pulumi.CustomResource):
             provider_name="AZURE",
             region="US_EAST_2")
         ```
+
+        ### Further Examples
+        - GCP and MongoDB Atlas VPC Peering
 
         ## Import
 
@@ -464,8 +465,6 @@ class NetworkContainer(pulumi.CustomResource):
                  args: NetworkContainerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: NetworkContainer
-
         `NetworkContainer` provides a Network Peering Container resource. The resource lets you create, edit and delete network peering containers. You must delete network peering containers before creating clusters in your project. You can't delete a network peering container if your project contains clusters. The resource requires your Project ID.  Each cloud provider requires slightly different attributes so read the argument reference carefully.
 
          Network peering container is a general term used to describe any cloud providers' VPC/VNet concept.  Containers only need to be created if the peering connection to the cloud provider will be created before the first cluster that requires the container.  If the cluster has been/will be created first Atlas automatically creates the required container per the "containers per cloud provider" information that follows (in this case you can obtain the container id from the cluster resource attribute `container_id`).
@@ -519,6 +518,9 @@ class NetworkContainer(pulumi.CustomResource):
             provider_name="AZURE",
             region="US_EAST_2")
         ```
+
+        ### Further Examples
+        - GCP and MongoDB Atlas VPC Peering
 
         ## Import
 

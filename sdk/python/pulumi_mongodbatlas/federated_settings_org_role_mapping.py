@@ -186,8 +186,6 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                  role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
                  __props__=None):
         """
-        ## # Resource: FederatedSettingsOrgRoleMapping
-
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
 
         ## Example Usage
@@ -230,6 +228,9 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                 },
             ])
         ```
+
+        ### Further Examples
+        - Okta and MongoDB Atlas Federated Settings Configuration
 
         ## Import
 
@@ -254,8 +255,6 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                  args: FederatedSettingsOrgRoleMappingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: FederatedSettingsOrgRoleMapping
-
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
 
         ## Example Usage
@@ -298,6 +297,9 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                 },
             ])
         ```
+
+        ### Further Examples
+        - Okta and MongoDB Atlas Federated Settings Configuration
 
         ## Import
 

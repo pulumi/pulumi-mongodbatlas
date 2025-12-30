@@ -15,9 +15,17 @@ public final class CloudProviderAccessAuthorizationGcpArgs extends com.pulumi.re
 
     public static final CloudProviderAccessAuthorizationGcpArgs Empty = new CloudProviderAccessAuthorizationGcpArgs();
 
+    /**
+     * Email address for the Google Service Account created by Atlas.
+     * 
+     */
     @Import(name="serviceAccountForAtlas")
     private @Nullable Output<String> serviceAccountForAtlas;
 
+    /**
+     * @return Email address for the Google Service Account created by Atlas.
+     * 
+     */
     public Optional<Output<String>> serviceAccountForAtlas() {
         return Optional.ofNullable(this.serviceAccountForAtlas);
     }
@@ -46,11 +54,23 @@ public final class CloudProviderAccessAuthorizationGcpArgs extends com.pulumi.re
             $ = new CloudProviderAccessAuthorizationGcpArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param serviceAccountForAtlas Email address for the Google Service Account created by Atlas.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccountForAtlas(@Nullable Output<String> serviceAccountForAtlas) {
             $.serviceAccountForAtlas = serviceAccountForAtlas;
             return this;
         }
 
+        /**
+         * @param serviceAccountForAtlas Email address for the Google Service Account created by Atlas.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccountForAtlas(String serviceAccountForAtlas) {
             return serviceAccountForAtlas(Output.of(serviceAccountForAtlas));
         }

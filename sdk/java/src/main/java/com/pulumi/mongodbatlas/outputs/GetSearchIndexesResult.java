@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexesResultSynonym;
+import com.pulumi.mongodbatlas.outputs.GetSearchIndexesResultTypeSet;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -45,17 +46,22 @@ public final class GetSearchIndexesResult {
      */
     private String indexId;
     /**
-     * @return Flag indicating whether the index uses dynamic or static mappings.
+     * @return Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `mappingsDynamicConfig`.
      * 
      */
     private Boolean mappingsDynamic;
+    /**
+     * @return JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    private String mappingsDynamicConfig;
     /**
      * @return Object containing one or more field specifications.
      * 
      */
     private String mappingsFields;
     /**
-     * @return Name of the index.
+     * @return Type set name.
      * 
      */
     private String name;
@@ -88,6 +94,11 @@ public final class GetSearchIndexesResult {
      */
     private List<GetSearchIndexesResultSynonym> synonyms;
     private String type;
+    /**
+     * @return Set of type set definitions (when present). Each item includes:
+     * 
+     */
+    private List<GetSearchIndexesResultTypeSet> typeSets;
 
     private GetSearchIndexesResult() {}
     /**
@@ -136,11 +147,18 @@ public final class GetSearchIndexesResult {
         return this.indexId;
     }
     /**
-     * @return Flag indicating whether the index uses dynamic or static mappings.
+     * @return Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `mappingsDynamicConfig`.
      * 
      */
     public Boolean mappingsDynamic() {
         return this.mappingsDynamic;
+    }
+    /**
+     * @return JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    public String mappingsDynamicConfig() {
+        return this.mappingsDynamicConfig;
     }
     /**
      * @return Object containing one or more field specifications.
@@ -150,7 +168,7 @@ public final class GetSearchIndexesResult {
         return this.mappingsFields;
     }
     /**
-     * @return Name of the index.
+     * @return Type set name.
      * 
      */
     public String name() {
@@ -197,6 +215,13 @@ public final class GetSearchIndexesResult {
     public String type() {
         return this.type;
     }
+    /**
+     * @return Set of type set definitions (when present). Each item includes:
+     * 
+     */
+    public List<GetSearchIndexesResultTypeSet> typeSets() {
+        return this.typeSets;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -215,6 +240,7 @@ public final class GetSearchIndexesResult {
         private String fields;
         private String indexId;
         private Boolean mappingsDynamic;
+        private String mappingsDynamicConfig;
         private String mappingsFields;
         private String name;
         private String projectId;
@@ -223,6 +249,7 @@ public final class GetSearchIndexesResult {
         private String storedSource;
         private List<GetSearchIndexesResultSynonym> synonyms;
         private String type;
+        private List<GetSearchIndexesResultTypeSet> typeSets;
         public Builder() {}
         public Builder(GetSearchIndexesResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -234,6 +261,7 @@ public final class GetSearchIndexesResult {
     	      this.fields = defaults.fields;
     	      this.indexId = defaults.indexId;
     	      this.mappingsDynamic = defaults.mappingsDynamic;
+    	      this.mappingsDynamicConfig = defaults.mappingsDynamicConfig;
     	      this.mappingsFields = defaults.mappingsFields;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
@@ -242,6 +270,7 @@ public final class GetSearchIndexesResult {
     	      this.storedSource = defaults.storedSource;
     	      this.synonyms = defaults.synonyms;
     	      this.type = defaults.type;
+    	      this.typeSets = defaults.typeSets;
         }
 
         @CustomType.Setter
@@ -306,6 +335,14 @@ public final class GetSearchIndexesResult {
               throw new MissingRequiredPropertyException("GetSearchIndexesResult", "mappingsDynamic");
             }
             this.mappingsDynamic = mappingsDynamic;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder mappingsDynamicConfig(String mappingsDynamicConfig) {
+            if (mappingsDynamicConfig == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "mappingsDynamicConfig");
+            }
+            this.mappingsDynamicConfig = mappingsDynamicConfig;
             return this;
         }
         @CustomType.Setter
@@ -375,6 +412,17 @@ public final class GetSearchIndexesResult {
             this.type = type;
             return this;
         }
+        @CustomType.Setter
+        public Builder typeSets(List<GetSearchIndexesResultTypeSet> typeSets) {
+            if (typeSets == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexesResult", "typeSets");
+            }
+            this.typeSets = typeSets;
+            return this;
+        }
+        public Builder typeSets(GetSearchIndexesResultTypeSet... typeSets) {
+            return typeSets(List.of(typeSets));
+        }
         public GetSearchIndexesResult build() {
             final var _resultValue = new GetSearchIndexesResult();
             _resultValue.analyzer = analyzer;
@@ -385,6 +433,7 @@ public final class GetSearchIndexesResult {
             _resultValue.fields = fields;
             _resultValue.indexId = indexId;
             _resultValue.mappingsDynamic = mappingsDynamic;
+            _resultValue.mappingsDynamicConfig = mappingsDynamicConfig;
             _resultValue.mappingsFields = mappingsFields;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
@@ -393,6 +442,7 @@ public final class GetSearchIndexesResult {
             _resultValue.storedSource = storedSource;
             _resultValue.synonyms = synonyms;
             _resultValue.type = type;
+            _resultValue.typeSets = typeSets;
             return _resultValue;
         }
     }

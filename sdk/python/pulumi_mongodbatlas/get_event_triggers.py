@@ -84,8 +84,6 @@ def get_event_triggers(app_id: Optional[_builtins.str] = None,
                        project_id: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventTriggersResult:
     """
-    ## # Data Source: get_event_triggers
-
     `get_event_triggers` describes all Event Triggers.
 
 
@@ -108,8 +106,6 @@ def get_event_triggers_output(app_id: Optional[pulumi.Input[_builtins.str]] = No
                               project_id: Optional[pulumi.Input[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEventTriggersResult]:
     """
-    ## # Data Source: get_event_triggers
-
     `get_event_triggers` describes all Event Triggers.
 
 

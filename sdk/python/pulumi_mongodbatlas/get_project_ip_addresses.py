@@ -77,8 +77,6 @@ class AwaitableGetProjectIpAddressesResult(GetProjectIpAddressesResult):
 def get_project_ip_addresses(project_id: Optional[_builtins.str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectIpAddressesResult:
     """
-    ## # Data Source: get_project_ip_addresses
-
     `get_project_ip_addresses` returns the IP addresses in a project categorized by services.
 
     ## Example Usage
@@ -107,8 +105,6 @@ def get_project_ip_addresses(project_id: Optional[_builtins.str] = None,
 def get_project_ip_addresses_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectIpAddressesResult]:
     """
-    ## # Data Source: get_project_ip_addresses
-
     `get_project_ip_addresses` returns the IP addresses in a project categorized by services.
 
     ## Example Usage

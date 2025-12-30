@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetFlexClusters
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexClusters
-        /// 
         /// `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
         /// 
         /// **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
@@ -67,8 +65,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFlexClustersResult>("mongodbatlas:index/getFlexClusters:getFlexClusters", args ?? new GetFlexClustersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexClusters
-        /// 
         /// `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
         /// 
         /// **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
@@ -122,8 +118,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetFlexClustersResult>("mongodbatlas:index/getFlexClusters:getFlexClusters", args ?? new GetFlexClustersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFlexClusters
-        /// 
         /// `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
         /// 
         /// **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.

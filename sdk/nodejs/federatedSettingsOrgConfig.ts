@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.FederatedSettingsOrgConfig
- *
  * `mongodbatlas.FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
  *
  * ## Example Usage
@@ -32,6 +30,10 @@ import * as utilities from "./utilities";
  *     federationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.id,
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Azure Federated Identity Provider with Org Config
+ * - Federated Settings Org Role Mappings
  *
  * ## Import
  *

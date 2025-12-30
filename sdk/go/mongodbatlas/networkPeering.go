@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: NetworkPeering
-//
 // `NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
 //
 // Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -45,7 +43,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -98,7 +96,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -203,6 +201,10 @@ type NetworkPeering struct {
 	ConnectionId pulumi.StringOutput `pulumi:"connectionId"`
 	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId pulumi.StringOutput `pulumi:"containerId"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	//
+	// **AWS ONLY:**
+	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// When `"status" : "FAILED"`, Atlas provides a description of the error.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
 	// Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
@@ -220,8 +222,6 @@ type NetworkPeering struct {
 	// The unique ID for the MongoDB Atlas project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-	//
-	// **AWS ONLY:**
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringOutput `pulumi:"resourceGroupName"`
@@ -296,6 +296,10 @@ type networkPeeringState struct {
 	ConnectionId *string `pulumi:"connectionId"`
 	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId *string `pulumi:"containerId"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	//
+	// **AWS ONLY:**
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// When `"status" : "FAILED"`, Atlas provides a description of the error.
 	ErrorMessage *string `pulumi:"errorMessage"`
 	// Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
@@ -313,8 +317,6 @@ type networkPeeringState struct {
 	// The unique ID for the MongoDB Atlas project.
 	ProjectId *string `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-	//
-	// **AWS ONLY:**
 	ProviderName *string `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
@@ -351,6 +353,10 @@ type NetworkPeeringState struct {
 	ConnectionId pulumi.StringPtrInput
 	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	//
+	// **AWS ONLY:**
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// When `"status" : "FAILED"`, Atlas provides a description of the error.
 	ErrorMessage pulumi.StringPtrInput
 	// Description of the Atlas error when `status` is `Failed`, Otherwise, Atlas returns `null`.
@@ -368,8 +374,6 @@ type NetworkPeeringState struct {
 	// The unique ID for the MongoDB Atlas project.
 	ProjectId pulumi.StringPtrInput
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-	//
-	// **AWS ONLY:**
 	ProviderName pulumi.StringPtrInput
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringPtrInput
@@ -407,6 +411,10 @@ type networkPeeringArgs struct {
 	AzureSubscriptionId *string `pulumi:"azureSubscriptionId"`
 	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId string `pulumi:"containerId"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	//
+	// **AWS ONLY:**
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Name of the network peer to which Atlas connects.
@@ -416,8 +424,6 @@ type networkPeeringArgs struct {
 	// The unique ID for the MongoDB Atlas project.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-	//
-	// **AWS ONLY:**
 	ProviderName string `pulumi:"providerName"`
 	// Name of your Azure resource group.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
@@ -448,6 +454,10 @@ type NetworkPeeringArgs struct {
 	AzureSubscriptionId pulumi.StringPtrInput
 	// Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the networkContainer resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
 	ContainerId pulumi.StringInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	//
+	// **AWS ONLY:**
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// GCP project ID of the owner of the network peer.
 	GcpProjectId pulumi.StringPtrInput
 	// Name of the network peer to which Atlas connects.
@@ -457,8 +467,6 @@ type NetworkPeeringArgs struct {
 	// The unique ID for the MongoDB Atlas project.
 	ProjectId pulumi.StringInput
 	// Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-	//
-	// **AWS ONLY:**
 	ProviderName pulumi.StringInput
 	// Name of your Azure resource group.
 	ResourceGroupName pulumi.StringPtrInput
@@ -607,6 +615,13 @@ func (o NetworkPeeringOutput) ContainerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.ContainerId }).(pulumi.StringOutput)
 }
 
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+//
+// **AWS ONLY:**
+func (o NetworkPeeringOutput) DeleteOnCreateTimeout() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NetworkPeering) pulumi.BoolPtrOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolPtrOutput)
+}
+
 // When `"status" : "FAILED"`, Atlas provides a description of the error.
 func (o NetworkPeeringOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
@@ -645,8 +660,6 @@ func (o NetworkPeeringOutput) ProjectId() pulumi.StringOutput {
 }
 
 // Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-//
-// **AWS ONLY:**
 func (o NetworkPeeringOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.ProviderName }).(pulumi.StringOutput)
 }

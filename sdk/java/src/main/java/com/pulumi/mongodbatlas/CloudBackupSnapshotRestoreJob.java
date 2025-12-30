@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.AdvancedCluster;
  * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
  * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
- * import com.pulumi.mongodbatlas.CloudProviderSnapshot;
- * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()
+ *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .description("myDescription")
@@ -103,8 +103,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.AdvancedCluster;
  * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
  * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
- * import com.pulumi.mongodbatlas.CloudProviderSnapshot;
- * import com.pulumi.mongodbatlas.CloudProviderSnapshotArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshot;
+ * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJob;
  * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
@@ -139,7 +139,7 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         var test = new CloudProviderSnapshot("test", CloudProviderSnapshotArgs.builder()
+ *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()
  *             .projectId(myCluster.projectId())
  *             .clusterName(myCluster.name())
  *             .description("myDescription")
@@ -235,7 +235,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * ### Available complete examples
+ * ### Further Examples
  * - Restore from backup snapshot at point in time
  * - Restore from backup snapshot using an advanced cluster resource
  * 

@@ -124,9 +124,9 @@ def get_atlas_users(items_per_page: Optional[_builtins.int] = None,
                     team_id: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAtlasUsersResult:
     """
-    ## # Data Source: atlas_users
-
     `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+
+    > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `Organization`, `Project`, or `Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
@@ -194,9 +194,9 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[_built
                            team_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAtlasUsersResult]:
     """
-    ## # Data Source: atlas_users
-
     `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.
+
+    > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `Organization`, `Project`, or `Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 

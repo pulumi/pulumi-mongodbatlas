@@ -19,8 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.GlobalClusterConfig
- * 
  * `mongodbatlas.GlobalClusterConfig` provides a Global Cluster Configuration resource.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -138,24 +136,6 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
      */
     public Output<String> clusterName() {
         return this.clusterName;
-    }
-    /**
-     * (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please transition to `customZoneMappingZoneId`. To learn more, see our examples, documentation, and 1.18.0 migration guide at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    @Export(name="customZoneMapping", refs={Map.class,String.class}, tree="[0,1,1]")
-    private Output<Map<String,String>> customZoneMapping;
-
-    /**
-     * @return (Deprecated) A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.id`. This attribute is deprecated, use `customZoneMappingZoneId` instead. This attribute is not set when a cluster uses independent shard scaling. To learn more, see the Sharding Configuration guide.
-     * 
-     */
-    public Output<Map<String,String>> customZoneMapping() {
-        return this.customZoneMapping;
     }
     /**
      * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.

@@ -13,6 +13,8 @@ import com.pulumi.mongodbatlas.outputs.GetStreamConnectionSecurity;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetStreamConnectionResult {
@@ -58,7 +60,13 @@ public final class GetStreamConnectionResult {
      */
     private Map<String,String> headers;
     private String id;
-    private String instanceName;
+    /**
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    private @Nullable String instanceName;
     /**
      * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
      * 
@@ -80,6 +88,7 @@ public final class GetStreamConnectionResult {
      * 
      */
     private String url;
+    private @Nullable String workspaceName;
 
     private GetStreamConnectionResult() {}
     /**
@@ -144,8 +153,14 @@ public final class GetStreamConnectionResult {
     public String id() {
         return this.id;
     }
-    public String instanceName() {
-        return this.instanceName;
+    /**
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<String> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
     /**
      * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
@@ -178,6 +193,9 @@ public final class GetStreamConnectionResult {
     public String url() {
         return this.url;
     }
+    public Optional<String> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -198,12 +216,13 @@ public final class GetStreamConnectionResult {
         private GetStreamConnectionDbRoleToExecute dbRoleToExecute;
         private Map<String,String> headers;
         private String id;
-        private String instanceName;
+        private @Nullable String instanceName;
         private GetStreamConnectionNetworking networking;
         private String projectId;
         private GetStreamConnectionSecurity security;
         private String type;
         private String url;
+        private @Nullable String workspaceName;
         public Builder() {}
         public Builder(GetStreamConnectionResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -223,6 +242,7 @@ public final class GetStreamConnectionResult {
     	      this.security = defaults.security;
     	      this.type = defaults.type;
     	      this.url = defaults.url;
+    	      this.workspaceName = defaults.workspaceName;
         }
 
         @CustomType.Setter
@@ -306,10 +326,8 @@ public final class GetStreamConnectionResult {
             return this;
         }
         @CustomType.Setter
-        public Builder instanceName(String instanceName) {
-            if (instanceName == null) {
-              throw new MissingRequiredPropertyException("GetStreamConnectionResult", "instanceName");
-            }
+        public Builder instanceName(@Nullable String instanceName) {
+
             this.instanceName = instanceName;
             return this;
         }
@@ -353,6 +371,12 @@ public final class GetStreamConnectionResult {
             this.url = url;
             return this;
         }
+        @CustomType.Setter
+        public Builder workspaceName(@Nullable String workspaceName) {
+
+            this.workspaceName = workspaceName;
+            return this;
+        }
         public GetStreamConnectionResult build() {
             final var _resultValue = new GetStreamConnectionResult();
             _resultValue.authentication = authentication;
@@ -371,6 +395,7 @@ public final class GetStreamConnectionResult {
             _resultValue.security = security;
             _resultValue.type = type;
             _resultValue.url = url;
+            _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }
     }

@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.Project
- *
  * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
  *
  * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
@@ -24,19 +22,6 @@ import * as utilities from "./utilities";
  *     name: "project-name",
  *     orgId: test.then(test => test.orgId),
  *     projectOwnerId: "<OWNER_ACCOUNT_ID>",
- *     teams: [
- *         {
- *             teamId: "5e0fa8c99ccf641c722fe645",
- *             roleNames: ["GROUP_OWNER"],
- *         },
- *         {
- *             teamId: "5e1dd7b4f2a30ba80a70cd4rw",
- *             roleNames: [
- *                 "GROUP_READ_ONLY",
- *                 "GROUP_DATA_ACCESS_READ_WRITE",
- *             ],
- *         },
- *     ],
  *     limits: [
  *         {
  *             name: "atlas.project.deployment.clusters",
@@ -56,6 +41,9 @@ import * as utilities from "./utilities";
  *     isSlowOperationThresholdingEnabled: true,
  * });
  * ```
+ *
+ * ### Further Examples
+ * - Atlas Project with custom limits
  *
  * ## Import
  *
@@ -159,6 +147,9 @@ export class Project extends pulumi.CustomResource {
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
      */
     declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     */
     declare public readonly teams: pulumi.Output<outputs.ProjectTeam[] | undefined>;
     /**
      * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
@@ -294,6 +285,9 @@ export interface ProjectState {
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     */
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
      * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
@@ -356,6 +350,9 @@ export interface ProjectArgs {
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
      */
     tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
+     */
     teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
     /**
      * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.

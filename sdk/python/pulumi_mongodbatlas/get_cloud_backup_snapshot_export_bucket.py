@@ -141,8 +141,6 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[_builtins
                                             project_id: Optional[_builtins.str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupSnapshotExportBucketResult:
     """
-    ## # Data Source: CloudBackupSnapshotExportBucket
-
     `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -186,8 +184,6 @@ def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pu
                                                    project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketResult]:
     """
-    ## # Data Source: CloudBackupSnapshotExportBucket
-
     `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

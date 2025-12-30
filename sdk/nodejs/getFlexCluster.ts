@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.FlexCluster
- *
  * `mongodbatlas.FlexCluster` describes a flex cluster.
  *
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.
@@ -120,8 +118,6 @@ export interface GetFlexClusterResult {
     readonly versionReleaseSystem: string;
 }
 /**
- * ## # Data Source: mongodbatlas.FlexCluster
- *
  * `mongodbatlas.FlexCluster` describes a flex cluster.
  *
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` data source instead of `mongodbatlas.FlexCluster` data source to retrieve Flex clusters. The `mongodbatlas.AdvancedCluster` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster data source.

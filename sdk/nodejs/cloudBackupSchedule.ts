@@ -45,11 +45,11 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
     }
 
     /**
-     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      */
-    declare public readonly autoExportEnabled: pulumi.Output<boolean>;
+    declare public readonly autoExportEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Unique identifier of the Atlas cluster.
      */
@@ -63,9 +63,9 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      */
     declare public readonly copySettings: pulumi.Output<outputs.CloudBackupScheduleCopySetting[] | undefined>;
     /**
-     * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
-    declare public readonly export: pulumi.Output<outputs.CloudBackupScheduleExport>;
+    declare public readonly export: pulumi.Output<outputs.CloudBackupScheduleExport | undefined>;
     /**
      * Unique identifier of the backup policy.
      */
@@ -184,7 +184,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
  */
 export interface CloudBackupScheduleState {
     /**
-     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      */
@@ -202,7 +202,7 @@ export interface CloudBackupScheduleState {
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
     /**
-     * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
     export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**
@@ -261,7 +261,7 @@ export interface CloudBackupScheduleState {
  */
 export interface CloudBackupScheduleArgs {
     /**
-     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      */
@@ -275,7 +275,7 @@ export interface CloudBackupScheduleArgs {
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
     /**
-     * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
     export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
     /**

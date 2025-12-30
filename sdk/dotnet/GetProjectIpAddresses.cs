@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectIpAddresses
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getProjectIpAddresses
-        /// 
         /// `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
         /// 
         /// ## Example Usage
@@ -43,8 +41,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectIpAddressesResult>("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args ?? new GetProjectIpAddressesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getProjectIpAddresses
-        /// 
         /// `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
         /// 
         /// ## Example Usage
@@ -74,8 +70,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectIpAddressesResult>("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args ?? new GetProjectIpAddressesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getProjectIpAddresses
-        /// 
         /// `mongodbatlas.getProjectIpAddresses` returns the IP addresses in a project categorized by services.
         /// 
         /// ## Example Usage

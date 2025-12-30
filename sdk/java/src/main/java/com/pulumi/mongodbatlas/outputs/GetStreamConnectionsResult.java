@@ -43,7 +43,7 @@ public final class GetStreamConnectionsResult {
      */
     private Map<String,String> config;
     /**
-     * @return Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * @return Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      * 
      */
     private String connectionName;
@@ -59,9 +59,13 @@ public final class GetStreamConnectionsResult {
     private Map<String,String> headers;
     private String id;
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private String instanceName;
     /**
      * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
@@ -88,6 +92,13 @@ public final class GetStreamConnectionsResult {
      * 
      */
     private String url;
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     * 
+     */
+    private String workspaceName;
 
     private GetStreamConnectionsResult() {}
     /**
@@ -129,7 +140,7 @@ public final class GetStreamConnectionsResult {
         return this.config;
     }
     /**
-     * @return Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * @return Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      * 
      */
     public String connectionName() {
@@ -153,9 +164,13 @@ public final class GetStreamConnectionsResult {
         return this.id;
     }
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     public String instanceName() {
         return this.instanceName;
     }
@@ -194,6 +209,15 @@ public final class GetStreamConnectionsResult {
     public String url() {
         return this.url;
     }
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     * 
+     */
+    public String workspaceName() {
+        return this.workspaceName;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -220,6 +244,7 @@ public final class GetStreamConnectionsResult {
         private GetStreamConnectionsResultSecurity security;
         private String type;
         private String url;
+        private String workspaceName;
         public Builder() {}
         public Builder(GetStreamConnectionsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -239,6 +264,7 @@ public final class GetStreamConnectionsResult {
     	      this.security = defaults.security;
     	      this.type = defaults.type;
     	      this.url = defaults.url;
+    	      this.workspaceName = defaults.workspaceName;
         }
 
         @CustomType.Setter
@@ -369,6 +395,14 @@ public final class GetStreamConnectionsResult {
             this.url = url;
             return this;
         }
+        @CustomType.Setter
+        public Builder workspaceName(String workspaceName) {
+            if (workspaceName == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "workspaceName");
+            }
+            this.workspaceName = workspaceName;
+            return this;
+        }
         public GetStreamConnectionsResult build() {
             final var _resultValue = new GetStreamConnectionsResult();
             _resultValue.authentication = authentication;
@@ -387,6 +421,7 @@ public final class GetStreamConnectionsResult {
             _resultValue.security = security;
             _resultValue.type = type;
             _resultValue.url = url;
+            _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }
     }

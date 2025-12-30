@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getStreamConnections
- *
  * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
  *
  * ## Example Usage
@@ -19,7 +17,7 @@ import * as utilities from "./utilities";
  *
  * const test = mongodbatlas.getStreamConnections({
  *     projectId: "<PROJECT_ID>",
- *     instanceName: "<INSTANCE_NAME>",
+ *     workspaceName: "<WORKSPACE_NAME>",
  * });
  * ```
  */
@@ -30,6 +28,7 @@ export function getStreamConnections(args: GetStreamConnectionsArgs, opts?: pulu
         "itemsPerPage": args.itemsPerPage,
         "pageNum": args.pageNum,
         "projectId": args.projectId,
+        "workspaceName": args.workspaceName,
     }, opts);
 }
 
@@ -38,9 +37,11 @@ export function getStreamConnections(args: GetStreamConnectionsArgs, opts?: pulu
  */
 export interface GetStreamConnectionsArgs {
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName: string;
+    instanceName?: string;
     /**
      * Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
      */
@@ -53,6 +54,12 @@ export interface GetStreamConnectionsArgs {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: string;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     */
+    workspaceName?: string;
 }
 
 /**
@@ -64,9 +71,9 @@ export interface GetStreamConnectionsResult {
      */
     readonly id: string;
     /**
-     * Human-readable label that identifies the stream instance.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    readonly instanceName: string;
+    readonly instanceName?: string;
     readonly itemsPerPage?: number;
     readonly pageNum?: number;
     /**
@@ -81,10 +88,12 @@ export interface GetStreamConnectionsResult {
      * Count of the total number of items in the result set. The count might be greater than the number of objects in the results array if the entire result set is paginated.
      */
     readonly totalCount: number;
+    /**
+     * Label that identifies the stream processing workspace.
+     */
+    readonly workspaceName?: string;
 }
 /**
- * ## # Data Source: mongodbatlas.getStreamConnections
- *
  * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.
  *
  * ## Example Usage
@@ -95,7 +104,7 @@ export interface GetStreamConnectionsResult {
  *
  * const test = mongodbatlas.getStreamConnections({
  *     projectId: "<PROJECT_ID>",
- *     instanceName: "<INSTANCE_NAME>",
+ *     workspaceName: "<WORKSPACE_NAME>",
  * });
  * ```
  */
@@ -106,6 +115,7 @@ export function getStreamConnectionsOutput(args: GetStreamConnectionsOutputArgs,
         "itemsPerPage": args.itemsPerPage,
         "pageNum": args.pageNum,
         "projectId": args.projectId,
+        "workspaceName": args.workspaceName,
     }, opts);
 }
 
@@ -114,9 +124,11 @@ export function getStreamConnectionsOutput(args: GetStreamConnectionsOutputArgs,
  */
 export interface GetStreamConnectionsOutputArgs {
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string>;
     /**
      * Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
      */
@@ -129,4 +141,10 @@ export interface GetStreamConnectionsOutputArgs {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+     */
+    workspaceName?: pulumi.Input<string>;
 }

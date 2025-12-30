@@ -7,9 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getClusters
- *
  * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+ *
+ * > **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.getAdvancedClusters`. For more details, see our migration guide.
  *
  * > **IMPORTANT:**
  * <br> &#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
@@ -79,9 +79,9 @@ export interface GetClustersResult {
     readonly results: outputs.GetClustersResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getClusters
- *
  * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+ *
+ * > **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.getAdvancedClusters`. For more details, see our migration guide.
  *
  * > **IMPORTANT:**
  * <br> &#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.

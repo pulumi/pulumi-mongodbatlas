@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetEncryptionAtRestPrivateEndpoints
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
-        /// 
         /// `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
         /// 
         /// ## Example Usage
@@ -72,8 +70,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEncryptionAtRestPrivateEndpointsResult>("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", args ?? new GetEncryptionAtRestPrivateEndpointsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
-        /// 
         /// `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
         /// 
         /// ## Example Usage
@@ -132,8 +128,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetEncryptionAtRestPrivateEndpointsResult>("mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints", args ?? new GetEncryptionAtRestPrivateEndpointsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getEncryptionAtRestPrivateEndpoints
-        /// 
         /// `mongodbatlas.getEncryptionAtRestPrivateEndpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.
         /// 
         /// ## Example Usage

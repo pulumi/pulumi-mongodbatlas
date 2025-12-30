@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetResourcePolicy
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ResourcePolicy
-        /// 
         /// `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
         /// 
         /// ## Example Usage
@@ -22,8 +20,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetResourcePolicyResult>("mongodbatlas:index/getResourcePolicy:getResourcePolicy", args ?? new GetResourcePolicyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ResourcePolicy
-        /// 
         /// `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
         /// 
         /// ## Example Usage
@@ -32,8 +28,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetResourcePolicyResult>("mongodbatlas:index/getResourcePolicy:getResourcePolicy", args ?? new GetResourcePolicyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.ResourcePolicy
-        /// 
         /// `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
         /// 
         /// ## Example Usage

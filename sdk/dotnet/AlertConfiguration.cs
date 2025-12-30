@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.AlertConfiguration
-    /// 
     /// `mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -214,6 +212,9 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Further Examples
+    /// - Alert Configuration
+    /// 
     /// ## Import
     /// 
     /// Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
@@ -272,6 +273,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+        /// </summary>
+        [Output("severityOverride")]
+        public Output<string?> SeverityOverride { get; private set; } = null!;
 
         [Output("thresholdConfig")]
         public Output<Outputs.AlertConfigurationThresholdConfig?> ThresholdConfig { get; private set; } = null!;
@@ -370,6 +377,12 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+        /// </summary>
+        [Input("severityOverride")]
+        public Input<string>? SeverityOverride { get; set; }
+
         [Input("thresholdConfig")]
         public Input<Inputs.AlertConfigurationThresholdConfigArgs>? ThresholdConfig { get; set; }
 
@@ -434,6 +447,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+        /// </summary>
+        [Input("severityOverride")]
+        public Input<string>? SeverityOverride { get; set; }
 
         [Input("thresholdConfig")]
         public Input<Inputs.AlertConfigurationThresholdConfigGetArgs>? ThresholdConfig { get; set; }

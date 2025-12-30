@@ -87,8 +87,6 @@ def get_network_containers(project_id: Optional[_builtins.str] = None,
                            provider_name: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkContainersResult:
     """
-    ## # Data Source: get_network_containers
-
     `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -132,8 +130,6 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[_builtins.st
                                   provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkContainersResult]:
     """
-    ## # Data Source: get_network_containers
-
     `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

@@ -147,8 +147,6 @@ def get_ldap_verify(project_id: Optional[_builtins.str] = None,
                     request_id: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLdapVerifyResult:
     """
-    ## # Data Source: LdapVerify
-
     `LdapVerify` describes a LDAP Verify.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -213,8 +211,6 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[_builtins.str]] = N
                            request_id: Optional[pulumi.Input[_builtins.str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLdapVerifyResult]:
     """
-    ## # Data Source: LdapVerify
-
     `LdapVerify` describes a LDAP Verify.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

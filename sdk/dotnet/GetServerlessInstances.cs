@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetServerlessInstances
     {
         /// <summary>
-        /// **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+        /// &gt; **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
         /// 
         /// `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
         /// 
@@ -44,7 +44,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServerlessInstancesResult>("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args ?? new GetServerlessInstancesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+        /// &gt; **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
         /// 
         /// `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
         /// 
@@ -76,7 +76,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetServerlessInstancesResult>("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args ?? new GetServerlessInstancesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+        /// &gt; **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
         /// 
         /// `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
         /// 

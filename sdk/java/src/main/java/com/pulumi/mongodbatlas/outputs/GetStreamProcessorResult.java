@@ -8,19 +8,23 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetStreamProcessorOptions;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetStreamProcessorResult {
     private String id;
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    private String instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    private @Nullable String instanceName;
     private GetStreamProcessorOptions options;
     private String pipeline;
     /**
-     * @return Human-readable label that identifies the stream processor.
+     * @return Label that identifies the stream processor.
      * 
      */
     private String processorName;
@@ -31,17 +35,20 @@ public final class GetStreamProcessorResult {
     private String projectId;
     private String state;
     private String stats;
+    private @Nullable String workspaceName;
 
     private GetStreamProcessorResult() {}
     public String id() {
         return this.id;
     }
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    public String instanceName() {
-        return this.instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<String> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
     public GetStreamProcessorOptions options() {
         return this.options;
@@ -50,7 +57,7 @@ public final class GetStreamProcessorResult {
         return this.pipeline;
     }
     /**
-     * @return Human-readable label that identifies the stream processor.
+     * @return Label that identifies the stream processor.
      * 
      */
     public String processorName() {
@@ -69,6 +76,9 @@ public final class GetStreamProcessorResult {
     public String stats() {
         return this.stats;
     }
+    public Optional<String> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -80,13 +90,14 @@ public final class GetStreamProcessorResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private String instanceName;
+        private @Nullable String instanceName;
         private GetStreamProcessorOptions options;
         private String pipeline;
         private String processorName;
         private String projectId;
         private String state;
         private String stats;
+        private @Nullable String workspaceName;
         public Builder() {}
         public Builder(GetStreamProcessorResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -98,6 +109,7 @@ public final class GetStreamProcessorResult {
     	      this.projectId = defaults.projectId;
     	      this.state = defaults.state;
     	      this.stats = defaults.stats;
+    	      this.workspaceName = defaults.workspaceName;
         }
 
         @CustomType.Setter
@@ -109,10 +121,8 @@ public final class GetStreamProcessorResult {
             return this;
         }
         @CustomType.Setter
-        public Builder instanceName(String instanceName) {
-            if (instanceName == null) {
-              throw new MissingRequiredPropertyException("GetStreamProcessorResult", "instanceName");
-            }
+        public Builder instanceName(@Nullable String instanceName) {
+
             this.instanceName = instanceName;
             return this;
         }
@@ -164,6 +174,12 @@ public final class GetStreamProcessorResult {
             this.stats = stats;
             return this;
         }
+        @CustomType.Setter
+        public Builder workspaceName(@Nullable String workspaceName) {
+
+            this.workspaceName = workspaceName;
+            return this;
+        }
         public GetStreamProcessorResult build() {
             final var _resultValue = new GetStreamProcessorResult();
             _resultValue.id = id;
@@ -174,6 +190,7 @@ public final class GetStreamProcessorResult {
             _resultValue.projectId = projectId;
             _resultValue.state = state;
             _resultValue.stats = stats;
+            _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }
     }

@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.MongodbEmployeeAccessGrant
-    /// 
     /// `mongodbatlas.MongodbEmployeeAccessGrant` provides a MongoDB Employee Access Grant resource. The resource lets you create, delete, update and import a MongoDB employee access grant.
     /// 
     /// ## Example Usage
@@ -47,6 +45,9 @@ namespace Pulumi.Mongodbatlas
     ///     };
     /// });
     /// ```
+    /// 
+    /// ### Further Examples
+    /// - Grant log access to MongoDB employees
     /// 
     /// ## Import
     /// 

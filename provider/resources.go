@@ -15,10 +15,8 @@
 package mongodbatlas
 
 import (
-	"bytes"
 	"context"
 	"fmt"
-	"os"
 	"path/filepath"
 	"regexp"
 	"unicode"
@@ -35,7 +33,7 @@ import (
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
-	"github.com/pulumi/pulumi-mongodbatlas/provider/v3/pkg/version"
+	"github.com/pulumi/pulumi-mongodbatlas/provider/v4/pkg/version"
 )
 
 // all of the token components used below.
@@ -180,15 +178,8 @@ func Provider() tfbridge.ProviderInfo {
 }
 
 func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
-	edits := []tfbridge.DocsEdit{
-		// These sections would trigger other edit rules so they must run first for discovery.
-		cleanUpOverviewSection,
-	}
-	edits = append(edits,
-		defaults...,
-	)
 	return append(
-		edits,
+		defaults,
 		skipSections(),
 	)
 }
@@ -196,6 +187,8 @@ func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 // Removes a set of sections not applicable to Pulumi
 func skipSections() tfbridge.DocsEdit {
 	headersRegexps := []*regexp.Regexp{
+		regexp.MustCompile("Version Requirements"),
+		regexp.MustCompile("MongoDB Atlas Provider Versioning Policy"),
 		regexp.MustCompile("Compatibility Matrix"),
 		regexp.MustCompile("Supported OS and Architectures"),
 		regexp.MustCompile("Helpful Links/Information"),
@@ -215,29 +208,6 @@ func skipSections() tfbridge.DocsEdit {
 			})
 		},
 	}
-}
-
-var cleanUpOverviewSection = tfbridge.DocsEdit{
-	Path: "index.md",
-	Edit: func(_ string, content []byte) ([]byte, error) {
-		replacesDir := "provider/index-md-replaces/"
-
-		input, err := os.ReadFile(replacesDir + "overview-input.md")
-		if err != nil {
-			return nil, err
-		}
-		if bytes.Contains(content, input) {
-			content = bytes.ReplaceAll(
-				content,
-				input,
-				nil)
-		} else {
-			// Hard error to ensure we keep this content up to date
-			return nil, fmt.Errorf("could not find text in upstream index.md, "+
-				"please verify file content at %s\n*****\n%s\n*****", replacesDir+"overview-input.md", string(input))
-		}
-		return content, nil
-	},
 }
 
 var noUpstreamDocs = &tfbridge.DocInfo{AllowMissing: true}

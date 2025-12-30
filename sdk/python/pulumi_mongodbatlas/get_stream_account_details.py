@@ -132,8 +132,6 @@ def get_stream_account_details(cloud_provider: Optional[_builtins.str] = None,
                                region_name: Optional[_builtins.str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamAccountDetailsResult:
     """
-    ## # Data Source: get_stream_account_details
-
     `get_stream_account_details` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
 
     ## Example Usage
@@ -178,8 +176,6 @@ def get_stream_account_details_output(cloud_provider: Optional[pulumi.Input[_bui
                                       region_name: Optional[pulumi.Input[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamAccountDetailsResult]:
     """
-    ## # Data Source: get_stream_account_details
-
     `get_stream_account_details` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.
 
     ## Example Usage

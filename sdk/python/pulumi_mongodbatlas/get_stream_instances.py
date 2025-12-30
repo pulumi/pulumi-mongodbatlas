@@ -107,9 +107,23 @@ def get_stream_instances(items_per_page: Optional[_builtins.int] = None,
                          project_id: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamInstancesResult:
     """
-    ## # Data Source: get_stream_instances
+    > **DEPRECATED:** This data source is deprecated. Please use `get_stream_workspaces` instead.
 
     `get_stream_instances` describes the stream instances defined in a project.
+
+    ## Migration to stream_workspaces
+
+    To migrate from `get_stream_instances` to `get_stream_workspaces`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # New (recommended)
+    example = mongodbatlas.get_stream_workspaces(project_id="<PROJECT_ID>")
+    # Old (deprecated)
+    example_get_stream_instances = mongodbatlas.get_stream_instances(project_id="<PROJECT_ID>")
+    ```
 
     ## Example Usage
 
@@ -144,9 +158,23 @@ def get_stream_instances_output(items_per_page: Optional[pulumi.Input[Optional[_
                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamInstancesResult]:
     """
-    ## # Data Source: get_stream_instances
+    > **DEPRECATED:** This data source is deprecated. Please use `get_stream_workspaces` instead.
 
     `get_stream_instances` describes the stream instances defined in a project.
+
+    ## Migration to stream_workspaces
+
+    To migrate from `get_stream_instances` to `get_stream_workspaces`, update your data source configuration. See Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples:
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # New (recommended)
+    example = mongodbatlas.get_stream_workspaces(project_id="<PROJECT_ID>")
+    # Old (deprecated)
+    example_get_stream_instances = mongodbatlas.get_stream_instances(project_id="<PROJECT_ID>")
+    ```
 
     ## Example Usage
 

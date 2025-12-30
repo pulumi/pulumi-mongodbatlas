@@ -71,8 +71,6 @@ def get_private_endpoint_regional_mode(enabled: Optional[_builtins.bool] = None,
                                        project_id: Optional[_builtins.str] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivateEndpointRegionalModeResult:
     """
-    ## # Data Source: private_endpoint_regional_mode
-
     `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -95,8 +93,6 @@ def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Opt
                                               project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateEndpointRegionalModeResult]:
     """
-    ## # Data Source: private_endpoint_regional_mode
-
     `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

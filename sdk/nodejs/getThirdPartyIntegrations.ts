@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getThirdPartyIntegrations
- *
  * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
  * applied across the project.
  *
@@ -71,8 +69,6 @@ export interface GetThirdPartyIntegrationsResult {
     readonly results: outputs.GetThirdPartyIntegrationsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getThirdPartyIntegrations
- *
  * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
  * applied across the project.
  *

@@ -27,7 +27,7 @@ class GetStreamConnectionsResult:
     """
     A collection of values returned by getStreamConnections.
     """
-    def __init__(__self__, id=None, instance_name=None, items_per_page=None, page_num=None, project_id=None, results=None, total_count=None):
+    def __init__(__self__, id=None, instance_name=None, items_per_page=None, page_num=None, project_id=None, results=None, total_count=None, workspace_name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -49,6 +49,9 @@ class GetStreamConnectionsResult:
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if workspace_name and not isinstance(workspace_name, str):
+            raise TypeError("Expected argument 'workspace_name' to be a str")
+        pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
     @pulumi.getter
@@ -58,10 +61,8 @@ class GetStreamConnectionsResult:
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
-    def instance_name(self) -> _builtins.str:
-        """
-        Human-readable label that identifies the stream instance.
-        """
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
+    def instance_name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "instance_name")
 
     @_builtins.property
@@ -98,6 +99,14 @@ class GetStreamConnectionsResult:
         """
         return pulumi.get(self, "total_count")
 
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> Optional[_builtins.str]:
+        """
+        Label that identifies the stream processing workspace.
+        """
+        return pulumi.get(self, "workspace_name")
+
 
 class AwaitableGetStreamConnectionsResult(GetStreamConnectionsResult):
     # pylint: disable=using-constant-test
@@ -111,17 +120,17 @@ class AwaitableGetStreamConnectionsResult(GetStreamConnectionsResult):
             page_num=self.page_num,
             project_id=self.project_id,
             results=self.results,
-            total_count=self.total_count)
+            total_count=self.total_count,
+            workspace_name=self.workspace_name)
 
 
 def get_stream_connections(instance_name: Optional[_builtins.str] = None,
                            items_per_page: Optional[_builtins.int] = None,
                            page_num: Optional[_builtins.int] = None,
                            project_id: Optional[_builtins.str] = None,
+                           workspace_name: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetStreamConnectionsResult:
     """
-    ## # Data Source: get_stream_connections
-
     `get_stream_connections` describes all connections of a stream instance for the specified project.
 
     ## Example Usage
@@ -131,20 +140,24 @@ def get_stream_connections(instance_name: Optional[_builtins.str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_stream_connections(project_id="<PROJECT_ID>",
-        instance_name="<INSTANCE_NAME>")
+        workspace_name="<WORKSPACE_NAME>")
     ```
 
 
-    :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
+    :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
     :param _builtins.int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+           
+           > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
+    __args__['workspaceName'] = workspace_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getStreamConnections:getStreamConnections', __args__, opts=opts, typ=GetStreamConnectionsResult).value
 
@@ -155,15 +168,15 @@ def get_stream_connections(instance_name: Optional[_builtins.str] = None,
         page_num=pulumi.get(__ret__, 'page_num'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
-        total_count=pulumi.get(__ret__, 'total_count'))
-def get_stream_connections_output(instance_name: Optional[pulumi.Input[_builtins.str]] = None,
+        total_count=pulumi.get(__ret__, 'total_count'),
+        workspace_name=pulumi.get(__ret__, 'workspace_name'))
+def get_stream_connections_output(instance_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                   items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                                   page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                                   project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                                  workspace_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamConnectionsResult]:
     """
-    ## # Data Source: get_stream_connections
-
     `get_stream_connections` describes all connections of a stream instance for the specified project.
 
     ## Example Usage
@@ -173,20 +186,24 @@ def get_stream_connections_output(instance_name: Optional[pulumi.Input[_builtins
     import pulumi_mongodbatlas as mongodbatlas
 
     test = mongodbatlas.get_stream_connections(project_id="<PROJECT_ID>",
-        instance_name="<INSTANCE_NAME>")
+        workspace_name="<WORKSPACE_NAME>")
     ```
 
 
-    :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
+    :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
     :param _builtins.int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+           
+           > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name
     __args__['itemsPerPage'] = items_per_page
     __args__['pageNum'] = page_num
     __args__['projectId'] = project_id
+    __args__['workspaceName'] = workspace_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamConnections:getStreamConnections', __args__, opts=opts, typ=GetStreamConnectionsResult)
     return __ret__.apply(lambda __response__: GetStreamConnectionsResult(
@@ -196,4 +213,5 @@ def get_stream_connections_output(instance_name: Optional[pulumi.Input[_builtins
         page_num=pulumi.get(__response__, 'page_num'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results'),
-        total_count=pulumi.get(__response__, 'total_count')))
+        total_count=pulumi.get(__response__, 'total_count'),
+        workspace_name=pulumi.get(__response__, 'workspace_name')))

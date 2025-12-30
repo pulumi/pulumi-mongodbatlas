@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetAuditing
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Auditing
-        /// 
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -49,8 +47,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Auditing
-        /// 
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -86,8 +82,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAuditingResult>("mongodbatlas:index/getAuditing:getAuditing", args ?? new GetAuditingInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Auditing
-        /// 
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

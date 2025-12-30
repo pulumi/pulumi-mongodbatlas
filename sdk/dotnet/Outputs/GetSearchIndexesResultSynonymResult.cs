@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Analyzer;
         /// <summary>
-        /// Name of the index.
+        /// Type set name.
         /// </summary>
         public readonly string Name;
         public readonly string SourceCollection;

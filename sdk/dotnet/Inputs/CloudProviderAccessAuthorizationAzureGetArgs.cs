@@ -12,12 +12,21 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class CloudProviderAccessAuthorizationAzureGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Azure Active Directory Application ID of Atlas.
+        /// </summary>
         [Input("atlasAzureAppId", required: true)]
         public Input<string> AtlasAzureAppId { get; set; } = null!;
 
+        /// <summary>
+        /// UUID string that identifies the Azure Service Principal.
+        /// </summary>
         [Input("servicePrincipalId", required: true)]
         public Input<string> ServicePrincipalId { get; set; } = null!;
 
+        /// <summary>
+        /// UUID String that identifies the Azure Active Directory Tenant ID.
+        /// </summary>
         [Input("tenantId", required: true)]
         public Input<string> TenantId { get; set; } = null!;
 

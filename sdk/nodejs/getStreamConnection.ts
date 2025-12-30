@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.StreamConnection
- *
  * `mongodbatlas.StreamConnection` describes a stream connection.
  *
  * ## Example Usage
@@ -19,7 +17,20 @@ import * as utilities from "./utilities";
  *
  * const example = mongodbatlas.getStreamConnection({
  *     projectId: "<PROJECT_ID>",
- *     instanceName: "<INSTANCE_NAME>",
+ *     workspaceName: "<WORKSPACE_NAME>",
+ *     connectionName: "<CONNECTION_NAME>",
+ * });
+ * ```
+ *
+ * ### Example using workspaceName
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example = mongodbatlas.getStreamConnection({
+ *     projectId: "<PROJECT_ID>",
+ *     workspaceName: "<WORKSPACE_NAME>",
  *     connectionName: "<CONNECTION_NAME>",
  * });
  * ```
@@ -30,6 +41,7 @@ export function getStreamConnection(args: GetStreamConnectionArgs, opts?: pulumi
         "connectionName": args.connectionName,
         "instanceName": args.instanceName,
         "projectId": args.projectId,
+        "workspaceName": args.workspaceName,
     }, opts);
 }
 
@@ -38,17 +50,25 @@ export function getStreamConnection(args: GetStreamConnectionArgs, opts?: pulumi
  */
 export interface GetStreamConnectionArgs {
     /**
-     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     connectionName: string;
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName: string;
+    instanceName?: string;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: string;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
+    workspaceName?: string;
 }
 
 /**
@@ -89,7 +109,10 @@ export interface GetStreamConnectionResult {
      */
     readonly headers: {[key: string]: string};
     readonly id: string;
-    readonly instanceName: string;
+    /**
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
+     */
+    readonly instanceName?: string;
     /**
      * Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
      */
@@ -107,10 +130,9 @@ export interface GetStreamConnectionResult {
      * URL of the HTTPs endpoint that will be used for creating a connection.
      */
     readonly url: string;
+    readonly workspaceName?: string;
 }
 /**
- * ## # Data Source: mongodbatlas.StreamConnection
- *
  * `mongodbatlas.StreamConnection` describes a stream connection.
  *
  * ## Example Usage
@@ -121,7 +143,20 @@ export interface GetStreamConnectionResult {
  *
  * const example = mongodbatlas.getStreamConnection({
  *     projectId: "<PROJECT_ID>",
- *     instanceName: "<INSTANCE_NAME>",
+ *     workspaceName: "<WORKSPACE_NAME>",
+ *     connectionName: "<CONNECTION_NAME>",
+ * });
+ * ```
+ *
+ * ### Example using workspaceName
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example = mongodbatlas.getStreamConnection({
+ *     projectId: "<PROJECT_ID>",
+ *     workspaceName: "<WORKSPACE_NAME>",
  *     connectionName: "<CONNECTION_NAME>",
  * });
  * ```
@@ -132,6 +167,7 @@ export function getStreamConnectionOutput(args: GetStreamConnectionOutputArgs, o
         "connectionName": args.connectionName,
         "instanceName": args.instanceName,
         "projectId": args.projectId,
+        "workspaceName": args.workspaceName,
     }, opts);
 }
 
@@ -140,15 +176,23 @@ export function getStreamConnectionOutput(args: GetStreamConnectionOutputArgs, o
  */
 export interface GetStreamConnectionOutputArgs {
     /**
-     * Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+     *
+     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     connectionName: pulumi.Input<string>;
     /**
-     * Human-readable label that identifies the stream instance.
+     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     *
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
+    workspaceName?: pulumi.Input<string>;
 }

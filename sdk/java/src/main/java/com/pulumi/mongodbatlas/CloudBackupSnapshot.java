@@ -11,14 +11,14 @@ import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotState;
 import com.pulumi.mongodbatlas.outputs.CloudBackupSnapshotMember;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.CloudBackupSnapshot
- * 
  * `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
  * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
  * 
@@ -95,6 +95,10 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Restore from backup snapshot at point in time
+ * - Restore from backup snapshot using an advanced cluster resource
+ * 
  * ## Import
  * 
  * Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
@@ -148,6 +152,20 @@ public class CloudBackupSnapshot extends com.pulumi.resources.CustomResource {
      */
     public Output<String> createdAt() {
         return this.createdAt;
+    }
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Output<Optional<Boolean>> deleteOnCreateTimeout() {
+        return Codegen.optional(this.deleteOnCreateTimeout);
     }
     /**
      * Description of the on-demand snapshot.

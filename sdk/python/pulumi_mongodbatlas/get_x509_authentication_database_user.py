@@ -93,8 +93,6 @@ def get_x509_authentication_database_user(project_id: Optional[_builtins.str] = 
                                           username: Optional[_builtins.str] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetX509AuthenticationDatabaseUserResult:
     """
-    ## # Data Source: X509AuthenticationDatabaseUser
-
     `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -179,8 +177,6 @@ def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Inp
                                                  username: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetX509AuthenticationDatabaseUserResult]:
     """
-    ## # Data Source: X509AuthenticationDatabaseUser
-
     `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

@@ -11,9 +11,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class CloudProviderAccessAuthorizationGcp {
+    /**
+     * @return Email address for the Google Service Account created by Atlas.
+     * 
+     */
     private @Nullable String serviceAccountForAtlas;
 
     private CloudProviderAccessAuthorizationGcp() {}
+    /**
+     * @return Email address for the Google Service Account created by Atlas.
+     * 
+     */
     public Optional<String> serviceAccountForAtlas() {
         return Optional.ofNullable(this.serviceAccountForAtlas);
     }

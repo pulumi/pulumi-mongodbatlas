@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.Project
-    /// 
     /// `mongodbatlas.Project` provides a Project resource. This allows project to be created.
     /// 
     /// &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
@@ -33,26 +31,6 @@ namespace Pulumi.Mongodbatlas
     ///         Name = "project-name",
     ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
     ///         ProjectOwnerId = "&lt;OWNER_ACCOUNT_ID&gt;",
-    ///         Teams = new[]
-    ///         {
-    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-    ///             {
-    ///                 TeamId = "5e0fa8c99ccf641c722fe645",
-    ///                 RoleNames = new[]
-    ///                 {
-    ///                     "GROUP_OWNER",
-    ///                 },
-    ///             },
-    ///             new Mongodbatlas.Inputs.ProjectTeamArgs
-    ///             {
-    ///                 TeamId = "5e1dd7b4f2a30ba80a70cd4rw",
-    ///                 RoleNames = new[]
-    ///                 {
-    ///                     "GROUP_READ_ONLY",
-    ///                     "GROUP_DATA_ACCESS_READ_WRITE",
-    ///                 },
-    ///             },
-    ///         },
     ///         Limits = new[]
     ///         {
     ///             new Mongodbatlas.Inputs.ProjectLimitArgs
@@ -77,6 +55,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Further Examples
+    /// - Atlas Project with custom limits
     /// 
     /// ## Import
     /// 
@@ -326,6 +307,7 @@ namespace Pulumi.Mongodbatlas
 
         [Input("teams")]
         private InputList<Inputs.ProjectTeamArgs>? _teams;
+        [Obsolete(@"This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.")]
         public InputList<Inputs.ProjectTeamArgs> Teams
         {
             get => _teams ?? (_teams = new InputList<Inputs.ProjectTeamArgs>());
@@ -452,6 +434,7 @@ namespace Pulumi.Mongodbatlas
 
         [Input("teams")]
         private InputList<Inputs.ProjectTeamGetArgs>? _teams;
+        [Obsolete(@"This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.")]
         public InputList<Inputs.ProjectTeamGetArgs> Teams
         {
             get => _teams ?? (_teams = new InputList<Inputs.ProjectTeamGetArgs>());

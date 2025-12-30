@@ -103,14 +103,14 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+     * Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      * 
      */
     @Import(name="configOperationType")
     private @Nullable Output<String> configOperationType;
 
     /**
-     * @return Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+     * @return Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      * 
      */
     public Optional<Output<String>> configOperationType() {
@@ -118,14 +118,14 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+     * Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      * 
      */
     @Import(name="configOperationTypes")
     private @Nullable Output<List<String>> configOperationTypes;
 
     /**
-     * @return Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+     * @return Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      * 
      */
     public Optional<Output<List<String>>> configOperationTypes() {
@@ -148,14 +148,14 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
      * 
      */
     @Import(name="configProviders")
     private @Nullable Output<List<String>> configProviders;
 
     /**
-     * @return Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * @return Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
      * 
      */
     public Optional<Output<List<String>>> configProviders() {
@@ -163,14 +163,14 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      * 
      */
     @Import(name="configSchedule")
     private @Nullable Output<String> configSchedule;
 
     /**
-     * @return Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * @return Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      * 
      */
     public Optional<Output<String>> configSchedule() {
@@ -215,7 +215,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+     * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      * 
@@ -224,7 +224,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<EventTriggerEventProcessorsArgs> eventProcessors;
 
     /**
-     * @return An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+     * @return An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      * 
@@ -500,7 +500,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configOperationType Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+         * @param configOperationType Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
          * 
          * @return builder
          * 
@@ -511,7 +511,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configOperationType Required for `AUTHENTICATION` type. The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
+         * @param configOperationType Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
          * 
          * @return builder
          * 
@@ -521,7 +521,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configOperationTypes Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+         * @param configOperationTypes Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
          * 
          * @return builder
          * 
@@ -532,7 +532,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configOperationTypes Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+         * @param configOperationTypes Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
          * 
          * @return builder
          * 
@@ -542,7 +542,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configOperationTypes Required for `DATABASE` type. The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
+         * @param configOperationTypes Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
          * 
          * @return builder
          * 
@@ -573,7 +573,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configProviders Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+         * @param configProviders Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
          * 
          * @return builder
          * 
@@ -584,7 +584,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configProviders Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+         * @param configProviders Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
          * 
          * @return builder
          * 
@@ -594,7 +594,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configProviders Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+         * @param configProviders Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
          * 
          * @return builder
          * 
@@ -604,7 +604,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configSchedule Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+         * @param configSchedule Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
          * 
          * @return builder
          * 
@@ -615,7 +615,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param configSchedule Required for `SCHEDULED` type. A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+         * @param configSchedule Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
          * 
          * @return builder
          * 
@@ -676,7 +676,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param eventProcessors An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+         * @param eventProcessors An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
          * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
          * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
          * 
@@ -689,7 +689,7 @@ public final class EventTriggerState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param eventProcessors An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://docs.mongodb.com/realm/triggers/eventbridge/#std-label-event_processor_example).
+         * @param eventProcessors An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
          * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
          * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
          * 

@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.OnlineArchive
-    /// 
     /// `mongodbatlas.OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -153,6 +151,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// ### Further Examples
+    /// - Online Archive Example
     /// 
     /// ## Import
     /// 
@@ -210,7 +210,13 @@ namespace Pulumi.Mongodbatlas
         public Output<string> DbName { get; private set; } = null!;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `DateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Output("deleteOnCreateTimeout")]
+        public Output<bool?> DeleteOnCreateTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `DateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         [Output("partitionFields")]
         public Output<ImmutableArray<Outputs.OnlineArchivePartitionField>> PartitionFields { get; private set; } = null!;
@@ -333,11 +339,17 @@ namespace Pulumi.Mongodbatlas
         [Input("dbName", required: true)]
         public Input<string> DbName { get; set; } = null!;
 
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
         [Input("partitionFields")]
         private InputList<Inputs.OnlineArchivePartitionFieldArgs>? _partitionFields;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `DateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `DateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         public InputList<Inputs.OnlineArchivePartitionFieldArgs> PartitionFields
         {
@@ -425,11 +437,17 @@ namespace Pulumi.Mongodbatlas
         [Input("dbName")]
         public Input<string>? DbName { get; set; }
 
+        /// <summary>
+        /// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `True` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `False`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `True`, wait before retrying to allow resource deletion to finish. Default is `True`.
+        /// </summary>
+        [Input("deleteOnCreateTimeout")]
+        public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
         [Input("partitionFields")]
         private InputList<Inputs.OnlineArchivePartitionFieldGetArgs>? _partitionFields;
 
         /// <summary>
-        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `DateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        /// Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `DateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         /// </summary>
         public InputList<Inputs.OnlineArchivePartitionFieldGetArgs> PartitionFields
         {

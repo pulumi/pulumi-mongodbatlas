@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.FederatedDatabaseInstance
- *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -29,6 +27,23 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### S With Amazon S3 Bucket As Storage Database
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedDatabaseInstance({
+ *     projectId: "<PROJECT_ID>",
+ *     name: "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
+ *     cloudProviderConfigs: [{
+ *         aws: [{
+ *             testS3Bucket: "Amazon S3 Bucket Name",
+ *         }],
+ *     }],
+ * });
+ * ```
+ *
  * ## Example of Azure Blob Storage as storage database
  *
  * ```typescript
@@ -38,18 +53,18 @@ import * as utilities from "./utilities";
  * const test = mongodbatlas.getFederatedDatabaseInstance({
  *     projectId: "<PROJECT_ID>",
  *     name: "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
- *     cloudProviderConfig: {
+ *     cloudProviderConfigs: [{
  *         azures: [{
  *             roleId: "<AZURE_ROLE_ID>",
  *         }],
- *     },
+ *     }],
  * });
  * ```
  */
 export function getFederatedDatabaseInstance(args: GetFederatedDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstanceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", {
-        "cloudProviderConfig": args.cloudProviderConfig,
+        "cloudProviderConfigs": args.cloudProviderConfigs,
         "name": args.name,
         "projectId": args.projectId,
     }, opts);
@@ -59,7 +74,7 @@ export function getFederatedDatabaseInstance(args: GetFederatedDatabaseInstanceA
  * A collection of arguments for invoking getFederatedDatabaseInstance.
  */
 export interface GetFederatedDatabaseInstanceArgs {
-    cloudProviderConfig?: inputs.GetFederatedDatabaseInstanceCloudProviderConfig;
+    cloudProviderConfigs?: inputs.GetFederatedDatabaseInstanceCloudProviderConfig[];
     /**
      * Name of the Atlas Federated Database Instance.
      */
@@ -74,7 +89,7 @@ export interface GetFederatedDatabaseInstanceArgs {
  * A collection of values returned by getFederatedDatabaseInstance.
  */
 export interface GetFederatedDatabaseInstanceResult {
-    readonly cloudProviderConfig: outputs.GetFederatedDatabaseInstanceCloudProviderConfig;
+    readonly cloudProviderConfigs: outputs.GetFederatedDatabaseInstanceCloudProviderConfig[];
     readonly dataProcessRegions: outputs.GetFederatedDatabaseInstanceDataProcessRegion[];
     /**
      * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
@@ -93,9 +108,9 @@ export interface GetFederatedDatabaseInstanceResult {
      */
     readonly state: string;
     /**
-     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -117,7 +132,7 @@ export interface GetFederatedDatabaseInstanceResult {
      */
     readonly storageDatabases: outputs.GetFederatedDatabaseInstanceStorageDatabase[];
     /**
-     * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+     * Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
      * * `storage_stores.#.provider` - Defines where the data is stored.
      * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -128,7 +143,7 @@ export interface GetFederatedDatabaseInstanceResult {
      * * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
      * * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
      * * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-     * * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+     * * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
      * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -141,8 +156,6 @@ export interface GetFederatedDatabaseInstanceResult {
     readonly storageStores: outputs.GetFederatedDatabaseInstanceStorageStore[];
 }
 /**
- * ## # Data Source: mongodbatlas.FederatedDatabaseInstance
- *
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -163,6 +176,23 @@ export interface GetFederatedDatabaseInstanceResult {
  * });
  * ```
  *
+ * ### S With Amazon S3 Bucket As Storage Database
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedDatabaseInstance({
+ *     projectId: "<PROJECT_ID>",
+ *     name: "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
+ *     cloudProviderConfigs: [{
+ *         aws: [{
+ *             testS3Bucket: "Amazon S3 Bucket Name",
+ *         }],
+ *     }],
+ * });
+ * ```
+ *
  * ## Example of Azure Blob Storage as storage database
  *
  * ```typescript
@@ -172,18 +202,18 @@ export interface GetFederatedDatabaseInstanceResult {
  * const test = mongodbatlas.getFederatedDatabaseInstance({
  *     projectId: "<PROJECT_ID>",
  *     name: "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
- *     cloudProviderConfig: {
+ *     cloudProviderConfigs: [{
  *         azures: [{
  *             roleId: "<AZURE_ROLE_ID>",
  *         }],
- *     },
+ *     }],
  * });
  * ```
  */
 export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedDatabaseInstanceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", {
-        "cloudProviderConfig": args.cloudProviderConfig,
+        "cloudProviderConfigs": args.cloudProviderConfigs,
         "name": args.name,
         "projectId": args.projectId,
     }, opts);
@@ -193,7 +223,7 @@ export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseIns
  * A collection of arguments for invoking getFederatedDatabaseInstance.
  */
 export interface GetFederatedDatabaseInstanceOutputArgs {
-    cloudProviderConfig?: pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs>;
+    cloudProviderConfigs?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs>[]>;
     /**
      * Name of the Atlas Federated Database Instance.
      */

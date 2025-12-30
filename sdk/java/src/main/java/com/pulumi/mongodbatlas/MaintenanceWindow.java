@@ -18,13 +18,13 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.MaintenanceWindow
- * 
  * `mongodbatlas.MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
  * 
  * &gt; **NOTE:** Only a single maintenance window resource can be defined per project.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ * 
+ * &gt; **NOTE:** Maintenance window times use the project&#39;s configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
  * 
  * ## Maintenance Window Considerations:
  * 
@@ -106,6 +106,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Configure Maintenance Window
+ * 
  * ## Import
  * 
  * Maintenance Window entries can be imported using project project_id, in the format `PROJECTID`, e.g.
@@ -175,14 +178,14 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.defer;
     }
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
     @Export(name="hourOfDay", refs={Integer.class}, tree="[0]")
     private Output<Integer> hourOfDay;
 
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12 (Time zone is UTC). Defaults to 0.
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
     public Output<Integer> hourOfDay() {
@@ -216,21 +219,29 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
+    /**
+     * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
     @Export(name="protectedHours", refs={MaintenanceWindowProtectedHours.class}, tree="[0]")
     private Output</* @Nullable */ MaintenanceWindowProtectedHours> protectedHours;
 
+    /**
+     * @return Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+     * 
+     */
     public Output<Optional<MaintenanceWindowProtectedHours>> protectedHours() {
         return Codegen.optional(this.protectedHours);
     }
     /**
-     * Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     @Export(name="startAsap", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> startAsap;
 
     /**
-     * @return Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+     * @return Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      * 
      */
     public Output<Boolean> startAsap() {

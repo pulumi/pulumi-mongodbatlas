@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.ResourcePolicy
- *
  * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
  *
  * ## Example Usage
@@ -81,8 +79,6 @@ export interface GetResourcePolicyResult {
     readonly version: string;
 }
 /**
- * ## # Data Source: mongodbatlas.ResourcePolicy
- *
  * `mongodbatlas.ResourcePolicy` describes a resource policy in an organization.
  *
  * ## Example Usage

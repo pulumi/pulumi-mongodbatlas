@@ -239,14 +239,14 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
-        ## # Resource: ProjectIpAccessList
-
         `ProjectIpAccessList` provides an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **IMPORTANT:**
         When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+
+        > **IMPORTANT:** During creation this resource does not validate whether the specified `ip_address`, `cidr_block`, or `aws_security_group` already exists in the project's access list (known limitation). Defining a duplicate entry will result in a successful resource creation associated to the existing entry.
 
         ## Example Usage
 
@@ -298,6 +298,9 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ```
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
+
+        ### Further Examples
+        - Project IP Access List
 
         ## Import
 
@@ -325,14 +328,14 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  args: ProjectIpAccessListArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: ProjectIpAccessList
-
         `ProjectIpAccessList` provides an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **IMPORTANT:**
         When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+
+        > **IMPORTANT:** During creation this resource does not validate whether the specified `ip_address`, `cidr_block`, or `aws_security_group` already exists in the project's access list (known limitation). Defining a duplicate entry will result in a successful resource creation associated to the existing entry.
 
         ## Example Usage
 
@@ -384,6 +387,9 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ```
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
+
+        ### Further Examples
+        - Project IP Access List
 
         ## Import
 

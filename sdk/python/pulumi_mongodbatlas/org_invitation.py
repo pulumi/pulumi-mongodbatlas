@@ -274,6 +274,9 @@ class OrgInvitation(pulumi.CustomResource):
             roles=["ORG_MEMBER"])
         ```
 
+        ### Further Examples
+        - Migrate Org Invitation to Cloud User Org Assignment
+
         ## Import
 
         ~> __IMPORTANT:__
@@ -339,6 +342,9 @@ class OrgInvitation(pulumi.CustomResource):
             ],
             roles=["ORG_MEMBER"])
         ```
+
+        ### Further Examples
+        - Migrate Org Invitation to Cloud User Org Assignment
 
         ## Import
 

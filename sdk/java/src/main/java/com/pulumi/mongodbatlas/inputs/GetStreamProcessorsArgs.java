@@ -8,6 +8,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetStreamProcessorsArgs extends com.pulumi.resources.InvokeArgs {
@@ -15,18 +17,22 @@ public final class GetStreamProcessorsArgs extends com.pulumi.resources.InvokeAr
     public static final GetStreamProcessorsArgs Empty = new GetStreamProcessorsArgs();
 
     /**
-     * Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Import(name="instanceName", required=true)
-    private Output<String> instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Import(name="instanceName")
+    private @Nullable Output<String> instanceName;
 
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    public Output<String> instanceName() {
-        return this.instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<Output<String>> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
 
     /**
@@ -44,11 +50,19 @@ public final class GetStreamProcessorsArgs extends com.pulumi.resources.InvokeAr
         return this.projectId;
     }
 
+    @Import(name="workspaceName")
+    private @Nullable Output<String> workspaceName;
+
+    public Optional<Output<String>> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
+
     private GetStreamProcessorsArgs() {}
 
     private GetStreamProcessorsArgs(GetStreamProcessorsArgs $) {
         this.instanceName = $.instanceName;
         this.projectId = $.projectId;
+        this.workspaceName = $.workspaceName;
     }
 
     public static Builder builder() {
@@ -70,22 +84,26 @@ public final class GetStreamProcessorsArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
-         * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
          */
-        public Builder instanceName(Output<String> instanceName) {
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+        public Builder instanceName(@Nullable Output<String> instanceName) {
             $.instanceName = instanceName;
             return this;
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
-         * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
         public Builder instanceName(String instanceName) {
             return instanceName(Output.of(instanceName));
         }
@@ -111,10 +129,16 @@ public final class GetStreamProcessorsArgs extends com.pulumi.resources.InvokeAr
             return projectId(Output.of(projectId));
         }
 
+        public Builder workspaceName(@Nullable Output<String> workspaceName) {
+            $.workspaceName = workspaceName;
+            return this;
+        }
+
+        public Builder workspaceName(String workspaceName) {
+            return workspaceName(Output.of(workspaceName));
+        }
+
         public GetStreamProcessorsArgs build() {
-            if ($.instanceName == null) {
-                throw new MissingRequiredPropertyException("GetStreamProcessorsArgs", "instanceName");
-            }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("GetStreamProcessorsArgs", "projectId");
             }

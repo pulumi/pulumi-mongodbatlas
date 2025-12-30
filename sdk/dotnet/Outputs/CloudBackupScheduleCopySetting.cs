@@ -26,10 +26,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? RegionName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the replication object for a zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find the Replication Spec Id, consult the replicationSpecs array returned from [Return One Multi-Cloud Cluster in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). **(DEPRECATED)** Use `ZoneId` instead. To learn more, see the 1.18.0 upgrade guide.
-        /// </summary>
-        public readonly string? ReplicationSpecId;
-        /// <summary>
         /// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         /// </summary>
         public readonly bool? ShouldCopyOplogs;
@@ -46,8 +42,6 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? regionName,
 
-            string? replicationSpecId,
-
             bool? shouldCopyOplogs,
 
             string? zoneId)
@@ -55,7 +49,6 @@ namespace Pulumi.Mongodbatlas.Outputs
             CloudProvider = cloudProvider;
             Frequencies = frequencies;
             RegionName = regionName;
-            ReplicationSpecId = replicationSpecId;
             ShouldCopyOplogs = shouldCopyOplogs;
             ZoneId = zoneId;
         }

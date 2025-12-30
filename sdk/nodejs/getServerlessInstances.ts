@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+ * > **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
  *
  * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *
@@ -59,7 +59,7 @@ export interface GetServerlessInstancesResult {
     readonly results: outputs.GetServerlessInstancesResult[];
 }
 /**
- * **WARNING:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
+ * > **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
  *
  * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *

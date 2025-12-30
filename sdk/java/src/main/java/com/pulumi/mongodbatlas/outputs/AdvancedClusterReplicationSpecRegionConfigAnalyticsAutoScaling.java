@@ -12,19 +12,25 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling {
+    /**
+     * @return Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+     * 
+     */
     private @Nullable Boolean computeEnabled;
     /**
-     * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+     * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+     * 
+     * **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `useEffectiveFields = true`, you can read scaled values using `effectiveAnalyticsSpecs` in the data source. When not using `useEffectiveFields`, you may need lifecycle ignore customizations for `analyticsSpecs` fields similar to the example shown in the autoScaling section.
      * 
      */
     private @Nullable String computeMaxInstanceSize;
     /**
-     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
      * 
      */
     private @Nullable String computeMinInstanceSize;
     /**
-     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
      * 
      */
     private @Nullable Boolean computeScaleDownEnabled;
@@ -35,25 +41,31 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
     private @Nullable Boolean diskGbEnabled;
 
     private AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling() {}
+    /**
+     * @return Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+     * 
+     */
     public Optional<Boolean> computeEnabled() {
         return Optional.ofNullable(this.computeEnabled);
     }
     /**
-     * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+     * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+     * 
+     * **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `useEffectiveFields = true`, you can read scaled values using `effectiveAnalyticsSpecs` in the data source. When not using `useEffectiveFields`, you may need lifecycle ignore customizations for `analyticsSpecs` fields similar to the example shown in the autoScaling section.
      * 
      */
     public Optional<String> computeMaxInstanceSize() {
         return Optional.ofNullable(this.computeMaxInstanceSize);
     }
     /**
-     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+     * @return Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
      * 
      */
     public Optional<String> computeMinInstanceSize() {
         return Optional.ofNullable(this.computeMinInstanceSize);
     }
     /**
-     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+     * @return Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
      * 
      */
     public Optional<Boolean> computeScaleDownEnabled() {

@@ -24,6 +24,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="pulumi:providers:mongodbatlas")
 public class Provider extends com.pulumi.resources.ProviderResource {
     /**
+     * MongoDB Atlas Access Token for Service Account.
+     * 
+     */
+    @Export(name="accessToken", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> accessToken;
+
+    /**
+     * @return MongoDB Atlas Access Token for Service Account.
+     * 
+     */
+    public Output<Optional<String>> accessToken() {
+        return Codegen.optional(this.accessToken);
+    }
+    /**
      * AWS API Access Key.
      * 
      */
@@ -78,6 +92,34 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      */
     public Output<Optional<String>> baseUrl() {
         return Codegen.optional(this.baseUrl);
+    }
+    /**
+     * MongoDB Atlas Client ID for Service Account.
+     * 
+     */
+    @Export(name="clientId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientId;
+
+    /**
+     * @return MongoDB Atlas Client ID for Service Account.
+     * 
+     */
+    public Output<Optional<String>> clientId() {
+        return Codegen.optional(this.clientId);
+    }
+    /**
+     * MongoDB Atlas Client Secret for Service Account.
+     * 
+     */
+    @Export(name="clientSecret", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> clientSecret;
+
+    /**
+     * @return MongoDB Atlas Client Secret for Service Account.
+     * 
+     */
+    public Output<Optional<String>> clientSecret() {
+        return Codegen.optional(this.clientSecret);
     }
     /**
      * MongoDB Atlas Programmatic Private Key

@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.ResourcePolicy
- *
  * `mongodbatlas.ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
  *
  * ## Example Usage

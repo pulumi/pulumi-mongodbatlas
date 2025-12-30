@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedDatabaseInstance
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
-        /// 
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -42,6 +40,38 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// 
+        /// ### S With Amazon S3 Bucket As Storage Database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
+        ///         CloudProviderConfigs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
+        ///             {
+        ///                 Aws = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwInputArgs
+        ///                     {
+        ///                         TestS3Bucket = "Amazon S3 Bucket Name",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
         /// ## Example of Azure Blob Storage as storage database
         /// 
         /// ```csharp
@@ -56,13 +86,16 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
-        ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
+        ///         CloudProviderConfigs = new[]
         ///         {
-        ///             Azures = new[]
+        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                 Azures = new[]
         ///                 {
-        ///                     RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                     {
+        ///                         RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                     },
         ///                 },
         ///             },
         ///         },
@@ -75,8 +108,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
-        /// 
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -105,6 +136,38 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// 
+        /// ### S With Amazon S3 Bucket As Storage Database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
+        ///         CloudProviderConfigs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
+        ///             {
+        ///                 Aws = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwInputArgs
+        ///                     {
+        ///                         TestS3Bucket = "Amazon S3 Bucket Name",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
         /// ## Example of Azure Blob Storage as storage database
         /// 
         /// ```csharp
@@ -119,13 +182,16 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
-        ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
+        ///         CloudProviderConfigs = new[]
         ///         {
-        ///             Azures = new[]
+        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                 Azures = new[]
         ///                 {
-        ///                     RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                     {
+        ///                         RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                     },
         ///                 },
         ///             },
         ///         },
@@ -138,8 +204,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstanceResult>("mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance", args ?? new GetFederatedDatabaseInstanceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.FederatedDatabaseInstance
-        /// 
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -168,6 +232,38 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// 
+        /// ### S With Amazon S3 Bucket As Storage Database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
+        ///         CloudProviderConfigs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
+        ///             {
+        ///                 Aws = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwInputArgs
+        ///                     {
+        ///                         TestS3Bucket = "Amazon S3 Bucket Name",
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
         /// ## Example of Azure Blob Storage as storage database
         /// 
         /// ```csharp
@@ -182,13 +278,16 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
-        ///         CloudProviderConfig = new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
+        ///         CloudProviderConfigs = new[]
         ///         {
-        ///             Azures = new[]
+        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
         ///             {
-        ///                 new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                 Azures = new[]
         ///                 {
-        ///                     RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
+        ///                     {
+        ///                         RoleId = "&lt;AZURE_ROLE_ID&gt;",
+        ///                     },
         ///                 },
         ///             },
         ///         },
@@ -204,8 +303,13 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetFederatedDatabaseInstanceArgs : global::Pulumi.InvokeArgs
     {
-        [Input("cloudProviderConfig")]
-        public Inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs? CloudProviderConfig { get; set; }
+        [Input("cloudProviderConfigs")]
+        private List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs>? _cloudProviderConfigs;
+        public List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs> CloudProviderConfigs
+        {
+            get => _cloudProviderConfigs ?? (_cloudProviderConfigs = new List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs>());
+            set => _cloudProviderConfigs = value;
+        }
 
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
@@ -227,8 +331,13 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetFederatedDatabaseInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
-        [Input("cloudProviderConfig")]
-        public Input<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs>? CloudProviderConfig { get; set; }
+        [Input("cloudProviderConfigs")]
+        private InputList<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs>? _cloudProviderConfigs;
+        public InputList<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs> CloudProviderConfigs
+        {
+            get => _cloudProviderConfigs ?? (_cloudProviderConfigs = new InputList<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs>());
+            set => _cloudProviderConfigs = value;
+        }
 
         /// <summary>
         /// Name of the Atlas Federated Database Instance.
@@ -252,7 +361,7 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetFederatedDatabaseInstanceResult
     {
-        public readonly Outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult CloudProviderConfig;
+        public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult> CloudProviderConfigs;
         public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstanceDataProcessRegionResult> DataProcessRegions;
         /// <summary>
         /// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
@@ -271,9 +380,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string State;
         /// <summary>
-        /// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+        /// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
         /// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-        /// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+        /// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
         /// * `storage_databases.#.collections.#.name` - Name of the collection.
         /// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
         /// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
@@ -295,7 +404,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstanceStorageDatabaseResult> StorageDatabases;
         /// <summary>
-        /// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+        /// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
         /// * `storage_stores.#.name` - Name of the data store.
         /// * `storage_stores.#.provider` - Defines where the data is stored.
         /// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -306,7 +415,7 @@ namespace Pulumi.Mongodbatlas
         /// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
         /// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
         /// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-        /// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+        /// * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
         /// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
         /// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
         /// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -320,7 +429,7 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetFederatedDatabaseInstanceResult(
-            Outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult cloudProviderConfig,
+            ImmutableArray<Outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult> cloudProviderConfigs,
 
             ImmutableArray<Outputs.GetFederatedDatabaseInstanceDataProcessRegionResult> dataProcessRegions,
 
@@ -338,7 +447,7 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<Outputs.GetFederatedDatabaseInstanceStorageStoreResult> storageStores)
         {
-            CloudProviderConfig = cloudProviderConfig;
+            CloudProviderConfigs = cloudProviderConfigs;
             DataProcessRegions = dataProcessRegions;
             Hostnames = hostnames;
             Id = id;

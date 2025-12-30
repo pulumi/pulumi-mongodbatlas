@@ -9,6 +9,8 @@ import com.pulumi.mongodbatlas.outputs.GetStreamProcessorsResult;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetStreamProcessorsInvokeResult {
@@ -18,16 +20,19 @@ public final class GetStreamProcessorsInvokeResult {
      */
     private String id;
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    private String instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    private @Nullable String instanceName;
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      * 
      */
     private String projectId;
     private List<GetStreamProcessorsResult> results;
+    private @Nullable String workspaceName;
 
     private GetStreamProcessorsInvokeResult() {}
     /**
@@ -38,11 +43,13 @@ public final class GetStreamProcessorsInvokeResult {
         return this.id;
     }
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    public String instanceName() {
-        return this.instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<String> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -53,6 +60,9 @@ public final class GetStreamProcessorsInvokeResult {
     }
     public List<GetStreamProcessorsResult> results() {
         return this.results;
+    }
+    public Optional<String> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
     }
 
     public static Builder builder() {
@@ -65,9 +75,10 @@ public final class GetStreamProcessorsInvokeResult {
     @CustomType.Builder
     public static final class Builder {
         private String id;
-        private String instanceName;
+        private @Nullable String instanceName;
         private String projectId;
         private List<GetStreamProcessorsResult> results;
+        private @Nullable String workspaceName;
         public Builder() {}
         public Builder(GetStreamProcessorsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -75,6 +86,7 @@ public final class GetStreamProcessorsInvokeResult {
     	      this.instanceName = defaults.instanceName;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
+    	      this.workspaceName = defaults.workspaceName;
         }
 
         @CustomType.Setter
@@ -86,10 +98,8 @@ public final class GetStreamProcessorsInvokeResult {
             return this;
         }
         @CustomType.Setter
-        public Builder instanceName(String instanceName) {
-            if (instanceName == null) {
-              throw new MissingRequiredPropertyException("GetStreamProcessorsInvokeResult", "instanceName");
-            }
+        public Builder instanceName(@Nullable String instanceName) {
+
             this.instanceName = instanceName;
             return this;
         }
@@ -112,12 +122,19 @@ public final class GetStreamProcessorsInvokeResult {
         public Builder results(GetStreamProcessorsResult... results) {
             return results(List.of(results));
         }
+        @CustomType.Setter
+        public Builder workspaceName(@Nullable String workspaceName) {
+
+            this.workspaceName = workspaceName;
+            return this;
+        }
         public GetStreamProcessorsInvokeResult build() {
             final var _resultValue = new GetStreamProcessorsInvokeResult();
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
+            _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }
     }

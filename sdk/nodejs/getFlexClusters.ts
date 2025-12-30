@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFlexClusters
- *
  * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
  *
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.
@@ -75,8 +73,6 @@ export interface GetFlexClustersResult {
     readonly results: outputs.GetFlexClustersResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getFlexClusters
- *
  * `mongodbatlas.getFlexClusters` returns all flex clusters in a project.
  *
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.getAdvancedClusters` data source instead of the `mongodbatlas.getFlexClusters` data source to retrieve Flex clusters. The `mongodbatlas.getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.

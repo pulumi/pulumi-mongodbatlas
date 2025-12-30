@@ -8,6 +8,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAddresses;
 import com.pulumi.mongodbatlas.outputs.GetProjectLimit;
 import com.pulumi.mongodbatlas.outputs.GetProjectTeam;
+import com.pulumi.mongodbatlas.outputs.GetProjectUser;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -29,6 +30,11 @@ public final class GetProjectResult {
      * 
      */
     private String created;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     * 
+     */
     private String id;
     /**
      * @return IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
@@ -105,10 +111,19 @@ public final class GetProjectResult {
      */
     private Map<String,String> tags;
     /**
-     * @return Returns all teams to which the authenticated user has access in the project. See Teams.
+     * @return **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
     private List<GetProjectTeam> teams;
+    /**
+     * @return Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+     * 
+     */
+    private List<GetProjectUser> users;
 
     private GetProjectResult() {}
     /**
@@ -125,6 +140,11 @@ public final class GetProjectResult {
     public String created() {
         return this.created;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     * 
+     */
     public String id() {
         return this.id;
     }
@@ -231,11 +251,22 @@ public final class GetProjectResult {
         return this.tags;
     }
     /**
-     * @return Returns all teams to which the authenticated user has access in the project. See Teams.
+     * @return **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
+     * 
+     * @deprecated
+     * This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      * 
      */
+    @Deprecated /* This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management. */
     public List<GetProjectTeam> teams() {
         return this.teams;
+    }
+    /**
+     * @return Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+     * 
+     */
+    public List<GetProjectUser> users() {
+        return this.users;
     }
 
     public static Builder builder() {
@@ -265,6 +296,7 @@ public final class GetProjectResult {
         private String regionUsageRestrictions;
         private Map<String,String> tags;
         private List<GetProjectTeam> teams;
+        private List<GetProjectUser> users;
         public Builder() {}
         public Builder(GetProjectResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -286,6 +318,7 @@ public final class GetProjectResult {
     	      this.regionUsageRestrictions = defaults.regionUsageRestrictions;
     	      this.tags = defaults.tags;
     	      this.teams = defaults.teams;
+    	      this.users = defaults.users;
         }
 
         @CustomType.Setter
@@ -434,6 +467,17 @@ public final class GetProjectResult {
         public Builder teams(GetProjectTeam... teams) {
             return teams(List.of(teams));
         }
+        @CustomType.Setter
+        public Builder users(List<GetProjectUser> users) {
+            if (users == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "users");
+            }
+            this.users = users;
+            return this;
+        }
+        public Builder users(GetProjectUser... users) {
+            return users(List.of(users));
+        }
         public GetProjectResult build() {
             final var _resultValue = new GetProjectResult();
             _resultValue.clusterCount = clusterCount;
@@ -454,6 +498,7 @@ public final class GetProjectResult {
             _resultValue.regionUsageRestrictions = regionUsageRestrictions;
             _resultValue.tags = tags;
             _resultValue.teams = teams;
+            _resultValue.users = users;
             return _resultValue;
         }
     }

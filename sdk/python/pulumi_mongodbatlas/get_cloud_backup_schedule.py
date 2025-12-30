@@ -27,7 +27,7 @@ class GetCloudBackupScheduleResult:
     """
     A collection of values returned by getCloudBackupSchedule.
     """
-    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None, use_zone_id_for_copy_settings=None):
+    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
         if auto_export_enabled and not isinstance(auto_export_enabled, bool):
             raise TypeError("Expected argument 'auto_export_enabled' to be a bool")
         pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
@@ -82,9 +82,6 @@ class GetCloudBackupScheduleResult:
         if use_org_and_group_names_in_export_prefix and not isinstance(use_org_and_group_names_in_export_prefix, bool):
             raise TypeError("Expected argument 'use_org_and_group_names_in_export_prefix' to be a bool")
         pulumi.set(__self__, "use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
-        if use_zone_id_for_copy_settings and not isinstance(use_zone_id_for_copy_settings, bool):
-            raise TypeError("Expected argument 'use_zone_id_for_copy_settings' to be a bool")
-        pulumi.set(__self__, "use_zone_id_for_copy_settings", use_zone_id_for_copy_settings)
 
     @_builtins.property
     @pulumi.getter(name="autoExportEnabled")
@@ -226,11 +223,6 @@ class GetCloudBackupScheduleResult:
         """
         return pulumi.get(self, "use_org_and_group_names_in_export_prefix")
 
-    @_builtins.property
-    @pulumi.getter(name="useZoneIdForCopySettings")
-    def use_zone_id_for_copy_settings(self) -> Optional[_builtins.bool]:
-        return pulumi.get(self, "use_zone_id_for_copy_settings")
-
 
 class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
     # pylint: disable=using-constant-test
@@ -255,13 +247,11 @@ class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
             reference_hour_of_day=self.reference_hour_of_day,
             reference_minute_of_hour=self.reference_minute_of_hour,
             restore_window_days=self.restore_window_days,
-            use_org_and_group_names_in_export_prefix=self.use_org_and_group_names_in_export_prefix,
-            use_zone_id_for_copy_settings=self.use_zone_id_for_copy_settings)
+            use_org_and_group_names_in_export_prefix=self.use_org_and_group_names_in_export_prefix)
 
 
 def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
                               project_id: Optional[_builtins.str] = None,
-                              use_zone_id_for_copy_settings: Optional[_builtins.bool] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCloudBackupScheduleResult:
     """
     ## Example Usage
@@ -312,19 +302,16 @@ def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
             "should_copy_oplogs": False,
         }])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
-        cluster_name=test_cloud_backup_schedule.cluster_name,
-        use_zone_id_for_copy_settings=True)
+        cluster_name=test_cloud_backup_schedule.cluster_name)
     ```
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
     :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
-    :param _builtins.bool use_zone_id_for_copy_settings: Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
-    __args__['useZoneIdForCopySettings'] = use_zone_id_for_copy_settings
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult).value
 
@@ -346,11 +333,9 @@ def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
         reference_hour_of_day=pulumi.get(__ret__, 'reference_hour_of_day'),
         reference_minute_of_hour=pulumi.get(__ret__, 'reference_minute_of_hour'),
         restore_window_days=pulumi.get(__ret__, 'restore_window_days'),
-        use_org_and_group_names_in_export_prefix=pulumi.get(__ret__, 'use_org_and_group_names_in_export_prefix'),
-        use_zone_id_for_copy_settings=pulumi.get(__ret__, 'use_zone_id_for_copy_settings'))
+        use_org_and_group_names_in_export_prefix=pulumi.get(__ret__, 'use_org_and_group_names_in_export_prefix'))
 def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                                      project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                     use_zone_id_for_copy_settings: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupScheduleResult]:
     """
     ## Example Usage
@@ -401,19 +386,16 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[_builti
             "should_copy_oplogs": False,
         }])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
-        cluster_name=test_cloud_backup_schedule.cluster_name,
-        use_zone_id_for_copy_settings=True)
+        cluster_name=test_cloud_backup_schedule.cluster_name)
     ```
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
     :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
-    :param _builtins.bool use_zone_id_for_copy_settings: Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
     __args__['projectId'] = project_id
-    __args__['useZoneIdForCopySettings'] = use_zone_id_for_copy_settings
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult)
     return __ret__.apply(lambda __response__: GetCloudBackupScheduleResult(
@@ -434,5 +416,4 @@ def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[_builti
         reference_hour_of_day=pulumi.get(__response__, 'reference_hour_of_day'),
         reference_minute_of_hour=pulumi.get(__response__, 'reference_minute_of_hour'),
         restore_window_days=pulumi.get(__response__, 'restore_window_days'),
-        use_org_and_group_names_in_export_prefix=pulumi.get(__response__, 'use_org_and_group_names_in_export_prefix'),
-        use_zone_id_for_copy_settings=pulumi.get(__response__, 'use_zone_id_for_copy_settings')))
+        use_org_and_group_names_in_export_prefix=pulumi.get(__response__, 'use_org_and_group_names_in_export_prefix')))

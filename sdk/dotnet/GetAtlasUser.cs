@@ -12,9 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetAtlasUser
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAtlasUser
-        /// 
         /// `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
         /// &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
         /// 
@@ -58,9 +58,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAtlasUserResult>("mongodbatlas:index/getAtlasUser:getAtlasUser", args ?? new GetAtlasUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAtlasUser
-        /// 
         /// `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
         /// &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
         /// 
@@ -104,9 +104,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAtlasUserResult>("mongodbatlas:index/getAtlasUser:getAtlasUser", args ?? new GetAtlasUserInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getAtlasUser
-        /// 
         /// `mongodbatlas.getAtlasUser` Provides a MongoDB Atlas User.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
         /// &gt; **NOTE:** If you are the owner of a MongoDB Atlas organization or project, you can also retrieve the user profile for any user with membership in that organization or project.
         /// 
@@ -162,7 +162,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
         /// 
-        /// &gt; **IMPORTANT:** Either `UserId` or `Username` must be configurated.
+        /// &gt; **IMPORTANT:** Either `UserId` or `Username` must be configured.
         /// </summary>
         [Input("username")]
         public string? Username { get; set; }
@@ -184,7 +184,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
         /// 
-        /// &gt; **IMPORTANT:** Either `UserId` or `Username` must be configurated.
+        /// &gt; **IMPORTANT:** Either `UserId` or `Username` must be configured.
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
@@ -208,7 +208,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// Email address that belongs to the MongoDB Atlas user.
+        /// **(DEPRECATED)** Email address that belongs to the MongoDB Atlas user. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_organization.users.username`, `data.mongodbatlas_team.users.username` or `data.mongodbatlas_project.users.username` attributes. For more details, see Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`."
         /// </summary>
         public readonly string EmailAddress;
         /// <summary>

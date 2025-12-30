@@ -12,25 +12,25 @@ namespace Pulumi.Mongodbatlas
     public static class GetOrgInvitation
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OrgInvitation
-        /// 
         /// `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
         /// </summary>
         public static Task<GetOrgInvitationResult> InvokeAsync(GetOrgInvitationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OrgInvitation
-        /// 
         /// `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
         /// </summary>
         public static Output<GetOrgInvitationResult> Invoke(GetOrgInvitationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.OrgInvitation
-        /// 
         /// `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
+        /// 
+        /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
         /// </summary>
         public static Output<GetOrgInvitationResult> Invoke(GetOrgInvitationInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetOrgInvitationResult>("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args ?? new GetOrgInvitationInvokeArgs(), options.WithDefaults());

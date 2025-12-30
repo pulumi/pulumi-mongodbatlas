@@ -4,13 +4,17 @@
 package config
 
 import (
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
 var _ = internal.GetEnvOrDefault
 
+// MongoDB Atlas Access Token for Service Account.
+func GetAccessToken(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:accessToken")
+}
 func GetAssumeRole(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:assumeRole")
 }
@@ -33,6 +37,16 @@ func GetAwsSessionToken(ctx *pulumi.Context) string {
 // MongoDB Atlas Base URL
 func GetBaseUrl(ctx *pulumi.Context) string {
 	return config.Get(ctx, "mongodbatlas:baseUrl")
+}
+
+// MongoDB Atlas Client ID for Service Account.
+func GetClientId(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:clientId")
+}
+
+// MongoDB Atlas Client Secret for Service Account.
+func GetClientSecret(ctx *pulumi.Context) string {
+	return config.Get(ctx, "mongodbatlas:clientSecret")
 }
 
 // MongoDB Atlas Base URL default to gov

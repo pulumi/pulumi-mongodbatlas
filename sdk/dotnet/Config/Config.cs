@@ -32,6 +32,16 @@ namespace Pulumi.Mongodbatlas
 
         private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("mongodbatlas");
 
+        private static readonly __Value<string?> _accessToken = new __Value<string?>(() => __config.Get("accessToken"));
+        /// <summary>
+        /// MongoDB Atlas Access Token for Service Account.
+        /// </summary>
+        public static string? AccessToken
+        {
+            get => _accessToken.Get();
+            set => _accessToken.Set(value);
+        }
+
         private static readonly __Value<Pulumi.Mongodbatlas.Config.Types.AssumeRole?> _assumeRole = new __Value<Pulumi.Mongodbatlas.Config.Types.AssumeRole?>(() => __config.GetObject<Pulumi.Mongodbatlas.Config.Types.AssumeRole>("assumeRole"));
         public static Pulumi.Mongodbatlas.Config.Types.AssumeRole? AssumeRole
         {
@@ -77,6 +87,26 @@ namespace Pulumi.Mongodbatlas
         {
             get => _baseUrl.Get();
             set => _baseUrl.Set(value);
+        }
+
+        private static readonly __Value<string?> _clientId = new __Value<string?>(() => __config.Get("clientId"));
+        /// <summary>
+        /// MongoDB Atlas Client ID for Service Account.
+        /// </summary>
+        public static string? ClientId
+        {
+            get => _clientId.Get();
+            set => _clientId.Set(value);
+        }
+
+        private static readonly __Value<string?> _clientSecret = new __Value<string?>(() => __config.Get("clientSecret"));
+        /// <summary>
+        /// MongoDB Atlas Client Secret for Service Account.
+        /// </summary>
+        public static string? ClientSecret
+        {
+            get => _clientSecret.Get();
+            set => _clientSecret.Set(value);
         }
 
         private static readonly __Value<bool?> _isMongodbgovCloud = new __Value<bool?>(() => __config.GetBoolean("isMongodbgovCloud"));
@@ -155,41 +185,9 @@ namespace Pulumi.Mongodbatlas
              public class AssumeRole
              {
             /// <summary>
-            /// The duration, between 15 minutes and 12 hours, of the role session. Valid time units are ns, us (or µs), ms, s, h, or m.
-            /// </summary>
-                public string? Duration { get; set; } = null!;
-            /// <summary>
-            /// A unique identifier that might be required when you assume a role in another account.
-            /// </summary>
-                public string? ExternalId { get; set; } = null!;
-            /// <summary>
-            /// IAM Policy JSON describing further restricting permissions for the IAM Role being assumed.
-            /// </summary>
-                public string? Policy { get; set; } = null!;
-            /// <summary>
-            /// Amazon Resource Names (ARNs) of IAM Policies describing further restricting permissions for the IAM Role being assumed.
-            /// </summary>
-                public ImmutableArray<string> PolicyArns { get; set; }
-            /// <summary>
             /// Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
             /// </summary>
                 public string? RoleArn { get; set; } = null!;
-            /// <summary>
-            /// An identifier for the assumed role session.
-            /// </summary>
-                public string? SessionName { get; set; } = null!;
-            /// <summary>
-            /// Source identity specified by the principal assuming the role.
-            /// </summary>
-                public string? SourceIdentity { get; set; } = null!;
-            /// <summary>
-            /// Assume role session tags.
-            /// </summary>
-                public ImmutableDictionary<string, string>? Tags { get; set; } = null!;
-            /// <summary>
-            /// Assume role session tag keys to pass to any subsequent sessions.
-            /// </summary>
-                public ImmutableArray<string> TransitiveTagKeys { get; set; }
             }
         }
     }

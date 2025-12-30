@@ -38,22 +38,22 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule")
 public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     /**
-     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+     * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      * 
      */
     @Export(name="autoExportEnabled", refs={Boolean.class}, tree="[0]")
-    private Output<Boolean> autoExportEnabled;
+    private Output</* @Nullable */ Boolean> autoExportEnabled;
 
     /**
-     * @return Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Once enabled, it must be disabled by explicitly setting the value to `false`. Value can be one of the following:
+     * @return Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      * 
      */
-    public Output<Boolean> autoExportEnabled() {
-        return this.autoExportEnabled;
+    public Output<Optional<Boolean>> autoExportEnabled() {
+        return Codegen.optional(this.autoExportEnabled);
     }
     /**
      * Unique identifier of the Atlas cluster.
@@ -98,18 +98,18 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.copySettings);
     }
     /**
-     * Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+     * Policy for automatically exporting Cloud Backup Snapshots. See below
      * 
      */
     @Export(name="export", refs={CloudBackupScheduleExport.class}, tree="[0]")
-    private Output<CloudBackupScheduleExport> export;
+    private Output</* @Nullable */ CloudBackupScheduleExport> export;
 
     /**
-     * @return Policy for automatically exporting Cloud Backup Snapshots. `autoExportEnabled` must be set to true when defining this attribute. See below
+     * @return Policy for automatically exporting Cloud Backup Snapshots. See below
      * 
      */
-    public Output<CloudBackupScheduleExport> export() {
-        return this.export;
+    public Output<Optional<CloudBackupScheduleExport>> export() {
+        return Codegen.optional(this.export);
     }
     /**
      * Unique identifier of the backup policy.

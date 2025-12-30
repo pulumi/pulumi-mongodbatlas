@@ -17,10 +17,10 @@ import javax.annotation.Nullable;
 public final class GetProjectsInvokeResult {
     /**
      * @deprecated
-     * Please use each project&#39;s id attribute instead
+     * This parameter is deprecated.
      * 
      */
-    @Deprecated /* Please use each project's id attribute instead */
+    @Deprecated /* This parameter is deprecated. */
     private String id;
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
@@ -30,10 +30,10 @@ public final class GetProjectsInvokeResult {
     private GetProjectsInvokeResult() {}
     /**
      * @deprecated
-     * Please use each project&#39;s id attribute instead
+     * This parameter is deprecated.
      * 
      */
-    @Deprecated /* Please use each project's id attribute instead */
+    @Deprecated /* This parameter is deprecated. */
     public String id() {
         return this.id;
     }

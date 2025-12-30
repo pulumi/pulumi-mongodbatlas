@@ -8,7 +8,7 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -52,11 +52,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
 //				ProjectId:       myCluster.ProjectId,
 //				ClusterName:     myCluster.Name,
-//				Description:     "myDescription",
-//				RetentionInDays: 1,
+//				Description:     pulumi.String("myDescription"),
+//				RetentionInDays: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -87,7 +87,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -118,11 +118,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test, err := mongodbatlas.NewCloudProviderSnapshot(ctx, "test", &mongodbatlas.CloudProviderSnapshotArgs{
+//			test, err := mongodbatlas.NewCloudBackupSnapshot(ctx, "test", &mongodbatlas.CloudBackupSnapshotArgs{
 //				ProjectId:       myCluster.ProjectId,
 //				ClusterName:     myCluster.Name,
-//				Description:     "myDescription",
-//				RetentionInDays: 1,
+//				Description:     pulumi.String("myDescription"),
+//				RetentionInDays: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -150,7 +150,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -222,7 +222,7 @@ import (
 //
 // ```
 //
-// ### Available complete examples
+// ### Further Examples
 // - Restore from backup snapshot at point in time
 // - Restore from backup snapshot using an advanced cluster resource
 //

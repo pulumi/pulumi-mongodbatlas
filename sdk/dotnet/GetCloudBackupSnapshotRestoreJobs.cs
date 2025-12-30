@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudBackupSnapshotRestoreJobs
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
-        /// 
         /// `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -66,8 +64,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
-        /// 
         /// `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -120,8 +116,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotRestoreJobsResult>("mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs", args ?? new GetCloudBackupSnapshotRestoreJobsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotRestoreJobs
-        /// 
         /// `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

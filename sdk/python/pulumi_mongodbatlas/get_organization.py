@@ -27,7 +27,7 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, api_access_list_required=None, gen_ai_features_enabled=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None, security_contact=None, skip_default_alerts_settings=None):
+    def __init__(__self__, api_access_list_required=None, gen_ai_features_enabled=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None, security_contact=None, skip_default_alerts_settings=None, users=None):
         if api_access_list_required and not isinstance(api_access_list_required, bool):
             raise TypeError("Expected argument 'api_access_list_required' to be a bool")
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
@@ -61,6 +61,9 @@ class GetOrganizationResult:
         if skip_default_alerts_settings and not isinstance(skip_default_alerts_settings, bool):
             raise TypeError("Expected argument 'skip_default_alerts_settings' to be a bool")
         pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
+        if users and not isinstance(users, list):
+            raise TypeError("Expected argument 'users' to be a list")
+        pulumi.set(__self__, "users", users)
 
     @_builtins.property
     @pulumi.getter(name="apiAccessListRequired")
@@ -141,6 +144,14 @@ class GetOrganizationResult:
     def skip_default_alerts_settings(self) -> _builtins.bool:
         return pulumi.get(self, "skip_default_alerts_settings")
 
+    @_builtins.property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetOrganizationUserResult']:
+        """
+        Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
+        """
+        return pulumi.get(self, "users")
+
 
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
@@ -158,14 +169,13 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             org_id=self.org_id,
             restrict_employee_access=self.restrict_employee_access,
             security_contact=self.security_contact,
-            skip_default_alerts_settings=self.skip_default_alerts_settings)
+            skip_default_alerts_settings=self.skip_default_alerts_settings,
+            users=self.users)
 
 
 def get_organization(org_id: Optional[_builtins.str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
-    ## # Data Source: Organization
-
     `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
@@ -197,12 +207,11 @@ def get_organization(org_id: Optional[_builtins.str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         restrict_employee_access=pulumi.get(__ret__, 'restrict_employee_access'),
         security_contact=pulumi.get(__ret__, 'security_contact'),
-        skip_default_alerts_settings=pulumi.get(__ret__, 'skip_default_alerts_settings'))
+        skip_default_alerts_settings=pulumi.get(__ret__, 'skip_default_alerts_settings'),
+        users=pulumi.get(__ret__, 'users'))
 def get_organization_output(org_id: Optional[pulumi.Input[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
-    ## # Data Source: Organization
-
     `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 
     ## Example Usage
@@ -233,4 +242,5 @@ def get_organization_output(org_id: Optional[pulumi.Input[_builtins.str]] = None
         org_id=pulumi.get(__response__, 'org_id'),
         restrict_employee_access=pulumi.get(__response__, 'restrict_employee_access'),
         security_contact=pulumi.get(__response__, 'security_contact'),
-        skip_default_alerts_settings=pulumi.get(__response__, 'skip_default_alerts_settings')))
+        skip_default_alerts_settings=pulumi.get(__response__, 'skip_default_alerts_settings'),
+        users=pulumi.get(__response__, 'users')))

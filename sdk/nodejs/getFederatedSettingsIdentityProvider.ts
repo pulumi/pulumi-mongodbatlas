@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.FederatedSettingsIdentityProvider
- *
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
  *
  * ## Example Usage
@@ -164,8 +162,6 @@ export interface GetFederatedSettingsIdentityProviderResult {
     readonly userClaim: string;
 }
 /**
- * ## # Data Source: mongodbatlas.FederatedSettingsIdentityProvider
- *
  * `mongodbatlas.FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.
  *
  * ## Example Usage

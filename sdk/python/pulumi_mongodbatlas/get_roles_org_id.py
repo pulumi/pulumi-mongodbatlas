@@ -46,7 +46,7 @@ class GetRolesOrgIdResult:
     @pulumi.getter(name="orgId")
     def org_id(self) -> _builtins.str:
         """
-        The ID of the organization you want to retrieve associated to an API Key.
+        The ID of the organization you want to retrieve, which is associated with the Service Account or Programmatic API Key (PAK) of the authenticated user.
         """
         return pulumi.get(self, "org_id")
 
@@ -63,9 +63,7 @@ class AwaitableGetRolesOrgIdResult(GetRolesOrgIdResult):
 
 def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRolesOrgIdResult:
     """
-    ## # Data Source: get_roles_org_id
-
-    `get_roles_org_id` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+    `get_roles_org_id` allows to retrieve the Org ID of the authenticated user.
 
     ## Example Usage
 
@@ -87,9 +85,7 @@ def get_roles_org_id(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGe
         org_id=pulumi.get(__ret__, 'org_id'))
 def get_roles_org_id_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRolesOrgIdResult]:
     """
-    ## # Data Source: get_roles_org_id
-
-    `get_roles_org_id` describes a MongoDB Atlas Roles Org ID. This represents a Roles Org ID.
+    `get_roles_org_id` allows to retrieve the Org ID of the authenticated user.
 
     ## Example Usage
 

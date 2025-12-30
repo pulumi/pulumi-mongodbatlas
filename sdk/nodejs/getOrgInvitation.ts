@@ -5,9 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.OrgInvitation
- *
  * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
+ *
+ * > **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
  */
 export function getOrgInvitation(args: GetOrgInvitationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrgInvitationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -69,9 +69,9 @@ export interface GetOrgInvitationResult {
     readonly username: string;
 }
 /**
- * ## # Data Source: mongodbatlas.OrgInvitation
- *
  * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
+ *
+ * > **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
  */
 export function getOrgInvitationOutput(args: GetOrgInvitationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetOrgInvitationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

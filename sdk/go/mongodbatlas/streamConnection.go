@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: StreamConnection
-//
 // `StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
 //
 // > **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.
@@ -27,7 +25,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -36,7 +34,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   pulumi.String("InstanceName"),
+//				WorkspaceName:  pulumi.String("WorkspaceName"),
 //				ConnectionName: pulumi.String("ConnectionName"),
 //				Type:           pulumi.String("Cluster"),
 //				ClusterName:    pulumi.String("Cluster0"),
@@ -50,6 +48,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Atlas Stream Connection
+//
 // ### Example Cross Project Cluster Connection
 //
 // ```go
@@ -57,7 +58,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -66,7 +67,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:        pulumi.Any(projectId),
-//				InstanceName:     pulumi.String("InstanceName"),
+//				WorkspaceName:    pulumi.String("WorskpaceName"),
 //				ConnectionName:   pulumi.String("ConnectionName"),
 //				Type:             pulumi.String("Cluster"),
 //				ClusterName:      pulumi.String("OtherCluster"),
@@ -88,7 +89,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -97,7 +98,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   pulumi.String("NewInstance"),
+//				WorkspaceName:  pulumi.String("NewWorkspace"),
 //				ConnectionName: pulumi.String("KafkaConnection"),
 //				Type:           pulumi.String("Kafka"),
 //				Authentication: &mongodbatlas.StreamConnectionAuthenticationArgs{
@@ -122,6 +123,56 @@ import (
 //
 // ```
 //
+// ### Example Kafka SASL OAuthbearer Connection
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-kafka-oauthbearer", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				InstanceName:   pulumi.Any(example.InstanceName),
+//				ConnectionName: pulumi.String("KafkaOAuthbearerConnection"),
+//				Type:           pulumi.String("Kafka"),
+//				Authentication: &mongodbatlas.StreamConnectionAuthenticationArgs{
+//					Mechanism:                 pulumi.String("OAUTHBEARER"),
+//					Method:                    pulumi.String("OIDC"),
+//					TokenEndpointUrl:          pulumi.String("https://example.com/oauth/token"),
+//					ClientId:                  pulumi.String("auth0Client"),
+//					ClientSecret:              pulumi.Any(kafkaClientSecret),
+//					Scope:                     pulumi.String("read:messages write:messages"),
+//					SaslOauthbearerExtensions: pulumi.String("logicalCluster=lkc-kmom,identityPoolId=pool-lAr"),
+//				},
+//				BootstrapServers: pulumi.String("localhost:9092,localhost:9092"),
+//				Config: pulumi.StringMap{
+//					"auto.offset.reset": pulumi.String("earliest"),
+//				},
+//				Security: &mongodbatlas.StreamConnectionSecurityArgs{
+//					Protocol: pulumi.String("SASL_PLAINTEXT"),
+//				},
+//				Networking: &mongodbatlas.StreamConnectionNetworkingArgs{
+//					Access: &mongodbatlas.StreamConnectionNetworkingAccessArgs{
+//						Type: pulumi.String("PUBLIC"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example Kafka SASL SSL Connection
 //
 // ```go
@@ -129,7 +180,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -138,7 +189,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   pulumi.String("NewInstance"),
+//				WorkspaceName:  pulumi.String("NewWorkspace"),
 //				ConnectionName: pulumi.String("KafkaConnection"),
 //				Type:           pulumi.String("Kafka"),
 //				Authentication: &mongodbatlas.StreamConnectionAuthenticationArgs{
@@ -171,7 +222,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -180,7 +231,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   pulumi.String("NewInstance"),
+//				WorkspaceName:  pulumi.String("NewWorkspace"),
 //				ConnectionName: pulumi.String("AWSLambdaConnection"),
 //				Type:           pulumi.String("AWSLambda"),
 //				Aws: &mongodbatlas.StreamConnectionAwsArgs{
@@ -203,7 +254,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -212,7 +263,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewStreamConnection(ctx, "example-https", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   pulumi.Any(example.InstanceName),
+//				WorkspaceName:  pulumi.Any(example.InstanceName),
 //				ConnectionName: pulumi.String("https_connection_tf_new"),
 //				Type:           pulumi.String("Https"),
 //				Url:            pulumi.String("https://example.com"),
@@ -232,7 +283,7 @@ import (
 //
 // ## Import
 //
-// You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
+// You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
@@ -248,19 +299,25 @@ type StreamConnection struct {
 	ClusterName      pulumi.StringPtrOutput                  `pulumi:"clusterName"`
 	ClusterProjectId pulumi.StringPtrOutput                  `pulumi:"clusterProjectId"`
 	Config           pulumi.StringMapOutput                  `pulumi:"config"`
-	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringOutput                      `pulumi:"connectionName"`
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrOutput `pulumi:"dbRoleToExecute"`
 	Headers         pulumi.StringMapOutput                   `pulumi:"headers"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringOutput              `pulumi:"instanceName"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringPtrOutput           `pulumi:"instanceName"`
 	Networking   StreamConnectionNetworkingOutput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput               `pulumi:"projectId"`
 	Security  StreamConnectionSecurityPtrOutput `pulumi:"security"`
 	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringOutput    `pulumi:"type"`
 	Url  pulumi.StringPtrOutput `pulumi:"url"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName pulumi.StringPtrOutput `pulumi:"workspaceName"`
 }
 
 // NewStreamConnection registers a new resource with the given unique name, arguments, and options.
@@ -272,9 +329,6 @@ func NewStreamConnection(ctx *pulumi.Context,
 
 	if args.ConnectionName == nil {
 		return nil, errors.New("invalid value for required argument 'ConnectionName'")
-	}
-	if args.InstanceName == nil {
-		return nil, errors.New("invalid value for required argument 'InstanceName'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -311,19 +365,25 @@ type streamConnectionState struct {
 	ClusterName      *string                         `pulumi:"clusterName"`
 	ClusterProjectId *string                         `pulumi:"clusterProjectId"`
 	Config           map[string]string               `pulumi:"config"`
-	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  *string                          `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	Headers         map[string]string                `pulumi:"headers"`
-	// Human-readable label that identifies the stream instance.
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string                     `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string                   `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
 	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type *string `pulumi:"type"`
 	Url  *string `pulumi:"url"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 type StreamConnectionState struct {
@@ -333,19 +393,25 @@ type StreamConnectionState struct {
 	ClusterName      pulumi.StringPtrInput
 	ClusterProjectId pulumi.StringPtrInput
 	Config           pulumi.StringMapInput
-	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringPtrInput
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
 	Headers         pulumi.StringMapInput
-	// Human-readable label that identifies the stream instance.
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput
 	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
 	Security  StreamConnectionSecurityPtrInput
 	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringPtrInput
 	Url  pulumi.StringPtrInput
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName pulumi.StringPtrInput
 }
 
 func (StreamConnectionState) ElementType() reflect.Type {
@@ -359,19 +425,25 @@ type streamConnectionArgs struct {
 	ClusterName      *string                         `pulumi:"clusterName"`
 	ClusterProjectId *string                         `pulumi:"clusterProjectId"`
 	Config           map[string]string               `pulumi:"config"`
-	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  string                           `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	Headers         map[string]string                `pulumi:"headers"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName string                      `pulumi:"instanceName"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string                     `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string                    `pulumi:"projectId"`
 	Security  *StreamConnectionSecurity `pulumi:"security"`
 	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type string  `pulumi:"type"`
 	Url  *string `pulumi:"url"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 // The set of arguments for constructing a StreamConnection resource.
@@ -382,19 +454,25 @@ type StreamConnectionArgs struct {
 	ClusterName      pulumi.StringPtrInput
 	ClusterProjectId pulumi.StringPtrInput
 	Config           pulumi.StringMapInput
-	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringInput
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
 	Headers         pulumi.StringMapInput
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringInput
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringPtrInput
 	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
 	Security  StreamConnectionSecurityPtrInput
 	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringInput
 	Url  pulumi.StringPtrInput
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName pulumi.StringPtrInput
 }
 
 func (StreamConnectionArgs) ElementType() reflect.Type {
@@ -508,7 +586,7 @@ func (o StreamConnectionOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
 
-// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 func (o StreamConnectionOutput) ConnectionName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.ConnectionName }).(pulumi.StringOutput)
 }
@@ -521,9 +599,11 @@ func (o StreamConnectionOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringMapOutput { return v.Headers }).(pulumi.StringMapOutput)
 }
 
-// Human-readable label that identifies the stream instance.
-func (o StreamConnectionOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.InstanceName }).(pulumi.StringOutput)
+// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+//
+// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+func (o StreamConnectionOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
 func (o StreamConnectionOutput) Networking() StreamConnectionNetworkingOutput {
@@ -540,12 +620,19 @@ func (o StreamConnectionOutput) Security() StreamConnectionSecurityPtrOutput {
 }
 
 // Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+//
+// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 func (o StreamConnectionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 func (o StreamConnectionOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+func (o StreamConnectionOutput) WorkspaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.WorkspaceName }).(pulumi.StringPtrOutput)
 }
 
 type StreamConnectionArrayOutput struct{ *pulumi.OutputState }

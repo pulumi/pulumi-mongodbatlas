@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetFederatedSettingsIdentityProviders
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFederatedSettingsIdentityProviders
-        /// 
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
         /// Note: This implementation returns a maximum of 100 results.
@@ -24,8 +22,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFederatedSettingsIdentityProviders
-        /// 
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
         /// Note: This implementation returns a maximum of 100 results.
@@ -36,8 +32,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getFederatedSettingsIdentityProviders
-        /// 
         /// `mongodbatlas.getFederatedSettingsIdentityProviders` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
         /// 
         /// Note: This implementation returns a maximum of 100 results.

@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Organization
- *
  * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage
@@ -79,10 +77,12 @@ export interface GetOrganizationResult {
      */
     readonly securityContact: string;
     readonly skipDefaultAlertsSettings: boolean;
+    /**
+     * Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
+     */
+    readonly users: outputs.GetOrganizationUser[];
 }
 /**
- * ## # Data Source: mongodbatlas.Organization
- *
  * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
  *
  * ## Example Usage

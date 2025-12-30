@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.NetworkContainer
- *
  * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
  *
  * > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
@@ -111,8 +109,6 @@ export interface GetNetworkContainerResult {
     readonly vpcId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.NetworkContainer
- *
  * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
  *
  * > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.

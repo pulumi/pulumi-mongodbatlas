@@ -21,7 +21,7 @@ import (
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 
-	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v3"
+	mongodbatlas "github.com/pulumi/pulumi-mongodbatlas/provider/v4"
 )
 
 //go:embed schema-embed.json

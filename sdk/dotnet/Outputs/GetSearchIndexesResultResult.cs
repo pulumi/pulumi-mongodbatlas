@@ -39,15 +39,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string IndexId;
         /// <summary>
-        /// Flag indicating whether the index uses dynamic or static mappings.
+        /// Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `MappingsDynamicConfig`.
         /// </summary>
         public readonly bool MappingsDynamic;
+        /// <summary>
+        /// JSON object for `mappings.dynamic` when Atlas returns an object (Please see the documentation for [dynamic and static mappings](https://www.mongodb.com/docs/atlas/atlas-search/index-definitions/#field-mapping-examples)). Mutually exclusive with `MappingsDynamic`.
+        /// </summary>
+        public readonly string MappingsDynamicConfig;
         /// <summary>
         /// Object containing one or more field specifications.
         /// </summary>
         public readonly string MappingsFields;
         /// <summary>
-        /// Name of the index.
+        /// Type set name.
         /// </summary>
         public readonly string Name;
         /// <summary>
@@ -74,6 +78,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> Synonyms;
         public readonly string Type;
+        /// <summary>
+        /// Set of type set definitions (when present). Each item includes:
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetSearchIndexesResultTypeSetResult> TypeSets;
 
         [OutputConstructor]
         private GetSearchIndexesResultResult(
@@ -93,6 +101,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool mappingsDynamic,
 
+            string mappingsDynamicConfig,
+
             string mappingsFields,
 
             string name,
@@ -107,7 +117,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> synonyms,
 
-            string type)
+            string type,
+
+            ImmutableArray<Outputs.GetSearchIndexesResultTypeSetResult> typeSets)
         {
             Analyzer = analyzer;
             Analyzers = analyzers;
@@ -117,6 +129,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Fields = fields;
             IndexId = indexId;
             MappingsDynamic = mappingsDynamic;
+            MappingsDynamicConfig = mappingsDynamicConfig;
             MappingsFields = mappingsFields;
             Name = name;
             ProjectId = projectId;
@@ -125,6 +138,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             StoredSource = storedSource;
             Synonyms = synonyms;
             Type = type;
+            TypeSets = typeSets;
         }
     }
 }

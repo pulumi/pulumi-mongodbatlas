@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.StreamProcessor
- *
  * `mongodbatlas.StreamProcessor` describes a stream processor.
  *
  * ## Example Usage
@@ -28,13 +26,13 @@ import * as utilities from "./utilities";
  * });
  * const example_sample = new mongodbatlas.StreamConnection("example-sample", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "sample_stream_solar",
  *     type: "Sample",
  * });
  * const example_cluster = new mongodbatlas.StreamConnection("example-cluster", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "ClusterConnection",
  *     type: "Cluster",
  *     clusterName: clusterName,
@@ -45,7 +43,7 @@ import * as utilities from "./utilities";
  * });
  * const example_kafka = new mongodbatlas.StreamConnection("example-kafka", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "KafkaPlaintextConnection",
  *     type: "Kafka",
  *     authentication: {
@@ -63,7 +61,7 @@ import * as utilities from "./utilities";
  * });
  * const stream_processor_sample_example = new mongodbatlas.StreamProcessor("stream-processor-sample-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -86,7 +84,7 @@ import * as utilities from "./utilities";
  * });
  * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -105,7 +103,7 @@ import * as utilities from "./utilities";
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -136,11 +134,11 @@ import * as utilities from "./utilities";
  * });
  * const example_stream_processors = example.instanceName.apply(instanceName => mongodbatlas.getStreamProcessorsOutput({
  *     projectId: projectId,
- *     instanceName: instanceName,
+ *     workspaceName: instanceName,
  * }));
  * const example_stream_processor = pulumi.all([example.instanceName, stream_processor_sample_example.processorName]).apply(([instanceName, processorName]) => mongodbatlas.getStreamProcessorOutput({
  *     projectId: projectId,
- *     instanceName: instanceName,
+ *     workspaceName: instanceName,
  *     processorName: processorName,
  * }));
  * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
@@ -153,6 +151,7 @@ export function getStreamProcessor(args: GetStreamProcessorArgs, opts?: pulumi.I
         "instanceName": args.instanceName,
         "processorName": args.processorName,
         "projectId": args.projectId,
+        "workspaceName": args.workspaceName,
     }, opts);
 }
 
@@ -161,17 +160,18 @@ export function getStreamProcessor(args: GetStreamProcessorArgs, opts?: pulumi.I
  */
 export interface GetStreamProcessorArgs {
     /**
-     * Human-readable label that identifies the stream instance.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName: string;
+    instanceName?: string;
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      */
     processorName: string;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
     projectId: string;
+    workspaceName?: string;
 }
 
 /**
@@ -180,13 +180,13 @@ export interface GetStreamProcessorArgs {
 export interface GetStreamProcessorResult {
     readonly id: string;
     /**
-     * Human-readable label that identifies the stream instance.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    readonly instanceName: string;
+    readonly instanceName?: string;
     readonly options: outputs.GetStreamProcessorOptions;
     readonly pipeline: string;
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      */
     readonly processorName: string;
     /**
@@ -195,10 +195,9 @@ export interface GetStreamProcessorResult {
     readonly projectId: string;
     readonly state: string;
     readonly stats: string;
+    readonly workspaceName?: string;
 }
 /**
- * ## # Data Source: mongodbatlas.StreamProcessor
- *
  * `mongodbatlas.StreamProcessor` describes a stream processor.
  *
  * ## Example Usage
@@ -218,13 +217,13 @@ export interface GetStreamProcessorResult {
  * });
  * const example_sample = new mongodbatlas.StreamConnection("example-sample", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "sample_stream_solar",
  *     type: "Sample",
  * });
  * const example_cluster = new mongodbatlas.StreamConnection("example-cluster", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "ClusterConnection",
  *     type: "Cluster",
  *     clusterName: clusterName,
@@ -235,7 +234,7 @@ export interface GetStreamProcessorResult {
  * });
  * const example_kafka = new mongodbatlas.StreamConnection("example-kafka", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     connectionName: "KafkaPlaintextConnection",
  *     type: "Kafka",
  *     authentication: {
@@ -253,7 +252,7 @@ export interface GetStreamProcessorResult {
  * });
  * const stream_processor_sample_example = new mongodbatlas.StreamProcessor("stream-processor-sample-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -276,7 +275,7 @@ export interface GetStreamProcessorResult {
  * });
  * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -295,7 +294,7 @@ export interface GetStreamProcessorResult {
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
  *     pipeline: JSON.stringify([
  *         {
@@ -326,11 +325,11 @@ export interface GetStreamProcessorResult {
  * });
  * const example_stream_processors = example.instanceName.apply(instanceName => mongodbatlas.getStreamProcessorsOutput({
  *     projectId: projectId,
- *     instanceName: instanceName,
+ *     workspaceName: instanceName,
  * }));
  * const example_stream_processor = pulumi.all([example.instanceName, stream_processor_sample_example.processorName]).apply(([instanceName, processorName]) => mongodbatlas.getStreamProcessorOutput({
  *     projectId: projectId,
- *     instanceName: instanceName,
+ *     workspaceName: instanceName,
  *     processorName: processorName,
  * }));
  * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
@@ -343,6 +342,7 @@ export function getStreamProcessorOutput(args: GetStreamProcessorOutputArgs, opt
         "instanceName": args.instanceName,
         "processorName": args.processorName,
         "projectId": args.projectId,
+        "workspaceName": args.workspaceName,
     }, opts);
 }
 
@@ -351,15 +351,16 @@ export function getStreamProcessorOutput(args: GetStreamProcessorOutputArgs, opt
  */
 export interface GetStreamProcessorOutputArgs {
     /**
-     * Human-readable label that identifies the stream instance.
+     * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string>;
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      */
     processorName: pulumi.Input<string>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
      */
     projectId: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string>;
 }

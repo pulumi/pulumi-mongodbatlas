@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,7 +18,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -182,13 +182,13 @@ type LookupBackupCompliancePolicyResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Specifications for on-demand policy.
-	OnDemandPolicyItem GetBackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItem"`
+	OnDemandPolicyItems []GetBackupCompliancePolicyOnDemandPolicyItem `pulumi:"onDemandPolicyItems"`
 	// Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
 	PitEnabled bool `pulumi:"pitEnabled"`
 	// Scheduled policy using a daily frequency type, see block fields.
-	PolicyItemDaily GetBackupCompliancePolicyPolicyItemDaily `pulumi:"policyItemDaily"`
+	PolicyItemDailies []GetBackupCompliancePolicyPolicyItemDaily `pulumi:"policyItemDailies"`
 	// Scheduled policy using an hourly frequency type, see block fields.
-	PolicyItemHourly GetBackupCompliancePolicyPolicyItemHourly `pulumi:"policyItemHourly"`
+	PolicyItemHourlies []GetBackupCompliancePolicyPolicyItemHourly `pulumi:"policyItemHourlies"`
 	// Scheduled policy using a monthly frequency type, see block fields.
 	PolicyItemMonthlies []GetBackupCompliancePolicyPolicyItemMonthly `pulumi:"policyItemMonthlies"`
 	// Scheduled policy using a weekly frequency type, see block fields.
@@ -271,10 +271,10 @@ func (o LookupBackupCompliancePolicyResultOutput) Id() pulumi.StringOutput {
 }
 
 // Specifications for on-demand policy.
-func (o LookupBackupCompliancePolicyResultOutput) OnDemandPolicyItem() GetBackupCompliancePolicyOnDemandPolicyItemOutput {
-	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyOnDemandPolicyItem {
-		return v.OnDemandPolicyItem
-	}).(GetBackupCompliancePolicyOnDemandPolicyItemOutput)
+func (o LookupBackupCompliancePolicyResultOutput) OnDemandPolicyItems() GetBackupCompliancePolicyOnDemandPolicyItemArrayOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyOnDemandPolicyItem {
+		return v.OnDemandPolicyItems
+	}).(GetBackupCompliancePolicyOnDemandPolicyItemArrayOutput)
 }
 
 // Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
@@ -283,17 +283,17 @@ func (o LookupBackupCompliancePolicyResultOutput) PitEnabled() pulumi.BoolOutput
 }
 
 // Scheduled policy using a daily frequency type, see block fields.
-func (o LookupBackupCompliancePolicyResultOutput) PolicyItemDaily() GetBackupCompliancePolicyPolicyItemDailyOutput {
-	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyPolicyItemDaily {
-		return v.PolicyItemDaily
-	}).(GetBackupCompliancePolicyPolicyItemDailyOutput)
+func (o LookupBackupCompliancePolicyResultOutput) PolicyItemDailies() GetBackupCompliancePolicyPolicyItemDailyArrayOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyPolicyItemDaily {
+		return v.PolicyItemDailies
+	}).(GetBackupCompliancePolicyPolicyItemDailyArrayOutput)
 }
 
 // Scheduled policy using an hourly frequency type, see block fields.
-func (o LookupBackupCompliancePolicyResultOutput) PolicyItemHourly() GetBackupCompliancePolicyPolicyItemHourlyOutput {
-	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) GetBackupCompliancePolicyPolicyItemHourly {
-		return v.PolicyItemHourly
-	}).(GetBackupCompliancePolicyPolicyItemHourlyOutput)
+func (o LookupBackupCompliancePolicyResultOutput) PolicyItemHourlies() GetBackupCompliancePolicyPolicyItemHourlyArrayOutput {
+	return o.ApplyT(func(v LookupBackupCompliancePolicyResult) []GetBackupCompliancePolicyPolicyItemHourly {
+		return v.PolicyItemHourlies
+	}).(GetBackupCompliancePolicyPolicyItemHourlyArrayOutput)
 }
 
 // Scheduled policy using a monthly frequency type, see block fields.

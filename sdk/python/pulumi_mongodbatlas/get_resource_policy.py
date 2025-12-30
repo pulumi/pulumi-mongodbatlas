@@ -162,8 +162,6 @@ def get_resource_policy(id: Optional[_builtins.str] = None,
                         org_id: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcePolicyResult:
     """
-    ## # Data Source: ResourcePolicy
-
     `ResourcePolicy` describes a resource policy in an organization.
 
     ## Example Usage
@@ -193,8 +191,6 @@ def get_resource_policy_output(id: Optional[pulumi.Input[_builtins.str]] = None,
                                org_id: Optional[pulumi.Input[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourcePolicyResult]:
     """
-    ## # Data Source: ResourcePolicy
-
     `ResourcePolicy` describes a resource policy in an organization.
 
     ## Example Usage

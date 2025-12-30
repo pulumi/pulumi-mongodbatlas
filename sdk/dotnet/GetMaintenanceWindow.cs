@@ -12,11 +12,11 @@ namespace Pulumi.Mongodbatlas
     public static class GetMaintenanceWindow
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MaintenanceWindow
-        /// 
         /// `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// &gt; **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
         /// 
         /// ## Examples Usage
         /// 
@@ -71,11 +71,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetMaintenanceWindowResult>("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", args ?? new GetMaintenanceWindowArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MaintenanceWindow
-        /// 
         /// `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// &gt; **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
         /// 
         /// ## Examples Usage
         /// 
@@ -130,11 +130,11 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetMaintenanceWindowResult>("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", args ?? new GetMaintenanceWindowInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.MaintenanceWindow
-        /// 
         /// `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+        /// 
+        /// &gt; **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
         /// 
         /// ## Examples Usage
         /// 
@@ -231,7 +231,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly int DayOfWeek;
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12  (Time zone is UTC).
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         /// </summary>
         public readonly int HourOfDay;
         /// <summary>
@@ -248,7 +248,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMaintenanceWindowProtectedHourResult> ProtectedHours;
         /// <summary>
-        /// Flag indicating whether project maintenance has been directed to start immediately. If you request that maintenance begin immediately, this field returns true from the time the request was made until the time the maintenance event completes.
+        /// Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         /// </summary>
         public readonly bool StartAsap;
         /// <summary>

@@ -7,6 +7,8 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.InvokeArgs {
@@ -14,29 +16,33 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
     public static final GetStreamProcessorPlainArgs Empty = new GetStreamProcessorPlainArgs();
 
     /**
-     * Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    @Import(name="instanceName", required=true)
-    private String instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    @Import(name="instanceName")
+    private @Nullable String instanceName;
 
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
-    public String instanceName() {
-        return this.instanceName;
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+    public Optional<String> instanceName() {
+        return Optional.ofNullable(this.instanceName);
     }
 
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      * 
      */
     @Import(name="processorName", required=true)
     private String processorName;
 
     /**
-     * @return Human-readable label that identifies the stream processor.
+     * @return Label that identifies the stream processor.
      * 
      */
     public String processorName() {
@@ -58,12 +64,20 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
         return this.projectId;
     }
 
+    @Import(name="workspaceName")
+    private @Nullable String workspaceName;
+
+    public Optional<String> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
+
     private GetStreamProcessorPlainArgs() {}
 
     private GetStreamProcessorPlainArgs(GetStreamProcessorPlainArgs $) {
         this.instanceName = $.instanceName;
         this.processorName = $.processorName;
         this.projectId = $.projectId;
+        this.workspaceName = $.workspaceName;
     }
 
     public static Builder builder() {
@@ -85,18 +99,20 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
-         * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
          */
-        public Builder instanceName(String instanceName) {
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
+        public Builder instanceName(@Nullable String instanceName) {
             $.instanceName = instanceName;
             return this;
         }
 
         /**
-         * @param processorName Human-readable label that identifies the stream processor.
+         * @param processorName Label that identifies the stream processor.
          * 
          * @return builder
          * 
@@ -117,10 +133,12 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
             return this;
         }
 
+        public Builder workspaceName(@Nullable String workspaceName) {
+            $.workspaceName = workspaceName;
+            return this;
+        }
+
         public GetStreamProcessorPlainArgs build() {
-            if ($.instanceName == null) {
-                throw new MissingRequiredPropertyException("GetStreamProcessorPlainArgs", "instanceName");
-            }
             if ($.processorName == null) {
                 throw new MissingRequiredPropertyException("GetStreamProcessorPlainArgs", "processorName");
             }

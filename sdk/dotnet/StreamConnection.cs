@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.StreamConnection
-    /// 
     /// `mongodbatlas.StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
     /// 
     /// &gt; **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.
@@ -31,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = "InstanceName",
+    ///         WorkspaceName = "WorkspaceName",
     ///         ConnectionName = "ConnectionName",
     ///         Type = "Cluster",
     ///         ClusterName = "Cluster0",
@@ -39,6 +37,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Further Examples
+    /// - Atlas Stream Connection
     /// 
     /// ### Example Cross Project Cluster Connection
     /// 
@@ -53,7 +54,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = "InstanceName",
+    ///         WorkspaceName = "WorskpaceName",
     ///         ConnectionName = "ConnectionName",
     ///         Type = "Cluster",
     ///         ClusterName = "OtherCluster",
@@ -76,7 +77,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = "NewInstance",
+    ///         WorkspaceName = "NewWorkspace",
     ///         ConnectionName = "KafkaConnection",
     ///         Type = "Kafka",
     ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
@@ -99,6 +100,53 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example Kafka SASL OAuthbearer Connection
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example_kafka_oauthbearer = new Mongodbatlas.StreamConnection("example-kafka-oauthbearer", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         InstanceName = example.InstanceName,
+    ///         ConnectionName = "KafkaOAuthbearerConnection",
+    ///         Type = "Kafka",
+    ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
+    ///         {
+    ///             Mechanism = "OAUTHBEARER",
+    ///             Method = "OIDC",
+    ///             TokenEndpointUrl = "https://example.com/oauth/token",
+    ///             ClientId = "auth0Client",
+    ///             ClientSecret = kafkaClientSecret,
+    ///             Scope = "read:messages write:messages",
+    ///             SaslOauthbearerExtensions = "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
+    ///         },
+    ///         BootstrapServers = "localhost:9092,localhost:9092",
+    ///         Config = 
+    ///         {
+    ///             { "auto.offset.reset", "earliest" },
+    ///         },
+    ///         Security = new Mongodbatlas.Inputs.StreamConnectionSecurityArgs
+    ///         {
+    ///             Protocol = "SASL_PLAINTEXT",
+    ///         },
+    ///         Networking = new Mongodbatlas.Inputs.StreamConnectionNetworkingArgs
+    ///         {
+    ///             Access = new Mongodbatlas.Inputs.StreamConnectionNetworkingAccessArgs
+    ///             {
+    ///                 Type = "PUBLIC",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example Kafka SASL SSL Connection
     /// 
     /// ```csharp
@@ -112,7 +160,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = "NewInstance",
+    ///         WorkspaceName = "NewWorkspace",
     ///         ConnectionName = "KafkaConnection",
     ///         Type = "Kafka",
     ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
@@ -149,7 +197,7 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = "NewInstance",
+    ///         WorkspaceName = "NewWorkspace",
     ///         ConnectionName = "AWSLambdaConnection",
     ///         Type = "AWSLambda",
     ///         Aws = new Mongodbatlas.Inputs.StreamConnectionAwsArgs
@@ -174,7 +222,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_https = new Mongodbatlas.StreamConnection("example-https", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.InstanceName,
     ///         ConnectionName = "https_connection_tf_new",
     ///         Type = "Https",
     ///         Url = "https://example.com",
@@ -190,7 +238,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
+    /// You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
     /// 
     /// ```sh
     /// $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
@@ -220,7 +268,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
 
         /// <summary>
-        /// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         /// </summary>
         [Output("connectionName")]
         public Output<string> ConnectionName { get; private set; } = null!;
@@ -232,10 +280,10 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableDictionary<string, string>?> Headers { get; private set; } = null!;
 
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
         [Output("instanceName")]
-        public Output<string> InstanceName { get; private set; } = null!;
+        public Output<string?> InstanceName { get; private set; } = null!;
 
         [Output("networking")]
         public Output<Outputs.StreamConnectionNetworking> Networking { get; private set; } = null!;
@@ -251,12 +299,20 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         [Output("url")]
         public Output<string?> Url { get; private set; } = null!;
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
+        [Output("workspaceName")]
+        public Output<string?> WorkspaceName { get; private set; } = null!;
 
 
         /// <summary>
@@ -328,7 +384,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         /// </summary>
         [Input("connectionName", required: true)]
         public Input<string> ConnectionName { get; set; } = null!;
@@ -345,10 +401,10 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
-        [Input("instanceName", required: true)]
-        public Input<string> InstanceName { get; set; } = null!;
+        [Input("instanceName")]
+        public Input<string>? InstanceName { get; set; }
 
         [Input("networking")]
         public Input<Inputs.StreamConnectionNetworkingArgs>? Networking { get; set; }
@@ -364,12 +420,20 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         [Input("url")]
         public Input<string>? Url { get; set; }
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
+        [Input("workspaceName")]
+        public Input<string>? WorkspaceName { get; set; }
 
         public StreamConnectionArgs()
         {
@@ -403,7 +467,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        /// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         /// </summary>
         [Input("connectionName")]
         public Input<string>? ConnectionName { get; set; }
@@ -420,7 +484,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Human-readable label that identifies the stream instance.
+        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
@@ -439,12 +503,20 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        /// 
+        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         [Input("url")]
         public Input<string>? Url { get; set; }
+
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
+        [Input("workspaceName")]
+        public Input<string>? WorkspaceName { get; set; }
 
         public StreamConnectionState()
         {

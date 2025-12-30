@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Resource: mongodbatlas.FlexCluster
- *
  * `mongodbatlas.FlexCluster` provides a Flex Cluster resource. The resource lets you create, update, delete and import a flex cluster.
  *
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` resource instead of the `mongodbatlas.FlexCluster` resource to create and manage Flex clusters. The `mongodbatlas.AdvancedCluster` resource not only supports Flex clusters, but also supports tenant and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster resource.
@@ -40,6 +38,9 @@ import * as utilities from "./utilities";
  * export const mongodbatlasFlexCluster = example_cluster.apply(example_cluster => example_cluster.name);
  * export const mongodbatlasFlexClustersNames = example_clusters.then(example_clusters => .map(cluster => (cluster.name)));
  * ```
+ *
+ * ### Further Examples
+ * - Flex Cluster
  *
  * ## Import
  *
@@ -92,6 +93,10 @@ export class FlexCluster extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createDate: pulumi.Output<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean>;
+    /**
      * Version of MongoDB that the instance runs.
      */
     declare public /*out*/ readonly mongoDbVersion: pulumi.Output<string>;
@@ -119,6 +124,7 @@ export class FlexCluster extends pulumi.CustomResource {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
      */
     declare public readonly terminationProtectionEnabled: pulumi.Output<boolean>;
+    declare public readonly timeouts: pulumi.Output<outputs.FlexClusterTimeouts | undefined>;
     /**
      * Method by which the cluster maintains the MongoDB versions.
      */
@@ -141,6 +147,7 @@ export class FlexCluster extends pulumi.CustomResource {
             resourceInputs["clusterType"] = state?.clusterType;
             resourceInputs["connectionStrings"] = state?.connectionStrings;
             resourceInputs["createDate"] = state?.createDate;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["mongoDbVersion"] = state?.mongoDbVersion;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
@@ -148,6 +155,7 @@ export class FlexCluster extends pulumi.CustomResource {
             resourceInputs["stateName"] = state?.stateName;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["terminationProtectionEnabled"] = state?.terminationProtectionEnabled;
+            resourceInputs["timeouts"] = state?.timeouts;
             resourceInputs["versionReleaseSystem"] = state?.versionReleaseSystem;
         } else {
             const args = argsOrState as FlexClusterArgs | undefined;
@@ -157,11 +165,13 @@ export class FlexCluster extends pulumi.CustomResource {
             if (args?.providerSettings === undefined && !opts.urn) {
                 throw new Error("Missing required property 'providerSettings'");
             }
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["providerSettings"] = args?.providerSettings;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["terminationProtectionEnabled"] = args?.terminationProtectionEnabled;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["backupSettings"] = undefined /*out*/;
             resourceInputs["clusterType"] = undefined /*out*/;
             resourceInputs["connectionStrings"] = undefined /*out*/;
@@ -196,6 +206,10 @@ export interface FlexClusterState {
      */
     createDate?: pulumi.Input<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
      * Version of MongoDB that the instance runs.
      */
     mongoDbVersion?: pulumi.Input<string>;
@@ -223,6 +237,7 @@ export interface FlexClusterState {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
      */
     terminationProtectionEnabled?: pulumi.Input<boolean>;
+    timeouts?: pulumi.Input<inputs.FlexClusterTimeouts>;
     /**
      * Method by which the cluster maintains the MongoDB versions.
      */
@@ -233,6 +248,10 @@ export interface FlexClusterState {
  * The set of arguments for constructing a FlexCluster resource.
  */
 export interface FlexClusterArgs {
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
      * Human-readable label that identifies the instance.
      */
@@ -253,4 +272,5 @@ export interface FlexClusterArgs {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
      */
     terminationProtectionEnabled?: pulumi.Input<boolean>;
+    timeouts?: pulumi.Input<inputs.FlexClusterTimeouts>;
 }

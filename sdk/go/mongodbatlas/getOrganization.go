@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: Organization
-//
 // `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
 //
 // ## Example Usage
@@ -23,7 +21,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -78,6 +76,8 @@ type LookupOrganizationResult struct {
 	// (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
 	SecurityContact           string `pulumi:"securityContact"`
 	SkipDefaultAlertsSettings bool   `pulumi:"skipDefaultAlertsSettings"`
+	// Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
+	Users []GetOrganizationUser `pulumi:"users"`
 }
 
 func LookupOrganizationOutput(ctx *pulumi.Context, args LookupOrganizationOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationResultOutput {
@@ -164,6 +164,11 @@ func (o LookupOrganizationResultOutput) SecurityContact() pulumi.StringOutput {
 
 func (o LookupOrganizationResultOutput) SkipDefaultAlertsSettings() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.SkipDefaultAlertsSettings }).(pulumi.BoolOutput)
+}
+
+// Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
+func (o LookupOrganizationResultOutput) Users() GetOrganizationUserArrayOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) []GetOrganizationUser { return v.Users }).(GetOrganizationUserArrayOutput)
 }
 
 func init() {

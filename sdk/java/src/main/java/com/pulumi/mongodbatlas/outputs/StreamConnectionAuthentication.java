@@ -12,15 +12,45 @@ import javax.annotation.Nullable;
 @CustomType
 public final class StreamConnectionAuthentication {
     /**
-     * @return Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Public identifier for the Kafka client.
+     * 
+     */
+    private @Nullable String clientId;
+    /**
+     * @return Secret known only to the Kafka client and the authorization server.
+     * 
+     */
+    private @Nullable String clientSecret;
+    /**
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
      * 
      */
     private @Nullable String mechanism;
+    /**
+     * @return SASL OAUTHBEARER authentication method. Value must be OIDC.
+     * 
+     */
+    private @Nullable String method;
     /**
      * @return Password of the account to connect to the Kafka cluster.
      * 
      */
     private @Nullable String password;
+    /**
+     * @return Additional information to provide to the Kafka broker.
+     * 
+     */
+    private @Nullable String saslOauthbearerExtensions;
+    /**
+     * @return Scope of the access request to the broker specified by the Kafka clients.
+     * 
+     */
+    private @Nullable String scope;
+    /**
+     * @return OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     * 
+     */
+    private @Nullable String tokenEndpointUrl;
     /**
      * @return Username of the account to connect to the Kafka cluster.
      * 
@@ -29,11 +59,32 @@ public final class StreamConnectionAuthentication {
 
     private StreamConnectionAuthentication() {}
     /**
-     * @return Style of authentication. Can be one of `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Public identifier for the Kafka client.
+     * 
+     */
+    public Optional<String> clientId() {
+        return Optional.ofNullable(this.clientId);
+    }
+    /**
+     * @return Secret known only to the Kafka client and the authorization server.
+     * 
+     */
+    public Optional<String> clientSecret() {
+        return Optional.ofNullable(this.clientSecret);
+    }
+    /**
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
      * 
      */
     public Optional<String> mechanism() {
         return Optional.ofNullable(this.mechanism);
+    }
+    /**
+     * @return SASL OAUTHBEARER authentication method. Value must be OIDC.
+     * 
+     */
+    public Optional<String> method() {
+        return Optional.ofNullable(this.method);
     }
     /**
      * @return Password of the account to connect to the Kafka cluster.
@@ -41,6 +92,27 @@ public final class StreamConnectionAuthentication {
      */
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
+    }
+    /**
+     * @return Additional information to provide to the Kafka broker.
+     * 
+     */
+    public Optional<String> saslOauthbearerExtensions() {
+        return Optional.ofNullable(this.saslOauthbearerExtensions);
+    }
+    /**
+     * @return Scope of the access request to the broker specified by the Kafka clients.
+     * 
+     */
+    public Optional<String> scope() {
+        return Optional.ofNullable(this.scope);
+    }
+    /**
+     * @return OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+     * 
+     */
+    public Optional<String> tokenEndpointUrl() {
+        return Optional.ofNullable(this.tokenEndpointUrl);
     }
     /**
      * @return Username of the account to connect to the Kafka cluster.
@@ -59,17 +131,41 @@ public final class StreamConnectionAuthentication {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable String clientId;
+        private @Nullable String clientSecret;
         private @Nullable String mechanism;
+        private @Nullable String method;
         private @Nullable String password;
+        private @Nullable String saslOauthbearerExtensions;
+        private @Nullable String scope;
+        private @Nullable String tokenEndpointUrl;
         private @Nullable String username;
         public Builder() {}
         public Builder(StreamConnectionAuthentication defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.clientId = defaults.clientId;
+    	      this.clientSecret = defaults.clientSecret;
     	      this.mechanism = defaults.mechanism;
+    	      this.method = defaults.method;
     	      this.password = defaults.password;
+    	      this.saslOauthbearerExtensions = defaults.saslOauthbearerExtensions;
+    	      this.scope = defaults.scope;
+    	      this.tokenEndpointUrl = defaults.tokenEndpointUrl;
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
+        public Builder clientId(@Nullable String clientId) {
+
+            this.clientId = clientId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder clientSecret(@Nullable String clientSecret) {
+
+            this.clientSecret = clientSecret;
+            return this;
+        }
         @CustomType.Setter
         public Builder mechanism(@Nullable String mechanism) {
 
@@ -77,9 +173,33 @@ public final class StreamConnectionAuthentication {
             return this;
         }
         @CustomType.Setter
+        public Builder method(@Nullable String method) {
+
+            this.method = method;
+            return this;
+        }
+        @CustomType.Setter
         public Builder password(@Nullable String password) {
 
             this.password = password;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder saslOauthbearerExtensions(@Nullable String saslOauthbearerExtensions) {
+
+            this.saslOauthbearerExtensions = saslOauthbearerExtensions;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder scope(@Nullable String scope) {
+
+            this.scope = scope;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder tokenEndpointUrl(@Nullable String tokenEndpointUrl) {
+
+            this.tokenEndpointUrl = tokenEndpointUrl;
             return this;
         }
         @CustomType.Setter
@@ -90,8 +210,14 @@ public final class StreamConnectionAuthentication {
         }
         public StreamConnectionAuthentication build() {
             final var _resultValue = new StreamConnectionAuthentication();
+            _resultValue.clientId = clientId;
+            _resultValue.clientSecret = clientSecret;
             _resultValue.mechanism = mechanism;
+            _resultValue.method = method;
             _resultValue.password = password;
+            _resultValue.saslOauthbearerExtensions = saslOauthbearerExtensions;
+            _resultValue.scope = scope;
+            _resultValue.tokenEndpointUrl = tokenEndpointUrl;
             _resultValue.username = username;
             return _resultValue;
         }

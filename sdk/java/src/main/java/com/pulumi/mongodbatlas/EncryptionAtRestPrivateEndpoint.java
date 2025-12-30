@@ -10,12 +10,13 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.EncryptionAtRestPrivateEndpointArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.EncryptionAtRestPrivateEndpointState;
+import com.pulumi.mongodbatlas.outputs.EncryptionAtRestPrivateEndpointTimeouts;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.EncryptionAtRestPrivateEndpoint
- * 
  * `mongodbatlas.EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
  * 
  * &gt; **NOTE:** As a prerequisite to configuring a private endpoint for Azure Key Vault or AWS KMS, the corresponding `mongodbatlas.EncryptionAtRest` resource has to be adjusted by configuring to true `azure_key_vault_config.require_private_networking` or `aws_kms_config.require_private_networking`, respectively. This attribute should be updated in place, ensuring the customer-managed keys encryption is never disabled.
@@ -159,6 +160,10 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - AWS KMS Encryption at Rest Private Endpoint
+ * - Azure Key Vault Encryption at Rest Private Endpoint
+ * 
  * ## Import
  * 
  * Encryption At Rest Private Endpoint resource can be imported using the project ID, cloud provider, and private endpoint ID. The format must be `{project_id}-{cloud_provider}-{private_endpoint_id}` e.g.
@@ -183,6 +188,20 @@ public class EncryptionAtRestPrivateEndpoint extends com.pulumi.resources.Custom
      */
     public Output<String> cloudProvider() {
         return this.cloudProvider;
+    }
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Output<Boolean> deleteOnCreateTimeout() {
+        return this.deleteOnCreateTimeout;
     }
     /**
      * Error message for failures associated with the Encryption At Rest private endpoint.
@@ -253,6 +272,12 @@ public class EncryptionAtRestPrivateEndpoint extends com.pulumi.resources.Custom
      */
     public Output<String> status() {
         return this.status;
+    }
+    @Export(name="timeouts", refs={EncryptionAtRestPrivateEndpointTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ EncryptionAtRestPrivateEndpointTimeouts> timeouts;
+
+    public Output<Optional<EncryptionAtRestPrivateEndpointTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
     }
 
     /**

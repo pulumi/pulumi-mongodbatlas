@@ -6,6 +6,8 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
+import com.pulumi.mongodbatlas.inputs.StreamProcessorTimeoutsArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -17,16 +19,39 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     public static final StreamProcessorState Empty = new StreamProcessorState();
 
     /**
-     * Human-readable label that identifies the stream instance.
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      * 
      */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
+
+    /**
+     * Label that identifies the stream processing workspace.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     @Import(name="instanceName")
     private @Nullable Output<String> instanceName;
 
     /**
-     * @return Human-readable label that identifies the stream instance.
+     * @return Label that identifies the stream processing workspace.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     public Optional<Output<String>> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }
@@ -62,14 +87,14 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Human-readable label that identifies the stream processor.
+     * Label that identifies the stream processor.
      * 
      */
     @Import(name="processorName")
     private @Nullable Output<String> processorName;
 
     /**
-     * @return Human-readable label that identifies the stream processor.
+     * @return Label that identifies the stream processor.
      * 
      */
     public Optional<Output<String>> processorName() {
@@ -125,9 +150,32 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.stats);
     }
 
+    @Import(name="timeouts")
+    private @Nullable Output<StreamProcessorTimeoutsArgs> timeouts;
+
+    public Optional<Output<StreamProcessorTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
+    /**
+     * Label that identifies the stream processing workspace.
+     * 
+     */
+    @Import(name="workspaceName")
+    private @Nullable Output<String> workspaceName;
+
+    /**
+     * @return Label that identifies the stream processing workspace.
+     * 
+     */
+    public Optional<Output<String>> workspaceName() {
+        return Optional.ofNullable(this.workspaceName);
+    }
+
     private StreamProcessorState() {}
 
     private StreamProcessorState(StreamProcessorState $) {
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.instanceName = $.instanceName;
         this.options = $.options;
         this.pipeline = $.pipeline;
@@ -135,6 +183,8 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         this.projectId = $.projectId;
         this.state = $.state;
         this.stats = $.stats;
+        this.timeouts = $.timeouts;
+        this.workspaceName = $.workspaceName;
     }
 
     public static Builder builder() {
@@ -156,22 +206,51 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
          * 
          * @return builder
          * 
          */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
+        }
+
+        /**
+         * @param instanceName Label that identifies the stream processing workspace.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
         public Builder instanceName(@Nullable Output<String> instanceName) {
             $.instanceName = instanceName;
             return this;
         }
 
         /**
-         * @param instanceName Human-readable label that identifies the stream instance.
+         * @param instanceName Label that identifies the stream processing workspace.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to workspace_name.
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
         public Builder instanceName(String instanceName) {
             return instanceName(Output.of(instanceName));
         }
@@ -219,7 +298,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param processorName Human-readable label that identifies the stream processor.
+         * @param processorName Label that identifies the stream processor.
          * 
          * @return builder
          * 
@@ -230,7 +309,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param processorName Human-readable label that identifies the stream processor.
+         * @param processorName Label that identifies the stream processor.
          * 
          * @return builder
          * 
@@ -304,6 +383,36 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
          */
         public Builder stats(String stats) {
             return stats(Output.of(stats));
+        }
+
+        public Builder timeouts(@Nullable Output<StreamProcessorTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        public Builder timeouts(StreamProcessorTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
+        }
+
+        /**
+         * @param workspaceName Label that identifies the stream processing workspace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder workspaceName(@Nullable Output<String> workspaceName) {
+            $.workspaceName = workspaceName;
+            return this;
+        }
+
+        /**
+         * @param workspaceName Label that identifies the stream processing workspace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder workspaceName(String workspaceName) {
+            return workspaceName(Output.of(workspaceName));
         }
 
         public StreamProcessorState build() {

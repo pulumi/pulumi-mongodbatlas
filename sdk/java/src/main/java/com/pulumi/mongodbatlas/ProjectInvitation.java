@@ -87,6 +87,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Migrate Project Invitation to Cloud User Project Assignment
+ * 
  * ## Import
  * 
  * ~&gt; __IMPORTANT:__

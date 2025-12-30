@@ -26,7 +26,7 @@ public final class GetAdvancedClustersInvokeResult {
      * 
      */
     private List<GetAdvancedClustersResult> results;
-    private @Nullable Boolean useReplicationSpecPerShard;
+    private @Nullable Boolean useEffectiveFields;
 
     private GetAdvancedClustersInvokeResult() {}
     /**
@@ -46,8 +46,8 @@ public final class GetAdvancedClustersInvokeResult {
     public List<GetAdvancedClustersResult> results() {
         return this.results;
     }
-    public Optional<Boolean> useReplicationSpecPerShard() {
-        return Optional.ofNullable(this.useReplicationSpecPerShard);
+    public Optional<Boolean> useEffectiveFields() {
+        return Optional.ofNullable(this.useEffectiveFields);
     }
 
     public static Builder builder() {
@@ -62,14 +62,14 @@ public final class GetAdvancedClustersInvokeResult {
         private String id;
         private String projectId;
         private List<GetAdvancedClustersResult> results;
-        private @Nullable Boolean useReplicationSpecPerShard;
+        private @Nullable Boolean useEffectiveFields;
         public Builder() {}
         public Builder(GetAdvancedClustersInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
-    	      this.useReplicationSpecPerShard = defaults.useReplicationSpecPerShard;
+    	      this.useEffectiveFields = defaults.useEffectiveFields;
         }
 
         @CustomType.Setter
@@ -100,9 +100,9 @@ public final class GetAdvancedClustersInvokeResult {
             return results(List.of(results));
         }
         @CustomType.Setter
-        public Builder useReplicationSpecPerShard(@Nullable Boolean useReplicationSpecPerShard) {
+        public Builder useEffectiveFields(@Nullable Boolean useEffectiveFields) {
 
-            this.useReplicationSpecPerShard = useReplicationSpecPerShard;
+            this.useEffectiveFields = useEffectiveFields;
             return this;
         }
         public GetAdvancedClustersInvokeResult build() {
@@ -110,7 +110,7 @@ public final class GetAdvancedClustersInvokeResult {
             _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
-            _resultValue.useReplicationSpecPerShard = useReplicationSpecPerShard;
+            _resultValue.useEffectiveFields = useEffectiveFields;
             return _resultValue;
         }
     }

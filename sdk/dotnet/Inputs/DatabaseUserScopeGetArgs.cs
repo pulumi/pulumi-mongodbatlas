@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class DatabaseUserScopeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Name of the cluster or Atlas Data Lake that the user has access to.
+        /// Name of the cluster or Atlas Data Federation that the user has access to.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

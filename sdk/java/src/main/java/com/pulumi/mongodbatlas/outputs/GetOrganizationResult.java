@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationLink;
+import com.pulumi.mongodbatlas.outputs.GetOrganizationUser;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -56,6 +57,11 @@ public final class GetOrganizationResult {
      */
     private String securityContact;
     private Boolean skipDefaultAlertsSettings;
+    /**
+     * @return Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
+     * 
+     */
+    private List<GetOrganizationUser> users;
 
     private GetOrganizationResult() {}
     /**
@@ -123,6 +129,13 @@ public final class GetOrganizationResult {
     public Boolean skipDefaultAlertsSettings() {
         return this.skipDefaultAlertsSettings;
     }
+    /**
+     * @return Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
+     * 
+     */
+    public List<GetOrganizationUser> users() {
+        return this.users;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -144,6 +157,7 @@ public final class GetOrganizationResult {
         private Boolean restrictEmployeeAccess;
         private String securityContact;
         private Boolean skipDefaultAlertsSettings;
+        private List<GetOrganizationUser> users;
         public Builder() {}
         public Builder(GetOrganizationResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -158,6 +172,7 @@ public final class GetOrganizationResult {
     	      this.restrictEmployeeAccess = defaults.restrictEmployeeAccess;
     	      this.securityContact = defaults.securityContact;
     	      this.skipDefaultAlertsSettings = defaults.skipDefaultAlertsSettings;
+    	      this.users = defaults.users;
         }
 
         @CustomType.Setter
@@ -251,6 +266,17 @@ public final class GetOrganizationResult {
             this.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
             return this;
         }
+        @CustomType.Setter
+        public Builder users(List<GetOrganizationUser> users) {
+            if (users == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationResult", "users");
+            }
+            this.users = users;
+            return this;
+        }
+        public Builder users(GetOrganizationUser... users) {
+            return users(List.of(users));
+        }
         public GetOrganizationResult build() {
             final var _resultValue = new GetOrganizationResult();
             _resultValue.apiAccessListRequired = apiAccessListRequired;
@@ -264,6 +290,7 @@ public final class GetOrganizationResult {
             _resultValue.restrictEmployeeAccess = restrictEmployeeAccess;
             _resultValue.securityContact = securityContact;
             _resultValue.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
+            _resultValue.users = users;
             return _resultValue;
         }
     }

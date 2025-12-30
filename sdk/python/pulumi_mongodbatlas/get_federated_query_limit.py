@@ -143,8 +143,6 @@ def get_federated_query_limit(limit_name: Optional[_builtins.str] = None,
                               tenant_name: Optional[_builtins.str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedQueryLimitResult:
     """
-    ## # Data Source: FederatedQueryLimit
-
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -192,8 +190,6 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[_builtins
                                      tenant_name: Optional[pulumi.Input[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedQueryLimitResult]:
     """
-    ## # Data Source: FederatedQueryLimit
-
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

@@ -15,6 +15,13 @@ public final class StreamInstanceStreamConfigArgs extends com.pulumi.resources.R
 
     public static final StreamInstanceStreamConfigArgs Empty = new StreamInstanceStreamConfigArgs();
 
+    @Import(name="maxTierSize")
+    private @Nullable Output<String> maxTierSize;
+
+    public Optional<Output<String>> maxTierSize() {
+        return Optional.ofNullable(this.maxTierSize);
+    }
+
     /**
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      * 
@@ -33,6 +40,7 @@ public final class StreamInstanceStreamConfigArgs extends com.pulumi.resources.R
     private StreamInstanceStreamConfigArgs() {}
 
     private StreamInstanceStreamConfigArgs(StreamInstanceStreamConfigArgs $) {
+        this.maxTierSize = $.maxTierSize;
         this.tier = $.tier;
     }
 
@@ -52,6 +60,15 @@ public final class StreamInstanceStreamConfigArgs extends com.pulumi.resources.R
 
         public Builder(StreamInstanceStreamConfigArgs defaults) {
             $ = new StreamInstanceStreamConfigArgs(Objects.requireNonNull(defaults));
+        }
+
+        public Builder maxTierSize(@Nullable Output<String> maxTierSize) {
+            $.maxTierSize = maxTierSize;
+            return this;
+        }
+
+        public Builder maxTierSize(String maxTierSize) {
+            return maxTierSize(Output.of(maxTierSize));
         }
 
         /**

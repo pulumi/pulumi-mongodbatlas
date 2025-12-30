@@ -8,12 +8,10 @@ import (
 	"reflect"
 
 	"errors"
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Resource: FederatedDatabaseInstance
-//
 // `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -27,7 +25,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -75,6 +73,10 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - AWS Federated Database Instance
+// - Azure Federated Database Instance
+//
 // ### S With Amazon S3 Bucket As Storage Database
 //
 // ```go
@@ -82,7 +84,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -155,7 +157,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -223,7 +225,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -286,9 +288,9 @@ type FederatedDatabaseInstance struct {
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
 	// * `DELETED` - The Federated Database Instance was deleted.
 	State pulumi.StringOutput `pulumi:"state"`
-	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -308,7 +310,7 @@ type FederatedDatabaseInstance struct {
 	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
 	StorageDatabases FederatedDatabaseInstanceStorageDatabaseArrayOutput `pulumi:"storageDatabases"`
-	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
 	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -319,7 +321,7 @@ type FederatedDatabaseInstance struct {
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+	// * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -385,9 +387,9 @@ type federatedDatabaseInstanceState struct {
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
 	// * `DELETED` - The Federated Database Instance was deleted.
 	State *string `pulumi:"state"`
-	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -407,7 +409,7 @@ type federatedDatabaseInstanceState struct {
 	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
 	StorageDatabases []FederatedDatabaseInstanceStorageDatabase `pulumi:"storageDatabases"`
-	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
 	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -418,7 +420,7 @@ type federatedDatabaseInstanceState struct {
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+	// * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -452,9 +454,9 @@ type FederatedDatabaseInstanceState struct {
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
 	// * `DELETED` - The Federated Database Instance was deleted.
 	State pulumi.StringPtrInput
-	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -474,7 +476,7 @@ type FederatedDatabaseInstanceState struct {
 	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
 	StorageDatabases FederatedDatabaseInstanceStorageDatabaseArrayInput
-	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
 	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -485,7 +487,7 @@ type FederatedDatabaseInstanceState struct {
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+	// * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -517,9 +519,9 @@ type federatedDatabaseInstanceArgs struct {
 	Name *string `pulumi:"name"`
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId string `pulumi:"projectId"`
-	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -539,7 +541,7 @@ type federatedDatabaseInstanceArgs struct {
 	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
 	StorageDatabases []FederatedDatabaseInstanceStorageDatabase `pulumi:"storageDatabases"`
-	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
 	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -550,7 +552,7 @@ type federatedDatabaseInstanceArgs struct {
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+	// * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -579,9 +581,9 @@ type FederatedDatabaseInstanceArgs struct {
 	Name pulumi.StringPtrInput
 	// The unique ID for the project to create a Federated Database Instance.
 	ProjectId pulumi.StringInput
-	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -601,7 +603,7 @@ type FederatedDatabaseInstanceArgs struct {
 	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
 	StorageDatabases FederatedDatabaseInstanceStorageDatabaseArrayInput
-	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+	// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
 	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -612,7 +614,7 @@ type FederatedDatabaseInstanceArgs struct {
 	// * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
 	// * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 	// * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-	// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+	// * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
@@ -754,9 +756,9 @@ func (o FederatedDatabaseInstanceOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
-// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-databases-reference). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 // * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#mongodb-datalakeconf-datalakeconf.stores) data store.
+// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
 // * `storage_databases.#.collections.#.name` - Name of the collection.
 // * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 // * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -781,7 +783,7 @@ func (o FederatedDatabaseInstanceOutput) StorageDatabases() FederatedDatabaseIns
 	}).(FederatedDatabaseInstanceStorageDatabaseArrayOutput)
 }
 
-// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://docs.mongodb.com/datalake/reference/format/data-lake-configuration#std-label-datalake-stores-reference). An empty object indicates that the Federated Database Instance has no configured data stores.
+// Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
 // * `storage_stores.#.name` - Name of the data store.
 // * `storage_stores.#.provider` - Defines where the data is stored.
 // * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -792,7 +794,7 @@ func (o FederatedDatabaseInstanceOutput) StorageDatabases() FederatedDatabaseIns
 // * `storage_stores.#.cluster_name` - Human-readable label of the MongoDB Cloud cluster on which the store is based.
 // * `storage_stores.#.allow_insecure` - Flag that validates the scheme in the specified URLs.
 // * `storage_stores.#.public` - Flag that indicates whether the bucket is public.
-// * `storage_stores.#.default_format` - Default format that Data Lake assumes if it encounters a file without an extension while searching the storeName.
+// * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
 // * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 // * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
 // * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.

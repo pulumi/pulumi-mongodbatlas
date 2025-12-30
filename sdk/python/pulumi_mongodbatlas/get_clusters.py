@@ -74,9 +74,9 @@ class AwaitableGetClustersResult(GetClustersResult):
 def get_clusters(project_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClustersResult:
     """
-    ## # Data Source: get_clusters
-
     `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+
+    > **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `get_advanced_clusters`. For more details, see our migration guide.
 
     > **IMPORTANT:**
     <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.
@@ -126,9 +126,9 @@ def get_clusters(project_id: Optional[_builtins.str] = None,
 def get_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClustersResult]:
     """
-    ## # Data Source: get_clusters
-
     `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
+
+    > **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `get_advanced_clusters`. For more details, see our migration guide.
 
     > **IMPORTANT:**
     <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.

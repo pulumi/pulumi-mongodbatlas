@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.AlertConfiguration
- *
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -144,6 +142,10 @@ export interface GetAlertConfigurationResult {
     readonly outputs?: outputs.GetAlertConfigurationOutput[];
     readonly projectId: string;
     /**
+     * Severity of the event.
+     */
+    readonly severityOverride: string;
+    /**
      * Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      */
     readonly thresholdConfigs: outputs.GetAlertConfigurationThresholdConfig[];
@@ -153,8 +155,6 @@ export interface GetAlertConfigurationResult {
     readonly updated: string;
 }
 /**
- * ## # Data Source: mongodbatlas.AlertConfiguration
- *
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetCloudBackupSnapshotExportBuckets
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportBuckets
-        /// 
         /// `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
         /// 
         /// 
@@ -49,8 +47,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportBuckets
-        /// 
         /// `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
         /// 
         /// 
@@ -86,8 +82,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotExportBucketsResult>("mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets", args ?? new GetCloudBackupSnapshotExportBucketsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.getCloudBackupSnapshotExportBuckets
-        /// 
         /// `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
         /// 
         /// 

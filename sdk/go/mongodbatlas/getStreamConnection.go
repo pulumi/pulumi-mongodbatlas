@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: StreamConnection
-//
 // `StreamConnection` describes a stream connection.
 //
 // ## Example Usage
@@ -22,7 +20,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -31,7 +29,35 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.LookupStreamConnection(ctx, &mongodbatlas.LookupStreamConnectionArgs{
 //				ProjectId:      "<PROJECT_ID>",
-//				InstanceName:   "<INSTANCE_NAME>",
+//				WorkspaceName:  pulumi.StringRef("<WORKSPACE_NAME>"),
+//				ConnectionName: "<CONNECTION_NAME>",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example using workspaceName
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.LookupStreamConnection(ctx, &mongodbatlas.LookupStreamConnectionArgs{
+//				ProjectId:      "<PROJECT_ID>",
+//				WorkspaceName:  pulumi.StringRef("<WORKSPACE_NAME>"),
 //				ConnectionName: "<CONNECTION_NAME>",
 //			}, nil)
 //			if err != nil {
@@ -54,12 +80,18 @@ func LookupStreamConnection(ctx *pulumi.Context, args *LookupStreamConnectionArg
 
 // A collection of arguments for invoking getStreamConnection.
 type LookupStreamConnectionArgs struct {
-	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	ConnectionName string `pulumi:"connectionName"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string `pulumi:"instanceName"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 // A collection of values returned by getStreamConnection.
@@ -80,9 +112,10 @@ type LookupStreamConnectionResult struct {
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	// A map of key-value pairs for optional headers.
-	Headers      map[string]string `pulumi:"headers"`
-	Id           string            `pulumi:"id"`
-	InstanceName string            `pulumi:"instanceName"`
+	Headers map[string]string `pulumi:"headers"`
+	Id      string            `pulumi:"id"`
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string `pulumi:"instanceName"`
 	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
 	Networking GetStreamConnectionNetworking `pulumi:"networking"`
 	ProjectId  string                        `pulumi:"projectId"`
@@ -91,7 +124,8 @@ type LookupStreamConnectionResult struct {
 	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
 	Type string `pulumi:"type"`
 	// URL of the HTTPs endpoint that will be used for creating a connection.
-	Url string `pulumi:"url"`
+	Url           string  `pulumi:"url"`
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 func LookupStreamConnectionOutput(ctx *pulumi.Context, args LookupStreamConnectionOutputArgs, opts ...pulumi.InvokeOption) LookupStreamConnectionResultOutput {
@@ -105,12 +139,18 @@ func LookupStreamConnectionOutput(ctx *pulumi.Context, args LookupStreamConnecti
 
 // A collection of arguments for invoking getStreamConnection.
 type LookupStreamConnectionOutputArgs struct {
-	// Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName pulumi.StringPtrInput `pulumi:"workspaceName"`
 }
 
 func (LookupStreamConnectionOutputArgs) ElementType() reflect.Type {
@@ -180,8 +220,9 @@ func (o LookupStreamConnectionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o LookupStreamConnectionResultOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.InstanceName }).(pulumi.StringOutput)
+// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+func (o LookupStreamConnectionResultOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
 // Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
@@ -206,6 +247,10 @@ func (o LookupStreamConnectionResultOutput) Type() pulumi.StringOutput {
 // URL of the HTTPs endpoint that will be used for creating a connection.
 func (o LookupStreamConnectionResultOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Url }).(pulumi.StringOutput)
+}
+
+func (o LookupStreamConnectionResultOutput) WorkspaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) *string { return v.WorkspaceName }).(pulumi.StringPtrOutput)
 }
 
 func init() {

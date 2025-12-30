@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class CloudProviderAccessAuthorizationGcpGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Email address for the Google Service Account created by Atlas.
+        /// </summary>
         [Input("serviceAccountForAtlas")]
         public Input<string>? ServiceAccountForAtlas { get; set; }
 

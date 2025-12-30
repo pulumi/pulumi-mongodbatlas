@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.SearchIndexArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.SearchIndexState;
 import com.pulumi.mongodbatlas.outputs.SearchIndexSynonym;
+import com.pulumi.mongodbatlas.outputs.SearchIndexTypeSet;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -18,8 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.SearchIndex
- * 
  * `mongodbatlas.SearchIndex` provides a Search Index resource. This allows indexes to be created.
  * 
  * ## Example Usage
@@ -203,6 +202,55 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Configurable dynamic (typeSets + dynamic object)
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.SearchIndex;
+ * import com.pulumi.mongodbatlas.SearchIndexArgs;
+ * import com.pulumi.mongodbatlas.inputs.SearchIndexTypeSetArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var conf_dynamic = new SearchIndex("conf-dynamic", SearchIndexArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .clusterName("<CLUSTER_NAME>")
+ *             .collectionName("collection_test")
+ *             .database("database_test")
+ *             .name("conf-dynamic")
+ *             .type("search")
+ *             .mappingsDynamicConfig("""
+ * { \"typeSet\": \"type_set_name\" }
+ *             """)
+ *             .typeSets(SearchIndexTypeSetArgs.builder()
+ *                 .name("type_set_name")
+ *                 .types("""
+ * [
+ *   { \"type\": \"string\" }
+ * ]
+ *                 """)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  */
 @ResourceType(type="mongodbatlas:index/searchIndex:SearchIndex")
 public class SearchIndex extends com.pulumi.resources.CustomResource {
@@ -305,18 +353,32 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
         return this.indexId;
     }
     /**
-     * Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      * 
      */
     @Export(name="mappingsDynamic", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> mappingsDynamic;
 
     /**
-     * @return Indicates whether the search index uses dynamic or static mapping. For dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`
+     * @return Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      * 
      */
     public Output<Optional<Boolean>> mappingsDynamic() {
         return Codegen.optional(this.mappingsDynamic);
+    }
+    /**
+     * JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    @Export(name="mappingsDynamicConfig", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> mappingsDynamicConfig;
+
+    /**
+     * @return JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
+     * 
+     */
+    public Output<Optional<String>> mappingsDynamicConfig() {
+        return Codegen.optional(this.mappingsDynamicConfig);
     }
     /**
      * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
@@ -429,6 +491,20 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> type() {
         return Codegen.optional(this.type);
+    }
+    /**
+     * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+     * 
+     */
+    @Export(name="typeSets", refs={List.class,SearchIndexTypeSet.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<SearchIndexTypeSet>> typeSets;
+
+    /**
+     * @return One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+     * 
+     */
+    public Output<Optional<List<SearchIndexTypeSet>>> typeSets() {
+        return Codegen.optional(this.typeSets);
     }
     @Export(name="waitForIndexBuildCompletion", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> waitForIndexBuildCompletion;

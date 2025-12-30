@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getFlexRestoreJobs
- *
  * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
  *
  * ## Example Usage
@@ -72,8 +70,6 @@ export interface GetFlexRestoreJobsResult {
     readonly results: outputs.GetFlexRestoreJobsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getFlexRestoreJobs
- *
  * `mongodbatlas.getFlexRestoreJobs` returns all flex restore job of a flex cluster.
  *
  * ## Example Usage

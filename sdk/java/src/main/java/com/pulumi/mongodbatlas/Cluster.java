@@ -452,6 +452,10 @@ import javax.annotation.Nullable;
  * * AWS, Private Endpoint
  * * AWS, Regionalized Private Endpoints
  * 
+ * ### Further Examples
+ * - NVMe Upgrade (Dedicated Cluster)
+ * - Tenant to Dedicated Upgrade (Cluster)
+ * 
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.

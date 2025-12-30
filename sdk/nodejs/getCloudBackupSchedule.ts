@@ -59,7 +59,6 @@ import * as utilities from "./utilities";
  * const test = mongodbatlas.getCloudBackupScheduleOutput({
  *     projectId: testCloudBackupSchedule.projectId,
  *     clusterName: testCloudBackupSchedule.clusterName,
- *     useZoneIdForCopySettings: true,
  * });
  * ```
  */
@@ -68,7 +67,6 @@ export function getCloudBackupSchedule(args: GetCloudBackupScheduleArgs, opts?: 
     return pulumi.runtime.invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", {
         "clusterName": args.clusterName,
         "projectId": args.projectId,
-        "useZoneIdForCopySettings": args.useZoneIdForCopySettings,
     }, opts);
 }
 
@@ -84,10 +82,6 @@ export interface GetCloudBackupScheduleArgs {
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId: string;
-    /**
-     * Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
-     */
-    useZoneIdForCopySettings?: boolean;
 }
 
 /**
@@ -162,7 +156,6 @@ export interface GetCloudBackupScheduleResult {
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
      */
     readonly useOrgAndGroupNamesInExportPrefix: boolean;
-    readonly useZoneIdForCopySettings?: boolean;
 }
 /**
  * ## Example Usage
@@ -217,7 +210,6 @@ export interface GetCloudBackupScheduleResult {
  * const test = mongodbatlas.getCloudBackupScheduleOutput({
  *     projectId: testCloudBackupSchedule.projectId,
  *     clusterName: testCloudBackupSchedule.clusterName,
- *     useZoneIdForCopySettings: true,
  * });
  * ```
  */
@@ -226,7 +218,6 @@ export function getCloudBackupScheduleOutput(args: GetCloudBackupScheduleOutputA
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", {
         "clusterName": args.clusterName,
         "projectId": args.projectId,
-        "useZoneIdForCopySettings": args.useZoneIdForCopySettings,
     }, opts);
 }
 
@@ -242,8 +233,4 @@ export interface GetCloudBackupScheduleOutputArgs {
      * The unique identifier of the project for the Atlas cluster.
      */
     projectId: pulumi.Input<string>;
-    /**
-     * Set this field to `true` to allow the data source to use the latest schema that populates `copy_settings.#.zone_id` instead of the deprecated `copy_settings.#.replication_spec_id`. These fields also enable you to reference cluster zones using independent shard scaling, which no longer supports `replication_spec.*.id`. To learn more, see the 1.18.0 upgrade guide.
-     */
-    useZoneIdForCopySettings?: pulumi.Input<boolean>;
 }

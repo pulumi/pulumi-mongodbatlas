@@ -12,23 +12,28 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        /// </summary>
         [Input("computeEnabled")]
         public Input<bool>? ComputeEnabled { get; set; }
 
         /// <summary>
-        /// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` is true.
+        /// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
+        /// 
+        /// **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `UseEffectiveFields = true`, you can read scaled values using `EffectiveAnalyticsSpecs` in the data source. When not using `UseEffectiveFields`, you may need lifecycle ignore customizations for `AnalyticsSpecs` fields similar to the example shown in the AutoScaling section.
         /// </summary>
         [Input("computeMaxInstanceSize")]
         public Input<string>? ComputeMaxInstanceSize { get; set; }
 
         /// <summary>
-        /// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_scale_down_enabled` is true.
+        /// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         /// </summary>
         [Input("computeMinInstanceSize")]
         public Input<string>? ComputeMinInstanceSize { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.analytics_auto_scaling.0.compute_min_instance_size`.
+        /// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         /// </summary>
         [Input("computeScaleDownEnabled")]
         public Input<bool>? ComputeScaleDownEnabled { get; set; }

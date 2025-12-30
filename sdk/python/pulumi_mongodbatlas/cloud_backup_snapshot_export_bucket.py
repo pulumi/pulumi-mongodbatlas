@@ -292,8 +292,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: CloudBackupSnapshotExportBucket
-
         `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -328,6 +326,10 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             bucket_name="example-bucket",
             cloud_provider="AZURE")
         ```
+
+        ### Further Examples
+        - AWS Cloud Backup Snapshot Export Bucket
+        - Azure Cloud Backup Snapshot Export Bucket
 
         ## Import
 
@@ -356,8 +358,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  args: CloudBackupSnapshotExportBucketArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: CloudBackupSnapshotExportBucket
-
         `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -392,6 +392,10 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
             bucket_name="example-bucket",
             cloud_provider="AZURE")
         ```
+
+        ### Further Examples
+        - AWS Cloud Backup Snapshot Export Bucket
+        - Azure Cloud Backup Snapshot Export Bucket
 
         ## Import
 

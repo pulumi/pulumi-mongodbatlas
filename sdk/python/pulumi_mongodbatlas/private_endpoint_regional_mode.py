@@ -117,8 +117,6 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: private_endpoint_regional_mode
-
         `PrivateEndpointRegionalMode` provides a Private Endpoint Regional Mode resource. This represents a regionalized private endpoint setting for a Project. Enable it to allow region specific private endpoints.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
@@ -151,8 +149,6 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
                  args: PrivateEndpointRegionalModeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: private_endpoint_regional_mode
-
         `PrivateEndpointRegionalMode` provides a Private Endpoint Regional Mode resource. This represents a regionalized private endpoint setting for a Project. Enable it to allow region specific private endpoints.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner

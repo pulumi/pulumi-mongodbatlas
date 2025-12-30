@@ -87,8 +87,6 @@ class AwaitableGetResourcePoliciesResult(GetResourcePoliciesResult):
 def get_resource_policies(org_id: Optional[_builtins.str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcePoliciesResult:
     """
-    ## # Data Source: get_resource_policies
-
     `get_resource_policies` returns all resource policies in an organization.
 
     ## Example Usage
@@ -109,8 +107,6 @@ def get_resource_policies(org_id: Optional[_builtins.str] = None,
 def get_resource_policies_output(org_id: Optional[pulumi.Input[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourcePoliciesResult]:
     """
-    ## # Data Source: get_resource_policies
-
     `get_resource_policies` returns all resource policies in an organization.
 
     ## Example Usage

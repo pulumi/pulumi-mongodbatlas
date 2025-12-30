@@ -12,6 +12,13 @@ import java.util.Optional;
 public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("mongodbatlas");
+/**
+ * MongoDB Atlas Access Token for Service Account.
+ * 
+ */
+    public Optional<String> accessToken() {
+        return Codegen.stringProp("accessToken").config(config).get();
+    }
     public Optional<AssumeRole> assumeRole() {
         return Codegen.objectProp("assumeRole", AssumeRole.class).config(config).get();
     }
@@ -42,6 +49,20 @@ public final class Config {
  */
     public Optional<String> baseUrl() {
         return Codegen.stringProp("baseUrl").config(config).get();
+    }
+/**
+ * MongoDB Atlas Client ID for Service Account.
+ * 
+ */
+    public Optional<String> clientId() {
+        return Codegen.stringProp("clientId").config(config).get();
+    }
+/**
+ * MongoDB Atlas Client Secret for Service Account.
+ * 
+ */
+    public Optional<String> clientSecret() {
+        return Codegen.stringProp("clientSecret").config(config).get();
     }
 /**
  * MongoDB Atlas Base URL default to gov

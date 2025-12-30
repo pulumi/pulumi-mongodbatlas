@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.LdapVerify
- *
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -116,8 +114,6 @@ export interface GetLdapVerifyResult {
     readonly validations: outputs.GetLdapVerifyValidation[];
 }
 /**
- * ## # Data Source: mongodbatlas.LdapVerify
- *
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.

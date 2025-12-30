@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetX509AuthenticationDatabaseUser
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
-        /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -114,8 +112,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetX509AuthenticationDatabaseUserResult>("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args ?? new GetX509AuthenticationDatabaseUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
-        /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
@@ -216,8 +212,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetX509AuthenticationDatabaseUserResult>("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args ?? new GetX509AuthenticationDatabaseUserInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.X509AuthenticationDatabaseUser
-        /// 
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.

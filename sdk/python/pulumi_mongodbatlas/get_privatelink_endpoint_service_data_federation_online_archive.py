@@ -131,8 +131,6 @@ def get_privatelink_endpoint_service_data_federation_online_archive(endpoint_id:
                                                                     project_id: Optional[_builtins.str] = None,
                                                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult:
     """
-    ## # Data Source: PrivatelinkEndpointServiceDataFederationOnlineArchive
-
     `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -158,7 +156,7 @@ def get_privatelink_endpoint_service_data_federation_online_archive(endpoint_id:
     ```
 
 
-    :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+    :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()
@@ -180,8 +178,6 @@ def get_privatelink_endpoint_service_data_federation_online_archive_output(endpo
                                                                            project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult]:
     """
-    ## # Data Source: PrivatelinkEndpointServiceDataFederationOnlineArchive
-
     `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -207,7 +203,7 @@ def get_privatelink_endpoint_service_data_federation_online_archive_output(endpo
     ```
 
 
-    :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Lake supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint:~:text=Atlas%20Data%20Lake%20supports%20Amazon%20Web%20Services%20private%20endpoints%20using%20the%20AWS%20PrivateLink%20feature).
+    :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()

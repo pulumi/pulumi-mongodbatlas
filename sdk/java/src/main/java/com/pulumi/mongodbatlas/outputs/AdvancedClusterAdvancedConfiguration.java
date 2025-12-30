@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterAdvancedConfiguration {
     /**
-     * @return The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+     * @return The minimum pre- and post-image retention time in seconds.
      * 
      */
     private @Nullable Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
@@ -26,69 +26,52 @@ public final class AdvancedClusterAdvancedConfiguration {
      */
     private @Nullable List<String> customOpensslCipherConfigTls12s;
     /**
-     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * @return The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     * 
+     */
+    private @Nullable List<String> customOpensslCipherConfigTls13s;
+    /**
+     * @return Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     private @Nullable Integer defaultMaxTimeMs;
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private @Nullable String defaultReadConcern;
-    /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * @return Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
      * 
      */
     private @Nullable String defaultWriteConcern;
     /**
-     * @return **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    private @Nullable Boolean failIndexKeyTooLong;
-    /**
-     * @return When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * @return Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
      * 
      */
     private @Nullable Boolean javascriptEnabled;
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
-     * - TLS1_2
+     * @return Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
      * 
      */
     private @Nullable String minimumEnabledTlsProtocol;
     /**
-     * @return When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     * @return Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
      * 
      */
     private @Nullable Boolean noTableScan;
     /**
      * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      * 
      */
     private @Nullable Double oplogMinRetentionHours;
     /**
-     * @return The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     * @return Storage limit of cluster&#39;s oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
      * 
      */
     private @Nullable Integer oplogSizeMb;
     /**
-     * @return Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * @return Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
      * 
      */
     private @Nullable Integer sampleRefreshIntervalBiConnector;
     /**
-     * @return Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * @return Number of documents per database to sample when gathering schema information.
      * 
      */
     private @Nullable Integer sampleSizeBiConnector;
@@ -98,14 +81,14 @@ public final class AdvancedClusterAdvancedConfiguration {
      */
     private @Nullable String tlsCipherConfigMode;
     /**
-     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * @return Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
      * 
      */
     private @Nullable Integer transactionLifetimeLimitSeconds;
 
     private AdvancedClusterAdvancedConfiguration() {}
     /**
-     * @return The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively. `expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
+     * @return The minimum pre- and post-image retention time in seconds.
      * 
      */
     public Optional<Integer> changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
@@ -119,60 +102,42 @@ public final class AdvancedClusterAdvancedConfiguration {
         return this.customOpensslCipherConfigTls12s == null ? List.of() : this.customOpensslCipherConfigTls12s;
     }
     /**
-     * @return Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
+     * @return The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
+     * 
+     */
+    public List<String> customOpensslCipherConfigTls13s() {
+        return this.customOpensslCipherConfigTls13s == null ? List.of() : this.customOpensslCipherConfigTls13s;
+    }
+    /**
+     * @return Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
      * 
      */
     public Optional<Integer> defaultMaxTimeMs() {
         return Optional.ofNullable(this.defaultMaxTimeMs);
     }
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Optional<String> defaultReadConcern() {
-        return Optional.ofNullable(this.defaultReadConcern);
-    }
-    /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * @return Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
      * 
      */
     public Optional<String> defaultWriteConcern() {
         return Optional.ofNullable(this.defaultWriteConcern);
     }
     /**
-     * @return **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
-     * 
-     * @deprecated
-     * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-     * 
-     */
-    @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
-    public Optional<Boolean> failIndexKeyTooLong() {
-        return Optional.ofNullable(this.failIndexKeyTooLong);
-    }
-    /**
-     * @return When true (default), the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
+     * @return Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
      * 
      */
     public Optional<Boolean> javascriptEnabled() {
         return Optional.ofNullable(this.javascriptEnabled);
     }
     /**
-     * @return Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
-     * - TLS1_0
-     * - TLS1_1
-     * - TLS1_2
+     * @return Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
      * 
      */
     public Optional<String> minimumEnabledTlsProtocol() {
         return Optional.ofNullable(this.minimumEnabledTlsProtocol);
     }
     /**
-     * @return When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
+     * @return Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
      * 
      */
     public Optional<Boolean> noTableScan() {
@@ -180,28 +145,27 @@ public final class AdvancedClusterAdvancedConfiguration {
     }
     /**
      * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
-     * * **Note**  A minimum oplog retention is required when seeking to change a cluster&#39;s class to Local NVMe SSD. To learn more and for latest guidance see [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      * 
      */
     public Optional<Double> oplogMinRetentionHours() {
         return Optional.ofNullable(this.oplogMinRetentionHours);
     }
     /**
-     * @return The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
+     * @return Storage limit of cluster&#39;s oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
      * 
      */
     public Optional<Integer> oplogSizeMb() {
         return Optional.ofNullable(this.oplogSizeMb);
     }
     /**
-     * @return Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * @return Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
      * 
      */
     public Optional<Integer> sampleRefreshIntervalBiConnector() {
         return Optional.ofNullable(this.sampleRefreshIntervalBiConnector);
     }
     /**
-     * @return Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
+     * @return Number of documents per database to sample when gathering schema information.
      * 
      */
     public Optional<Integer> sampleSizeBiConnector() {
@@ -215,7 +179,7 @@ public final class AdvancedClusterAdvancedConfiguration {
         return Optional.ofNullable(this.tlsCipherConfigMode);
     }
     /**
-     * @return Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
+     * @return Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
      * 
      */
     public Optional<Integer> transactionLifetimeLimitSeconds() {
@@ -233,10 +197,9 @@ public final class AdvancedClusterAdvancedConfiguration {
     public static final class Builder {
         private @Nullable Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         private @Nullable List<String> customOpensslCipherConfigTls12s;
+        private @Nullable List<String> customOpensslCipherConfigTls13s;
         private @Nullable Integer defaultMaxTimeMs;
-        private @Nullable String defaultReadConcern;
         private @Nullable String defaultWriteConcern;
-        private @Nullable Boolean failIndexKeyTooLong;
         private @Nullable Boolean javascriptEnabled;
         private @Nullable String minimumEnabledTlsProtocol;
         private @Nullable Boolean noTableScan;
@@ -251,10 +214,9 @@ public final class AdvancedClusterAdvancedConfiguration {
     	      Objects.requireNonNull(defaults);
     	      this.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = defaults.changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
     	      this.customOpensslCipherConfigTls12s = defaults.customOpensslCipherConfigTls12s;
+    	      this.customOpensslCipherConfigTls13s = defaults.customOpensslCipherConfigTls13s;
     	      this.defaultMaxTimeMs = defaults.defaultMaxTimeMs;
-    	      this.defaultReadConcern = defaults.defaultReadConcern;
     	      this.defaultWriteConcern = defaults.defaultWriteConcern;
-    	      this.failIndexKeyTooLong = defaults.failIndexKeyTooLong;
     	      this.javascriptEnabled = defaults.javascriptEnabled;
     	      this.minimumEnabledTlsProtocol = defaults.minimumEnabledTlsProtocol;
     	      this.noTableScan = defaults.noTableScan;
@@ -282,27 +244,24 @@ public final class AdvancedClusterAdvancedConfiguration {
             return customOpensslCipherConfigTls12s(List.of(customOpensslCipherConfigTls12s));
         }
         @CustomType.Setter
+        public Builder customOpensslCipherConfigTls13s(@Nullable List<String> customOpensslCipherConfigTls13s) {
+
+            this.customOpensslCipherConfigTls13s = customOpensslCipherConfigTls13s;
+            return this;
+        }
+        public Builder customOpensslCipherConfigTls13s(String... customOpensslCipherConfigTls13s) {
+            return customOpensslCipherConfigTls13s(List.of(customOpensslCipherConfigTls13s));
+        }
+        @CustomType.Setter
         public Builder defaultMaxTimeMs(@Nullable Integer defaultMaxTimeMs) {
 
             this.defaultMaxTimeMs = defaultMaxTimeMs;
             return this;
         }
         @CustomType.Setter
-        public Builder defaultReadConcern(@Nullable String defaultReadConcern) {
-
-            this.defaultReadConcern = defaultReadConcern;
-            return this;
-        }
-        @CustomType.Setter
         public Builder defaultWriteConcern(@Nullable String defaultWriteConcern) {
 
             this.defaultWriteConcern = defaultWriteConcern;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder failIndexKeyTooLong(@Nullable Boolean failIndexKeyTooLong) {
-
-            this.failIndexKeyTooLong = failIndexKeyTooLong;
             return this;
         }
         @CustomType.Setter
@@ -363,10 +322,9 @@ public final class AdvancedClusterAdvancedConfiguration {
             final var _resultValue = new AdvancedClusterAdvancedConfiguration();
             _resultValue.changeStreamOptionsPreAndPostImagesExpireAfterSeconds = changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
             _resultValue.customOpensslCipherConfigTls12s = customOpensslCipherConfigTls12s;
+            _resultValue.customOpensslCipherConfigTls13s = customOpensslCipherConfigTls13s;
             _resultValue.defaultMaxTimeMs = defaultMaxTimeMs;
-            _resultValue.defaultReadConcern = defaultReadConcern;
             _resultValue.defaultWriteConcern = defaultWriteConcern;
-            _resultValue.failIndexKeyTooLong = failIndexKeyTooLong;
             _resultValue.javascriptEnabled = javascriptEnabled;
             _resultValue.minimumEnabledTlsProtocol = minimumEnabledTlsProtocol;
             _resultValue.noTableScan = noTableScan;

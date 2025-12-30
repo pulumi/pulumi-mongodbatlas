@@ -95,8 +95,6 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
                        role_name: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDbRoleResult:
     """
-    ## # Data Source: CustomDbRole
-
     `CustomDbRole` describes a Custom DB Role. This represents a custom db role.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -152,8 +150,6 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
                               role_name: Optional[pulumi.Input[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomDbRoleResult]:
     """
-    ## # Data Source: CustomDbRole
-
     `CustomDbRole` describes a Custom DB Role. This represents a custom db role.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.

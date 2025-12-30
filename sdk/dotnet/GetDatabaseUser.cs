@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetDatabaseUser
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.DatabaseUser
-        /// 
         /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
@@ -114,8 +112,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseUserResult>("mongodbatlas:index/getDatabaseUser:getDatabaseUser", args ?? new GetDatabaseUserArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.DatabaseUser
-        /// 
         /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
@@ -216,8 +212,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseUserResult>("mongodbatlas:index/getDatabaseUser:getDatabaseUser", args ?? new GetDatabaseUserInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.DatabaseUser
-        /// 
         /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
@@ -406,7 +400,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseUserRoleResult> Roles;
         /// <summary>
-        /// Array of clusters and Atlas Data Lakes that this user has access to.
+        /// Array of clusters and Atlas Data Federation that this user has access to.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseUserScopeResult> Scopes;
         public readonly string Username;

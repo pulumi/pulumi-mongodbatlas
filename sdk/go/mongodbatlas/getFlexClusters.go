@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getFlexClusters
-//
 // `getFlexClusters` returns all flex clusters in a project.
 //
 // **RECOMMENDATION:** We recommend using the `getAdvancedClusters` data source instead of the `getFlexClusters` data source to retrieve Flex clusters. The `getAdvancedClusters` data source not only supports Flex clusters, but also supports free and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Clusters data source.

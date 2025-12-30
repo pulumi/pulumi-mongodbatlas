@@ -123,6 +123,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Migrate Org Invitation to Cloud User Org Assignment
+ * 
  * ## Import
  * 
  * ~&gt; __IMPORTANT:__

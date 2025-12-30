@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: getStreamProcessors
-//
 // `getStreamProcessors` returns all stream processors in a stream instance.
 //
 // ## Example Usage
@@ -25,7 +23,7 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -45,7 +43,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewStreamConnection(ctx, "example-sample", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   example.InstanceName,
+//				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("sample_stream_solar"),
 //				Type:           pulumi.String("Sample"),
 //			})
@@ -54,7 +52,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewStreamConnection(ctx, "example-cluster", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   example.InstanceName,
+//				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("ClusterConnection"),
 //				Type:           pulumi.String("Cluster"),
 //				ClusterName:    pulumi.Any(clusterName),
@@ -68,7 +66,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewStreamConnection(ctx, "example-kafka", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
-//				InstanceName:   example.InstanceName,
+//				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("KafkaPlaintextConnection"),
 //				Type:           pulumi.String("Kafka"),
 //				Authentication: &mongodbatlas.StreamConnectionAuthenticationArgs{
@@ -110,7 +108,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			stream_processor_sample_example, err := mongodbatlas.NewStreamProcessor(ctx, "stream-processor-sample-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
-//				InstanceName:  example.InstanceName,
+//				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("sampleProcessorName"),
 //				Pipeline:      pulumi.String(json0),
 //				State:         pulumi.String("STARTED"),
@@ -137,7 +135,7 @@ import (
 //			json1 := string(tmpJSON1)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-cluster-to-kafka-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
-//				InstanceName:  example.InstanceName,
+//				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("clusterProcessorName"),
 //				Pipeline:      pulumi.String(json1),
 //				State:         pulumi.String("CREATED"),
@@ -169,7 +167,7 @@ import (
 //			json2 := string(tmpJSON2)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-kafka-to-cluster-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
-//				InstanceName:  example.InstanceName,
+//				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("kafkaProcessorName"),
 //				Pipeline:      pulumi.String(json2),
 //				State:         pulumi.String("CREATED"),
@@ -186,8 +184,8 @@ import (
 //			}
 //			example_stream_processors := example.InstanceName.ApplyT(func(instanceName string) (mongodbatlas.GetStreamProcessorsResult, error) {
 //				return mongodbatlas.GetStreamProcessorsResult(interface{}(mongodbatlas.LookupStreamProcessors(ctx, &mongodbatlas.LookupStreamProcessorsArgs{
-//					ProjectId:    projectId,
-//					InstanceName: instanceName,
+//					ProjectId:     projectId,
+//					WorkspaceName: pulumi.StringRef(pulumi.StringRef(instanceName)),
 //				}, nil))), nil
 //			}).(mongodbatlas.GetStreamProcessorsResultOutput)
 //			example_stream_processor := pulumi.All(example.InstanceName, stream_processor_sample_example.ProcessorName).ApplyT(func(_args []interface{}) (mongodbatlas.GetStreamProcessorResult, error) {
@@ -195,7 +193,7 @@ import (
 //				processorName := _args[1].(string)
 //				return mongodbatlas.GetStreamProcessorResult(interface{}(mongodbatlas.LookupStreamProcessor(ctx, &mongodbatlas.LookupStreamProcessorArgs{
 //					ProjectId:     projectId,
-//					InstanceName:  instanceName,
+//					WorkspaceName: pulumi.StringRef(pulumi.StringRef(instanceName)),
 //					ProcessorName: processorName,
 //				}, nil))), nil
 //			}).(mongodbatlas.GetStreamProcessorResultOutput)
@@ -222,21 +220,23 @@ func LookupStreamProcessors(ctx *pulumi.Context, args *LookupStreamProcessorsArg
 
 // A collection of arguments for invoking getStreamProcessors.
 type LookupStreamProcessorsArgs struct {
-	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string `pulumi:"instanceName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string `pulumi:"projectId"`
+	ProjectId     string  `pulumi:"projectId"`
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 // A collection of values returned by getStreamProcessors.
 type LookupStreamProcessorsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName *string `pulumi:"instanceName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string                      `pulumi:"projectId"`
-	Results   []GetStreamProcessorsResult `pulumi:"results"`
+	ProjectId     string                      `pulumi:"projectId"`
+	Results       []GetStreamProcessorsResult `pulumi:"results"`
+	WorkspaceName *string                     `pulumi:"workspaceName"`
 }
 
 func LookupStreamProcessorsOutput(ctx *pulumi.Context, args LookupStreamProcessorsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamProcessorsResultOutput {
@@ -250,10 +250,11 @@ func LookupStreamProcessorsOutput(ctx *pulumi.Context, args LookupStreamProcesso
 
 // A collection of arguments for invoking getStreamProcessors.
 type LookupStreamProcessorsOutputArgs struct {
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
 	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	ProjectId     pulumi.StringInput    `pulumi:"projectId"`
+	WorkspaceName pulumi.StringPtrInput `pulumi:"workspaceName"`
 }
 
 func (LookupStreamProcessorsOutputArgs) ElementType() reflect.Type {
@@ -280,9 +281,9 @@ func (o LookupStreamProcessorsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the stream instance.
-func (o LookupStreamProcessorsResultOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupStreamProcessorsResult) string { return v.InstanceName }).(pulumi.StringOutput)
+// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+func (o LookupStreamProcessorsResultOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupStreamProcessorsResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -292,6 +293,10 @@ func (o LookupStreamProcessorsResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o LookupStreamProcessorsResultOutput) Results() GetStreamProcessorsResultArrayOutput {
 	return o.ApplyT(func(v LookupStreamProcessorsResult) []GetStreamProcessorsResult { return v.Results }).(GetStreamProcessorsResultArrayOutput)
+}
+
+func (o LookupStreamProcessorsResultOutput) WorkspaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupStreamProcessorsResult) *string { return v.WorkspaceName }).(pulumi.StringPtrOutput)
 }
 
 func init() {

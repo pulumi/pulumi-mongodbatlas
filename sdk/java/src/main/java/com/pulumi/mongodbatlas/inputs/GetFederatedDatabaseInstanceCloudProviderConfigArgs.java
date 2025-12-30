@@ -6,7 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
-import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs;
+import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +17,9 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigArgs extends c
     public static final GetFederatedDatabaseInstanceCloudProviderConfigArgs Empty = new GetFederatedDatabaseInstanceCloudProviderConfigArgs();
 
     @Import(name="aws", required=true)
-    private Output<GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws;
+    private Output<List<GetFederatedDatabaseInstanceCloudProviderConfigAwArgs>> aws;
 
-    public Output<GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws() {
+    public Output<List<GetFederatedDatabaseInstanceCloudProviderConfigAwArgs>> aws() {
         return this.aws;
     }
 
@@ -55,13 +55,17 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigArgs extends c
             $ = new GetFederatedDatabaseInstanceCloudProviderConfigArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder aws(Output<GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs> aws) {
+        public Builder aws(Output<List<GetFederatedDatabaseInstanceCloudProviderConfigAwArgs>> aws) {
             $.aws = aws;
             return this;
         }
 
-        public Builder aws(GetFederatedDatabaseInstanceCloudProviderConfigAwsArgs aws) {
+        public Builder aws(List<GetFederatedDatabaseInstanceCloudProviderConfigAwArgs> aws) {
             return aws(Output.of(aws));
+        }
+
+        public Builder aws(GetFederatedDatabaseInstanceCloudProviderConfigAwArgs... aws) {
+            return aws(List.of(aws));
         }
 
         public Builder azures(Output<List<GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>> azures) {

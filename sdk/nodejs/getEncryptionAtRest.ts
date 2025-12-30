@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.EncryptionAtRest
- *
  * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
  *
  * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
@@ -170,8 +168,6 @@ export interface GetEncryptionAtRestResult {
     readonly projectId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.EncryptionAtRest
- *
  * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
  *
  * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)

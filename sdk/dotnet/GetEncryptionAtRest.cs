@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetEncryptionAtRest
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.EncryptionAtRest
-        /// 
         /// `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
         /// 
         /// [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
@@ -189,8 +187,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEncryptionAtRestResult>("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", args ?? new GetEncryptionAtRestArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.EncryptionAtRest
-        /// 
         /// `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
         /// 
         /// [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
@@ -366,8 +362,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetEncryptionAtRestResult>("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", args ?? new GetEncryptionAtRestInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.EncryptionAtRest
-        /// 
         /// `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
         /// 
         /// [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)

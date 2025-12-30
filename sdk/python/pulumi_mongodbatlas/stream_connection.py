@@ -22,7 +22,6 @@ __all__ = ['StreamConnectionArgs', 'StreamConnection']
 class StreamConnectionArgs:
     def __init__(__self__, *,
                  connection_name: pulumi.Input[_builtins.str],
-                 instance_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  authentication: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']] = None,
@@ -33,18 +32,22 @@ class StreamConnectionArgs:
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StreamConnection resource.
-        :param pulumi.Input[_builtins.str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] instance_name: Human-readable label that identifies the stream instance.
+        :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+               
+               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
         pulumi.set(__self__, "connection_name", connection_name)
-        pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
         if authentication is not None:
@@ -63,36 +66,31 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
+        if instance_name is not None:
+            warnings.warn("""This parameter is deprecated. Please transition to workspace_name.""", DeprecationWarning)
+            pulumi.log.warn("""instance_name is deprecated: This parameter is deprecated. Please transition to workspace_name.""")
+        if instance_name is not None:
+            pulumi.set(__self__, "instance_name", instance_name)
         if networking is not None:
             pulumi.set(__self__, "networking", networking)
         if security is not None:
             pulumi.set(__self__, "security", security)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if workspace_name is not None:
+            pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
     @pulumi.getter(name="connectionName")
     def connection_name(self) -> pulumi.Input[_builtins.str]:
         """
-        Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         """
         return pulumi.get(self, "connection_name")
 
     @connection_name.setter
     def connection_name(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "connection_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="instanceName")
-    def instance_name(self) -> pulumi.Input[_builtins.str]:
-        """
-        Human-readable label that identifies the stream instance.
-        """
-        return pulumi.get(self, "instance_name")
-
-    @instance_name.setter
-    def instance_name(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "instance_name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -111,6 +109,8 @@ class StreamConnectionArgs:
     def type(self) -> pulumi.Input[_builtins.str]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+
+        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -191,6 +191,19 @@ class StreamConnectionArgs:
         pulumi.set(self, "headers", value)
 
     @_builtins.property
+    @pulumi.getter(name="instanceName")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
+    def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @instance_name.setter
+    def instance_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "instance_name", value)
+
+    @_builtins.property
     @pulumi.getter
     def networking(self) -> Optional[pulumi.Input['StreamConnectionNetworkingArgs']]:
         return pulumi.get(self, "networking")
@@ -217,6 +230,18 @@ class StreamConnectionArgs:
     def url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "url", value)
 
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        """
+        return pulumi.get(self, "workspace_name")
+
+    @workspace_name.setter
+    def workspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "workspace_name", value)
+
 
 @pulumi.input_type
 class _StreamConnectionState:
@@ -235,13 +260,17 @@ class _StreamConnectionState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None):
+                 url: Optional[pulumi.Input[_builtins.str]] = None,
+                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamConnection resources.
-        :param pulumi.Input[_builtins.str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] instance_name: Human-readable label that identifies the stream instance.
+        :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+               
+               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
@@ -262,6 +291,9 @@ class _StreamConnectionState:
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if instance_name is not None:
+            warnings.warn("""This parameter is deprecated. Please transition to workspace_name.""", DeprecationWarning)
+            pulumi.log.warn("""instance_name is deprecated: This parameter is deprecated. Please transition to workspace_name.""")
+        if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
         if networking is not None:
             pulumi.set(__self__, "networking", networking)
@@ -273,6 +305,8 @@ class _StreamConnectionState:
             pulumi.set(__self__, "type", type)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if workspace_name is not None:
+            pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
     @pulumi.getter
@@ -332,7 +366,7 @@ class _StreamConnectionState:
     @pulumi.getter(name="connectionName")
     def connection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         """
         return pulumi.get(self, "connection_name")
 
@@ -360,9 +394,10 @@ class _StreamConnectionState:
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
     def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Human-readable label that identifies the stream instance.
+        Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         """
         return pulumi.get(self, "instance_name")
 
@@ -405,6 +440,8 @@ class _StreamConnectionState:
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+
+        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -420,6 +457,18 @@ class _StreamConnectionState:
     @url.setter
     def url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        """
+        return pulumi.get(self, "workspace_name")
+
+    @workspace_name.setter
+    def workspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "workspace_name", value)
 
 
 @pulumi.type_token("mongodbatlas:index/streamConnection:StreamConnection")
@@ -443,10 +492,9 @@ class StreamConnection(pulumi.CustomResource):
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
+                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: StreamConnection
-
         `StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
 
         > **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.
@@ -461,11 +509,14 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="InstanceName",
+            workspace_name="WorkspaceName",
             connection_name="ConnectionName",
             type="Cluster",
             cluster_name="Cluster0")
         ```
+
+        ### Further Examples
+        - Atlas Stream Connection
 
         ### Example Cross Project Cluster Connection
 
@@ -475,7 +526,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="InstanceName",
+            workspace_name="WorskpaceName",
             connection_name="ConnectionName",
             type="Cluster",
             cluster_name="OtherCluster",
@@ -490,7 +541,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="NewInstance",
+            workspace_name="NewWorkspace",
             connection_name="KafkaConnection",
             type="Kafka",
             authentication={
@@ -507,6 +558,40 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Kafka SASL OAuthbearer Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_kafka_oauthbearer = mongodbatlas.StreamConnection("example-kafka-oauthbearer",
+            project_id=project_id,
+            instance_name=example["instanceName"],
+            connection_name="KafkaOAuthbearerConnection",
+            type="Kafka",
+            authentication={
+                "mechanism": "OAUTHBEARER",
+                "method": "OIDC",
+                "token_endpoint_url": "https://example.com/oauth/token",
+                "client_id": "auth0Client",
+                "client_secret": kafka_client_secret,
+                "scope": "read:messages write:messages",
+                "sasl_oauthbearer_extensions": "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
+            },
+            bootstrap_servers="localhost:9092,localhost:9092",
+            config={
+                "auto.offset.reset": "earliest",
+            },
+            security={
+                "protocol": "SASL_PLAINTEXT",
+            },
+            networking={
+                "access": {
+                    "type": "PUBLIC",
+                },
+            })
+        ```
+
         ### Example Kafka SASL SSL Connection
 
         ```python
@@ -515,7 +600,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="NewInstance",
+            workspace_name="NewWorkspace",
             connection_name="KafkaConnection",
             type="Kafka",
             authentication={
@@ -541,7 +626,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="NewInstance",
+            workspace_name="NewWorkspace",
             connection_name="AWSLambdaConnection",
             type="AWSLambda",
             aws={
@@ -557,7 +642,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_https = mongodbatlas.StreamConnection("example-https",
             project_id=project_id,
-            instance_name=example["instanceName"],
+            workspace_name=example["instanceName"],
             connection_name="https_connection_tf_new",
             type="Https",
             url="https://example.com",
@@ -569,7 +654,7 @@ class StreamConnection(pulumi.CustomResource):
 
         ## Import
 
-        You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
+        You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
 
         ```sh
         $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
@@ -579,10 +664,13 @@ class StreamConnection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] instance_name: Human-readable label that identifies the stream instance.
+        :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+               
+               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
         ...
     @overload
@@ -591,8 +679,6 @@ class StreamConnection(pulumi.CustomResource):
                  args: StreamConnectionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: StreamConnection
-
         `StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
 
         > **IMPORTANT:** All arguments including the Kafka authentication password will be stored in the raw state as plaintext. Read more about sensitive data in state.
@@ -607,11 +693,14 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="InstanceName",
+            workspace_name="WorkspaceName",
             connection_name="ConnectionName",
             type="Cluster",
             cluster_name="Cluster0")
         ```
+
+        ### Further Examples
+        - Atlas Stream Connection
 
         ### Example Cross Project Cluster Connection
 
@@ -621,7 +710,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="InstanceName",
+            workspace_name="WorskpaceName",
             connection_name="ConnectionName",
             type="Cluster",
             cluster_name="OtherCluster",
@@ -636,7 +725,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="NewInstance",
+            workspace_name="NewWorkspace",
             connection_name="KafkaConnection",
             type="Kafka",
             authentication={
@@ -653,6 +742,40 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Kafka SASL OAuthbearer Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_kafka_oauthbearer = mongodbatlas.StreamConnection("example-kafka-oauthbearer",
+            project_id=project_id,
+            instance_name=example["instanceName"],
+            connection_name="KafkaOAuthbearerConnection",
+            type="Kafka",
+            authentication={
+                "mechanism": "OAUTHBEARER",
+                "method": "OIDC",
+                "token_endpoint_url": "https://example.com/oauth/token",
+                "client_id": "auth0Client",
+                "client_secret": kafka_client_secret,
+                "scope": "read:messages write:messages",
+                "sasl_oauthbearer_extensions": "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
+            },
+            bootstrap_servers="localhost:9092,localhost:9092",
+            config={
+                "auto.offset.reset": "earliest",
+            },
+            security={
+                "protocol": "SASL_PLAINTEXT",
+            },
+            networking={
+                "access": {
+                    "type": "PUBLIC",
+                },
+            })
+        ```
+
         ### Example Kafka SASL SSL Connection
 
         ```python
@@ -661,7 +784,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="NewInstance",
+            workspace_name="NewWorkspace",
             connection_name="KafkaConnection",
             type="Kafka",
             authentication={
@@ -687,7 +810,7 @@ class StreamConnection(pulumi.CustomResource):
 
         test = mongodbatlas.StreamConnection("test",
             project_id=project_id,
-            instance_name="NewInstance",
+            workspace_name="NewWorkspace",
             connection_name="AWSLambdaConnection",
             type="AWSLambda",
             aws={
@@ -703,7 +826,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_https = mongodbatlas.StreamConnection("example-https",
             project_id=project_id,
-            instance_name=example["instanceName"],
+            workspace_name=example["instanceName"],
             connection_name="https_connection_tf_new",
             type="Https",
             url="https://example.com",
@@ -715,7 +838,7 @@ class StreamConnection(pulumi.CustomResource):
 
         ## Import
 
-        You can import a stream connection resource using the instance name, project ID, and connection name. The format must be `INSTANCE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
+        You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
 
         ```sh
         $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
@@ -753,6 +876,7 @@ class StreamConnection(pulumi.CustomResource):
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
+                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -773,8 +897,6 @@ class StreamConnection(pulumi.CustomResource):
             __props__.__dict__["connection_name"] = connection_name
             __props__.__dict__["db_role_to_execute"] = db_role_to_execute
             __props__.__dict__["headers"] = headers
-            if instance_name is None and not opts.urn:
-                raise TypeError("Missing required property 'instance_name'")
             __props__.__dict__["instance_name"] = instance_name
             __props__.__dict__["networking"] = networking
             if project_id is None and not opts.urn:
@@ -785,6 +907,7 @@ class StreamConnection(pulumi.CustomResource):
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["url"] = url
+            __props__.__dict__["workspace_name"] = workspace_name
         super(StreamConnection, __self__).__init__(
             'mongodbatlas:index/streamConnection:StreamConnection',
             resource_name,
@@ -809,7 +932,8 @@ class StreamConnection(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None) -> 'StreamConnection':
+            url: Optional[pulumi.Input[_builtins.str]] = None,
+            workspace_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'StreamConnection':
         """
         Get an existing StreamConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -817,10 +941,13 @@ class StreamConnection(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] connection_name: Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] instance_name: Human-readable label that identifies the stream instance.
+        :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+               
+               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -841,6 +968,7 @@ class StreamConnection(pulumi.CustomResource):
         __props__.__dict__["security"] = security
         __props__.__dict__["type"] = type
         __props__.__dict__["url"] = url
+        __props__.__dict__["workspace_name"] = workspace_name
         return StreamConnection(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -877,7 +1005,7 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter(name="connectionName")
     def connection_name(self) -> pulumi.Output[_builtins.str]:
         """
-        Human-readable label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+        Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         """
         return pulumi.get(self, "connection_name")
 
@@ -893,9 +1021,10 @@ class StreamConnection(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
-    def instance_name(self) -> pulumi.Output[_builtins.str]:
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
+    def instance_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Human-readable label that identifies the stream instance.
+        Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         """
         return pulumi.get(self, "instance_name")
 
@@ -922,6 +1051,8 @@ class StreamConnection(pulumi.CustomResource):
     def type(self) -> pulumi.Output[_builtins.str]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+
+        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -929,4 +1060,12 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "url")
+
+    @_builtins.property
+    @pulumi.getter(name="workspaceName")
+    def workspace_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        """
+        return pulumi.get(self, "workspace_name")
 

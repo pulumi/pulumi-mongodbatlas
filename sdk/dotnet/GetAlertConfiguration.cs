@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetAlertConfiguration
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AlertConfiguration
-        /// 
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -151,8 +149,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AlertConfiguration
-        /// 
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -290,8 +286,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationResult>("mongodbatlas:index/getAlertConfiguration:getAlertConfiguration", args ?? new GetAlertConfigurationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.AlertConfiguration
-        /// 
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
@@ -526,6 +520,10 @@ namespace Pulumi.Mongodbatlas
         public readonly ImmutableArray<Outputs.GetAlertConfigurationOutputResult> Outputs;
         public readonly string ProjectId;
         /// <summary>
+        /// Severity of the event.
+        /// </summary>
+        public readonly string SeverityOverride;
+        /// <summary>
         /// Threshold that triggers an alert. Required if `EventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> ThresholdConfigs;
@@ -556,6 +554,8 @@ namespace Pulumi.Mongodbatlas
 
             string projectId,
 
+            string severityOverride,
+
             ImmutableArray<Outputs.GetAlertConfigurationThresholdConfigResult> thresholdConfigs,
 
             string updated)
@@ -570,6 +570,7 @@ namespace Pulumi.Mongodbatlas
             Notifications = notifications;
             Outputs = outputs;
             ProjectId = projectId;
+            SeverityOverride = severityOverride;
             ThresholdConfigs = thresholdConfigs;
             Updated = updated;
         }

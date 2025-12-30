@@ -49,6 +49,11 @@ public final class GetAlertConfigurationResult {
     private @Nullable List<GetAlertConfigurationOutput> outputs;
     private String projectId;
     /**
+     * @return Severity of the event.
+     * 
+     */
+    private String severityOverride;
+    /**
      * @return Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      * 
      */
@@ -111,6 +116,13 @@ public final class GetAlertConfigurationResult {
         return this.projectId;
     }
     /**
+     * @return Severity of the event.
+     * 
+     */
+    public String severityOverride() {
+        return this.severityOverride;
+    }
+    /**
      * @return Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
      * 
      */
@@ -144,6 +156,7 @@ public final class GetAlertConfigurationResult {
         private List<GetAlertConfigurationNotification> notifications;
         private @Nullable List<GetAlertConfigurationOutput> outputs;
         private String projectId;
+        private String severityOverride;
         private List<GetAlertConfigurationThresholdConfig> thresholdConfigs;
         private String updated;
         public Builder() {}
@@ -159,6 +172,7 @@ public final class GetAlertConfigurationResult {
     	      this.notifications = defaults.notifications;
     	      this.outputs = defaults.outputs;
     	      this.projectId = defaults.projectId;
+    	      this.severityOverride = defaults.severityOverride;
     	      this.thresholdConfigs = defaults.thresholdConfigs;
     	      this.updated = defaults.updated;
         }
@@ -254,6 +268,14 @@ public final class GetAlertConfigurationResult {
             return this;
         }
         @CustomType.Setter
+        public Builder severityOverride(String severityOverride) {
+            if (severityOverride == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationResult", "severityOverride");
+            }
+            this.severityOverride = severityOverride;
+            return this;
+        }
+        @CustomType.Setter
         public Builder thresholdConfigs(List<GetAlertConfigurationThresholdConfig> thresholdConfigs) {
             if (thresholdConfigs == null) {
               throw new MissingRequiredPropertyException("GetAlertConfigurationResult", "thresholdConfigs");
@@ -284,6 +306,7 @@ public final class GetAlertConfigurationResult {
             _resultValue.notifications = notifications;
             _resultValue.outputs = outputs;
             _resultValue.projectId = projectId;
+            _resultValue.severityOverride = severityOverride;
             _resultValue.thresholdConfigs = thresholdConfigs;
             _resultValue.updated = updated;
             return _resultValue;

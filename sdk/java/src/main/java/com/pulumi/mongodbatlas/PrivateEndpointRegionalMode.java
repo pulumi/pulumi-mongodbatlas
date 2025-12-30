@@ -15,8 +15,6 @@ import java.lang.String;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: privateEndpointRegionalMode
- * 
  * `mongodbatlas.PrivateEndpointRegionalMode` provides a Private Endpoint Regional Mode resource. This represents a regionalized private endpoint setting for a Project. Enable it to allow region specific private endpoints.
  * 
  * &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner

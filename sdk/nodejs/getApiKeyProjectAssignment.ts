@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
- *
  * `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
  *
  * ## Example Usage
@@ -89,8 +87,6 @@ export interface GetApiKeyProjectAssignmentResult {
     readonly roles: string[];
 }
 /**
- * ## # Data Source: mongodbatlas.ApiKeyProjectAssignment
- *
  * `mongodbatlas.ApiKeyProjectAssignment` describes an API Key Project Assignment.
  *
  * ## Example Usage

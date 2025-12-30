@@ -10,12 +10,12 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.NetworkPeeringArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.NetworkPeeringState;
+import java.lang.Boolean;
 import java.lang.String;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.NetworkPeering
- * 
  * `mongodbatlas.NetworkPeering` provides a Network Peering Connection resource. The resource lets you create, edit and delete network peering connections. The resource requires your Project ID.
  * 
  * Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
@@ -322,6 +322,24 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
         return this.containerId;
     }
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     * **AWS ONLY:**
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     * **AWS ONLY:**
+     * 
+     */
+    public Output<Optional<Boolean>> deleteOnCreateTimeout() {
+        return Codegen.optional(this.deleteOnCreateTimeout);
+    }
+    /**
      * When `&#34;status&#34; : &#34;FAILED&#34;`, Atlas provides a description of the error.
      * 
      */
@@ -426,16 +444,12 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
     /**
      * Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
      * 
-     * **AWS ONLY:**
-     * 
      */
     @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
      * @return Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-     * 
-     * **AWS ONLY:**
      * 
      */
     public Output<String> providerName() {

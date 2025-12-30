@@ -49,6 +49,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Further Examples
+ * - Migrate Org Invitation to Cloud User Org Assignment
+ *
  * ## Import
  *
  * ~> __IMPORTANT:__

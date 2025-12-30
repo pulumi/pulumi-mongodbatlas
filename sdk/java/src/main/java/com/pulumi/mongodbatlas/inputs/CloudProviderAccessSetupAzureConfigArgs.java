@@ -14,23 +14,47 @@ public final class CloudProviderAccessSetupAzureConfigArgs extends com.pulumi.re
 
     public static final CloudProviderAccessSetupAzureConfigArgs Empty = new CloudProviderAccessSetupAzureConfigArgs();
 
+    /**
+     * Azure Active Directory Application ID of Atlas. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     @Import(name="atlasAzureAppId", required=true)
     private Output<String> atlasAzureAppId;
 
+    /**
+     * @return Azure Active Directory Application ID of Atlas. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     public Output<String> atlasAzureAppId() {
         return this.atlasAzureAppId;
     }
 
+    /**
+     * UUID string that identifies the Azure Service Principal. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     @Import(name="servicePrincipalId", required=true)
     private Output<String> servicePrincipalId;
 
+    /**
+     * @return UUID string that identifies the Azure Service Principal. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     public Output<String> servicePrincipalId() {
         return this.servicePrincipalId;
     }
 
+    /**
+     * UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     @Import(name="tenantId", required=true)
     private Output<String> tenantId;
 
+    /**
+     * @return UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `providerName = &#34;AZURE&#34;.`
+     * 
+     */
     public Output<String> tenantId() {
         return this.tenantId;
     }
@@ -61,29 +85,65 @@ public final class CloudProviderAccessSetupAzureConfigArgs extends com.pulumi.re
             $ = new CloudProviderAccessSetupAzureConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param atlasAzureAppId Azure Active Directory Application ID of Atlas. This property is required when `providerName = &#34;AZURE&#34;.`
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAzureAppId(Output<String> atlasAzureAppId) {
             $.atlasAzureAppId = atlasAzureAppId;
             return this;
         }
 
+        /**
+         * @param atlasAzureAppId Azure Active Directory Application ID of Atlas. This property is required when `providerName = &#34;AZURE&#34;.`
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAzureAppId(String atlasAzureAppId) {
             return atlasAzureAppId(Output.of(atlasAzureAppId));
         }
 
+        /**
+         * @param servicePrincipalId UUID string that identifies the Azure Service Principal. This property is required when `providerName = &#34;AZURE&#34;.`
+         * 
+         * @return builder
+         * 
+         */
         public Builder servicePrincipalId(Output<String> servicePrincipalId) {
             $.servicePrincipalId = servicePrincipalId;
             return this;
         }
 
+        /**
+         * @param servicePrincipalId UUID string that identifies the Azure Service Principal. This property is required when `providerName = &#34;AZURE&#34;.`
+         * 
+         * @return builder
+         * 
+         */
         public Builder servicePrincipalId(String servicePrincipalId) {
             return servicePrincipalId(Output.of(servicePrincipalId));
         }
 
+        /**
+         * @param tenantId UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `providerName = &#34;AZURE&#34;.`
+         * 
+         * @return builder
+         * 
+         */
         public Builder tenantId(Output<String> tenantId) {
             $.tenantId = tenantId;
             return this;
         }
 
+        /**
+         * @param tenantId UUID String that identifies the Azure Active Directory Tenant ID. This property is required when `providerName = &#34;AZURE&#34;.`
+         * 
+         * @return builder
+         * 
+         */
         public Builder tenantId(String tenantId) {
             return tenantId(Output.of(tenantId));
         }

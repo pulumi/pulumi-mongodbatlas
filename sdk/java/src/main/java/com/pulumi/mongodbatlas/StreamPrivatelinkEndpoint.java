@@ -16,8 +16,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.StreamPrivatelinkEndpoint
- * 
  * `mongodbatlas.StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.
  * 
  * ## Example Usage
@@ -176,6 +174,64 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### GCP Confluent Privatelink
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpConfluentStreamPrivatelinkEndpoint = new StreamPrivatelinkEndpoint("gcpConfluentStreamPrivatelinkEndpoint", StreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("GCP")
+ *             .vendor("CONFLUENT")
+ *             .region(gcpRegion)
+ *             .dnsDomain(confluentDnsDomain)
+ *             .dnsSubDomains(confluentDnsSubdomains)
+ *             .serviceAttachmentUris(            
+ *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
+ *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
+ *             .build());
+ * 
+ *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .id(_id)
+ *             .build()));
+ * 
+ *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
+ *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
+ *         ctx.export("serviceAttachmentUris", gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris());
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Further Examples
+ * - AWS Confluent PrivateLink
+ * - Confluent Dedicated Cluster
+ * - AWS MSK PrivateLink
+ * - AWS S3 PrivateLink
+ * - GCP Confluent PrivateLink
+ * - Azure PrivateLink
+ * 
  */
 @ResourceType(type="mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")
 public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResource {
@@ -300,14 +356,14 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return this.providerAccountId;
     }
     /**
-     * Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+     * Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      * 
      */
     @Export(name="providerName", refs={String.class}, tree="[0]")
     private Output<String> providerName;
 
     /**
-     * @return Provider where the endpoint is deployed. Valid values are AWS and AZURE.
+     * @return Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      * 
      */
     public Output<String> providerName() {
@@ -326,6 +382,20 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      */
     public Output<String> region() {
         return this.region;
+    }
+    /**
+     * List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+     * 
+     */
+    @Export(name="serviceAttachmentUris", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> serviceAttachmentUris;
+
+    /**
+     * @return List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+     * 
+     */
+    public Output<Optional<List<String>>> serviceAttachmentUris() {
+        return Codegen.optional(this.serviceAttachmentUris);
     }
     /**
      * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
@@ -361,6 +431,8 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
+     *     
+     *     * **GCP**: CONFLUENT
      * 
      */
     @Export(name="vendor", refs={String.class}, tree="[0]")
@@ -372,6 +444,8 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
+     *     
+     *     * **GCP**: CONFLUENT
      * 
      */
     public Output<String> vendor() {

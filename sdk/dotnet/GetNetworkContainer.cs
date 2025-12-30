@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetNetworkContainer
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.NetworkContainer
-        /// 
         /// `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
         /// 
         /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
@@ -54,8 +52,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.NetworkContainer
-        /// 
         /// `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
         /// 
         /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
@@ -96,8 +92,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkContainerResult>("mongodbatlas:index/getNetworkContainer:getNetworkContainer", args ?? new GetNetworkContainerInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.NetworkContainer
-        /// 
         /// `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
         /// 
         /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.

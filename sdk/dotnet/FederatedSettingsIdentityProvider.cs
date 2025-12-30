@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.FederatedSettingsIdentityProvider
-    /// 
     /// `mongodbatlas.FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
     /// 
     /// ## Example Usage
@@ -72,6 +70,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// ### Further Examples
+    /// - Azure Federated Settings Identity Provider
     /// 
     /// ## Import
     /// 

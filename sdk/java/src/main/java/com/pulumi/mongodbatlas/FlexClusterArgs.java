@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.FlexClusterProviderSettingsArgs;
+import com.pulumi.mongodbatlas.inputs.FlexClusterTimeoutsArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
@@ -18,6 +19,21 @@ import javax.annotation.Nullable;
 public final class FlexClusterArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final FlexClusterArgs Empty = new FlexClusterArgs();
+
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
+    }
 
     /**
      * Human-readable label that identifies the instance.
@@ -94,14 +110,23 @@ public final class FlexClusterArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.terminationProtectionEnabled);
     }
 
+    @Import(name="timeouts")
+    private @Nullable Output<FlexClusterTimeoutsArgs> timeouts;
+
+    public Optional<Output<FlexClusterTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
     private FlexClusterArgs() {}
 
     private FlexClusterArgs(FlexClusterArgs $) {
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.name = $.name;
         this.projectId = $.projectId;
         this.providerSettings = $.providerSettings;
         this.tags = $.tags;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
+        this.timeouts = $.timeouts;
     }
 
     public static Builder builder() {
@@ -120,6 +145,27 @@ public final class FlexClusterArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(FlexClusterArgs defaults) {
             $ = new FlexClusterArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
         }
 
         /**
@@ -225,6 +271,15 @@ public final class FlexClusterArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder terminationProtectionEnabled(Boolean terminationProtectionEnabled) {
             return terminationProtectionEnabled(Output.of(terminationProtectionEnabled));
+        }
+
+        public Builder timeouts(@Nullable Output<FlexClusterTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        public Builder timeouts(FlexClusterTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
         }
 
         public FlexClusterArgs build() {

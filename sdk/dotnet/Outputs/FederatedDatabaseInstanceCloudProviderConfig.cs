@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class FederatedDatabaseInstanceCloudProviderConfig
     {
         /// <summary>
-        /// Name of the cloud service that hosts the data lake's data stores.
+        /// Name of the cloud service that hosts the Atlas Data Federation data stores.
         /// </summary>
         public readonly Outputs.FederatedDatabaseInstanceCloudProviderConfigAws? Aws;
         /// <summary>

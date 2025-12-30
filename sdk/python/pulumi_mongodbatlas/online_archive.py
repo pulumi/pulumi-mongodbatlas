@@ -29,6 +29,7 @@ class OnlineArchiveArgs:
                  collection_type: Optional[pulumi.Input[_builtins.str]] = None,
                  data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
                  data_process_region: Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
                  schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
@@ -43,7 +44,8 @@ class OnlineArchiveArgs:
         :param pulumi.Input[_builtins.str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         :param pulumi.Input['OnlineArchiveDataExpirationRuleArgs'] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input['OnlineArchiveDataProcessRegionArgs'] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
-        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[_builtins.bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[_builtins.bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
@@ -59,6 +61,8 @@ class OnlineArchiveArgs:
             pulumi.set(__self__, "data_expiration_rule", data_expiration_rule)
         if data_process_region is not None:
             pulumi.set(__self__, "data_process_region", data_process_region)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if partition_fields is not None:
             pulumi.set(__self__, "partition_fields", partition_fields)
         if paused is not None:
@@ -165,10 +169,22 @@ class OnlineArchiveArgs:
         pulumi.set(self, "data_process_region", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
@@ -224,6 +240,7 @@ class _OnlineArchiveState:
                  data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
                  data_process_region: Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']] = None,
                  db_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -240,7 +257,8 @@ class _OnlineArchiveState:
         :param pulumi.Input['OnlineArchiveDataExpirationRuleArgs'] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input['OnlineArchiveDataProcessRegionArgs'] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[_builtins.str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[_builtins.bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
@@ -263,6 +281,8 @@ class _OnlineArchiveState:
             pulumi.set(__self__, "data_process_region", data_process_region)
         if db_name is not None:
             pulumi.set(__self__, "db_name", db_name)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if partition_fields is not None:
             pulumi.set(__self__, "partition_fields", partition_fields)
         if paused is not None:
@@ -373,10 +393,22 @@ class _OnlineArchiveState:
         pulumi.set(self, "db_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
@@ -458,6 +490,7 @@ class OnlineArchive(pulumi.CustomResource):
                  data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
                  data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
                  db_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -465,8 +498,6 @@ class OnlineArchive(pulumi.CustomResource):
                  sync_creation: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        ## # Resource: OnlineArchive
-
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -568,6 +599,8 @@ class OnlineArchive(pulumi.CustomResource):
                 "query": "{ \\"department\\": \\"engineering\\" }",
             })
         ```
+        ### Further Examples
+        - Online Archive Example
 
         ## Import
 
@@ -582,7 +615,8 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[_builtins.str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[_builtins.bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
         :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
@@ -595,8 +629,6 @@ class OnlineArchive(pulumi.CustomResource):
                  args: OnlineArchiveArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: OnlineArchive
-
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
@@ -698,6 +730,8 @@ class OnlineArchive(pulumi.CustomResource):
                 "query": "{ \\"department\\": \\"engineering\\" }",
             })
         ```
+        ### Further Examples
+        - Online Archive Example
 
         ## Import
 
@@ -725,6 +759,7 @@ class OnlineArchive(pulumi.CustomResource):
                  data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
                  data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
                  db_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
                  paused: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -754,6 +789,7 @@ class OnlineArchive(pulumi.CustomResource):
             if db_name is None and not opts.urn:
                 raise TypeError("Missing required property 'db_name'")
             __props__.__dict__["db_name"] = db_name
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             __props__.__dict__["partition_fields"] = partition_fields
             __props__.__dict__["paused"] = paused
             if project_id is None and not opts.urn:
@@ -781,6 +817,7 @@ class OnlineArchive(pulumi.CustomResource):
             data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
             data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
             db_name: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
             paused: Optional[pulumi.Input[_builtins.bool]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -802,7 +839,8 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         :param pulumi.Input[_builtins.str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[_builtins.bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
         :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
@@ -821,6 +859,7 @@ class OnlineArchive(pulumi.CustomResource):
         __props__.__dict__["data_expiration_rule"] = data_expiration_rule
         __props__.__dict__["data_process_region"] = data_process_region
         __props__.__dict__["db_name"] = db_name
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["partition_fields"] = partition_fields
         __props__.__dict__["paused"] = paused
         __props__.__dict__["project_id"] = project_id
@@ -894,10 +933,18 @@ class OnlineArchive(pulumi.CustomResource):
         return pulumi.get(self, "db_name")
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @_builtins.property
     @pulumi.getter(name="partitionFields")
     def partition_fields(self) -> pulumi.Output[Sequence['outputs.OnlineArchivePartitionField']]:
         """
-        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://docs.mongodb.com/datalake/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
+        Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 

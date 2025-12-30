@@ -15,16 +15,32 @@ public final class CloudProviderAccessSetupGcpConfigArgs extends com.pulumi.reso
 
     public static final CloudProviderAccessSetupGcpConfigArgs Empty = new CloudProviderAccessSetupGcpConfigArgs();
 
+    /**
+     * The GCP service account email that Atlas uses.
+     * 
+     */
     @Import(name="serviceAccountForAtlas")
     private @Nullable Output<String> serviceAccountForAtlas;
 
+    /**
+     * @return The GCP service account email that Atlas uses.
+     * 
+     */
     public Optional<Output<String>> serviceAccountForAtlas() {
         return Optional.ofNullable(this.serviceAccountForAtlas);
     }
 
+    /**
+     * The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+     * 
+     */
     @Import(name="status")
     private @Nullable Output<String> status;
 
+    /**
+     * @return The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+     * 
+     */
     public Optional<Output<String>> status() {
         return Optional.ofNullable(this.status);
     }
@@ -54,20 +70,44 @@ public final class CloudProviderAccessSetupGcpConfigArgs extends com.pulumi.reso
             $ = new CloudProviderAccessSetupGcpConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param serviceAccountForAtlas The GCP service account email that Atlas uses.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccountForAtlas(@Nullable Output<String> serviceAccountForAtlas) {
             $.serviceAccountForAtlas = serviceAccountForAtlas;
             return this;
         }
 
+        /**
+         * @param serviceAccountForAtlas The GCP service account email that Atlas uses.
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceAccountForAtlas(String serviceAccountForAtlas) {
             return serviceAccountForAtlas(Output.of(serviceAccountForAtlas));
         }
 
+        /**
+         * @param status The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(@Nullable Output<String> status) {
             $.status = status;
             return this;
         }
 
+        /**
+         * @param status The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+         * 
+         * @return builder
+         * 
+         */
         public Builder status(String status) {
             return status(Output.of(status));
         }

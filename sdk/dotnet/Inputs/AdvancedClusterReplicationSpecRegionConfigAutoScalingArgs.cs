@@ -12,23 +12,26 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
+        /// </summary>
         [Input("computeEnabled")]
         public Input<bool>? ComputeEnabled { get; set; }
 
         /// <summary>
-        /// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` is true.
+        /// Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
         /// </summary>
         [Input("computeMaxInstanceSize")]
         public Input<string>? ComputeMaxInstanceSize { get; set; }
 
         /// <summary>
-        /// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_scale_down_enabled` is true.
+        /// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         /// </summary>
         [Input("computeMinInstanceSize")]
         public Input<string>? ComputeMinInstanceSize { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs.#.region_configs.#.auto_scaling.0.compute_enabled` : true. If you enable this option, specify a value for `replication_specs.#.region_configs.#.auto_scaling.0.compute_min_instance_size`.
+        /// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         /// </summary>
         [Input("computeScaleDownEnabled")]
         public Input<bool>? ComputeScaleDownEnabled { get; set; }

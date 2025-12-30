@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
- *
  * `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
  *
  * ## Example Usage
@@ -82,8 +80,6 @@ export interface GetApiKeyProjectAssignmentsResult {
     readonly results: outputs.GetApiKeyProjectAssignmentsResult[];
 }
 /**
- * ## # Data Source: mongodbatlas.getApiKeyProjectAssignments
- *
  * `mongodbatlas.getApiKeyProjectAssignments` provides an API Key Project Assignments data source. The data source lets you list all API key project assignments for an organization.
  *
  * ## Example Usage

@@ -202,6 +202,9 @@ class AccessListApiKey(pulumi.CustomResource):
             api_key_id="<API_KEY_ID>")
         ```
 
+        ### Further Examples
+        - Create Programmatic API Key
+
         ## Import
 
         IP Access List entries can be imported using the `org_id` , `api_key_id` and `cidr_block` or `ip_address`, e.g.
@@ -250,6 +253,9 @@ class AccessListApiKey(pulumi.CustomResource):
             ip_address="2.3.4.5",
             api_key_id="<API_KEY_ID>")
         ```
+
+        ### Further Examples
+        - Create Programmatic API Key
 
         ## Import
 

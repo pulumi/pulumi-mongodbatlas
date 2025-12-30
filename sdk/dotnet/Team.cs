@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// ## # Resource: mongodbatlas.Team
-    /// 
     /// `mongodbatlas.Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
     /// 
     /// &gt; **IMPORTANT:** MongoDB Atlas Team are limited to a maximum of 250 teams in an organization and 100 teams per project.
@@ -42,6 +40,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Further Examples
+    /// - Team and user assignment (module maintainer) v1
+    /// - Team and user assignment (module maintainer) v2
     /// 
     /// ## Import
     /// 
@@ -74,7 +76,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> TeamId { get; private set; } = null!;
 
         /// <summary>
-        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        /// **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         /// </summary>
         [Output("usernames")]
         public Output<ImmutableArray<string>> Usernames { get; private set; } = null!;
@@ -137,12 +139,13 @@ namespace Pulumi.Mongodbatlas
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
 
-        [Input("usernames", required: true)]
+        [Input("usernames")]
         private InputList<string>? _usernames;
 
         /// <summary>
-        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        /// **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         /// </summary>
+        [Obsolete(@"This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.")]
         public InputList<string> Usernames
         {
             get => _usernames ?? (_usernames = new InputList<string>());
@@ -179,8 +182,9 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _usernames;
 
         /// <summary>
-        /// The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team.
+        /// **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         /// </summary>
+        [Obsolete(@"This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.")]
         public InputList<string> Usernames
         {
             get => _usernames ?? (_usernames = new InputList<string>());

@@ -35,8 +35,8 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         /// </summary>
-        [Input("instanceSize", required: true)]
-        public Input<string> InstanceSize { get; set; } = null!;
+        [Input("instanceSize")]
+        public Input<string>? InstanceSize { get; set; }
 
         /// <summary>
         /// Number of nodes of the given type for MongoDB Atlas to deploy to the region.

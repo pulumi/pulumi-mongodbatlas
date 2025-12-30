@@ -32,16 +32,36 @@ public final class CloudProviderAccessAuthorizationArgs extends com.pulumi.resou
         return Optional.ofNullable(this.azure);
     }
 
+    /**
+     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
+    /**
+     * @return The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     */
     public Output<String> projectId() {
         return this.projectId;
     }
 
+    /**
+     * The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     * Conditional
+     * 
+     */
     @Import(name="roleId", required=true)
     private Output<String> roleId;
 
+    /**
+     * @return The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * 
+     * Conditional
+     * 
+     */
     public Output<String> roleId() {
         return this.roleId;
     }
@@ -91,20 +111,48 @@ public final class CloudProviderAccessAuthorizationArgs extends com.pulumi.resou
             return azure(Output.of(azure));
         }
 
+        /**
+         * @param projectId The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(Output<String> projectId) {
             $.projectId = projectId;
             return this;
         }
 
+        /**
+         * @param projectId The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param roleId The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * Conditional
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleId(Output<String> roleId) {
             $.roleId = roleId;
             return this;
         }
 
+        /**
+         * @param roleId The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * 
+         * Conditional
+         * 
+         * @return builder
+         * 
+         */
         public Builder roleId(String roleId) {
             return roleId(Output.of(roleId));
         }

@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     public static class GetOrganization
     {
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Organization
-        /// 
         /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
         /// ## Example Usage
@@ -39,8 +37,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationResult>("mongodbatlas:index/getOrganization:getOrganization", args ?? new GetOrganizationArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Organization
-        /// 
         /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
         /// ## Example Usage
@@ -66,8 +62,6 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationResult>("mongodbatlas:index/getOrganization:getOrganization", args ?? new GetOrganizationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// ## # Data Source: mongodbatlas.Organization
-        /// 
         /// `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
         /// 
         /// ## Example Usage
@@ -161,6 +155,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string SecurityContact;
         public readonly bool SkipDefaultAlertsSettings;
+        /// <summary>
+        /// Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetOrganizationUserResult> Users;
 
         [OutputConstructor]
         private GetOrganizationResult(
@@ -184,7 +182,9 @@ namespace Pulumi.Mongodbatlas
 
             string securityContact,
 
-            bool skipDefaultAlertsSettings)
+            bool skipDefaultAlertsSettings,
+
+            ImmutableArray<Outputs.GetOrganizationUserResult> users)
         {
             ApiAccessListRequired = apiAccessListRequired;
             GenAiFeaturesEnabled = genAiFeaturesEnabled;
@@ -197,6 +197,7 @@ namespace Pulumi.Mongodbatlas
             RestrictEmployeeAccess = restrictEmployeeAccess;
             SecurityContact = securityContact;
             SkipDefaultAlertsSettings = skipDefaultAlertsSettings;
+            Users = users;
         }
     }
 }

@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## # Data Source: Project
-//
 // `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
@@ -25,7 +23,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -39,21 +37,6 @@ import (
 //			testProject, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
 //				Name:  pulumi.String("project-name"),
 //				OrgId: pulumi.String(test.OrgId),
-//				Teams: mongodbatlas.ProjectTeamArray{
-//					&mongodbatlas.ProjectTeamArgs{
-//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_OWNER"),
-//						},
-//					},
-//					&mongodbatlas.ProjectTeamArgs{
-//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_READ_ONLY"),
-//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-//						},
-//					},
-//				},
 //				Limits: mongodbatlas.ProjectLimitArray{
 //					&mongodbatlas.ProjectLimitArgs{
 //						Name:  pulumi.String("atlas.project.deployment.clusters"),
@@ -79,7 +62,7 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -89,21 +72,6 @@ import (
 //			testProject, err := mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
 //				Name:  pulumi.String("project-name"),
 //				OrgId: pulumi.String("<ORG_ID>"),
-//				Teams: mongodbatlas.ProjectTeamArray{
-//					&mongodbatlas.ProjectTeamArgs{
-//						TeamId: pulumi.String("5e0fa8c99ccf641c722fe645"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_OWNER"),
-//						},
-//					},
-//					&mongodbatlas.ProjectTeamArgs{
-//						TeamId: pulumi.String("5e1dd7b4f2a30ba80a70cd4rw"),
-//						RoleNames: pulumi.StringArray{
-//							pulumi.String("GROUP_READ_ONLY"),
-//							pulumi.String("GROUP_DATA_ACCESS_READ_WRITE"),
-//						},
-//					},
-//				},
 //				Limits: mongodbatlas.ProjectLimitArray{
 //					&mongodbatlas.ProjectLimitArgs{
 //						Name:  pulumi.String("atlas.project.deployment.clusters"),
@@ -148,7 +116,9 @@ type LookupProjectResult struct {
 	ClusterCount int `pulumi:"clusterCount"`
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created string `pulumi:"created"`
-	Id      string `pulumi:"id"`
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+	// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+	Id string `pulumi:"id"`
 	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `getProjectIpAddresses` data source instead.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
@@ -180,8 +150,12 @@ type LookupProjectResult struct {
 	RegionUsageRestrictions string `pulumi:"regionUsageRestrictions"`
 	// Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
 	Tags map[string]string `pulumi:"tags"`
-	// Returns all teams to which the authenticated user has access in the project. See Teams.
+	// **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
+	//
+	// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 	Teams []GetProjectTeam `pulumi:"teams"`
+	// Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+	Users []GetProjectUser `pulumi:"users"`
 }
 
 func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts ...pulumi.InvokeOption) LookupProjectResultOutput {
@@ -232,6 +206,8 @@ func (o LookupProjectResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Created }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -309,9 +285,16 @@ func (o LookupProjectResultOutput) Tags() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupProjectResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
-// Returns all teams to which the authenticated user has access in the project. See Teams.
+// **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
+//
+// Deprecated: This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
 func (o LookupProjectResultOutput) Teams() GetProjectTeamArrayOutput {
 	return o.ApplyT(func(v LookupProjectResult) []GetProjectTeam { return v.Teams }).(GetProjectTeamArrayOutput)
+}
+
+// Returns list of all pending and active MongoDB Cloud users associated with the specified project.
+func (o LookupProjectResultOutput) Users() GetProjectUserArrayOutput {
+	return o.ApplyT(func(v LookupProjectResult) []GetProjectUser { return v.Users }).(GetProjectUserArrayOutput)
 }
 
 func init() {

@@ -21,8 +21,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.AlertConfiguration
- * 
  * `mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -257,6 +255,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Alert Configuration
+ * 
  * ## Import
  * 
  * Alert Configuration can be imported using the `project_id-alert_configuration_id`, e.g.
@@ -367,6 +368,20 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
      */
     public Output<String> projectId() {
         return this.projectId;
+    }
+    /**
+     * Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+     * 
+     */
+    @Export(name="severityOverride", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> severityOverride;
+
+    /**
+     * @return Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
+     * 
+     */
+    public Output<Optional<String>> severityOverride() {
+        return Codegen.optional(this.severityOverride);
     }
     @Export(name="thresholdConfig", refs={AlertConfigurationThresholdConfig.class}, tree="[0]")
     private Output</* @Nullable */ AlertConfigurationThresholdConfig> thresholdConfig;

@@ -16,7 +16,7 @@ public final class GetRolesOrgIdResult {
      */
     private String id;
     /**
-     * @return The ID of the organization you want to retrieve associated to an API Key.
+     * @return The ID of the organization you want to retrieve, which is associated with the Service Account or Programmatic API Key (PAK) of the authenticated user.
      * 
      */
     private String orgId;
@@ -30,7 +30,7 @@ public final class GetRolesOrgIdResult {
         return this.id;
     }
     /**
-     * @return The ID of the organization you want to retrieve associated to an API Key.
+     * @return The ID of the organization you want to retrieve, which is associated with the Service Account or Programmatic API Key (PAK) of the authenticated user.
      * 
      */
     public String orgId() {

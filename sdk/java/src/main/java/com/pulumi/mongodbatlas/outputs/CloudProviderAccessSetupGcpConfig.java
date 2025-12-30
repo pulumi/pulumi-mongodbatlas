@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class CloudProviderAccessSetupGcpConfig {
+    /**
+     * @return The GCP service account email that Atlas uses.
+     * 
+     */
     private @Nullable String serviceAccountForAtlas;
+    /**
+     * @return The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+     * 
+     */
     private @Nullable String status;
 
     private CloudProviderAccessSetupGcpConfig() {}
+    /**
+     * @return The GCP service account email that Atlas uses.
+     * 
+     */
     public Optional<String> serviceAccountForAtlas() {
         return Optional.ofNullable(this.serviceAccountForAtlas);
     }
+    /**
+     * @return The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
+     * 
+     */
     public Optional<String> status() {
         return Optional.ofNullable(this.status);
     }

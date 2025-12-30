@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas/internal"
+	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,14 +18,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 //				Name:        pulumi.String("cluster-test"),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -49,9 +49,71 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
-//				ProjectId: exampleAdvancedCluster.ProjectId,
-//				Name:      exampleAdvancedCluster.Name,
+//				ProjectId: thisAdvancedCluster.ProjectId,
+//				Name:      thisAdvancedCluster.Name,
 //			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example using effective fields with auto-scaling
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:          pulumi.String("<YOUR-PROJECT-ID>"),
+//				Name:               pulumi.String("auto-scale-cluster"),
+//				ClusterType:        pulumi.String("REPLICASET"),
+//				UseEffectiveFields: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								AutoScaling: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{
+//									ComputeEnabled:          pulumi.Bool(true),
+//									ComputeScaleDownEnabled: pulumi.Bool(true),
+//									ComputeMinInstanceSize:  pulumi.String("M10"),
+//									ComputeMaxInstanceSize:  pulumi.String("M30"),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Read effective values after Atlas auto-scales the cluster
+//			this := mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//				ProjectId:          thisAdvancedCluster.ProjectId,
+//				Name:               thisAdvancedCluster.Name,
+//				UseEffectiveFields: pulumi.Bool(true),
+//			}, nil)
+//			ctx.Export("configuredInstanceSize", this.ApplyT(func(this mongodbatlas.GetAdvancedClusterResult) (*string, error) {
+//				return &this.ReplicationSpecs[0].RegionConfigs[0].ElectableSpecs.InstanceSize, nil
+//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("actualInstanceSize", this.ApplyT(func(this mongodbatlas.GetAdvancedClusterResult) (*string, error) {
+//				return &this.ReplicationSpecs[0].RegionConfigs[0].EffectiveElectableSpecs.InstanceSize, nil
+//			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})
 //	}
@@ -65,14 +127,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
 //				ProjectId:     pulumi.String("<YOUR-PROJECT-ID>"),
 //				Name:          pulumi.String("cluster-test"),
 //				BackupEnabled: pulumi.Bool(false),
@@ -112,9 +174,8 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
-//				ProjectId:                  exampleAdvancedCluster.ProjectId,
-//				Name:                       exampleAdvancedCluster.Name,
-//				UseReplicationSpecPerShard: pulumi.Bool(true),
+//				ProjectId: thisAdvancedCluster.ProjectId,
+//				Name:      thisAdvancedCluster.Name,
 //			}, nil)
 //			return nil
 //		})
@@ -129,14 +190,14 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v3/go/mongodbatlas"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example_flex, err := mongodbatlas.NewAdvancedCluster(ctx, "example-flex", &mongodbatlas.AdvancedClusterArgs{
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
 //				ProjectId:   pulumi.String("<YOUR-PROJECT-ID>"),
 //				Name:        pulumi.String("flex-cluster"),
 //				ClusterType: pulumi.String("REPLICASET"),
@@ -157,8 +218,8 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
-//				ProjectId: example_flex.ProjectId,
-//				Name:      example_flex.Name,
+//				ProjectId: thisAdvancedCluster.ProjectId,
+//				Name:      thisAdvancedCluster.Name,
 //			}, nil)
 //			return nil
 //		})
@@ -179,20 +240,20 @@ func LookupAdvancedCluster(ctx *pulumi.Context, args *LookupAdvancedClusterArgs,
 type LookupAdvancedClusterArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name string `pulumi:"name"`
-	// Flag that indicates if the cluster uses Continuous Cloud Backup.
-	PitEnabled *bool `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the cluster.
 	ProjectId string `pulumi:"projectId"`
-	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
-	UseReplicationSpecPerShard *bool `pulumi:"useReplicationSpecPerShard"`
+	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
+	UseEffectiveFields *bool `pulumi:"useEffectiveFields"`
 }
 
 // A collection of values returned by getAdvancedCluster.
 type LookupAdvancedClusterResult struct {
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
-	AdvancedConfigurations []GetAdvancedClusterAdvancedConfiguration `pulumi:"advancedConfigurations"`
-	BackupEnabled          bool                                      `pulumi:"backupEnabled"`
-	BiConnectorConfigs     []GetAdvancedClusterBiConnectorConfig     `pulumi:"biConnectorConfigs"`
+	AdvancedConfiguration GetAdvancedClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
+	BackupEnabled         bool                                    `pulumi:"backupEnabled"`
+	BiConnectorConfig     GetAdvancedClusterBiConnectorConfig     `pulumi:"biConnectorConfig"`
+	// The cluster ID.
+	ClusterId string `pulumi:"clusterId"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
 	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
@@ -200,12 +261,8 @@ type LookupAdvancedClusterResult struct {
 	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerType string `pulumi:"configServerType"`
 	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-	ConnectionStrings []GetAdvancedClusterConnectionString `pulumi:"connectionStrings"`
-	CreateDate        string                               `pulumi:"createDate"`
-	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-	//
-	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-	DiskSizeGb float64 `pulumi:"diskSizeGb"`
+	ConnectionStrings GetAdvancedClusterConnectionStrings `pulumi:"connectionStrings"`
+	CreateDate        string                              `pulumi:"createDate"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
@@ -213,7 +270,7 @@ type LookupAdvancedClusterResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
-	Labels []GetAdvancedClusterLabel `pulumi:"labels"`
+	Labels map[string]string `pulumi:"labels"`
 	// Version of the cluster to deploy.
 	MongoDbMajorVersion string `pulumi:"mongoDbMajorVersion"`
 	// Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
@@ -222,7 +279,7 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates whether the cluster is paused or not.
 	Paused bool `pulumi:"paused"`
 	// The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
-	PinnedFcvs []GetAdvancedClusterPinnedFcv `pulumi:"pinnedFcvs"`
+	PinnedFcv GetAdvancedClusterPinnedFcv `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
@@ -230,17 +287,17 @@ type LookupAdvancedClusterResult struct {
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
 	// (Optional) Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
-	// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
+	// List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
 	ReplicationSpecs []GetAdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Certificate Authority that MongoDB Atlas clusters use.
 	RootCertType string `pulumi:"rootCertType"`
 	// Current state of the cluster. The possible states are:
 	StateName string `pulumi:"stateName"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-	Tags []GetAdvancedClusterTag `pulumi:"tags"`
+	Tags map[string]string `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled bool  `pulumi:"terminationProtectionEnabled"`
-	UseReplicationSpecPerShard   *bool `pulumi:"useReplicationSpecPerShard"`
+	UseEffectiveFields           *bool `pulumi:"useEffectiveFields"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
@@ -258,12 +315,10 @@ func LookupAdvancedClusterOutput(ctx *pulumi.Context, args LookupAdvancedCluster
 type LookupAdvancedClusterOutputArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Flag that indicates if the cluster uses Continuous Cloud Backup.
-	PitEnabled pulumi.BoolPtrInput `pulumi:"pitEnabled"`
 	// The unique ID for the project to create the cluster.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
-	UseReplicationSpecPerShard pulumi.BoolPtrInput `pulumi:"useReplicationSpecPerShard"`
+	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
+	UseEffectiveFields pulumi.BoolPtrInput `pulumi:"useEffectiveFields"`
 }
 
 func (LookupAdvancedClusterOutputArgs) ElementType() reflect.Type {
@@ -286,18 +341,23 @@ func (o LookupAdvancedClusterResultOutput) ToLookupAdvancedClusterResultOutputWi
 }
 
 // Get the advanced configuration options. See Advanced Configuration below for more details.
-func (o LookupAdvancedClusterResultOutput) AdvancedConfigurations() GetAdvancedClusterAdvancedConfigurationArrayOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterAdvancedConfiguration {
-		return v.AdvancedConfigurations
-	}).(GetAdvancedClusterAdvancedConfigurationArrayOutput)
+func (o LookupAdvancedClusterResultOutput) AdvancedConfiguration() GetAdvancedClusterAdvancedConfigurationOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) GetAdvancedClusterAdvancedConfiguration {
+		return v.AdvancedConfiguration
+	}).(GetAdvancedClusterAdvancedConfigurationOutput)
 }
 
 func (o LookupAdvancedClusterResultOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
 
-func (o LookupAdvancedClusterResultOutput) BiConnectorConfigs() GetAdvancedClusterBiConnectorConfigArrayOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterBiConnectorConfig { return v.BiConnectorConfigs }).(GetAdvancedClusterBiConnectorConfigArrayOutput)
+func (o LookupAdvancedClusterResultOutput) BiConnectorConfig() GetAdvancedClusterBiConnectorConfigOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) GetAdvancedClusterBiConnectorConfig { return v.BiConnectorConfig }).(GetAdvancedClusterBiConnectorConfigOutput)
+}
+
+// The cluster ID.
+func (o LookupAdvancedClusterResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 // Type of the cluster that you want to create.
@@ -316,19 +376,12 @@ func (o LookupAdvancedClusterResultOutput) ConfigServerType() pulumi.StringOutpu
 }
 
 // Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
-func (o LookupAdvancedClusterResultOutput) ConnectionStrings() GetAdvancedClusterConnectionStringArrayOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterConnectionString { return v.ConnectionStrings }).(GetAdvancedClusterConnectionStringArrayOutput)
+func (o LookupAdvancedClusterResultOutput) ConnectionStrings() GetAdvancedClusterConnectionStringsOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) GetAdvancedClusterConnectionStrings { return v.ConnectionStrings }).(GetAdvancedClusterConnectionStringsOutput)
 }
 
 func (o LookupAdvancedClusterResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.CreateDate }).(pulumi.StringOutput)
-}
-
-// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-//
-// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
-func (o LookupAdvancedClusterResultOutput) DiskSizeGb() pulumi.Float64Output {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
 // Possible values are AWS, GCP, AZURE or NONE.
@@ -347,8 +400,8 @@ func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
-func (o LookupAdvancedClusterResultOutput) Labels() GetAdvancedClusterLabelArrayOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterLabel { return v.Labels }).(GetAdvancedClusterLabelArrayOutput)
+func (o LookupAdvancedClusterResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // Version of the cluster to deploy.
@@ -371,8 +424,8 @@ func (o LookupAdvancedClusterResultOutput) Paused() pulumi.BoolOutput {
 }
 
 // The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
-func (o LookupAdvancedClusterResultOutput) PinnedFcvs() GetAdvancedClusterPinnedFcvArrayOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterPinnedFcv { return v.PinnedFcvs }).(GetAdvancedClusterPinnedFcvArrayOutput)
+func (o LookupAdvancedClusterResultOutput) PinnedFcv() GetAdvancedClusterPinnedFcvOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) GetAdvancedClusterPinnedFcv { return v.PinnedFcv }).(GetAdvancedClusterPinnedFcvOutput)
 }
 
 // Flag that indicates if the cluster uses Continuous Cloud Backup.
@@ -394,7 +447,7 @@ func (o LookupAdvancedClusterResultOutput) ReplicaSetScalingStrategy() pulumi.St
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ReplicaSetScalingStrategy }).(pulumi.StringOutput)
 }
 
-// List of settings that configure your cluster regions. If `useReplicationSpecPerShard = true`, this array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
+// List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
 func (o LookupAdvancedClusterResultOutput) ReplicationSpecs() GetAdvancedClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterReplicationSpec { return v.ReplicationSpecs }).(GetAdvancedClusterReplicationSpecArrayOutput)
 }
@@ -410,8 +463,8 @@ func (o LookupAdvancedClusterResultOutput) StateName() pulumi.StringOutput {
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
-func (o LookupAdvancedClusterResultOutput) Tags() GetAdvancedClusterTagArrayOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) []GetAdvancedClusterTag { return v.Tags }).(GetAdvancedClusterTagArrayOutput)
+func (o LookupAdvancedClusterResultOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) map[string]string { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -419,8 +472,8 @@ func (o LookupAdvancedClusterResultOutput) TerminationProtectionEnabled() pulumi
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
 }
 
-func (o LookupAdvancedClusterResultOutput) UseReplicationSpecPerShard() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) *bool { return v.UseReplicationSpecPerShard }).(pulumi.BoolPtrOutput)
+func (o LookupAdvancedClusterResultOutput) UseEffectiveFields() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) *bool { return v.UseEffectiveFields }).(pulumi.BoolPtrOutput)
 }
 
 // Release cadence that Atlas uses for this cluster.

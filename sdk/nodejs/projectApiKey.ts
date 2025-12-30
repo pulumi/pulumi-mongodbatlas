@@ -48,6 +48,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Further Examples
+ * - Legacy Module: Create and Assign Project API Key
+ *
  * ## Import
  *
  * API Keys must be imported using project ID, API Key ID e.g.

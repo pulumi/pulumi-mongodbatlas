@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
- *
  * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -119,8 +117,6 @@ export interface GetCloudBackupSnapshotExportJobResult {
     readonly state: string;
 }
 /**
- * ## # Data Source: mongodbatlas_cloud_backup_snapshot_export_Job
- *
  * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

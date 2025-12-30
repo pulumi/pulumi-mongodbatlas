@@ -13,7 +13,12 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class GetFederatedDatabaseInstanceCloudProviderConfigInputArgs : global::Pulumi.ResourceArgs
     {
         [Input("aws", required: true)]
-        public Input<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwsInputArgs> Aws { get; set; } = null!;
+        private InputList<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwInputArgs>? _aws;
+        public InputList<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwInputArgs> Aws
+        {
+            get => _aws ?? (_aws = new InputList<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwInputArgs>());
+            set => _aws = value;
+        }
 
         [Input("azures", required: true)]
         private InputList<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs>? _azures;

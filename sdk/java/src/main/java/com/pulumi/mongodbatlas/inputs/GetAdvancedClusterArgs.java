@@ -33,21 +33,6 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Flag that indicates if the cluster uses Continuous Cloud Backup.
-     * 
-     */
-    @Import(name="pitEnabled")
-    private @Nullable Output<Boolean> pitEnabled;
-
-    /**
-     * @return Flag that indicates if the cluster uses Continuous Cloud Backup.
-     * 
-     */
-    public Optional<Output<Boolean>> pitEnabled() {
-        return Optional.ofNullable(this.pitEnabled);
-    }
-
-    /**
      * The unique ID for the project to create the cluster.
      * 
      */
@@ -63,27 +48,26 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+     * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
      * 
      */
-    @Import(name="useReplicationSpecPerShard")
-    private @Nullable Output<Boolean> useReplicationSpecPerShard;
+    @Import(name="useEffectiveFields")
+    private @Nullable Output<Boolean> useEffectiveFields;
 
     /**
-     * @return Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+     * @return Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
      * 
      */
-    public Optional<Output<Boolean>> useReplicationSpecPerShard() {
-        return Optional.ofNullable(this.useReplicationSpecPerShard);
+    public Optional<Output<Boolean>> useEffectiveFields() {
+        return Optional.ofNullable(this.useEffectiveFields);
     }
 
     private GetAdvancedClusterArgs() {}
 
     private GetAdvancedClusterArgs(GetAdvancedClusterArgs $) {
         this.name = $.name;
-        this.pitEnabled = $.pitEnabled;
         this.projectId = $.projectId;
-        this.useReplicationSpecPerShard = $.useReplicationSpecPerShard;
+        this.useEffectiveFields = $.useEffectiveFields;
     }
 
     public static Builder builder() {
@@ -126,27 +110,6 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param pitEnabled Flag that indicates if the cluster uses Continuous Cloud Backup.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder pitEnabled(@Nullable Output<Boolean> pitEnabled) {
-            $.pitEnabled = pitEnabled;
-            return this;
-        }
-
-        /**
-         * @param pitEnabled Flag that indicates if the cluster uses Continuous Cloud Backup.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder pitEnabled(Boolean pitEnabled) {
-            return pitEnabled(Output.of(pitEnabled));
-        }
-
-        /**
          * @param projectId The unique ID for the project to create the cluster.
          * 
          * @return builder
@@ -168,24 +131,24 @@ public final class GetAdvancedClusterArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
          * 
          * @return builder
          * 
          */
-        public Builder useReplicationSpecPerShard(@Nullable Output<Boolean> useReplicationSpecPerShard) {
-            $.useReplicationSpecPerShard = useReplicationSpecPerShard;
+        public Builder useEffectiveFields(@Nullable Output<Boolean> useEffectiveFields) {
+            $.useEffectiveFields = useEffectiveFields;
             return this;
         }
 
         /**
-         * @param useReplicationSpecPerShard Set this field to true to allow the data source to use the latest schema representing each shard with an individual `replicationSpecs` object. This enables representing clusters with independent shard scaling.
+         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
          * 
          * @return builder
          * 
          */
-        public Builder useReplicationSpecPerShard(Boolean useReplicationSpecPerShard) {
-            return useReplicationSpecPerShard(Output.of(useReplicationSpecPerShard));
+        public Builder useEffectiveFields(Boolean useEffectiveFields) {
+            return useEffectiveFields(Output.of(useEffectiveFields));
         }
 
         public GetAdvancedClusterArgs build() {

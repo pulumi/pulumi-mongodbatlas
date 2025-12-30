@@ -13,6 +13,7 @@ import com.pulumi.mongodbatlas.inputs.FlexClusterState;
 import com.pulumi.mongodbatlas.outputs.FlexClusterBackupSettings;
 import com.pulumi.mongodbatlas.outputs.FlexClusterConnectionStrings;
 import com.pulumi.mongodbatlas.outputs.FlexClusterProviderSettings;
+import com.pulumi.mongodbatlas.outputs.FlexClusterTimeouts;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Map;
@@ -20,8 +21,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * ## # Resource: mongodbatlas.FlexCluster
- * 
  * `mongodbatlas.FlexCluster` provides a Flex Cluster resource. The resource lets you create, update, delete and import a flex cluster.
  * 
  * **RECOMMENDATION:** We recommend using the `mongodbatlas.AdvancedCluster` resource instead of the `mongodbatlas.FlexCluster` resource to create and manage Flex clusters. The `mongodbatlas.AdvancedCluster` resource not only supports Flex clusters, but also supports tenant and dedicated clusters, providing easier migration between different cluster types. For more information, see the Advanced Cluster resource.
@@ -29,6 +28,9 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * ### S
+ * 
+ * ### Further Examples
+ * - Flex Cluster
  * 
  * ## Import
  * 
@@ -94,6 +96,20 @@ public class FlexCluster extends com.pulumi.resources.CustomResource {
      */
     public Output<String> createDate() {
         return this.createDate;
+    }
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Output<Boolean> deleteOnCreateTimeout() {
+        return this.deleteOnCreateTimeout;
     }
     /**
      * Version of MongoDB that the instance runs.
@@ -192,6 +208,12 @@ public class FlexCluster extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> terminationProtectionEnabled() {
         return this.terminationProtectionEnabled;
+    }
+    @Export(name="timeouts", refs={FlexClusterTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ FlexClusterTimeouts> timeouts;
+
+    public Output<Optional<FlexClusterTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
     }
     /**
      * Method by which the cluster maintains the MongoDB versions.

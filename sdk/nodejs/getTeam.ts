@@ -2,11 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.Team
- *
  * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -98,13 +98,17 @@ export interface GetTeamResult {
      */
     readonly teamId: string;
     /**
-     * The users who are part of the organization.
+     * **(DEPRECATED)** The users who are part of the team. This attribute is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
+     *
+     * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `data.mongodbatlas_team.users`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
     readonly usernames: string[];
+    /**
+     * Returns a list of all pending and active MongoDB Cloud users associated with the specified team.
+     */
+    readonly users: outputs.GetTeamUser[];
 }
 /**
- * ## # Data Source: mongodbatlas.Team
- *
  * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

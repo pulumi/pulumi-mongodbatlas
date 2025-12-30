@@ -544,8 +544,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  user_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        ## # Resource: ThirdPartyIntegration
-
         `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -568,6 +566,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             api_key="<API-KEY>",
             region="<REGION>")
         ```
+
+        ### Further Examples
+        - Third-Party Integration Examples
 
         ## Import
 
@@ -600,8 +601,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  args: ThirdPartyIntegrationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        ## # Resource: ThirdPartyIntegration
-
         `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -624,6 +623,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             api_key="<API-KEY>",
             region="<REGION>")
         ```
+
+        ### Further Examples
+        - Third-Party Integration Examples
 
         ## Import
 

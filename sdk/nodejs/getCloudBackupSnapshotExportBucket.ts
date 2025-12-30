@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSnapshotExportBucket
- *
  * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
@@ -86,8 +84,6 @@ export interface GetCloudBackupSnapshotExportBucketResult {
     readonly tenantId: string;
 }
 /**
- * ## # Data Source: mongodbatlas.CloudBackupSnapshotExportBucket
- *
  * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.

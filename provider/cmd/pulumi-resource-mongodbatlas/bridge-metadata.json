@@ -3,85 +3,51 @@
         "resources": {
             "mongodbatlas_access_list_api_key": {
                 "current": "mongodbatlas:index/accessListApiKey:AccessListApiKey",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_advanced_cluster": {
                 "current": "mongodbatlas:index/advancedCluster:AdvancedCluster",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "advanced_configuration": {
-                        "maxItemsOne": true,
-                        "elem": {
-                            "fields": {
-                                "custom_openssl_cipher_config_tls12": {
-                                    "maxItemsOne": false
-                                }
+                        "fields": {
+                            "custom_openssl_cipher_config_tls12": {
+                                "maxItemsOne": false
+                            },
+                            "custom_openssl_cipher_config_tls13": {
+                                "maxItemsOne": false
                             }
                         }
                     },
-                    "bi_connector_config": {
-                        "maxItemsOne": true
-                    },
                     "connection_strings": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "private_endpoint": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "endpoints": {
-                                                "maxItemsOne": false
-                                            }
+                        "fields": {
+                            "private_endpoint": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "endpoints": {
+                                            "maxItemsOne": false
                                         }
                                     }
                                 }
                             }
                         }
-                    },
-                    "labels": {
-                        "maxItemsOne": false
-                    },
-                    "pinned_fcv": {
-                        "maxItemsOne": true
                     },
                     "replication_specs": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "region_configs": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "analytics_auto_scaling": {
-                                                "maxItemsOne": true
-                                            },
-                                            "analytics_specs": {
-                                                "maxItemsOne": true
-                                            },
-                                            "auto_scaling": {
-                                                "maxItemsOne": true
-                                            },
-                                            "electable_specs": {
-                                                "maxItemsOne": true
-                                            },
-                                            "read_only_specs": {
-                                                "maxItemsOne": true
-                                            }
-                                        }
-                                    }
+                                    "maxItemsOne": false
                                 }
                             }
                         }
-                    },
-                    "tags": {
-                        "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_alert_configuration": {
                 "current": "mongodbatlas:index/alertConfiguration:AlertConfiguration",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "matcher": {
                         "maxItemsOne": false
@@ -106,7 +72,7 @@
             },
             "mongodbatlas_api_key": {
                 "current": "mongodbatlas:index/apiKey:ApiKey",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "role_names": {
                         "maxItemsOne": false
@@ -115,7 +81,7 @@
             },
             "mongodbatlas_api_key_project_assignment": {
                 "current": "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -124,11 +90,11 @@
             },
             "mongodbatlas_auditing": {
                 "current": "mongodbatlas:index/auditing:Auditing",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_backup_compliance_policy": {
                 "current": "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "on_demand_policy_item": {
                         "maxItemsOne": true
@@ -152,7 +118,7 @@
             },
             "mongodbatlas_cloud_backup_schedule": {
                 "current": "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "copy_settings": {
                         "maxItemsOne": false,
@@ -186,7 +152,7 @@
             },
             "mongodbatlas_cloud_backup_snapshot": {
                 "current": "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "members": {
                         "maxItemsOne": false
@@ -198,11 +164,11 @@
             },
             "mongodbatlas_cloud_backup_snapshot_export_bucket": {
                 "current": "mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_cloud_backup_snapshot_export_job": {
                 "current": "mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "components": {
                         "maxItemsOne": false
@@ -214,7 +180,7 @@
             },
             "mongodbatlas_cloud_backup_snapshot_restore_job": {
                 "current": "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "delivery_type_config": {
                         "maxItemsOne": true
@@ -226,7 +192,7 @@
             },
             "mongodbatlas_cloud_provider_access_authorization": {
                 "current": "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "aws": {
                         "maxItemsOne": true
@@ -244,7 +210,7 @@
             },
             "mongodbatlas_cloud_provider_access_setup": {
                 "current": "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "aws_config": {
                         "maxItemsOne": false
@@ -257,9 +223,70 @@
                     }
                 }
             },
+            "mongodbatlas_cloud_user_org_assignment": {
+                "current": "mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "fields": {
+                            "org_roles": {
+                                "maxItemsOne": false
+                            },
+                            "project_role_assignments": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "project_roles": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "team_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_cloud_user_project_assignment": {
+                "current": "mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_cloud_user_team_assignment": {
+                "current": "mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "fields": {
+                            "org_roles": {
+                                "maxItemsOne": false
+                            },
+                            "project_role_assignments": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "project_roles": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "team_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_cluster": {
                 "current": "mongodbatlas:index/cluster:Cluster",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "advanced_configuration": {
                         "maxItemsOne": true,
@@ -331,7 +358,7 @@
             },
             "mongodbatlas_cluster_outage_simulation": {
                 "current": "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "outage_filters": {
                         "maxItemsOne": false
@@ -340,7 +367,7 @@
             },
             "mongodbatlas_custom_db_role": {
                 "current": "mongodbatlas:index/customDbRole:CustomDbRole",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "actions": {
                         "maxItemsOne": false,
@@ -359,46 +386,11 @@
             },
             "mongodbatlas_custom_dns_configuration_cluster_aws": {
                 "current": "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws",
-                "majorVersion": 3
-            },
-            "mongodbatlas_data_lake_pipeline": {
-                "current": "mongodbatlas:index/dataLakePipeline:DataLakePipeline",
-                "majorVersion": 3,
-                "fields": {
-                    "ingestion_schedules": {
-                        "maxItemsOne": false
-                    },
-                    "sink": {
-                        "maxItemsOne": true,
-                        "elem": {
-                            "fields": {
-                                "partition_fields": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "snapshots": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "policies": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "source": {
-                        "maxItemsOne": true
-                    },
-                    "transformations": {
-                        "maxItemsOne": false
-                    }
-                }
+                "majorVersion": 4
             },
             "mongodbatlas_database_user": {
                 "current": "mongodbatlas:index/databaseUser:DatabaseUser",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "labels": {
                         "maxItemsOne": false
@@ -413,7 +405,7 @@
             },
             "mongodbatlas_encryption_at_rest": {
                 "current": "mongodbatlas:index/encryptionAtRest:EncryptionAtRest",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "aws_kms_config": {
                         "maxItemsOne": true
@@ -428,11 +420,11 @@
             },
             "mongodbatlas_encryption_at_rest_private_endpoint": {
                 "current": "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_event_trigger": {
                 "current": "mongodbatlas:index/eventTrigger:EventTrigger",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "config_operation_types": {
                         "maxItemsOne": false
@@ -454,7 +446,7 @@
             },
             "mongodbatlas_federated_database_instance": {
                 "current": "mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "cloud_provider_config": {
                         "maxItemsOne": true,
@@ -536,11 +528,11 @@
             },
             "mongodbatlas_federated_query_limit": {
                 "current": "mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_federated_settings_identity_provider": {
                 "current": "mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "associated_domains": {
                         "maxItemsOne": false
@@ -552,7 +544,7 @@
             },
             "mongodbatlas_federated_settings_org_config": {
                 "current": "mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "data_access_identity_provider_ids": {
                         "maxItemsOne": false
@@ -570,7 +562,7 @@
             },
             "mongodbatlas_federated_settings_org_role_mapping": {
                 "current": "mongodbatlas:index/federatedSettingsOrgRoleMapping:FederatedSettingsOrgRoleMapping",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "role_assignments": {
                         "maxItemsOne": false,
@@ -586,11 +578,11 @@
             },
             "mongodbatlas_flex_cluster": {
                 "current": "mongodbatlas:index/flexCluster:FlexCluster",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_global_cluster_config": {
                 "current": "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "custom_zone_mappings": {
                         "maxItemsOne": false
@@ -602,7 +594,7 @@
             },
             "mongodbatlas_ldap_configuration": {
                 "current": "mongodbatlas:index/ldapConfiguration:LdapConfiguration",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "user_to_dn_mapping": {
                         "maxItemsOne": false
@@ -611,7 +603,7 @@
             },
             "mongodbatlas_ldap_verify": {
                 "current": "mongodbatlas:index/ldapVerify:LdapVerify",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "links": {
                         "maxItemsOne": false
@@ -623,7 +615,7 @@
             },
             "mongodbatlas_maintenance_window": {
                 "current": "mongodbatlas:index/maintenanceWindow:MaintenanceWindow",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "protected_hours": {
                         "maxItemsOne": true
@@ -632,11 +624,11 @@
             },
             "mongodbatlas_mongodb_employee_access_grant": {
                 "current": "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_network_container": {
                 "current": "mongodbatlas:index/networkContainer:NetworkContainer",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "regions": {
                         "maxItemsOne": false
@@ -645,11 +637,11 @@
             },
             "mongodbatlas_network_peering": {
                 "current": "mongodbatlas:index/networkPeering:NetworkPeering",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_online_archive": {
                 "current": "mongodbatlas:index/onlineArchive:OnlineArchive",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "criteria": {
                         "maxItemsOne": true
@@ -670,7 +662,7 @@
             },
             "mongodbatlas_org_invitation": {
                 "current": "mongodbatlas:index/orgInvitation:OrgInvitation",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -682,7 +674,7 @@
             },
             "mongodbatlas_organization": {
                 "current": "mongodbatlas:index/organization:Organization",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "role_names": {
                         "maxItemsOne": false
@@ -691,11 +683,11 @@
             },
             "mongodbatlas_private_endpoint_regional_mode": {
                 "current": "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_privatelink_endpoint": {
                 "current": "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "endpoint_group_names": {
                         "maxItemsOne": false
@@ -711,13 +703,9 @@
                     }
                 }
             },
-            "mongodbatlas_privatelink_endpoint_serverless": {
-                "current": "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless",
-                "majorVersion": 3
-            },
             "mongodbatlas_privatelink_endpoint_service": {
                 "current": "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "endpoints": {
                         "maxItemsOne": false
@@ -726,15 +714,11 @@
             },
             "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive": {
                 "current": "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive",
-                "majorVersion": 3
-            },
-            "mongodbatlas_privatelink_endpoint_service_serverless": {
-                "current": "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_project": {
                 "current": "mongodbatlas:index/project:Project",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "ip_addresses": {
                         "fields": {
@@ -774,7 +758,7 @@
             },
             "mongodbatlas_project_api_key": {
                 "current": "mongodbatlas:index/projectApiKey:ProjectApiKey",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "project_assignment": {
                         "maxItemsOne": false,
@@ -790,7 +774,7 @@
             },
             "mongodbatlas_project_invitation": {
                 "current": "mongodbatlas:index/projectInvitation:ProjectInvitation",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -799,15 +783,15 @@
             },
             "mongodbatlas_project_ip_access_list": {
                 "current": "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_push_based_log_export": {
                 "current": "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_resource_policy": {
                 "current": "mongodbatlas:index/resourcePolicy:ResourcePolicy",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -816,7 +800,7 @@
             },
             "mongodbatlas_search_deployment": {
                 "current": "mongodbatlas:index/searchDeployment:SearchDeployment",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "specs": {
                         "maxItemsOne": false
@@ -825,16 +809,19 @@
             },
             "mongodbatlas_search_index": {
                 "current": "mongodbatlas:index/searchIndex:SearchIndex",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "synonyms": {
+                        "maxItemsOne": false
+                    },
+                    "type_sets": {
                         "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_serverless_instance": {
                 "current": "mongodbatlas:index/serverlessInstance:ServerlessInstance",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "connection_strings_private_endpoint_srv": {
                         "maxItemsOne": false
@@ -849,11 +836,11 @@
             },
             "mongodbatlas_stream_connection": {
                 "current": "mongodbatlas:index/streamConnection:StreamConnection",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_stream_instance": {
                 "current": "mongodbatlas:index/streamInstance:StreamInstance",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "hostnames": {
                         "maxItemsOne": false
@@ -862,42 +849,54 @@
             },
             "mongodbatlas_stream_privatelink_endpoint": {
                 "current": "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "dns_sub_domain": {
+                        "maxItemsOne": false
+                    },
+                    "service_attachment_uris": {
                         "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_stream_processor": {
                 "current": "mongodbatlas:index/streamProcessor:StreamProcessor",
-                "majorVersion": 3
+                "majorVersion": 4
+            },
+            "mongodbatlas_stream_workspace": {
+                "current": "mongodbatlas:index/streamWorkspace:StreamWorkspace",
+                "majorVersion": 4,
+                "fields": {
+                    "hostnames": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "mongodbatlas_team": {
                 "current": "mongodbatlas:index/team:Team",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "usernames": {
                         "maxItemsOne": false
                     }
                 }
             },
-            "mongodbatlas_teams": {
-                "current": "mongodbatlas:index/teams:Teams",
-                "majorVersion": 3,
+            "mongodbatlas_team_project_assignment": {
+                "current": "mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment",
+                "majorVersion": 4,
                 "fields": {
-                    "usernames": {
+                    "role_names": {
                         "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_third_party_integration": {
                 "current": "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_x509_authentication_database_user": {
                 "current": "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "certificates": {
                         "maxItemsOne": false
@@ -908,11 +907,11 @@
         "datasources": {
             "mongodbatlas_access_list_api_key": {
                 "current": "mongodbatlas:index/getAccessListApiKey:getAccessListApiKey",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_access_list_api_keys": {
                 "current": "mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -921,153 +920,85 @@
             },
             "mongodbatlas_advanced_cluster": {
                 "current": "mongodbatlas:index/getAdvancedCluster:getAdvancedCluster",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "advanced_configuration": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "custom_openssl_cipher_config_tls12": {
-                                    "maxItemsOne": false
-                                }
+                        "fields": {
+                            "custom_openssl_cipher_config_tls12": {
+                                "maxItemsOne": false
+                            },
+                            "custom_openssl_cipher_config_tls13": {
+                                "maxItemsOne": false
                             }
                         }
                     },
-                    "bi_connector_config": {
-                        "maxItemsOne": false
-                    },
                     "connection_strings": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "private_endpoint": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "endpoints": {
-                                                "maxItemsOne": false
-                                            }
+                        "fields": {
+                            "private_endpoint": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "endpoints": {
+                                            "maxItemsOne": false
                                         }
                                     }
                                 }
                             }
                         }
-                    },
-                    "labels": {
-                        "maxItemsOne": false
-                    },
-                    "pinned_fcv": {
-                        "maxItemsOne": false
                     },
                     "replication_specs": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "region_configs": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "analytics_auto_scaling": {
-                                                "maxItemsOne": false
-                                            },
-                                            "analytics_specs": {
-                                                "maxItemsOne": true
-                                            },
-                                            "auto_scaling": {
-                                                "maxItemsOne": false
-                                            },
-                                            "electable_specs": {
-                                                "maxItemsOne": true
-                                            },
-                                            "read_only_specs": {
-                                                "maxItemsOne": true
-                                            }
-                                        }
-                                    }
+                                    "maxItemsOne": false
                                 }
                             }
                         }
-                    },
-                    "tags": {
-                        "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_advanced_clusters": {
                 "current": "mongodbatlas:index/getAdvancedClusters:getAdvancedClusters",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "advanced_configuration": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "custom_openssl_cipher_config_tls12": {
-                                                "maxItemsOne": false
-                                            }
+                                    "fields": {
+                                        "custom_openssl_cipher_config_tls12": {
+                                            "maxItemsOne": false
+                                        },
+                                        "custom_openssl_cipher_config_tls13": {
+                                            "maxItemsOne": false
                                         }
                                     }
                                 },
-                                "bi_connector_config": {
-                                    "maxItemsOne": false
-                                },
                                 "connection_strings": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "private_endpoint": {
-                                                "maxItemsOne": false,
-                                                "elem": {
-                                                    "fields": {
-                                                        "endpoints": {
-                                                            "maxItemsOne": false
-                                                        }
+                                    "fields": {
+                                        "private_endpoint": {
+                                            "maxItemsOne": false,
+                                            "elem": {
+                                                "fields": {
+                                                    "endpoints": {
+                                                        "maxItemsOne": false
                                                     }
                                                 }
                                             }
                                         }
                                     }
-                                },
-                                "labels": {
-                                    "maxItemsOne": false
-                                },
-                                "pinned_fcv": {
-                                    "maxItemsOne": false
                                 },
                                 "replication_specs": {
                                     "maxItemsOne": false,
                                     "elem": {
                                         "fields": {
                                             "region_configs": {
-                                                "maxItemsOne": false,
-                                                "elem": {
-                                                    "fields": {
-                                                        "analytics_auto_scaling": {
-                                                            "maxItemsOne": false
-                                                        },
-                                                        "analytics_specs": {
-                                                            "maxItemsOne": true
-                                                        },
-                                                        "auto_scaling": {
-                                                            "maxItemsOne": false
-                                                        },
-                                                        "electable_specs": {
-                                                            "maxItemsOne": true
-                                                        },
-                                                        "read_only_specs": {
-                                                            "maxItemsOne": true
-                                                        }
-                                                    }
-                                                }
+                                                "maxItemsOne": false
                                             }
                                         }
                                     }
-                                },
-                                "tags": {
-                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -1076,7 +1007,7 @@
             },
             "mongodbatlas_alert_configuration": {
                 "current": "mongodbatlas:index/getAlertConfiguration:getAlertConfiguration",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "matcher": {
                         "maxItemsOne": false
@@ -1104,7 +1035,7 @@
             },
             "mongodbatlas_alert_configurations": {
                 "current": "mongodbatlas:index/getAlertConfigurations:getAlertConfigurations",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "list_options": {
                         "maxItemsOne": false
@@ -1145,7 +1076,7 @@
             },
             "mongodbatlas_api_key": {
                 "current": "mongodbatlas:index/getApiKey:getApiKey",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "role_names": {
                         "maxItemsOne": false
@@ -1154,7 +1085,7 @@
             },
             "mongodbatlas_api_key_project_assignment": {
                 "current": "mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -1163,7 +1094,7 @@
             },
             "mongodbatlas_api_key_project_assignments": {
                 "current": "mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1179,7 +1110,7 @@
             },
             "mongodbatlas_api_keys": {
                 "current": "mongodbatlas:index/getApiKeys:getApiKeys",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1195,7 +1126,7 @@
             },
             "mongodbatlas_atlas_user": {
                 "current": "mongodbatlas:index/getAtlasUser:getAtlasUser",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "links": {
                         "maxItemsOne": false
@@ -1210,7 +1141,7 @@
             },
             "mongodbatlas_atlas_users": {
                 "current": "mongodbatlas:index/getAtlasUsers:getAtlasUsers",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1232,20 +1163,20 @@
             },
             "mongodbatlas_auditing": {
                 "current": "mongodbatlas:index/getAuditing:getAuditing",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_backup_compliance_policy": {
                 "current": "mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "on_demand_policy_item": {
-                        "maxItemsOne": true
+                        "maxItemsOne": false
                     },
                     "policy_item_daily": {
-                        "maxItemsOne": true
+                        "maxItemsOne": false
                     },
                     "policy_item_hourly": {
-                        "maxItemsOne": true
+                        "maxItemsOne": false
                     },
                     "policy_item_monthly": {
                         "maxItemsOne": false
@@ -1260,7 +1191,7 @@
             },
             "mongodbatlas_cloud_backup_schedule": {
                 "current": "mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "copy_settings": {
                         "maxItemsOne": false,
@@ -1294,7 +1225,7 @@
             },
             "mongodbatlas_cloud_backup_snapshot": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "members": {
                         "maxItemsOne": false
@@ -1306,11 +1237,11 @@
             },
             "mongodbatlas_cloud_backup_snapshot_export_bucket": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_cloud_backup_snapshot_export_buckets": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -1319,7 +1250,7 @@
             },
             "mongodbatlas_cloud_backup_snapshot_export_job": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "components": {
                         "maxItemsOne": false
@@ -1331,7 +1262,7 @@
             },
             "mongodbatlas_cloud_backup_snapshot_export_jobs": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshotExportJobs:getCloudBackupSnapshotExportJobs",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1350,7 +1281,7 @@
             },
             "mongodbatlas_cloud_backup_snapshot_restore_job": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshotRestoreJob:getCloudBackupSnapshotRestoreJob",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "delivery_url": {
                         "maxItemsOne": false
@@ -1359,7 +1290,7 @@
             },
             "mongodbatlas_cloud_backup_snapshot_restore_jobs": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1375,7 +1306,7 @@
             },
             "mongodbatlas_cloud_backup_snapshots": {
                 "current": "mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1394,7 +1325,7 @@
             },
             "mongodbatlas_cloud_provider_access_setup": {
                 "current": "mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "aws_config": {
                         "maxItemsOne": false
@@ -1407,9 +1338,70 @@
                     }
                 }
             },
+            "mongodbatlas_cloud_user_org_assignment": {
+                "current": "mongodbatlas:index/getCloudUserOrgAssignment:getCloudUserOrgAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "fields": {
+                            "org_roles": {
+                                "maxItemsOne": false
+                            },
+                            "project_role_assignments": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "project_roles": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "team_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_cloud_user_project_assignment": {
+                "current": "mongodbatlas:index/getCloudUserProjectAssignment:getCloudUserProjectAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_cloud_user_team_assignment": {
+                "current": "mongodbatlas:index/getCloudUserTeamAssignment:getCloudUserTeamAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "fields": {
+                            "org_roles": {
+                                "maxItemsOne": false
+                            },
+                            "project_role_assignments": {
+                                "maxItemsOne": false,
+                                "elem": {
+                                    "fields": {
+                                        "project_roles": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "team_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_cluster": {
                 "current": "mongodbatlas:index/getCluster:getCluster",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "advanced_configuration": {
                         "maxItemsOne": false,
@@ -1481,7 +1473,7 @@
             },
             "mongodbatlas_cluster_outage_simulation": {
                 "current": "mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "outage_filters": {
                         "maxItemsOne": false
@@ -1490,7 +1482,7 @@
             },
             "mongodbatlas_clusters": {
                 "current": "mongodbatlas:index/getClusters:getClusters",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1569,7 +1561,7 @@
             },
             "mongodbatlas_control_plane_ip_addresses": {
                 "current": "mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "inbound": {
                         "fields": {
@@ -1613,7 +1605,7 @@
             },
             "mongodbatlas_custom_db_role": {
                 "current": "mongodbatlas:index/getCustomDbRole:getCustomDbRole",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "actions": {
                         "maxItemsOne": false,
@@ -1632,7 +1624,7 @@
             },
             "mongodbatlas_custom_db_roles": {
                 "current": "mongodbatlas:index/getCustomDbRoles:getCustomDbRoles",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1658,100 +1650,11 @@
             },
             "mongodbatlas_custom_dns_configuration_cluster_aws": {
                 "current": "mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws",
-                "majorVersion": 3
-            },
-            "mongodbatlas_data_lake_pipeline": {
-                "current": "mongodbatlas:index/getDataLakePipeline:getDataLakePipeline",
-                "majorVersion": 3,
-                "fields": {
-                    "ingestion_schedules": {
-                        "maxItemsOne": false
-                    },
-                    "sink": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "partition_fields": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "snapshots": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "policies": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    },
-                    "source": {
-                        "maxItemsOne": false
-                    },
-                    "transformations": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "mongodbatlas_data_lake_pipeline_run": {
-                "current": "mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun",
-                "majorVersion": 3,
-                "fields": {
-                    "stats": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "mongodbatlas_data_lake_pipeline_runs": {
-                "current": "mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns",
-                "majorVersion": 3,
-                "fields": {
-                    "results": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "stats": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "mongodbatlas_data_lake_pipelines": {
-                "current": "mongodbatlas:index/getDataLakePipelines:getDataLakePipelines",
-                "majorVersion": 3,
-                "fields": {
-                    "results": {
-                        "maxItemsOne": false,
-                        "elem": {
-                            "fields": {
-                                "sink": {
-                                    "maxItemsOne": false,
-                                    "elem": {
-                                        "fields": {
-                                            "partition_fields": {
-                                                "maxItemsOne": false
-                                            }
-                                        }
-                                    }
-                                },
-                                "source": {
-                                    "maxItemsOne": false
-                                },
-                                "transformations": {
-                                    "maxItemsOne": false
-                                }
-                            }
-                        }
-                    }
-                }
+                "majorVersion": 4
             },
             "mongodbatlas_database_user": {
                 "current": "mongodbatlas:index/getDatabaseUser:getDatabaseUser",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "labels": {
                         "maxItemsOne": false
@@ -1766,7 +1669,7 @@
             },
             "mongodbatlas_database_users": {
                 "current": "mongodbatlas:index/getDatabaseUsers:getDatabaseUsers",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1788,15 +1691,15 @@
             },
             "mongodbatlas_encryption_at_rest": {
                 "current": "mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_encryption_at_rest_private_endpoint": {
                 "current": "mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_encryption_at_rest_private_endpoints": {
                 "current": "mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -1805,7 +1708,7 @@
             },
             "mongodbatlas_event_trigger": {
                 "current": "mongodbatlas:index/getEventTrigger:getEventTrigger",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "config_operation_types": {
                         "maxItemsOne": false
@@ -1827,7 +1730,7 @@
             },
             "mongodbatlas_event_triggers": {
                 "current": "mongodbatlas:index/getEventTriggers:getEventTriggers",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -1856,14 +1759,14 @@
             },
             "mongodbatlas_federated_database_instance": {
                 "current": "mongodbatlas:index/getFederatedDatabaseInstance:getFederatedDatabaseInstance",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "cloud_provider_config": {
-                        "maxItemsOne": true,
+                        "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "aws": {
-                                    "maxItemsOne": true
+                                    "maxItemsOne": false
                                 },
                                 "azure": {
                                     "maxItemsOne": false
@@ -1938,18 +1841,18 @@
             },
             "mongodbatlas_federated_database_instances": {
                 "current": "mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "cloud_provider_config": {
-                                    "maxItemsOne": true,
+                                    "maxItemsOne": false,
                                     "elem": {
                                         "fields": {
                                             "aws": {
-                                                "maxItemsOne": true
+                                                "maxItemsOne": false
                                             },
                                             "azure": {
                                                 "maxItemsOne": false
@@ -2027,11 +1930,11 @@
             },
             "mongodbatlas_federated_query_limit": {
                 "current": "mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_federated_query_limits": {
                 "current": "mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2040,7 +1943,7 @@
             },
             "mongodbatlas_federated_settings": {
                 "current": "mongodbatlas:index/getFederatedSettings:getFederatedSettings",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "federated_domains": {
                         "maxItemsOne": false
@@ -2049,7 +1952,7 @@
             },
             "mongodbatlas_federated_settings_identity_provider": {
                 "current": "mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "associated_domains": {
                         "maxItemsOne": false
@@ -2097,7 +2000,7 @@
             },
             "mongodbatlas_federated_settings_identity_providers": {
                 "current": "mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "idp_types": {
                         "maxItemsOne": false
@@ -2158,7 +2061,7 @@
             },
             "mongodbatlas_federated_settings_org_config": {
                 "current": "mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "data_access_identity_provider_ids": {
                         "maxItemsOne": false
@@ -2186,7 +2089,7 @@
             },
             "mongodbatlas_federated_settings_org_configs": {
                 "current": "mongodbatlas:index/getFederatedSettingsOrgConfigs:getFederatedSettingsOrgConfigs",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2221,7 +2124,7 @@
             },
             "mongodbatlas_federated_settings_org_role_mapping": {
                 "current": "mongodbatlas:index/getFederatedSettingsOrgRoleMapping:getFederatedSettingsOrgRoleMapping",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "role_assignments": {
                         "maxItemsOne": false
@@ -2230,7 +2133,7 @@
             },
             "mongodbatlas_federated_settings_org_role_mappings": {
                 "current": "mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2246,11 +2149,11 @@
             },
             "mongodbatlas_flex_cluster": {
                 "current": "mongodbatlas:index/getFlexCluster:getFlexCluster",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_flex_clusters": {
                 "current": "mongodbatlas:index/getFlexClusters:getFlexClusters",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2259,11 +2162,11 @@
             },
             "mongodbatlas_flex_restore_job": {
                 "current": "mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_flex_restore_jobs": {
                 "current": "mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2272,11 +2175,11 @@
             },
             "mongodbatlas_flex_snapshot": {
                 "current": "mongodbatlas:index/getFlexSnapshot:getFlexSnapshot",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_flex_snapshots": {
                 "current": "mongodbatlas:index/getFlexSnapshots:getFlexSnapshots",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2285,7 +2188,7 @@
             },
             "mongodbatlas_global_cluster_config": {
                 "current": "mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "managed_namespaces": {
                         "maxItemsOne": false
@@ -2294,7 +2197,7 @@
             },
             "mongodbatlas_ldap_configuration": {
                 "current": "mongodbatlas:index/getLdapConfiguration:getLdapConfiguration",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "user_to_dn_mapping": {
                         "maxItemsOne": false
@@ -2303,7 +2206,7 @@
             },
             "mongodbatlas_ldap_verify": {
                 "current": "mongodbatlas:index/getLdapVerify:getLdapVerify",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "links": {
                         "maxItemsOne": false
@@ -2315,7 +2218,7 @@
             },
             "mongodbatlas_maintenance_window": {
                 "current": "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "protected_hours": {
                         "maxItemsOne": false
@@ -2324,11 +2227,11 @@
             },
             "mongodbatlas_mongodb_employee_access_grant": {
                 "current": "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_network_container": {
                 "current": "mongodbatlas:index/getNetworkContainer:getNetworkContainer",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "regions": {
                         "maxItemsOne": false
@@ -2337,7 +2240,7 @@
             },
             "mongodbatlas_network_containers": {
                 "current": "mongodbatlas:index/getNetworkContainers:getNetworkContainers",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2353,11 +2256,11 @@
             },
             "mongodbatlas_network_peering": {
                 "current": "mongodbatlas:index/getNetworkPeering:getNetworkPeering",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_network_peerings": {
                 "current": "mongodbatlas:index/getNetworkPeerings:getNetworkPeerings",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2366,7 +2269,7 @@
             },
             "mongodbatlas_online_archive": {
                 "current": "mongodbatlas:index/getOnlineArchive:getOnlineArchive",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "criteria": {
                         "maxItemsOne": false
@@ -2387,7 +2290,7 @@
             },
             "mongodbatlas_online_archives": {
                 "current": "mongodbatlas:index/getOnlineArchives:getOnlineArchives",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2415,7 +2318,7 @@
             },
             "mongodbatlas_org_invitation": {
                 "current": "mongodbatlas:index/getOrgInvitation:getOrgInvitation",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -2427,16 +2330,46 @@
             },
             "mongodbatlas_organization": {
                 "current": "mongodbatlas:index/getOrganization:getOrganization",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "links": {
                         "maxItemsOne": false
+                    },
+                    "users": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "org_roles": {
+                                                "maxItemsOne": false
+                                            },
+                                            "project_role_assignments": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "project_roles": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "team_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
             "mongodbatlas_organizations": {
                 "current": "mongodbatlas:index/getOrganizations:getOrganizations",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2444,6 +2377,36 @@
                             "fields": {
                                 "links": {
                                     "maxItemsOne": false
+                                },
+                                "users": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "roles": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "org_roles": {
+                                                            "maxItemsOne": false
+                                                        },
+                                                        "project_role_assignments": {
+                                                            "maxItemsOne": false,
+                                                            "elem": {
+                                                                "fields": {
+                                                                    "project_roles": {
+                                                                        "maxItemsOne": false
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "team_ids": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -2452,11 +2415,11 @@
             },
             "mongodbatlas_private_endpoint_regional_mode": {
                 "current": "mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_privatelink_endpoint": {
                 "current": "mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "endpoint_group_names": {
                         "maxItemsOne": false
@@ -2474,7 +2437,7 @@
             },
             "mongodbatlas_privatelink_endpoint_service": {
                 "current": "mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "endpoints": {
                         "maxItemsOne": false
@@ -2483,24 +2446,11 @@
             },
             "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive": {
                 "current": "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_privatelink_endpoint_service_data_federation_online_archives": {
                 "current": "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives",
-                "majorVersion": 3,
-                "fields": {
-                    "results": {
-                        "maxItemsOne": false
-                    }
-                }
-            },
-            "mongodbatlas_privatelink_endpoint_service_serverless": {
-                "current": "mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless",
-                "majorVersion": 3
-            },
-            "mongodbatlas_privatelink_endpoints_service_serverless": {
-                "current": "mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2509,7 +2459,7 @@
             },
             "mongodbatlas_project": {
                 "current": "mongodbatlas:index/getProject:getProject",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "ip_addresses": {
                         "fields": {
@@ -2544,12 +2494,22 @@
                                 }
                             }
                         }
+                    },
+                    "users": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
             "mongodbatlas_project_api_key": {
                 "current": "mongodbatlas:index/getProjectApiKey:getProjectApiKey",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "project_assignment": {
                         "maxItemsOne": false,
@@ -2565,7 +2525,7 @@
             },
             "mongodbatlas_project_api_keys": {
                 "current": "mongodbatlas:index/getProjectApiKeys:getProjectApiKeys",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2588,7 +2548,7 @@
             },
             "mongodbatlas_project_invitation": {
                 "current": "mongodbatlas:index/getProjectInvitation:getProjectInvitation",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -2597,11 +2557,11 @@
             },
             "mongodbatlas_project_ip_access_list": {
                 "current": "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_project_ip_addresses": {
                 "current": "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "services": {
                         "fields": {
@@ -2630,7 +2590,7 @@
             },
             "mongodbatlas_projects": {
                 "current": "mongodbatlas:index/getProjects:getProjects",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2669,6 +2629,16 @@
                                             }
                                         }
                                     }
+                                },
+                                "users": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "roles": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -2677,11 +2647,11 @@
             },
             "mongodbatlas_push_based_log_export": {
                 "current": "mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_resource_policies": {
                 "current": "mongodbatlas:index/getResourcePolicies:getResourcePolicies",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "resource_policies": {
                         "maxItemsOne": false,
@@ -2707,7 +2677,7 @@
             },
             "mongodbatlas_resource_policy": {
                 "current": "mongodbatlas:index/getResourcePolicy:getResourcePolicy",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "policies": {
                         "maxItemsOne": false
@@ -2716,11 +2686,11 @@
             },
             "mongodbatlas_roles_org_id": {
                 "current": "mongodbatlas:index/getRolesOrgId:getRolesOrgId",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_search_deployment": {
                 "current": "mongodbatlas:index/getSearchDeployment:getSearchDeployment",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "specs": {
                         "maxItemsOne": false
@@ -2729,22 +2699,28 @@
             },
             "mongodbatlas_search_index": {
                 "current": "mongodbatlas:index/getSearchIndex:getSearchIndex",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "synonyms": {
+                        "maxItemsOne": false
+                    },
+                    "type_sets": {
                         "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_search_indexes": {
                 "current": "mongodbatlas:index/getSearchIndexes:getSearchIndexes",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "synonyms": {
+                                    "maxItemsOne": false
+                                },
+                                "type_sets": {
                                     "maxItemsOne": false
                                 }
                             }
@@ -2754,7 +2730,7 @@
             },
             "mongodbatlas_serverless_instance": {
                 "current": "mongodbatlas:index/getServerlessInstance:getServerlessInstance",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "connection_strings_private_endpoint_srv": {
                         "maxItemsOne": false
@@ -2769,7 +2745,7 @@
             },
             "mongodbatlas_serverless_instances": {
                 "current": "mongodbatlas:index/getServerlessInstances:getServerlessInstances",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2791,11 +2767,11 @@
             },
             "mongodbatlas_shared_tier_restore_job": {
                 "current": "mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_shared_tier_restore_jobs": {
                 "current": "mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2804,11 +2780,11 @@
             },
             "mongodbatlas_shared_tier_snapshot": {
                 "current": "mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_shared_tier_snapshots": {
                 "current": "mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2817,15 +2793,15 @@
             },
             "mongodbatlas_stream_account_details": {
                 "current": "mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_stream_connection": {
                 "current": "mongodbatlas:index/getStreamConnection:getStreamConnection",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_stream_connections": {
                 "current": "mongodbatlas:index/getStreamConnections:getStreamConnections",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2834,7 +2810,7 @@
             },
             "mongodbatlas_stream_instance": {
                 "current": "mongodbatlas:index/getStreamInstance:getStreamInstance",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "hostnames": {
                         "maxItemsOne": false
@@ -2843,7 +2819,7 @@
             },
             "mongodbatlas_stream_instances": {
                 "current": "mongodbatlas:index/getStreamInstances:getStreamInstances",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
@@ -2859,22 +2835,28 @@
             },
             "mongodbatlas_stream_privatelink_endpoint": {
                 "current": "mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "dns_sub_domain": {
+                        "maxItemsOne": false
+                    },
+                    "service_attachment_uris": {
                         "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_stream_privatelink_endpoints": {
                 "current": "mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
                                 "dns_sub_domain": {
+                                    "maxItemsOne": false
+                                },
+                                "service_attachment_uris": {
                                     "maxItemsOne": false
                                 }
                             }
@@ -2884,42 +2866,97 @@
             },
             "mongodbatlas_stream_processor": {
                 "current": "mongodbatlas:index/getStreamProcessor:getStreamProcessor",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_stream_processors": {
                 "current": "mongodbatlas:index/getStreamProcessors:getStreamProcessors",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
                     }
                 }
             },
-            "mongodbatlas_team": {
-                "current": "mongodbatlas:index/getTeam:getTeam",
-                "majorVersion": 3,
+            "mongodbatlas_stream_workspace": {
+                "current": "mongodbatlas:index/getStreamWorkspace:getStreamWorkspace",
+                "majorVersion": 4,
                 "fields": {
-                    "usernames": {
+                    "hostnames": {
                         "maxItemsOne": false
                     }
                 }
             },
-            "mongodbatlas_teams": {
-                "current": "mongodbatlas:index/getTeams:getTeams",
-                "majorVersion": 3,
+            "mongodbatlas_stream_workspaces": {
+                "current": "mongodbatlas:index/getStreamWorkspaces:getStreamWorkspaces",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "hostnames": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_team": {
+                "current": "mongodbatlas:index/getTeam:getTeam",
+                "majorVersion": 4,
                 "fields": {
                     "usernames": {
+                        "maxItemsOne": false
+                    },
+                    "users": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "org_roles": {
+                                                "maxItemsOne": false
+                                            },
+                                            "project_role_assignments": {
+                                                "maxItemsOne": false,
+                                                "elem": {
+                                                    "fields": {
+                                                        "project_roles": {
+                                                            "maxItemsOne": false
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "team_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_team_project_assignment": {
+                "current": "mongodbatlas:index/getTeamProjectAssignment:getTeamProjectAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "role_names": {
                         "maxItemsOne": false
                     }
                 }
             },
             "mongodbatlas_third_party_integration": {
                 "current": "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration",
-                "majorVersion": 3
+                "majorVersion": 4
             },
             "mongodbatlas_third_party_integrations": {
                 "current": "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations",
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "results": {
                         "maxItemsOne": false
@@ -2935,7 +2972,7 @@
                         "majorVersion": 3
                     }
                 ],
-                "majorVersion": 3,
+                "majorVersion": 4,
                 "fields": {
                     "certificates": {
                         "maxItemsOne": false
@@ -2944,38 +2981,11 @@
             }
         }
     },
-    "auto-settings": {
-        "datasources": {
-            "mongodbatlas_backup_compliance_policy": {
-                "maxItemsOneOverrides": {
-                    "on_demand_policy_item": true,
-                    "policy_item_daily": true,
-                    "policy_item_hourly": true
-                }
-            },
-            "mongodbatlas_federated_database_instance": {
-                "maxItemsOneOverrides": {
-                    "cloud_provider_config": true,
-                    "cloud_provider_config.$.aws": true
-                }
-            },
-            "mongodbatlas_federated_database_instances": {
-                "maxItemsOneOverrides": {
-                    "results.$.cloud_provider_config": true,
-                    "results.$.cloud_provider_config.$.aws": true
-                }
-            },
-            "mongodbatlas_x509_authentication_database_user": {
-                "renames": [
-                    "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser"
-                ]
-            }
-        }
-    },
+    "auto-settings": {},
     "mux": {
         "resources": {
             "mongodbatlas:index/accessListApiKey:AccessListApiKey": 0,
-            "mongodbatlas:index/advancedCluster:AdvancedCluster": 0,
+            "mongodbatlas:index/advancedCluster:AdvancedCluster": 1,
             "mongodbatlas:index/alertConfiguration:AlertConfiguration": 1,
             "mongodbatlas:index/apiKey:ApiKey": 0,
             "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment": 1,
@@ -2988,11 +2998,13 @@
             "mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob": 0,
             "mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization": 0,
             "mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup": 0,
+            "mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment": 1,
+            "mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment": 1,
+            "mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment": 1,
             "mongodbatlas:index/cluster:Cluster": 0,
             "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation": 0,
             "mongodbatlas:index/customDbRole:CustomDbRole": 0,
             "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws": 0,
-            "mongodbatlas:index/dataLakePipeline:DataLakePipeline": 0,
             "mongodbatlas:index/databaseUser:DatabaseUser": 1,
             "mongodbatlas:index/encryptionAtRest:EncryptionAtRest": 1,
             "mongodbatlas:index/encryptionAtRestPrivateEndpoint:EncryptionAtRestPrivateEndpoint": 1,
@@ -3016,9 +3028,7 @@
             "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode": 0,
             "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint": 0,
             "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService": 0,
-            "mongodbatlas:index/privatelinkEndpointServerless:PrivatelinkEndpointServerless": 0,
             "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive": 0,
-            "mongodbatlas:index/privatelinkEndpointServiceServerless:PrivatelinkEndpointServiceServerless": 0,
             "mongodbatlas:index/project:Project": 1,
             "mongodbatlas:index/projectApiKey:ProjectApiKey": 0,
             "mongodbatlas:index/projectInvitation:ProjectInvitation": 0,
@@ -3032,17 +3042,17 @@
             "mongodbatlas:index/streamInstance:StreamInstance": 1,
             "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": 1,
             "mongodbatlas:index/streamProcessor:StreamProcessor": 1,
+            "mongodbatlas:index/streamWorkspace:StreamWorkspace": 1,
             "mongodbatlas:index/team:Team": 0,
-            "mongodbatlas:index/teams:Teams": 0,
+            "mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment": 1,
             "mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration": 0,
             "mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser": 0
         },
         "functions": {
-            "mongodbatlas:index/get509AuthenticationDatabaseUser:get509AuthenticationDatabaseUser": 0,
             "mongodbatlas:index/getAccessListApiKey:getAccessListApiKey": 0,
             "mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys": 0,
-            "mongodbatlas:index/getAdvancedCluster:getAdvancedCluster": 0,
-            "mongodbatlas:index/getAdvancedClusters:getAdvancedClusters": 0,
+            "mongodbatlas:index/getAdvancedCluster:getAdvancedCluster": 1,
+            "mongodbatlas:index/getAdvancedClusters:getAdvancedClusters": 1,
             "mongodbatlas:index/getAlertConfiguration:getAlertConfiguration": 1,
             "mongodbatlas:index/getAlertConfigurations:getAlertConfigurations": 1,
             "mongodbatlas:index/getApiKey:getApiKey": 0,
@@ -3063,6 +3073,9 @@
             "mongodbatlas:index/getCloudBackupSnapshotRestoreJobs:getCloudBackupSnapshotRestoreJobs": 0,
             "mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots": 0,
             "mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup": 0,
+            "mongodbatlas:index/getCloudUserOrgAssignment:getCloudUserOrgAssignment": 1,
+            "mongodbatlas:index/getCloudUserProjectAssignment:getCloudUserProjectAssignment": 1,
+            "mongodbatlas:index/getCloudUserTeamAssignment:getCloudUserTeamAssignment": 1,
             "mongodbatlas:index/getCluster:getCluster": 0,
             "mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation": 0,
             "mongodbatlas:index/getClusters:getClusters": 0,
@@ -3070,10 +3083,6 @@
             "mongodbatlas:index/getCustomDbRole:getCustomDbRole": 0,
             "mongodbatlas:index/getCustomDbRoles:getCustomDbRoles": 0,
             "mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws": 0,
-            "mongodbatlas:index/getDataLakePipeline:getDataLakePipeline": 0,
-            "mongodbatlas:index/getDataLakePipelineRun:getDataLakePipelineRun": 0,
-            "mongodbatlas:index/getDataLakePipelineRuns:getDataLakePipelineRuns": 0,
-            "mongodbatlas:index/getDataLakePipelines:getDataLakePipelines": 0,
             "mongodbatlas:index/getDatabaseUser:getDatabaseUser": 1,
             "mongodbatlas:index/getDatabaseUsers:getDatabaseUsers": 1,
             "mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest": 1,
@@ -3117,8 +3126,6 @@
             "mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService": 0,
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive": 0,
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives": 0,
-            "mongodbatlas:index/getPrivatelinkEndpointServiceServerless:getPrivatelinkEndpointServiceServerless": 0,
-            "mongodbatlas:index/getPrivatelinkEndpointsServiceServerless:getPrivatelinkEndpointsServiceServerless": 0,
             "mongodbatlas:index/getProject:getProject": 1,
             "mongodbatlas:index/getProjectApiKey:getProjectApiKey": 0,
             "mongodbatlas:index/getProjectApiKeys:getProjectApiKeys": 0,
@@ -3148,8 +3155,10 @@
             "mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints": 1,
             "mongodbatlas:index/getStreamProcessor:getStreamProcessor": 1,
             "mongodbatlas:index/getStreamProcessors:getStreamProcessors": 1,
+            "mongodbatlas:index/getStreamWorkspace:getStreamWorkspace": 1,
+            "mongodbatlas:index/getStreamWorkspaces:getStreamWorkspaces": 1,
             "mongodbatlas:index/getTeam:getTeam": 0,
-            "mongodbatlas:index/getTeams:getTeams": 0,
+            "mongodbatlas:index/getTeamProjectAssignment:getTeamProjectAssignment": 1,
             "mongodbatlas:index/getThirdPartyIntegration:getThirdPartyIntegration": 0,
             "mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations": 0,
             "mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser": 0
