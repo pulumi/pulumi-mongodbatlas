@@ -480,14 +480,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.terminationProtectionEnabled;
     }
     /**
-     * The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * )
      * 
      */
     @Export(name="timeouts", refs={AdvancedClusterTimeouts.class}, tree="[0]")
     private Output</* @Nullable */ AdvancedClusterTimeouts> timeouts;
 
     /**
-     * @return The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * @return )
      * 
      */
     public Output<Optional<AdvancedClusterTimeouts>> timeouts() {

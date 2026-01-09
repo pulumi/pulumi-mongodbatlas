@@ -81,6 +81,7 @@ import * as utilities from "./utilities";
  *         },
  *     ]),
  *     state: "STARTED",
+ *     tier: "SP30",
  * });
  * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
  *     projectId: projectId,
@@ -263,6 +264,7 @@ export interface GetStreamProcessorsResult {
  *         },
  *     ]),
  *     state: "STARTED",
+ *     tier: "SP30",
  * });
  * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
  *     projectId: projectId,

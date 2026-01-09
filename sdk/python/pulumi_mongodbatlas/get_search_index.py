@@ -27,7 +27,7 @@ class GetSearchIndexResult:
     """
     A collection of values returned by getSearchIndex.
     """
-    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, fields=None, id=None, index_id=None, mappings_dynamic=None, mappings_dynamic_config=None, mappings_fields=None, name=None, project_id=None, search_analyzer=None, status=None, stored_source=None, synonyms=None, type=None, type_sets=None):
+    def __init__(__self__, analyzer=None, analyzers=None, cluster_name=None, collection_name=None, database=None, fields=None, id=None, index_id=None, mappings_dynamic=None, mappings_dynamic_config=None, mappings_fields=None, name=None, num_partitions=None, project_id=None, search_analyzer=None, status=None, stored_source=None, synonyms=None, type=None, type_sets=None):
         if analyzer and not isinstance(analyzer, str):
             raise TypeError("Expected argument 'analyzer' to be a str")
         pulumi.set(__self__, "analyzer", analyzer)
@@ -64,6 +64,9 @@ class GetSearchIndexResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if num_partitions and not isinstance(num_partitions, int):
+            raise TypeError("Expected argument 'num_partitions' to be a int")
+        pulumi.set(__self__, "num_partitions", num_partitions)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -174,6 +177,14 @@ class GetSearchIndexResult:
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="numPartitions")
+    def num_partitions(self) -> _builtins.int:
+        """
+        Number of index partitions.
+        """
+        return pulumi.get(self, "num_partitions")
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         return pulumi.get(self, "project_id")
@@ -245,6 +256,7 @@ class AwaitableGetSearchIndexResult(GetSearchIndexResult):
             mappings_dynamic_config=self.mappings_dynamic_config,
             mappings_fields=self.mappings_fields,
             name=self.name,
+            num_partitions=self.num_partitions,
             project_id=self.project_id,
             search_analyzer=self.search_analyzer,
             status=self.status,
@@ -299,6 +311,7 @@ def get_search_index(cluster_name: Optional[_builtins.str] = None,
         mappings_dynamic_config=pulumi.get(__ret__, 'mappings_dynamic_config'),
         mappings_fields=pulumi.get(__ret__, 'mappings_fields'),
         name=pulumi.get(__ret__, 'name'),
+        num_partitions=pulumi.get(__ret__, 'num_partitions'),
         project_id=pulumi.get(__ret__, 'project_id'),
         search_analyzer=pulumi.get(__ret__, 'search_analyzer'),
         status=pulumi.get(__ret__, 'status'),
@@ -350,6 +363,7 @@ def get_search_index_output(cluster_name: Optional[pulumi.Input[_builtins.str]] 
         mappings_dynamic_config=pulumi.get(__response__, 'mappings_dynamic_config'),
         mappings_fields=pulumi.get(__response__, 'mappings_fields'),
         name=pulumi.get(__response__, 'name'),
+        num_partitions=pulumi.get(__response__, 'num_partitions'),
         project_id=pulumi.get(__response__, 'project_id'),
         search_analyzer=pulumi.get(__response__, 'search_analyzer'),
         status=pulumi.get(__response__, 'status'),

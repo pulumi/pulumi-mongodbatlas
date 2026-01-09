@@ -245,6 +245,8 @@ type SearchIndex struct {
 	MappingsFields pulumi.StringPtrOutput `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+	NumPartitions pulumi.IntPtrOutput `pulumi:"numPartitions"`
 	// The ID of the organization or project you want to create the search index within.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -326,6 +328,8 @@ type searchIndexState struct {
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name *string `pulumi:"name"`
+	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+	NumPartitions *int `pulumi:"numPartitions"`
 	// The ID of the organization or project you want to create the search index within.
 	ProjectId *string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -366,6 +370,8 @@ type SearchIndexState struct {
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
 	Name pulumi.StringPtrInput
+	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+	NumPartitions pulumi.IntPtrInput
 	// The ID of the organization or project you want to create the search index within.
 	ProjectId pulumi.StringPtrInput
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -408,6 +414,8 @@ type searchIndexArgs struct {
 	MappingsFields *string `pulumi:"mappingsFields"`
 	// The name of the search index you want to create.
 	Name *string `pulumi:"name"`
+	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+	NumPartitions *int `pulumi:"numPartitions"`
 	// The ID of the organization or project you want to create the search index within.
 	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -445,6 +453,8 @@ type SearchIndexArgs struct {
 	MappingsFields pulumi.StringPtrInput
 	// The name of the search index you want to create.
 	Name pulumi.StringPtrInput
+	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+	NumPartitions pulumi.IntPtrInput
 	// The ID of the organization or project you want to create the search index within.
 	ProjectId pulumi.StringInput
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -600,6 +610,11 @@ func (o SearchIndexOutput) MappingsFields() pulumi.StringPtrOutput {
 // The name of the search index you want to create.
 func (o SearchIndexOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+func (o SearchIndexOutput) NumPartitions() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SearchIndex) pulumi.IntPtrOutput { return v.NumPartitions }).(pulumi.IntPtrOutput)
 }
 
 // The ID of the organization or project you want to create the search index within.

@@ -9,6 +9,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.SearchIndexSynonymArgs;
 import com.pulumi.mongodbatlas.inputs.SearchIndexTypeSetArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -171,6 +172,21 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+     * 
+     */
+    @Import(name="numPartitions")
+    private @Nullable Output<Integer> numPartitions;
+
+    /**
+     * @return Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+     * 
+     */
+    public Optional<Output<Integer>> numPartitions() {
+        return Optional.ofNullable(this.numPartitions);
+    }
+
+    /**
      * The ID of the organization or project you want to create the search index within.
      * 
      */
@@ -280,6 +296,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         this.mappingsDynamicConfig = $.mappingsDynamicConfig;
         this.mappingsFields = $.mappingsFields;
         this.name = $.name;
+        this.numPartitions = $.numPartitions;
         this.projectId = $.projectId;
         this.searchAnalyzer = $.searchAnalyzer;
         this.storedSource = $.storedSource;
@@ -515,6 +532,27 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param numPartitions Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder numPartitions(@Nullable Output<Integer> numPartitions) {
+            $.numPartitions = numPartitions;
+            return this;
+        }
+
+        /**
+         * @param numPartitions Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder numPartitions(Integer numPartitions) {
+            return numPartitions(Output.of(numPartitions));
         }
 
         /**

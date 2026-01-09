@@ -119,6 +119,7 @@ import (
 //				ProcessorName: pulumi.String("sampleProcessorName"),
 //				Pipeline:      pulumi.String(json0),
 //				State:         pulumi.String("STARTED"),
+//				Tier:          pulumi.String("SP30"),
 //			})
 //			if err != nil {
 //				return err
@@ -246,7 +247,9 @@ type StreamProcessor struct {
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats    pulumi.StringOutput              `pulumi:"stats"`
+	Stats pulumi.StringOutput `pulumi:"stats"`
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	Tier     pulumi.StringOutput              `pulumi:"tier"`
 	Timeouts StreamProcessorTimeoutsPtrOutput `pulumi:"timeouts"`
 	// Label that identifies the stream processing workspace.
 	WorkspaceName pulumi.StringPtrOutput `pulumi:"workspaceName"`
@@ -310,7 +313,9 @@ type streamProcessorState struct {
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State *string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats    *string                  `pulumi:"stats"`
+	Stats *string `pulumi:"stats"`
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	Tier     *string                  `pulumi:"tier"`
 	Timeouts *StreamProcessorTimeouts `pulumi:"timeouts"`
 	// Label that identifies the stream processing workspace.
 	WorkspaceName *string `pulumi:"workspaceName"`
@@ -336,7 +341,9 @@ type StreamProcessorState struct {
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringPtrInput
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats    pulumi.StringPtrInput
+	Stats pulumi.StringPtrInput
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	Tier     pulumi.StringPtrInput
 	Timeouts StreamProcessorTimeoutsPtrInput
 	// Label that identifies the stream processing workspace.
 	WorkspaceName pulumi.StringPtrInput
@@ -364,7 +371,9 @@ type streamProcessorArgs struct {
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	//
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
-	State    *string                  `pulumi:"state"`
+	State *string `pulumi:"state"`
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	Tier     *string                  `pulumi:"tier"`
 	Timeouts *StreamProcessorTimeouts `pulumi:"timeouts"`
 	// Label that identifies the stream processing workspace.
 	WorkspaceName *string `pulumi:"workspaceName"`
@@ -389,7 +398,9 @@ type StreamProcessorArgs struct {
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	//
 	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
-	State    pulumi.StringPtrInput
+	State pulumi.StringPtrInput
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	Tier     pulumi.StringPtrInput
 	Timeouts StreamProcessorTimeoutsPtrInput
 	// Label that identifies the stream processing workspace.
 	WorkspaceName pulumi.StringPtrInput
@@ -524,6 +535,11 @@ func (o StreamProcessorOutput) State() pulumi.StringOutput {
 // The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 func (o StreamProcessorOutput) Stats() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Stats }).(pulumi.StringOutput)
+}
+
+// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+func (o StreamProcessorOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Tier }).(pulumi.StringOutput)
 }
 
 func (o StreamProcessorOutput) Timeouts() StreamProcessorTimeoutsPtrOutput {

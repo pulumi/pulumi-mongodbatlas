@@ -115,6 +115,7 @@ namespace Pulumi.Mongodbatlas
     ///             },
     ///         }),
     ///         State = "STARTED",
+    ///         Tier = "SP30",
     ///     });
     /// 
     ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
@@ -267,6 +268,12 @@ namespace Pulumi.Mongodbatlas
         [Output("stats")]
         public Output<string> Stats { get; private set; } = null!;
 
+        /// <summary>
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// </summary>
+        [Output("tier")]
+        public Output<string> Tier { get; private set; } = null!;
+
         [Output("timeouts")]
         public Output<Outputs.StreamProcessorTimeouts?> Timeouts { get; private set; } = null!;
 
@@ -366,6 +373,12 @@ namespace Pulumi.Mongodbatlas
         [Input("state")]
         public Input<string>? State { get; set; }
 
+        /// <summary>
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// </summary>
+        [Input("tier")]
+        public Input<string>? Tier { get; set; }
+
         [Input("timeouts")]
         public Input<Inputs.StreamProcessorTimeoutsArgs>? Timeouts { get; set; }
 
@@ -432,6 +445,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("stats")]
         public Input<string>? Stats { get; set; }
+
+        /// <summary>
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// </summary>
+        [Input("tier")]
+        public Input<string>? Tier { get; set; }
 
         [Input("timeouts")]
         public Input<Inputs.StreamProcessorTimeoutsGetArgs>? Timeouts { get; set; }

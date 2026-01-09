@@ -8,6 +8,7 @@ import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexSynonym;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexTypeSet;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -62,6 +63,11 @@ public final class GetSearchIndexResult {
      * 
      */
     private String name;
+    /**
+     * @return Number of index partitions.
+     * 
+     */
+    private Integer numPartitions;
     private String projectId;
     /**
      * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
@@ -166,6 +172,13 @@ public final class GetSearchIndexResult {
     public String name() {
         return this.name;
     }
+    /**
+     * @return Number of index partitions.
+     * 
+     */
+    public Integer numPartitions() {
+        return this.numPartitions;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -232,6 +245,7 @@ public final class GetSearchIndexResult {
         private String mappingsDynamicConfig;
         private String mappingsFields;
         private String name;
+        private Integer numPartitions;
         private String projectId;
         private String searchAnalyzer;
         private String status;
@@ -254,6 +268,7 @@ public final class GetSearchIndexResult {
     	      this.mappingsDynamicConfig = defaults.mappingsDynamicConfig;
     	      this.mappingsFields = defaults.mappingsFields;
     	      this.name = defaults.name;
+    	      this.numPartitions = defaults.numPartitions;
     	      this.projectId = defaults.projectId;
     	      this.searchAnalyzer = defaults.searchAnalyzer;
     	      this.status = defaults.status;
@@ -360,6 +375,14 @@ public final class GetSearchIndexResult {
             return this;
         }
         @CustomType.Setter
+        public Builder numPartitions(Integer numPartitions) {
+            if (numPartitions == null) {
+              throw new MissingRequiredPropertyException("GetSearchIndexResult", "numPartitions");
+            }
+            this.numPartitions = numPartitions;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetSearchIndexResult", "projectId");
@@ -435,6 +458,7 @@ public final class GetSearchIndexResult {
             _resultValue.mappingsDynamicConfig = mappingsDynamicConfig;
             _resultValue.mappingsFields = mappingsFields;
             _resultValue.name = name;
+            _resultValue.numPartitions = numPartitions;
             _resultValue.projectId = projectId;
             _resultValue.searchAnalyzer = searchAnalyzer;
             _resultValue.status = status;

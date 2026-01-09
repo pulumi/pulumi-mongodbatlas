@@ -28,6 +28,7 @@ class StreamProcessorArgs:
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  options: Optional[pulumi.Input['StreamProcessorOptionsArgs']] = None,
                  state: Optional[pulumi.Input[_builtins.str]] = None,
+                 tier: Optional[pulumi.Input[_builtins.str]] = None,
                  timeouts: Optional[pulumi.Input['StreamProcessorTimeoutsArgs']] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -41,6 +42,7 @@ class StreamProcessorArgs:
         :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
                
                **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+        :param pulumi.Input[_builtins.str] tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         pulumi.set(__self__, "pipeline", pipeline)
@@ -57,6 +59,8 @@ class StreamProcessorArgs:
             pulumi.set(__self__, "options", options)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
         if timeouts is not None:
             pulumi.set(__self__, "timeouts", timeouts)
         if workspace_name is not None:
@@ -151,6 +155,18 @@ class StreamProcessorArgs:
 
     @_builtins.property
     @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tier", value)
+
+    @_builtins.property
+    @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['StreamProcessorTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
@@ -182,6 +198,7 @@ class _StreamProcessorState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  state: Optional[pulumi.Input[_builtins.str]] = None,
                  stats: Optional[pulumi.Input[_builtins.str]] = None,
+                 tier: Optional[pulumi.Input[_builtins.str]] = None,
                  timeouts: Optional[pulumi.Input['StreamProcessorTimeoutsArgs']] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -196,6 +213,7 @@ class _StreamProcessorState:
                
                **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         :param pulumi.Input[_builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
+        :param pulumi.Input[_builtins.str] tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         if delete_on_create_timeout is not None:
@@ -217,6 +235,8 @@ class _StreamProcessorState:
             pulumi.set(__self__, "state", state)
         if stats is not None:
             pulumi.set(__self__, "stats", stats)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
         if timeouts is not None:
             pulumi.set(__self__, "timeouts", timeouts)
         if workspace_name is not None:
@@ -323,6 +343,18 @@ class _StreamProcessorState:
 
     @_builtins.property
     @pulumi.getter
+    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        """
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "tier", value)
+
+    @_builtins.property
+    @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['StreamProcessorTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
@@ -356,6 +388,7 @@ class StreamProcessor(pulumi.CustomResource):
                  processor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  state: Optional[pulumi.Input[_builtins.str]] = None,
+                 tier: Optional[pulumi.Input[_builtins.str]] = None,
                  timeouts: Optional[pulumi.Input[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -436,7 +469,8 @@ class StreamProcessor(pulumi.CustomResource):
                     },
                 },
             ]),
-            state="STARTED")
+            state="STARTED",
+            tier="SP30")
         stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
             project_id=project_id,
             workspace_name=example.instance_name,
@@ -518,6 +552,7 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
                
                **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+        :param pulumi.Input[_builtins.str] tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         ...
@@ -603,7 +638,8 @@ class StreamProcessor(pulumi.CustomResource):
                     },
                 },
             ]),
-            state="STARTED")
+            state="STARTED",
+            tier="SP30")
         stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
             project_id=project_id,
             workspace_name=example.instance_name,
@@ -696,6 +732,7 @@ class StreamProcessor(pulumi.CustomResource):
                  processor_name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  state: Optional[pulumi.Input[_builtins.str]] = None,
+                 tier: Optional[pulumi.Input[_builtins.str]] = None,
                  timeouts: Optional[pulumi.Input[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -720,6 +757,7 @@ class StreamProcessor(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["state"] = state
+            __props__.__dict__["tier"] = tier
             __props__.__dict__["timeouts"] = timeouts
             __props__.__dict__["workspace_name"] = workspace_name
             __props__.__dict__["stats"] = None
@@ -741,6 +779,7 @@ class StreamProcessor(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             state: Optional[pulumi.Input[_builtins.str]] = None,
             stats: Optional[pulumi.Input[_builtins.str]] = None,
+            tier: Optional[pulumi.Input[_builtins.str]] = None,
             timeouts: Optional[pulumi.Input[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
             workspace_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'StreamProcessor':
         """
@@ -760,6 +799,7 @@ class StreamProcessor(pulumi.CustomResource):
                
                **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
         :param pulumi.Input[_builtins.str] stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
+        :param pulumi.Input[_builtins.str] tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -774,6 +814,7 @@ class StreamProcessor(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["state"] = state
         __props__.__dict__["stats"] = stats
+        __props__.__dict__["tier"] = tier
         __props__.__dict__["timeouts"] = timeouts
         __props__.__dict__["workspace_name"] = workspace_name
         return StreamProcessor(resource_name, opts=opts, __props__=__props__)
@@ -844,6 +885,14 @@ class StreamProcessor(pulumi.CustomResource):
         The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         return pulumi.get(self, "stats")
+
+    @_builtins.property
+    @pulumi.getter
+    def tier(self) -> pulumi.Output[_builtins.str]:
+        """
+        Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        """
+        return pulumi.get(self, "tier")
 
     @_builtins.property
     @pulumi.getter

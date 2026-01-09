@@ -55,6 +55,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Number of index partitions.
+        /// </summary>
+        public readonly int NumPartitions;
+        /// <summary>
         /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
         /// </summary>
         public readonly string ProjectId;
@@ -107,6 +111,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string name,
 
+            int numPartitions,
+
             string projectId,
 
             string searchAnalyzer,
@@ -132,6 +138,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             MappingsDynamicConfig = mappingsDynamicConfig;
             MappingsFields = mappingsFields;
             Name = name;
+            NumPartitions = numPartitions;
             ProjectId = projectId;
             SearchAnalyzer = searchAnalyzer;
             Status = status;

@@ -35,6 +35,7 @@ public final class GetStreamProcessorResult {
     private String projectId;
     private String state;
     private String stats;
+    private String tier;
     private @Nullable String workspaceName;
 
     private GetStreamProcessorResult() {}
@@ -76,6 +77,9 @@ public final class GetStreamProcessorResult {
     public String stats() {
         return this.stats;
     }
+    public String tier() {
+        return this.tier;
+    }
     public Optional<String> workspaceName() {
         return Optional.ofNullable(this.workspaceName);
     }
@@ -97,6 +101,7 @@ public final class GetStreamProcessorResult {
         private String projectId;
         private String state;
         private String stats;
+        private String tier;
         private @Nullable String workspaceName;
         public Builder() {}
         public Builder(GetStreamProcessorResult defaults) {
@@ -109,6 +114,7 @@ public final class GetStreamProcessorResult {
     	      this.projectId = defaults.projectId;
     	      this.state = defaults.state;
     	      this.stats = defaults.stats;
+    	      this.tier = defaults.tier;
     	      this.workspaceName = defaults.workspaceName;
         }
 
@@ -175,6 +181,14 @@ public final class GetStreamProcessorResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tier(String tier) {
+            if (tier == null) {
+              throw new MissingRequiredPropertyException("GetStreamProcessorResult", "tier");
+            }
+            this.tier = tier;
+            return this;
+        }
+        @CustomType.Setter
         public Builder workspaceName(@Nullable String workspaceName) {
 
             this.workspaceName = workspaceName;
@@ -190,6 +204,7 @@ public final class GetStreamProcessorResult {
             _resultValue.projectId = projectId;
             _resultValue.state = state;
             _resultValue.stats = stats;
+            _resultValue.tier = tier;
             _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }

@@ -48,6 +48,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Stats;
         /// <summary>
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// </summary>
+        public readonly string Tier;
+        /// <summary>
         /// Label that identifies the stream processing workspace.
         /// </summary>
         public readonly string WorkspaceName;
@@ -70,6 +74,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string stats,
 
+            string tier,
+
             string workspaceName)
         {
             Id = id;
@@ -80,6 +86,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             ProjectId = projectId;
             State = state;
             Stats = stats;
+            Tier = tier;
             WorkspaceName = workspaceName;
         }
     }

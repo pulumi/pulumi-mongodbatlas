@@ -27,7 +27,7 @@ class GetStreamProcessorResult:
     """
     A collection of values returned by getStreamProcessor.
     """
-    def __init__(__self__, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None, workspace_name=None):
+    def __init__(__self__, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None, tier=None, workspace_name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -52,6 +52,9 @@ class GetStreamProcessorResult:
         if stats and not isinstance(stats, str):
             raise TypeError("Expected argument 'stats' to be a str")
         pulumi.set(__self__, "stats", stats)
+        if tier and not isinstance(tier, str):
+            raise TypeError("Expected argument 'tier' to be a str")
+        pulumi.set(__self__, "tier", tier)
         if workspace_name and not isinstance(workspace_name, str):
             raise TypeError("Expected argument 'workspace_name' to be a str")
         pulumi.set(__self__, "workspace_name", workspace_name)
@@ -104,6 +107,11 @@ class GetStreamProcessorResult:
         return pulumi.get(self, "stats")
 
     @_builtins.property
+    @pulumi.getter
+    def tier(self) -> _builtins.str:
+        return pulumi.get(self, "tier")
+
+    @_builtins.property
     @pulumi.getter(name="workspaceName")
     def workspace_name(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "workspace_name")
@@ -123,6 +131,7 @@ class AwaitableGetStreamProcessorResult(GetStreamProcessorResult):
             project_id=self.project_id,
             state=self.state,
             stats=self.stats,
+            tier=self.tier,
             workspace_name=self.workspace_name)
 
 
@@ -202,7 +211,8 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
                 },
             },
         ]),
-        state="STARTED")
+        state="STARTED",
+        tier="SP30")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
         workspace_name=example.instance_name,
@@ -285,6 +295,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'),
         stats=pulumi.get(__ret__, 'stats'),
+        tier=pulumi.get(__ret__, 'tier'),
         workspace_name=pulumi.get(__ret__, 'workspace_name'))
 def get_stream_processor_output(instance_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                 processor_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -362,7 +373,8 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[Optional[_b
                 },
             },
         ]),
-        state="STARTED")
+        state="STARTED",
+        tier="SP30")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
         workspace_name=example.instance_name,
@@ -444,4 +456,5 @@ def get_stream_processor_output(instance_name: Optional[pulumi.Input[Optional[_b
         project_id=pulumi.get(__response__, 'project_id'),
         state=pulumi.get(__response__, 'state'),
         stats=pulumi.get(__response__, 'stats'),
+        tier=pulumi.get(__response__, 'tier'),
         workspace_name=pulumi.get(__response__, 'workspace_name')))

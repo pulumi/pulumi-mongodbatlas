@@ -13,6 +13,7 @@ import com.pulumi.mongodbatlas.inputs.SearchIndexState;
 import com.pulumi.mongodbatlas.outputs.SearchIndexSynonym;
 import com.pulumi.mongodbatlas.outputs.SearchIndexTypeSet;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -407,6 +408,20 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+     * 
+     */
+    @Export(name="numPartitions", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> numPartitions;
+
+    /**
+     * @return Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+     * 
+     */
+    public Output<Optional<Integer>> numPartitions() {
+        return Codegen.optional(this.numPartitions);
     }
     /**
      * The ID of the organization or project you want to create the search index within.

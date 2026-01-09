@@ -150,6 +150,21 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.stats);
     }
 
+    /**
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * 
+     */
+    @Import(name="tier")
+    private @Nullable Output<String> tier;
+
+    /**
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * 
+     */
+    public Optional<Output<String>> tier() {
+        return Optional.ofNullable(this.tier);
+    }
+
     @Import(name="timeouts")
     private @Nullable Output<StreamProcessorTimeoutsArgs> timeouts;
 
@@ -183,6 +198,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         this.projectId = $.projectId;
         this.state = $.state;
         this.stats = $.stats;
+        this.tier = $.tier;
         this.timeouts = $.timeouts;
         this.workspaceName = $.workspaceName;
     }
@@ -383,6 +399,27 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
          */
         public Builder stats(String stats) {
             return stats(Output.of(stats));
+        }
+
+        /**
+         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tier(@Nullable Output<String> tier) {
+            $.tier = tier;
+            return this;
+        }
+
+        /**
+         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder tier(String tier) {
+            return tier(Output.of(tier));
         }
 
         public Builder timeouts(@Nullable Output<StreamProcessorTimeoutsArgs> timeouts) {

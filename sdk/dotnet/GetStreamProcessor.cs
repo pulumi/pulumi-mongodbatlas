@@ -111,6 +111,7 @@ namespace Pulumi.Mongodbatlas
         ///             },
         ///         }),
         ///         State = "STARTED",
+        ///         Tier = "SP30",
         ///     });
         /// 
         ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
@@ -304,6 +305,7 @@ namespace Pulumi.Mongodbatlas
         ///             },
         ///         }),
         ///         State = "STARTED",
+        ///         Tier = "SP30",
         ///     });
         /// 
         ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
@@ -497,6 +499,7 @@ namespace Pulumi.Mongodbatlas
         ///             },
         ///         }),
         ///         State = "STARTED",
+        ///         Tier = "SP30",
         ///     });
         /// 
         ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
@@ -662,6 +665,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         public readonly string State;
         public readonly string Stats;
+        public readonly string Tier;
         public readonly string? WorkspaceName;
 
         [OutputConstructor]
@@ -682,6 +686,8 @@ namespace Pulumi.Mongodbatlas
 
             string stats,
 
+            string tier,
+
             string? workspaceName)
         {
             Id = id;
@@ -692,6 +698,7 @@ namespace Pulumi.Mongodbatlas
             ProjectId = projectId;
             State = state;
             Stats = stats;
+            Tier = tier;
             WorkspaceName = workspaceName;
         }
     }

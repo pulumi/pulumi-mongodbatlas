@@ -112,6 +112,7 @@ import (
 //				ProcessorName: pulumi.String("sampleProcessorName"),
 //				Pipeline:      pulumi.String(json0),
 //				State:         pulumi.String("STARTED"),
+//				Tier:          pulumi.String("SP30"),
 //			})
 //			if err != nil {
 //				return err
@@ -242,6 +243,7 @@ type LookupStreamProcessorResult struct {
 	ProjectId     string  `pulumi:"projectId"`
 	State         string  `pulumi:"state"`
 	Stats         string  `pulumi:"stats"`
+	Tier          string  `pulumi:"tier"`
 	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
@@ -317,6 +319,10 @@ func (o LookupStreamProcessorResultOutput) State() pulumi.StringOutput {
 
 func (o LookupStreamProcessorResultOutput) Stats() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.Stats }).(pulumi.StringOutput)
+}
+
+func (o LookupStreamProcessorResultOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.Tier }).(pulumi.StringOutput)
 }
 
 func (o LookupStreamProcessorResultOutput) WorkspaceName() pulumi.StringPtrOutput {

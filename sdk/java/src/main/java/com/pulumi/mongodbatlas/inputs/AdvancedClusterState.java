@@ -494,14 +494,14 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * )
      * 
      */
     @Import(name="timeouts")
     private @Nullable Output<AdvancedClusterTimeoutsArgs> timeouts;
 
     /**
-     * @return The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+     * @return )
      * 
      */
     public Optional<Output<AdvancedClusterTimeoutsArgs>> timeouts() {
@@ -1253,7 +1253,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeouts The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+         * @param timeouts )
          * 
          * @return builder
          * 
@@ -1264,7 +1264,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param timeouts The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+         * @param timeouts )
          * 
          * @return builder
          * 

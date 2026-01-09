@@ -274,6 +274,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+        /// </summary>
+        [Output("numPartitions")]
+        public Output<int?> NumPartitions { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the organization or project you want to create the search index within.
         /// </summary>
         [Output("projectId")]
@@ -446,6 +452,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+        /// </summary>
+        [Input("numPartitions")]
+        public Input<int>? NumPartitions { get; set; }
+
+        /// <summary>
         /// The ID of the organization or project you want to create the search index within.
         /// </summary>
         [Input("projectId", required: true)]
@@ -590,6 +602,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+        /// </summary>
+        [Input("numPartitions")]
+        public Input<int>? NumPartitions { get; set; }
 
         /// <summary>
         /// The ID of the organization or project you want to create the search index within.

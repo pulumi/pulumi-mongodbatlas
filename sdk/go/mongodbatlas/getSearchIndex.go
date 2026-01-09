@@ -84,8 +84,10 @@ type LookupSearchIndexResult struct {
 	// Object containing one or more field specifications.
 	MappingsFields string `pulumi:"mappingsFields"`
 	// Type set name.
-	Name      string `pulumi:"name"`
-	ProjectId string `pulumi:"projectId"`
+	Name string `pulumi:"name"`
+	// Number of index partitions.
+	NumPartitions int    `pulumi:"numPartitions"`
+	ProjectId     string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer string `pulumi:"searchAnalyzer"`
 	// Current status of the index.
@@ -195,6 +197,11 @@ func (o LookupSearchIndexResultOutput) MappingsFields() pulumi.StringOutput {
 // Type set name.
 func (o LookupSearchIndexResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchIndexResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Number of index partitions.
+func (o LookupSearchIndexResultOutput) NumPartitions() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSearchIndexResult) int { return v.NumPartitions }).(pulumi.IntOutput)
 }
 
 func (o LookupSearchIndexResultOutput) ProjectId() pulumi.StringOutput {
