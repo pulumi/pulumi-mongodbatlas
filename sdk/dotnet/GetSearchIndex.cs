@@ -195,6 +195,10 @@ namespace Pulumi.Mongodbatlas
         /// Type set name.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Number of index partitions.
+        /// </summary>
+        public readonly int NumPartitions;
         public readonly string ProjectId;
         /// <summary>
         /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
@@ -247,6 +251,8 @@ namespace Pulumi.Mongodbatlas
 
             string name,
 
+            int numPartitions,
+
             string projectId,
 
             string searchAnalyzer,
@@ -273,6 +279,7 @@ namespace Pulumi.Mongodbatlas
             MappingsDynamicConfig = mappingsDynamicConfig;
             MappingsFields = mappingsFields;
             Name = name;
+            NumPartitions = numPartitions;
             ProjectId = projectId;
             SearchAnalyzer = searchAnalyzer;
             Status = status;

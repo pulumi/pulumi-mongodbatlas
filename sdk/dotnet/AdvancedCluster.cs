@@ -217,7 +217,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> TerminationProtectionEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `Ns`, `Us` (or `µs`), `Ms`, `S`, `M`, `H`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+        /// )
         /// </summary>
         [Output("timeouts")]
         public Output<Outputs.AdvancedClusterTimeouts?> Timeouts { get; private set; } = null!;
@@ -450,7 +450,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? TerminationProtectionEnabled { get; set; }
 
         /// <summary>
-        /// The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `Ns`, `Us` (or `µs`), `Ms`, `S`, `M`, `H`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+        /// )
         /// </summary>
         [Input("timeouts")]
         public Input<Inputs.AdvancedClusterTimeoutsArgs>? Timeouts { get; set; }
@@ -688,7 +688,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? TerminationProtectionEnabled { get; set; }
 
         /// <summary>
-        /// The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `Ns`, `Us` (or `µs`), `Ms`, `S`, `M`, `H`. The default timeout for Advanced Cluster create &amp; delete is `3h`. Learn more about timeouts here.
+        /// )
         /// </summary>
         [Input("timeouts")]
         public Input<Inputs.AdvancedClusterTimeoutsGetArgs>? Timeouts { get; set; }

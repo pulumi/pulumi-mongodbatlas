@@ -87,6 +87,7 @@ import * as utilities from "./utilities";
  *         },
  *     ]),
  *     state: "STARTED",
+ *     tier: "SP30",
  * });
  * const stream_processor_cluster_to_kafka_example = new mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", {
  *     projectId: projectId,
@@ -224,6 +225,10 @@ export class StreamProcessor extends pulumi.CustomResource {
      * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
     declare public /*out*/ readonly stats: pulumi.Output<string>;
+    /**
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     */
+    declare public readonly tier: pulumi.Output<string>;
     declare public readonly timeouts: pulumi.Output<outputs.StreamProcessorTimeouts | undefined>;
     /**
      * Label that identifies the stream processing workspace.
@@ -251,6 +256,7 @@ export class StreamProcessor extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["state"] = state?.state;
             resourceInputs["stats"] = state?.stats;
+            resourceInputs["tier"] = state?.tier;
             resourceInputs["timeouts"] = state?.timeouts;
             resourceInputs["workspaceName"] = state?.workspaceName;
         } else {
@@ -271,6 +277,7 @@ export class StreamProcessor extends pulumi.CustomResource {
             resourceInputs["processorName"] = args?.processorName;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["state"] = args?.state;
+            resourceInputs["tier"] = args?.tier;
             resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["workspaceName"] = args?.workspaceName;
             resourceInputs["stats"] = undefined /*out*/;
@@ -320,6 +327,10 @@ export interface StreamProcessorState {
      * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
     stats?: pulumi.Input<string>;
+    /**
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     */
+    tier?: pulumi.Input<string>;
     timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts>;
     /**
      * Label that identifies the stream processing workspace.
@@ -363,6 +374,10 @@ export interface StreamProcessorArgs {
      * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      */
     state?: pulumi.Input<string>;
+    /**
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     */
+    tier?: pulumi.Input<string>;
     timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts>;
     /**
      * Label that identifies the stream processing workspace.

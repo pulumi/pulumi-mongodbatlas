@@ -181,7 +181,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     declare public readonly terminationProtectionEnabled: pulumi.Output<boolean>;
     /**
-     * The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+     * )
      */
     declare public readonly timeouts: pulumi.Output<outputs.AdvancedClusterTimeouts | undefined>;
     /**
@@ -428,7 +428,7 @@ export interface AdvancedClusterState {
      */
     terminationProtectionEnabled?: pulumi.Input<boolean>;
     /**
-     * The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+     * )
      */
     timeouts?: pulumi.Input<inputs.AdvancedClusterTimeouts>;
     /**
@@ -551,7 +551,7 @@ export interface AdvancedClusterArgs {
      */
     terminationProtectionEnabled?: pulumi.Input<boolean>;
     /**
-     * The duration of time to wait for Cluster to be created, updated, or deleted. The timeout value is defined by a signed sequence of decimal numbers with a time unit suffix such as: `1h45m`, `300s`, `10m`, etc. The valid time units are:  `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout for Advanced Cluster create & delete is `3h`. Learn more about timeouts here.
+     * )
      */
     timeouts?: pulumi.Input<inputs.AdvancedClusterTimeouts>;
     /**

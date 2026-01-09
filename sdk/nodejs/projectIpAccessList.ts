@@ -123,8 +123,6 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
     declare public readonly cidrBlock: pulumi.Output<string>;
     /**
      * Comment to add to the access list entry.
-     *
-     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     declare public readonly comment: pulumi.Output<string>;
     /**
@@ -135,6 +133,11 @@ export class ProjectIpAccessList extends pulumi.CustomResource {
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
     declare public readonly projectId: pulumi.Output<string>;
+    /**
+     * )
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     */
     declare public readonly timeouts: pulumi.Output<outputs.ProjectIpAccessListTimeouts | undefined>;
 
     /**
@@ -187,8 +190,6 @@ export interface ProjectIpAccessListState {
     cidrBlock?: pulumi.Input<string>;
     /**
      * Comment to add to the access list entry.
-     *
-     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     comment?: pulumi.Input<string>;
     /**
@@ -199,6 +200,11 @@ export interface ProjectIpAccessListState {
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * )
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     */
     timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts>;
 }
 
@@ -216,8 +222,6 @@ export interface ProjectIpAccessListArgs {
     cidrBlock?: pulumi.Input<string>;
     /**
      * Comment to add to the access list entry.
-     *
-     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      */
     comment?: pulumi.Input<string>;
     /**
@@ -228,5 +232,10 @@ export interface ProjectIpAccessListArgs {
      * Unique identifier for the project to which you want to add one or more access list entries.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * )
+     *
+     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     */
     timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts>;
 }

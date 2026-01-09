@@ -34077,6 +34077,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -34269,6 +34270,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -34461,6 +34463,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -34653,6 +34656,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -34845,6 +34849,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -35037,6 +35042,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -35229,6 +35235,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -35421,6 +35428,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -35613,6 +35621,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -35805,6 +35814,7 @@ public final class MongodbatlasFunctions {
      *                     )
      *                 )))
      *             .state("STARTED")
+     *             .tier("SP30")
      *             .build());
      * 
      *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()

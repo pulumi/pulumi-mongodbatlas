@@ -201,16 +201,12 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
     /**
      * Comment to add to the access list entry.
      * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-     * 
      */
     @Export(name="comment", refs={String.class}, tree="[0]")
     private Output<String> comment;
 
     /**
      * @return Comment to add to the access list entry.
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      * 
      */
     public Output<String> comment() {
@@ -244,9 +240,21 @@ public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
+    /**
+     * )
+     * 
+     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * 
+     */
     @Export(name="timeouts", refs={ProjectIpAccessListTimeouts.class}, tree="[0]")
     private Output</* @Nullable */ ProjectIpAccessListTimeouts> timeouts;
 
+    /**
+     * @return )
+     * 
+     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * 
+     */
     public Output<Optional<ProjectIpAccessListTimeouts>> timeouts() {
         return Codegen.optional(this.timeouts);
     }

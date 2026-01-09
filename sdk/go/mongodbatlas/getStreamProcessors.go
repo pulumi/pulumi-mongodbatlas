@@ -112,6 +112,7 @@ import (
 //				ProcessorName: pulumi.String("sampleProcessorName"),
 //				Pipeline:      pulumi.String(json0),
 //				State:         pulumi.String("STARTED"),
+//				Tier:          pulumi.String("SP30"),
 //			})
 //			if err != nil {
 //				return err

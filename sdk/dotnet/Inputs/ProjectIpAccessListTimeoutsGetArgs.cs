@@ -13,16 +13,22 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class ProjectIpAccessListTimeoutsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        /// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
         /// </summary>
         [Input("delete")]
         public Input<string>? Delete { get; set; }
 
         /// <summary>
-        /// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        /// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
         /// </summary>
         [Input("read")]
         public Input<string>? Read { get; set; }
+
+        /// <summary>
+        /// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+        /// </summary>
+        [Input("update")]
+        public Input<string>? Update { get; set; }
 
         public ProjectIpAccessListTimeoutsGetArgs()
         {

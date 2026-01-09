@@ -58,6 +58,11 @@ public final class GetStreamProcessorsResult {
      */
     private String stats;
     /**
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * 
+     */
+    private String tier;
+    /**
      * @return Label that identifies the stream processing workspace.
      * 
      */
@@ -127,6 +132,13 @@ public final class GetStreamProcessorsResult {
         return this.stats;
     }
     /**
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * 
+     */
+    public String tier() {
+        return this.tier;
+    }
+    /**
      * @return Label that identifies the stream processing workspace.
      * 
      */
@@ -151,6 +163,7 @@ public final class GetStreamProcessorsResult {
         private String projectId;
         private String state;
         private String stats;
+        private String tier;
         private String workspaceName;
         public Builder() {}
         public Builder(GetStreamProcessorsResult defaults) {
@@ -163,6 +176,7 @@ public final class GetStreamProcessorsResult {
     	      this.projectId = defaults.projectId;
     	      this.state = defaults.state;
     	      this.stats = defaults.stats;
+    	      this.tier = defaults.tier;
     	      this.workspaceName = defaults.workspaceName;
         }
 
@@ -231,6 +245,14 @@ public final class GetStreamProcessorsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder tier(String tier) {
+            if (tier == null) {
+              throw new MissingRequiredPropertyException("GetStreamProcessorsResult", "tier");
+            }
+            this.tier = tier;
+            return this;
+        }
+        @CustomType.Setter
         public Builder workspaceName(String workspaceName) {
             if (workspaceName == null) {
               throw new MissingRequiredPropertyException("GetStreamProcessorsResult", "workspaceName");
@@ -248,6 +270,7 @@ public final class GetStreamProcessorsResult {
             _resultValue.projectId = projectId;
             _resultValue.state = state;
             _resultValue.stats = stats;
+            _resultValue.tier = tier;
             _resultValue.workspaceName = workspaceName;
             return _resultValue;
         }

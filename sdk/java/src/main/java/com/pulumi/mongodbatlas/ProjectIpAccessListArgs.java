@@ -50,16 +50,12 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
     /**
      * Comment to add to the access list entry.
      * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-     * 
      */
     @Import(name="comment")
     private @Nullable Output<String> comment;
 
     /**
      * @return Comment to add to the access list entry.
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
      * 
      */
     public Optional<Output<String>> comment() {
@@ -96,9 +92,21 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         return this.projectId;
     }
 
+    /**
+     * )
+     * 
+     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * 
+     */
     @Import(name="timeouts")
     private @Nullable Output<ProjectIpAccessListTimeoutsArgs> timeouts;
 
+    /**
+     * @return )
+     * 
+     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * 
+     */
     public Optional<Output<ProjectIpAccessListTimeoutsArgs>> timeouts() {
         return Optional.ofNullable(this.timeouts);
     }
@@ -177,8 +185,6 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         /**
          * @param comment Comment to add to the access list entry.
          * 
-         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-         * 
          * @return builder
          * 
          */
@@ -189,8 +195,6 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
 
         /**
          * @param comment Comment to add to the access list entry.
-         * 
-         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
          * 
          * @return builder
          * 
@@ -241,11 +245,27 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param timeouts )
+         * 
+         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeouts(@Nullable Output<ProjectIpAccessListTimeoutsArgs> timeouts) {
             $.timeouts = timeouts;
             return this;
         }
 
+        /**
+         * @param timeouts )
+         * 
+         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder timeouts(ProjectIpAccessListTimeoutsArgs timeouts) {
             return timeouts(Output.of(timeouts));
         }

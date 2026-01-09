@@ -12,30 +12,42 @@ import javax.annotation.Nullable;
 @CustomType
 public final class ProjectIpAccessListTimeouts {
     /**
-     * @return A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), &#34;h&#34; (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     * @return (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), and &#34;h&#34; (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
      * 
      */
     private @Nullable String delete;
     /**
-     * @return A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), &#34;h&#34; (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+     * @return (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), and &#34;h&#34; (hours). Default: `2m`.
      * 
      */
     private @Nullable String read;
+    /**
+     * @return (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), and &#34;h&#34; (hours). Default: `45m`.
+     * 
+     */
+    private @Nullable String update;
 
     private ProjectIpAccessListTimeouts() {}
     /**
-     * @return A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), &#34;h&#34; (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     * @return (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), and &#34;h&#34; (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
      * 
      */
     public Optional<String> delete() {
         return Optional.ofNullable(this.delete);
     }
     /**
-     * @return A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), &#34;h&#34; (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+     * @return (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), and &#34;h&#34; (hours). Default: `2m`.
      * 
      */
     public Optional<String> read() {
         return Optional.ofNullable(this.read);
+    }
+    /**
+     * @return (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as &#34;30s&#34; or &#34;2h45m&#34;. Valid time units are &#34;s&#34; (seconds), &#34;m&#34; (minutes), and &#34;h&#34; (hours). Default: `45m`.
+     * 
+     */
+    public Optional<String> update() {
+        return Optional.ofNullable(this.update);
     }
 
     public static Builder builder() {
@@ -49,11 +61,13 @@ public final class ProjectIpAccessListTimeouts {
     public static final class Builder {
         private @Nullable String delete;
         private @Nullable String read;
+        private @Nullable String update;
         public Builder() {}
         public Builder(ProjectIpAccessListTimeouts defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.delete = defaults.delete;
     	      this.read = defaults.read;
+    	      this.update = defaults.update;
         }
 
         @CustomType.Setter
@@ -68,10 +82,17 @@ public final class ProjectIpAccessListTimeouts {
             this.read = read;
             return this;
         }
+        @CustomType.Setter
+        public Builder update(@Nullable String update) {
+
+            this.update = update;
+            return this;
+        }
         public ProjectIpAccessListTimeouts build() {
             final var _resultValue = new ProjectIpAccessListTimeouts();
             _resultValue.delete = delete;
             _resultValue.read = read;
+            _resultValue.update = update;
             return _resultValue;
         }
     }

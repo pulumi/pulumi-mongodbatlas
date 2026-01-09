@@ -165,7 +165,8 @@ def get_stream_processors(instance_name: Optional[_builtins.str] = None,
                 },
             },
         ]),
-        state="STARTED")
+        state="STARTED",
+        tier="SP30")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
         workspace_name=example.instance_name,
@@ -318,7 +319,8 @@ def get_stream_processors_output(instance_name: Optional[pulumi.Input[Optional[_
                 },
             },
         ]),
-        state="STARTED")
+        state="STARTED",
+        tier="SP30")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
         workspace_name=example.instance_name,

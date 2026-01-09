@@ -94,6 +94,10 @@ export interface GetSearchIndexResult {
      * Type set name.
      */
     readonly name: string;
+    /**
+     * Number of index partitions.
+     */
+    readonly numPartitions: number;
     readonly projectId: string;
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.

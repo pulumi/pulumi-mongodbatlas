@@ -133,6 +133,7 @@ import javax.annotation.Nullable;
  *                     )
  *                 )))
  *             .state("STARTED")
+ *             .tier("SP30")
  *             .build());
  * 
  *         var stream_processor_cluster_to_kafka_example = new StreamProcessor("stream-processor-cluster-to-kafka-example", StreamProcessorArgs.builder()
@@ -342,6 +343,20 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
      */
     public Output<String> stats() {
         return this.stats;
+    }
+    /**
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * 
+     */
+    @Export(name="tier", refs={String.class}, tree="[0]")
+    private Output<String> tier;
+
+    /**
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * 
+     */
+    public Output<String> tier() {
+        return this.tier;
     }
     @Export(name="timeouts", refs={StreamProcessorTimeouts.class}, tree="[0]")
     private Output</* @Nullable */ StreamProcessorTimeouts> timeouts;

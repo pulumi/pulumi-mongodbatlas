@@ -148,14 +148,15 @@ type ProjectIpAccessList struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringOutput `pulumi:"cidrBlock"`
 	// Comment to add to the access list entry.
-	//
-	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment pulumi.StringOutput `pulumi:"comment"`
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
-	ProjectId pulumi.StringOutput                  `pulumi:"projectId"`
-	Timeouts  ProjectIpAccessListTimeoutsPtrOutput `pulumi:"timeouts"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// )
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+	Timeouts ProjectIpAccessListTimeoutsPtrOutput `pulumi:"timeouts"`
 }
 
 // NewProjectIpAccessList registers a new resource with the given unique name, arguments, and options.
@@ -196,14 +197,15 @@ type projectIpAccessListState struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
 	// Comment to add to the access list entry.
-	//
-	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment *string `pulumi:"comment"`
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
-	ProjectId *string                      `pulumi:"projectId"`
-	Timeouts  *ProjectIpAccessListTimeouts `pulumi:"timeouts"`
+	ProjectId *string `pulumi:"projectId"`
+	// )
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+	Timeouts *ProjectIpAccessListTimeouts `pulumi:"timeouts"`
 }
 
 type ProjectIpAccessListState struct {
@@ -212,14 +214,15 @@ type ProjectIpAccessListState struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
 	// Comment to add to the access list entry.
-	//
-	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment pulumi.StringPtrInput
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress pulumi.StringPtrInput
 	// Unique identifier for the project to which you want to add one or more access list entries.
 	ProjectId pulumi.StringPtrInput
-	Timeouts  ProjectIpAccessListTimeoutsPtrInput
+	// )
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+	Timeouts ProjectIpAccessListTimeoutsPtrInput
 }
 
 func (ProjectIpAccessListState) ElementType() reflect.Type {
@@ -232,14 +235,15 @@ type projectIpAccessListArgs struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock *string `pulumi:"cidrBlock"`
 	// Comment to add to the access list entry.
-	//
-	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment *string `pulumi:"comment"`
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Unique identifier for the project to which you want to add one or more access list entries.
-	ProjectId string                       `pulumi:"projectId"`
-	Timeouts  *ProjectIpAccessListTimeouts `pulumi:"timeouts"`
+	ProjectId string `pulumi:"projectId"`
+	// )
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+	Timeouts *ProjectIpAccessListTimeouts `pulumi:"timeouts"`
 }
 
 // The set of arguments for constructing a ProjectIpAccessList resource.
@@ -249,14 +253,15 @@ type ProjectIpAccessListArgs struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
 	CidrBlock pulumi.StringPtrInput
 	// Comment to add to the access list entry.
-	//
-	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 	Comment pulumi.StringPtrInput
 	// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
 	IpAddress pulumi.StringPtrInput
 	// Unique identifier for the project to which you want to add one or more access list entries.
 	ProjectId pulumi.StringInput
-	Timeouts  ProjectIpAccessListTimeoutsPtrInput
+	// )
+	//
+	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+	Timeouts ProjectIpAccessListTimeoutsPtrInput
 }
 
 func (ProjectIpAccessListArgs) ElementType() reflect.Type {
@@ -357,8 +362,6 @@ func (o ProjectIpAccessListOutput) CidrBlock() pulumi.StringOutput {
 }
 
 // Comment to add to the access list entry.
-//
-// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 func (o ProjectIpAccessListOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectIpAccessList) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
 }
@@ -373,6 +376,9 @@ func (o ProjectIpAccessListOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectIpAccessList) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// )
+//
+// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
 func (o ProjectIpAccessListOutput) Timeouts() ProjectIpAccessListTimeoutsPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessList) ProjectIpAccessListTimeoutsPtrOutput { return v.Timeouts }).(ProjectIpAccessListTimeoutsPtrOutput)
 }

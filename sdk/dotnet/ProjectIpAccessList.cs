@@ -134,8 +134,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Comment to add to the access list entry.
-        /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Output("comment")]
         public Output<string> Comment { get; private set; } = null!;
@@ -152,6 +150,11 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// )
+        /// 
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
+        /// </summary>
         [Output("timeouts")]
         public Output<Outputs.ProjectIpAccessListTimeouts?> Timeouts { get; private set; } = null!;
 
@@ -215,8 +218,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Comment to add to the access list entry.
-        /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -233,6 +234,11 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// )
+        /// 
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
+        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.ProjectIpAccessListTimeoutsArgs>? Timeouts { get; set; }
 
@@ -258,8 +264,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Comment to add to the access list entry.
-        /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
@@ -276,6 +280,11 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// )
+        /// 
+        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
+        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.ProjectIpAccessListTimeoutsGetArgs>? Timeouts { get; set; }
 

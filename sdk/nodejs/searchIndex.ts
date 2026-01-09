@@ -237,6 +237,10 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+     */
+    declare public readonly numPartitions: pulumi.Output<number | undefined>;
+    /**
      * The ID of the organization or project you want to create the search index within.
      */
     declare public readonly projectId: pulumi.Output<string>;
@@ -290,6 +294,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["mappingsDynamicConfig"] = state?.mappingsDynamicConfig;
             resourceInputs["mappingsFields"] = state?.mappingsFields;
             resourceInputs["name"] = state?.name;
+            resourceInputs["numPartitions"] = state?.numPartitions;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["searchAnalyzer"] = state?.searchAnalyzer;
             resourceInputs["status"] = state?.status;
@@ -322,6 +327,7 @@ export class SearchIndex extends pulumi.CustomResource {
             resourceInputs["mappingsDynamicConfig"] = args?.mappingsDynamicConfig;
             resourceInputs["mappingsFields"] = args?.mappingsFields;
             resourceInputs["name"] = args?.name;
+            resourceInputs["numPartitions"] = args?.numPartitions;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["searchAnalyzer"] = args?.searchAnalyzer;
             resourceInputs["storedSource"] = args?.storedSource;
@@ -406,6 +412,10 @@ export interface SearchIndexState {
      * The name of the search index you want to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+     */
+    numPartitions?: pulumi.Input<number>;
     /**
      * The ID of the organization or project you want to create the search index within.
      */
@@ -502,6 +512,10 @@ export interface SearchIndexArgs {
      * The name of the search index you want to create.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+     */
+    numPartitions?: pulumi.Input<number>;
     /**
      * The ID of the organization or project you want to create the search index within.
      */

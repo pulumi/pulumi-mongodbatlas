@@ -32,6 +32,7 @@ class SearchIndexArgs:
                  mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
                  search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
                  stored_source: Optional[pulumi.Input[_builtins.str]] = None,
                  synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
@@ -72,6 +73,7 @@ class SearchIndexArgs:
         :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
+        :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
@@ -96,6 +98,8 @@ class SearchIndexArgs:
             pulumi.set(__self__, "mappings_fields", mappings_fields)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if num_partitions is not None:
+            pulumi.set(__self__, "num_partitions", num_partitions)
         if search_analyzer is not None:
             pulumi.set(__self__, "search_analyzer", search_analyzer)
         if stored_source is not None:
@@ -263,6 +267,18 @@ class SearchIndexArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="numPartitions")
+    def num_partitions(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+        """
+        return pulumi.get(self, "num_partitions")
+
+    @num_partitions.setter
+    def num_partitions(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "num_partitions", value)
+
+    @_builtins.property
     @pulumi.getter(name="searchAnalyzer")
     def search_analyzer(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -346,6 +362,7 @@ class _SearchIndexState:
                  mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -388,6 +405,7 @@ class _SearchIndexState:
         :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
+        :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] status: Current status of the index.
@@ -418,6 +436,8 @@ class _SearchIndexState:
             pulumi.set(__self__, "mappings_fields", mappings_fields)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if num_partitions is not None:
+            pulumi.set(__self__, "num_partitions", num_partitions)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if search_analyzer is not None:
@@ -589,6 +609,18 @@ class _SearchIndexState:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="numPartitions")
+    def num_partitions(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+        """
+        return pulumi.get(self, "num_partitions")
+
+    @num_partitions.setter
+    def num_partitions(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "num_partitions", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -698,6 +730,7 @@ class SearchIndex(pulumi.CustomResource):
                  mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
                  stored_source: Optional[pulumi.Input[_builtins.str]] = None,
@@ -872,6 +905,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
+        :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
@@ -1043,6 +1077,7 @@ class SearchIndex(pulumi.CustomResource):
                  mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
                  mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
                  stored_source: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1075,6 +1110,7 @@ class SearchIndex(pulumi.CustomResource):
             __props__.__dict__["mappings_dynamic_config"] = mappings_dynamic_config
             __props__.__dict__["mappings_fields"] = mappings_fields
             __props__.__dict__["name"] = name
+            __props__.__dict__["num_partitions"] = num_partitions
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -1107,6 +1143,7 @@ class SearchIndex(pulumi.CustomResource):
             mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
             mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
+            num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1154,6 +1191,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
+        :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within.
         :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] status: Current status of the index.
@@ -1177,6 +1215,7 @@ class SearchIndex(pulumi.CustomResource):
         __props__.__dict__["mappings_dynamic_config"] = mappings_dynamic_config
         __props__.__dict__["mappings_fields"] = mappings_fields
         __props__.__dict__["name"] = name
+        __props__.__dict__["num_partitions"] = num_partitions
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["search_analyzer"] = search_analyzer
         __props__.__dict__["status"] = status
@@ -1295,6 +1334,14 @@ class SearchIndex(pulumi.CustomResource):
         The name of the search index you want to create.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="numPartitions")
+    def num_partitions(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+        """
+        return pulumi.get(self, "num_partitions")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

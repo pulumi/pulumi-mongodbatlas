@@ -33,9 +33,10 @@ class ProjectIpAccessListArgs:
         :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
+        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+        :param pulumi.Input['ProjectIpAccessListTimeoutsArgs'] timeouts: )
                
                > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
-        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         """
         pulumi.set(__self__, "project_id", project_id)
         if aws_security_group is not None:
@@ -90,8 +91,6 @@ class ProjectIpAccessListArgs:
     def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Comment to add to the access list entry.
-
-        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "comment")
 
@@ -114,6 +113,11 @@ class ProjectIpAccessListArgs:
     @_builtins.property
     @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]:
+        """
+        )
+
+        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
@@ -135,10 +139,11 @@ class _ProjectIpAccessListState:
         :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
-               
-               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
+        :param pulumi.Input['ProjectIpAccessListTimeoutsArgs'] timeouts: )
+               
+               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         if aws_security_group is not None:
             pulumi.set(__self__, "aws_security_group", aws_security_group)
@@ -182,8 +187,6 @@ class _ProjectIpAccessListState:
     def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Comment to add to the access list entry.
-
-        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "comment")
 
@@ -218,6 +221,11 @@ class _ProjectIpAccessListState:
     @_builtins.property
     @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]:
+        """
+        )
+
+        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
@@ -316,10 +324,11 @@ class ProjectIpAccessList(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
-               
-               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
+        :param pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']] timeouts: )
+               
+               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         ...
     @overload
@@ -464,10 +473,11 @@ class ProjectIpAccessList(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
         :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
-               
-               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
+        :param pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']] timeouts: )
+               
+               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -502,8 +512,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
     def comment(self) -> pulumi.Output[_builtins.str]:
         """
         Comment to add to the access list entry.
-
-        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
         """
         return pulumi.get(self, "comment")
 
@@ -526,5 +534,10 @@ class ProjectIpAccessList(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def timeouts(self) -> pulumi.Output[Optional['outputs.ProjectIpAccessListTimeouts']]:
+        """
+        )
+
+        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        """
         return pulumi.get(self, "timeouts")
 
