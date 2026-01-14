@@ -68,7 +68,7 @@ jobs:
           .pulumi/examples-cache
         key: ${{ runner.os }}-${{ hashFiles('provider/go.sum') }}
     - run: |
-        curl -i -H "Authorization: Bearer ${{ steps.app-auth.outputs.token }} \
+        curl -i -H "Authorization: Bearer ${{ steps.app-auth.outputs.token }}" \
           https://api.github.com/rate_limit
     - name: Setup mise
       uses: blampe/mise-action@blampe/plugins

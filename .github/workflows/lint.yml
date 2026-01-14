@@ -42,7 +42,7 @@ jobs:
         private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
         owner: ${{ github.repository_owner }}
     - run: |
-        curl -i -H "Authorization: Bearer ${{ steps.app-auth.outputs.token }} \
+        curl -i -H "Authorization: Bearer ${{ steps.app-auth.outputs.token }}" \
           https://api.github.com/rate_limit
     - name: Setup mise
       uses: blampe/mise-action@blampe/plugins
