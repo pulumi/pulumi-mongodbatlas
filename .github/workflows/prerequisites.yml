@@ -67,16 +67,21 @@ jobs:
         path: |
           .pulumi/examples-cache
         key: ${{ runner.os }}-${{ hashFiles('provider/go.sum') }}
+    - run: |
+        curl -i -H "Authorization: Bearer ${{ steps.app-auth.outputs.token }} \
+          https://api.github.com/rate_limit
     - name: Setup mise
       uses: blampe/mise-action@blampe/plugins
       env:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
-        version: 2025.11.6
+        version: 2026.1.2
         github_token: ${{ steps.app-auth.outputs.token }}
         plugin_install: https://github.com/pulumi/vfox-pulumi
         # only saving the cache in the prerequisites job
         cache_save: true
+        log_level: debug
+
     - name: Setup Go Cache
       uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6
       with:
