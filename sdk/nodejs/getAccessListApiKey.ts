@@ -7,9 +7,6 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### Using CIDR Block
- *
- * ### Using IP Address
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -17,7 +14,7 @@ import * as utilities from "./utilities";
  * const testAccessListApiKey = new mongodbatlas.AccessListApiKey("test", {
  *     orgId: "<ORG_ID>",
  *     ipAddress: "2.3.4.5",
- *     apiKey: "a29120e123cd",
+ *     apiKeyId: "a29120e123cd",
  * });
  * const test = mongodbatlas.getAccessListApiKeyOutput({
  *     orgId: testAccessListApiKey.orgId,
@@ -41,12 +38,10 @@ export function getAccessListApiKey(args: GetAccessListApiKeyArgs, opts?: pulumi
 export interface GetAccessListApiKeyArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
      */
     apiKeyId: string;
     /**
-     * Single IP address to be added to the access list.
+     * IP address to retrieve from the access list.
      */
     ipAddress: string;
     /**
@@ -59,25 +54,37 @@ export interface GetAccessListApiKeyArgs {
  * A collection of values returned by getAccessListApiKey.
  */
 export interface GetAccessListApiKeyResult {
+    /**
+     * Total number of requests that have originated from this IP address or CIDR block.
+     */
     readonly accessCount: number;
     readonly apiKeyId: string;
+    /**
+     * Range of IP addresses in CIDR notation included in the API Key access list.
+     */
     readonly cidrBlock: string;
+    /**
+     * Date and time when the access list entry was created.
+     */
     readonly created: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly ipAddress: string;
+    /**
+     * Date and time when the API key was last used from this IP address or CIDR block.
+     */
     readonly lastUsed: string;
+    /**
+     * IP address from which the last API request was made.
+     */
     readonly lastUsedAddress: string;
     readonly orgId: string;
 }
 /**
  * ## Example Usage
  *
- * ### Using CIDR Block
- *
- * ### Using IP Address
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
@@ -85,7 +92,7 @@ export interface GetAccessListApiKeyResult {
  * const testAccessListApiKey = new mongodbatlas.AccessListApiKey("test", {
  *     orgId: "<ORG_ID>",
  *     ipAddress: "2.3.4.5",
- *     apiKey: "a29120e123cd",
+ *     apiKeyId: "a29120e123cd",
  * });
  * const test = mongodbatlas.getAccessListApiKeyOutput({
  *     orgId: testAccessListApiKey.orgId,
@@ -109,12 +116,10 @@ export function getAccessListApiKeyOutput(args: GetAccessListApiKeyOutputArgs, o
 export interface GetAccessListApiKeyOutputArgs {
     /**
      * Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-     * *
-     * ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
      */
     apiKeyId: pulumi.Input<string>;
     /**
-     * Single IP address to be added to the access list.
+     * IP address to retrieve from the access list.
      */
     ipAddress: pulumi.Input<string>;
     /**

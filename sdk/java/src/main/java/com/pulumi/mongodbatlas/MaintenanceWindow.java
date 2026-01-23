@@ -122,28 +122,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/maintenanceWindow:MaintenanceWindow")
 public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
     /**
-     * Defer any scheduled maintenance for the given project for one week.
+     * Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
      * 
      */
     @Export(name="autoDefer", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoDefer;
 
     /**
-     * @return Defer any scheduled maintenance for the given project for one week.
+     * @return Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
      * 
      */
     public Output<Boolean> autoDefer() {
         return this.autoDefer;
     }
     /**
-     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
      * 
      */
     @Export(name="autoDeferOnceEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoDeferOnceEnabled;
 
     /**
-     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * @return When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
      * 
      */
     public Output<Boolean> autoDeferOnceEnabled() {
@@ -164,14 +164,14 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.dayOfWeek;
     }
     /**
-     * Defer the next scheduled maintenance for the given project for one week.
+     * Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
      * 
      */
     @Export(name="defer", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> defer;
 
     /**
-     * @return Defer the next scheduled maintenance for the given project for one week.
+     * @return Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
      * 
      */
     public Output<Boolean> defer() {

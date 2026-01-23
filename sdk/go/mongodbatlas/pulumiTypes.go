@@ -10265,6 +10265,8 @@ type CustomDbRoleInheritedRole struct {
 	// > **NOTE** This value should be admin for all roles except read and readWrite.
 	DatabaseName string `pulumi:"databaseName"`
 	// Name of the inherited role. This can either be another custom role or a built-in role.
+	//
+	// > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
 	RoleName string `pulumi:"roleName"`
 }
 
@@ -10285,6 +10287,8 @@ type CustomDbRoleInheritedRoleArgs struct {
 	// > **NOTE** This value should be admin for all roles except read and readWrite.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
 	// Name of the inherited role. This can either be another custom role or a built-in role.
+	//
+	// > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
 }
 
@@ -10347,6 +10351,8 @@ func (o CustomDbRoleInheritedRoleOutput) DatabaseName() pulumi.StringOutput {
 }
 
 // Name of the inherited role. This can either be another custom role or a built-in role.
+//
+// > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
 func (o CustomDbRoleInheritedRoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v CustomDbRoleInheritedRole) string { return v.RoleName }).(pulumi.StringOutput)
 }
@@ -16432,11 +16438,11 @@ func (o ProjectApiKeyProjectAssignmentArrayOutput) Index(i pulumi.IntInput) Proj
 }
 
 type ProjectIpAccessListTimeouts struct {
-	// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 	Delete *string `pulumi:"delete"`
-	// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 	Read *string `pulumi:"read"`
-	// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 	Update *string `pulumi:"update"`
 }
 
@@ -16452,11 +16458,11 @@ type ProjectIpAccessListTimeoutsInput interface {
 }
 
 type ProjectIpAccessListTimeoutsArgs struct {
-	// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
-	// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 	Read pulumi.StringPtrInput `pulumi:"read"`
-	// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 	Update pulumi.StringPtrInput `pulumi:"update"`
 }
 
@@ -16537,17 +16543,17 @@ func (o ProjectIpAccessListTimeoutsOutput) ToProjectIpAccessListTimeoutsPtrOutpu
 	}).(ProjectIpAccessListTimeoutsPtrOutput)
 }
 
-// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 func (o ProjectIpAccessListTimeoutsOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
 }
 
-// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 func (o ProjectIpAccessListTimeoutsOutput) Read() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
 }
 
-// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 func (o ProjectIpAccessListTimeoutsOutput) Update() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
 }
@@ -16576,7 +16582,7 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Elem() ProjectIpAccessListTimeouts
 	}).(ProjectIpAccessListTimeoutsOutput)
 }
 
-// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
 func (o ProjectIpAccessListTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
 		if v == nil {
@@ -16586,7 +16592,7 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 func (o ProjectIpAccessListTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
 		if v == nil {
@@ -16596,7 +16602,7 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
 func (o ProjectIpAccessListTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
 		if v == nil {
@@ -17100,6 +17106,148 @@ func (o ProjectLimitArrayOutput) Index(i pulumi.IntInput) ProjectLimitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectLimit {
 		return vs[0].([]ProjectLimit)[vs[1].(int)]
 	}).(ProjectLimitOutput)
+}
+
+type ProjectServiceAccountSecretType struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt *string `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt *string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue *string `pulumi:"maskedSecretValue"`
+	// The secret for the Service Account. It will be returned only the first time after creation.
+	Secret *string `pulumi:"secret"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId *string `pulumi:"secretId"`
+}
+
+// ProjectServiceAccountSecretTypeInput is an input type that accepts ProjectServiceAccountSecretTypeArgs and ProjectServiceAccountSecretTypeOutput values.
+// You can construct a concrete instance of `ProjectServiceAccountSecretTypeInput` via:
+//
+//	ProjectServiceAccountSecretTypeArgs{...}
+type ProjectServiceAccountSecretTypeInput interface {
+	pulumi.Input
+
+	ToProjectServiceAccountSecretTypeOutput() ProjectServiceAccountSecretTypeOutput
+	ToProjectServiceAccountSecretTypeOutputWithContext(context.Context) ProjectServiceAccountSecretTypeOutput
+}
+
+type ProjectServiceAccountSecretTypeArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringPtrInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringPtrInput `pulumi:"maskedSecretValue"`
+	// The secret for the Service Account. It will be returned only the first time after creation.
+	Secret pulumi.StringPtrInput `pulumi:"secret"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
+}
+
+func (ProjectServiceAccountSecretTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i ProjectServiceAccountSecretTypeArgs) ToProjectServiceAccountSecretTypeOutput() ProjectServiceAccountSecretTypeOutput {
+	return i.ToProjectServiceAccountSecretTypeOutputWithContext(context.Background())
+}
+
+func (i ProjectServiceAccountSecretTypeArgs) ToProjectServiceAccountSecretTypeOutputWithContext(ctx context.Context) ProjectServiceAccountSecretTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectServiceAccountSecretTypeOutput)
+}
+
+// ProjectServiceAccountSecretTypeArrayInput is an input type that accepts ProjectServiceAccountSecretTypeArray and ProjectServiceAccountSecretTypeArrayOutput values.
+// You can construct a concrete instance of `ProjectServiceAccountSecretTypeArrayInput` via:
+//
+//	ProjectServiceAccountSecretTypeArray{ ProjectServiceAccountSecretTypeArgs{...} }
+type ProjectServiceAccountSecretTypeArrayInput interface {
+	pulumi.Input
+
+	ToProjectServiceAccountSecretTypeArrayOutput() ProjectServiceAccountSecretTypeArrayOutput
+	ToProjectServiceAccountSecretTypeArrayOutputWithContext(context.Context) ProjectServiceAccountSecretTypeArrayOutput
+}
+
+type ProjectServiceAccountSecretTypeArray []ProjectServiceAccountSecretTypeInput
+
+func (ProjectServiceAccountSecretTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i ProjectServiceAccountSecretTypeArray) ToProjectServiceAccountSecretTypeArrayOutput() ProjectServiceAccountSecretTypeArrayOutput {
+	return i.ToProjectServiceAccountSecretTypeArrayOutputWithContext(context.Background())
+}
+
+func (i ProjectServiceAccountSecretTypeArray) ToProjectServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) ProjectServiceAccountSecretTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectServiceAccountSecretTypeArrayOutput)
+}
+
+type ProjectServiceAccountSecretTypeOutput struct{ *pulumi.OutputState }
+
+func (ProjectServiceAccountSecretTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o ProjectServiceAccountSecretTypeOutput) ToProjectServiceAccountSecretTypeOutput() ProjectServiceAccountSecretTypeOutput {
+	return o
+}
+
+func (o ProjectServiceAccountSecretTypeOutput) ToProjectServiceAccountSecretTypeOutputWithContext(ctx context.Context) ProjectServiceAccountSecretTypeOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o ProjectServiceAccountSecretTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectServiceAccountSecretType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o ProjectServiceAccountSecretTypeOutput) ExpiresAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectServiceAccountSecretType) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o ProjectServiceAccountSecretTypeOutput) LastUsedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectServiceAccountSecretType) *string { return v.LastUsedAt }).(pulumi.StringPtrOutput)
+}
+
+// The masked Service Account secret.
+func (o ProjectServiceAccountSecretTypeOutput) MaskedSecretValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectServiceAccountSecretType) *string { return v.MaskedSecretValue }).(pulumi.StringPtrOutput)
+}
+
+// The secret for the Service Account. It will be returned only the first time after creation.
+func (o ProjectServiceAccountSecretTypeOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectServiceAccountSecretType) *string { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o ProjectServiceAccountSecretTypeOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectServiceAccountSecretType) *string { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+type ProjectServiceAccountSecretTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (ProjectServiceAccountSecretTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o ProjectServiceAccountSecretTypeArrayOutput) ToProjectServiceAccountSecretTypeArrayOutput() ProjectServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o ProjectServiceAccountSecretTypeArrayOutput) ToProjectServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) ProjectServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o ProjectServiceAccountSecretTypeArrayOutput) Index(i pulumi.IntInput) ProjectServiceAccountSecretTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectServiceAccountSecretType {
+		return vs[0].([]ProjectServiceAccountSecretType)[vs[1].(int)]
+	}).(ProjectServiceAccountSecretTypeOutput)
 }
 
 type ProjectTeam struct {
@@ -18658,6 +18806,148 @@ func (o ServerlessInstanceTagArrayOutput) Index(i pulumi.IntInput) ServerlessIns
 	}).(ServerlessInstanceTagOutput)
 }
 
+type ServiceAccountSecretType struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt *string `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt *string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue *string `pulumi:"maskedSecretValue"`
+	// The secret for the Service Account. It will be returned only the first time after creation.
+	Secret *string `pulumi:"secret"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId *string `pulumi:"secretId"`
+}
+
+// ServiceAccountSecretTypeInput is an input type that accepts ServiceAccountSecretTypeArgs and ServiceAccountSecretTypeOutput values.
+// You can construct a concrete instance of `ServiceAccountSecretTypeInput` via:
+//
+//	ServiceAccountSecretTypeArgs{...}
+type ServiceAccountSecretTypeInput interface {
+	pulumi.Input
+
+	ToServiceAccountSecretTypeOutput() ServiceAccountSecretTypeOutput
+	ToServiceAccountSecretTypeOutputWithContext(context.Context) ServiceAccountSecretTypeOutput
+}
+
+type ServiceAccountSecretTypeArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringPtrInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringPtrInput `pulumi:"maskedSecretValue"`
+	// The secret for the Service Account. It will be returned only the first time after creation.
+	Secret pulumi.StringPtrInput `pulumi:"secret"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
+}
+
+func (ServiceAccountSecretTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i ServiceAccountSecretTypeArgs) ToServiceAccountSecretTypeOutput() ServiceAccountSecretTypeOutput {
+	return i.ToServiceAccountSecretTypeOutputWithContext(context.Background())
+}
+
+func (i ServiceAccountSecretTypeArgs) ToServiceAccountSecretTypeOutputWithContext(ctx context.Context) ServiceAccountSecretTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountSecretTypeOutput)
+}
+
+// ServiceAccountSecretTypeArrayInput is an input type that accepts ServiceAccountSecretTypeArray and ServiceAccountSecretTypeArrayOutput values.
+// You can construct a concrete instance of `ServiceAccountSecretTypeArrayInput` via:
+//
+//	ServiceAccountSecretTypeArray{ ServiceAccountSecretTypeArgs{...} }
+type ServiceAccountSecretTypeArrayInput interface {
+	pulumi.Input
+
+	ToServiceAccountSecretTypeArrayOutput() ServiceAccountSecretTypeArrayOutput
+	ToServiceAccountSecretTypeArrayOutputWithContext(context.Context) ServiceAccountSecretTypeArrayOutput
+}
+
+type ServiceAccountSecretTypeArray []ServiceAccountSecretTypeInput
+
+func (ServiceAccountSecretTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i ServiceAccountSecretTypeArray) ToServiceAccountSecretTypeArrayOutput() ServiceAccountSecretTypeArrayOutput {
+	return i.ToServiceAccountSecretTypeArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceAccountSecretTypeArray) ToServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) ServiceAccountSecretTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceAccountSecretTypeArrayOutput)
+}
+
+type ServiceAccountSecretTypeOutput struct{ *pulumi.OutputState }
+
+func (ServiceAccountSecretTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o ServiceAccountSecretTypeOutput) ToServiceAccountSecretTypeOutput() ServiceAccountSecretTypeOutput {
+	return o
+}
+
+func (o ServiceAccountSecretTypeOutput) ToServiceAccountSecretTypeOutputWithContext(ctx context.Context) ServiceAccountSecretTypeOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o ServiceAccountSecretTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceAccountSecretType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o ServiceAccountSecretTypeOutput) ExpiresAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceAccountSecretType) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o ServiceAccountSecretTypeOutput) LastUsedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceAccountSecretType) *string { return v.LastUsedAt }).(pulumi.StringPtrOutput)
+}
+
+// The masked Service Account secret.
+func (o ServiceAccountSecretTypeOutput) MaskedSecretValue() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceAccountSecretType) *string { return v.MaskedSecretValue }).(pulumi.StringPtrOutput)
+}
+
+// The secret for the Service Account. It will be returned only the first time after creation.
+func (o ServiceAccountSecretTypeOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceAccountSecretType) *string { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o ServiceAccountSecretTypeOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceAccountSecretType) *string { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+type ServiceAccountSecretTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceAccountSecretTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o ServiceAccountSecretTypeArrayOutput) ToServiceAccountSecretTypeArrayOutput() ServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o ServiceAccountSecretTypeArrayOutput) ToServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) ServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o ServiceAccountSecretTypeArrayOutput) Index(i pulumi.IntInput) ServiceAccountSecretTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceAccountSecretType {
+		return vs[0].([]ServiceAccountSecretType)[vs[1].(int)]
+	}).(ServiceAccountSecretTypeOutput)
+}
+
 type StreamConnectionAuthentication struct {
 	// Public identifier for the Kafka client.
 	ClientId *string `pulumi:"clientId"`
@@ -19087,7 +19377,7 @@ func (o StreamConnectionAwsPtrOutput) RoleArn() pulumi.StringPtrOutput {
 type StreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role string `pulumi:"role"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	//
 	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type string `pulumi:"type"`
@@ -19107,7 +19397,7 @@ type StreamConnectionDbRoleToExecuteInput interface {
 type StreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	//
 	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -19195,7 +19485,7 @@ func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 //
 // > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
@@ -19236,7 +19526,7 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 //
 // > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
@@ -19538,6 +19828,189 @@ func (o StreamConnectionNetworkingAccessPtrOutput) Type() pulumi.StringPtrOutput
 			return nil
 		}
 		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionSchemaRegistryAuthentication struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password *string `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type *string `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username *string `pulumi:"username"`
+}
+
+// StreamConnectionSchemaRegistryAuthenticationInput is an input type that accepts StreamConnectionSchemaRegistryAuthenticationArgs and StreamConnectionSchemaRegistryAuthenticationOutput values.
+// You can construct a concrete instance of `StreamConnectionSchemaRegistryAuthenticationInput` via:
+//
+//	StreamConnectionSchemaRegistryAuthenticationArgs{...}
+type StreamConnectionSchemaRegistryAuthenticationInput interface {
+	pulumi.Input
+
+	ToStreamConnectionSchemaRegistryAuthenticationOutput() StreamConnectionSchemaRegistryAuthenticationOutput
+	ToStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Context) StreamConnectionSchemaRegistryAuthenticationOutput
+}
+
+type StreamConnectionSchemaRegistryAuthenticationArgs struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (StreamConnectionSchemaRegistryAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (i StreamConnectionSchemaRegistryAuthenticationArgs) ToStreamConnectionSchemaRegistryAuthenticationOutput() StreamConnectionSchemaRegistryAuthenticationOutput {
+	return i.ToStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionSchemaRegistryAuthenticationArgs) ToStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) StreamConnectionSchemaRegistryAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSchemaRegistryAuthenticationOutput)
+}
+
+func (i StreamConnectionSchemaRegistryAuthenticationArgs) ToStreamConnectionSchemaRegistryAuthenticationPtrOutput() StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return i.ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionSchemaRegistryAuthenticationArgs) ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSchemaRegistryAuthenticationOutput).ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionSchemaRegistryAuthenticationPtrInput is an input type that accepts StreamConnectionSchemaRegistryAuthenticationArgs, StreamConnectionSchemaRegistryAuthenticationPtr and StreamConnectionSchemaRegistryAuthenticationPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionSchemaRegistryAuthenticationPtrInput` via:
+//
+//	        StreamConnectionSchemaRegistryAuthenticationArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionSchemaRegistryAuthenticationPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionSchemaRegistryAuthenticationPtrOutput() StreamConnectionSchemaRegistryAuthenticationPtrOutput
+	ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(context.Context) StreamConnectionSchemaRegistryAuthenticationPtrOutput
+}
+
+type streamConnectionSchemaRegistryAuthenticationPtrType StreamConnectionSchemaRegistryAuthenticationArgs
+
+func StreamConnectionSchemaRegistryAuthenticationPtr(v *StreamConnectionSchemaRegistryAuthenticationArgs) StreamConnectionSchemaRegistryAuthenticationPtrInput {
+	return (*streamConnectionSchemaRegistryAuthenticationPtrType)(v)
+}
+
+func (*streamConnectionSchemaRegistryAuthenticationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (i *streamConnectionSchemaRegistryAuthenticationPtrType) ToStreamConnectionSchemaRegistryAuthenticationPtrOutput() StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return i.ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionSchemaRegistryAuthenticationPtrType) ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionSchemaRegistryAuthenticationPtrOutput)
+}
+
+type StreamConnectionSchemaRegistryAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionSchemaRegistryAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionSchemaRegistryAuthenticationOutput) ToStreamConnectionSchemaRegistryAuthenticationOutput() StreamConnectionSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionSchemaRegistryAuthenticationOutput) ToStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) StreamConnectionSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionSchemaRegistryAuthenticationOutput) ToStreamConnectionSchemaRegistryAuthenticationPtrOutput() StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return o.ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionSchemaRegistryAuthenticationOutput) ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionSchemaRegistryAuthentication) *StreamConnectionSchemaRegistryAuthentication {
+		return &v
+	}).(StreamConnectionSchemaRegistryAuthenticationPtrOutput)
+}
+
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o StreamConnectionSchemaRegistryAuthenticationOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionSchemaRegistryAuthentication) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o StreamConnectionSchemaRegistryAuthenticationOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionSchemaRegistryAuthentication) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o StreamConnectionSchemaRegistryAuthenticationOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionSchemaRegistryAuthentication) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionSchemaRegistryAuthenticationPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionSchemaRegistryAuthenticationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionSchemaRegistryAuthenticationPtrOutput) ToStreamConnectionSchemaRegistryAuthenticationPtrOutput() StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionSchemaRegistryAuthenticationPtrOutput) ToStreamConnectionSchemaRegistryAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionSchemaRegistryAuthenticationPtrOutput) Elem() StreamConnectionSchemaRegistryAuthenticationOutput {
+	return o.ApplyT(func(v *StreamConnectionSchemaRegistryAuthentication) StreamConnectionSchemaRegistryAuthentication {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionSchemaRegistryAuthentication
+		return ret
+	}).(StreamConnectionSchemaRegistryAuthenticationOutput)
+}
+
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o StreamConnectionSchemaRegistryAuthenticationPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionSchemaRegistryAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o StreamConnectionSchemaRegistryAuthenticationPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionSchemaRegistryAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o StreamConnectionSchemaRegistryAuthenticationPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionSchemaRegistryAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -20885,13 +21358,17 @@ func (o X509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.Int
 }
 
 type GetAccessListApiKeysResult struct {
+	// Total number of requests that have originated from this IP address or CIDR block.
 	AccessCount int `pulumi:"accessCount"`
-	// Range of IP addresses in CIDR notation to be added to the access list.
+	// Range of IP addresses in CIDR notation included in the API access list.
 	CidrBlock string `pulumi:"cidrBlock"`
-	Created   string `pulumi:"created"`
-	// Single IP address to be added to the access list.
-	IpAddress       string `pulumi:"ipAddress"`
-	LastUsed        string `pulumi:"lastUsed"`
+	// Date and time when the access list entry was created.
+	Created string `pulumi:"created"`
+	// IP address included in the API access list.
+	IpAddress string `pulumi:"ipAddress"`
+	// Date and time when the API key was last used from this IP address or CIDR block.
+	LastUsed string `pulumi:"lastUsed"`
+	// IP address from which the last API request was made.
 	LastUsedAddress string `pulumi:"lastUsedAddress"`
 }
 
@@ -20907,13 +21384,17 @@ type GetAccessListApiKeysResultInput interface {
 }
 
 type GetAccessListApiKeysResultArgs struct {
+	// Total number of requests that have originated from this IP address or CIDR block.
 	AccessCount pulumi.IntInput `pulumi:"accessCount"`
-	// Range of IP addresses in CIDR notation to be added to the access list.
+	// Range of IP addresses in CIDR notation included in the API access list.
 	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
-	Created   pulumi.StringInput `pulumi:"created"`
-	// Single IP address to be added to the access list.
-	IpAddress       pulumi.StringInput `pulumi:"ipAddress"`
-	LastUsed        pulumi.StringInput `pulumi:"lastUsed"`
+	// Date and time when the access list entry was created.
+	Created pulumi.StringInput `pulumi:"created"`
+	// IP address included in the API access list.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Date and time when the API key was last used from this IP address or CIDR block.
+	LastUsed pulumi.StringInput `pulumi:"lastUsed"`
+	// IP address from which the last API request was made.
 	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
 }
 
@@ -20968,28 +21449,32 @@ func (o GetAccessListApiKeysResultOutput) ToGetAccessListApiKeysResultOutputWith
 	return o
 }
 
+// Total number of requests that have originated from this IP address or CIDR block.
 func (o GetAccessListApiKeysResultOutput) AccessCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) int { return v.AccessCount }).(pulumi.IntOutput)
 }
 
-// Range of IP addresses in CIDR notation to be added to the access list.
+// Range of IP addresses in CIDR notation included in the API access list.
 func (o GetAccessListApiKeysResultOutput) CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.CidrBlock }).(pulumi.StringOutput)
 }
 
+// Date and time when the access list entry was created.
 func (o GetAccessListApiKeysResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.Created }).(pulumi.StringOutput)
 }
 
-// Single IP address to be added to the access list.
+// IP address included in the API access list.
 func (o GetAccessListApiKeysResultOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// Date and time when the API key was last used from this IP address or CIDR block.
 func (o GetAccessListApiKeysResultOutput) LastUsed() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.LastUsed }).(pulumi.StringOutput)
 }
 
+// IP address from which the last API request was made.
 func (o GetAccessListApiKeysResultOutput) LastUsedAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccessListApiKeysResult) string { return v.LastUsedAddress }).(pulumi.StringOutput)
 }
@@ -50446,6 +50931,574 @@ func (o GetProjectLimitArrayOutput) Index(i pulumi.IntInput) GetProjectLimitOutp
 	}).(GetProjectLimitOutput)
 }
 
+type GetProjectServiceAccountAccessListEntriesResult struct {
+	// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// The Client ID of the Service Account.
+	ClientId string `pulumi:"clientId"`
+	// Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API.
+	LastUsedAddress string `pulumi:"lastUsedAddress"`
+	// Date when the API received the most recent request that originated from this network address.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// Unique 24-hexadecimal digit string that identifies the project.
+	ProjectId string `pulumi:"projectId"`
+	// The number of requests that has originated from this network address.
+	RequestCount int `pulumi:"requestCount"`
+}
+
+// GetProjectServiceAccountAccessListEntriesResultInput is an input type that accepts GetProjectServiceAccountAccessListEntriesResultArgs and GetProjectServiceAccountAccessListEntriesResultOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountAccessListEntriesResultInput` via:
+//
+//	GetProjectServiceAccountAccessListEntriesResultArgs{...}
+type GetProjectServiceAccountAccessListEntriesResultInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountAccessListEntriesResultOutput() GetProjectServiceAccountAccessListEntriesResultOutput
+	ToGetProjectServiceAccountAccessListEntriesResultOutputWithContext(context.Context) GetProjectServiceAccountAccessListEntriesResultOutput
+}
+
+type GetProjectServiceAccountAccessListEntriesResultArgs struct {
+	// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
+	// The Client ID of the Service Account.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API.
+	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
+	// Date when the API received the most recent request that originated from this network address.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// Unique 24-hexadecimal digit string that identifies the project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The number of requests that has originated from this network address.
+	RequestCount pulumi.IntInput `pulumi:"requestCount"`
+}
+
+func (GetProjectServiceAccountAccessListEntriesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountAccessListEntriesResultArgs) ToGetProjectServiceAccountAccessListEntriesResultOutput() GetProjectServiceAccountAccessListEntriesResultOutput {
+	return i.ToGetProjectServiceAccountAccessListEntriesResultOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountAccessListEntriesResultArgs) ToGetProjectServiceAccountAccessListEntriesResultOutputWithContext(ctx context.Context) GetProjectServiceAccountAccessListEntriesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountAccessListEntriesResultOutput)
+}
+
+// GetProjectServiceAccountAccessListEntriesResultArrayInput is an input type that accepts GetProjectServiceAccountAccessListEntriesResultArray and GetProjectServiceAccountAccessListEntriesResultArrayOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountAccessListEntriesResultArrayInput` via:
+//
+//	GetProjectServiceAccountAccessListEntriesResultArray{ GetProjectServiceAccountAccessListEntriesResultArgs{...} }
+type GetProjectServiceAccountAccessListEntriesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountAccessListEntriesResultArrayOutput() GetProjectServiceAccountAccessListEntriesResultArrayOutput
+	ToGetProjectServiceAccountAccessListEntriesResultArrayOutputWithContext(context.Context) GetProjectServiceAccountAccessListEntriesResultArrayOutput
+}
+
+type GetProjectServiceAccountAccessListEntriesResultArray []GetProjectServiceAccountAccessListEntriesResultInput
+
+func (GetProjectServiceAccountAccessListEntriesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountAccessListEntriesResultArray) ToGetProjectServiceAccountAccessListEntriesResultArrayOutput() GetProjectServiceAccountAccessListEntriesResultArrayOutput {
+	return i.ToGetProjectServiceAccountAccessListEntriesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountAccessListEntriesResultArray) ToGetProjectServiceAccountAccessListEntriesResultArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountAccessListEntriesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountAccessListEntriesResultArrayOutput)
+}
+
+type GetProjectServiceAccountAccessListEntriesResultOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountAccessListEntriesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) ToGetProjectServiceAccountAccessListEntriesResultOutput() GetProjectServiceAccountAccessListEntriesResultOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) ToGetProjectServiceAccountAccessListEntriesResultOutputWithContext(ctx context.Context) GetProjectServiceAccountAccessListEntriesResultOutput {
+	return o
+}
+
+// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// The Client ID of the Service Account.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address that issued the most recent request to the API.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) LastUsedAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) string { return v.LastUsedAddress }).(pulumi.StringOutput)
+}
+
+// Date when the API received the most recent request that originated from this network address.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the project.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The number of requests that has originated from this network address.
+func (o GetProjectServiceAccountAccessListEntriesResultOutput) RequestCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountAccessListEntriesResult) int { return v.RequestCount }).(pulumi.IntOutput)
+}
+
+type GetProjectServiceAccountAccessListEntriesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountAccessListEntriesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountAccessListEntriesResultArrayOutput) ToGetProjectServiceAccountAccessListEntriesResultArrayOutput() GetProjectServiceAccountAccessListEntriesResultArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountAccessListEntriesResultArrayOutput) ToGetProjectServiceAccountAccessListEntriesResultArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountAccessListEntriesResultArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountAccessListEntriesResultArrayOutput) Index(i pulumi.IntInput) GetProjectServiceAccountAccessListEntriesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectServiceAccountAccessListEntriesResult {
+		return vs[0].([]GetProjectServiceAccountAccessListEntriesResult)[vs[1].(int)]
+	}).(GetProjectServiceAccountAccessListEntriesResultOutput)
+}
+
+type GetProjectServiceAccountSecretType struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue string `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId string `pulumi:"secretId"`
+}
+
+// GetProjectServiceAccountSecretTypeInput is an input type that accepts GetProjectServiceAccountSecretTypeArgs and GetProjectServiceAccountSecretTypeOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountSecretTypeInput` via:
+//
+//	GetProjectServiceAccountSecretTypeArgs{...}
+type GetProjectServiceAccountSecretTypeInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountSecretTypeOutput() GetProjectServiceAccountSecretTypeOutput
+	ToGetProjectServiceAccountSecretTypeOutputWithContext(context.Context) GetProjectServiceAccountSecretTypeOutput
+}
+
+type GetProjectServiceAccountSecretTypeArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringInput `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+}
+
+func (GetProjectServiceAccountSecretTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountSecretTypeArgs) ToGetProjectServiceAccountSecretTypeOutput() GetProjectServiceAccountSecretTypeOutput {
+	return i.ToGetProjectServiceAccountSecretTypeOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountSecretTypeArgs) ToGetProjectServiceAccountSecretTypeOutputWithContext(ctx context.Context) GetProjectServiceAccountSecretTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountSecretTypeOutput)
+}
+
+// GetProjectServiceAccountSecretTypeArrayInput is an input type that accepts GetProjectServiceAccountSecretTypeArray and GetProjectServiceAccountSecretTypeArrayOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountSecretTypeArrayInput` via:
+//
+//	GetProjectServiceAccountSecretTypeArray{ GetProjectServiceAccountSecretTypeArgs{...} }
+type GetProjectServiceAccountSecretTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountSecretTypeArrayOutput() GetProjectServiceAccountSecretTypeArrayOutput
+	ToGetProjectServiceAccountSecretTypeArrayOutputWithContext(context.Context) GetProjectServiceAccountSecretTypeArrayOutput
+}
+
+type GetProjectServiceAccountSecretTypeArray []GetProjectServiceAccountSecretTypeInput
+
+func (GetProjectServiceAccountSecretTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountSecretTypeArray) ToGetProjectServiceAccountSecretTypeArrayOutput() GetProjectServiceAccountSecretTypeArrayOutput {
+	return i.ToGetProjectServiceAccountSecretTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountSecretTypeArray) ToGetProjectServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountSecretTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountSecretTypeArrayOutput)
+}
+
+type GetProjectServiceAccountSecretTypeOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountSecretTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountSecretTypeOutput) ToGetProjectServiceAccountSecretTypeOutput() GetProjectServiceAccountSecretTypeOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountSecretTypeOutput) ToGetProjectServiceAccountSecretTypeOutputWithContext(ctx context.Context) GetProjectServiceAccountSecretTypeOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountSecretTypeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountSecretType) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountSecretTypeOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountSecretType) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountSecretTypeOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountSecretType) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The masked Service Account secret.
+func (o GetProjectServiceAccountSecretTypeOutput) MaskedSecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountSecretType) string { return v.MaskedSecretValue }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o GetProjectServiceAccountSecretTypeOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountSecretType) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+type GetProjectServiceAccountSecretTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountSecretTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountSecretTypeArrayOutput) ToGetProjectServiceAccountSecretTypeArrayOutput() GetProjectServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountSecretTypeArrayOutput) ToGetProjectServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountSecretTypeArrayOutput) Index(i pulumi.IntInput) GetProjectServiceAccountSecretTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectServiceAccountSecretType {
+		return vs[0].([]GetProjectServiceAccountSecretType)[vs[1].(int)]
+	}).(GetProjectServiceAccountSecretTypeOutput)
+}
+
+type GetProjectServiceAccountsResult struct {
+	// The Client ID of the Service Account.
+	ClientId string `pulumi:"clientId"`
+	// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Human readable description for the Service Account.
+	Description string `pulumi:"description"`
+	// Human-readable name for the Service Account.
+	Name string `pulumi:"name"`
+	// A list of Project roles associated with the Service Account.
+	Roles []string `pulumi:"roles"`
+	// A list of secrets associated with the specified Service Account.
+	Secrets []GetProjectServiceAccountsResultSecret `pulumi:"secrets"`
+}
+
+// GetProjectServiceAccountsResultInput is an input type that accepts GetProjectServiceAccountsResultArgs and GetProjectServiceAccountsResultOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountsResultInput` via:
+//
+//	GetProjectServiceAccountsResultArgs{...}
+type GetProjectServiceAccountsResultInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountsResultOutput() GetProjectServiceAccountsResultOutput
+	ToGetProjectServiceAccountsResultOutputWithContext(context.Context) GetProjectServiceAccountsResultOutput
+}
+
+type GetProjectServiceAccountsResultArgs struct {
+	// The Client ID of the Service Account.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Human readable description for the Service Account.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Human-readable name for the Service Account.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A list of Project roles associated with the Service Account.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+	// A list of secrets associated with the specified Service Account.
+	Secrets GetProjectServiceAccountsResultSecretArrayInput `pulumi:"secrets"`
+}
+
+func (GetProjectServiceAccountsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountsResult)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountsResultArgs) ToGetProjectServiceAccountsResultOutput() GetProjectServiceAccountsResultOutput {
+	return i.ToGetProjectServiceAccountsResultOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountsResultArgs) ToGetProjectServiceAccountsResultOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountsResultOutput)
+}
+
+// GetProjectServiceAccountsResultArrayInput is an input type that accepts GetProjectServiceAccountsResultArray and GetProjectServiceAccountsResultArrayOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountsResultArrayInput` via:
+//
+//	GetProjectServiceAccountsResultArray{ GetProjectServiceAccountsResultArgs{...} }
+type GetProjectServiceAccountsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountsResultArrayOutput() GetProjectServiceAccountsResultArrayOutput
+	ToGetProjectServiceAccountsResultArrayOutputWithContext(context.Context) GetProjectServiceAccountsResultArrayOutput
+}
+
+type GetProjectServiceAccountsResultArray []GetProjectServiceAccountsResultInput
+
+func (GetProjectServiceAccountsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountsResult)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountsResultArray) ToGetProjectServiceAccountsResultArrayOutput() GetProjectServiceAccountsResultArrayOutput {
+	return i.ToGetProjectServiceAccountsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountsResultArray) ToGetProjectServiceAccountsResultArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountsResultArrayOutput)
+}
+
+type GetProjectServiceAccountsResultOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountsResult)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountsResultOutput) ToGetProjectServiceAccountsResultOutput() GetProjectServiceAccountsResultOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountsResultOutput) ToGetProjectServiceAccountsResultOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultOutput {
+	return o
+}
+
+// The Client ID of the Service Account.
+func (o GetProjectServiceAccountsResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Human readable description for the Service Account.
+func (o GetProjectServiceAccountsResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Human-readable name for the Service Account.
+func (o GetProjectServiceAccountsResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A list of Project roles associated with the Service Account.
+func (o GetProjectServiceAccountsResultOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+// A list of secrets associated with the specified Service Account.
+func (o GetProjectServiceAccountsResultOutput) Secrets() GetProjectServiceAccountsResultSecretArrayOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResult) []GetProjectServiceAccountsResultSecret { return v.Secrets }).(GetProjectServiceAccountsResultSecretArrayOutput)
+}
+
+type GetProjectServiceAccountsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountsResult)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountsResultArrayOutput) ToGetProjectServiceAccountsResultArrayOutput() GetProjectServiceAccountsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountsResultArrayOutput) ToGetProjectServiceAccountsResultArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountsResultArrayOutput) Index(i pulumi.IntInput) GetProjectServiceAccountsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectServiceAccountsResult {
+		return vs[0].([]GetProjectServiceAccountsResult)[vs[1].(int)]
+	}).(GetProjectServiceAccountsResultOutput)
+}
+
+type GetProjectServiceAccountsResultSecret struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue string `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId string `pulumi:"secretId"`
+}
+
+// GetProjectServiceAccountsResultSecretInput is an input type that accepts GetProjectServiceAccountsResultSecretArgs and GetProjectServiceAccountsResultSecretOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountsResultSecretInput` via:
+//
+//	GetProjectServiceAccountsResultSecretArgs{...}
+type GetProjectServiceAccountsResultSecretInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountsResultSecretOutput() GetProjectServiceAccountsResultSecretOutput
+	ToGetProjectServiceAccountsResultSecretOutputWithContext(context.Context) GetProjectServiceAccountsResultSecretOutput
+}
+
+type GetProjectServiceAccountsResultSecretArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringInput `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+}
+
+func (GetProjectServiceAccountsResultSecretArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountsResultSecretArgs) ToGetProjectServiceAccountsResultSecretOutput() GetProjectServiceAccountsResultSecretOutput {
+	return i.ToGetProjectServiceAccountsResultSecretOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountsResultSecretArgs) ToGetProjectServiceAccountsResultSecretOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultSecretOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountsResultSecretOutput)
+}
+
+// GetProjectServiceAccountsResultSecretArrayInput is an input type that accepts GetProjectServiceAccountsResultSecretArray and GetProjectServiceAccountsResultSecretArrayOutput values.
+// You can construct a concrete instance of `GetProjectServiceAccountsResultSecretArrayInput` via:
+//
+//	GetProjectServiceAccountsResultSecretArray{ GetProjectServiceAccountsResultSecretArgs{...} }
+type GetProjectServiceAccountsResultSecretArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectServiceAccountsResultSecretArrayOutput() GetProjectServiceAccountsResultSecretArrayOutput
+	ToGetProjectServiceAccountsResultSecretArrayOutputWithContext(context.Context) GetProjectServiceAccountsResultSecretArrayOutput
+}
+
+type GetProjectServiceAccountsResultSecretArray []GetProjectServiceAccountsResultSecretInput
+
+func (GetProjectServiceAccountsResultSecretArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (i GetProjectServiceAccountsResultSecretArray) ToGetProjectServiceAccountsResultSecretArrayOutput() GetProjectServiceAccountsResultSecretArrayOutput {
+	return i.ToGetProjectServiceAccountsResultSecretArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectServiceAccountsResultSecretArray) ToGetProjectServiceAccountsResultSecretArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultSecretArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectServiceAccountsResultSecretArrayOutput)
+}
+
+type GetProjectServiceAccountsResultSecretOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountsResultSecretOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountsResultSecretOutput) ToGetProjectServiceAccountsResultSecretOutput() GetProjectServiceAccountsResultSecretOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountsResultSecretOutput) ToGetProjectServiceAccountsResultSecretOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultSecretOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountsResultSecretOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResultSecret) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountsResultSecretOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResultSecret) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectServiceAccountsResultSecretOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResultSecret) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The masked Service Account secret.
+func (o GetProjectServiceAccountsResultSecretOutput) MaskedSecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResultSecret) string { return v.MaskedSecretValue }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o GetProjectServiceAccountsResultSecretOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResultSecret) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+type GetProjectServiceAccountsResultSecretArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectServiceAccountsResultSecretArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (o GetProjectServiceAccountsResultSecretArrayOutput) ToGetProjectServiceAccountsResultSecretArrayOutput() GetProjectServiceAccountsResultSecretArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountsResultSecretArrayOutput) ToGetProjectServiceAccountsResultSecretArrayOutputWithContext(ctx context.Context) GetProjectServiceAccountsResultSecretArrayOutput {
+	return o
+}
+
+func (o GetProjectServiceAccountsResultSecretArrayOutput) Index(i pulumi.IntInput) GetProjectServiceAccountsResultSecretOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectServiceAccountsResultSecret {
+		return vs[0].([]GetProjectServiceAccountsResultSecret)[vs[1].(int)]
+	}).(GetProjectServiceAccountsResultSecretOutput)
+}
+
 type GetProjectTeam struct {
 	// Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
 	RoleNames []string `pulumi:"roleNames"`
@@ -54172,6 +55225,671 @@ func (o GetServerlessInstancesResultTagArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetServerlessInstancesResultTagOutput)
 }
 
+type GetServiceAccountAccessListEntriesResult struct {
+	// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// The Client ID of the Service Account.
+	ClientId string `pulumi:"clientId"`
+	// Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API.
+	LastUsedAddress string `pulumi:"lastUsedAddress"`
+	// Date when the API received the most recent request that originated from this network address.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
+	// The number of requests that has originated from this network address.
+	RequestCount int `pulumi:"requestCount"`
+}
+
+// GetServiceAccountAccessListEntriesResultInput is an input type that accepts GetServiceAccountAccessListEntriesResultArgs and GetServiceAccountAccessListEntriesResultOutput values.
+// You can construct a concrete instance of `GetServiceAccountAccessListEntriesResultInput` via:
+//
+//	GetServiceAccountAccessListEntriesResultArgs{...}
+type GetServiceAccountAccessListEntriesResultInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountAccessListEntriesResultOutput() GetServiceAccountAccessListEntriesResultOutput
+	ToGetServiceAccountAccessListEntriesResultOutputWithContext(context.Context) GetServiceAccountAccessListEntriesResultOutput
+}
+
+type GetServiceAccountAccessListEntriesResultArgs struct {
+	// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
+	// The Client ID of the Service Account.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API.
+	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
+	// Date when the API received the most recent request that originated from this network address.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
+	// The number of requests that has originated from this network address.
+	RequestCount pulumi.IntInput `pulumi:"requestCount"`
+}
+
+func (GetServiceAccountAccessListEntriesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (i GetServiceAccountAccessListEntriesResultArgs) ToGetServiceAccountAccessListEntriesResultOutput() GetServiceAccountAccessListEntriesResultOutput {
+	return i.ToGetServiceAccountAccessListEntriesResultOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountAccessListEntriesResultArgs) ToGetServiceAccountAccessListEntriesResultOutputWithContext(ctx context.Context) GetServiceAccountAccessListEntriesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountAccessListEntriesResultOutput)
+}
+
+// GetServiceAccountAccessListEntriesResultArrayInput is an input type that accepts GetServiceAccountAccessListEntriesResultArray and GetServiceAccountAccessListEntriesResultArrayOutput values.
+// You can construct a concrete instance of `GetServiceAccountAccessListEntriesResultArrayInput` via:
+//
+//	GetServiceAccountAccessListEntriesResultArray{ GetServiceAccountAccessListEntriesResultArgs{...} }
+type GetServiceAccountAccessListEntriesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountAccessListEntriesResultArrayOutput() GetServiceAccountAccessListEntriesResultArrayOutput
+	ToGetServiceAccountAccessListEntriesResultArrayOutputWithContext(context.Context) GetServiceAccountAccessListEntriesResultArrayOutput
+}
+
+type GetServiceAccountAccessListEntriesResultArray []GetServiceAccountAccessListEntriesResultInput
+
+func (GetServiceAccountAccessListEntriesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (i GetServiceAccountAccessListEntriesResultArray) ToGetServiceAccountAccessListEntriesResultArrayOutput() GetServiceAccountAccessListEntriesResultArrayOutput {
+	return i.ToGetServiceAccountAccessListEntriesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountAccessListEntriesResultArray) ToGetServiceAccountAccessListEntriesResultArrayOutputWithContext(ctx context.Context) GetServiceAccountAccessListEntriesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountAccessListEntriesResultArrayOutput)
+}
+
+type GetServiceAccountAccessListEntriesResultOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountAccessListEntriesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (o GetServiceAccountAccessListEntriesResultOutput) ToGetServiceAccountAccessListEntriesResultOutput() GetServiceAccountAccessListEntriesResultOutput {
+	return o
+}
+
+func (o GetServiceAccountAccessListEntriesResultOutput) ToGetServiceAccountAccessListEntriesResultOutputWithContext(ctx context.Context) GetServiceAccountAccessListEntriesResultOutput {
+	return o
+}
+
+// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+func (o GetServiceAccountAccessListEntriesResultOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// The Client ID of the Service Account.
+func (o GetServiceAccountAccessListEntriesResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountAccessListEntriesResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+func (o GetServiceAccountAccessListEntriesResultOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address that issued the most recent request to the API.
+func (o GetServiceAccountAccessListEntriesResultOutput) LastUsedAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) string { return v.LastUsedAddress }).(pulumi.StringOutput)
+}
+
+// Date when the API received the most recent request that originated from this network address.
+func (o GetServiceAccountAccessListEntriesResultOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+func (o GetServiceAccountAccessListEntriesResultOutput) OrgId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) string { return v.OrgId }).(pulumi.StringOutput)
+}
+
+// The number of requests that has originated from this network address.
+func (o GetServiceAccountAccessListEntriesResultOutput) RequestCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServiceAccountAccessListEntriesResult) int { return v.RequestCount }).(pulumi.IntOutput)
+}
+
+type GetServiceAccountAccessListEntriesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountAccessListEntriesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountAccessListEntriesResult)(nil)).Elem()
+}
+
+func (o GetServiceAccountAccessListEntriesResultArrayOutput) ToGetServiceAccountAccessListEntriesResultArrayOutput() GetServiceAccountAccessListEntriesResultArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountAccessListEntriesResultArrayOutput) ToGetServiceAccountAccessListEntriesResultArrayOutputWithContext(ctx context.Context) GetServiceAccountAccessListEntriesResultArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountAccessListEntriesResultArrayOutput) Index(i pulumi.IntInput) GetServiceAccountAccessListEntriesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServiceAccountAccessListEntriesResult {
+		return vs[0].([]GetServiceAccountAccessListEntriesResult)[vs[1].(int)]
+	}).(GetServiceAccountAccessListEntriesResultOutput)
+}
+
+type GetServiceAccountProjectAssignmentsResult struct {
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId string `pulumi:"projectId"`
+}
+
+// GetServiceAccountProjectAssignmentsResultInput is an input type that accepts GetServiceAccountProjectAssignmentsResultArgs and GetServiceAccountProjectAssignmentsResultOutput values.
+// You can construct a concrete instance of `GetServiceAccountProjectAssignmentsResultInput` via:
+//
+//	GetServiceAccountProjectAssignmentsResultArgs{...}
+type GetServiceAccountProjectAssignmentsResultInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountProjectAssignmentsResultOutput() GetServiceAccountProjectAssignmentsResultOutput
+	ToGetServiceAccountProjectAssignmentsResultOutputWithContext(context.Context) GetServiceAccountProjectAssignmentsResultOutput
+}
+
+type GetServiceAccountProjectAssignmentsResultArgs struct {
+	// Unique 24-hexadecimal digit string that identifies your project.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+}
+
+func (GetServiceAccountProjectAssignmentsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (i GetServiceAccountProjectAssignmentsResultArgs) ToGetServiceAccountProjectAssignmentsResultOutput() GetServiceAccountProjectAssignmentsResultOutput {
+	return i.ToGetServiceAccountProjectAssignmentsResultOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountProjectAssignmentsResultArgs) ToGetServiceAccountProjectAssignmentsResultOutputWithContext(ctx context.Context) GetServiceAccountProjectAssignmentsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountProjectAssignmentsResultOutput)
+}
+
+// GetServiceAccountProjectAssignmentsResultArrayInput is an input type that accepts GetServiceAccountProjectAssignmentsResultArray and GetServiceAccountProjectAssignmentsResultArrayOutput values.
+// You can construct a concrete instance of `GetServiceAccountProjectAssignmentsResultArrayInput` via:
+//
+//	GetServiceAccountProjectAssignmentsResultArray{ GetServiceAccountProjectAssignmentsResultArgs{...} }
+type GetServiceAccountProjectAssignmentsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountProjectAssignmentsResultArrayOutput() GetServiceAccountProjectAssignmentsResultArrayOutput
+	ToGetServiceAccountProjectAssignmentsResultArrayOutputWithContext(context.Context) GetServiceAccountProjectAssignmentsResultArrayOutput
+}
+
+type GetServiceAccountProjectAssignmentsResultArray []GetServiceAccountProjectAssignmentsResultInput
+
+func (GetServiceAccountProjectAssignmentsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (i GetServiceAccountProjectAssignmentsResultArray) ToGetServiceAccountProjectAssignmentsResultArrayOutput() GetServiceAccountProjectAssignmentsResultArrayOutput {
+	return i.ToGetServiceAccountProjectAssignmentsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountProjectAssignmentsResultArray) ToGetServiceAccountProjectAssignmentsResultArrayOutputWithContext(ctx context.Context) GetServiceAccountProjectAssignmentsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountProjectAssignmentsResultArrayOutput)
+}
+
+type GetServiceAccountProjectAssignmentsResultOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountProjectAssignmentsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (o GetServiceAccountProjectAssignmentsResultOutput) ToGetServiceAccountProjectAssignmentsResultOutput() GetServiceAccountProjectAssignmentsResultOutput {
+	return o
+}
+
+func (o GetServiceAccountProjectAssignmentsResultOutput) ToGetServiceAccountProjectAssignmentsResultOutputWithContext(ctx context.Context) GetServiceAccountProjectAssignmentsResultOutput {
+	return o
+}
+
+// Unique 24-hexadecimal digit string that identifies your project.
+func (o GetServiceAccountProjectAssignmentsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountProjectAssignmentsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+type GetServiceAccountProjectAssignmentsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountProjectAssignmentsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountProjectAssignmentsResult)(nil)).Elem()
+}
+
+func (o GetServiceAccountProjectAssignmentsResultArrayOutput) ToGetServiceAccountProjectAssignmentsResultArrayOutput() GetServiceAccountProjectAssignmentsResultArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountProjectAssignmentsResultArrayOutput) ToGetServiceAccountProjectAssignmentsResultArrayOutputWithContext(ctx context.Context) GetServiceAccountProjectAssignmentsResultArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountProjectAssignmentsResultArrayOutput) Index(i pulumi.IntInput) GetServiceAccountProjectAssignmentsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServiceAccountProjectAssignmentsResult {
+		return vs[0].([]GetServiceAccountProjectAssignmentsResult)[vs[1].(int)]
+	}).(GetServiceAccountProjectAssignmentsResultOutput)
+}
+
+type GetServiceAccountSecretType struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue string `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId string `pulumi:"secretId"`
+}
+
+// GetServiceAccountSecretTypeInput is an input type that accepts GetServiceAccountSecretTypeArgs and GetServiceAccountSecretTypeOutput values.
+// You can construct a concrete instance of `GetServiceAccountSecretTypeInput` via:
+//
+//	GetServiceAccountSecretTypeArgs{...}
+type GetServiceAccountSecretTypeInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountSecretTypeOutput() GetServiceAccountSecretTypeOutput
+	ToGetServiceAccountSecretTypeOutputWithContext(context.Context) GetServiceAccountSecretTypeOutput
+}
+
+type GetServiceAccountSecretTypeArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringInput `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+}
+
+func (GetServiceAccountSecretTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i GetServiceAccountSecretTypeArgs) ToGetServiceAccountSecretTypeOutput() GetServiceAccountSecretTypeOutput {
+	return i.ToGetServiceAccountSecretTypeOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountSecretTypeArgs) ToGetServiceAccountSecretTypeOutputWithContext(ctx context.Context) GetServiceAccountSecretTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountSecretTypeOutput)
+}
+
+// GetServiceAccountSecretTypeArrayInput is an input type that accepts GetServiceAccountSecretTypeArray and GetServiceAccountSecretTypeArrayOutput values.
+// You can construct a concrete instance of `GetServiceAccountSecretTypeArrayInput` via:
+//
+//	GetServiceAccountSecretTypeArray{ GetServiceAccountSecretTypeArgs{...} }
+type GetServiceAccountSecretTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountSecretTypeArrayOutput() GetServiceAccountSecretTypeArrayOutput
+	ToGetServiceAccountSecretTypeArrayOutputWithContext(context.Context) GetServiceAccountSecretTypeArrayOutput
+}
+
+type GetServiceAccountSecretTypeArray []GetServiceAccountSecretTypeInput
+
+func (GetServiceAccountSecretTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountSecretType)(nil)).Elem()
+}
+
+func (i GetServiceAccountSecretTypeArray) ToGetServiceAccountSecretTypeArrayOutput() GetServiceAccountSecretTypeArrayOutput {
+	return i.ToGetServiceAccountSecretTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountSecretTypeArray) ToGetServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) GetServiceAccountSecretTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountSecretTypeArrayOutput)
+}
+
+type GetServiceAccountSecretTypeOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountSecretTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o GetServiceAccountSecretTypeOutput) ToGetServiceAccountSecretTypeOutput() GetServiceAccountSecretTypeOutput {
+	return o
+}
+
+func (o GetServiceAccountSecretTypeOutput) ToGetServiceAccountSecretTypeOutputWithContext(ctx context.Context) GetServiceAccountSecretTypeOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountSecretTypeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountSecretType) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountSecretTypeOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountSecretType) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountSecretTypeOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountSecretType) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The masked Service Account secret.
+func (o GetServiceAccountSecretTypeOutput) MaskedSecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountSecretType) string { return v.MaskedSecretValue }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o GetServiceAccountSecretTypeOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountSecretType) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+type GetServiceAccountSecretTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountSecretTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountSecretType)(nil)).Elem()
+}
+
+func (o GetServiceAccountSecretTypeArrayOutput) ToGetServiceAccountSecretTypeArrayOutput() GetServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountSecretTypeArrayOutput) ToGetServiceAccountSecretTypeArrayOutputWithContext(ctx context.Context) GetServiceAccountSecretTypeArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountSecretTypeArrayOutput) Index(i pulumi.IntInput) GetServiceAccountSecretTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServiceAccountSecretType {
+		return vs[0].([]GetServiceAccountSecretType)[vs[1].(int)]
+	}).(GetServiceAccountSecretTypeOutput)
+}
+
+type GetServiceAccountsResult struct {
+	// The Client ID of the Service Account.
+	ClientId string `pulumi:"clientId"`
+	// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Human readable description for the Service Account.
+	Description string `pulumi:"description"`
+	// Human-readable name for the Service Account.
+	Name string `pulumi:"name"`
+	// A list of Organization roles associated with the Service Account.
+	Roles []string `pulumi:"roles"`
+	// A list of secrets associated with the specified Service Account.
+	Secrets []GetServiceAccountsResultSecret `pulumi:"secrets"`
+}
+
+// GetServiceAccountsResultInput is an input type that accepts GetServiceAccountsResultArgs and GetServiceAccountsResultOutput values.
+// You can construct a concrete instance of `GetServiceAccountsResultInput` via:
+//
+//	GetServiceAccountsResultArgs{...}
+type GetServiceAccountsResultInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountsResultOutput() GetServiceAccountsResultOutput
+	ToGetServiceAccountsResultOutputWithContext(context.Context) GetServiceAccountsResultOutput
+}
+
+type GetServiceAccountsResultArgs struct {
+	// The Client ID of the Service Account.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Human readable description for the Service Account.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Human-readable name for the Service Account.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A list of Organization roles associated with the Service Account.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+	// A list of secrets associated with the specified Service Account.
+	Secrets GetServiceAccountsResultSecretArrayInput `pulumi:"secrets"`
+}
+
+func (GetServiceAccountsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountsResult)(nil)).Elem()
+}
+
+func (i GetServiceAccountsResultArgs) ToGetServiceAccountsResultOutput() GetServiceAccountsResultOutput {
+	return i.ToGetServiceAccountsResultOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountsResultArgs) ToGetServiceAccountsResultOutputWithContext(ctx context.Context) GetServiceAccountsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountsResultOutput)
+}
+
+// GetServiceAccountsResultArrayInput is an input type that accepts GetServiceAccountsResultArray and GetServiceAccountsResultArrayOutput values.
+// You can construct a concrete instance of `GetServiceAccountsResultArrayInput` via:
+//
+//	GetServiceAccountsResultArray{ GetServiceAccountsResultArgs{...} }
+type GetServiceAccountsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountsResultArrayOutput() GetServiceAccountsResultArrayOutput
+	ToGetServiceAccountsResultArrayOutputWithContext(context.Context) GetServiceAccountsResultArrayOutput
+}
+
+type GetServiceAccountsResultArray []GetServiceAccountsResultInput
+
+func (GetServiceAccountsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountsResult)(nil)).Elem()
+}
+
+func (i GetServiceAccountsResultArray) ToGetServiceAccountsResultArrayOutput() GetServiceAccountsResultArrayOutput {
+	return i.ToGetServiceAccountsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountsResultArray) ToGetServiceAccountsResultArrayOutputWithContext(ctx context.Context) GetServiceAccountsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountsResultArrayOutput)
+}
+
+type GetServiceAccountsResultOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountsResult)(nil)).Elem()
+}
+
+func (o GetServiceAccountsResultOutput) ToGetServiceAccountsResultOutput() GetServiceAccountsResultOutput {
+	return o
+}
+
+func (o GetServiceAccountsResultOutput) ToGetServiceAccountsResultOutputWithContext(ctx context.Context) GetServiceAccountsResultOutput {
+	return o
+}
+
+// The Client ID of the Service Account.
+func (o GetServiceAccountsResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Human readable description for the Service Account.
+func (o GetServiceAccountsResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Human-readable name for the Service Account.
+func (o GetServiceAccountsResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A list of Organization roles associated with the Service Account.
+func (o GetServiceAccountsResultOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServiceAccountsResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+// A list of secrets associated with the specified Service Account.
+func (o GetServiceAccountsResultOutput) Secrets() GetServiceAccountsResultSecretArrayOutput {
+	return o.ApplyT(func(v GetServiceAccountsResult) []GetServiceAccountsResultSecret { return v.Secrets }).(GetServiceAccountsResultSecretArrayOutput)
+}
+
+type GetServiceAccountsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountsResult)(nil)).Elem()
+}
+
+func (o GetServiceAccountsResultArrayOutput) ToGetServiceAccountsResultArrayOutput() GetServiceAccountsResultArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountsResultArrayOutput) ToGetServiceAccountsResultArrayOutputWithContext(ctx context.Context) GetServiceAccountsResultArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountsResultArrayOutput) Index(i pulumi.IntInput) GetServiceAccountsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServiceAccountsResult {
+		return vs[0].([]GetServiceAccountsResult)[vs[1].(int)]
+	}).(GetServiceAccountsResultOutput)
+}
+
+type GetServiceAccountsResultSecret struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue string `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId string `pulumi:"secretId"`
+}
+
+// GetServiceAccountsResultSecretInput is an input type that accepts GetServiceAccountsResultSecretArgs and GetServiceAccountsResultSecretOutput values.
+// You can construct a concrete instance of `GetServiceAccountsResultSecretInput` via:
+//
+//	GetServiceAccountsResultSecretArgs{...}
+type GetServiceAccountsResultSecretInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountsResultSecretOutput() GetServiceAccountsResultSecretOutput
+	ToGetServiceAccountsResultSecretOutputWithContext(context.Context) GetServiceAccountsResultSecretOutput
+}
+
+type GetServiceAccountsResultSecretArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringInput `pulumi:"maskedSecretValue"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+}
+
+func (GetServiceAccountsResultSecretArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (i GetServiceAccountsResultSecretArgs) ToGetServiceAccountsResultSecretOutput() GetServiceAccountsResultSecretOutput {
+	return i.ToGetServiceAccountsResultSecretOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountsResultSecretArgs) ToGetServiceAccountsResultSecretOutputWithContext(ctx context.Context) GetServiceAccountsResultSecretOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountsResultSecretOutput)
+}
+
+// GetServiceAccountsResultSecretArrayInput is an input type that accepts GetServiceAccountsResultSecretArray and GetServiceAccountsResultSecretArrayOutput values.
+// You can construct a concrete instance of `GetServiceAccountsResultSecretArrayInput` via:
+//
+//	GetServiceAccountsResultSecretArray{ GetServiceAccountsResultSecretArgs{...} }
+type GetServiceAccountsResultSecretArrayInput interface {
+	pulumi.Input
+
+	ToGetServiceAccountsResultSecretArrayOutput() GetServiceAccountsResultSecretArrayOutput
+	ToGetServiceAccountsResultSecretArrayOutputWithContext(context.Context) GetServiceAccountsResultSecretArrayOutput
+}
+
+type GetServiceAccountsResultSecretArray []GetServiceAccountsResultSecretInput
+
+func (GetServiceAccountsResultSecretArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (i GetServiceAccountsResultSecretArray) ToGetServiceAccountsResultSecretArrayOutput() GetServiceAccountsResultSecretArrayOutput {
+	return i.ToGetServiceAccountsResultSecretArrayOutputWithContext(context.Background())
+}
+
+func (i GetServiceAccountsResultSecretArray) ToGetServiceAccountsResultSecretArrayOutputWithContext(ctx context.Context) GetServiceAccountsResultSecretArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceAccountsResultSecretArrayOutput)
+}
+
+type GetServiceAccountsResultSecretOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountsResultSecretOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (o GetServiceAccountsResultSecretOutput) ToGetServiceAccountsResultSecretOutput() GetServiceAccountsResultSecretOutput {
+	return o
+}
+
+func (o GetServiceAccountsResultSecretOutput) ToGetServiceAccountsResultSecretOutputWithContext(ctx context.Context) GetServiceAccountsResultSecretOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountsResultSecretOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResultSecret) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountsResultSecretOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResultSecret) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetServiceAccountsResultSecretOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResultSecret) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The masked Service Account secret.
+func (o GetServiceAccountsResultSecretOutput) MaskedSecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResultSecret) string { return v.MaskedSecretValue }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o GetServiceAccountsResultSecretOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServiceAccountsResultSecret) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+type GetServiceAccountsResultSecretArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServiceAccountsResultSecretArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServiceAccountsResultSecret)(nil)).Elem()
+}
+
+func (o GetServiceAccountsResultSecretArrayOutput) ToGetServiceAccountsResultSecretArrayOutput() GetServiceAccountsResultSecretArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountsResultSecretArrayOutput) ToGetServiceAccountsResultSecretArrayOutputWithContext(ctx context.Context) GetServiceAccountsResultSecretArrayOutput {
+	return o
+}
+
+func (o GetServiceAccountsResultSecretArrayOutput) Index(i pulumi.IntInput) GetServiceAccountsResultSecretOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServiceAccountsResultSecret {
+		return vs[0].([]GetServiceAccountsResultSecret)[vs[1].(int)]
+	}).(GetServiceAccountsResultSecretOutput)
+}
+
 type GetSharedTierRestoreJobsResult struct {
 	DeliveryType             string `pulumi:"deliveryType"`
 	ExpirationDate           string `pulumi:"expirationDate"`
@@ -54465,7 +56183,7 @@ type GetStreamConnectionAuthentication struct {
 	Mechanism string `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method string `pulumi:"method"`
-	// Password of the account to connect to the Kafka cluster.
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
 	Password string `pulumi:"password"`
 	// Additional information to provide to the Kafka broker.
 	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
@@ -54473,7 +56191,7 @@ type GetStreamConnectionAuthentication struct {
 	Scope string `pulumi:"scope"`
 	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
 	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
-	// Username of the account to connect to the Kafka cluster.
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
 	Username string `pulumi:"username"`
 }
 
@@ -54497,7 +56215,7 @@ type GetStreamConnectionAuthenticationArgs struct {
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method pulumi.StringInput `pulumi:"method"`
-	// Password of the account to connect to the Kafka cluster.
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Additional information to provide to the Kafka broker.
 	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
@@ -54505,7 +56223,7 @@ type GetStreamConnectionAuthenticationArgs struct {
 	Scope pulumi.StringInput `pulumi:"scope"`
 	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
 	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
-	// Username of the account to connect to the Kafka cluster.
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -54555,7 +56273,7 @@ func (o GetStreamConnectionAuthenticationOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Method }).(pulumi.StringOutput)
 }
 
-// Password of the account to connect to the Kafka cluster.
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
 func (o GetStreamConnectionAuthenticationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Password }).(pulumi.StringOutput)
 }
@@ -54575,7 +56293,7 @@ func (o GetStreamConnectionAuthenticationOutput) TokenEndpointUrl() pulumi.Strin
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
 }
 
-// Username of the account to connect to the Kafka cluster.
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
 func (o GetStreamConnectionAuthenticationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -54635,7 +56353,9 @@ func (o GetStreamConnectionAwsOutput) RoleArn() pulumi.StringOutput {
 type GetStreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type string `pulumi:"type"`
 }
 
@@ -54653,7 +56373,9 @@ type GetStreamConnectionDbRoleToExecuteInput interface {
 type GetStreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -54688,7 +56410,9 @@ func (o GetStreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o GetStreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -54748,7 +56472,9 @@ func (o GetStreamConnectionNetworkingOutput) Access() GetStreamConnectionNetwork
 type GetStreamConnectionNetworkingAccess struct {
 	// Id of the Private Link connection when type is `PRIVATE_LINK`.
 	ConnectionId string `pulumi:"connectionId"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type string `pulumi:"type"`
 }
 
@@ -54766,7 +56492,9 @@ type GetStreamConnectionNetworkingAccessInput interface {
 type GetStreamConnectionNetworkingAccessArgs struct {
 	// Id of the Private Link connection when type is `PRIVATE_LINK`.
 	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -54801,9 +56529,87 @@ func (o GetStreamConnectionNetworkingAccessOutput) ConnectionId() pulumi.StringO
 	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
 }
 
-// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o GetStreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionSchemaRegistryAuthentication struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password string `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionSchemaRegistryAuthenticationInput is an input type that accepts GetStreamConnectionSchemaRegistryAuthenticationArgs and GetStreamConnectionSchemaRegistryAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionSchemaRegistryAuthenticationInput` via:
+//
+//	GetStreamConnectionSchemaRegistryAuthenticationArgs{...}
+type GetStreamConnectionSchemaRegistryAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput
+	ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput
+}
+
+type GetStreamConnectionSchemaRegistryAuthenticationArgs struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionSchemaRegistryAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionSchemaRegistryAuthenticationArgs) ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return i.ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionSchemaRegistryAuthenticationArgs) ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionSchemaRegistryAuthenticationOutput)
+}
+
+type GetStreamConnectionSchemaRegistryAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionSchemaRegistryAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionSecurity struct {
@@ -54894,9 +56700,17 @@ type GetStreamConnectionsResult struct {
 	Networking GetStreamConnectionsResultNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
+	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
+	// The Schema Registry provider. Must be set to `CONFLUENT`.
+	SchemaRegistryProvider string `pulumi:"schemaRegistryProvider"`
+	// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+	SchemaRegistryUrls []string `pulumi:"schemaRegistryUrls"`
 	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type string `pulumi:"type"`
 	// URL of the HTTPs endpoint that will be used for creating a connection.
 	Url string `pulumi:"url"`
@@ -54944,9 +56758,17 @@ type GetStreamConnectionsResultArgs struct {
 	Networking GetStreamConnectionsResultNetworkingInput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthenticationInput `pulumi:"schemaRegistryAuthentication"`
+	// The Schema Registry provider. Must be set to `CONFLUENT`.
+	SchemaRegistryProvider pulumi.StringInput `pulumi:"schemaRegistryProvider"`
+	// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+	SchemaRegistryUrls pulumi.StringArrayInput `pulumi:"schemaRegistryUrls"`
 	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type pulumi.StringInput `pulumi:"type"`
 	// URL of the HTTPs endpoint that will be used for creating a connection.
 	Url pulumi.StringInput `pulumi:"url"`
@@ -55072,12 +56894,31 @@ func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+func (o GetStreamConnectionsResultOutput) SchemaRegistryAuthentication() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSchemaRegistryAuthentication {
+		return v.SchemaRegistryAuthentication
+	}).(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput)
+}
+
+// The Schema Registry provider. Must be set to `CONFLUENT`.
+func (o GetStreamConnectionsResultOutput) SchemaRegistryProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.SchemaRegistryProvider }).(pulumi.StringOutput)
+}
+
+// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+func (o GetStreamConnectionsResultOutput) SchemaRegistryUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) []string { return v.SchemaRegistryUrls }).(pulumi.StringArrayOutput)
+}
+
 // Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultSecurityOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
 }
 
-// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -55123,7 +56964,7 @@ type GetStreamConnectionsResultAuthentication struct {
 	Mechanism string `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method string `pulumi:"method"`
-	// Password of the account to connect to the Kafka cluster.
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
 	Password string `pulumi:"password"`
 	// Additional information to provide to the Kafka broker.
 	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
@@ -55131,7 +56972,7 @@ type GetStreamConnectionsResultAuthentication struct {
 	Scope string `pulumi:"scope"`
 	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
 	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
-	// Username of the account to connect to the Kafka cluster.
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
 	Username string `pulumi:"username"`
 }
 
@@ -55155,7 +56996,7 @@ type GetStreamConnectionsResultAuthenticationArgs struct {
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method pulumi.StringInput `pulumi:"method"`
-	// Password of the account to connect to the Kafka cluster.
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
 	Password pulumi.StringInput `pulumi:"password"`
 	// Additional information to provide to the Kafka broker.
 	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
@@ -55163,7 +57004,7 @@ type GetStreamConnectionsResultAuthenticationArgs struct {
 	Scope pulumi.StringInput `pulumi:"scope"`
 	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
 	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
-	// Username of the account to connect to the Kafka cluster.
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -55213,7 +57054,7 @@ func (o GetStreamConnectionsResultAuthenticationOutput) Method() pulumi.StringOu
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Method }).(pulumi.StringOutput)
 }
 
-// Password of the account to connect to the Kafka cluster.
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
 func (o GetStreamConnectionsResultAuthenticationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
 }
@@ -55233,7 +57074,7 @@ func (o GetStreamConnectionsResultAuthenticationOutput) TokenEndpointUrl() pulum
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
 }
 
-// Username of the account to connect to the Kafka cluster.
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
 func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -55293,7 +57134,9 @@ func (o GetStreamConnectionsResultAwsOutput) RoleArn() pulumi.StringOutput {
 type GetStreamConnectionsResultDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type string `pulumi:"type"`
 }
 
@@ -55311,7 +57154,9 @@ type GetStreamConnectionsResultDbRoleToExecuteInput interface {
 type GetStreamConnectionsResultDbRoleToExecuteArgs struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -55346,7 +57191,9 @@ func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOut
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -55408,7 +57255,9 @@ func (o GetStreamConnectionsResultNetworkingOutput) Access() GetStreamConnection
 type GetStreamConnectionsResultNetworkingAccess struct {
 	// Id of the Private Link connection when type is `PRIVATE_LINK`.
 	ConnectionId string `pulumi:"connectionId"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type string `pulumi:"type"`
 }
 
@@ -55426,7 +57275,9 @@ type GetStreamConnectionsResultNetworkingAccessInput interface {
 type GetStreamConnectionsResultNetworkingAccessArgs struct {
 	// Id of the Private Link connection when type is `PRIVATE_LINK`.
 	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -55461,9 +57312,87 @@ func (o GetStreamConnectionsResultNetworkingAccessOutput) ConnectionId() pulumi.
 	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
 }
 
-// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o GetStreamConnectionsResultNetworkingAccessOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultSchemaRegistryAuthentication struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password string `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionsResultSchemaRegistryAuthenticationInput is an input type that accepts GetStreamConnectionsResultSchemaRegistryAuthenticationArgs and GetStreamConnectionsResultSchemaRegistryAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultSchemaRegistryAuthenticationInput` via:
+//
+//	GetStreamConnectionsResultSchemaRegistryAuthenticationArgs{...}
+type GetStreamConnectionsResultSchemaRegistryAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput
+	ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput
+}
+
+type GetStreamConnectionsResultSchemaRegistryAuthenticationArgs struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return i.ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput)
+}
+
+type GetStreamConnectionsResultSchemaRegistryAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionsResultSecurity struct {
@@ -57987,6 +59916,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectIpAddressesServicesClusterArrayInput)(nil)).Elem(), ProjectIpAddressesServicesClusterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectLimitInput)(nil)).Elem(), ProjectLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectLimitArrayInput)(nil)).Elem(), ProjectLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectServiceAccountSecretTypeInput)(nil)).Elem(), ProjectServiceAccountSecretTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectServiceAccountSecretTypeArrayInput)(nil)).Elem(), ProjectServiceAccountSecretTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamInput)(nil)).Elem(), ProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamArrayInput)(nil)).Elem(), ProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAssumeRoleInput)(nil)).Elem(), ProviderAssumeRoleArgs{})
@@ -58011,6 +59942,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceLinkArrayInput)(nil)).Elem(), ServerlessInstanceLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceTagInput)(nil)).Elem(), ServerlessInstanceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerlessInstanceTagArrayInput)(nil)).Elem(), ServerlessInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountSecretTypeInput)(nil)).Elem(), ServiceAccountSecretTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountSecretTypeArrayInput)(nil)).Elem(), ServiceAccountSecretTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationPtrInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAwsInput)(nil)).Elem(), StreamConnectionAwsArgs{})
@@ -58021,6 +59954,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingPtrInput)(nil)).Elem(), StreamConnectionNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingAccessInput)(nil)).Elem(), StreamConnectionNetworkingAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingAccessPtrInput)(nil)).Elem(), StreamConnectionNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSchemaRegistryAuthenticationInput)(nil)).Elem(), StreamConnectionSchemaRegistryAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSchemaRegistryAuthenticationPtrInput)(nil)).Elem(), StreamConnectionSchemaRegistryAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityPtrInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
@@ -58460,6 +60395,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectIpAddressesServicesClusterArrayInput)(nil)).Elem(), GetProjectIpAddressesServicesClusterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectLimitInput)(nil)).Elem(), GetProjectLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectLimitArrayInput)(nil)).Elem(), GetProjectLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountAccessListEntriesResultInput)(nil)).Elem(), GetProjectServiceAccountAccessListEntriesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountAccessListEntriesResultArrayInput)(nil)).Elem(), GetProjectServiceAccountAccessListEntriesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountSecretTypeInput)(nil)).Elem(), GetProjectServiceAccountSecretTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountSecretTypeArrayInput)(nil)).Elem(), GetProjectServiceAccountSecretTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountsResultInput)(nil)).Elem(), GetProjectServiceAccountsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountsResultArrayInput)(nil)).Elem(), GetProjectServiceAccountsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountsResultSecretInput)(nil)).Elem(), GetProjectServiceAccountsResultSecretArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountsResultSecretArrayInput)(nil)).Elem(), GetProjectServiceAccountsResultSecretArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamInput)(nil)).Elem(), GetProjectTeamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectTeamArrayInput)(nil)).Elem(), GetProjectTeamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectUserInput)(nil)).Elem(), GetProjectUserArgs{})
@@ -58514,6 +60457,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultLinkArrayInput)(nil)).Elem(), GetServerlessInstancesResultLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultTagInput)(nil)).Elem(), GetServerlessInstancesResultTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessInstancesResultTagArrayInput)(nil)).Elem(), GetServerlessInstancesResultTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountAccessListEntriesResultInput)(nil)).Elem(), GetServiceAccountAccessListEntriesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountAccessListEntriesResultArrayInput)(nil)).Elem(), GetServiceAccountAccessListEntriesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountProjectAssignmentsResultInput)(nil)).Elem(), GetServiceAccountProjectAssignmentsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountProjectAssignmentsResultArrayInput)(nil)).Elem(), GetServiceAccountProjectAssignmentsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountSecretTypeInput)(nil)).Elem(), GetServiceAccountSecretTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountSecretTypeArrayInput)(nil)).Elem(), GetServiceAccountSecretTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountsResultInput)(nil)).Elem(), GetServiceAccountsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountsResultArrayInput)(nil)).Elem(), GetServiceAccountsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountsResultSecretInput)(nil)).Elem(), GetServiceAccountsResultSecretArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceAccountsResultSecretArrayInput)(nil)).Elem(), GetServiceAccountsResultSecretArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierRestoreJobsResultInput)(nil)).Elem(), GetSharedTierRestoreJobsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierRestoreJobsResultArrayInput)(nil)).Elem(), GetSharedTierRestoreJobsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultInput)(nil)).Elem(), GetSharedTierSnapshotsResultArgs{})
@@ -58523,6 +60476,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingInput)(nil)).Elem(), GetStreamConnectionNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionSchemaRegistryAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSecurityInput)(nil)).Elem(), GetStreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
@@ -58531,6 +60485,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultSchemaRegistryAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSecurityInput)(nil)).Elem(), GetStreamConnectionsResultSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceDataProcessRegionInput)(nil)).Elem(), GetStreamInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceStreamConfigInput)(nil)).Elem(), GetStreamInstanceStreamConfigArgs{})
@@ -58778,6 +60733,8 @@ func init() {
 	pulumi.RegisterOutputType(ProjectIpAddressesServicesClusterArrayOutput{})
 	pulumi.RegisterOutputType(ProjectLimitOutput{})
 	pulumi.RegisterOutputType(ProjectLimitArrayOutput{})
+	pulumi.RegisterOutputType(ProjectServiceAccountSecretTypeOutput{})
+	pulumi.RegisterOutputType(ProjectServiceAccountSecretTypeArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
 	pulumi.RegisterOutputType(ProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(ProviderAssumeRoleOutput{})
@@ -58802,6 +60759,8 @@ func init() {
 	pulumi.RegisterOutputType(ServerlessInstanceLinkArrayOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceTagOutput{})
 	pulumi.RegisterOutputType(ServerlessInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(ServiceAccountSecretTypeOutput{})
+	pulumi.RegisterOutputType(ServiceAccountSecretTypeArrayOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAwsOutput{})
@@ -58812,6 +60771,8 @@ func init() {
 	pulumi.RegisterOutputType(StreamConnectionNetworkingPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionNetworkingAccessOutput{})
 	pulumi.RegisterOutputType(StreamConnectionNetworkingAccessPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionSchemaRegistryAuthenticationOutput{})
+	pulumi.RegisterOutputType(StreamConnectionSchemaRegistryAuthenticationPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionSecurityOutput{})
 	pulumi.RegisterOutputType(StreamConnectionSecurityPtrOutput{})
 	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionOutput{})
@@ -59251,6 +61212,14 @@ func init() {
 	pulumi.RegisterOutputType(GetProjectIpAddressesServicesClusterArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectLimitOutput{})
 	pulumi.RegisterOutputType(GetProjectLimitArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountAccessListEntriesResultOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountAccessListEntriesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountSecretTypeOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountSecretTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountsResultOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountsResultSecretOutput{})
+	pulumi.RegisterOutputType(GetProjectServiceAccountsResultSecretArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamOutput{})
 	pulumi.RegisterOutputType(GetProjectTeamArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectUserOutput{})
@@ -59305,6 +61274,16 @@ func init() {
 	pulumi.RegisterOutputType(GetServerlessInstancesResultLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetServerlessInstancesResultTagOutput{})
 	pulumi.RegisterOutputType(GetServerlessInstancesResultTagArrayOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountAccessListEntriesResultOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountAccessListEntriesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountProjectAssignmentsResultOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountProjectAssignmentsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountSecretTypeOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountSecretTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountsResultOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountsResultSecretOutput{})
+	pulumi.RegisterOutputType(GetServiceAccountsResultSecretArrayOutput{})
 	pulumi.RegisterOutputType(GetSharedTierRestoreJobsResultOutput{})
 	pulumi.RegisterOutputType(GetSharedTierRestoreJobsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultOutput{})
@@ -59314,6 +61293,7 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionSchemaRegistryAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionSecurityOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
@@ -59322,6 +61302,7 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultSecurityOutput{})
 	pulumi.RegisterOutputType(GetStreamInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetStreamInstanceStreamConfigOutput{})

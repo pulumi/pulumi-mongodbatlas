@@ -281,6 +281,80 @@ import (
 //
 // ```
 //
+// ### Example Schema Registry Connection with USER_INFO Authentication
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-schema-registry", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:              pulumi.Any(projectId),
+//				WorkspaceName:          pulumi.Any(example.InstanceName),
+//				ConnectionName:         pulumi.String("SchemaRegistryConnection"),
+//				Type:                   pulumi.String("SchemaRegistry"),
+//				SchemaRegistryProvider: pulumi.String("CONFLUENT"),
+//				SchemaRegistryUrls: pulumi.StringArray{
+//					pulumi.String("https://schema-registry.example.com:8081"),
+//				},
+//				SchemaRegistryAuthentication: &mongodbatlas.StreamConnectionSchemaRegistryAuthenticationArgs{
+//					Type:     pulumi.String("USER_INFO"),
+//					Username: pulumi.String("registry-user"),
+//					Password: pulumi.Any(schemaRegistryPassword),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example Schema Registry Connection with SASL_INHERIT Authentication
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-schema-registry-sasl", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:              pulumi.Any(projectId),
+//				WorkspaceName:          pulumi.Any(example.InstanceName),
+//				ConnectionName:         pulumi.String("SchemaRegistryConnectionSASL"),
+//				Type:                   pulumi.String("SchemaRegistry"),
+//				SchemaRegistryProvider: pulumi.String("CONFLUENT"),
+//				SchemaRegistryUrls: pulumi.StringArray{
+//					pulumi.String("https://schema-registry.example.com:8081"),
+//				},
+//				SchemaRegistryAuthentication: &mongodbatlas.StreamConnectionSchemaRegistryAuthenticationArgs{
+//					Type: pulumi.String("SASL_INHERIT"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -309,9 +383,12 @@ type StreamConnection struct {
 	InstanceName pulumi.StringPtrOutput           `pulumi:"instanceName"`
 	Networking   StreamConnectionNetworkingOutput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId pulumi.StringOutput               `pulumi:"projectId"`
-	Security  StreamConnectionSecurityPtrOutput `pulumi:"security"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	ProjectId                    pulumi.StringOutput                                   `pulumi:"projectId"`
+	SchemaRegistryAuthentication StreamConnectionSchemaRegistryAuthenticationPtrOutput `pulumi:"schemaRegistryAuthentication"`
+	SchemaRegistryProvider       pulumi.StringPtrOutput                                `pulumi:"schemaRegistryProvider"`
+	SchemaRegistryUrls           pulumi.StringArrayOutput                              `pulumi:"schemaRegistryUrls"`
+	Security                     StreamConnectionSecurityPtrOutput                     `pulumi:"security"`
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	//
 	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringOutput    `pulumi:"type"`
@@ -375,9 +452,12 @@ type streamConnectionState struct {
 	InstanceName *string                     `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId *string                   `pulumi:"projectId"`
-	Security  *StreamConnectionSecurity `pulumi:"security"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	ProjectId                    *string                                       `pulumi:"projectId"`
+	SchemaRegistryAuthentication *StreamConnectionSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
+	SchemaRegistryProvider       *string                                       `pulumi:"schemaRegistryProvider"`
+	SchemaRegistryUrls           []string                                      `pulumi:"schemaRegistryUrls"`
+	Security                     *StreamConnectionSecurity                     `pulumi:"security"`
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	//
 	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type *string `pulumi:"type"`
@@ -403,9 +483,12 @@ type StreamConnectionState struct {
 	InstanceName pulumi.StringPtrInput
 	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId pulumi.StringPtrInput
-	Security  StreamConnectionSecurityPtrInput
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	ProjectId                    pulumi.StringPtrInput
+	SchemaRegistryAuthentication StreamConnectionSchemaRegistryAuthenticationPtrInput
+	SchemaRegistryProvider       pulumi.StringPtrInput
+	SchemaRegistryUrls           pulumi.StringArrayInput
+	Security                     StreamConnectionSecurityPtrInput
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	//
 	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringPtrInput
@@ -435,9 +518,12 @@ type streamConnectionArgs struct {
 	InstanceName *string                     `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId string                    `pulumi:"projectId"`
-	Security  *StreamConnectionSecurity `pulumi:"security"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	ProjectId                    string                                        `pulumi:"projectId"`
+	SchemaRegistryAuthentication *StreamConnectionSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
+	SchemaRegistryProvider       *string                                       `pulumi:"schemaRegistryProvider"`
+	SchemaRegistryUrls           []string                                      `pulumi:"schemaRegistryUrls"`
+	Security                     *StreamConnectionSecurity                     `pulumi:"security"`
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	//
 	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type string  `pulumi:"type"`
@@ -464,9 +550,12 @@ type StreamConnectionArgs struct {
 	InstanceName pulumi.StringPtrInput
 	Networking   StreamConnectionNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId pulumi.StringInput
-	Security  StreamConnectionSecurityPtrInput
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+	ProjectId                    pulumi.StringInput
+	SchemaRegistryAuthentication StreamConnectionSchemaRegistryAuthenticationPtrInput
+	SchemaRegistryProvider       pulumi.StringPtrInput
+	SchemaRegistryUrls           pulumi.StringArrayInput
+	Security                     StreamConnectionSecurityPtrInput
+	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	//
 	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringInput
@@ -615,11 +704,25 @@ func (o StreamConnectionOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+func (o StreamConnectionOutput) SchemaRegistryAuthentication() StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) StreamConnectionSchemaRegistryAuthenticationPtrOutput {
+		return v.SchemaRegistryAuthentication
+	}).(StreamConnectionSchemaRegistryAuthenticationPtrOutput)
+}
+
+func (o StreamConnectionOutput) SchemaRegistryProvider() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.SchemaRegistryProvider }).(pulumi.StringPtrOutput)
+}
+
+func (o StreamConnectionOutput) SchemaRegistryUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *StreamConnection) pulumi.StringArrayOutput { return v.SchemaRegistryUrls }).(pulumi.StringArrayOutput)
+}
+
 func (o StreamConnectionOutput) Security() StreamConnectionSecurityPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionSecurityPtrOutput { return v.Security }).(StreamConnectionSecurityPtrOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 //
 // > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 func (o StreamConnectionOutput) Type() pulumi.StringOutput {

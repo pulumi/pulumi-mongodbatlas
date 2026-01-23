@@ -156,7 +156,7 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
         second_project = mongodbatlas.Project("second_project",
             name="Second Project",
             org_id=org_id)
-        first_assignment = mongodbatlas.ApiKeyProjectAssignment("first_assignment",
+        first_assignment_api_key_project_assignment = mongodbatlas.ApiKeyProjectAssignment("first_assignment",
             project_id=first_project.id,
             api_key_id=this.api_key_id,
             roles=["GROUP_OWNER"])
@@ -169,6 +169,13 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
             org_id=org_id,
             cidr_block="0.0.0.0/1",
             api_key_id=this.api_key_id)
+        # Data source to read a single API key project assignment
+        first_assignment = mongodbatlas.get_api_key_project_assignment_output(project_id=first_assignment_api_key_project_assignment.project_id,
+            api_key_id=first_assignment_api_key_project_assignment.api_key_id)
+        # Data source to read all API key project assignments for a project
+        all_assignments = mongodbatlas.get_api_key_project_assignments_output(project_id=first_project.id)
+        pulumi.export("firstAssignmentProjectId", first_assignment.project_id)
+        pulumi.export("allAssignmentsProjectIds", all_assignments.apply(lambda all_assignments: [assignment.project_id for assignment in all_assignments.results]))
         ```
 
         ### Further Examples
@@ -213,7 +220,7 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
         second_project = mongodbatlas.Project("second_project",
             name="Second Project",
             org_id=org_id)
-        first_assignment = mongodbatlas.ApiKeyProjectAssignment("first_assignment",
+        first_assignment_api_key_project_assignment = mongodbatlas.ApiKeyProjectAssignment("first_assignment",
             project_id=first_project.id,
             api_key_id=this.api_key_id,
             roles=["GROUP_OWNER"])
@@ -226,6 +233,13 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
             org_id=org_id,
             cidr_block="0.0.0.0/1",
             api_key_id=this.api_key_id)
+        # Data source to read a single API key project assignment
+        first_assignment = mongodbatlas.get_api_key_project_assignment_output(project_id=first_assignment_api_key_project_assignment.project_id,
+            api_key_id=first_assignment_api_key_project_assignment.api_key_id)
+        # Data source to read all API key project assignments for a project
+        all_assignments = mongodbatlas.get_api_key_project_assignments_output(project_id=first_project.id)
+        pulumi.export("firstAssignmentProjectId", first_assignment.project_id)
+        pulumi.export("allAssignmentsProjectIds", all_assignments.apply(lambda all_assignments: [assignment.project_id for assignment in all_assignments.results]))
         ```
 
         ### Further Examples

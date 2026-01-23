@@ -20,8 +20,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
- * &gt; **IMPORTANT:**
- * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+ * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
  * 
  * &gt; **IMPORTANT:** During creation this resource does not validate whether the specified `ipAddress`, `cidrBlock`, or `awsSecurityGroup` already exists in the project&#39;s access list (known limitation). Defining a duplicate entry will result in a successful resource creation associated to the existing entry.
  * 
@@ -50,10 +49,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()
- *             .projectId("<PROJECT-ID>")
+ *         var this_ = new ProjectIpAccessList("this", ProjectIpAccessListArgs.builder()
+ *             .projectId(projectId)
  *             .cidrBlock("1.2.3.4/32")
- *             .comment("cidr block for tf acc testing")
+ *             .comment("cidr block test")
  *             .build());
  * 
  *     }
@@ -84,10 +83,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new ProjectIpAccessList("test", ProjectIpAccessListArgs.builder()
- *             .projectId("<PROJECT-ID>")
+ *         var this_ = new ProjectIpAccessList("this", ProjectIpAccessListArgs.builder()
+ *             .projectId(projectId)
  *             .ipAddress("2.3.4.5")
- *             .comment("ip address for tf acc testing")
+ *             .comment("ip address test")
  *             .build());
  * 
  *     }
@@ -123,16 +122,16 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
- *             .projectId("<PROJECT-ID>")
+ *         var this_ = new NetworkContainer("this", NetworkContainerArgs.builder()
+ *             .projectId(projectId)
  *             .atlasCidrBlock("192.168.208.0/21")
  *             .providerName("AWS")
  *             .regionName("US_EAST_1")
  *             .build());
  * 
- *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
- *             .projectId("<PROJECT-ID>")
- *             .containerId(test.containerId())
+ *         var thisNetworkPeering = new NetworkPeering("thisNetworkPeering", NetworkPeeringArgs.builder()
+ *             .projectId(projectId)
+ *             .containerId(this_.containerId())
  *             .accepterRegionName("us-east-1")
  *             .providerName("AWS")
  *             .routeTableCidrBlock("172.31.0.0/16")
@@ -140,12 +139,12 @@ import javax.annotation.Nullable;
  *             .awsAccountId("232589400519")
  *             .build());
  * 
- *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
- *             .projectId("<PROJECT-ID>")
+ *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+ *             .projectId(projectId)
  *             .awsSecurityGroup("sg-0026348ec11780bd1")
- *             .comment("TestAcc for awsSecurityGroup")
+ *             .comment("AWS Security Group test")
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(testNetworkPeering)
+ *                 .dependsOn(thisNetworkPeering)
  *                 .build());
  * 
  *     }
@@ -163,98 +162,86 @@ import javax.annotation.Nullable;
  * IP Access List entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
  * 
  * ```sh
- * $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+ * $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
  * ```
- * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
+ * For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
  * 
  */
 @ResourceType(type="mongodbatlas:index/projectIpAccessList:ProjectIpAccessList")
 public class ProjectIpAccessList extends com.pulumi.resources.CustomResource {
     /**
-     * Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      * 
      */
     @Export(name="awsSecurityGroup", refs={String.class}, tree="[0]")
     private Output<String> awsSecurityGroup;
 
     /**
-     * @return Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * @return Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      * 
      */
     public Output<String> awsSecurityGroup() {
         return this.awsSecurityGroup;
     }
     /**
-     * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      * 
      */
     @Export(name="cidrBlock", refs={String.class}, tree="[0]")
     private Output<String> cidrBlock;
 
     /**
-     * @return Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * @return Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      * 
      */
     public Output<String> cidrBlock() {
         return this.cidrBlock;
     }
     /**
-     * Comment to add to the access list entry.
+     * Remark that explains the purpose or scope of this IP access list entry.
      * 
      */
     @Export(name="comment", refs={String.class}, tree="[0]")
     private Output<String> comment;
 
     /**
-     * @return Comment to add to the access list entry.
+     * @return Remark that explains the purpose or scope of this IP access list entry.
      * 
      */
     public Output<String> comment() {
         return this.comment;
     }
     /**
-     * Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+     * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      * 
      */
     @Export(name="ipAddress", refs={String.class}, tree="[0]")
     private Output<String> ipAddress;
 
     /**
-     * @return Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+     * @return Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      * 
      */
     public Output<String> ipAddress() {
         return this.ipAddress;
     }
     /**
-     * Unique identifier for the project to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project to which you want to add one or more access list entries.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
-    /**
-     * )
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-     * 
-     */
     @Export(name="timeouts", refs={ProjectIpAccessListTimeouts.class}, tree="[0]")
     private Output</* @Nullable */ ProjectIpAccessListTimeouts> timeouts;
 
-    /**
-     * @return )
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-     * 
-     */
     public Output<Optional<ProjectIpAccessListTimeouts>> timeouts() {
         return Codegen.optional(this.timeouts);
     }

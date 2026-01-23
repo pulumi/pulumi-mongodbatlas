@@ -15,7 +15,7 @@ import java.util.Objects;
 @CustomType
 public final class GetMaintenanceWindowResult {
     /**
-     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * @return When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week.
      * 
      */
     private Boolean autoDeferOnceEnabled;
@@ -58,7 +58,7 @@ public final class GetMaintenanceWindowResult {
 
     private GetMaintenanceWindowResult() {}
     /**
-     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * @return When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week.
      * 
      */
     public Boolean autoDeferOnceEnabled() {

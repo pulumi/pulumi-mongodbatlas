@@ -65,7 +65,7 @@ export interface GetMaintenanceWindowArgs {
  */
 export interface GetMaintenanceWindowResult {
     /**
-     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week.
      */
     readonly autoDeferOnceEnabled: boolean;
     /**

@@ -9,9 +9,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
- * > **IMPORTANT:**
- * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
- *
  * ## Example Usage
  *
  * ### Using CIDR Block
@@ -19,14 +16,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("this", {
+ *     projectId: projectId,
  *     cidrBlock: "1.2.3.4/32",
- *     comment: "cidr block for tf acc testing",
+ *     comment: "cidr block test",
  * });
- * const test = mongodbatlas.getProjectIpAccessListOutput({
- *     projectId: testProjectIpAccessList.projectId,
- *     cidrBlock: testProjectIpAccessList.cidrBlock,
+ * const _this = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: thisProjectIpAccessList.projectId,
+ *     cidrBlock: thisProjectIpAccessList.cidrBlock,
  * });
  * ```
  *
@@ -35,14 +32,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("this", {
+ *     projectId: projectId,
  *     ipAddress: "2.3.4.5",
- *     comment: "ip address for tf acc testing",
+ *     comment: "ip address test",
  * });
- * const test = mongodbatlas.getProjectIpAccessListOutput({
- *     projectId: testProjectIpAccessList.projectId,
- *     ipAddress: testProjectIpAccessList.ipAddress,
+ * const _this = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: thisProjectIpAccessList.projectId,
+ *     ipAddress: thisProjectIpAccessList.ipAddress,
  * });
  * ```
  *
@@ -51,35 +48,33 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisNetworkContainer = new mongodbatlas.NetworkContainer("this", {
+ *     projectId: projectId,
  *     atlasCidrBlock: "192.168.208.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
- *     projectId: "<PROJECT-ID>",
- *     containerId: testNetworkContainer.containerId,
+ * const thisNetworkPeering = new mongodbatlas.NetworkPeering("this", {
+ *     projectId: projectId,
+ *     containerId: thisNetworkContainer.containerId,
  *     accepterRegionName: "us-east-1",
  *     providerName: "AWS",
  *     routeTableCidrBlock: "172.31.0.0/16",
  *     vpcId: "vpc-0d93d6f69f1578bd8",
  *     awsAccountId: "232589400519",
  * });
- * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("this", {
+ *     projectId: projectId,
  *     awsSecurityGroup: "sg-0026348ec11780bd1",
- *     comment: "TestAcc for awsSecurityGroup",
+ *     comment: "AWS Security Group test",
  * }, {
- *     dependsOn: [testNetworkPeering],
+ *     dependsOn: [thisNetworkPeering],
  * });
- * const test = mongodbatlas.getProjectIpAccessListOutput({
- *     projectId: testProjectIpAccessList.projectId,
- *     awsSecurityGroup: testProjectIpAccessList.awsSecurityGroup,
+ * const _this = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: thisProjectIpAccessList.projectId,
+ *     awsSecurityGroup: thisProjectIpAccessList.awsSecurityGroup,
  * });
  * ```
- *
- * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
 export function getProjectIpAccessList(args: GetProjectIpAccessListArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectIpAccessListResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -96,21 +91,19 @@ export function getProjectIpAccessList(args: GetProjectIpAccessListArgs, opts?: 
  */
 export interface GetProjectIpAccessListArgs {
     /**
-     * Unique identifier of the AWS security group to add to the access list.
+     * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      */
     awsSecurityGroup?: string;
     /**
-     * Range of IP addresses in CIDR notation to be added to the access list.
+     * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      */
     cidrBlock?: string;
     /**
-     * Single IP address to be added to the access list.
-     *
-     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      */
     ipAddress?: string;
     /**
-     * Unique identifier for the project to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: string;
 }
@@ -119,23 +112,32 @@ export interface GetProjectIpAccessListArgs {
  * A collection of values returned by getProjectIpAccessList.
  */
 export interface GetProjectIpAccessListResult {
+    /**
+     * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
+     */
     readonly awsSecurityGroup: string;
+    /**
+     * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
+     */
     readonly cidrBlock: string;
     /**
-     * Comment to add to the access list entry.
+     * Remark that explains the purpose or scope of this IP access list entry.
      */
     readonly comment: string;
     readonly id: string;
+    /**
+     * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
+     */
     readonly ipAddress: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project.
+     */
     readonly projectId: string;
 }
 /**
  * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
- * > **IMPORTANT:**
- * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
  *
  * ## Example Usage
  *
@@ -144,14 +146,14 @@ export interface GetProjectIpAccessListResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("this", {
+ *     projectId: projectId,
  *     cidrBlock: "1.2.3.4/32",
- *     comment: "cidr block for tf acc testing",
+ *     comment: "cidr block test",
  * });
- * const test = mongodbatlas.getProjectIpAccessListOutput({
- *     projectId: testProjectIpAccessList.projectId,
- *     cidrBlock: testProjectIpAccessList.cidrBlock,
+ * const _this = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: thisProjectIpAccessList.projectId,
+ *     cidrBlock: thisProjectIpAccessList.cidrBlock,
  * });
  * ```
  *
@@ -160,14 +162,14 @@ export interface GetProjectIpAccessListResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("this", {
+ *     projectId: projectId,
  *     ipAddress: "2.3.4.5",
- *     comment: "ip address for tf acc testing",
+ *     comment: "ip address test",
  * });
- * const test = mongodbatlas.getProjectIpAccessListOutput({
- *     projectId: testProjectIpAccessList.projectId,
- *     ipAddress: testProjectIpAccessList.ipAddress,
+ * const _this = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: thisProjectIpAccessList.projectId,
+ *     ipAddress: thisProjectIpAccessList.ipAddress,
  * });
  * ```
  *
@@ -176,35 +178,33 @@ export interface GetProjectIpAccessListResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testNetworkContainer = new mongodbatlas.NetworkContainer("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisNetworkContainer = new mongodbatlas.NetworkContainer("this", {
+ *     projectId: projectId,
  *     atlasCidrBlock: "192.168.208.0/21",
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const testNetworkPeering = new mongodbatlas.NetworkPeering("test", {
- *     projectId: "<PROJECT-ID>",
- *     containerId: testNetworkContainer.containerId,
+ * const thisNetworkPeering = new mongodbatlas.NetworkPeering("this", {
+ *     projectId: projectId,
+ *     containerId: thisNetworkContainer.containerId,
  *     accepterRegionName: "us-east-1",
  *     providerName: "AWS",
  *     routeTableCidrBlock: "172.31.0.0/16",
  *     vpcId: "vpc-0d93d6f69f1578bd8",
  *     awsAccountId: "232589400519",
  * });
- * const testProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("test", {
- *     projectId: "<PROJECT-ID>",
+ * const thisProjectIpAccessList = new mongodbatlas.ProjectIpAccessList("this", {
+ *     projectId: projectId,
  *     awsSecurityGroup: "sg-0026348ec11780bd1",
- *     comment: "TestAcc for awsSecurityGroup",
+ *     comment: "AWS Security Group test",
  * }, {
- *     dependsOn: [testNetworkPeering],
+ *     dependsOn: [thisNetworkPeering],
  * });
- * const test = mongodbatlas.getProjectIpAccessListOutput({
- *     projectId: testProjectIpAccessList.projectId,
- *     awsSecurityGroup: testProjectIpAccessList.awsSecurityGroup,
+ * const _this = mongodbatlas.getProjectIpAccessListOutput({
+ *     projectId: thisProjectIpAccessList.projectId,
+ *     awsSecurityGroup: thisProjectIpAccessList.awsSecurityGroup,
  * });
  * ```
- *
- * > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
  */
 export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectIpAccessListResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -221,21 +221,19 @@ export function getProjectIpAccessListOutput(args: GetProjectIpAccessListOutputA
  */
 export interface GetProjectIpAccessListOutputArgs {
     /**
-     * Unique identifier of the AWS security group to add to the access list.
+     * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      */
     awsSecurityGroup?: pulumi.Input<string>;
     /**
-     * Range of IP addresses in CIDR notation to be added to the access list.
+     * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      */
     cidrBlock?: pulumi.Input<string>;
     /**
-     * Single IP address to be added to the access list.
-     *
-     * > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * Unique identifier for the project to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
 }

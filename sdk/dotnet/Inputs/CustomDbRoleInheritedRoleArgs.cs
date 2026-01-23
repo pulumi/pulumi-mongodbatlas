@@ -22,6 +22,8 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         /// <summary>
         /// Name of the inherited role. This can either be another custom role or a built-in role.
+        /// 
+        /// &gt; **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
         /// </summary>
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;

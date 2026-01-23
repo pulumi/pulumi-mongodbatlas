@@ -119,11 +119,25 @@ export interface GetStreamConnectionResult {
     readonly networking: outputs.GetStreamConnectionNetworking;
     readonly projectId: string;
     /**
+     * Authentication configuration for Schema Registry. See Schema Registry Authentication.
+     */
+    readonly schemaRegistryAuthentication: outputs.GetStreamConnectionSchemaRegistryAuthentication;
+    /**
+     * The Schema Registry provider. Must be set to `CONFLUENT`.
+     */
+    readonly schemaRegistryProvider: string;
+    /**
+     * List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+     */
+    readonly schemaRegistryUrls: string[];
+    /**
      * Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
      */
     readonly security: outputs.GetStreamConnectionSecurity;
     /**
-     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     readonly type: string;
     /**

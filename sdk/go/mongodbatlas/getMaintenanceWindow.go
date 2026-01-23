@@ -94,7 +94,7 @@ type LookupMaintenanceWindowArgs struct {
 
 // A collection of values returned by getMaintenanceWindow.
 type LookupMaintenanceWindowResult struct {
-	// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+	// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week.
 	AutoDeferOnceEnabled bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
@@ -147,7 +147,7 @@ func (o LookupMaintenanceWindowResultOutput) ToLookupMaintenanceWindowResultOutp
 	return o
 }
 
-// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week.
 func (o LookupMaintenanceWindowResultOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) bool { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }

@@ -18,7 +18,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ConnectionId;
         /// <summary>
-        /// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        /// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        /// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        /// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         /// </summary>
         public readonly string Type;
 

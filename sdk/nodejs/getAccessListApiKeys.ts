@@ -9,21 +9,17 @@ import * as utilities from "./utilities";
 /**
  * ## Example Usage
  *
- * ### Using CIDR Block
- *
- * ### Using IP Address
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const testAccessListApiKey = new mongodbatlas.AccessListApiKey("test", {
  *     orgId: "<ORG_ID>",
- *     ipAddress: "2.3.4.5",
- *     apiKey: "a29120e123cd",
+ *     cidrBlock: "1.2.3.4/32",
+ *     apiKeyId: "a29120e123cd",
  * });
- * const test = mongodbatlas.getAccessListApiKeyOutput({
+ * const test = mongodbatlas.getAccessListApiKeysOutput({
  *     orgId: testAccessListApiKey.orgId,
- *     ipAddress: testAccessListApiKey.ipAddress,
  *     apiKeyId: testAccessListApiKey.apiKeyId,
  * });
  * ```
@@ -42,11 +38,17 @@ export function getAccessListApiKeys(args: GetAccessListApiKeysArgs, opts?: pulu
  * A collection of arguments for invoking getAccessListApiKeys.
  */
 export interface GetAccessListApiKeysArgs {
+    /**
+     * Unique identifier for the Organization API Key for which you want to retrieve access list entries.
+     */
     apiKeyId: string;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: number;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
     orgId: string;
     /**
      * The page to return. Defaults to `1`.
@@ -66,26 +68,25 @@ export interface GetAccessListApiKeysResult {
     readonly itemsPerPage?: number;
     readonly orgId: string;
     readonly pageNum?: number;
+    /**
+     * A list of access list entries for the specified API key. Each entry contains the following attributes:
+     */
     readonly results: outputs.GetAccessListApiKeysResult[];
 }
 /**
  * ## Example Usage
  *
- * ### Using CIDR Block
- *
- * ### Using IP Address
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const testAccessListApiKey = new mongodbatlas.AccessListApiKey("test", {
  *     orgId: "<ORG_ID>",
- *     ipAddress: "2.3.4.5",
- *     apiKey: "a29120e123cd",
+ *     cidrBlock: "1.2.3.4/32",
+ *     apiKeyId: "a29120e123cd",
  * });
- * const test = mongodbatlas.getAccessListApiKeyOutput({
+ * const test = mongodbatlas.getAccessListApiKeysOutput({
  *     orgId: testAccessListApiKey.orgId,
- *     ipAddress: testAccessListApiKey.ipAddress,
  *     apiKeyId: testAccessListApiKey.apiKeyId,
  * });
  * ```
@@ -104,11 +105,17 @@ export function getAccessListApiKeysOutput(args: GetAccessListApiKeysOutputArgs,
  * A collection of arguments for invoking getAccessListApiKeys.
  */
 export interface GetAccessListApiKeysOutputArgs {
+    /**
+     * Unique identifier for the Organization API Key for which you want to retrieve access list entries.
+     */
     apiKeyId: pulumi.Input<string>;
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
     itemsPerPage?: pulumi.Input<number>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
     orgId: pulumi.Input<string>;
     /**
      * The page to return. Defaults to `1`.

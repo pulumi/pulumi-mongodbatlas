@@ -58,6 +58,9 @@ class GetAccessListApiKeyResult:
     @_builtins.property
     @pulumi.getter(name="accessCount")
     def access_count(self) -> _builtins.int:
+        """
+        Total number of requests that have originated from this IP address or CIDR block.
+        """
         return pulumi.get(self, "access_count")
 
     @_builtins.property
@@ -68,11 +71,17 @@ class GetAccessListApiKeyResult:
     @_builtins.property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> _builtins.str:
+        """
+        Range of IP addresses in CIDR notation included in the API Key access list.
+        """
         return pulumi.get(self, "cidr_block")
 
     @_builtins.property
     @pulumi.getter
     def created(self) -> _builtins.str:
+        """
+        Date and time when the access list entry was created.
+        """
         return pulumi.get(self, "created")
 
     @_builtins.property
@@ -91,11 +100,17 @@ class GetAccessListApiKeyResult:
     @_builtins.property
     @pulumi.getter(name="lastUsed")
     def last_used(self) -> _builtins.str:
+        """
+        Date and time when the API key was last used from this IP address or CIDR block.
+        """
         return pulumi.get(self, "last_used")
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAddress")
     def last_used_address(self) -> _builtins.str:
+        """
+        IP address from which the last API request was made.
+        """
         return pulumi.get(self, "last_used_address")
 
     @_builtins.property
@@ -128,9 +143,6 @@ def get_access_list_api_key(api_key_id: Optional[_builtins.str] = None,
     """
     ## Example Usage
 
-    ### Using CIDR Block
-
-    ### Using IP Address
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -138,7 +150,7 @@ def get_access_list_api_key(api_key_id: Optional[_builtins.str] = None,
     test_access_list_api_key = mongodbatlas.AccessListApiKey("test",
         org_id="<ORG_ID>",
         ip_address="2.3.4.5",
-        api_key="a29120e123cd")
+        api_key_id="a29120e123cd")
     test = mongodbatlas.get_access_list_api_key_output(org_id=test_access_list_api_key.org_id,
         ip_address=test_access_list_api_key.ip_address,
         api_key_id=test_access_list_api_key.api_key_id)
@@ -146,9 +158,7 @@ def get_access_list_api_key(api_key_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-           *
-           ->**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
-    :param _builtins.str ip_address: Single IP address to be added to the access list.
+    :param _builtins.str ip_address: IP address to retrieve from the access list.
     :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
     __args__ = dict()
@@ -175,9 +185,6 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.s
     """
     ## Example Usage
 
-    ### Using CIDR Block
-
-    ### Using IP Address
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
@@ -185,7 +192,7 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.s
     test_access_list_api_key = mongodbatlas.AccessListApiKey("test",
         org_id="<ORG_ID>",
         ip_address="2.3.4.5",
-        api_key="a29120e123cd")
+        api_key_id="a29120e123cd")
     test = mongodbatlas.get_access_list_api_key_output(org_id=test_access_list_api_key.org_id,
         ip_address=test_access_list_api_key.ip_address,
         api_key_id=test_access_list_api_key.api_key_id)
@@ -193,9 +200,7 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.s
 
 
     :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-           *
-           ->**NOTE:** You must set either the `cidr_block` attribute or the `ip_address` attribute. Don't set both.
-    :param _builtins.str ip_address: Single IP address to be added to the access list.
+    :param _builtins.str ip_address: IP address to retrieve from the access list.
     :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
     __args__ = dict()

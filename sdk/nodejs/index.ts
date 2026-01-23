@@ -575,6 +575,31 @@ export const getProjectIpAddresses: typeof import("./getProjectIpAddresses").get
 export const getProjectIpAddressesOutput: typeof import("./getProjectIpAddresses").getProjectIpAddressesOutput = null as any;
 utilities.lazyLoad(exports, ["getProjectIpAddresses","getProjectIpAddressesOutput"], () => require("./getProjectIpAddresses"));
 
+export { GetProjectServiceAccountArgs, GetProjectServiceAccountResult, GetProjectServiceAccountOutputArgs } from "./getProjectServiceAccount";
+export const getProjectServiceAccount: typeof import("./getProjectServiceAccount").getProjectServiceAccount = null as any;
+export const getProjectServiceAccountOutput: typeof import("./getProjectServiceAccount").getProjectServiceAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectServiceAccount","getProjectServiceAccountOutput"], () => require("./getProjectServiceAccount"));
+
+export { GetProjectServiceAccountAccessListEntriesArgs, GetProjectServiceAccountAccessListEntriesResult, GetProjectServiceAccountAccessListEntriesOutputArgs } from "./getProjectServiceAccountAccessListEntries";
+export const getProjectServiceAccountAccessListEntries: typeof import("./getProjectServiceAccountAccessListEntries").getProjectServiceAccountAccessListEntries = null as any;
+export const getProjectServiceAccountAccessListEntriesOutput: typeof import("./getProjectServiceAccountAccessListEntries").getProjectServiceAccountAccessListEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectServiceAccountAccessListEntries","getProjectServiceAccountAccessListEntriesOutput"], () => require("./getProjectServiceAccountAccessListEntries"));
+
+export { GetProjectServiceAccountAccessListEntryArgs, GetProjectServiceAccountAccessListEntryResult, GetProjectServiceAccountAccessListEntryOutputArgs } from "./getProjectServiceAccountAccessListEntry";
+export const getProjectServiceAccountAccessListEntry: typeof import("./getProjectServiceAccountAccessListEntry").getProjectServiceAccountAccessListEntry = null as any;
+export const getProjectServiceAccountAccessListEntryOutput: typeof import("./getProjectServiceAccountAccessListEntry").getProjectServiceAccountAccessListEntryOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectServiceAccountAccessListEntry","getProjectServiceAccountAccessListEntryOutput"], () => require("./getProjectServiceAccountAccessListEntry"));
+
+export { GetProjectServiceAccountSecretArgs, GetProjectServiceAccountSecretResult, GetProjectServiceAccountSecretOutputArgs } from "./getProjectServiceAccountSecret";
+export const getProjectServiceAccountSecret: typeof import("./getProjectServiceAccountSecret").getProjectServiceAccountSecret = null as any;
+export const getProjectServiceAccountSecretOutput: typeof import("./getProjectServiceAccountSecret").getProjectServiceAccountSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectServiceAccountSecret","getProjectServiceAccountSecretOutput"], () => require("./getProjectServiceAccountSecret"));
+
+export { GetProjectServiceAccountsArgs, GetProjectServiceAccountsResult, GetProjectServiceAccountsOutputArgs } from "./getProjectServiceAccounts";
+export const getProjectServiceAccounts: typeof import("./getProjectServiceAccounts").getProjectServiceAccounts = null as any;
+export const getProjectServiceAccountsOutput: typeof import("./getProjectServiceAccounts").getProjectServiceAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectServiceAccounts","getProjectServiceAccountsOutput"], () => require("./getProjectServiceAccounts"));
+
 export { GetProjectsArgs, GetProjectsResult, GetProjectsOutputArgs } from "./getProjects";
 export const getProjects: typeof import("./getProjects").getProjects = null as any;
 export const getProjectsOutput: typeof import("./getProjects").getProjectsOutput = null as any;
@@ -624,6 +649,41 @@ export { GetServerlessInstancesArgs, GetServerlessInstancesResult, GetServerless
 export const getServerlessInstances: typeof import("./getServerlessInstances").getServerlessInstances = null as any;
 export const getServerlessInstancesOutput: typeof import("./getServerlessInstances").getServerlessInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getServerlessInstances","getServerlessInstancesOutput"], () => require("./getServerlessInstances"));
+
+export { GetServiceAccountArgs, GetServiceAccountResult, GetServiceAccountOutputArgs } from "./getServiceAccount";
+export const getServiceAccount: typeof import("./getServiceAccount").getServiceAccount = null as any;
+export const getServiceAccountOutput: typeof import("./getServiceAccount").getServiceAccountOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccount","getServiceAccountOutput"], () => require("./getServiceAccount"));
+
+export { GetServiceAccountAccessListEntriesArgs, GetServiceAccountAccessListEntriesResult, GetServiceAccountAccessListEntriesOutputArgs } from "./getServiceAccountAccessListEntries";
+export const getServiceAccountAccessListEntries: typeof import("./getServiceAccountAccessListEntries").getServiceAccountAccessListEntries = null as any;
+export const getServiceAccountAccessListEntriesOutput: typeof import("./getServiceAccountAccessListEntries").getServiceAccountAccessListEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccountAccessListEntries","getServiceAccountAccessListEntriesOutput"], () => require("./getServiceAccountAccessListEntries"));
+
+export { GetServiceAccountAccessListEntryArgs, GetServiceAccountAccessListEntryResult, GetServiceAccountAccessListEntryOutputArgs } from "./getServiceAccountAccessListEntry";
+export const getServiceAccountAccessListEntry: typeof import("./getServiceAccountAccessListEntry").getServiceAccountAccessListEntry = null as any;
+export const getServiceAccountAccessListEntryOutput: typeof import("./getServiceAccountAccessListEntry").getServiceAccountAccessListEntryOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccountAccessListEntry","getServiceAccountAccessListEntryOutput"], () => require("./getServiceAccountAccessListEntry"));
+
+export { GetServiceAccountProjectAssignmentArgs, GetServiceAccountProjectAssignmentResult, GetServiceAccountProjectAssignmentOutputArgs } from "./getServiceAccountProjectAssignment";
+export const getServiceAccountProjectAssignment: typeof import("./getServiceAccountProjectAssignment").getServiceAccountProjectAssignment = null as any;
+export const getServiceAccountProjectAssignmentOutput: typeof import("./getServiceAccountProjectAssignment").getServiceAccountProjectAssignmentOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccountProjectAssignment","getServiceAccountProjectAssignmentOutput"], () => require("./getServiceAccountProjectAssignment"));
+
+export { GetServiceAccountProjectAssignmentsArgs, GetServiceAccountProjectAssignmentsResult, GetServiceAccountProjectAssignmentsOutputArgs } from "./getServiceAccountProjectAssignments";
+export const getServiceAccountProjectAssignments: typeof import("./getServiceAccountProjectAssignments").getServiceAccountProjectAssignments = null as any;
+export const getServiceAccountProjectAssignmentsOutput: typeof import("./getServiceAccountProjectAssignments").getServiceAccountProjectAssignmentsOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccountProjectAssignments","getServiceAccountProjectAssignmentsOutput"], () => require("./getServiceAccountProjectAssignments"));
+
+export { GetServiceAccountSecretArgs, GetServiceAccountSecretResult, GetServiceAccountSecretOutputArgs } from "./getServiceAccountSecret";
+export const getServiceAccountSecret: typeof import("./getServiceAccountSecret").getServiceAccountSecret = null as any;
+export const getServiceAccountSecretOutput: typeof import("./getServiceAccountSecret").getServiceAccountSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccountSecret","getServiceAccountSecretOutput"], () => require("./getServiceAccountSecret"));
+
+export { GetServiceAccountsArgs, GetServiceAccountsResult, GetServiceAccountsOutputArgs } from "./getServiceAccounts";
+export const getServiceAccounts: typeof import("./getServiceAccounts").getServiceAccounts = null as any;
+export const getServiceAccountsOutput: typeof import("./getServiceAccounts").getServiceAccountsOutput = null as any;
+utilities.lazyLoad(exports, ["getServiceAccounts","getServiceAccountsOutput"], () => require("./getServiceAccounts"));
 
 export { GetSharedTierRestoreJobArgs, GetSharedTierRestoreJobResult, GetSharedTierRestoreJobOutputArgs } from "./getSharedTierRestoreJob";
 export const getSharedTierRestoreJob: typeof import("./getSharedTierRestoreJob").getSharedTierRestoreJob = null as any;
@@ -815,6 +875,21 @@ export type ProjectIpAccessList = import("./projectIpAccessList").ProjectIpAcces
 export const ProjectIpAccessList: typeof import("./projectIpAccessList").ProjectIpAccessList = null as any;
 utilities.lazyLoad(exports, ["ProjectIpAccessList"], () => require("./projectIpAccessList"));
 
+export { ProjectServiceAccountArgs, ProjectServiceAccountState } from "./projectServiceAccount";
+export type ProjectServiceAccount = import("./projectServiceAccount").ProjectServiceAccount;
+export const ProjectServiceAccount: typeof import("./projectServiceAccount").ProjectServiceAccount = null as any;
+utilities.lazyLoad(exports, ["ProjectServiceAccount"], () => require("./projectServiceAccount"));
+
+export { ProjectServiceAccountAccessListEntryArgs, ProjectServiceAccountAccessListEntryState } from "./projectServiceAccountAccessListEntry";
+export type ProjectServiceAccountAccessListEntry = import("./projectServiceAccountAccessListEntry").ProjectServiceAccountAccessListEntry;
+export const ProjectServiceAccountAccessListEntry: typeof import("./projectServiceAccountAccessListEntry").ProjectServiceAccountAccessListEntry = null as any;
+utilities.lazyLoad(exports, ["ProjectServiceAccountAccessListEntry"], () => require("./projectServiceAccountAccessListEntry"));
+
+export { ProjectServiceAccountSecretArgs, ProjectServiceAccountSecretState } from "./projectServiceAccountSecret";
+export type ProjectServiceAccountSecret = import("./projectServiceAccountSecret").ProjectServiceAccountSecret;
+export const ProjectServiceAccountSecret: typeof import("./projectServiceAccountSecret").ProjectServiceAccountSecret = null as any;
+utilities.lazyLoad(exports, ["ProjectServiceAccountSecret"], () => require("./projectServiceAccountSecret"));
+
 export * from "./provider";
 import { Provider } from "./provider";
 
@@ -842,6 +917,26 @@ export { ServerlessInstanceArgs, ServerlessInstanceState } from "./serverlessIns
 export type ServerlessInstance = import("./serverlessInstance").ServerlessInstance;
 export const ServerlessInstance: typeof import("./serverlessInstance").ServerlessInstance = null as any;
 utilities.lazyLoad(exports, ["ServerlessInstance"], () => require("./serverlessInstance"));
+
+export { ServiceAccountArgs, ServiceAccountState } from "./serviceAccount";
+export type ServiceAccount = import("./serviceAccount").ServiceAccount;
+export const ServiceAccount: typeof import("./serviceAccount").ServiceAccount = null as any;
+utilities.lazyLoad(exports, ["ServiceAccount"], () => require("./serviceAccount"));
+
+export { ServiceAccountAccessListEntryArgs, ServiceAccountAccessListEntryState } from "./serviceAccountAccessListEntry";
+export type ServiceAccountAccessListEntry = import("./serviceAccountAccessListEntry").ServiceAccountAccessListEntry;
+export const ServiceAccountAccessListEntry: typeof import("./serviceAccountAccessListEntry").ServiceAccountAccessListEntry = null as any;
+utilities.lazyLoad(exports, ["ServiceAccountAccessListEntry"], () => require("./serviceAccountAccessListEntry"));
+
+export { ServiceAccountProjectAssignmentArgs, ServiceAccountProjectAssignmentState } from "./serviceAccountProjectAssignment";
+export type ServiceAccountProjectAssignment = import("./serviceAccountProjectAssignment").ServiceAccountProjectAssignment;
+export const ServiceAccountProjectAssignment: typeof import("./serviceAccountProjectAssignment").ServiceAccountProjectAssignment = null as any;
+utilities.lazyLoad(exports, ["ServiceAccountProjectAssignment"], () => require("./serviceAccountProjectAssignment"));
+
+export { ServiceAccountSecretArgs, ServiceAccountSecretState } from "./serviceAccountSecret";
+export type ServiceAccountSecret = import("./serviceAccountSecret").ServiceAccountSecret;
+export const ServiceAccountSecret: typeof import("./serviceAccountSecret").ServiceAccountSecret = null as any;
+utilities.lazyLoad(exports, ["ServiceAccountSecret"], () => require("./serviceAccountSecret"));
 
 export { StreamConnectionArgs, StreamConnectionState } from "./streamConnection";
 export type StreamConnection = import("./streamConnection").StreamConnection;
@@ -1000,6 +1095,12 @@ const _module = {
                 return new ProjectInvitation(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount":
+                return new ProjectServiceAccount(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry":
+                return new ProjectServiceAccountAccessListEntry(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret":
+                return new ProjectServiceAccountSecret(name, <any>undefined, { urn })
             case "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport":
                 return new PushBasedLogExport(name, <any>undefined, { urn })
             case "mongodbatlas:index/resourcePolicy:ResourcePolicy":
@@ -1010,6 +1111,14 @@ const _module = {
                 return new SearchIndex(name, <any>undefined, { urn })
             case "mongodbatlas:index/serverlessInstance:ServerlessInstance":
                 return new ServerlessInstance(name, <any>undefined, { urn })
+            case "mongodbatlas:index/serviceAccount:ServiceAccount":
+                return new ServiceAccount(name, <any>undefined, { urn })
+            case "mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry":
+                return new ServiceAccountAccessListEntry(name, <any>undefined, { urn })
+            case "mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment":
+                return new ServiceAccountProjectAssignment(name, <any>undefined, { urn })
+            case "mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret":
+                return new ServiceAccountSecret(name, <any>undefined, { urn })
             case "mongodbatlas:index/streamConnection:StreamConnection":
                 return new StreamConnection(name, <any>undefined, { urn })
             case "mongodbatlas:index/streamInstance:StreamInstance":
@@ -1082,11 +1191,18 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectServiceAccount", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectServiceAccountAccessListEntry", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectServiceAccountSecret", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/pushBasedLogExport", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/resourcePolicy", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchDeployment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/searchIndex", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/serverlessInstance", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/serviceAccount", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/serviceAccountAccessListEntry", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/serviceAccountProjectAssignment", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/serviceAccountSecret", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamConnection", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamInstance", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/streamPrivatelinkEndpoint", _module)

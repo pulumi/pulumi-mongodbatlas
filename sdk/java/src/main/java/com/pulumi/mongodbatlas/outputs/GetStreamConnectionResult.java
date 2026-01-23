@@ -9,8 +9,10 @@ import com.pulumi.mongodbatlas.outputs.GetStreamConnectionAuthentication;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionAws;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionDbRoleToExecute;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionNetworking;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionSchemaRegistryAuthentication;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionSecurity;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -74,12 +76,29 @@ public final class GetStreamConnectionResult {
     private GetStreamConnectionNetworking networking;
     private String projectId;
     /**
+     * @return Authentication configuration for Schema Registry. See Schema Registry Authentication.
+     * 
+     */
+    private GetStreamConnectionSchemaRegistryAuthentication schemaRegistryAuthentication;
+    /**
+     * @return The Schema Registry provider. Must be set to `CONFLUENT`.
+     * 
+     */
+    private String schemaRegistryProvider;
+    /**
+     * @return List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+     * 
+     */
+    private List<String> schemaRegistryUrls;
+    /**
      * @return Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
      * 
      */
     private GetStreamConnectionSecurity security;
     /**
-     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * @return Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      * 
      */
     private String type;
@@ -173,6 +192,27 @@ public final class GetStreamConnectionResult {
         return this.projectId;
     }
     /**
+     * @return Authentication configuration for Schema Registry. See Schema Registry Authentication.
+     * 
+     */
+    public GetStreamConnectionSchemaRegistryAuthentication schemaRegistryAuthentication() {
+        return this.schemaRegistryAuthentication;
+    }
+    /**
+     * @return The Schema Registry provider. Must be set to `CONFLUENT`.
+     * 
+     */
+    public String schemaRegistryProvider() {
+        return this.schemaRegistryProvider;
+    }
+    /**
+     * @return List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+     * 
+     */
+    public List<String> schemaRegistryUrls() {
+        return this.schemaRegistryUrls;
+    }
+    /**
      * @return Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
      * 
      */
@@ -180,7 +220,9 @@ public final class GetStreamConnectionResult {
         return this.security;
     }
     /**
-     * @return Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * @return Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      * 
      */
     public String type() {
@@ -219,6 +261,9 @@ public final class GetStreamConnectionResult {
         private @Nullable String instanceName;
         private GetStreamConnectionNetworking networking;
         private String projectId;
+        private GetStreamConnectionSchemaRegistryAuthentication schemaRegistryAuthentication;
+        private String schemaRegistryProvider;
+        private List<String> schemaRegistryUrls;
         private GetStreamConnectionSecurity security;
         private String type;
         private String url;
@@ -239,6 +284,9 @@ public final class GetStreamConnectionResult {
     	      this.instanceName = defaults.instanceName;
     	      this.networking = defaults.networking;
     	      this.projectId = defaults.projectId;
+    	      this.schemaRegistryAuthentication = defaults.schemaRegistryAuthentication;
+    	      this.schemaRegistryProvider = defaults.schemaRegistryProvider;
+    	      this.schemaRegistryUrls = defaults.schemaRegistryUrls;
     	      this.security = defaults.security;
     	      this.type = defaults.type;
     	      this.url = defaults.url;
@@ -348,6 +396,33 @@ public final class GetStreamConnectionResult {
             return this;
         }
         @CustomType.Setter
+        public Builder schemaRegistryAuthentication(GetStreamConnectionSchemaRegistryAuthentication schemaRegistryAuthentication) {
+            if (schemaRegistryAuthentication == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionResult", "schemaRegistryAuthentication");
+            }
+            this.schemaRegistryAuthentication = schemaRegistryAuthentication;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder schemaRegistryProvider(String schemaRegistryProvider) {
+            if (schemaRegistryProvider == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionResult", "schemaRegistryProvider");
+            }
+            this.schemaRegistryProvider = schemaRegistryProvider;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder schemaRegistryUrls(List<String> schemaRegistryUrls) {
+            if (schemaRegistryUrls == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionResult", "schemaRegistryUrls");
+            }
+            this.schemaRegistryUrls = schemaRegistryUrls;
+            return this;
+        }
+        public Builder schemaRegistryUrls(String... schemaRegistryUrls) {
+            return schemaRegistryUrls(List.of(schemaRegistryUrls));
+        }
+        @CustomType.Setter
         public Builder security(GetStreamConnectionSecurity security) {
             if (security == null) {
               throw new MissingRequiredPropertyException("GetStreamConnectionResult", "security");
@@ -392,6 +467,9 @@ public final class GetStreamConnectionResult {
             _resultValue.instanceName = instanceName;
             _resultValue.networking = networking;
             _resultValue.projectId = projectId;
+            _resultValue.schemaRegistryAuthentication = schemaRegistryAuthentication;
+            _resultValue.schemaRegistryProvider = schemaRegistryProvider;
+            _resultValue.schemaRegistryUrls = schemaRegistryUrls;
             _resultValue.security = security;
             _resultValue.type = type;
             _resultValue.url = url;

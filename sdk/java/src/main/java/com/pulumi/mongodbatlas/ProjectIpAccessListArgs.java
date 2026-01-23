@@ -18,14 +18,14 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
     public static final ProjectIpAccessListArgs Empty = new ProjectIpAccessListArgs();
 
     /**
-     * Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      * 
      */
     @Import(name="awsSecurityGroup")
     private @Nullable Output<String> awsSecurityGroup;
 
     /**
-     * @return Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * @return Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      * 
      */
     public Optional<Output<String>> awsSecurityGroup() {
@@ -33,14 +33,14 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      * 
      */
     @Import(name="cidrBlock")
     private @Nullable Output<String> cidrBlock;
 
     /**
-     * @return Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+     * @return Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      * 
      */
     public Optional<Output<String>> cidrBlock() {
@@ -48,14 +48,14 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Comment to add to the access list entry.
+     * Remark that explains the purpose or scope of this IP access list entry.
      * 
      */
     @Import(name="comment")
     private @Nullable Output<String> comment;
 
     /**
-     * @return Comment to add to the access list entry.
+     * @return Remark that explains the purpose or scope of this IP access list entry.
      * 
      */
     public Optional<Output<String>> comment() {
@@ -63,14 +63,14 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+     * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      * 
      */
     @Import(name="ipAddress")
     private @Nullable Output<String> ipAddress;
 
     /**
-     * @return Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+     * @return Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      * 
      */
     public Optional<Output<String>> ipAddress() {
@@ -78,35 +78,23 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Unique identifier for the project to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project to which you want to add one or more access list entries.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
 
-    /**
-     * )
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-     * 
-     */
     @Import(name="timeouts")
     private @Nullable Output<ProjectIpAccessListTimeoutsArgs> timeouts;
 
-    /**
-     * @return )
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-     * 
-     */
     public Optional<Output<ProjectIpAccessListTimeoutsArgs>> timeouts() {
         return Optional.ofNullable(this.timeouts);
     }
@@ -141,7 +129,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
          * 
          * @return builder
          * 
@@ -152,7 +140,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
          * 
          * @return builder
          * 
@@ -162,7 +150,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -173,7 +161,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -183,7 +171,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param comment Comment to add to the access list entry.
+         * @param comment Remark that explains the purpose or scope of this IP access list entry.
          * 
          * @return builder
          * 
@@ -194,7 +182,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param comment Comment to add to the access list entry.
+         * @param comment Remark that explains the purpose or scope of this IP access list entry.
          * 
          * @return builder
          * 
@@ -204,7 +192,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param ipAddress Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+         * @param ipAddress Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -215,7 +203,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param ipAddress Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+         * @param ipAddress Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -225,7 +213,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Unique identifier for the project to which you want to add one or more access list entries.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -236,7 +224,7 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Unique identifier for the project to which you want to add one or more access list entries.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -245,27 +233,11 @@ public final class ProjectIpAccessListArgs extends com.pulumi.resources.Resource
             return projectId(Output.of(projectId));
         }
 
-        /**
-         * @param timeouts )
-         * 
-         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder timeouts(@Nullable Output<ProjectIpAccessListTimeoutsArgs> timeouts) {
             $.timeouts = timeouts;
             return this;
         }
 
-        /**
-         * @param timeouts )
-         * 
-         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
-         * 
-         * @return builder
-         * 
-         */
         public Builder timeouts(ProjectIpAccessListTimeoutsArgs timeouts) {
             return timeouts(Output.of(timeouts));
         }

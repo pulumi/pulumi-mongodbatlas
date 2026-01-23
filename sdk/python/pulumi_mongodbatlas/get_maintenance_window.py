@@ -60,7 +60,7 @@ class GetMaintenanceWindowResult:
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> _builtins.bool:
         """
-        Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week.
         """
         return pulumi.get(self, "auto_defer_once_enabled")
 

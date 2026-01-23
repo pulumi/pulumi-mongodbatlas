@@ -29,14 +29,11 @@ class ProjectIpAccessListArgs:
                  timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a ProjectIpAccessList resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
-        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
-        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
-        :param pulumi.Input['ProjectIpAccessListTimeoutsArgs'] timeouts: )
-               
-               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
+        :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
+        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
         """
         pulumi.set(__self__, "project_id", project_id)
         if aws_security_group is not None:
@@ -54,7 +51,7 @@ class ProjectIpAccessListArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique identifier for the project to which you want to add one or more access list entries.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -66,7 +63,7 @@ class ProjectIpAccessListArgs:
     @pulumi.getter(name="awsSecurityGroup")
     def aws_security_group(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
         """
         return pulumi.get(self, "aws_security_group")
 
@@ -78,7 +75,7 @@ class ProjectIpAccessListArgs:
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         """
         return pulumi.get(self, "cidr_block")
 
@@ -90,7 +87,7 @@ class ProjectIpAccessListArgs:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Comment to add to the access list entry.
+        Remark that explains the purpose or scope of this IP access list entry.
         """
         return pulumi.get(self, "comment")
 
@@ -102,7 +99,7 @@ class ProjectIpAccessListArgs:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+        Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
         """
         return pulumi.get(self, "ip_address")
 
@@ -113,11 +110,6 @@ class ProjectIpAccessListArgs:
     @_builtins.property
     @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]:
-        """
-        )
-
-        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
-        """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
@@ -136,14 +128,11 @@ class _ProjectIpAccessListState:
                  timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering ProjectIpAccessList resources.
-        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
-        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
-        :param pulumi.Input['ProjectIpAccessListTimeoutsArgs'] timeouts: )
-               
-               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
+        :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
+        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         if aws_security_group is not None:
             pulumi.set(__self__, "aws_security_group", aws_security_group)
@@ -162,7 +151,7 @@ class _ProjectIpAccessListState:
     @pulumi.getter(name="awsSecurityGroup")
     def aws_security_group(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
         """
         return pulumi.get(self, "aws_security_group")
 
@@ -174,7 +163,7 @@ class _ProjectIpAccessListState:
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         """
         return pulumi.get(self, "cidr_block")
 
@@ -186,7 +175,7 @@ class _ProjectIpAccessListState:
     @pulumi.getter
     def comment(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Comment to add to the access list entry.
+        Remark that explains the purpose or scope of this IP access list entry.
         """
         return pulumi.get(self, "comment")
 
@@ -198,7 +187,7 @@ class _ProjectIpAccessListState:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+        Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
         """
         return pulumi.get(self, "ip_address")
 
@@ -210,7 +199,7 @@ class _ProjectIpAccessListState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier for the project to which you want to add one or more access list entries.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
@@ -221,11 +210,6 @@ class _ProjectIpAccessListState:
     @_builtins.property
     @pulumi.getter
     def timeouts(self) -> Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']]:
-        """
-        )
-
-        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
-        """
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
@@ -251,8 +235,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **IMPORTANT:**
-        When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+        > **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
 
         > **IMPORTANT:** During creation this resource does not validate whether the specified `ip_address`, `cidr_block`, or `aws_security_group` already exists in the project's access list (known limitation). Defining a duplicate entry will result in a successful resource creation associated to the existing entry.
 
@@ -263,10 +246,10 @@ class ProjectIpAccessList(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.ProjectIpAccessList("test",
-            project_id="<PROJECT-ID>",
+        this = mongodbatlas.ProjectIpAccessList("this",
+            project_id=project_id,
             cidr_block="1.2.3.4/32",
-            comment="cidr block for tf acc testing")
+            comment="cidr block test")
         ```
 
         ### Using IP Address
@@ -274,10 +257,10 @@ class ProjectIpAccessList(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.ProjectIpAccessList("test",
-            project_id="<PROJECT-ID>",
+        this = mongodbatlas.ProjectIpAccessList("this",
+            project_id=project_id,
             ip_address="2.3.4.5",
-            comment="ip address for tf acc testing")
+            comment="ip address test")
         ```
 
         ### Using an AWS Security Group
@@ -285,24 +268,24 @@ class ProjectIpAccessList(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.NetworkContainer("test",
-            project_id="<PROJECT-ID>",
+        this = mongodbatlas.NetworkContainer("this",
+            project_id=project_id,
             atlas_cidr_block="192.168.208.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
-        test_network_peering = mongodbatlas.NetworkPeering("test",
-            project_id="<PROJECT-ID>",
-            container_id=test.container_id,
+        this_network_peering = mongodbatlas.NetworkPeering("this",
+            project_id=project_id,
+            container_id=this.container_id,
             accepter_region_name="us-east-1",
             provider_name="AWS",
             route_table_cidr_block="172.31.0.0/16",
             vpc_id="vpc-0d93d6f69f1578bd8",
             aws_account_id="232589400519")
-        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-            project_id="<PROJECT-ID>",
+        this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+            project_id=project_id,
             aws_security_group="sg-0026348ec11780bd1",
-            comment="TestAcc for awsSecurityGroup",
-            opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
+            comment="AWS Security Group test",
+            opts = pulumi.ResourceOptions(depends_on=[this_network_peering]))
         ```
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
@@ -315,20 +298,17 @@ class ProjectIpAccessList(pulumi.CustomResource):
         IP Access List entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+        $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
         ```
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
+        For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
-        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
-        :param pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']] timeouts: )
-               
-               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
+        :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
+        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         ...
     @overload
@@ -341,8 +321,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **IMPORTANT:**
-        When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+        > **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
 
         > **IMPORTANT:** During creation this resource does not validate whether the specified `ip_address`, `cidr_block`, or `aws_security_group` already exists in the project's access list (known limitation). Defining a duplicate entry will result in a successful resource creation associated to the existing entry.
 
@@ -353,10 +332,10 @@ class ProjectIpAccessList(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.ProjectIpAccessList("test",
-            project_id="<PROJECT-ID>",
+        this = mongodbatlas.ProjectIpAccessList("this",
+            project_id=project_id,
             cidr_block="1.2.3.4/32",
-            comment="cidr block for tf acc testing")
+            comment="cidr block test")
         ```
 
         ### Using IP Address
@@ -364,10 +343,10 @@ class ProjectIpAccessList(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.ProjectIpAccessList("test",
-            project_id="<PROJECT-ID>",
+        this = mongodbatlas.ProjectIpAccessList("this",
+            project_id=project_id,
             ip_address="2.3.4.5",
-            comment="ip address for tf acc testing")
+            comment="ip address test")
         ```
 
         ### Using an AWS Security Group
@@ -375,24 +354,24 @@ class ProjectIpAccessList(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.NetworkContainer("test",
-            project_id="<PROJECT-ID>",
+        this = mongodbatlas.NetworkContainer("this",
+            project_id=project_id,
             atlas_cidr_block="192.168.208.0/21",
             provider_name="AWS",
             region_name="US_EAST_1")
-        test_network_peering = mongodbatlas.NetworkPeering("test",
-            project_id="<PROJECT-ID>",
-            container_id=test.container_id,
+        this_network_peering = mongodbatlas.NetworkPeering("this",
+            project_id=project_id,
+            container_id=this.container_id,
             accepter_region_name="us-east-1",
             provider_name="AWS",
             route_table_cidr_block="172.31.0.0/16",
             vpc_id="vpc-0d93d6f69f1578bd8",
             aws_account_id="232589400519")
-        test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-            project_id="<PROJECT-ID>",
+        this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+            project_id=project_id,
             aws_security_group="sg-0026348ec11780bd1",
-            comment="TestAcc for awsSecurityGroup",
-            opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
+            comment="AWS Security Group test",
+            opts = pulumi.ResourceOptions(depends_on=[this_network_peering]))
         ```
 
         > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like above example.
@@ -405,9 +384,9 @@ class ProjectIpAccessList(pulumi.CustomResource):
         IP Access List entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+        $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
         ```
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
+        For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
 
         :param str resource_name: The name of the resource.
         :param ProjectIpAccessListArgs args: The arguments to use to populate this resource's properties.
@@ -470,14 +449,11 @@ class ProjectIpAccessList(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
-        :param pulumi.Input[_builtins.str] comment: Comment to add to the access list entry.
-        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project to which you want to add one or more access list entries.
-        :param pulumi.Input[Union['ProjectIpAccessListTimeoutsArgs', 'ProjectIpAccessListTimeoutsArgsDict']] timeouts: )
-               
-               > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
+        :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+        :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
+        :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
+        :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -495,7 +471,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
     @pulumi.getter(name="awsSecurityGroup")
     def aws_security_group(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
         """
         return pulumi.get(self, "aws_security_group")
 
@@ -503,7 +479,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> pulumi.Output[_builtins.str]:
         """
-        Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         """
         return pulumi.get(self, "cidr_block")
 
@@ -511,7 +487,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
     @pulumi.getter
     def comment(self) -> pulumi.Output[_builtins.str]:
         """
-        Comment to add to the access list entry.
+        Remark that explains the purpose or scope of this IP access list entry.
         """
         return pulumi.get(self, "comment")
 
@@ -519,7 +495,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> pulumi.Output[_builtins.str]:
         """
-        Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+        Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
         """
         return pulumi.get(self, "ip_address")
 
@@ -527,17 +503,12 @@ class ProjectIpAccessList(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique identifier for the project to which you want to add one or more access list entries.
+        Unique 24-hexadecimal digit string that identifies your project.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
     def timeouts(self) -> pulumi.Output[Optional['outputs.ProjectIpAccessListTimeouts']]:
-        """
-        )
-
-        > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
-        """
         return pulumi.get(self, "timeouts")
 

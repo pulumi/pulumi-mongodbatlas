@@ -15,9 +15,6 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
-// > **IMPORTANT:**
-// When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-//
 // ## Example Usage
 //
 // ### Using CIDR Block
@@ -33,17 +30,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testProjectIpAccessList, err := mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//			thisProjectIpAccessList, err := mongodbatlas.NewProjectIpAccessList(ctx, "this", &mongodbatlas.ProjectIpAccessListArgs{
+//				ProjectId: pulumi.Any(projectId),
 //				CidrBlock: pulumi.String("1.2.3.4/32"),
-//				Comment:   pulumi.String("cidr block for tf acc testing"),
+//				Comment:   pulumi.String("cidr block test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_ = mongodbatlas.LookupProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
-//				ProjectId: testProjectIpAccessList.ProjectId,
-//				CidrBlock: testProjectIpAccessList.CidrBlock,
+//				ProjectId: thisProjectIpAccessList.ProjectId,
+//				CidrBlock: thisProjectIpAccessList.CidrBlock,
 //			}, nil)
 //			return nil
 //		})
@@ -64,17 +61,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testProjectIpAccessList, err := mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
-//				ProjectId: pulumi.String("<PROJECT-ID>"),
+//			thisProjectIpAccessList, err := mongodbatlas.NewProjectIpAccessList(ctx, "this", &mongodbatlas.ProjectIpAccessListArgs{
+//				ProjectId: pulumi.Any(projectId),
 //				IpAddress: pulumi.String("2.3.4.5"),
-//				Comment:   pulumi.String("ip address for tf acc testing"),
+//				Comment:   pulumi.String("ip address test"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_ = mongodbatlas.LookupProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
-//				ProjectId: testProjectIpAccessList.ProjectId,
-//				IpAddress: testProjectIpAccessList.IpAddress,
+//				ProjectId: thisProjectIpAccessList.ProjectId,
+//				IpAddress: thisProjectIpAccessList.IpAddress,
 //			}, nil)
 //			return nil
 //		})
@@ -95,8 +92,8 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
-//				ProjectId:      pulumi.String("<PROJECT-ID>"),
+//			thisNetworkContainer, err := mongodbatlas.NewNetworkContainer(ctx, "this", &mongodbatlas.NetworkContainerArgs{
+//				ProjectId:      pulumi.Any(projectId),
 //				AtlasCidrBlock: pulumi.String("192.168.208.0/21"),
 //				ProviderName:   pulumi.String("AWS"),
 //				RegionName:     pulumi.String("US_EAST_1"),
@@ -104,9 +101,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "test", &mongodbatlas.NetworkPeeringArgs{
-//				ProjectId:           pulumi.String("<PROJECT-ID>"),
-//				ContainerId:         testNetworkContainer.ContainerId,
+//			thisNetworkPeering, err := mongodbatlas.NewNetworkPeering(ctx, "this", &mongodbatlas.NetworkPeeringArgs{
+//				ProjectId:           pulumi.Any(projectId),
+//				ContainerId:         thisNetworkContainer.ContainerId,
 //				AccepterRegionName:  pulumi.String("us-east-1"),
 //				ProviderName:        pulumi.String("AWS"),
 //				RouteTableCidrBlock: pulumi.String("172.31.0.0/16"),
@@ -116,27 +113,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			testProjectIpAccessList, err := mongodbatlas.NewProjectIpAccessList(ctx, "test", &mongodbatlas.ProjectIpAccessListArgs{
-//				ProjectId:        pulumi.String("<PROJECT-ID>"),
+//			thisProjectIpAccessList, err := mongodbatlas.NewProjectIpAccessList(ctx, "this", &mongodbatlas.ProjectIpAccessListArgs{
+//				ProjectId:        pulumi.Any(projectId),
 //				AwsSecurityGroup: pulumi.String("sg-0026348ec11780bd1"),
-//				Comment:          pulumi.String("TestAcc for awsSecurityGroup"),
+//				Comment:          pulumi.String("AWS Security Group test"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				testNetworkPeering,
+//				thisNetworkPeering,
 //			}))
 //			if err != nil {
 //				return err
 //			}
 //			_ = mongodbatlas.LookupProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
-//				ProjectId:        testProjectIpAccessList.ProjectId,
-//				AwsSecurityGroup: testProjectIpAccessList.AwsSecurityGroup,
+//				ProjectId:        thisProjectIpAccessList.ProjectId,
+//				AwsSecurityGroup: thisProjectIpAccessList.AwsSecurityGroup,
 //			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
-//
-// > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
 func LookupProjectIpAccessList(ctx *pulumi.Context, args *LookupProjectIpAccessListArgs, opts ...pulumi.InvokeOption) (*LookupProjectIpAccessListResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupProjectIpAccessListResult
@@ -149,26 +144,28 @@ func LookupProjectIpAccessList(ctx *pulumi.Context, args *LookupProjectIpAccessL
 
 // A collection of arguments for invoking getProjectIpAccessList.
 type LookupProjectIpAccessListArgs struct {
-	// Unique identifier of the AWS security group to add to the access list.
+	// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
 	AwsSecurityGroup *string `pulumi:"awsSecurityGroup"`
-	// Range of IP addresses in CIDR notation to be added to the access list.
+	// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
 	CidrBlock *string `pulumi:"cidrBlock"`
-	// Single IP address to be added to the access list.
-	//
-	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+	// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
 	IpAddress *string `pulumi:"ipAddress"`
-	// Unique identifier for the project to which you want to add one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getProjectIpAccessList.
 type LookupProjectIpAccessListResult struct {
+	// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
 	AwsSecurityGroup string `pulumi:"awsSecurityGroup"`
-	CidrBlock        string `pulumi:"cidrBlock"`
-	// Comment to add to the access list entry.
-	Comment   string `pulumi:"comment"`
-	Id        string `pulumi:"id"`
+	// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// Remark that explains the purpose or scope of this IP access list entry.
+	Comment string `pulumi:"comment"`
+	Id      string `pulumi:"id"`
+	// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
 	IpAddress string `pulumi:"ipAddress"`
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -183,15 +180,13 @@ func LookupProjectIpAccessListOutput(ctx *pulumi.Context, args LookupProjectIpAc
 
 // A collection of arguments for invoking getProjectIpAccessList.
 type LookupProjectIpAccessListOutputArgs struct {
-	// Unique identifier of the AWS security group to add to the access list.
+	// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
 	AwsSecurityGroup pulumi.StringPtrInput `pulumi:"awsSecurityGroup"`
-	// Range of IP addresses in CIDR notation to be added to the access list.
+	// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
 	CidrBlock pulumi.StringPtrInput `pulumi:"cidrBlock"`
-	// Single IP address to be added to the access list.
-	//
-	// > **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+	// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
-	// Unique identifier for the project to which you want to add one or more access list entries.
+	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -214,15 +209,17 @@ func (o LookupProjectIpAccessListResultOutput) ToLookupProjectIpAccessListResult
 	return o
 }
 
+// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
 func (o LookupProjectIpAccessListResultOutput) AwsSecurityGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.AwsSecurityGroup }).(pulumi.StringOutput)
 }
 
+// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
 func (o LookupProjectIpAccessListResultOutput) CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.CidrBlock }).(pulumi.StringOutput)
 }
 
-// Comment to add to the access list entry.
+// Remark that explains the purpose or scope of this IP access list entry.
 func (o LookupProjectIpAccessListResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Comment }).(pulumi.StringOutput)
 }
@@ -231,10 +228,12 @@ func (o LookupProjectIpAccessListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
 func (o LookupProjectIpAccessListResultOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies your project.
 func (o LookupProjectIpAccessListResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

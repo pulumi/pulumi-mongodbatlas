@@ -120,6 +120,11 @@ from .get_project_api_keys import *
 from .get_project_invitation import *
 from .get_project_ip_access_list import *
 from .get_project_ip_addresses import *
+from .get_project_service_account import *
+from .get_project_service_account_access_list_entries import *
+from .get_project_service_account_access_list_entry import *
+from .get_project_service_account_secret import *
+from .get_project_service_accounts import *
 from .get_projects import *
 from .get_push_based_log_export import *
 from .get_resource_policies import *
@@ -130,6 +135,13 @@ from .get_search_index import *
 from .get_search_indexes import *
 from .get_serverless_instance import *
 from .get_serverless_instances import *
+from .get_service_account import *
+from .get_service_account_access_list_entries import *
+from .get_service_account_access_list_entry import *
+from .get_service_account_project_assignment import *
+from .get_service_account_project_assignments import *
+from .get_service_account_secret import *
+from .get_service_accounts import *
 from .get_shared_tier_restore_job import *
 from .get_shared_tier_restore_jobs import *
 from .get_shared_tier_snapshot import *
@@ -168,12 +180,19 @@ from .project import *
 from .project_api_key import *
 from .project_invitation import *
 from .project_ip_access_list import *
+from .project_service_account import *
+from .project_service_account_access_list_entry import *
+from .project_service_account_secret import *
 from .provider import *
 from .push_based_log_export import *
 from .resource_policy import *
 from .search_deployment import *
 from .search_index import *
 from .serverless_instance import *
+from .service_account import *
+from .service_account_access_list_entry import *
+from .service_account_project_assignment import *
+from .service_account_secret import *
 from .stream_connection import *
 from .stream_instance import *
 from .stream_privatelink_endpoint import *
@@ -590,6 +609,30 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/projectServiceAccount",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount": "ProjectServiceAccount"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/projectServiceAccountAccessListEntry",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry": "ProjectServiceAccountAccessListEntry"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/projectServiceAccountSecret",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret": "ProjectServiceAccountSecret"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/pushBasedLogExport",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -626,6 +669,38 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/serverlessInstance:ServerlessInstance": "ServerlessInstance"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/serviceAccount",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/serviceAccount:ServiceAccount": "ServiceAccount"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/serviceAccountAccessListEntry",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry": "ServiceAccountAccessListEntry"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/serviceAccountProjectAssignment",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment": "ServiceAccountProjectAssignment"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/serviceAccountSecret",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret": "ServiceAccountSecret"
   }
  },
  {

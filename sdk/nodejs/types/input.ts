@@ -1307,6 +1307,8 @@ export interface CustomDbRoleInheritedRole {
     databaseName: pulumi.Input<string>;
     /**
      * Name of the inherited role. This can either be another custom role or a built-in role.
+     *
+     * > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
      */
     roleName: pulumi.Input<string>;
 }
@@ -2117,15 +2119,15 @@ export interface ProjectApiKeyProjectAssignment {
 
 export interface ProjectIpAccessListTimeouts {
     /**
-     * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
      */
     delete?: pulumi.Input<string>;
     /**
-     * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
      */
     read?: pulumi.Input<string>;
     /**
-     * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
     update?: pulumi.Input<string>;
 }
@@ -2156,6 +2158,33 @@ export interface ProjectLimit {
      * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
      */
     value: pulumi.Input<number>;
+}
+
+export interface ProjectServiceAccountSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt?: pulumi.Input<string>;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt?: pulumi.Input<string>;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue?: pulumi.Input<string>;
+    /**
+     * The secret for the Service Account. It will be returned only the first time after creation.
+     */
+    secret?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId?: pulumi.Input<string>;
 }
 
 export interface ProjectTeam {
@@ -2296,6 +2325,33 @@ export interface ServerlessInstanceTag {
     value: pulumi.Input<string>;
 }
 
+export interface ServiceAccountSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt?: pulumi.Input<string>;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt?: pulumi.Input<string>;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue?: pulumi.Input<string>;
+    /**
+     * The secret for the Service Account. It will be returned only the first time after creation.
+     */
+    secret?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId?: pulumi.Input<string>;
+}
+
 export interface StreamConnectionAuthentication {
     /**
      * Public identifier for the Kafka client.
@@ -2348,7 +2404,7 @@ export interface StreamConnectionDbRoleToExecute {
      */
     role: pulumi.Input<string>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      *
      * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
@@ -2371,6 +2427,23 @@ export interface StreamConnectionNetworkingAccess {
      * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: pulumi.Input<string>;
+}
+
+export interface StreamConnectionSchemaRegistryAuthentication {
+    /**
+     * Password for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Username for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    username?: pulumi.Input<string>;
 }
 
 export interface StreamConnectionSecurity {

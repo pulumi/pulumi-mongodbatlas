@@ -14,8 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
-    /// &gt; **IMPORTANT:**
-    /// When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
+    /// &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
     /// 
     /// &gt; **IMPORTANT:** During creation this resource does not validate whether the specified `IpAddress`, `CidrBlock`, or `AwsSecurityGroup` already exists in the project's access list (known limitation). Defining a duplicate entry will result in a successful resource creation associated to the existing entry.
     /// 
@@ -30,11 +29,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
+    ///     var @this = new Mongodbatlas.ProjectIpAccessList("this", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProjectId = projectId,
     ///         CidrBlock = "1.2.3.4/32",
-    ///         Comment = "cidr block for tf acc testing",
+    ///         Comment = "cidr block test",
     ///     });
     /// 
     /// });
@@ -49,11 +48,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.ProjectIpAccessList("test", new()
+    ///     var @this = new Mongodbatlas.ProjectIpAccessList("this", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProjectId = projectId,
     ///         IpAddress = "2.3.4.5",
-    ///         Comment = "ip address for tf acc testing",
+    ///         Comment = "ip address test",
     ///     });
     /// 
     /// });
@@ -68,18 +67,18 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
+    ///     var @this = new Mongodbatlas.NetworkContainer("this", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProjectId = projectId,
     ///         AtlasCidrBlock = "192.168.208.0/21",
     ///         ProviderName = "AWS",
     ///         RegionName = "US_EAST_1",
     ///     });
     /// 
-    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+    ///     var thisNetworkPeering = new Mongodbatlas.NetworkPeering("this", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
-    ///         ContainerId = test.ContainerId,
+    ///         ProjectId = projectId,
+    ///         ContainerId = @this.ContainerId,
     ///         AccepterRegionName = "us-east-1",
     ///         ProviderName = "AWS",
     ///         RouteTableCidrBlock = "172.31.0.0/16",
@@ -87,16 +86,16 @@ namespace Pulumi.Mongodbatlas
     ///         AwsAccountId = "232589400519",
     ///     });
     /// 
-    ///     var testProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("test", new()
+    ///     var thisProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("this", new()
     ///     {
-    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         ProjectId = projectId,
     ///         AwsSecurityGroup = "sg-0026348ec11780bd1",
-    ///         Comment = "TestAcc for awsSecurityGroup",
+    ///         Comment = "AWS Security Group test",
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =
     ///         {
-    ///             testNetworkPeering,
+    ///             thisNetworkPeering,
     ///         },
     ///     });
     /// 
@@ -113,48 +112,43 @@ namespace Pulumi.Mongodbatlas
     /// IP Access List entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
     /// 
     /// ```sh
-    /// $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList test 5d0f1f74cf09a29120e123cd-10.242.88.0/21
+    /// $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
     /// ```
-    /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/access-lists/)
+    /// For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/projectIpAccessList:ProjectIpAccessList")]
     public partial class ProjectIpAccessList : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        /// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `CidrBlock` and `IpAddress`.
         /// </summary>
         [Output("awsSecurityGroup")]
         public Output<string> AwsSecurityGroup { get; private set; } = null!;
 
         /// <summary>
-        /// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        /// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `IpAddress` and `AwsSecurityGroup`.
         /// </summary>
         [Output("cidrBlock")]
         public Output<string> CidrBlock { get; private set; } = null!;
 
         /// <summary>
-        /// Comment to add to the access list entry.
+        /// Remark that explains the purpose or scope of this IP access list entry.
         /// </summary>
         [Output("comment")]
         public Output<string> Comment { get; private set; } = null!;
 
         /// <summary>
-        /// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+        /// Single IP address to be added to the access list. Mutually exclusive with `CidrBlock` and `AwsSecurityGroup`.
         /// </summary>
         [Output("ipAddress")]
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the project to which you want to add one or more access list entries.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
-        /// <summary>
-        /// )
-        /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
-        /// </summary>
         [Output("timeouts")]
         public Output<Outputs.ProjectIpAccessListTimeouts?> Timeouts { get; private set; } = null!;
 
@@ -205,40 +199,35 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectIpAccessListArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        /// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `CidrBlock` and `IpAddress`.
         /// </summary>
         [Input("awsSecurityGroup")]
         public Input<string>? AwsSecurityGroup { get; set; }
 
         /// <summary>
-        /// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        /// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `IpAddress` and `AwsSecurityGroup`.
         /// </summary>
         [Input("cidrBlock")]
         public Input<string>? CidrBlock { get; set; }
 
         /// <summary>
-        /// Comment to add to the access list entry.
+        /// Remark that explains the purpose or scope of this IP access list entry.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+        /// Single IP address to be added to the access list. Mutually exclusive with `CidrBlock` and `AwsSecurityGroup`.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// Unique identifier for the project to which you want to add one or more access list entries.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
-        /// <summary>
-        /// )
-        /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
-        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.ProjectIpAccessListTimeoutsArgs>? Timeouts { get; set; }
 
@@ -251,40 +240,35 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectIpAccessListState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique identifier of the AWS security group to add to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        /// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `CidrBlock` and `IpAddress`.
         /// </summary>
         [Input("awsSecurityGroup")]
         public Input<string>? AwsSecurityGroup { get; set; }
 
         /// <summary>
-        /// Range of IP addresses in CIDR notation to be added to the access list. Your access list entry can include only one `awsSecurityGroup`, one `cidrBlock`, or one `ipAddress`.
+        /// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `IpAddress` and `AwsSecurityGroup`.
         /// </summary>
         [Input("cidrBlock")]
         public Input<string>? CidrBlock { get; set; }
 
         /// <summary>
-        /// Comment to add to the access list entry.
+        /// Remark that explains the purpose or scope of this IP access list entry.
         /// </summary>
         [Input("comment")]
         public Input<string>? Comment { get; set; }
 
         /// <summary>
-        /// Single IP address to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `cidrBlock`.
+        /// Single IP address to be added to the access list. Mutually exclusive with `CidrBlock` and `AwsSecurityGroup`.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// Unique identifier for the project to which you want to add one or more access list entries.
+        /// Unique 24-hexadecimal digit string that identifies your project.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
-        /// <summary>
-        /// )
-        /// 
-        /// &gt; **NOTE:** One of the following attributes must set:  `AwsSecurityGroup`, `CidrBlock`  or `IpAddress`.
-        /// </summary>
         [Input("timeouts")]
         public Input<Inputs.ProjectIpAccessListTimeoutsGetArgs>? Timeouts { get; set; }
 

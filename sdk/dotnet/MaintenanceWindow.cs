@@ -84,13 +84,13 @@ namespace Pulumi.Mongodbatlas
     public partial class MaintenanceWindow : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Defer any scheduled maintenance for the given project for one week.
+        /// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation.
         /// </summary>
         [Output("autoDefer")]
         public Output<bool> AutoDefer { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// When `True`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer` but by directly setting the value to true or false. If `AutoDefer` is modified triggering a toggle, it will impact the value of this attribute.
         /// </summary>
         [Output("autoDeferOnceEnabled")]
         public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
@@ -102,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> DayOfWeek { get; private set; } = null!;
 
         /// <summary>
-        /// Defer the next scheduled maintenance for the given project for one week.
+        /// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         /// </summary>
         [Output("defer")]
         public Output<bool> Defer { get; private set; } = null!;
@@ -190,13 +190,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class MaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defer any scheduled maintenance for the given project for one week.
+        /// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation.
         /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// When `True`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer` but by directly setting the value to true or false. If `AutoDefer` is modified triggering a toggle, it will impact the value of this attribute.
         /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
@@ -208,7 +208,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int> DayOfWeek { get; set; } = null!;
 
         /// <summary>
-        /// Defer the next scheduled maintenance for the given project for one week.
+        /// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         /// </summary>
         [Input("defer")]
         public Input<bool>? Defer { get; set; }
@@ -240,13 +240,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class MaintenanceWindowState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defer any scheduled maintenance for the given project for one week.
+        /// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation.
         /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// When `True`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer` but by directly setting the value to true or false. If `AutoDefer` is modified triggering a toggle, it will impact the value of this attribute.
         /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
@@ -258,7 +258,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? DayOfWeek { get; set; }
 
         /// <summary>
-        /// Defer the next scheduled maintenance for the given project for one week.
+        /// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         /// </summary>
         [Input("defer")]
         public Input<bool>? Defer { get; set; }

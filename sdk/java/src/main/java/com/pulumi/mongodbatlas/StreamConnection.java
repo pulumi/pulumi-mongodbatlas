@@ -14,8 +14,10 @@ import com.pulumi.mongodbatlas.outputs.StreamConnectionAuthentication;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionAws;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionDbRoleToExecute;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionNetworking;
+import com.pulumi.mongodbatlas.outputs.StreamConnectionSchemaRegistryAuthentication;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionSecurity;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -342,6 +344,92 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example Schema Registry Connection with USER_INFO Authentication
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionSchemaRegistryAuthenticationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example_schema_registry = new StreamConnection("example-schema-registry", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.instanceName())
+ *             .connectionName("SchemaRegistryConnection")
+ *             .type("SchemaRegistry")
+ *             .schemaRegistryProvider("CONFLUENT")
+ *             .schemaRegistryUrls("https://schema-registry.example.com:8081")
+ *             .schemaRegistryAuthentication(StreamConnectionSchemaRegistryAuthenticationArgs.builder()
+ *                 .type("USER_INFO")
+ *                 .username("registry-user")
+ *                 .password(schemaRegistryPassword)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example Schema Registry Connection with SASL_INHERIT Authentication
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionSchemaRegistryAuthenticationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example_schema_registry_sasl = new StreamConnection("example-schema-registry-sasl", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.instanceName())
+ *             .connectionName("SchemaRegistryConnectionSASL")
+ *             .type("SchemaRegistry")
+ *             .schemaRegistryProvider("CONFLUENT")
+ *             .schemaRegistryUrls("https://schema-registry.example.com:8081")
+ *             .schemaRegistryAuthentication(StreamConnectionSchemaRegistryAuthenticationArgs.builder()
+ *                 .type("SASL_INHERIT")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -455,6 +543,24 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
+    @Export(name="schemaRegistryAuthentication", refs={StreamConnectionSchemaRegistryAuthentication.class}, tree="[0]")
+    private Output</* @Nullable */ StreamConnectionSchemaRegistryAuthentication> schemaRegistryAuthentication;
+
+    public Output<Optional<StreamConnectionSchemaRegistryAuthentication>> schemaRegistryAuthentication() {
+        return Codegen.optional(this.schemaRegistryAuthentication);
+    }
+    @Export(name="schemaRegistryProvider", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> schemaRegistryProvider;
+
+    public Output<Optional<String>> schemaRegistryProvider() {
+        return Codegen.optional(this.schemaRegistryProvider);
+    }
+    @Export(name="schemaRegistryUrls", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> schemaRegistryUrls;
+
+    public Output<Optional<List<String>>> schemaRegistryUrls() {
+        return Codegen.optional(this.schemaRegistryUrls);
+    }
     @Export(name="security", refs={StreamConnectionSecurity.class}, tree="[0]")
     private Output</* @Nullable */ StreamConnectionSecurity> security;
 
@@ -462,7 +568,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.security);
     }
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
@@ -471,7 +577,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 

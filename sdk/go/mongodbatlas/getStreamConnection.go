@@ -119,9 +119,17 @@ type LookupStreamConnectionResult struct {
 	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
 	Networking GetStreamConnectionNetworking `pulumi:"networking"`
 	ProjectId  string                        `pulumi:"projectId"`
+	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+	SchemaRegistryAuthentication GetStreamConnectionSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
+	// The Schema Registry provider. Must be set to `CONFLUENT`.
+	SchemaRegistryProvider string `pulumi:"schemaRegistryProvider"`
+	// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+	SchemaRegistryUrls []string `pulumi:"schemaRegistryUrls"`
 	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 	Security GetStreamConnectionSecurity `pulumi:"security"`
-	// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 	Type string `pulumi:"type"`
 	// URL of the HTTPs endpoint that will be used for creating a connection.
 	Url           string  `pulumi:"url"`
@@ -234,12 +242,31 @@ func (o LookupStreamConnectionResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+func (o LookupStreamConnectionResultOutput) SchemaRegistryAuthentication() GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionSchemaRegistryAuthentication {
+		return v.SchemaRegistryAuthentication
+	}).(GetStreamConnectionSchemaRegistryAuthenticationOutput)
+}
+
+// The Schema Registry provider. Must be set to `CONFLUENT`.
+func (o LookupStreamConnectionResultOutput) SchemaRegistryProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.SchemaRegistryProvider }).(pulumi.StringOutput)
+}
+
+// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+func (o LookupStreamConnectionResultOutput) SchemaRegistryUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) []string { return v.SchemaRegistryUrls }).(pulumi.StringArrayOutput)
+}
+
 // Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
 func (o LookupStreamConnectionResultOutput) Security() GetStreamConnectionSecurityOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionSecurity { return v.Security }).(GetStreamConnectionSecurityOutput)
 }
 
-// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o LookupStreamConnectionResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.Type }).(pulumi.StringOutput)
 }

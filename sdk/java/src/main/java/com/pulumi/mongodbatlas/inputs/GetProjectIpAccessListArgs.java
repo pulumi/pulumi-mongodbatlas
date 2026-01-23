@@ -17,14 +17,14 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
     public static final GetProjectIpAccessListArgs Empty = new GetProjectIpAccessListArgs();
 
     /**
-     * Unique identifier of the AWS security group to add to the access list.
+     * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      * 
      */
     @Import(name="awsSecurityGroup")
     private @Nullable Output<String> awsSecurityGroup;
 
     /**
-     * @return Unique identifier of the AWS security group to add to the access list.
+     * @return Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      * 
      */
     public Optional<Output<String>> awsSecurityGroup() {
@@ -32,14 +32,14 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * Range of IP addresses in CIDR notation to be added to the access list.
+     * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      * 
      */
     @Import(name="cidrBlock")
     private @Nullable Output<String> cidrBlock;
 
     /**
-     * @return Range of IP addresses in CIDR notation to be added to the access list.
+     * @return Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      * 
      */
     public Optional<Output<String>> cidrBlock() {
@@ -47,18 +47,14 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * Single IP address to be added to the access list.
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      * 
      */
     @Import(name="ipAddress")
     private @Nullable Output<String> ipAddress;
 
     /**
-     * @return Single IP address to be added to the access list.
-     * 
-     * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+     * @return Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      * 
      */
     public Optional<Output<String>> ipAddress() {
@@ -66,14 +62,14 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * Unique identifier for the project to which you want to add one or more access list entries.
+     * Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project to which you want to add one or more access list entries.
+     * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     public Output<String> projectId() {
@@ -108,7 +104,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list.
+         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
          * 
          * @return builder
          * 
@@ -119,7 +115,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list.
+         * @param awsSecurityGroup Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
          * 
          * @return builder
          * 
@@ -129,7 +125,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list.
+         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -140,7 +136,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list.
+         * @param cidrBlock Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -150,9 +146,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param ipAddress Single IP address to be added to the access list.
-         * 
-         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+         * @param ipAddress Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -163,9 +157,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param ipAddress Single IP address to be added to the access list.
-         * 
-         * &gt; **NOTE:** One of the following attributes must set:  `awsSecurityGroup`, `cidrBlock`  or `ipAddress`.
+         * @param ipAddress Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
          * 
          * @return builder
          * 
@@ -175,7 +167,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param projectId Unique identifier for the project to which you want to add one or more access list entries.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
@@ -186,7 +178,7 @@ public final class GetProjectIpAccessListArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param projectId Unique identifier for the project to which you want to add one or more access list entries.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
          * 
          * @return builder
          * 
