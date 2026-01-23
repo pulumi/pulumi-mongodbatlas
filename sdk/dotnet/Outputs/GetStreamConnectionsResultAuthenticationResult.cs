@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Method;
         /// <summary>
-        /// Password of the account to connect to the Kafka cluster.
+        /// Password for the Schema Registry. Required when `Type` is `USER_INFO`.
         /// </summary>
         public readonly string Password;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string TokenEndpointUrl;
         /// <summary>
-        /// Username of the account to connect to the Kafka cluster.
+        /// Username for the Schema Registry. Required when `Type` is `USER_INFO`.
         /// </summary>
         public readonly string Username;
 

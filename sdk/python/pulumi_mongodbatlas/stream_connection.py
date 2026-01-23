@@ -34,6 +34,9 @@ class StreamConnectionArgs:
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
+                 schema_registry_authentication: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']] = None,
+                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
@@ -41,7 +44,7 @@ class StreamConnectionArgs:
         The set of arguments for constructing a StreamConnection resource.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
                
                > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
@@ -73,6 +76,12 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "instance_name", instance_name)
         if networking is not None:
             pulumi.set(__self__, "networking", networking)
+        if schema_registry_authentication is not None:
+            pulumi.set(__self__, "schema_registry_authentication", schema_registry_authentication)
+        if schema_registry_provider is not None:
+            pulumi.set(__self__, "schema_registry_provider", schema_registry_provider)
+        if schema_registry_urls is not None:
+            pulumi.set(__self__, "schema_registry_urls", schema_registry_urls)
         if security is not None:
             pulumi.set(__self__, "security", security)
         if url is not None:
@@ -108,7 +117,7 @@ class StreamConnectionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 
         > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
@@ -213,6 +222,33 @@ class StreamConnectionArgs:
         pulumi.set(self, "networking", value)
 
     @_builtins.property
+    @pulumi.getter(name="schemaRegistryAuthentication")
+    def schema_registry_authentication(self) -> Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]:
+        return pulumi.get(self, "schema_registry_authentication")
+
+    @schema_registry_authentication.setter
+    def schema_registry_authentication(self, value: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]):
+        pulumi.set(self, "schema_registry_authentication", value)
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryProvider")
+    def schema_registry_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "schema_registry_provider")
+
+    @schema_registry_provider.setter
+    def schema_registry_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "schema_registry_provider", value)
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryUrls")
+    def schema_registry_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "schema_registry_urls")
+
+    @schema_registry_urls.setter
+    def schema_registry_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "schema_registry_urls", value)
+
+    @_builtins.property
     @pulumi.getter
     def security(self) -> Optional[pulumi.Input['StreamConnectionSecurityArgs']]:
         return pulumi.get(self, "security")
@@ -258,6 +294,9 @@ class _StreamConnectionState:
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 schema_registry_authentication: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']] = None,
+                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -267,7 +306,7 @@ class _StreamConnectionState:
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
                
                > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
@@ -299,6 +338,12 @@ class _StreamConnectionState:
             pulumi.set(__self__, "networking", networking)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if schema_registry_authentication is not None:
+            pulumi.set(__self__, "schema_registry_authentication", schema_registry_authentication)
+        if schema_registry_provider is not None:
+            pulumi.set(__self__, "schema_registry_provider", schema_registry_provider)
+        if schema_registry_urls is not None:
+            pulumi.set(__self__, "schema_registry_urls", schema_registry_urls)
         if security is not None:
             pulumi.set(__self__, "security", security)
         if type is not None:
@@ -427,6 +472,33 @@ class _StreamConnectionState:
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="schemaRegistryAuthentication")
+    def schema_registry_authentication(self) -> Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]:
+        return pulumi.get(self, "schema_registry_authentication")
+
+    @schema_registry_authentication.setter
+    def schema_registry_authentication(self, value: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]):
+        pulumi.set(self, "schema_registry_authentication", value)
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryProvider")
+    def schema_registry_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "schema_registry_provider")
+
+    @schema_registry_provider.setter
+    def schema_registry_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "schema_registry_provider", value)
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryUrls")
+    def schema_registry_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "schema_registry_urls")
+
+    @schema_registry_urls.setter
+    def schema_registry_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "schema_registry_urls", value)
+
+    @_builtins.property
     @pulumi.getter
     def security(self) -> Optional[pulumi.Input['StreamConnectionSecurityArgs']]:
         return pulumi.get(self, "security")
@@ -439,7 +511,7 @@ class _StreamConnectionState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 
         > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
@@ -489,6 +561,9 @@ class StreamConnection(pulumi.CustomResource):
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 schema_registry_authentication: Optional[pulumi.Input[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
+                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -652,6 +727,44 @@ class StreamConnection(pulumi.CustomResource):
             })
         ```
 
+        ### Example Schema Registry Connection with USER_INFO Authentication
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_schema_registry = mongodbatlas.StreamConnection("example-schema-registry",
+            project_id=project_id,
+            workspace_name=example["instanceName"],
+            connection_name="SchemaRegistryConnection",
+            type="SchemaRegistry",
+            schema_registry_provider="CONFLUENT",
+            schema_registry_urls=["https://schema-registry.example.com:8081"],
+            schema_registry_authentication={
+                "type": "USER_INFO",
+                "username": "registry-user",
+                "password": schema_registry_password,
+            })
+        ```
+
+        ### Example Schema Registry Connection with SASL_INHERIT Authentication
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_schema_registry_sasl = mongodbatlas.StreamConnection("example-schema-registry-sasl",
+            project_id=project_id,
+            workspace_name=example["instanceName"],
+            connection_name="SchemaRegistryConnectionSASL",
+            type="SchemaRegistry",
+            schema_registry_provider="CONFLUENT",
+            schema_registry_urls=["https://schema-registry.example.com:8081"],
+            schema_registry_authentication={
+                "type": "SASL_INHERIT",
+            })
+        ```
+
         ## Import
 
         You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -667,7 +780,7 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
                
                > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
@@ -836,6 +949,44 @@ class StreamConnection(pulumi.CustomResource):
             })
         ```
 
+        ### Example Schema Registry Connection with USER_INFO Authentication
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_schema_registry = mongodbatlas.StreamConnection("example-schema-registry",
+            project_id=project_id,
+            workspace_name=example["instanceName"],
+            connection_name="SchemaRegistryConnection",
+            type="SchemaRegistry",
+            schema_registry_provider="CONFLUENT",
+            schema_registry_urls=["https://schema-registry.example.com:8081"],
+            schema_registry_authentication={
+                "type": "USER_INFO",
+                "username": "registry-user",
+                "password": schema_registry_password,
+            })
+        ```
+
+        ### Example Schema Registry Connection with SASL_INHERIT Authentication
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_schema_registry_sasl = mongodbatlas.StreamConnection("example-schema-registry-sasl",
+            project_id=project_id,
+            workspace_name=example["instanceName"],
+            connection_name="SchemaRegistryConnectionSASL",
+            type="SchemaRegistry",
+            schema_registry_provider="CONFLUENT",
+            schema_registry_urls=["https://schema-registry.example.com:8081"],
+            schema_registry_authentication={
+                "type": "SASL_INHERIT",
+            })
+        ```
+
         ## Import
 
         You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -873,6 +1024,9 @@ class StreamConnection(pulumi.CustomResource):
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 schema_registry_authentication: Optional[pulumi.Input[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
+                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
+                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -902,6 +1056,9 @@ class StreamConnection(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["schema_registry_authentication"] = schema_registry_authentication
+            __props__.__dict__["schema_registry_provider"] = schema_registry_provider
+            __props__.__dict__["schema_registry_urls"] = schema_registry_urls
             __props__.__dict__["security"] = security
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -930,6 +1087,9 @@ class StreamConnection(pulumi.CustomResource):
             instance_name: Optional[pulumi.Input[_builtins.str]] = None,
             networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
+            schema_registry_authentication: Optional[pulumi.Input[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
+            schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
+            schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
             url: Optional[pulumi.Input[_builtins.str]] = None,
@@ -944,7 +1104,7 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
                
                > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
@@ -965,6 +1125,9 @@ class StreamConnection(pulumi.CustomResource):
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["networking"] = networking
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["schema_registry_authentication"] = schema_registry_authentication
+        __props__.__dict__["schema_registry_provider"] = schema_registry_provider
+        __props__.__dict__["schema_registry_urls"] = schema_registry_urls
         __props__.__dict__["security"] = security
         __props__.__dict__["type"] = type
         __props__.__dict__["url"] = url
@@ -1042,6 +1205,21 @@ class StreamConnection(pulumi.CustomResource):
         return pulumi.get(self, "project_id")
 
     @_builtins.property
+    @pulumi.getter(name="schemaRegistryAuthentication")
+    def schema_registry_authentication(self) -> pulumi.Output[Optional['outputs.StreamConnectionSchemaRegistryAuthentication']]:
+        return pulumi.get(self, "schema_registry_authentication")
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryProvider")
+    def schema_registry_provider(self) -> pulumi.Output[Optional[_builtins.str]]:
+        return pulumi.get(self, "schema_registry_provider")
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryUrls")
+    def schema_registry_urls(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        return pulumi.get(self, "schema_registry_urls")
+
+    @_builtins.property
     @pulumi.getter
     def security(self) -> pulumi.Output[Optional['outputs.StreamConnectionSecurity']]:
         return pulumi.get(self, "security")
@@ -1050,7 +1228,7 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 
         > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """

@@ -124,6 +124,7 @@ __all__ = [
     'ProjectIpAddressesServices',
     'ProjectIpAddressesServicesCluster',
     'ProjectLimit',
+    'ProjectServiceAccountSecret',
     'ProjectTeam',
     'PushBasedLogExportTimeouts',
     'ResourcePolicyCreatedByUser',
@@ -135,11 +136,13 @@ __all__ = [
     'SearchIndexTypeSet',
     'ServerlessInstanceLink',
     'ServerlessInstanceTag',
+    'ServiceAccountSecret',
     'StreamConnectionAuthentication',
     'StreamConnectionAws',
     'StreamConnectionDbRoleToExecute',
     'StreamConnectionNetworking',
     'StreamConnectionNetworkingAccess',
+    'StreamConnectionSchemaRegistryAuthentication',
     'StreamConnectionSecurity',
     'StreamInstanceDataProcessRegion',
     'StreamInstanceStreamConfig',
@@ -379,6 +382,10 @@ __all__ = [
     'GetProjectIpAddressesServicesResult',
     'GetProjectIpAddressesServicesClusterResult',
     'GetProjectLimitResult',
+    'GetProjectServiceAccountAccessListEntriesResultResult',
+    'GetProjectServiceAccountSecretResult',
+    'GetProjectServiceAccountsResultResult',
+    'GetProjectServiceAccountsResultSecretResult',
     'GetProjectTeamResult',
     'GetProjectUserResult',
     'GetProjectsResultResult',
@@ -410,6 +417,11 @@ __all__ = [
     'GetServerlessInstancesResultResult',
     'GetServerlessInstancesResultLinkResult',
     'GetServerlessInstancesResultTagResult',
+    'GetServiceAccountAccessListEntriesResultResult',
+    'GetServiceAccountProjectAssignmentsResultResult',
+    'GetServiceAccountSecretResult',
+    'GetServiceAccountsResultResult',
+    'GetServiceAccountsResultSecretResult',
     'GetSharedTierRestoreJobsResultResult',
     'GetSharedTierSnapshotsResultResult',
     'GetStreamConnectionAuthenticationResult',
@@ -417,6 +429,7 @@ __all__ = [
     'GetStreamConnectionDbRoleToExecuteResult',
     'GetStreamConnectionNetworkingResult',
     'GetStreamConnectionNetworkingAccessResult',
+    'GetStreamConnectionSchemaRegistryAuthenticationResult',
     'GetStreamConnectionSecurityResult',
     'GetStreamConnectionsResultResult',
     'GetStreamConnectionsResultAuthenticationResult',
@@ -424,6 +437,7 @@ __all__ = [
     'GetStreamConnectionsResultDbRoleToExecuteResult',
     'GetStreamConnectionsResultNetworkingResult',
     'GetStreamConnectionsResultNetworkingAccessResult',
+    'GetStreamConnectionsResultSchemaRegistryAuthenticationResult',
     'GetStreamConnectionsResultSecurityResult',
     'GetStreamInstanceDataProcessRegionResult',
     'GetStreamInstanceStreamConfigResult',
@@ -5510,6 +5524,8 @@ class CustomDbRoleInheritedRole(dict):
                
                > **NOTE** This value should be admin for all roles except read and readWrite.
         :param _builtins.str role_name: Name of the inherited role. This can either be another custom role or a built-in role.
+               
+               > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
         """
         pulumi.set(__self__, "database_name", database_name)
         pulumi.set(__self__, "role_name", role_name)
@@ -5529,6 +5545,8 @@ class CustomDbRoleInheritedRole(dict):
     def role_name(self) -> _builtins.str:
         """
         Name of the inherited role. This can either be another custom role or a built-in role.
+
+        > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
         """
         return pulumi.get(self, "role_name")
 
@@ -7973,9 +7991,9 @@ class ProjectIpAccessListTimeouts(dict):
                  read: Optional[_builtins.str] = None,
                  update: Optional[_builtins.str] = None):
         """
-        :param _builtins.str delete: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
-        :param _builtins.str read: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
-        :param _builtins.str update: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         if delete is not None:
             pulumi.set(__self__, "delete", delete)
@@ -7988,7 +8006,7 @@ class ProjectIpAccessListTimeouts(dict):
     @pulumi.getter
     def delete(self) -> Optional[_builtins.str]:
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         """
         return pulumi.get(self, "delete")
 
@@ -7996,7 +8014,7 @@ class ProjectIpAccessListTimeouts(dict):
     @pulumi.getter
     def read(self) -> Optional[_builtins.str]:
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
         return pulumi.get(self, "read")
 
@@ -8004,7 +8022,7 @@ class ProjectIpAccessListTimeouts(dict):
     @pulumi.getter
     def update(self) -> Optional[_builtins.str]:
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "update")
 
@@ -8153,6 +8171,110 @@ class ProjectLimit(dict):
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> Optional[_builtins.int]:
         return pulumi.get(self, "maximum_limit")
+
+
+@pulumi.output_type
+class ProjectServiceAccountSecret(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "expiresAt":
+            suggest = "expires_at"
+        elif key == "lastUsedAt":
+            suggest = "last_used_at"
+        elif key == "maskedSecretValue":
+            suggest = "masked_secret_value"
+        elif key == "secretId":
+            suggest = "secret_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectServiceAccountSecret. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectServiceAccountSecret.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectServiceAccountSecret.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[_builtins.str] = None,
+                 expires_at: Optional[_builtins.str] = None,
+                 last_used_at: Optional[_builtins.str] = None,
+                 masked_secret_value: Optional[_builtins.str] = None,
+                 secret: Optional[_builtins.str] = None,
+                 secret_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        :param _builtins.str secret: The secret for the Service Account. It will be returned only the first time after creation.
+        :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if last_used_at is not None:
+            pulumi.set(__self__, "last_used_at", last_used_at)
+        if masked_secret_value is not None:
+            pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[_builtins.str]:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> Optional[_builtins.str]:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> Optional[_builtins.str]:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def secret(self) -> Optional[_builtins.str]:
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        return pulumi.get(self, "secret")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
 
 
 @pulumi.output_type
@@ -8575,6 +8697,110 @@ class ServerlessInstanceTag(dict):
 
 
 @pulumi.output_type
+class ServiceAccountSecret(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "expiresAt":
+            suggest = "expires_at"
+        elif key == "lastUsedAt":
+            suggest = "last_used_at"
+        elif key == "maskedSecretValue":
+            suggest = "masked_secret_value"
+        elif key == "secretId":
+            suggest = "secret_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceAccountSecret. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceAccountSecret.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceAccountSecret.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[_builtins.str] = None,
+                 expires_at: Optional[_builtins.str] = None,
+                 last_used_at: Optional[_builtins.str] = None,
+                 masked_secret_value: Optional[_builtins.str] = None,
+                 secret: Optional[_builtins.str] = None,
+                 secret_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        :param _builtins.str secret: The secret for the Service Account. It will be returned only the first time after creation.
+        :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if last_used_at is not None:
+            pulumi.set(__self__, "last_used_at", last_used_at)
+        if masked_secret_value is not None:
+            pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[_builtins.str]:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> Optional[_builtins.str]:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> Optional[_builtins.str]:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @_builtins.property
+    @pulumi.getter
+    def secret(self) -> Optional[_builtins.str]:
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        return pulumi.get(self, "secret")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
 class StreamConnectionAuthentication(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -8754,7 +8980,7 @@ class StreamConnectionDbRoleToExecute(dict):
                  type: _builtins.str):
         """
         :param _builtins.str role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
-        :param _builtins.str type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        :param _builtins.str type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
                
                > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
@@ -8773,7 +8999,7 @@ class StreamConnectionDbRoleToExecute(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 
         > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
@@ -8843,6 +9069,53 @@ class StreamConnectionNetworkingAccess(dict):
         Id of the Private Link connection when type is `PRIVATE_LINK`.
         """
         return pulumi.get(self, "connection_id")
+
+
+@pulumi.output_type
+class StreamConnectionSchemaRegistryAuthentication(dict):
+    def __init__(__self__, *,
+                 password: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        :param _builtins.str username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        """
+        Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -9247,8 +9520,12 @@ class GetAccessListApiKeysResultResult(dict):
                  last_used: _builtins.str,
                  last_used_address: _builtins.str):
         """
-        :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
-        :param _builtins.str ip_address: Single IP address to be added to the access list.
+        :param _builtins.int access_count: Total number of requests that have originated from this IP address or CIDR block.
+        :param _builtins.str cidr_block: Range of IP addresses in CIDR notation included in the API access list.
+        :param _builtins.str created: Date and time when the access list entry was created.
+        :param _builtins.str ip_address: IP address included in the API access list.
+        :param _builtins.str last_used: Date and time when the API key was last used from this IP address or CIDR block.
+        :param _builtins.str last_used_address: IP address from which the last API request was made.
         """
         pulumi.set(__self__, "access_count", access_count)
         pulumi.set(__self__, "cidr_block", cidr_block)
@@ -9260,37 +9537,49 @@ class GetAccessListApiKeysResultResult(dict):
     @_builtins.property
     @pulumi.getter(name="accessCount")
     def access_count(self) -> _builtins.int:
+        """
+        Total number of requests that have originated from this IP address or CIDR block.
+        """
         return pulumi.get(self, "access_count")
 
     @_builtins.property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> _builtins.str:
         """
-        Range of IP addresses in CIDR notation to be added to the access list.
+        Range of IP addresses in CIDR notation included in the API access list.
         """
         return pulumi.get(self, "cidr_block")
 
     @_builtins.property
     @pulumi.getter
     def created(self) -> _builtins.str:
+        """
+        Date and time when the access list entry was created.
+        """
         return pulumi.get(self, "created")
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> _builtins.str:
         """
-        Single IP address to be added to the access list.
+        IP address included in the API access list.
         """
         return pulumi.get(self, "ip_address")
 
     @_builtins.property
     @pulumi.getter(name="lastUsed")
     def last_used(self) -> _builtins.str:
+        """
+        Date and time when the API key was last used from this IP address or CIDR block.
+        """
         return pulumi.get(self, "last_used")
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAddress")
     def last_used_address(self) -> _builtins.str:
+        """
+        IP address from which the last API request was made.
+        """
         return pulumi.get(self, "last_used_address")
 
 
@@ -23391,6 +23680,298 @@ class GetProjectLimitResult(dict):
 
 
 @pulumi.output_type
+class GetProjectServiceAccountAccessListEntriesResultResult(dict):
+    def __init__(__self__, *,
+                 cidr_block: _builtins.str,
+                 client_id: _builtins.str,
+                 created_at: _builtins.str,
+                 ip_address: _builtins.str,
+                 last_used_address: _builtins.str,
+                 last_used_at: _builtins.str,
+                 project_id: _builtins.str,
+                 request_count: _builtins.int):
+        """
+        :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+        :param _builtins.str client_id: The Client ID of the Service Account.
+        :param _builtins.str created_at: Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str ip_address: IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+        :param _builtins.str last_used_address: Network address that issued the most recent request to the API.
+        :param _builtins.str last_used_at: Date when the API received the most recent request that originated from this network address.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project.
+        :param _builtins.int request_count: The number of requests that has originated from this network address.
+        """
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used_address", last_used_address)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "request_count", request_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> _builtins.str:
+        """
+        Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The Client ID of the Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAddress")
+    def last_used_address(self) -> _builtins.str:
+        """
+        Network address that issued the most recent request to the API.
+        """
+        return pulumi.get(self, "last_used_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Date when the API received the most recent request that originated from this network address.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="requestCount")
+    def request_count(self) -> _builtins.int:
+        """
+        The number of requests that has originated from this network address.
+        """
+        return pulumi.get(self, "request_count")
+
+
+@pulumi.output_type
+class GetProjectServiceAccountSecretResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret_value: _builtins.str,
+                 secret_id: _builtins.str):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> _builtins.str:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
+class GetProjectServiceAccountsResultResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 roles: Sequence[_builtins.str],
+                 secrets: Sequence['outputs.GetProjectServiceAccountsResultSecretResult']):
+        """
+        :param _builtins.str client_id: The Client ID of the Service Account.
+        :param _builtins.str created_at: The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str description: Human readable description for the Service Account.
+        :param _builtins.str name: Human-readable name for the Service Account.
+        :param Sequence[_builtins.str] roles: A list of Project roles associated with the Service Account.
+        :param Sequence['GetProjectServiceAccountsResultSecretArgs'] secrets: A list of secrets associated with the specified Service Account.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "secrets", secrets)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The Client ID of the Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Human readable description for the Service Account.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Human-readable name for the Service Account.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        A list of Project roles associated with the Service Account.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter
+    def secrets(self) -> Sequence['outputs.GetProjectServiceAccountsResultSecretResult']:
+        """
+        A list of secrets associated with the specified Service Account.
+        """
+        return pulumi.get(self, "secrets")
+
+
+@pulumi.output_type
+class GetProjectServiceAccountsResultSecretResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret_value: _builtins.str,
+                 secret_id: _builtins.str):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> _builtins.str:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
 class GetProjectTeamResult(dict):
     def __init__(__self__, *,
                  role_names: Sequence[_builtins.str],
@@ -25175,6 +25756,316 @@ class GetServerlessInstancesResultTagResult(dict):
 
 
 @pulumi.output_type
+class GetServiceAccountAccessListEntriesResultResult(dict):
+    def __init__(__self__, *,
+                 cidr_block: _builtins.str,
+                 client_id: _builtins.str,
+                 created_at: _builtins.str,
+                 ip_address: _builtins.str,
+                 last_used_address: _builtins.str,
+                 last_used_at: _builtins.str,
+                 org_id: _builtins.str,
+                 request_count: _builtins.int):
+        """
+        :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+        :param _builtins.str client_id: The Client ID of the Service Account.
+        :param _builtins.str created_at: Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str ip_address: IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+        :param _builtins.str last_used_address: Network address that issued the most recent request to the API.
+        :param _builtins.str last_used_at: Date when the API received the most recent request that originated from this network address.
+        :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        :param _builtins.int request_count: The number of requests that has originated from this network address.
+        """
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used_address", last_used_address)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "org_id", org_id)
+        pulumi.set(__self__, "request_count", request_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> _builtins.str:
+        """
+        Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The Client ID of the Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAddress")
+    def last_used_address(self) -> _builtins.str:
+        """
+        Network address that issued the most recent request to the API.
+        """
+        return pulumi.get(self, "last_used_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Date when the API received the most recent request that originated from this network address.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        """
+        return pulumi.get(self, "org_id")
+
+    @_builtins.property
+    @pulumi.getter(name="requestCount")
+    def request_count(self) -> _builtins.int:
+        """
+        The number of requests that has originated from this network address.
+        """
+        return pulumi.get(self, "request_count")
+
+
+@pulumi.output_type
+class GetServiceAccountProjectAssignmentsResultResult(dict):
+    def __init__(__self__, *,
+                 project_id: _builtins.str):
+        """
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        """
+        pulumi.set(__self__, "project_id", project_id)
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project.
+        """
+        return pulumi.get(self, "project_id")
+
+
+@pulumi.output_type
+class GetServiceAccountSecretResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret_value: _builtins.str,
+                 secret_id: _builtins.str):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> _builtins.str:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
+class GetServiceAccountsResultResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 created_at: _builtins.str,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 roles: Sequence[_builtins.str],
+                 secrets: Sequence['outputs.GetServiceAccountsResultSecretResult']):
+        """
+        :param _builtins.str client_id: The Client ID of the Service Account.
+        :param _builtins.str created_at: The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str description: Human readable description for the Service Account.
+        :param _builtins.str name: Human-readable name for the Service Account.
+        :param Sequence[_builtins.str] roles: A list of Organization roles associated with the Service Account.
+        :param Sequence['GetServiceAccountsResultSecretArgs'] secrets: A list of secrets associated with the specified Service Account.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "secrets", secrets)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        The Client ID of the Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Human readable description for the Service Account.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Human-readable name for the Service Account.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        A list of Organization roles associated with the Service Account.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter
+    def secrets(self) -> Sequence['outputs.GetServiceAccountsResultSecretResult']:
+        """
+        A list of secrets associated with the specified Service Account.
+        """
+        return pulumi.get(self, "secrets")
+
+
+@pulumi.output_type
+class GetServiceAccountsResultSecretResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret_value: _builtins.str,
+                 secret_id: _builtins.str):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> _builtins.str:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
 class GetSharedTierRestoreJobsResultResult(dict):
     def __init__(__self__, *,
                  delivery_type: _builtins.str,
@@ -25327,11 +26218,11 @@ class GetStreamConnectionAuthenticationResult(dict):
         :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
         :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
         :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
-        :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
         :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
         :param _builtins.str scope: Scope of the access request to the broker specified by the Kafka clients.
         :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
-        :param _builtins.str username: Username of the account to connect to the Kafka cluster.
+        :param _builtins.str username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
@@ -25379,7 +26270,7 @@ class GetStreamConnectionAuthenticationResult(dict):
     @pulumi.getter
     def password(self) -> _builtins.str:
         """
-        Password of the account to connect to the Kafka cluster.
+        Password for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "password")
 
@@ -25411,7 +26302,7 @@ class GetStreamConnectionAuthenticationResult(dict):
     @pulumi.getter
     def username(self) -> _builtins.str:
         """
-        Username of the account to connect to the Kafka cluster.
+        Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "username")
 
@@ -25441,7 +26332,9 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
                  type: _builtins.str):
         """
         :param _builtins.str role: The name of the role to use. Can be a built in role or a custom role.
-        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -25458,7 +26351,9 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
 
@@ -25488,7 +26383,9 @@ class GetStreamConnectionNetworkingAccessResult(dict):
                  type: _builtins.str):
         """
         :param _builtins.str connection_id: Id of the Private Link connection when type is `PRIVATE_LINK`.
-        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         pulumi.set(__self__, "connection_id", connection_id)
         pulumi.set(__self__, "type", type)
@@ -25505,9 +26402,55 @@ class GetStreamConnectionNetworkingAccessResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionSchemaRegistryAuthenticationResult(dict):
+    def __init__(__self__, *,
+                 password: _builtins.str,
+                 type: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        :param _builtins.str username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        """
+        Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type
@@ -25555,6 +26498,9 @@ class GetStreamConnectionsResultResult(dict):
                  instance_name: _builtins.str,
                  networking: 'outputs.GetStreamConnectionsResultNetworkingResult',
                  project_id: _builtins.str,
+                 schema_registry_authentication: 'outputs.GetStreamConnectionsResultSchemaRegistryAuthenticationResult',
+                 schema_registry_provider: _builtins.str,
+                 schema_registry_urls: Sequence[_builtins.str],
                  security: 'outputs.GetStreamConnectionsResultSecurityResult',
                  type: _builtins.str,
                  url: _builtins.str,
@@ -25571,8 +26517,13 @@ class GetStreamConnectionsResultResult(dict):
         :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
         :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
         :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param 'GetStreamConnectionsResultSchemaRegistryAuthenticationArgs' schema_registry_authentication: Authentication configuration for Schema Registry. See Schema Registry Authentication.
+        :param _builtins.str schema_registry_provider: The Schema Registry provider. Must be set to `CONFLUENT`.
+        :param Sequence[_builtins.str] schema_registry_urls: List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
         :param 'GetStreamConnectionsResultSecurityArgs' security: Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
-        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         :param _builtins.str url: URL of the HTTPs endpoint that will be used for creating a connection.
         :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
                
@@ -25591,6 +26542,9 @@ class GetStreamConnectionsResultResult(dict):
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "networking", networking)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "schema_registry_authentication", schema_registry_authentication)
+        pulumi.set(__self__, "schema_registry_provider", schema_registry_provider)
+        pulumi.set(__self__, "schema_registry_urls", schema_registry_urls)
         pulumi.set(__self__, "security", security)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "url", url)
@@ -25696,6 +26650,30 @@ class GetStreamConnectionsResultResult(dict):
         return pulumi.get(self, "project_id")
 
     @_builtins.property
+    @pulumi.getter(name="schemaRegistryAuthentication")
+    def schema_registry_authentication(self) -> 'outputs.GetStreamConnectionsResultSchemaRegistryAuthenticationResult':
+        """
+        Authentication configuration for Schema Registry. See Schema Registry Authentication.
+        """
+        return pulumi.get(self, "schema_registry_authentication")
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryProvider")
+    def schema_registry_provider(self) -> _builtins.str:
+        """
+        The Schema Registry provider. Must be set to `CONFLUENT`.
+        """
+        return pulumi.get(self, "schema_registry_provider")
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryUrls")
+    def schema_registry_urls(self) -> Sequence[_builtins.str]:
+        """
+        List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+        """
+        return pulumi.get(self, "schema_registry_urls")
+
+    @_builtins.property
     @pulumi.getter
     def security(self) -> 'outputs.GetStreamConnectionsResultSecurityResult':
         """
@@ -25707,7 +26685,9 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
 
@@ -25747,11 +26727,11 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
         :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
         :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
         :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
-        :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
         :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
         :param _builtins.str scope: Scope of the access request to the broker specified by the Kafka clients.
         :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
-        :param _builtins.str username: Username of the account to connect to the Kafka cluster.
+        :param _builtins.str username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
@@ -25799,7 +26779,7 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
     @pulumi.getter
     def password(self) -> _builtins.str:
         """
-        Password of the account to connect to the Kafka cluster.
+        Password for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "password")
 
@@ -25831,7 +26811,7 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
     @pulumi.getter
     def username(self) -> _builtins.str:
         """
-        Username of the account to connect to the Kafka cluster.
+        Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "username")
 
@@ -25861,7 +26841,9 @@ class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
                  type: _builtins.str):
         """
         :param _builtins.str role: The name of the role to use. Can be a built in role or a custom role.
-        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -25878,7 +26860,9 @@ class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
 
@@ -25908,7 +26892,9 @@ class GetStreamConnectionsResultNetworkingAccessResult(dict):
                  type: _builtins.str):
         """
         :param _builtins.str connection_id: Id of the Private Link connection when type is `PRIVATE_LINK`.
-        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         pulumi.set(__self__, "connection_id", connection_id)
         pulumi.set(__self__, "type", type)
@@ -25925,9 +26911,55 @@ class GetStreamConnectionsResultNetworkingAccessResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionsResultSchemaRegistryAuthenticationResult(dict):
+    def __init__(__self__, *,
+                 password: _builtins.str,
+                 type: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        :param _builtins.str type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        :param _builtins.str username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        """
+        Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        """
+        return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type

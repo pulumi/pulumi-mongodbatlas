@@ -21,6 +21,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string DatabaseName;
         /// <summary>
         /// Name of the inherited role. This can either be another custom role or a built-in role.
+        /// 
+        /// &gt; **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
         /// </summary>
         public readonly string RoleName;
 

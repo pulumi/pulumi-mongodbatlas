@@ -14,10 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using CIDR Block
-        /// 
-        /// 
-        /// ### Using IP Address
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -30,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///         IpAddress = "2.3.4.5",
-        ///         ApiKey = "a29120e123cd",
+        ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
         ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
@@ -49,10 +45,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using CIDR Block
-        /// 
-        /// 
-        /// ### Using IP Address
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,7 +57,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///         IpAddress = "2.3.4.5",
-        ///         ApiKey = "a29120e123cd",
+        ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
         ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
@@ -84,10 +76,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using CIDR Block
-        /// 
-        /// 
-        /// ### Using IP Address
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -100,7 +88,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///         IpAddress = "2.3.4.5",
-        ///         ApiKey = "a29120e123cd",
+        ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
         ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
@@ -122,14 +110,12 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-        /// *
-        /// -&gt;**NOTE:** You must set either the `CidrBlock` attribute or the `IpAddress` attribute. Don't set both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
 
         /// <summary>
-        /// Single IP address to be added to the access list.
+        /// IP address to retrieve from the access list.
         /// </summary>
         [Input("ipAddress", required: true)]
         public string IpAddress { get; set; } = null!;
@@ -150,14 +136,12 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-        /// *
-        /// -&gt;**NOTE:** You must set either the `CidrBlock` attribute or the `IpAddress` attribute. Don't set both.
         /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;
 
         /// <summary>
-        /// Single IP address to be added to the access list.
+        /// IP address to retrieve from the access list.
         /// </summary>
         [Input("ipAddress", required: true)]
         public Input<string> IpAddress { get; set; } = null!;
@@ -178,16 +162,31 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetAccessListApiKeyResult
     {
+        /// <summary>
+        /// Total number of requests that have originated from this IP address or CIDR block.
+        /// </summary>
         public readonly int AccessCount;
         public readonly string ApiKeyId;
+        /// <summary>
+        /// Range of IP addresses in CIDR notation included in the API Key access list.
+        /// </summary>
         public readonly string CidrBlock;
+        /// <summary>
+        /// Date and time when the access list entry was created.
+        /// </summary>
         public readonly string Created;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string IpAddress;
+        /// <summary>
+        /// Date and time when the API key was last used from this IP address or CIDR block.
+        /// </summary>
         public readonly string LastUsed;
+        /// <summary>
+        /// IP address from which the last API request was made.
+        /// </summary>
         public readonly string LastUsedAddress;
         public readonly string OrgId;
 

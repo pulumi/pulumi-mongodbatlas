@@ -27,7 +27,7 @@ class GetStreamConnectionResult:
     """
     A collection of values returned by getStreamConnection.
     """
-    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, security=None, type=None, url=None, workspace_name=None):
+    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, schema_registry_authentication=None, schema_registry_provider=None, schema_registry_urls=None, security=None, type=None, url=None, workspace_name=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
@@ -67,6 +67,15 @@ class GetStreamConnectionResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if schema_registry_authentication and not isinstance(schema_registry_authentication, dict):
+            raise TypeError("Expected argument 'schema_registry_authentication' to be a dict")
+        pulumi.set(__self__, "schema_registry_authentication", schema_registry_authentication)
+        if schema_registry_provider and not isinstance(schema_registry_provider, str):
+            raise TypeError("Expected argument 'schema_registry_provider' to be a str")
+        pulumi.set(__self__, "schema_registry_provider", schema_registry_provider)
+        if schema_registry_urls and not isinstance(schema_registry_urls, list):
+            raise TypeError("Expected argument 'schema_registry_urls' to be a list")
+        pulumi.set(__self__, "schema_registry_urls", schema_registry_urls)
         if security and not isinstance(security, dict):
             raise TypeError("Expected argument 'security' to be a dict")
         pulumi.set(__self__, "security", security)
@@ -174,6 +183,30 @@ class GetStreamConnectionResult:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
+    @pulumi.getter(name="schemaRegistryAuthentication")
+    def schema_registry_authentication(self) -> 'outputs.GetStreamConnectionSchemaRegistryAuthenticationResult':
+        """
+        Authentication configuration for Schema Registry. See Schema Registry Authentication.
+        """
+        return pulumi.get(self, "schema_registry_authentication")
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryProvider")
+    def schema_registry_provider(self) -> _builtins.str:
+        """
+        The Schema Registry provider. Must be set to `CONFLUENT`.
+        """
+        return pulumi.get(self, "schema_registry_provider")
+
+    @_builtins.property
+    @pulumi.getter(name="schemaRegistryUrls")
+    def schema_registry_urls(self) -> Sequence[_builtins.str]:
+        """
+        List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+        """
+        return pulumi.get(self, "schema_registry_urls")
+
+    @_builtins.property
     @pulumi.getter
     def security(self) -> 'outputs.GetStreamConnectionSecurityResult':
         """
@@ -185,7 +218,9 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
 
@@ -222,6 +257,9 @@ class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
             instance_name=self.instance_name,
             networking=self.networking,
             project_id=self.project_id,
+            schema_registry_authentication=self.schema_registry_authentication,
+            schema_registry_provider=self.schema_registry_provider,
+            schema_registry_urls=self.schema_registry_urls,
             security=self.security,
             type=self.type,
             url=self.url,
@@ -288,6 +326,9 @@ def get_stream_connection(connection_name: Optional[_builtins.str] = None,
         instance_name=pulumi.get(__ret__, 'instance_name'),
         networking=pulumi.get(__ret__, 'networking'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        schema_registry_authentication=pulumi.get(__ret__, 'schema_registry_authentication'),
+        schema_registry_provider=pulumi.get(__ret__, 'schema_registry_provider'),
+        schema_registry_urls=pulumi.get(__ret__, 'schema_registry_urls'),
         security=pulumi.get(__ret__, 'security'),
         type=pulumi.get(__ret__, 'type'),
         url=pulumi.get(__ret__, 'url'),
@@ -351,6 +392,9 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[_builtin
         instance_name=pulumi.get(__response__, 'instance_name'),
         networking=pulumi.get(__response__, 'networking'),
         project_id=pulumi.get(__response__, 'project_id'),
+        schema_registry_authentication=pulumi.get(__response__, 'schema_registry_authentication'),
+        schema_registry_provider=pulumi.get(__response__, 'schema_registry_provider'),
+        schema_registry_urls=pulumi.get(__response__, 'schema_registry_urls'),
         security=pulumi.get(__response__, 'security'),
         type=pulumi.get(__response__, 'type'),
         url=pulumi.get(__response__, 'url'),

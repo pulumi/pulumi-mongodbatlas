@@ -20,14 +20,14 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
     public static final MaintenanceWindowArgs Empty = new MaintenanceWindowArgs();
 
     /**
-     * Defer any scheduled maintenance for the given project for one week.
+     * Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
      * 
      */
     @Import(name="autoDefer")
     private @Nullable Output<Boolean> autoDefer;
 
     /**
-     * @return Defer any scheduled maintenance for the given project for one week.
+     * @return Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
      * 
      */
     public Optional<Output<Boolean>> autoDefer() {
@@ -35,14 +35,14 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
      * 
      */
     @Import(name="autoDeferOnceEnabled")
     private @Nullable Output<Boolean> autoDeferOnceEnabled;
 
     /**
-     * @return Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+     * @return When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
      * 
      */
     public Optional<Output<Boolean>> autoDeferOnceEnabled() {
@@ -65,14 +65,14 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Defer the next scheduled maintenance for the given project for one week.
+     * Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
      * 
      */
     @Import(name="defer")
     private @Nullable Output<Boolean> defer;
 
     /**
-     * @return Defer the next scheduled maintenance for the given project for one week.
+     * @return Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
      * 
      */
     public Optional<Output<Boolean>> defer() {
@@ -155,7 +155,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoDefer Defer any scheduled maintenance for the given project for one week.
+         * @param autoDefer Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
          * 
          * @return builder
          * 
@@ -166,7 +166,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoDefer Defer any scheduled maintenance for the given project for one week.
+         * @param autoDefer Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
          * 
          * @return builder
          * 
@@ -176,7 +176,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+         * @param autoDeferOnceEnabled When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
          * 
          * @return builder
          * 
@@ -187,7 +187,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param autoDeferOnceEnabled Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+         * @param autoDeferOnceEnabled When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
          * 
          * @return builder
          * 
@@ -218,7 +218,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param defer Defer the next scheduled maintenance for the given project for one week.
+         * @param defer Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
          * 
          * @return builder
          * 
@@ -229,7 +229,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param defer Defer the next scheduled maintenance for the given project for one week.
+         * @param defer Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
          * 
          * @return builder
          * 

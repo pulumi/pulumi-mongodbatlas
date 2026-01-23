@@ -11,9 +11,21 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAccessListApiKeyResult {
+    /**
+     * @return Total number of requests that have originated from this IP address or CIDR block.
+     * 
+     */
     private Integer accessCount;
     private String apiKeyId;
+    /**
+     * @return Range of IP addresses in CIDR notation included in the API Key access list.
+     * 
+     */
     private String cidrBlock;
+    /**
+     * @return Date and time when the access list entry was created.
+     * 
+     */
     private String created;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -21,20 +33,40 @@ public final class GetAccessListApiKeyResult {
      */
     private String id;
     private String ipAddress;
+    /**
+     * @return Date and time when the API key was last used from this IP address or CIDR block.
+     * 
+     */
     private String lastUsed;
+    /**
+     * @return IP address from which the last API request was made.
+     * 
+     */
     private String lastUsedAddress;
     private String orgId;
 
     private GetAccessListApiKeyResult() {}
+    /**
+     * @return Total number of requests that have originated from this IP address or CIDR block.
+     * 
+     */
     public Integer accessCount() {
         return this.accessCount;
     }
     public String apiKeyId() {
         return this.apiKeyId;
     }
+    /**
+     * @return Range of IP addresses in CIDR notation included in the API Key access list.
+     * 
+     */
     public String cidrBlock() {
         return this.cidrBlock;
     }
+    /**
+     * @return Date and time when the access list entry was created.
+     * 
+     */
     public String created() {
         return this.created;
     }
@@ -48,9 +80,17 @@ public final class GetAccessListApiKeyResult {
     public String ipAddress() {
         return this.ipAddress;
     }
+    /**
+     * @return Date and time when the API key was last used from this IP address or CIDR block.
+     * 
+     */
     public String lastUsed() {
         return this.lastUsed;
     }
+    /**
+     * @return IP address from which the last API request was made.
+     * 
+     */
     public String lastUsedAddress() {
         return this.lastUsedAddress;
     }

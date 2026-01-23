@@ -231,6 +231,8 @@ __all__ = [
     'ProjectIpAddressesServicesClusterArgsDict',
     'ProjectLimitArgs',
     'ProjectLimitArgsDict',
+    'ProjectServiceAccountSecretArgs',
+    'ProjectServiceAccountSecretArgsDict',
     'ProjectTeamArgs',
     'ProjectTeamArgsDict',
     'ProviderAssumeRoleArgs',
@@ -255,6 +257,8 @@ __all__ = [
     'ServerlessInstanceLinkArgsDict',
     'ServerlessInstanceTagArgs',
     'ServerlessInstanceTagArgsDict',
+    'ServiceAccountSecretArgs',
+    'ServiceAccountSecretArgsDict',
     'StreamConnectionAuthenticationArgs',
     'StreamConnectionAuthenticationArgsDict',
     'StreamConnectionAwsArgs',
@@ -265,6 +269,8 @@ __all__ = [
     'StreamConnectionNetworkingArgsDict',
     'StreamConnectionNetworkingAccessArgs',
     'StreamConnectionNetworkingAccessArgsDict',
+    'StreamConnectionSchemaRegistryAuthenticationArgs',
+    'StreamConnectionSchemaRegistryAuthenticationArgsDict',
     'StreamConnectionSecurityArgs',
     'StreamConnectionSecurityArgsDict',
     'StreamInstanceDataProcessRegionArgs',
@@ -6600,6 +6606,8 @@ if not MYPY:
         role_name: pulumi.Input[_builtins.str]
         """
         Name of the inherited role. This can either be another custom role or a built-in role.
+
+        > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
         """
 elif False:
     CustomDbRoleInheritedRoleArgsDict: TypeAlias = Mapping[str, Any]
@@ -6614,6 +6622,8 @@ class CustomDbRoleInheritedRoleArgs:
                
                > **NOTE** This value should be admin for all roles except read and readWrite.
         :param pulumi.Input[_builtins.str] role_name: Name of the inherited role. This can either be another custom role or a built-in role.
+               
+               > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
         """
         pulumi.set(__self__, "database_name", database_name)
         pulumi.set(__self__, "role_name", role_name)
@@ -6637,6 +6647,8 @@ class CustomDbRoleInheritedRoleArgs:
     def role_name(self) -> pulumi.Input[_builtins.str]:
         """
         Name of the inherited role. This can either be another custom role or a built-in role.
+
+        > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
         """
         return pulumi.get(self, "role_name")
 
@@ -9711,15 +9723,15 @@ if not MYPY:
     class ProjectIpAccessListTimeoutsArgsDict(TypedDict):
         delete: NotRequired[pulumi.Input[_builtins.str]]
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         """
         read: NotRequired[pulumi.Input[_builtins.str]]
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
         update: NotRequired[pulumi.Input[_builtins.str]]
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
 elif False:
     ProjectIpAccessListTimeoutsArgsDict: TypeAlias = Mapping[str, Any]
@@ -9731,9 +9743,9 @@ class ProjectIpAccessListTimeoutsArgs:
                  read: Optional[pulumi.Input[_builtins.str]] = None,
                  update: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] delete: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
-        :param pulumi.Input[_builtins.str] read: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
-        :param pulumi.Input[_builtins.str] update: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[_builtins.str] read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+        :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         if delete is not None:
             pulumi.set(__self__, "delete", delete)
@@ -9746,7 +9758,7 @@ class ProjectIpAccessListTimeoutsArgs:
     @pulumi.getter
     def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         """
         return pulumi.get(self, "delete")
 
@@ -9758,7 +9770,7 @@ class ProjectIpAccessListTimeoutsArgs:
     @pulumi.getter
     def read(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
         return pulumi.get(self, "read")
 
@@ -9770,7 +9782,7 @@ class ProjectIpAccessListTimeoutsArgs:
     @pulumi.getter
     def update(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "update")
 
@@ -9961,6 +9973,138 @@ class ProjectLimitArgs:
     @maximum_limit.setter
     def maximum_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "maximum_limit", value)
+
+
+if not MYPY:
+    class ProjectServiceAccountSecretArgsDict(TypedDict):
+        created_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        expires_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        last_used_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        masked_secret_value: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The masked Service Account secret.
+        """
+        secret: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        secret_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+elif False:
+    ProjectServiceAccountSecretArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ProjectServiceAccountSecretArgs:
+    def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 masked_secret_value: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] masked_secret_value: The masked Service Account secret.
+        :param pulumi.Input[_builtins.str] secret: The secret for the Service Account. It will be returned only the first time after creation.
+        :param pulumi.Input[_builtins.str] secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if last_used_at is not None:
+            pulumi.set(__self__, "last_used_at", last_used_at)
+        if masked_secret_value is not None:
+            pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @expires_at.setter
+    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "expires_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @last_used_at.setter
+    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "last_used_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @masked_secret_value.setter
+    def masked_secret_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "masked_secret_value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        return pulumi.get(self, "secret")
+
+    @secret.setter
+    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_id", value)
 
 
 if not MYPY:
@@ -10613,6 +10757,138 @@ class ServerlessInstanceTagArgs:
 
 
 if not MYPY:
+    class ServiceAccountSecretArgsDict(TypedDict):
+        created_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        expires_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        last_used_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        masked_secret_value: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The masked Service Account secret.
+        """
+        secret: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        secret_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+elif False:
+    ServiceAccountSecretArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServiceAccountSecretArgs:
+    def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 masked_secret_value: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] masked_secret_value: The masked Service Account secret.
+        :param pulumi.Input[_builtins.str] secret: The secret for the Service Account. It will be returned only the first time after creation.
+        :param pulumi.Input[_builtins.str] secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if last_used_at is not None:
+            pulumi.set(__self__, "last_used_at", last_used_at)
+        if masked_secret_value is not None:
+            pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @expires_at.setter
+    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "expires_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @last_used_at.setter
+    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "last_used_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+    @masked_secret_value.setter
+    def masked_secret_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "masked_secret_value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        return pulumi.get(self, "secret")
+
+    @secret.setter
+    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_id", value)
+
+
+if not MYPY:
     class StreamConnectionAuthenticationArgsDict(TypedDict):
         client_id: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -10843,7 +11119,7 @@ if not MYPY:
         """
         type: pulumi.Input[_builtins.str]
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 
         > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
@@ -10857,7 +11133,7 @@ class StreamConnectionDbRoleToExecuteArgs:
                  type: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.str] role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
                
                > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
@@ -10880,7 +11156,7 @@ class StreamConnectionDbRoleToExecuteArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 
         > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
@@ -10971,6 +11247,84 @@ class StreamConnectionNetworkingAccessArgs:
     @connection_id.setter
     def connection_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "connection_id", value)
+
+
+if not MYPY:
+    class StreamConnectionSchemaRegistryAuthenticationArgsDict(TypedDict):
+        password: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        """
+        username: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+elif False:
+    StreamConnectionSchemaRegistryAuthenticationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class StreamConnectionSchemaRegistryAuthenticationArgs:
+    def __init__(__self__, *,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 username: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        :param pulumi.Input[_builtins.str] type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+               * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+               * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        :param pulumi.Input[_builtins.str] username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Password for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Username for the Schema Registry. Required when `type` is `USER_INFO`.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "username", value)
 
 
 if not MYPY:

@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  *     name: "Second Project",
  *     orgId: orgId,
  * });
- * const firstAssignment = new mongodbatlas.ApiKeyProjectAssignment("first_assignment", {
+ * const firstAssignmentApiKeyProjectAssignment = new mongodbatlas.ApiKeyProjectAssignment("first_assignment", {
  *     projectId: firstProject.id,
  *     apiKeyId: _this.apiKeyId,
  *     roles: ["GROUP_OWNER"],
@@ -44,6 +44,17 @@ import * as utilities from "./utilities";
  *     cidrBlock: "0.0.0.0/1",
  *     apiKeyId: _this.apiKeyId,
  * });
+ * // Data source to read a single API key project assignment
+ * const firstAssignment = mongodbatlas.getApiKeyProjectAssignmentOutput({
+ *     projectId: firstAssignmentApiKeyProjectAssignment.projectId,
+ *     apiKeyId: firstAssignmentApiKeyProjectAssignment.apiKeyId,
+ * });
+ * // Data source to read all API key project assignments for a project
+ * const allAssignments = mongodbatlas.getApiKeyProjectAssignmentsOutput({
+ *     projectId: firstProject.id,
+ * });
+ * export const firstAssignmentProjectId = firstAssignment.apply(firstAssignment => firstAssignment.projectId);
+ * export const allAssignmentsProjectIds = allAssignments.apply(allAssignments => .map(assignment => (assignment.projectId)));
  * ```
  *
  * ### Further Examples

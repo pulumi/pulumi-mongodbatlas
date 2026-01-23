@@ -49,18 +49,24 @@ class GetProjectIpAccessListResult:
     @_builtins.property
     @pulumi.getter(name="awsSecurityGroup")
     def aws_security_group(self) -> _builtins.str:
+        """
+        Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+        """
         return pulumi.get(self, "aws_security_group")
 
     @_builtins.property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> _builtins.str:
+        """
+        Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
+        """
         return pulumi.get(self, "cidr_block")
 
     @_builtins.property
     @pulumi.getter
     def comment(self) -> _builtins.str:
         """
-        Comment to add to the access list entry.
+        Remark that explains the purpose or scope of this IP access list entry.
         """
         return pulumi.get(self, "comment")
 
@@ -72,11 +78,17 @@ class GetProjectIpAccessListResult:
     @_builtins.property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> _builtins.str:
+        """
+        Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+        """
         return pulumi.get(self, "ip_address")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project.
+        """
         return pulumi.get(self, "project_id")
 
 
@@ -104,9 +116,6 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-    > **IMPORTANT:**
-    When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-
     ## Example Usage
 
     ### Using CIDR Block
@@ -114,12 +123,12 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-        project_id="<PROJECT-ID>",
+    this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+        project_id=project_id,
         cidr_block="1.2.3.4/32",
-        comment="cidr block for tf acc testing")
-    test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
-        cidr_block=test_project_ip_access_list.cidr_block)
+        comment="cidr block test")
+    this = mongodbatlas.get_project_ip_access_list_output(project_id=this_project_ip_access_list.project_id,
+        cidr_block=this_project_ip_access_list.cidr_block)
     ```
 
     ### Using IP Address
@@ -127,12 +136,12 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-        project_id="<PROJECT-ID>",
+    this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+        project_id=project_id,
         ip_address="2.3.4.5",
-        comment="ip address for tf acc testing")
-    test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
-        ip_address=test_project_ip_access_list.ip_address)
+        comment="ip address test")
+    this = mongodbatlas.get_project_ip_access_list_output(project_id=this_project_ip_access_list.project_id,
+        ip_address=this_project_ip_access_list.ip_address)
     ```
 
     ### Using an AWS Security Group
@@ -140,37 +149,33 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_network_container = mongodbatlas.NetworkContainer("test",
-        project_id="<PROJECT-ID>",
+    this_network_container = mongodbatlas.NetworkContainer("this",
+        project_id=project_id,
         atlas_cidr_block="192.168.208.0/21",
         provider_name="AWS",
         region_name="US_EAST_1")
-    test_network_peering = mongodbatlas.NetworkPeering("test",
-        project_id="<PROJECT-ID>",
-        container_id=test_network_container.container_id,
+    this_network_peering = mongodbatlas.NetworkPeering("this",
+        project_id=project_id,
+        container_id=this_network_container.container_id,
         accepter_region_name="us-east-1",
         provider_name="AWS",
         route_table_cidr_block="172.31.0.0/16",
         vpc_id="vpc-0d93d6f69f1578bd8",
         aws_account_id="232589400519")
-    test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-        project_id="<PROJECT-ID>",
+    this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+        project_id=project_id,
         aws_security_group="sg-0026348ec11780bd1",
-        comment="TestAcc for awsSecurityGroup",
-        opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
-    test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
-        aws_security_group=test_project_ip_access_list.aws_security_group)
+        comment="AWS Security Group test",
+        opts = pulumi.ResourceOptions(depends_on=[this_network_peering]))
+    this = mongodbatlas.get_project_ip_access_list_output(project_id=this_project_ip_access_list.project_id,
+        aws_security_group=this_project_ip_access_list.aws_security_group)
     ```
 
-    > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
 
-
-    :param _builtins.str aws_security_group: Unique identifier of the AWS security group to add to the access list.
-    :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
-    :param _builtins.str ip_address: Single IP address to be added to the access list.
-           
-           > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
-    :param _builtins.str project_id: Unique identifier for the project to which you want to add one or more access list entries.
+    :param _builtins.str aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+    :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
+    :param _builtins.str ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()
     __args__['awsSecurityGroup'] = aws_security_group
@@ -197,9 +202,6 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
 
     > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-    > **IMPORTANT:**
-    When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-
     ## Example Usage
 
     ### Using CIDR Block
@@ -207,12 +209,12 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-        project_id="<PROJECT-ID>",
+    this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+        project_id=project_id,
         cidr_block="1.2.3.4/32",
-        comment="cidr block for tf acc testing")
-    test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
-        cidr_block=test_project_ip_access_list.cidr_block)
+        comment="cidr block test")
+    this = mongodbatlas.get_project_ip_access_list_output(project_id=this_project_ip_access_list.project_id,
+        cidr_block=this_project_ip_access_list.cidr_block)
     ```
 
     ### Using IP Address
@@ -220,12 +222,12 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-        project_id="<PROJECT-ID>",
+    this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+        project_id=project_id,
         ip_address="2.3.4.5",
-        comment="ip address for tf acc testing")
-    test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
-        ip_address=test_project_ip_access_list.ip_address)
+        comment="ip address test")
+    this = mongodbatlas.get_project_ip_access_list_output(project_id=this_project_ip_access_list.project_id,
+        ip_address=this_project_ip_access_list.ip_address)
     ```
 
     ### Using an AWS Security Group
@@ -233,37 +235,33 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_network_container = mongodbatlas.NetworkContainer("test",
-        project_id="<PROJECT-ID>",
+    this_network_container = mongodbatlas.NetworkContainer("this",
+        project_id=project_id,
         atlas_cidr_block="192.168.208.0/21",
         provider_name="AWS",
         region_name="US_EAST_1")
-    test_network_peering = mongodbatlas.NetworkPeering("test",
-        project_id="<PROJECT-ID>",
-        container_id=test_network_container.container_id,
+    this_network_peering = mongodbatlas.NetworkPeering("this",
+        project_id=project_id,
+        container_id=this_network_container.container_id,
         accepter_region_name="us-east-1",
         provider_name="AWS",
         route_table_cidr_block="172.31.0.0/16",
         vpc_id="vpc-0d93d6f69f1578bd8",
         aws_account_id="232589400519")
-    test_project_ip_access_list = mongodbatlas.ProjectIpAccessList("test",
-        project_id="<PROJECT-ID>",
+    this_project_ip_access_list = mongodbatlas.ProjectIpAccessList("this",
+        project_id=project_id,
         aws_security_group="sg-0026348ec11780bd1",
-        comment="TestAcc for awsSecurityGroup",
-        opts = pulumi.ResourceOptions(depends_on=[test_network_peering]))
-    test = mongodbatlas.get_project_ip_access_list_output(project_id=test_project_ip_access_list.project_id,
-        aws_security_group=test_project_ip_access_list.aws_security_group)
+        comment="AWS Security Group test",
+        opts = pulumi.ResourceOptions(depends_on=[this_network_peering]))
+    this = mongodbatlas.get_project_ip_access_list_output(project_id=this_project_ip_access_list.project_id,
+        aws_security_group=this_project_ip_access_list.aws_security_group)
     ```
 
-    > **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
 
-
-    :param _builtins.str aws_security_group: Unique identifier of the AWS security group to add to the access list.
-    :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list.
-    :param _builtins.str ip_address: Single IP address to be added to the access list.
-           
-           > **NOTE:** One of the following attributes must set:  `aws_security_group`, `cidr_block`  or `ip_address`.
-    :param _builtins.str project_id: Unique identifier for the project to which you want to add one or more access list entries.
+    :param _builtins.str aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+    :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
+    :param _builtins.str ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()
     __args__['awsSecurityGroup'] = aws_security_group

@@ -119,6 +119,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProjectInvitation{}
 	case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
 		r = &ProjectIpAccessList{}
+	case "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount":
+		r = &ProjectServiceAccount{}
+	case "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry":
+		r = &ProjectServiceAccountAccessListEntry{}
+	case "mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret":
+		r = &ProjectServiceAccountSecret{}
 	case "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport":
 		r = &PushBasedLogExport{}
 	case "mongodbatlas:index/resourcePolicy:ResourcePolicy":
@@ -129,6 +135,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SearchIndex{}
 	case "mongodbatlas:index/serverlessInstance:ServerlessInstance":
 		r = &ServerlessInstance{}
+	case "mongodbatlas:index/serviceAccount:ServiceAccount":
+		r = &ServiceAccount{}
+	case "mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry":
+		r = &ServiceAccountAccessListEntry{}
+	case "mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment":
+		r = &ServiceAccountProjectAssignment{}
+	case "mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret":
+		r = &ServiceAccountSecret{}
 	case "mongodbatlas:index/streamConnection:StreamConnection":
 		r = &StreamConnection{}
 	case "mongodbatlas:index/streamInstance:StreamInstance":
@@ -425,6 +439,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/projectServiceAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/projectServiceAccountAccessListEntry",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/projectServiceAccountSecret",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/pushBasedLogExport",
 		&module{version},
 	)
@@ -446,6 +475,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/serverlessInstance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/serviceAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/serviceAccountAccessListEntry",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/serviceAccountProjectAssignment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/serviceAccountSecret",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

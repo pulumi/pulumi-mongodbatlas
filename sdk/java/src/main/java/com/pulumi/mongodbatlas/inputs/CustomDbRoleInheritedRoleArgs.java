@@ -36,12 +36,16 @@ public final class CustomDbRoleInheritedRoleArgs extends com.pulumi.resources.Re
     /**
      * Name of the inherited role. This can either be another custom role or a built-in role.
      * 
+     * &gt; **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
+     * 
      */
     @Import(name="roleName", required=true)
     private Output<String> roleName;
 
     /**
      * @return Name of the inherited role. This can either be another custom role or a built-in role.
+     * 
+     * &gt; **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
      * 
      */
     public Output<String> roleName() {
@@ -101,6 +105,8 @@ public final class CustomDbRoleInheritedRoleArgs extends com.pulumi.resources.Re
         /**
          * @param roleName Name of the inherited role. This can either be another custom role or a built-in role.
          * 
+         * &gt; **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
+         * 
          * @return builder
          * 
          */
@@ -111,6 +117,8 @@ public final class CustomDbRoleInheritedRoleArgs extends com.pulumi.resources.Re
 
         /**
          * @param roleName Name of the inherited role. This can either be another custom role or a built-in role.
+         * 
+         * &gt; **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
          * 
          * @return builder
          * 

@@ -236,6 +236,68 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example Schema Registry Connection with USER_INFO Authentication
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example_schema_registry = new Mongodbatlas.StreamConnection("example-schema-registry", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.InstanceName,
+    ///         ConnectionName = "SchemaRegistryConnection",
+    ///         Type = "SchemaRegistry",
+    ///         SchemaRegistryProvider = "CONFLUENT",
+    ///         SchemaRegistryUrls = new[]
+    ///         {
+    ///             "https://schema-registry.example.com:8081",
+    ///         },
+    ///         SchemaRegistryAuthentication = new Mongodbatlas.Inputs.StreamConnectionSchemaRegistryAuthenticationArgs
+    ///         {
+    ///             Type = "USER_INFO",
+    ///             Username = "registry-user",
+    ///             Password = schemaRegistryPassword,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example Schema Registry Connection with SASL_INHERIT Authentication
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example_schema_registry_sasl = new Mongodbatlas.StreamConnection("example-schema-registry-sasl", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.InstanceName,
+    ///         ConnectionName = "SchemaRegistryConnectionSASL",
+    ///         Type = "SchemaRegistry",
+    ///         SchemaRegistryProvider = "CONFLUENT",
+    ///         SchemaRegistryUrls = new[]
+    ///         {
+    ///             "https://schema-registry.example.com:8081",
+    ///         },
+    ///         SchemaRegistryAuthentication = new Mongodbatlas.Inputs.StreamConnectionSchemaRegistryAuthenticationArgs
+    ///         {
+    ///             Type = "SASL_INHERIT",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -294,11 +356,20 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        [Output("schemaRegistryAuthentication")]
+        public Output<Outputs.StreamConnectionSchemaRegistryAuthentication?> SchemaRegistryAuthentication { get; private set; } = null!;
+
+        [Output("schemaRegistryProvider")]
+        public Output<string?> SchemaRegistryProvider { get; private set; } = null!;
+
+        [Output("schemaRegistryUrls")]
+        public Output<ImmutableArray<string>> SchemaRegistryUrls { get; private set; } = null!;
+
         [Output("security")]
         public Output<Outputs.StreamConnectionSecurity?> Security { get; private set; } = null!;
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         /// 
         /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
@@ -415,11 +486,25 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        [Input("schemaRegistryAuthentication")]
+        public Input<Inputs.StreamConnectionSchemaRegistryAuthenticationArgs>? SchemaRegistryAuthentication { get; set; }
+
+        [Input("schemaRegistryProvider")]
+        public Input<string>? SchemaRegistryProvider { get; set; }
+
+        [Input("schemaRegistryUrls")]
+        private InputList<string>? _schemaRegistryUrls;
+        public InputList<string> SchemaRegistryUrls
+        {
+            get => _schemaRegistryUrls ?? (_schemaRegistryUrls = new InputList<string>());
+            set => _schemaRegistryUrls = value;
+        }
+
         [Input("security")]
         public Input<Inputs.StreamConnectionSecurityArgs>? Security { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         /// 
         /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
@@ -498,11 +583,25 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("schemaRegistryAuthentication")]
+        public Input<Inputs.StreamConnectionSchemaRegistryAuthenticationGetArgs>? SchemaRegistryAuthentication { get; set; }
+
+        [Input("schemaRegistryProvider")]
+        public Input<string>? SchemaRegistryProvider { get; set; }
+
+        [Input("schemaRegistryUrls")]
+        private InputList<string>? _schemaRegistryUrls;
+        public InputList<string> SchemaRegistryUrls
+        {
+            get => _schemaRegistryUrls ?? (_schemaRegistryUrls = new InputList<string>());
+            set => _schemaRegistryUrls = value;
+        }
+
         [Input("security")]
         public Input<Inputs.StreamConnectionSecurityGetArgs>? Security { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         /// 
         /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>

@@ -31,7 +31,7 @@ public final class GetStreamConnectionAuthentication {
      */
     private String method;
     /**
-     * @return Password of the account to connect to the Kafka cluster.
+     * @return Password for the Schema Registry. Required when `type` is `USER_INFO`.
      * 
      */
     private String password;
@@ -51,7 +51,7 @@ public final class GetStreamConnectionAuthentication {
      */
     private String tokenEndpointUrl;
     /**
-     * @return Username of the account to connect to the Kafka cluster.
+     * @return Username for the Schema Registry. Required when `type` is `USER_INFO`.
      * 
      */
     private String username;
@@ -86,7 +86,7 @@ public final class GetStreamConnectionAuthentication {
         return this.method;
     }
     /**
-     * @return Password of the account to connect to the Kafka cluster.
+     * @return Password for the Schema Registry. Required when `type` is `USER_INFO`.
      * 
      */
     public String password() {
@@ -114,7 +114,7 @@ public final class GetStreamConnectionAuthentication {
         return this.tokenEndpointUrl;
     }
     /**
-     * @return Username of the account to connect to the Kafka cluster.
+     * @return Username for the Schema Registry. Required when `type` is `USER_INFO`.
      * 
      */
     public String username() {

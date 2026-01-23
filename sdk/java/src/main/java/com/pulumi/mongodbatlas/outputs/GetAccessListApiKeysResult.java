@@ -11,45 +11,77 @@ import java.util.Objects;
 
 @CustomType
 public final class GetAccessListApiKeysResult {
+    /**
+     * @return Total number of requests that have originated from this IP address or CIDR block.
+     * 
+     */
     private Integer accessCount;
     /**
-     * @return Range of IP addresses in CIDR notation to be added to the access list.
+     * @return Range of IP addresses in CIDR notation included in the API access list.
      * 
      */
     private String cidrBlock;
+    /**
+     * @return Date and time when the access list entry was created.
+     * 
+     */
     private String created;
     /**
-     * @return Single IP address to be added to the access list.
+     * @return IP address included in the API access list.
      * 
      */
     private String ipAddress;
+    /**
+     * @return Date and time when the API key was last used from this IP address or CIDR block.
+     * 
+     */
     private String lastUsed;
+    /**
+     * @return IP address from which the last API request was made.
+     * 
+     */
     private String lastUsedAddress;
 
     private GetAccessListApiKeysResult() {}
+    /**
+     * @return Total number of requests that have originated from this IP address or CIDR block.
+     * 
+     */
     public Integer accessCount() {
         return this.accessCount;
     }
     /**
-     * @return Range of IP addresses in CIDR notation to be added to the access list.
+     * @return Range of IP addresses in CIDR notation included in the API access list.
      * 
      */
     public String cidrBlock() {
         return this.cidrBlock;
     }
+    /**
+     * @return Date and time when the access list entry was created.
+     * 
+     */
     public String created() {
         return this.created;
     }
     /**
-     * @return Single IP address to be added to the access list.
+     * @return IP address included in the API access list.
      * 
      */
     public String ipAddress() {
         return this.ipAddress;
     }
+    /**
+     * @return Date and time when the API key was last used from this IP address or CIDR block.
+     * 
+     */
     public String lastUsed() {
         return this.lastUsed;
     }
+    /**
+     * @return IP address from which the last API request was made.
+     * 
+     */
     public String lastUsedAddress() {
         return this.lastUsedAddress;
     }

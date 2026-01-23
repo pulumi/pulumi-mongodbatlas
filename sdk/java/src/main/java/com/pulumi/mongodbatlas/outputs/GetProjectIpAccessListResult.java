@@ -10,26 +10,50 @@ import java.util.Objects;
 
 @CustomType
 public final class GetProjectIpAccessListResult {
+    /**
+     * @return Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
+     * 
+     */
     private String awsSecurityGroup;
+    /**
+     * @return Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
+     * 
+     */
     private String cidrBlock;
     /**
-     * @return Comment to add to the access list entry.
+     * @return Remark that explains the purpose or scope of this IP access list entry.
      * 
      */
     private String comment;
     private String id;
+    /**
+     * @return Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
+     * 
+     */
     private String ipAddress;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * 
+     */
     private String projectId;
 
     private GetProjectIpAccessListResult() {}
+    /**
+     * @return Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
+     * 
+     */
     public String awsSecurityGroup() {
         return this.awsSecurityGroup;
     }
+    /**
+     * @return Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
+     * 
+     */
     public String cidrBlock() {
         return this.cidrBlock;
     }
     /**
-     * @return Comment to add to the access list entry.
+     * @return Remark that explains the purpose or scope of this IP access list entry.
      * 
      */
     public String comment() {
@@ -38,9 +62,17 @@ public final class GetProjectIpAccessListResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
+     * 
+     */
     public String ipAddress() {
         return this.ipAddress;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * 
+     */
     public String projectId() {
         return this.projectId;
     }

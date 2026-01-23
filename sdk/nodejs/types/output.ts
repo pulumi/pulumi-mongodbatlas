@@ -1307,6 +1307,8 @@ export interface CustomDbRoleInheritedRole {
     databaseName: string;
     /**
      * Name of the inherited role. This can either be another custom role or a built-in role.
+     *
+     * > **NOTE** Built-in roles are present in clusters by default and do not need to be redefined for their properties to be inherited by a custom role.
      */
     roleName: string;
 }
@@ -1697,17 +1699,29 @@ export interface FlexClusterTimeouts {
 }
 
 export interface GetAccessListApiKeysResult {
+    /**
+     * Total number of requests that have originated from this IP address or CIDR block.
+     */
     accessCount: number;
     /**
-     * Range of IP addresses in CIDR notation to be added to the access list.
+     * Range of IP addresses in CIDR notation included in the API access list.
      */
     cidrBlock: string;
+    /**
+     * Date and time when the access list entry was created.
+     */
     created: string;
     /**
-     * Single IP address to be added to the access list.
+     * IP address included in the API access list.
      */
     ipAddress: string;
+    /**
+     * Date and time when the API key was last used from this IP address or CIDR block.
+     */
     lastUsed: string;
+    /**
+     * IP address from which the last API request was made.
+     */
     lastUsedAddress: string;
 }
 
@@ -6626,6 +6640,114 @@ export interface GetProjectLimit {
     value: number;
 }
 
+export interface GetProjectServiceAccountAccessListEntriesResult {
+    /**
+     * Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+     */
+    cidrBlock: string;
+    /**
+     * The Client ID of the Service Account.
+     */
+    clientId: string;
+    /**
+     * Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+     */
+    ipAddress: string;
+    /**
+     * Network address that issued the most recent request to the API.
+     */
+    lastUsedAddress: string;
+    /**
+     * Date when the API received the most recent request that originated from this network address.
+     */
+    lastUsedAt: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project.
+     */
+    projectId: string;
+    /**
+     * The number of requests that has originated from this network address.
+     */
+    requestCount: number;
+}
+
+export interface GetProjectServiceAccountSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId: string;
+}
+
+export interface GetProjectServiceAccountsResult {
+    /**
+     * The Client ID of the Service Account.
+     */
+    clientId: string;
+    /**
+     * The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Human readable description for the Service Account.
+     */
+    description: string;
+    /**
+     * Human-readable name for the Service Account.
+     */
+    name: string;
+    /**
+     * A list of Project roles associated with the Service Account.
+     */
+    roles: string[];
+    /**
+     * A list of secrets associated with the specified Service Account.
+     */
+    secrets: outputs.GetProjectServiceAccountsResultSecret[];
+}
+
+export interface GetProjectServiceAccountsResultSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId: string;
+}
+
 export interface GetProjectTeam {
     /**
      * Each string in the array represents a project role assigned to the team. Every user associated with the team inherits these roles. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
@@ -7251,6 +7373,121 @@ export interface GetServerlessInstancesResultTag {
     value: string;
 }
 
+export interface GetServiceAccountAccessListEntriesResult {
+    /**
+     * Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
+     */
+    cidrBlock: string;
+    /**
+     * The Client ID of the Service Account.
+     */
+    clientId: string;
+    /**
+     * Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
+     */
+    ipAddress: string;
+    /**
+     * Network address that issued the most recent request to the API.
+     */
+    lastUsedAddress: string;
+    /**
+     * Date when the API received the most recent request that originated from this network address.
+     */
+    lastUsedAt: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+     */
+    orgId: string;
+    /**
+     * The number of requests that has originated from this network address.
+     */
+    requestCount: number;
+}
+
+export interface GetServiceAccountProjectAssignmentsResult {
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project.
+     */
+    projectId: string;
+}
+
+export interface GetServiceAccountSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId: string;
+}
+
+export interface GetServiceAccountsResult {
+    /**
+     * The Client ID of the Service Account.
+     */
+    clientId: string;
+    /**
+     * The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Human readable description for the Service Account.
+     */
+    description: string;
+    /**
+     * Human-readable name for the Service Account.
+     */
+    name: string;
+    /**
+     * A list of Organization roles associated with the Service Account.
+     */
+    roles: string[];
+    /**
+     * A list of secrets associated with the specified Service Account.
+     */
+    secrets: outputs.GetServiceAccountsResultSecret[];
+}
+
+export interface GetServiceAccountsResultSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId: string;
+}
+
 export interface GetSharedTierRestoreJobsResult {
     deliveryType: string;
     expirationDate: string;
@@ -7293,7 +7530,7 @@ export interface GetStreamConnectionAuthentication {
      */
     method: string;
     /**
-     * Password of the account to connect to the Kafka cluster.
+     * Password for the Schema Registry. Required when `type` is `USER_INFO`.
      */
     password: string;
     /**
@@ -7309,7 +7546,7 @@ export interface GetStreamConnectionAuthentication {
      */
     tokenEndpointUrl: string;
     /**
-     * Username of the account to connect to the Kafka cluster.
+     * Username for the Schema Registry. Required when `type` is `USER_INFO`.
      */
     username: string;
 }
@@ -7327,7 +7564,9 @@ export interface GetStreamConnectionDbRoleToExecute {
      */
     role: string;
     /**
-     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     type: string;
 }
@@ -7345,9 +7584,28 @@ export interface GetStreamConnectionNetworkingAccess {
      */
     connectionId: string;
     /**
-     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     type: string;
+}
+
+export interface GetStreamConnectionSchemaRegistryAuthentication {
+    /**
+     * Password for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    password: string;
+    /**
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+     */
+    type: string;
+    /**
+     * Username for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    username: string;
 }
 
 export interface GetStreamConnectionSecurity {
@@ -7411,11 +7669,25 @@ export interface GetStreamConnectionsResult {
      */
     projectId: string;
     /**
+     * Authentication configuration for Schema Registry. See Schema Registry Authentication.
+     */
+    schemaRegistryAuthentication: outputs.GetStreamConnectionsResultSchemaRegistryAuthentication;
+    /**
+     * The Schema Registry provider. Must be set to `CONFLUENT`.
+     */
+    schemaRegistryProvider: string;
+    /**
+     * List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+     */
+    schemaRegistryUrls: string[];
+    /**
      * Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
      */
     security: outputs.GetStreamConnectionsResultSecurity;
     /**
-     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     type: string;
     /**
@@ -7448,7 +7720,7 @@ export interface GetStreamConnectionsResultAuthentication {
      */
     method: string;
     /**
-     * Password of the account to connect to the Kafka cluster.
+     * Password for the Schema Registry. Required when `type` is `USER_INFO`.
      */
     password: string;
     /**
@@ -7464,7 +7736,7 @@ export interface GetStreamConnectionsResultAuthentication {
      */
     tokenEndpointUrl: string;
     /**
-     * Username of the account to connect to the Kafka cluster.
+     * Username for the Schema Registry. Required when `type` is `USER_INFO`.
      */
     username: string;
 }
@@ -7482,7 +7754,9 @@ export interface GetStreamConnectionsResultDbRoleToExecute {
      */
     role: string;
     /**
-     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     type: string;
 }
@@ -7500,9 +7774,28 @@ export interface GetStreamConnectionsResultNetworkingAccess {
      */
     connectionId: string;
     /**
-     * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     type: string;
+}
+
+export interface GetStreamConnectionsResultSchemaRegistryAuthentication {
+    /**
+     * Password for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    password: string;
+    /**
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+     */
+    type: string;
+    /**
+     * Username for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    username: string;
 }
 
 export interface GetStreamConnectionsResultSecurity {
@@ -8142,15 +8435,15 @@ export interface ProjectApiKeyProjectAssignment {
 
 export interface ProjectIpAccessListTimeouts {
     /**
-     * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
      */
     delete?: string;
     /**
-     * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `2m`.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
      */
     read?: string;
     /**
-     * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `45m`.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
     update?: string;
 }
@@ -8181,6 +8474,33 @@ export interface ProjectLimit {
      * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
      */
     value: number;
+}
+
+export interface ProjectServiceAccountSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+    /**
+     * The secret for the Service Account. It will be returned only the first time after creation.
+     */
+    secret: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId: string;
 }
 
 export interface ProjectTeam {
@@ -8314,6 +8634,33 @@ export interface ServerlessInstanceTag {
     value: string;
 }
 
+export interface ServiceAccountSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+    /**
+     * The secret for the Service Account. It will be returned only the first time after creation.
+     */
+    secret: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId: string;
+}
+
 export interface StreamConnectionAuthentication {
     /**
      * Public identifier for the Kafka client.
@@ -8366,7 +8713,7 @@ export interface StreamConnectionDbRoleToExecute {
      */
     role: string;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      *
      * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
@@ -8389,6 +8736,23 @@ export interface StreamConnectionNetworkingAccess {
      * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
     type: string;
+}
+
+export interface StreamConnectionSchemaRegistryAuthentication {
+    /**
+     * Password for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    password?: string;
+    /**
+     * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+     * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+     * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+     */
+    type?: string;
+    /**
+     * Username for the Schema Registry. Required when `type` is `USER_INFO`.
+     */
+    username?: string;
 }
 
 export interface StreamConnectionSecurity {

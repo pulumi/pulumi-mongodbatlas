@@ -24,6 +24,10 @@ public final class GetAccessListApiKeysInvokeResult {
     private @Nullable Integer itemsPerPage;
     private String orgId;
     private @Nullable Integer pageNum;
+    /**
+     * @return A list of access list entries for the specified API key. Each entry contains the following attributes:
+     * 
+     */
     private List<GetAccessListApiKeysResult> results;
 
     private GetAccessListApiKeysInvokeResult() {}
@@ -46,6 +50,10 @@ public final class GetAccessListApiKeysInvokeResult {
     public Optional<Integer> pageNum() {
         return Optional.ofNullable(this.pageNum);
     }
+    /**
+     * @return A list of access list entries for the specified API key. Each entry contains the following attributes:
+     * 
+     */
     public List<GetAccessListApiKeysResult> results() {
         return this.results;
     }

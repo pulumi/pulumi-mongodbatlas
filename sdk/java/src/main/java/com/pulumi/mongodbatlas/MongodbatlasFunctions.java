@@ -173,6 +173,16 @@ import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
@@ -191,6 +201,20 @@ import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstancePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
 import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+import com.pulumi.mongodbatlas.inputs.GetServiceAccountsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierRestoreJobArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierRestoreJobPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetSharedTierRestoreJobsArgs;
@@ -314,6 +338,11 @@ import com.pulumi.mongodbatlas.outputs.GetProjectInvitationResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAddressesResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountAccessListEntriesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountAccessListEntryResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountSecretResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPushBasedLogExportResult;
 import com.pulumi.mongodbatlas.outputs.GetResourcePoliciesInvokeResult;
@@ -324,6 +353,13 @@ import com.pulumi.mongodbatlas.outputs.GetSearchIndexResult;
 import com.pulumi.mongodbatlas.outputs.GetSearchIndexesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstanceResult;
 import com.pulumi.mongodbatlas.outputs.GetServerlessInstancesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetServiceAccountAccessListEntriesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetServiceAccountAccessListEntryResult;
+import com.pulumi.mongodbatlas.outputs.GetServiceAccountProjectAssignmentResult;
+import com.pulumi.mongodbatlas.outputs.GetServiceAccountProjectAssignmentsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetServiceAccountResult;
+import com.pulumi.mongodbatlas.outputs.GetServiceAccountSecretResult;
+import com.pulumi.mongodbatlas.outputs.GetServiceAccountsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotResult;
@@ -351,9 +387,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -381,7 +414,7 @@ public final class MongodbatlasFunctions {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
      *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
@@ -402,9 +435,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -432,7 +462,7 @@ public final class MongodbatlasFunctions {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
      *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
@@ -453,9 +483,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -483,7 +510,7 @@ public final class MongodbatlasFunctions {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
      *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
@@ -504,9 +531,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -534,7 +558,7 @@ public final class MongodbatlasFunctions {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
      *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
@@ -555,9 +579,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -585,7 +606,7 @@ public final class MongodbatlasFunctions {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
      *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
@@ -606,9 +627,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -619,7 +637,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKey;
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -635,13 +653,12 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .cidrBlock("1.2.3.4/32")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *         final var test = MongodbatlasFunctions.getAccessListApiKeys(GetAccessListApiKeysArgs.builder()
      *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
      *             .apiKeyId(testAccessListApiKey.apiKeyId())
      *             .build());
      * 
@@ -657,9 +674,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -670,7 +684,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKey;
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -686,13 +700,12 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .cidrBlock("1.2.3.4/32")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *         final var test = MongodbatlasFunctions.getAccessListApiKeys(GetAccessListApiKeysArgs.builder()
      *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
      *             .apiKeyId(testAccessListApiKey.apiKeyId())
      *             .build());
      * 
@@ -708,9 +721,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -721,7 +731,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKey;
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -737,13 +747,12 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .cidrBlock("1.2.3.4/32")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *         final var test = MongodbatlasFunctions.getAccessListApiKeys(GetAccessListApiKeysArgs.builder()
      *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
      *             .apiKeyId(testAccessListApiKey.apiKeyId())
      *             .build());
      * 
@@ -759,9 +768,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -772,7 +778,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKey;
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -788,13 +794,12 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .cidrBlock("1.2.3.4/32")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *         final var test = MongodbatlasFunctions.getAccessListApiKeys(GetAccessListApiKeysArgs.builder()
      *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
      *             .apiKeyId(testAccessListApiKey.apiKeyId())
      *             .build());
      * 
@@ -810,9 +815,6 @@ public final class MongodbatlasFunctions {
     /**
      * ## Example Usage
      * 
-     * ### Using CIDR Block
-     * 
-     * ### Using IP Address
      * <pre>
      * {@code
      * package generated_program;
@@ -823,7 +825,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKey;
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -839,13 +841,12 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         var testAccessListApiKey = new AccessListApiKey("testAccessListApiKey", AccessListApiKeyArgs.builder()
      *             .orgId("<ORG_ID>")
-     *             .ipAddress("2.3.4.5")
-     *             .apiKey("a29120e123cd")
+     *             .cidrBlock("1.2.3.4/32")
+     *             .apiKeyId("a29120e123cd")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getAccessListApiKey(GetAccessListApiKeyArgs.builder()
+     *         final var test = MongodbatlasFunctions.getAccessListApiKeys(GetAccessListApiKeysArgs.builder()
      *             .orgId(testAccessListApiKey.orgId())
-     *             .ipAddress(testAccessListApiKey.ipAddress())
      *             .apiKeyId(testAccessListApiKey.apiKeyId())
      *             .build());
      * 
@@ -3800,74 +3801,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      */
     public static Output<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignment(GetApiKeyProjectAssignmentArgs args) {
         return getApiKeyProjectAssignment(args, InvokeOptions.Empty);
@@ -3878,74 +3811,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      */
     public static CompletableFuture<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignmentPlain(GetApiKeyProjectAssignmentPlainArgs args) {
@@ -3958,74 +3823,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      */
     public static Output<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignment(GetApiKeyProjectAssignmentArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment", TypeShape.of(GetApiKeyProjectAssignmentResult.class), args, Utilities.withVersion(options));
@@ -4036,74 +3833,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      */
     public static Output<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignment(GetApiKeyProjectAssignmentArgs args, InvokeOutputOptions options) {
@@ -4116,74 +3845,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      */
     public static CompletableFuture<GetApiKeyProjectAssignmentResult> getApiKeyProjectAssignmentPlain(GetApiKeyProjectAssignmentPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment", TypeShape.of(GetApiKeyProjectAssignmentResult.class), args, Utilities.withVersion(options));
@@ -4194,74 +3855,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      */
     public static Output<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignments(GetApiKeyProjectAssignmentsArgs args) {
@@ -4274,74 +3867,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      */
     public static CompletableFuture<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignmentsPlain(GetApiKeyProjectAssignmentsPlainArgs args) {
         return getApiKeyProjectAssignmentsPlain(args, InvokeOptions.Empty);
@@ -4352,74 +3877,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      */
     public static Output<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignments(GetApiKeyProjectAssignmentsArgs args, InvokeOptions options) {
@@ -4432,74 +3889,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      */
     public static Output<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignments(GetApiKeyProjectAssignmentsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments", TypeShape.of(GetApiKeyProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
@@ -4510,74 +3899,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.ApiKey;
-     * import com.pulumi.mongodbatlas.ApiKeyArgs;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignment;
-     * import com.pulumi.mongodbatlas.ApiKeyProjectAssignmentArgs;
-     * import com.pulumi.mongodbatlas.AccessListApiKey;
-     * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var this_ = new ApiKey("this", ApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .description("Test API Key")
-     *             .roleNames("ORG_READ_ONLY")
-     *             .build());
-     * 
-     *         var firstProject = new Project("firstProject", ProjectArgs.builder()
-     *             .name("First Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var secondProject = new Project("secondProject", ProjectArgs.builder()
-     *             .name("Second Project")
-     *             .orgId(orgId)
-     *             .build());
-     * 
-     *         var firstAssignment = new ApiKeyProjectAssignment("firstAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(firstProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         var secondAssignment = new ApiKeyProjectAssignment("secondAssignment", ApiKeyProjectAssignmentArgs.builder()
-     *             .projectId(secondProject.id())
-     *             .apiKeyId(this_.apiKeyId())
-     *             .roles("GROUP_OWNER")
-     *             .build());
-     * 
-     *         // Add IP Access List Entry to Programmatic API Key 
-     *         var thisAccessListApiKey = new AccessListApiKey("thisAccessListApiKey", AccessListApiKeyArgs.builder()
-     *             .orgId(orgId)
-     *             .cidrBlock("0.0.0.0/1")
-     *             .apiKeyId(this_.apiKeyId())
-     *             .build());
-     * 
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      */
     public static CompletableFuture<GetApiKeyProjectAssignmentsInvokeResult> getApiKeyProjectAssignmentsPlain(GetApiKeyProjectAssignmentsPlainArgs args, InvokeOptions options) {
@@ -26760,9 +26081,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
-     * &gt; **IMPORTANT:**
-     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-     * 
      * ## Example Usage
      * 
      * ### Using CIDR Block
@@ -26790,15 +26108,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .cidrBlock("1.2.3.4/32")
-     *             .comment("cidr block for tf acc testing")
+     *             .comment("cidr block test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .cidrBlock(testProjectIpAccessList.cidrBlock())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .cidrBlock(thisProjectIpAccessList.cidrBlock())
      *             .build());
      * 
      *     }
@@ -26831,15 +26149,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .ipAddress("2.3.4.5")
-     *             .comment("ip address for tf acc testing")
+     *             .comment("ip address test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .ipAddress(testProjectIpAccessList.ipAddress())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .ipAddress(thisProjectIpAccessList.ipAddress())
      *             .build());
      * 
      *     }
@@ -26877,16 +26195,16 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisNetworkContainer = new NetworkContainer("thisNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId(projectId)
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
-     *             .projectId("<PROJECT-ID>")
-     *             .containerId(testNetworkContainer.containerId())
+     *         var thisNetworkPeering = new NetworkPeering("thisNetworkPeering", NetworkPeeringArgs.builder()
+     *             .projectId(projectId)
+     *             .containerId(thisNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
      *             .providerName("AWS")
      *             .routeTableCidrBlock("172.31.0.0/16")
@@ -26894,25 +26212,23 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
-     *             .comment("TestAcc for awsSecurityGroup")
+     *             .comment("AWS Security Group test")
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(testNetworkPeering)
+     *                 .dependsOn(thisNetworkPeering)
      *                 .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .awsSecurityGroup(testProjectIpAccessList.awsSecurityGroup())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .awsSecurityGroup(thisProjectIpAccessList.awsSecurityGroup())
      *             .build());
      * 
      *     }
      * }
      * }
      * </pre>
-     * 
-     * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
      * 
      */
     public static Output<GetProjectIpAccessListResult> getProjectIpAccessList(GetProjectIpAccessListArgs args) {
@@ -26923,9 +26239,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
-     * &gt; **IMPORTANT:**
-     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-     * 
      * ## Example Usage
      * 
      * ### Using CIDR Block
@@ -26953,15 +26266,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .cidrBlock("1.2.3.4/32")
-     *             .comment("cidr block for tf acc testing")
+     *             .comment("cidr block test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .cidrBlock(testProjectIpAccessList.cidrBlock())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .cidrBlock(thisProjectIpAccessList.cidrBlock())
      *             .build());
      * 
      *     }
@@ -26994,15 +26307,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .ipAddress("2.3.4.5")
-     *             .comment("ip address for tf acc testing")
+     *             .comment("ip address test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .ipAddress(testProjectIpAccessList.ipAddress())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .ipAddress(thisProjectIpAccessList.ipAddress())
      *             .build());
      * 
      *     }
@@ -27040,16 +26353,16 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisNetworkContainer = new NetworkContainer("thisNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId(projectId)
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
-     *             .projectId("<PROJECT-ID>")
-     *             .containerId(testNetworkContainer.containerId())
+     *         var thisNetworkPeering = new NetworkPeering("thisNetworkPeering", NetworkPeeringArgs.builder()
+     *             .projectId(projectId)
+     *             .containerId(thisNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
      *             .providerName("AWS")
      *             .routeTableCidrBlock("172.31.0.0/16")
@@ -27057,25 +26370,23 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
-     *             .comment("TestAcc for awsSecurityGroup")
+     *             .comment("AWS Security Group test")
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(testNetworkPeering)
+     *                 .dependsOn(thisNetworkPeering)
      *                 .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .awsSecurityGroup(testProjectIpAccessList.awsSecurityGroup())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .awsSecurityGroup(thisProjectIpAccessList.awsSecurityGroup())
      *             .build());
      * 
      *     }
      * }
      * }
      * </pre>
-     * 
-     * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
      * 
      */
     public static CompletableFuture<GetProjectIpAccessListResult> getProjectIpAccessListPlain(GetProjectIpAccessListPlainArgs args) {
@@ -27086,9 +26397,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
-     * &gt; **IMPORTANT:**
-     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-     * 
      * ## Example Usage
      * 
      * ### Using CIDR Block
@@ -27116,15 +26424,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .cidrBlock("1.2.3.4/32")
-     *             .comment("cidr block for tf acc testing")
+     *             .comment("cidr block test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .cidrBlock(testProjectIpAccessList.cidrBlock())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .cidrBlock(thisProjectIpAccessList.cidrBlock())
      *             .build());
      * 
      *     }
@@ -27157,15 +26465,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .ipAddress("2.3.4.5")
-     *             .comment("ip address for tf acc testing")
+     *             .comment("ip address test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .ipAddress(testProjectIpAccessList.ipAddress())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .ipAddress(thisProjectIpAccessList.ipAddress())
      *             .build());
      * 
      *     }
@@ -27203,16 +26511,16 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisNetworkContainer = new NetworkContainer("thisNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId(projectId)
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
-     *             .projectId("<PROJECT-ID>")
-     *             .containerId(testNetworkContainer.containerId())
+     *         var thisNetworkPeering = new NetworkPeering("thisNetworkPeering", NetworkPeeringArgs.builder()
+     *             .projectId(projectId)
+     *             .containerId(thisNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
      *             .providerName("AWS")
      *             .routeTableCidrBlock("172.31.0.0/16")
@@ -27220,25 +26528,23 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
-     *             .comment("TestAcc for awsSecurityGroup")
+     *             .comment("AWS Security Group test")
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(testNetworkPeering)
+     *                 .dependsOn(thisNetworkPeering)
      *                 .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .awsSecurityGroup(testProjectIpAccessList.awsSecurityGroup())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .awsSecurityGroup(thisProjectIpAccessList.awsSecurityGroup())
      *             .build());
      * 
      *     }
      * }
      * }
      * </pre>
-     * 
-     * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
      * 
      */
     public static Output<GetProjectIpAccessListResult> getProjectIpAccessList(GetProjectIpAccessListArgs args, InvokeOptions options) {
@@ -27249,9 +26555,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
-     * &gt; **IMPORTANT:**
-     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-     * 
      * ## Example Usage
      * 
      * ### Using CIDR Block
@@ -27279,15 +26582,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .cidrBlock("1.2.3.4/32")
-     *             .comment("cidr block for tf acc testing")
+     *             .comment("cidr block test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .cidrBlock(testProjectIpAccessList.cidrBlock())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .cidrBlock(thisProjectIpAccessList.cidrBlock())
      *             .build());
      * 
      *     }
@@ -27320,15 +26623,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .ipAddress("2.3.4.5")
-     *             .comment("ip address for tf acc testing")
+     *             .comment("ip address test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .ipAddress(testProjectIpAccessList.ipAddress())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .ipAddress(thisProjectIpAccessList.ipAddress())
      *             .build());
      * 
      *     }
@@ -27366,16 +26669,16 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisNetworkContainer = new NetworkContainer("thisNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId(projectId)
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
-     *             .projectId("<PROJECT-ID>")
-     *             .containerId(testNetworkContainer.containerId())
+     *         var thisNetworkPeering = new NetworkPeering("thisNetworkPeering", NetworkPeeringArgs.builder()
+     *             .projectId(projectId)
+     *             .containerId(thisNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
      *             .providerName("AWS")
      *             .routeTableCidrBlock("172.31.0.0/16")
@@ -27383,25 +26686,23 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
-     *             .comment("TestAcc for awsSecurityGroup")
+     *             .comment("AWS Security Group test")
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(testNetworkPeering)
+     *                 .dependsOn(thisNetworkPeering)
      *                 .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .awsSecurityGroup(testProjectIpAccessList.awsSecurityGroup())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .awsSecurityGroup(thisProjectIpAccessList.awsSecurityGroup())
      *             .build());
      * 
      *     }
      * }
      * }
      * </pre>
-     * 
-     * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
      * 
      */
     public static Output<GetProjectIpAccessListResult> getProjectIpAccessList(GetProjectIpAccessListArgs args, InvokeOutputOptions options) {
@@ -27412,9 +26713,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
-     * &gt; **IMPORTANT:**
-     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider (comments can however), hence a change will force the destruction and recreation of entries.
-     * 
      * ## Example Usage
      * 
      * ### Using CIDR Block
@@ -27442,15 +26740,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .cidrBlock("1.2.3.4/32")
-     *             .comment("cidr block for tf acc testing")
+     *             .comment("cidr block test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .cidrBlock(testProjectIpAccessList.cidrBlock())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .cidrBlock(thisProjectIpAccessList.cidrBlock())
      *             .build());
      * 
      *     }
@@ -27483,15 +26781,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .ipAddress("2.3.4.5")
-     *             .comment("ip address for tf acc testing")
+     *             .comment("ip address test")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .ipAddress(testProjectIpAccessList.ipAddress())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .ipAddress(thisProjectIpAccessList.ipAddress())
      *             .build());
      * 
      *     }
@@ -27529,16 +26827,16 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testNetworkContainer = new NetworkContainer("testNetworkContainer", NetworkContainerArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisNetworkContainer = new NetworkContainer("thisNetworkContainer", NetworkContainerArgs.builder()
+     *             .projectId(projectId)
      *             .atlasCidrBlock("192.168.208.0/21")
      *             .providerName("AWS")
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
-     *             .projectId("<PROJECT-ID>")
-     *             .containerId(testNetworkContainer.containerId())
+     *         var thisNetworkPeering = new NetworkPeering("thisNetworkPeering", NetworkPeeringArgs.builder()
+     *             .projectId(projectId)
+     *             .containerId(thisNetworkContainer.containerId())
      *             .accepterRegionName("us-east-1")
      *             .providerName("AWS")
      *             .routeTableCidrBlock("172.31.0.0/16")
@@ -27546,25 +26844,23 @@ public final class MongodbatlasFunctions {
      *             .awsAccountId("232589400519")
      *             .build());
      * 
-     *         var testProjectIpAccessList = new ProjectIpAccessList("testProjectIpAccessList", ProjectIpAccessListArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *         var thisProjectIpAccessList = new ProjectIpAccessList("thisProjectIpAccessList", ProjectIpAccessListArgs.builder()
+     *             .projectId(projectId)
      *             .awsSecurityGroup("sg-0026348ec11780bd1")
-     *             .comment("TestAcc for awsSecurityGroup")
+     *             .comment("AWS Security Group test")
      *             .build(), CustomResourceOptions.builder()
-     *                 .dependsOn(testNetworkPeering)
+     *                 .dependsOn(thisNetworkPeering)
      *                 .build());
      * 
-     *         final var test = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
-     *             .projectId(testProjectIpAccessList.projectId())
-     *             .awsSecurityGroup(testProjectIpAccessList.awsSecurityGroup())
+     *         final var this = MongodbatlasFunctions.getProjectIpAccessList(GetProjectIpAccessListArgs.builder()
+     *             .projectId(thisProjectIpAccessList.projectId())
+     *             .awsSecurityGroup(thisProjectIpAccessList.awsSecurityGroup())
      *             .build());
      * 
      *     }
      * }
      * }
      * </pre>
-     * 
-     * &gt; **IMPORTANT:** In order to use AWS Security Group(s) VPC Peering must be enabled like in the above example.
      * 
      */
     public static CompletableFuture<GetProjectIpAccessListResult> getProjectIpAccessListPlain(GetProjectIpAccessListPlainArgs args, InvokeOptions options) {
@@ -27779,6 +27075,1186 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetProjectIpAddressesResult> getProjectIpAddressesPlain(GetProjectIpAddressesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", TypeShape.of(GetProjectIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectServiceAccountResult> getProjectServiceAccount(GetProjectServiceAccountArgs args) {
+        return getProjectServiceAccount(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountResult> getProjectServiceAccountPlain(GetProjectServiceAccountPlainArgs args) {
+        return getProjectServiceAccountPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectServiceAccountResult> getProjectServiceAccount(GetProjectServiceAccountArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectServiceAccountResult> getProjectServiceAccount(GetProjectServiceAccountArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountResult> getProjectServiceAccountPlain(GetProjectServiceAccountPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountAccessListEntriesInvokeResult> getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs args) {
+        return getProjectServiceAccountAccessListEntries(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountAccessListEntriesInvokeResult> getProjectServiceAccountAccessListEntriesPlain(GetProjectServiceAccountAccessListEntriesPlainArgs args) {
+        return getProjectServiceAccountAccessListEntriesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountAccessListEntriesInvokeResult> getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", TypeShape.of(GetProjectServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountAccessListEntriesInvokeResult> getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", TypeShape.of(GetProjectServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountAccessListEntriesInvokeResult> getProjectServiceAccountAccessListEntriesPlain(GetProjectServiceAccountAccessListEntriesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", TypeShape.of(GetProjectServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountAccessListEntryResult> getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs args) {
+        return getProjectServiceAccountAccessListEntry(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountAccessListEntryResult> getProjectServiceAccountAccessListEntryPlain(GetProjectServiceAccountAccessListEntryPlainArgs args) {
+        return getProjectServiceAccountAccessListEntryPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountAccessListEntryResult> getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", TypeShape.of(GetProjectServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountAccessListEntryResult> getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", TypeShape.of(GetProjectServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using CIDR Block
+     *         var cidr = new ProjectServiceAccountAccessListEntry("cidr", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Project Service Account using IP Address
+     *         var ip = new ProjectServiceAccountAccessListEntry("ip", ProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Project Service Account
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountAccessListEntry(GetProjectServiceAccountAccessListEntryArgs.builder()
+     *             .projectId(cidr.projectId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Project Service Account
+     *         final var thisGetProjectServiceAccountAccessListEntries = MongodbatlasFunctions.getProjectServiceAccountAccessListEntries(GetProjectServiceAccountAccessListEntriesArgs.builder()
+     *             .projectId(thisProjectServiceAccount.projectId())
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.applyValue(_thisGetProjectServiceAccountAccessListEntries -> _thisGetProjectServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountAccessListEntryResult> getProjectServiceAccountAccessListEntryPlain(GetProjectServiceAccountAccessListEntryPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", TypeShape.of(GetProjectServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisProjectServiceAccountSecret = new ProjectServiceAccountSecret("thisProjectServiceAccountSecret", ProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *                 .projectId(projectId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountSecretResult> getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs args) {
+        return getProjectServiceAccountSecret(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisProjectServiceAccountSecret = new ProjectServiceAccountSecret("thisProjectServiceAccountSecret", ProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *                 .projectId(projectId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountSecretResult> getProjectServiceAccountSecretPlain(GetProjectServiceAccountSecretPlainArgs args) {
+        return getProjectServiceAccountSecretPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisProjectServiceAccountSecret = new ProjectServiceAccountSecret("thisProjectServiceAccountSecret", ProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *                 .projectId(projectId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountSecretResult> getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", TypeShape.of(GetProjectServiceAccountSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisProjectServiceAccountSecret = new ProjectServiceAccountSecret("thisProjectServiceAccountSecret", ProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *                 .projectId(projectId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectServiceAccountSecretResult> getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", TypeShape.of(GetProjectServiceAccountSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccount;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisProjectServiceAccount = new ProjectServiceAccount("thisProjectServiceAccount", ProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-project-service-account")
+     *             .description("Example Project Service Account")
+     *             .roles("GROUP_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisProjectServiceAccountSecret = new ProjectServiceAccountSecret("thisProjectServiceAccountSecret", ProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *                 .projectId(projectId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountSecretResult> getProjectServiceAccountSecretPlain(GetProjectServiceAccountSecretPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", TypeShape.of(GetProjectServiceAccountSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectServiceAccountsInvokeResult> getProjectServiceAccounts(GetProjectServiceAccountsArgs args) {
+        return getProjectServiceAccounts(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountsInvokeResult> getProjectServiceAccountsPlain(GetProjectServiceAccountsPlainArgs args) {
+        return getProjectServiceAccountsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectServiceAccountsInvokeResult> getProjectServiceAccounts(GetProjectServiceAccountsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", TypeShape.of(GetProjectServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetProjectServiceAccountsInvokeResult> getProjectServiceAccounts(GetProjectServiceAccountsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", TypeShape.of(GetProjectServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetProjectServiceAccountsInvokeResult> getProjectServiceAccountsPlain(GetProjectServiceAccountsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", TypeShape.of(GetProjectServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
@@ -30096,6 +30572,1856 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetServerlessInstancesInvokeResult> getServerlessInstancesPlain(GetServerlessInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstances:getServerlessInstances", TypeShape.of(GetServerlessInstancesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetServiceAccountResult> getServiceAccount(GetServiceAccountArgs args) {
+        return getServiceAccount(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountResult> getServiceAccountPlain(GetServiceAccountPlainArgs args) {
+        return getServiceAccountPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetServiceAccountResult> getServiceAccount(GetServiceAccountArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetServiceAccountResult> getServiceAccount(GetServiceAccountArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountResult> getServiceAccountPlain(GetServiceAccountPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountAccessListEntriesInvokeResult> getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs args) {
+        return getServiceAccountAccessListEntries(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountAccessListEntriesInvokeResult> getServiceAccountAccessListEntriesPlain(GetServiceAccountAccessListEntriesPlainArgs args) {
+        return getServiceAccountAccessListEntriesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountAccessListEntriesInvokeResult> getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries", TypeShape.of(GetServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountAccessListEntriesInvokeResult> getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries", TypeShape.of(GetServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountAccessListEntriesInvokeResult> getServiceAccountAccessListEntriesPlain(GetServiceAccountAccessListEntriesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries", TypeShape.of(GetServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountAccessListEntryResult> getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs args) {
+        return getServiceAccountAccessListEntry(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountAccessListEntryResult> getServiceAccountAccessListEntryPlain(GetServiceAccountAccessListEntryPlainArgs args) {
+        return getServiceAccountAccessListEntryPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountAccessListEntryResult> getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", TypeShape.of(GetServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountAccessListEntryResult> getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", TypeShape.of(GetServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntry;
+     * import com.pulumi.mongodbatlas.ServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using CIDR Block
+     *         var cidr = new ServiceAccountAccessListEntry("cidr", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .cidrBlock("1.2.3.4/32")
+     *             .build());
+     * 
+     *         // Add IP Access List Entry to Service Account using IP Address
+     *         var ip = new ServiceAccountAccessListEntry("ip", ServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .ipAddress("2.3.4.5")
+     *             .build());
+     * 
+     *         // Data source to read a single Access List entry for the Service Account
+     *         final var this = MongodbatlasFunctions.getServiceAccountAccessListEntry(GetServiceAccountAccessListEntryArgs.builder()
+     *             .orgId(cidr.orgId())
+     *             .clientId(cidr.clientId())
+     *             .cidrBlock(cidr.cidrBlock())
+     *             .build());
+     * 
+     *         ctx.export("accessListEntryCidrBlock", this_.applyValue(_this_ -> _this_.cidrBlock()));
+     *         // Data source to read all Access List entries for the Service Account
+     *         final var thisGetServiceAccountAccessListEntries = MongodbatlasFunctions.getServiceAccountAccessListEntries(GetServiceAccountAccessListEntriesArgs.builder()
+     *             .orgId(thisServiceAccount.orgId())
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
+     * 
+     *         ctx.export("allAccessListEntries", thisGetServiceAccountAccessListEntries.applyValue(_thisGetServiceAccountAccessListEntries -> _thisGetServiceAccountAccessListEntries.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountAccessListEntryResult> getServiceAccountAccessListEntryPlain(GetServiceAccountAccessListEntryPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", TypeShape.of(GetServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountProjectAssignmentResult> getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs args) {
+        return getServiceAccountProjectAssignment(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountProjectAssignmentResult> getServiceAccountProjectAssignmentPlain(GetServiceAccountProjectAssignmentPlainArgs args) {
+        return getServiceAccountProjectAssignmentPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountProjectAssignmentResult> getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", TypeShape.of(GetServiceAccountProjectAssignmentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountProjectAssignmentResult> getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", TypeShape.of(GetServiceAccountProjectAssignmentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountProjectAssignmentResult> getServiceAccountProjectAssignmentPlain(GetServiceAccountProjectAssignmentPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", TypeShape.of(GetServiceAccountProjectAssignmentResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountProjectAssignmentsInvokeResult> getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs args) {
+        return getServiceAccountProjectAssignments(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountProjectAssignmentsInvokeResult> getServiceAccountProjectAssignmentsPlain(GetServiceAccountProjectAssignmentsPlainArgs args) {
+        return getServiceAccountProjectAssignmentsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountProjectAssignmentsInvokeResult> getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", TypeShape.of(GetServiceAccountProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountProjectAssignmentsInvokeResult> getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", TypeShape.of(GetServiceAccountProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignment;
+     * import com.pulumi.mongodbatlas.ServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_MEMBER")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountProjectAssignment = new ServiceAccountProjectAssignment("thisServiceAccountProjectAssignment", ServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .roles("GROUP_READ_ONLY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getServiceAccountProjectAssignment(GetServiceAccountProjectAssignmentArgs.builder()
+     *             .projectId(thisServiceAccountProjectAssignment.projectId())
+     *             .clientId(thisServiceAccountProjectAssignment.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(_clientId)
+     *             .build()));
+     * 
+     *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
+     *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountProjectAssignmentsInvokeResult> getServiceAccountProjectAssignmentsPlain(GetServiceAccountProjectAssignmentsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", TypeShape.of(GetServiceAccountProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountSecret = new ServiceAccountSecret("thisServiceAccountSecret", ServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *                 .orgId(orgId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountSecretResult> getServiceAccountSecret(GetServiceAccountSecretArgs args) {
+        return getServiceAccountSecret(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountSecret = new ServiceAccountSecret("thisServiceAccountSecret", ServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *                 .orgId(orgId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountSecretResult> getServiceAccountSecretPlain(GetServiceAccountSecretPlainArgs args) {
+        return getServiceAccountSecretPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountSecret = new ServiceAccountSecret("thisServiceAccountSecret", ServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *                 .orgId(orgId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountSecretResult> getServiceAccountSecret(GetServiceAccountSecretArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", TypeShape.of(GetServiceAccountSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountSecret = new ServiceAccountSecret("thisServiceAccountSecret", ServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *                 .orgId(orgId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetServiceAccountSecretResult> getServiceAccountSecret(GetServiceAccountSecretArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", TypeShape.of(GetServiceAccountSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ServiceAccount;
+     * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecret;
+     * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisServiceAccount = new ServiceAccount("thisServiceAccount", ServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .name("example-service-account")
+     *             .description("Example Service Account")
+     *             .roles("ORG_READ_ONLY")
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         var thisServiceAccountSecret = new ServiceAccountSecret("thisServiceAccountSecret", ServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretExpiresAfterHours(2160)
+     *             .build());
+     * 
+     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
+     *             var clientId = values.t1;
+     *             var secretId = values.t2;
+     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *                 .orgId(orgId)
+     *                 .clientId(clientId)
+     *                 .secretId(secretId)
+     *                 .build());
+     *         });
+     * 
+     *         ctx.export("secretId", thisServiceAccountSecret.secretId());
+     *         ctx.export("secret", thisServiceAccountSecret.secret());
+     *         ctx.export("secretExpiresAt", this_.applyValue(_this_ -> _this_.expiresAt()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountSecretResult> getServiceAccountSecretPlain(GetServiceAccountSecretPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", TypeShape.of(GetServiceAccountSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetServiceAccountsInvokeResult> getServiceAccounts(GetServiceAccountsArgs args) {
+        return getServiceAccounts(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountsInvokeResult> getServiceAccountsPlain(GetServiceAccountsPlainArgs args) {
+        return getServiceAccountsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetServiceAccountsInvokeResult> getServiceAccounts(GetServiceAccountsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccounts:getServiceAccounts", TypeShape.of(GetServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetServiceAccountsInvokeResult> getServiceAccounts(GetServiceAccountsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccounts:getServiceAccounts", TypeShape.of(GetServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetServiceAccountsInvokeResult> getServiceAccountsPlain(GetServiceAccountsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccounts:getServiceAccounts", TypeShape.of(GetServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
     }
     public static Output<GetSharedTierRestoreJobResult> getSharedTierRestoreJob(GetSharedTierRestoreJobArgs args) {
         return getSharedTierRestoreJob(args, InvokeOptions.Empty);

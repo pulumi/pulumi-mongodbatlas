@@ -13,9 +13,6 @@ import (
 
 // ## Example Usage
 //
-// ### Using CIDR Block
-//
-// ### Using IP Address
 // ```go
 // package main
 //
@@ -31,7 +28,7 @@ import (
 //			testAccessListApiKey, err := mongodbatlas.NewAccessListApiKey(ctx, "test", &mongodbatlas.AccessListApiKeyArgs{
 //				OrgId:     pulumi.String("<ORG_ID>"),
 //				IpAddress: pulumi.String("2.3.4.5"),
-//				ApiKey:    "a29120e123cd",
+//				ApiKeyId:  pulumi.String("a29120e123cd"),
 //			})
 //			if err != nil {
 //				return err
@@ -59,10 +56,8 @@ func LookupAccessListApiKey(ctx *pulumi.Context, args *LookupAccessListApiKeyArg
 // A collection of arguments for invoking getAccessListApiKey.
 type LookupAccessListApiKeyArgs struct {
 	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-	// *
-	// ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// Single IP address to be added to the access list.
+	// IP address to retrieve from the access list.
 	IpAddress string `pulumi:"ipAddress"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
@@ -70,14 +65,19 @@ type LookupAccessListApiKeyArgs struct {
 
 // A collection of values returned by getAccessListApiKey.
 type LookupAccessListApiKeyResult struct {
+	// Total number of requests that have originated from this IP address or CIDR block.
 	AccessCount int    `pulumi:"accessCount"`
 	ApiKeyId    string `pulumi:"apiKeyId"`
-	CidrBlock   string `pulumi:"cidrBlock"`
-	Created     string `pulumi:"created"`
+	// Range of IP addresses in CIDR notation included in the API Key access list.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// Date and time when the access list entry was created.
+	Created string `pulumi:"created"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string `pulumi:"id"`
-	IpAddress       string `pulumi:"ipAddress"`
-	LastUsed        string `pulumi:"lastUsed"`
+	Id        string `pulumi:"id"`
+	IpAddress string `pulumi:"ipAddress"`
+	// Date and time when the API key was last used from this IP address or CIDR block.
+	LastUsed string `pulumi:"lastUsed"`
+	// IP address from which the last API request was made.
 	LastUsedAddress string `pulumi:"lastUsedAddress"`
 	OrgId           string `pulumi:"orgId"`
 }
@@ -94,10 +94,8 @@ func LookupAccessListApiKeyOutput(ctx *pulumi.Context, args LookupAccessListApiK
 // A collection of arguments for invoking getAccessListApiKey.
 type LookupAccessListApiKeyOutputArgs struct {
 	// Unique identifier for the Organization API Key for which you want to retrieve an access list entry.
-	// *
-	// ->**NOTE:** You must set either the `cidrBlock` attribute or the `ipAddress` attribute. Don't set both.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// Single IP address to be added to the access list.
+	// IP address to retrieve from the access list.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
@@ -122,6 +120,7 @@ func (o LookupAccessListApiKeyResultOutput) ToLookupAccessListApiKeyResultOutput
 	return o
 }
 
+// Total number of requests that have originated from this IP address or CIDR block.
 func (o LookupAccessListApiKeyResultOutput) AccessCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeyResult) int { return v.AccessCount }).(pulumi.IntOutput)
 }
@@ -130,10 +129,12 @@ func (o LookupAccessListApiKeyResultOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeyResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
 }
 
+// Range of IP addresses in CIDR notation included in the API Key access list.
 func (o LookupAccessListApiKeyResultOutput) CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeyResult) string { return v.CidrBlock }).(pulumi.StringOutput)
 }
 
+// Date and time when the access list entry was created.
 func (o LookupAccessListApiKeyResultOutput) Created() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeyResult) string { return v.Created }).(pulumi.StringOutput)
 }
@@ -147,10 +148,12 @@ func (o LookupAccessListApiKeyResultOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeyResult) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// Date and time when the API key was last used from this IP address or CIDR block.
 func (o LookupAccessListApiKeyResultOutput) LastUsed() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeyResult) string { return v.LastUsed }).(pulumi.StringOutput)
 }
 
+// IP address from which the last API request was made.
 func (o LookupAccessListApiKeyResultOutput) LastUsedAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeyResult) string { return v.LastUsedAddress }).(pulumi.StringOutput)
 }

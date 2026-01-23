@@ -13,17 +13,29 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetAccessListApiKeysResultResult
     {
+        /// <summary>
+        /// Total number of requests that have originated from this IP address or CIDR block.
+        /// </summary>
         public readonly int AccessCount;
         /// <summary>
-        /// Range of IP addresses in CIDR notation to be added to the access list.
+        /// Range of IP addresses in CIDR notation included in the API access list.
         /// </summary>
         public readonly string CidrBlock;
+        /// <summary>
+        /// Date and time when the access list entry was created.
+        /// </summary>
         public readonly string Created;
         /// <summary>
-        /// Single IP address to be added to the access list.
+        /// IP address included in the API access list.
         /// </summary>
         public readonly string IpAddress;
+        /// <summary>
+        /// Date and time when the API key was last used from this IP address or CIDR block.
+        /// </summary>
         public readonly string LastUsed;
+        /// <summary>
+        /// IP address from which the last API request was made.
+        /// </summary>
         public readonly string LastUsedAddress;
 
         [OutputConstructor]

@@ -223,7 +223,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetMaintenanceWindowResult
     {
         /// <summary>
-        /// Flag that indicates whether you want to defer all maintenance windows one week they would be triggered.
+        /// When `True`, enables automatic deferral of all scheduled maintenance for the given project by one week.
         /// </summary>
         public readonly bool AutoDeferOnceEnabled;
         /// <summary>

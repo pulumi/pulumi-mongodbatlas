@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
     ///         OrgId = orgId,
     ///     });
     /// 
-    ///     var firstAssignment = new Mongodbatlas.ApiKeyProjectAssignment("first_assignment", new()
+    ///     var firstAssignmentApiKeyProjectAssignment = new Mongodbatlas.ApiKeyProjectAssignment("first_assignment", new()
     ///     {
     ///         ProjectId = firstProject.Id,
     ///         ApiKeyId = @this.ApiKeyId,
@@ -74,6 +74,27 @@ namespace Pulumi.Mongodbatlas
     ///         ApiKeyId = @this.ApiKeyId,
     ///     });
     /// 
+    ///     // Data source to read a single API key project assignment
+    ///     var firstAssignment = Mongodbatlas.GetApiKeyProjectAssignment.Invoke(new()
+    ///     {
+    ///         ProjectId = firstAssignmentApiKeyProjectAssignment.ProjectId,
+    ///         ApiKeyId = firstAssignmentApiKeyProjectAssignment.ApiKeyId,
+    ///     });
+    /// 
+    ///     // Data source to read all API key project assignments for a project
+    ///     var allAssignments = Mongodbatlas.GetApiKeyProjectAssignments.Invoke(new()
+    ///     {
+    ///         ProjectId = firstProject.Id,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["firstAssignmentProjectId"] = firstAssignment.Apply(getApiKeyProjectAssignmentResult =&gt; getApiKeyProjectAssignmentResult.ProjectId),
+    ///         ["allAssignmentsProjectIds"] = .Select(assignment =&gt; 
+    ///         {
+    ///             return assignment.ProjectId;
+    ///         }).ToList(),
+    ///     };
     /// });
     /// ```
     /// 

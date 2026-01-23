@@ -10,8 +10,10 @@ import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
+import com.pulumi.mongodbatlas.inputs.StreamConnectionSchemaRegistryAuthenticationArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -138,6 +140,27 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         return this.projectId;
     }
 
+    @Import(name="schemaRegistryAuthentication")
+    private @Nullable Output<StreamConnectionSchemaRegistryAuthenticationArgs> schemaRegistryAuthentication;
+
+    public Optional<Output<StreamConnectionSchemaRegistryAuthenticationArgs>> schemaRegistryAuthentication() {
+        return Optional.ofNullable(this.schemaRegistryAuthentication);
+    }
+
+    @Import(name="schemaRegistryProvider")
+    private @Nullable Output<String> schemaRegistryProvider;
+
+    public Optional<Output<String>> schemaRegistryProvider() {
+        return Optional.ofNullable(this.schemaRegistryProvider);
+    }
+
+    @Import(name="schemaRegistryUrls")
+    private @Nullable Output<List<String>> schemaRegistryUrls;
+
+    public Optional<Output<List<String>>> schemaRegistryUrls() {
+        return Optional.ofNullable(this.schemaRegistryUrls);
+    }
+
     @Import(name="security")
     private @Nullable Output<StreamConnectionSecurityArgs> security;
 
@@ -146,7 +169,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
@@ -155,7 +178,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
@@ -201,6 +224,9 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         this.instanceName = $.instanceName;
         this.networking = $.networking;
         this.projectId = $.projectId;
+        this.schemaRegistryAuthentication = $.schemaRegistryAuthentication;
+        this.schemaRegistryProvider = $.schemaRegistryProvider;
+        this.schemaRegistryUrls = $.schemaRegistryUrls;
         this.security = $.security;
         this.type = $.type;
         this.url = $.url;
@@ -377,6 +403,37 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
             return projectId(Output.of(projectId));
         }
 
+        public Builder schemaRegistryAuthentication(@Nullable Output<StreamConnectionSchemaRegistryAuthenticationArgs> schemaRegistryAuthentication) {
+            $.schemaRegistryAuthentication = schemaRegistryAuthentication;
+            return this;
+        }
+
+        public Builder schemaRegistryAuthentication(StreamConnectionSchemaRegistryAuthenticationArgs schemaRegistryAuthentication) {
+            return schemaRegistryAuthentication(Output.of(schemaRegistryAuthentication));
+        }
+
+        public Builder schemaRegistryProvider(@Nullable Output<String> schemaRegistryProvider) {
+            $.schemaRegistryProvider = schemaRegistryProvider;
+            return this;
+        }
+
+        public Builder schemaRegistryProvider(String schemaRegistryProvider) {
+            return schemaRegistryProvider(Output.of(schemaRegistryProvider));
+        }
+
+        public Builder schemaRegistryUrls(@Nullable Output<List<String>> schemaRegistryUrls) {
+            $.schemaRegistryUrls = schemaRegistryUrls;
+            return this;
+        }
+
+        public Builder schemaRegistryUrls(List<String> schemaRegistryUrls) {
+            return schemaRegistryUrls(Output.of(schemaRegistryUrls));
+        }
+
+        public Builder schemaRegistryUrls(String... schemaRegistryUrls) {
+            return schemaRegistryUrls(List.of(schemaRegistryUrls));
+        }
+
         public Builder security(@Nullable Output<StreamConnectionSecurityArgs> security) {
             $.security = security;
             return this;
@@ -387,7 +444,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
          * 
          * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
          * 
@@ -400,7 +457,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
          * 
          * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
          * 

@@ -171,6 +171,46 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Schema Registry Connection with USER_INFO Authentication
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_schema_registry = new mongodbatlas.StreamConnection("example-schema-registry", {
+ *     projectId: projectId,
+ *     workspaceName: example.instanceName,
+ *     connectionName: "SchemaRegistryConnection",
+ *     type: "SchemaRegistry",
+ *     schemaRegistryProvider: "CONFLUENT",
+ *     schemaRegistryUrls: ["https://schema-registry.example.com:8081"],
+ *     schemaRegistryAuthentication: {
+ *         type: "USER_INFO",
+ *         username: "registry-user",
+ *         password: schemaRegistryPassword,
+ *     },
+ * });
+ * ```
+ *
+ * ### Example Schema Registry Connection with SASL_INHERIT Authentication
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example_schema_registry_sasl = new mongodbatlas.StreamConnection("example-schema-registry-sasl", {
+ *     projectId: projectId,
+ *     workspaceName: example.instanceName,
+ *     connectionName: "SchemaRegistryConnectionSASL",
+ *     type: "SchemaRegistry",
+ *     schemaRegistryProvider: "CONFLUENT",
+ *     schemaRegistryUrls: ["https://schema-registry.example.com:8081"],
+ *     schemaRegistryAuthentication: {
+ *         type: "SASL_INHERIT",
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * You can import a stream connection resource using the workspace name, project ID, and connection name. The format must be `WORKSPACE_NAME-PROJECT_ID-CONNECTION_NAME`. For example:
@@ -232,9 +272,12 @@ export class StreamConnection extends pulumi.CustomResource {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     declare public readonly projectId: pulumi.Output<string>;
+    declare public readonly schemaRegistryAuthentication: pulumi.Output<outputs.StreamConnectionSchemaRegistryAuthentication | undefined>;
+    declare public readonly schemaRegistryProvider: pulumi.Output<string | undefined>;
+    declare public readonly schemaRegistryUrls: pulumi.Output<string[] | undefined>;
     declare public readonly security: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      *
      * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
@@ -270,6 +313,9 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["instanceName"] = state?.instanceName;
             resourceInputs["networking"] = state?.networking;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["schemaRegistryAuthentication"] = state?.schemaRegistryAuthentication;
+            resourceInputs["schemaRegistryProvider"] = state?.schemaRegistryProvider;
+            resourceInputs["schemaRegistryUrls"] = state?.schemaRegistryUrls;
             resourceInputs["security"] = state?.security;
             resourceInputs["type"] = state?.type;
             resourceInputs["url"] = state?.url;
@@ -297,6 +343,9 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["instanceName"] = args?.instanceName;
             resourceInputs["networking"] = args?.networking;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["schemaRegistryAuthentication"] = args?.schemaRegistryAuthentication;
+            resourceInputs["schemaRegistryProvider"] = args?.schemaRegistryProvider;
+            resourceInputs["schemaRegistryUrls"] = args?.schemaRegistryUrls;
             resourceInputs["security"] = args?.security;
             resourceInputs["type"] = args?.type;
             resourceInputs["url"] = args?.url;
@@ -334,9 +383,12 @@ export interface StreamConnectionState {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId?: pulumi.Input<string>;
+    schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication>;
+    schemaRegistryProvider?: pulumi.Input<string>;
+    schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[]>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      *
      * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
@@ -375,9 +427,12 @@ export interface StreamConnectionArgs {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
+    schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication>;
+    schemaRegistryProvider?: pulumi.Input<string>;
+    schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[]>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka` or `Sample`.
+     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      *
      * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */

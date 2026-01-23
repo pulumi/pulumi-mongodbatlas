@@ -13,9 +13,6 @@ import (
 
 // ## Example Usage
 //
-// ### Using CIDR Block
-//
-// ### Using IP Address
 // ```go
 // package main
 //
@@ -30,16 +27,15 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			testAccessListApiKey, err := mongodbatlas.NewAccessListApiKey(ctx, "test", &mongodbatlas.AccessListApiKeyArgs{
 //				OrgId:     pulumi.String("<ORG_ID>"),
-//				IpAddress: pulumi.String("2.3.4.5"),
-//				ApiKey:    "a29120e123cd",
+//				CidrBlock: pulumi.String("1.2.3.4/32"),
+//				ApiKeyId:  pulumi.String("a29120e123cd"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAccessListApiKeyOutput(ctx, mongodbatlas.GetAccessListApiKeyOutputArgs{
-//				OrgId:     testAccessListApiKey.OrgId,
-//				IpAddress: testAccessListApiKey.IpAddress,
-//				ApiKeyId:  testAccessListApiKey.ApiKeyId,
+//			_ = mongodbatlas.LookupAccessListApiKeysOutput(ctx, mongodbatlas.GetAccessListApiKeysOutputArgs{
+//				OrgId:    testAccessListApiKey.OrgId,
+//				ApiKeyId: testAccessListApiKey.ApiKeyId,
 //			}, nil)
 //			return nil
 //		})
@@ -58,10 +54,12 @@ func LookupAccessListApiKeys(ctx *pulumi.Context, args *LookupAccessListApiKeysA
 
 // A collection of arguments for invoking getAccessListApiKeys.
 type LookupAccessListApiKeysArgs struct {
+	// Unique identifier for the Organization API Key for which you want to retrieve access list entries.
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
-	ItemsPerPage *int   `pulumi:"itemsPerPage"`
-	OrgId        string `pulumi:"orgId"`
+	ItemsPerPage *int `pulumi:"itemsPerPage"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId string `pulumi:"orgId"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
 }
@@ -70,11 +68,12 @@ type LookupAccessListApiKeysArgs struct {
 type LookupAccessListApiKeysResult struct {
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id           string                       `pulumi:"id"`
-	ItemsPerPage *int                         `pulumi:"itemsPerPage"`
-	OrgId        string                       `pulumi:"orgId"`
-	PageNum      *int                         `pulumi:"pageNum"`
-	Results      []GetAccessListApiKeysResult `pulumi:"results"`
+	Id           string `pulumi:"id"`
+	ItemsPerPage *int   `pulumi:"itemsPerPage"`
+	OrgId        string `pulumi:"orgId"`
+	PageNum      *int   `pulumi:"pageNum"`
+	// A list of access list entries for the specified API key. Each entry contains the following attributes:
+	Results []GetAccessListApiKeysResult `pulumi:"results"`
 }
 
 func LookupAccessListApiKeysOutput(ctx *pulumi.Context, args LookupAccessListApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupAccessListApiKeysResultOutput {
@@ -88,10 +87,12 @@ func LookupAccessListApiKeysOutput(ctx *pulumi.Context, args LookupAccessListApi
 
 // A collection of arguments for invoking getAccessListApiKeys.
 type LookupAccessListApiKeysOutputArgs struct {
+	// Unique identifier for the Organization API Key for which you want to retrieve access list entries.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
-	OrgId        pulumi.StringInput `pulumi:"orgId"`
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
 }
@@ -136,6 +137,7 @@ func (o LookupAccessListApiKeysResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeysResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
+// A list of access list entries for the specified API key. Each entry contains the following attributes:
 func (o LookupAccessListApiKeysResultOutput) Results() GetAccessListApiKeysResultArrayOutput {
 	return o.ApplyT(func(v LookupAccessListApiKeysResult) []GetAccessListApiKeysResult { return v.Results }).(GetAccessListApiKeysResultArrayOutput)
 }

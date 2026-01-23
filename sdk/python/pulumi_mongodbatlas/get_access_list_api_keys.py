@@ -78,6 +78,9 @@ class GetAccessListApiKeysResult:
     @_builtins.property
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetAccessListApiKeysResultResult']:
+        """
+        A list of access list entries for the specified API key. Each entry contains the following attributes:
+        """
         return pulumi.get(self, "results")
 
 
@@ -103,24 +106,22 @@ def get_access_list_api_keys(api_key_id: Optional[_builtins.str] = None,
     """
     ## Example Usage
 
-    ### Using CIDR Block
-
-    ### Using IP Address
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test_access_list_api_key = mongodbatlas.AccessListApiKey("test",
         org_id="<ORG_ID>",
-        ip_address="2.3.4.5",
-        api_key="a29120e123cd")
-    test = mongodbatlas.get_access_list_api_key_output(org_id=test_access_list_api_key.org_id,
-        ip_address=test_access_list_api_key.ip_address,
+        cidr_block="1.2.3.4/32",
+        api_key_id="a29120e123cd")
+    test = mongodbatlas.get_access_list_api_keys_output(org_id=test_access_list_api_key.org_id,
         api_key_id=test_access_list_api_key.api_key_id)
     ```
 
 
+    :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve access list entries.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+    :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
     """
     __args__ = dict()
@@ -146,24 +147,22 @@ def get_access_list_api_keys_output(api_key_id: Optional[pulumi.Input[_builtins.
     """
     ## Example Usage
 
-    ### Using CIDR Block
-
-    ### Using IP Address
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
     test_access_list_api_key = mongodbatlas.AccessListApiKey("test",
         org_id="<ORG_ID>",
-        ip_address="2.3.4.5",
-        api_key="a29120e123cd")
-    test = mongodbatlas.get_access_list_api_key_output(org_id=test_access_list_api_key.org_id,
-        ip_address=test_access_list_api_key.ip_address,
+        cidr_block="1.2.3.4/32",
+        api_key_id="a29120e123cd")
+    test = mongodbatlas.get_access_list_api_keys_output(org_id=test_access_list_api_key.org_id,
         api_key_id=test_access_list_api_key.api_key_id)
     ```
 
 
+    :param _builtins.str api_key_id: Unique identifier for the Organization API Key for which you want to retrieve access list entries.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
+    :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
     """
     __args__ = dict()

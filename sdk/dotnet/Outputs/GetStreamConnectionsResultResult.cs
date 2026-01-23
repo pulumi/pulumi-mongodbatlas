@@ -60,11 +60,25 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
+        /// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+        /// </summary>
+        public readonly Outputs.GetStreamConnectionsResultSchemaRegistryAuthenticationResult SchemaRegistryAuthentication;
+        /// <summary>
+        /// The Schema Registry provider. Must be set to `CONFLUENT`.
+        /// </summary>
+        public readonly string SchemaRegistryProvider;
+        /// <summary>
+        /// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+        /// </summary>
+        public readonly ImmutableArray<string> SchemaRegistryUrls;
+        /// <summary>
         /// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultSecurityResult Security;
         /// <summary>
-        /// Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
+        /// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+        /// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+        /// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -106,6 +120,12 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string projectId,
 
+            Outputs.GetStreamConnectionsResultSchemaRegistryAuthenticationResult schemaRegistryAuthentication,
+
+            string schemaRegistryProvider,
+
+            ImmutableArray<string> schemaRegistryUrls,
+
             Outputs.GetStreamConnectionsResultSecurityResult security,
 
             string type,
@@ -127,6 +147,9 @@ namespace Pulumi.Mongodbatlas.Outputs
             InstanceName = instanceName;
             Networking = networking;
             ProjectId = projectId;
+            SchemaRegistryAuthentication = schemaRegistryAuthentication;
+            SchemaRegistryProvider = schemaRegistryProvider;
+            SchemaRegistryUrls = schemaRegistryUrls;
             Security = security;
             Type = type;
             Url = url;

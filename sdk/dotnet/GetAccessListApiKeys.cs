@@ -14,10 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using CIDR Block
-        /// 
-        /// 
-        /// ### Using IP Address
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -29,14 +25,13 @@ namespace Pulumi.Mongodbatlas
         ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
-        ///         IpAddress = "2.3.4.5",
-        ///         ApiKey = "a29120e123cd",
+        ///         CidrBlock = "1.2.3.4/32",
+        ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.GetAccessListApiKeys.Invoke(new()
         ///     {
         ///         OrgId = testAccessListApiKey.OrgId,
-        ///         IpAddress = testAccessListApiKey.IpAddress,
         ///         ApiKeyId = testAccessListApiKey.ApiKeyId,
         ///     });
         /// 
@@ -49,10 +44,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using CIDR Block
-        /// 
-        /// 
-        /// ### Using IP Address
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -64,14 +55,13 @@ namespace Pulumi.Mongodbatlas
         ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
-        ///         IpAddress = "2.3.4.5",
-        ///         ApiKey = "a29120e123cd",
+        ///         CidrBlock = "1.2.3.4/32",
+        ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.GetAccessListApiKeys.Invoke(new()
         ///     {
         ///         OrgId = testAccessListApiKey.OrgId,
-        ///         IpAddress = testAccessListApiKey.IpAddress,
         ///         ApiKeyId = testAccessListApiKey.ApiKeyId,
         ///     });
         /// 
@@ -84,10 +74,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// ## Example Usage
         /// 
-        /// ### Using CIDR Block
-        /// 
-        /// 
-        /// ### Using IP Address
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -99,14 +85,13 @@ namespace Pulumi.Mongodbatlas
         ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
-        ///         IpAddress = "2.3.4.5",
-        ///         ApiKey = "a29120e123cd",
+        ///         CidrBlock = "1.2.3.4/32",
+        ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.GetAccessListApiKeys.Invoke(new()
         ///     {
         ///         OrgId = testAccessListApiKey.OrgId,
-        ///         IpAddress = testAccessListApiKey.IpAddress,
         ///         ApiKeyId = testAccessListApiKey.ApiKeyId,
         ///     });
         /// 
@@ -120,6 +105,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetAccessListApiKeysArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Unique identifier for the Organization API Key for which you want to retrieve access list entries.
+        /// </summary>
         [Input("apiKeyId", required: true)]
         public string ApiKeyId { get; set; } = null!;
 
@@ -129,6 +117,9 @@ namespace Pulumi.Mongodbatlas
         [Input("itemsPerPage")]
         public int? ItemsPerPage { get; set; }
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        /// </summary>
         [Input("orgId", required: true)]
         public string OrgId { get; set; } = null!;
 
@@ -146,6 +137,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetAccessListApiKeysInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Unique identifier for the Organization API Key for which you want to retrieve access list entries.
+        /// </summary>
         [Input("apiKeyId", required: true)]
         public Input<string> ApiKeyId { get; set; } = null!;
 
@@ -155,6 +149,9 @@ namespace Pulumi.Mongodbatlas
         [Input("itemsPerPage")]
         public Input<int>? ItemsPerPage { get; set; }
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
+        /// </summary>
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
 
@@ -182,6 +179,9 @@ namespace Pulumi.Mongodbatlas
         public readonly int? ItemsPerPage;
         public readonly string OrgId;
         public readonly int? PageNum;
+        /// <summary>
+        /// A list of access list entries for the specified API key. Each entry contains the following attributes:
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAccessListApiKeysResultResult> Results;
 
         [OutputConstructor]
