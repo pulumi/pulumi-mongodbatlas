@@ -785,6 +785,26 @@
                 "current": "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList",
                 "majorVersion": 4
             },
+            "mongodbatlas_project_service_account": {
+                "current": "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    },
+                    "secrets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_project_service_account_access_list_entry": {
+                "current": "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry",
+                "majorVersion": 4
+            },
+            "mongodbatlas_project_service_account_secret": {
+                "current": "mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret",
+                "majorVersion": 4
+            },
             "mongodbatlas_push_based_log_export": {
                 "current": "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport",
                 "majorVersion": 4
@@ -834,9 +854,43 @@
                     }
                 }
             },
+            "mongodbatlas_service_account": {
+                "current": "mongodbatlas:index/serviceAccount:ServiceAccount",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    },
+                    "secrets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_service_account_access_list_entry": {
+                "current": "mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry",
+                "majorVersion": 4
+            },
+            "mongodbatlas_service_account_project_assignment": {
+                "current": "mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_service_account_secret": {
+                "current": "mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret",
+                "majorVersion": 4
+            },
             "mongodbatlas_stream_connection": {
                 "current": "mongodbatlas:index/streamConnection:StreamConnection",
-                "majorVersion": 4
+                "majorVersion": 4,
+                "fields": {
+                    "schema_registry_urls": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "mongodbatlas_stream_instance": {
                 "current": "mongodbatlas:index/streamInstance:StreamInstance",
@@ -2588,6 +2642,54 @@
                     }
                 }
             },
+            "mongodbatlas_project_service_account": {
+                "current": "mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    },
+                    "secrets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_project_service_account_access_list_entries": {
+                "current": "mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_project_service_account_access_list_entry": {
+                "current": "mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry",
+                "majorVersion": 4
+            },
+            "mongodbatlas_project_service_account_secret": {
+                "current": "mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret",
+                "majorVersion": 4
+            },
+            "mongodbatlas_project_service_accounts": {
+                "current": "mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false
+                                },
+                                "secrets": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_projects": {
                 "current": "mongodbatlas:index/getProjects:getProjects",
                 "majorVersion": 4,
@@ -2765,6 +2867,72 @@
                     }
                 }
             },
+            "mongodbatlas_service_account": {
+                "current": "mongodbatlas:index/getServiceAccount:getServiceAccount",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    },
+                    "secrets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_service_account_access_list_entries": {
+                "current": "mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_service_account_access_list_entry": {
+                "current": "mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry",
+                "majorVersion": 4
+            },
+            "mongodbatlas_service_account_project_assignment": {
+                "current": "mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment",
+                "majorVersion": 4,
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_service_account_project_assignments": {
+                "current": "mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_service_account_secret": {
+                "current": "mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret",
+                "majorVersion": 4
+            },
+            "mongodbatlas_service_accounts": {
+                "current": "mongodbatlas:index/getServiceAccounts:getServiceAccounts",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false
+                                },
+                                "secrets": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_shared_tier_restore_job": {
                 "current": "mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob",
                 "majorVersion": 4
@@ -2797,14 +2965,26 @@
             },
             "mongodbatlas_stream_connection": {
                 "current": "mongodbatlas:index/getStreamConnection:getStreamConnection",
-                "majorVersion": 4
+                "majorVersion": 4,
+                "fields": {
+                    "schema_registry_urls": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "mongodbatlas_stream_connections": {
                 "current": "mongodbatlas:index/getStreamConnections:getStreamConnections",
                 "majorVersion": 4,
                 "fields": {
                     "results": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "schema_registry_urls": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -3033,11 +3213,18 @@
             "mongodbatlas:index/projectApiKey:ProjectApiKey": 0,
             "mongodbatlas:index/projectInvitation:ProjectInvitation": 0,
             "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": 1,
+            "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount": 1,
+            "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry": 1,
+            "mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret": 1,
             "mongodbatlas:index/pushBasedLogExport:PushBasedLogExport": 1,
             "mongodbatlas:index/resourcePolicy:ResourcePolicy": 1,
             "mongodbatlas:index/searchDeployment:SearchDeployment": 1,
             "mongodbatlas:index/searchIndex:SearchIndex": 0,
             "mongodbatlas:index/serverlessInstance:ServerlessInstance": 0,
+            "mongodbatlas:index/serviceAccount:ServiceAccount": 1,
+            "mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry": 1,
+            "mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment": 1,
+            "mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret": 1,
             "mongodbatlas:index/streamConnection:StreamConnection": 1,
             "mongodbatlas:index/streamInstance:StreamInstance": 1,
             "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": 1,
@@ -3132,6 +3319,11 @@
             "mongodbatlas:index/getProjectInvitation:getProjectInvitation": 0,
             "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList": 1,
             "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses": 1,
+            "mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount": 1,
+            "mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries": 1,
+            "mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry": 1,
+            "mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret": 1,
+            "mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts": 1,
             "mongodbatlas:index/getProjects:getProjects": 1,
             "mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport": 1,
             "mongodbatlas:index/getResourcePolicies:getResourcePolicies": 1,
@@ -3142,6 +3334,13 @@
             "mongodbatlas:index/getSearchIndexes:getSearchIndexes": 0,
             "mongodbatlas:index/getServerlessInstance:getServerlessInstance": 0,
             "mongodbatlas:index/getServerlessInstances:getServerlessInstances": 0,
+            "mongodbatlas:index/getServiceAccount:getServiceAccount": 1,
+            "mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries": 1,
+            "mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry": 1,
+            "mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment": 1,
+            "mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments": 1,
+            "mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret": 1,
+            "mongodbatlas:index/getServiceAccounts:getServiceAccounts": 1,
             "mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob": 0,
             "mongodbatlas:index/getSharedTierRestoreJobs:getSharedTierRestoreJobs": 0,
             "mongodbatlas:index/getSharedTierSnapshot:getSharedTierSnapshot": 0,
