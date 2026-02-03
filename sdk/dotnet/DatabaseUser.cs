@@ -409,7 +409,7 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
-        [Input("roles")]
+        [Input("roles", required: true)]
         private InputList<Inputs.DatabaseUserRoleArgs>? _roles;
 
         /// <summary>

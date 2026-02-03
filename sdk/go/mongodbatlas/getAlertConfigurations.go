@@ -14,6 +14,11 @@ import (
 // `getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+//
+// ## Example Usage
+//
+// Refer to the following for a full example on using this dataSource as a tool to import all resources:
+// * atlas-alert-configurations
 func LookupAlertConfigurations(ctx *pulumi.Context, args *LookupAlertConfigurationsArgs, opts ...pulumi.InvokeOption) (*LookupAlertConfigurationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAlertConfigurationsResult

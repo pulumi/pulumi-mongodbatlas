@@ -277,6 +277,9 @@ func NewAlertConfiguration(ctx *pulumi.Context,
 	if args.EventType == nil {
 		return nil, errors.New("invalid value for required argument 'EventType'")
 	}
+	if args.Notifications == nil {
+		return nil, errors.New("invalid value for required argument 'Notifications'")
+	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}

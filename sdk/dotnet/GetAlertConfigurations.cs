@@ -15,6 +15,60 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var import = Mongodbatlas.GetAlertConfigurations.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         OutputTypes = new[]
+        ///         {
+        ///             "resource_hcl",
+        ///             "resource_import",
+        ///         },
+        ///     });
+        /// 
+        ///     var alerts = import.Apply(getAlertConfigurationsResult =&gt; getAlertConfigurationsResult.Results);
+        /// 
+        ///     var outputs = Std.Index.Flatten.Invoke(new()
+        ///     {
+        ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
+        ///         {
+        ///             return alert.Output == null ? new[] {} : alert.Output;
+        ///         }).ToList()),
+        ///     }).Result;
+        /// 
+        ///     var outputValues = Std.Index.Compact.Invoke(new()
+        ///     {
+        ///         Input = .Select(o =&gt; 
+        ///         {
+        ///             return o.Value;
+        ///         }).ToList(),
+        ///     }).Result;
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["alertOutput"] = Std.Index.Join.Invoke(new()
+        ///         {
+        ///             Separator = @"
+        /// ",
+        ///             Input = outputValues,
+        ///         }).Result,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// Refer to the following for a full example on using this DataSource as a tool to import all resources:
+        /// * atlas-alert-configurations
         /// </summary>
         public static Task<GetAlertConfigurationsResult> InvokeAsync(GetAlertConfigurationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsArgs(), options.WithDefaults());
@@ -23,6 +77,60 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var import = Mongodbatlas.GetAlertConfigurations.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         OutputTypes = new[]
+        ///         {
+        ///             "resource_hcl",
+        ///             "resource_import",
+        ///         },
+        ///     });
+        /// 
+        ///     var alerts = import.Apply(getAlertConfigurationsResult =&gt; getAlertConfigurationsResult.Results);
+        /// 
+        ///     var outputs = Std.Index.Flatten.Invoke(new()
+        ///     {
+        ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
+        ///         {
+        ///             return alert.Output == null ? new[] {} : alert.Output;
+        ///         }).ToList()),
+        ///     }).Result;
+        /// 
+        ///     var outputValues = Std.Index.Compact.Invoke(new()
+        ///     {
+        ///         Input = .Select(o =&gt; 
+        ///         {
+        ///             return o.Value;
+        ///         }).ToList(),
+        ///     }).Result;
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["alertOutput"] = Std.Index.Join.Invoke(new()
+        ///         {
+        ///             Separator = @"
+        /// ",
+        ///             Input = outputValues,
+        ///         }).Result,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// Refer to the following for a full example on using this DataSource as a tool to import all resources:
+        /// * atlas-alert-configurations
         /// </summary>
         public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());
@@ -31,6 +139,60 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var import = Mongodbatlas.GetAlertConfigurations.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         OutputTypes = new[]
+        ///         {
+        ///             "resource_hcl",
+        ///             "resource_import",
+        ///         },
+        ///     });
+        /// 
+        ///     var alerts = import.Apply(getAlertConfigurationsResult =&gt; getAlertConfigurationsResult.Results);
+        /// 
+        ///     var outputs = Std.Index.Flatten.Invoke(new()
+        ///     {
+        ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
+        ///         {
+        ///             return alert.Output == null ? new[] {} : alert.Output;
+        ///         }).ToList()),
+        ///     }).Result;
+        /// 
+        ///     var outputValues = Std.Index.Compact.Invoke(new()
+        ///     {
+        ///         Input = .Select(o =&gt; 
+        ///         {
+        ///             return o.Value;
+        ///         }).ToList(),
+        ///     }).Result;
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["alertOutput"] = Std.Index.Join.Invoke(new()
+        ///         {
+        ///             Separator = @"
+        /// ",
+        ///             Input = outputValues,
+        ///         }).Result,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// Refer to the following for a full example on using this DataSource as a tool to import all resources:
+        /// * atlas-alert-configurations
         /// </summary>
         public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());

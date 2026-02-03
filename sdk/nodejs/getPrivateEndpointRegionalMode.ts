@@ -8,6 +8,18 @@ import * as utilities from "./utilities";
  * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as _private from "@pulumi/private";
+ *
+ * const testEndpointRegionalMode = new _private.index.EndpointRegionalMode("test", {projectId: "<PROJECT-ID>"});
+ * const test = _private.index.EndpointRegionalMode({
+ *     projectId: testEndpointRegionalMode.projectId,
+ * });
+ * ```
  */
 export function getPrivateEndpointRegionalMode(args: GetPrivateEndpointRegionalModeArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateEndpointRegionalModeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -46,6 +58,18 @@ export interface GetPrivateEndpointRegionalModeResult {
  * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as _private from "@pulumi/private";
+ *
+ * const testEndpointRegionalMode = new _private.index.EndpointRegionalMode("test", {projectId: "<PROJECT-ID>"});
+ * const test = _private.index.EndpointRegionalMode({
+ *     projectId: testEndpointRegionalMode.projectId,
+ * });
+ * ```
  */
 export function getPrivateEndpointRegionalModeOutput(args: GetPrivateEndpointRegionalModeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateEndpointRegionalModeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -148,15 +148,15 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      * 
      */
-    @Import(name="roles")
-    private @Nullable Output<List<DatabaseUserRoleArgs>> roles;
+    @Import(name="roles", required=true)
+    private Output<List<DatabaseUserRoleArgs>> roles;
 
     /**
      * @return List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      * 
      */
-    public Optional<Output<List<DatabaseUserRoleArgs>>> roles() {
-        return Optional.ofNullable(this.roles);
+    public Output<List<DatabaseUserRoleArgs>> roles() {
+        return this.roles;
     }
 
     @Import(name="scopes")
@@ -411,7 +411,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder roles(@Nullable Output<List<DatabaseUserRoleArgs>> roles) {
+        public Builder roles(Output<List<DatabaseUserRoleArgs>> roles) {
             $.roles = roles;
             return this;
         }
@@ -503,6 +503,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("DatabaseUserArgs", "projectId");
+            }
+            if ($.roles == null) {
+                throw new MissingRequiredPropertyException("DatabaseUserArgs", "roles");
             }
             if ($.username == null) {
                 throw new MissingRequiredPropertyException("DatabaseUserArgs", "username");

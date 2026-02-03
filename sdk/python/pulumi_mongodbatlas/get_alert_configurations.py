@@ -111,6 +111,28 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+    import pulumi_std as std
+
+    import_ = mongodbatlas.get_alert_configurations(project_id=project_id,
+        output_types=[
+            "resource_hcl",
+            "resource_import",
+        ])
+    alerts = import_.results
+    outputs = std.index.flatten(input=[[] if alert.output == None else alert.output for i, alert in alerts])["result"]
+    output_values = std.index.compact(input=[o["value"] for i, o in outputs])["result"]
+    pulumi.export("alertOutput", std.index.join(separator="\\n",
+        input=output_values)["result"])
+    ```
+
+    Refer to the following for a full example on using this data_source as a tool to import all resources:
+    * atlas-alert-configurations
+
 
     :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']] list_options: Arguments that dictate how many and which results are returned by the data source
            * `list_options.page_num` - Which page of results to retrieve (default to first page)
@@ -141,6 +163,28 @@ def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional
     `get_alert_configurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+    import pulumi_std as std
+
+    import_ = mongodbatlas.get_alert_configurations(project_id=project_id,
+        output_types=[
+            "resource_hcl",
+            "resource_import",
+        ])
+    alerts = import_.results
+    outputs = std.index.flatten(input=[[] if alert.output == None else alert.output for i, alert in alerts])["result"]
+    output_values = std.index.compact(input=[o["value"] for i, o in outputs])["result"]
+    pulumi.export("alertOutput", std.index.join(separator="\\n",
+        input=output_values)["result"])
+    ```
+
+    Refer to the following for a full example on using this data_source as a tool to import all resources:
+    * atlas-alert-configurations
 
 
     :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']] list_options: Arguments that dictate how many and which results are returned by the data source

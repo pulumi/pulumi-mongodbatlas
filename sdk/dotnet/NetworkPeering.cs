@@ -75,6 +75,88 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example with GCP
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Google = Pulumi.Google;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Container example provided but not always required, 
+    ///     // see network_container documentation for details. 
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         AtlasCidrBlock = "10.8.0.0/21",
+    ///         ProviderName = "GCP",
+    ///     });
+    /// 
+    ///     // Create the peering connection request
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ContainerId = test.ContainerId,
+    ///         ProviderName = "GCP",
+    ///         GcpProjectId = GCP_PROJECT_ID,
+    ///         NetworkName = "default",
+    ///     });
+    /// 
+    ///     // the following assumes a GCP provider is configured
+    ///     var @default = Google.Index.ComputeNetwork.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     // Create the GCP peer
+    ///     var peering = new Google.Index.ComputeNetworkPeering("peering", new()
+    ///     {
+    ///         Name = "peering-gcp-terraform-test",
+    ///         Network = @default.SelfLink,
+    ///         PeerNetwork = $"https://www.googleapis.com/compute/v1/projects/{testNetworkPeering.AtlasGcpProjectId}/global/networks/{testNetworkPeering.AtlasVpcName}",
+    ///     });
+    /// 
+    ///     // Create the cluster once the peering connection is completed
+    ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Name = "terraform-manually-test",
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "GCP",
+    ///                         RegionName = "US_EAST_4",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             peering,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example with Azure
     /// 
     /// ```csharp

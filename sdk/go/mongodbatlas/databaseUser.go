@@ -277,6 +277,9 @@ func NewDatabaseUser(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
+	if args.Roles == nil {
+		return nil, errors.New("invalid value for required argument 'Roles'")
+	}
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}

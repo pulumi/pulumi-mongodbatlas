@@ -23,6 +23,7 @@ class DatabaseUserArgs:
     def __init__(__self__, *,
                  auth_database_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
+                 roles: pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]],
                  username: pulumi.Input[_builtins.str],
                  aws_iam_type: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
@@ -30,7 +31,6 @@ class DatabaseUserArgs:
                  ldap_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
                  oidc_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
                  scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
                  x509_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -38,6 +38,7 @@ class DatabaseUserArgs:
         :param pulumi.Input[_builtins.str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Accepted values include:
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[_builtins.str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
                * `NONE` -	The user does not use AWS IAM credentials.
@@ -52,7 +53,6 @@ class DatabaseUserArgs:
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
                * `NONE` -	The user does not use X.509 authentication.
                * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
@@ -60,6 +60,7 @@ class DatabaseUserArgs:
         """
         pulumi.set(__self__, "auth_database_name", auth_database_name)
         pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "username", username)
         if aws_iam_type is not None:
             pulumi.set(__self__, "aws_iam_type", aws_iam_type)
@@ -73,8 +74,6 @@ class DatabaseUserArgs:
             pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
-        if roles is not None:
-            pulumi.set(__self__, "roles", roles)
         if scopes is not None:
             pulumi.set(__self__, "scopes", scopes)
         if x509_type is not None:
@@ -104,6 +103,18 @@ class DatabaseUserArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]:
+        """
+        List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        """
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]):
+        pulumi.set(self, "roles", value)
 
     @_builtins.property
     @pulumi.getter
@@ -191,18 +202,6 @@ class DatabaseUserArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]:
-        """
-        List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
-        """
-        return pulumi.get(self, "roles")
-
-    @roles.setter
-    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]):
-        pulumi.set(self, "roles", value)
 
     @_builtins.property
     @pulumi.getter
@@ -811,6 +810,8 @@ class DatabaseUser(pulumi.CustomResource):
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            if roles is None and not opts.urn:
+                raise TypeError("Missing required property 'roles'")
             __props__.__dict__["roles"] = roles
             __props__.__dict__["scopes"] = scopes
             if username is None and not opts.urn:
@@ -959,7 +960,7 @@ class DatabaseUser(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> pulumi.Output[Optional[Sequence['outputs.DatabaseUserRole']]]:
+    def roles(self) -> pulumi.Output[Sequence['outputs.DatabaseUserRole']]:
         """
         List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         """
