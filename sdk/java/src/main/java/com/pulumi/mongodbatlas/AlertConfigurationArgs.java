@@ -74,11 +74,11 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.metricThresholdConfig);
     }
 
-    @Import(name="notifications")
-    private @Nullable Output<List<AlertConfigurationNotificationArgs>> notifications;
+    @Import(name="notifications", required=true)
+    private Output<List<AlertConfigurationNotificationArgs>> notifications;
 
-    public Optional<Output<List<AlertConfigurationNotificationArgs>>> notifications() {
-        return Optional.ofNullable(this.notifications);
+    public Output<List<AlertConfigurationNotificationArgs>> notifications() {
+        return this.notifications;
     }
 
     /**
@@ -221,7 +221,7 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
             return metricThresholdConfig(Output.of(metricThresholdConfig));
         }
 
-        public Builder notifications(@Nullable Output<List<AlertConfigurationNotificationArgs>> notifications) {
+        public Builder notifications(Output<List<AlertConfigurationNotificationArgs>> notifications) {
             $.notifications = notifications;
             return this;
         }
@@ -288,6 +288,9 @@ public final class AlertConfigurationArgs extends com.pulumi.resources.ResourceA
         public AlertConfigurationArgs build() {
             if ($.eventType == null) {
                 throw new MissingRequiredPropertyException("AlertConfigurationArgs", "eventType");
+            }
+            if ($.notifications == null) {
+                throw new MissingRequiredPropertyException("AlertConfigurationArgs", "notifications");
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("AlertConfigurationArgs", "projectId");

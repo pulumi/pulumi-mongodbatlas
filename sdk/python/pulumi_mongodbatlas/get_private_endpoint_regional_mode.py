@@ -75,6 +75,16 @@ def get_private_endpoint_regional_mode(enabled: Optional[_builtins.bool] = None,
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_private as private
+
+    test_endpoint_regional_mode = private.index.EndpointRegionalMode("test", project_id=<PROJECT-ID>)
+    test = private.index.endpoint_regional_mode(project_id=test_endpoint_regional_mode["projectId"])
+    ```
+
 
     :param _builtins.bool enabled: Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.
     :param _builtins.str project_id: Unique identifier for the project.
@@ -96,6 +106,16 @@ def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Opt
     `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_private as private
+
+    test_endpoint_regional_mode = private.index.EndpointRegionalMode("test", project_id=<PROJECT-ID>)
+    test = private.index.endpoint_regional_mode(project_id=test_endpoint_regional_mode["projectId"])
+    ```
 
 
     :param _builtins.bool enabled: Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.

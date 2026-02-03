@@ -22,11 +22,11 @@ __all__ = ['AlertConfigurationArgs', 'AlertConfiguration']
 class AlertConfigurationArgs:
     def __init__(__self__, *,
                  event_type: pulumi.Input[_builtins.str],
+                 notifications: pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]],
                  project_id: pulumi.Input[_builtins.str],
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  matchers: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationMatcherArgs']]]] = None,
                  metric_threshold_config: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']] = None,
-                 notifications: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]] = None,
                  severity_override: Optional[pulumi.Input[_builtins.str]] = None,
                  threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None):
         """
@@ -42,6 +42,7 @@ class AlertConfigurationArgs:
         :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         """
         pulumi.set(__self__, "event_type", event_type)
+        pulumi.set(__self__, "notifications", notifications)
         pulumi.set(__self__, "project_id", project_id)
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -49,8 +50,6 @@ class AlertConfigurationArgs:
             pulumi.set(__self__, "matchers", matchers)
         if metric_threshold_config is not None:
             pulumi.set(__self__, "metric_threshold_config", metric_threshold_config)
-        if notifications is not None:
-            pulumi.set(__self__, "notifications", notifications)
         if severity_override is not None:
             pulumi.set(__self__, "severity_override", severity_override)
         if threshold_config is not None:
@@ -72,6 +71,15 @@ class AlertConfigurationArgs:
     @event_type.setter
     def event_type(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "event_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def notifications(self) -> pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]:
+        return pulumi.get(self, "notifications")
+
+    @notifications.setter
+    def notifications(self, value: pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]):
+        pulumi.set(self, "notifications", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -114,15 +122,6 @@ class AlertConfigurationArgs:
     @metric_threshold_config.setter
     def metric_threshold_config(self, value: Optional[pulumi.Input['AlertConfigurationMetricThresholdConfigArgs']]):
         pulumi.set(self, "metric_threshold_config", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def notifications(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]]:
-        return pulumi.get(self, "notifications")
-
-    @notifications.setter
-    def notifications(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlertConfigurationNotificationArgs']]]]):
-        pulumi.set(self, "notifications", value)
 
     @_builtins.property
     @pulumi.getter(name="severityOverride")
@@ -685,6 +684,8 @@ class AlertConfiguration(pulumi.CustomResource):
             __props__.__dict__["event_type"] = event_type
             __props__.__dict__["matchers"] = matchers
             __props__.__dict__["metric_threshold_config"] = metric_threshold_config
+            if notifications is None and not opts.urn:
+                raise TypeError("Missing required property 'notifications'")
             __props__.__dict__["notifications"] = notifications
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
@@ -801,7 +802,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def notifications(self) -> pulumi.Output[Optional[Sequence['outputs.AlertConfigurationNotification']]]:
+    def notifications(self) -> pulumi.Output[Sequence['outputs.AlertConfigurationNotification']]:
         return pulumi.get(self, "notifications")
 
     @_builtins.property

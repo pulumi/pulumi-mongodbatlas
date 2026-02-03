@@ -208,7 +208,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
     declare public readonly eventType: pulumi.Output<string>;
     declare public readonly matchers: pulumi.Output<outputs.AlertConfigurationMatcher[] | undefined>;
     declare public readonly metricThresholdConfig: pulumi.Output<outputs.AlertConfigurationMetricThresholdConfig | undefined>;
-    declare public readonly notifications: pulumi.Output<outputs.AlertConfigurationNotification[] | undefined>;
+    declare public readonly notifications: pulumi.Output<outputs.AlertConfigurationNotification[]>;
     /**
      * The ID of the project where the alert configuration will create.
      */
@@ -251,6 +251,9 @@ export class AlertConfiguration extends pulumi.CustomResource {
             const args = argsOrState as AlertConfigurationArgs | undefined;
             if (args?.eventType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'eventType'");
+            }
+            if (args?.notifications === undefined && !opts.urn) {
+                throw new Error("Missing required property 'notifications'");
             }
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
@@ -334,7 +337,7 @@ export interface AlertConfigurationArgs {
     eventType: pulumi.Input<string>;
     matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
     metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
-    notifications?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
+    notifications: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
      * The ID of the project where the alert configuration will create.
      */

@@ -377,14 +377,14 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="roles", refs={List.class,DatabaseUserRole.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<DatabaseUserRole>> roles;
+    private Output<List<DatabaseUserRole>> roles;
 
     /**
      * @return List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      * 
      */
-    public Output<Optional<List<DatabaseUserRole>>> roles() {
-        return Codegen.optional(this.roles);
+    public Output<List<DatabaseUserRole>> roles() {
+        return this.roles;
     }
     @Export(name="scopes", refs={List.class,DatabaseUserScope.class}, tree="[0,1]")
     private Output</* @Nullable */ List<DatabaseUserScope>> scopes;
