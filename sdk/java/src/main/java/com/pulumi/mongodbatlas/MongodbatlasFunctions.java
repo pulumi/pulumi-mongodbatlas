@@ -3719,6 +3719,11 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * Refer to the following for a full example on using this dataSource as a tool to import all resources:
+     * * atlas-alert-configurations
+     * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args) {
         return getAlertConfigurations(args, InvokeOptions.Empty);
@@ -3727,6 +3732,11 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * Refer to the following for a full example on using this dataSource as a tool to import all resources:
+     * * atlas-alert-configurations
      * 
      */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args) {
@@ -3737,6 +3747,11 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * Refer to the following for a full example on using this dataSource as a tool to import all resources:
+     * * atlas-alert-configurations
+     * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
@@ -3746,6 +3761,11 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * Refer to the following for a full example on using this dataSource as a tool to import all resources:
+     * * atlas-alert-configurations
+     * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
@@ -3754,6 +3774,11 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * Refer to the following for a full example on using this dataSource as a tool to import all resources:
+     * * atlas-alert-configurations
      * 
      */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args, InvokeOptions options) {
@@ -23624,6 +23649,42 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.private.EndpointRegionalMode;
+     * import com.pulumi.private.EndpointRegionalModeArgs;
+     * import com.pulumi.private.PrivateFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEndpointRegionalMode = new EndpointRegionalMode("testEndpointRegionalMode", EndpointRegionalModeArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .build());
+     * 
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args) {
         return getPrivateEndpointRegionalMode(args, InvokeOptions.Empty);
@@ -23632,6 +23693,42 @@ public final class MongodbatlasFunctions {
      * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.private.EndpointRegionalMode;
+     * import com.pulumi.private.EndpointRegionalModeArgs;
+     * import com.pulumi.private.PrivateFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEndpointRegionalMode = new EndpointRegionalMode("testEndpointRegionalMode", EndpointRegionalModeArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .build());
+     * 
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalModePlain(GetPrivateEndpointRegionalModePlainArgs args) {
@@ -23642,6 +23739,42 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.private.EndpointRegionalMode;
+     * import com.pulumi.private.EndpointRegionalModeArgs;
+     * import com.pulumi.private.PrivateFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEndpointRegionalMode = new EndpointRegionalMode("testEndpointRegionalMode", EndpointRegionalModeArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .build());
+     * 
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", TypeShape.of(GetPrivateEndpointRegionalModeResult.class), args, Utilities.withVersion(options));
@@ -23651,6 +23784,42 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.private.EndpointRegionalMode;
+     * import com.pulumi.private.EndpointRegionalModeArgs;
+     * import com.pulumi.private.PrivateFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEndpointRegionalMode = new EndpointRegionalMode("testEndpointRegionalMode", EndpointRegionalModeArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .build());
+     * 
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalMode(GetPrivateEndpointRegionalModeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", TypeShape.of(GetPrivateEndpointRegionalModeResult.class), args, Utilities.withVersion(options));
@@ -23659,6 +23828,42 @@ public final class MongodbatlasFunctions {
      * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.private.EndpointRegionalMode;
+     * import com.pulumi.private.EndpointRegionalModeArgs;
+     * import com.pulumi.private.PrivateFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testEndpointRegionalMode = new EndpointRegionalMode("testEndpointRegionalMode", EndpointRegionalModeArgs.builder()
+     *             .projectId("<PROJECT-ID>")
+     *             .build());
+     * 
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetPrivateEndpointRegionalModeResult> getPrivateEndpointRegionalModePlain(GetPrivateEndpointRegionalModePlainArgs args, InvokeOptions options) {

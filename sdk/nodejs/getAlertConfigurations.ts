@@ -10,6 +10,36 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * import * as std from "@pulumi/std";
+ *
+ * const _import = mongodbatlas.getAlertConfigurations({
+ *     projectId: projectId,
+ *     outputTypes: [
+ *         "resource_hcl",
+ *         "resource_import",
+ *     ],
+ * });
+ * const alerts = _import.then(_import => _import.results);
+ * const outputs = std.index.flatten({
+ *     input: alerts.then(alerts => .map(([i, alert]) => (alert.output == null ? [] : alert.output))),
+ * }).result;
+ * const outputValues = std.index.compact({
+ *     input: .map(([i, o]) => (o.value)),
+ * }).result;
+ * export const alertOutput = std.index.join({
+ *     separator: "\n",
+ *     input: outputValues,
+ * }).result;
+ * ```
+ *
+ * Refer to the following for a full example on using this dataSource as a tool to import all resources:
+ * * atlas-alert-configurations
  */
 export function getAlertConfigurations(args: GetAlertConfigurationsArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -65,6 +95,36 @@ export interface GetAlertConfigurationsResult {
  * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ * import * as std from "@pulumi/std";
+ *
+ * const _import = mongodbatlas.getAlertConfigurations({
+ *     projectId: projectId,
+ *     outputTypes: [
+ *         "resource_hcl",
+ *         "resource_import",
+ *     ],
+ * });
+ * const alerts = _import.then(_import => _import.results);
+ * const outputs = std.index.flatten({
+ *     input: alerts.then(alerts => .map(([i, alert]) => (alert.output == null ? [] : alert.output))),
+ * }).result;
+ * const outputValues = std.index.compact({
+ *     input: .map(([i, o]) => (o.value)),
+ * }).result;
+ * export const alertOutput = std.index.join({
+ *     separator: "\n",
+ *     input: outputValues,
+ * }).result;
+ * ```
+ *
+ * Refer to the following for a full example on using this dataSource as a tool to import all resources:
+ * * atlas-alert-configurations
  */
 export function getAlertConfigurationsOutput(args: GetAlertConfigurationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlertConfigurationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

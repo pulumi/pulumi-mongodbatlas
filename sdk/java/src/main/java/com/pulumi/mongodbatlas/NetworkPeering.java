@@ -97,6 +97,92 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example with GCP
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.NetworkContainer;
+ * import com.pulumi.mongodbatlas.NetworkContainerArgs;
+ * import com.pulumi.mongodbatlas.NetworkPeering;
+ * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
+ * import com.pulumi.google.GoogleFunctions;
+ * import com.pulumi.google.ComputeNetworkPeering;
+ * import com.pulumi.google.ComputeNetworkPeeringArgs;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Container example provided but not always required, 
+ *         // see network_container documentation for details. 
+ *         var test = new NetworkContainer("test", NetworkContainerArgs.builder()
+ *             .projectId(projectId)
+ *             .atlasCidrBlock("10.8.0.0/21")
+ *             .providerName("GCP")
+ *             .build());
+ * 
+ *         // Create the peering connection request
+ *         var testNetworkPeering = new NetworkPeering("testNetworkPeering", NetworkPeeringArgs.builder()
+ *             .projectId(projectId)
+ *             .containerId(test.containerId())
+ *             .providerName("GCP")
+ *             .gcpProjectId(GCP_PROJECT_ID)
+ *             .networkName("default")
+ *             .build());
+ * 
+ *         // the following assumes a GCP provider is configured
+ *         final var default = GoogleFunctions.ComputeNetwork(Map.of("name", "default"));
+ * 
+ *         // Create the GCP peer
+ *         var peering = new ComputeNetworkPeering("peering", ComputeNetworkPeeringArgs.builder()
+ *             .name("peering-gcp-terraform-test")
+ *             .network(default_.selfLink())
+ *             .peerNetwork(String.format("https://www.googleapis.com/compute/v1/projects/%s/global/networks/%s", testNetworkPeering.atlasGcpProjectId(),testNetworkPeering.atlasVpcName()))
+ *             .build());
+ * 
+ *         // Create the cluster once the peering connection is completed
+ *         var testAdvancedCluster = new AdvancedCluster("testAdvancedCluster", AdvancedClusterArgs.builder()
+ *             .projectId(projectId)
+ *             .name("terraform-manually-test")
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("GCP")
+ *                     .regionName("US_EAST_4")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(peering)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Example with Azure
  * 
  * <pre>

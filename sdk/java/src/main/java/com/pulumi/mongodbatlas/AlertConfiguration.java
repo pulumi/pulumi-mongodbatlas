@@ -350,10 +350,10 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.metricThresholdConfig);
     }
     @Export(name="notifications", refs={List.class,AlertConfigurationNotification.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<AlertConfigurationNotification>> notifications;
+    private Output<List<AlertConfigurationNotification>> notifications;
 
-    public Output<Optional<List<AlertConfigurationNotification>>> notifications() {
-        return Codegen.optional(this.notifications);
+    public Output<List<AlertConfigurationNotification>> notifications() {
+        return this.notifications;
     }
     /**
      * The ID of the project where the alert configuration will create.

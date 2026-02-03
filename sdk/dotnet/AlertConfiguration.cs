@@ -363,7 +363,7 @@ namespace Pulumi.Mongodbatlas
         [Input("metricThresholdConfig")]
         public Input<Inputs.AlertConfigurationMetricThresholdConfigArgs>? MetricThresholdConfig { get; set; }
 
-        [Input("notifications")]
+        [Input("notifications", required: true)]
         private InputList<Inputs.AlertConfigurationNotificationArgs>? _notifications;
         public InputList<Inputs.AlertConfigurationNotificationArgs> Notifications
         {
