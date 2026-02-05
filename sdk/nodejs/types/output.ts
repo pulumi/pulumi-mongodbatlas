@@ -6088,6 +6088,37 @@ export interface GetLdapVerifyValidation {
     validationType: string;
 }
 
+export interface GetLogIntegrationsResult {
+    /**
+     * Human-readable label that identifies the S3 bucket name for storing log files.
+     */
+    bucketName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     */
+    iamRoleId: string;
+    /**
+     * Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+     */
+    integrationId: string;
+    /**
+     * AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     */
+    kmsKey: string;
+    /**
+     * Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     */
+    logTypes: string[];
+    /**
+     * S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     */
+    prefixPath: string;
+    /**
+     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     */
+    type: string;
+}
+
 export interface GetMaintenanceWindowProtectedHour {
     /**
      * Zero-based integer that represents the end hour of the day for the protected hours window.
@@ -6579,6 +6610,25 @@ export interface GetProjectApiKeysResultProjectAssignment {
      * List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
      */
     roleNames: string[];
+}
+
+export interface GetProjectIpAccessListsResult {
+    /**
+     * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
+     */
+    awsSecurityGroup: string;
+    /**
+     * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `ipAddress`.
+     */
+    cidrBlock: string;
+    /**
+     * Remark that explains the purpose or scope of this IP access list entry.
+     */
+    comment: string;
+    /**
+     * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
+     */
+    ipAddress: string;
 }
 
 export interface GetProjectIpAddresses {
@@ -8442,10 +8492,6 @@ export interface ProjectIpAccessListTimeouts {
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
      */
     read?: string;
-    /**
-     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-     */
-    update?: string;
 }
 
 export interface ProjectIpAddresses {

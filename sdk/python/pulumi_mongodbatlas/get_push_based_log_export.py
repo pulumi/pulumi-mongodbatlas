@@ -109,6 +109,8 @@ class AwaitableGetPushBasedLogExportResult(GetPushBasedLogExportResult):
 def get_push_based_log_export(project_id: Optional[_builtins.str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPushBasedLogExportResult:
     """
+    > **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+
     `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 
     ## Example Usage
@@ -160,6 +162,8 @@ def get_push_based_log_export(project_id: Optional[_builtins.str] = None,
 def get_push_based_log_export_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPushBasedLogExportResult]:
     """
+    > **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+
     `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 
     ## Example Usage

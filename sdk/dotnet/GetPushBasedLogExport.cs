@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     public static class GetPushBasedLogExport
     {
         /// <summary>
+        /// &gt; **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `mongodbatlas.LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+        /// 
         /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
         /// 
         /// ## Example Usage
@@ -73,6 +75,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPushBasedLogExportResult>("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args ?? new GetPushBasedLogExportArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `mongodbatlas.LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+        /// 
         /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
         /// 
         /// ## Example Usage
@@ -134,6 +138,8 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetPushBasedLogExportResult>("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args ?? new GetPushBasedLogExportInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `mongodbatlas.LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+        /// 
         /// `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
         /// 
         /// ## Example Usage

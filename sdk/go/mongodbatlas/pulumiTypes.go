@@ -16442,8 +16442,6 @@ type ProjectIpAccessListTimeouts struct {
 	Delete *string `pulumi:"delete"`
 	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 	Read *string `pulumi:"read"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-	Update *string `pulumi:"update"`
 }
 
 // ProjectIpAccessListTimeoutsInput is an input type that accepts ProjectIpAccessListTimeoutsArgs and ProjectIpAccessListTimeoutsOutput values.
@@ -16462,8 +16460,6 @@ type ProjectIpAccessListTimeoutsArgs struct {
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
 	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
 	Read pulumi.StringPtrInput `pulumi:"read"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-	Update pulumi.StringPtrInput `pulumi:"update"`
 }
 
 func (ProjectIpAccessListTimeoutsArgs) ElementType() reflect.Type {
@@ -16553,11 +16549,6 @@ func (o ProjectIpAccessListTimeoutsOutput) Read() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
 }
 
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-func (o ProjectIpAccessListTimeoutsOutput) Update() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
-}
-
 type ProjectIpAccessListTimeoutsPtrOutput struct{ *pulumi.OutputState }
 
 func (ProjectIpAccessListTimeoutsPtrOutput) ElementType() reflect.Type {
@@ -16599,16 +16590,6 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Read
-	}).(pulumi.StringPtrOutput)
-}
-
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-func (o ProjectIpAccessListTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Update
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -46903,6 +46884,157 @@ func (o GetLdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) GetLdapVeri
 	}).(GetLdapVerifyValidationOutput)
 }
 
+type GetLogIntegrationsResult struct {
+	// Human-readable label that identifies the S3 bucket name for storing log files.
+	BucketName string `pulumi:"bucketName"`
+	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+	IamRoleId string `pulumi:"iamRoleId"`
+	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+	IntegrationId string `pulumi:"integrationId"`
+	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	KmsKey string `pulumi:"kmsKey"`
+	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	LogTypes []string `pulumi:"logTypes"`
+	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+	PrefixPath string `pulumi:"prefixPath"`
+	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	Type string `pulumi:"type"`
+}
+
+// GetLogIntegrationsResultInput is an input type that accepts GetLogIntegrationsResultArgs and GetLogIntegrationsResultOutput values.
+// You can construct a concrete instance of `GetLogIntegrationsResultInput` via:
+//
+//	GetLogIntegrationsResultArgs{...}
+type GetLogIntegrationsResultInput interface {
+	pulumi.Input
+
+	ToGetLogIntegrationsResultOutput() GetLogIntegrationsResultOutput
+	ToGetLogIntegrationsResultOutputWithContext(context.Context) GetLogIntegrationsResultOutput
+}
+
+type GetLogIntegrationsResultArgs struct {
+	// Human-readable label that identifies the S3 bucket name for storing log files.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+	IamRoleId pulumi.StringInput `pulumi:"iamRoleId"`
+	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	KmsKey pulumi.StringInput `pulumi:"kmsKey"`
+	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	LogTypes pulumi.StringArrayInput `pulumi:"logTypes"`
+	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+	PrefixPath pulumi.StringInput `pulumi:"prefixPath"`
+	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetLogIntegrationsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogIntegrationsResult)(nil)).Elem()
+}
+
+func (i GetLogIntegrationsResultArgs) ToGetLogIntegrationsResultOutput() GetLogIntegrationsResultOutput {
+	return i.ToGetLogIntegrationsResultOutputWithContext(context.Background())
+}
+
+func (i GetLogIntegrationsResultArgs) ToGetLogIntegrationsResultOutputWithContext(ctx context.Context) GetLogIntegrationsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogIntegrationsResultOutput)
+}
+
+// GetLogIntegrationsResultArrayInput is an input type that accepts GetLogIntegrationsResultArray and GetLogIntegrationsResultArrayOutput values.
+// You can construct a concrete instance of `GetLogIntegrationsResultArrayInput` via:
+//
+//	GetLogIntegrationsResultArray{ GetLogIntegrationsResultArgs{...} }
+type GetLogIntegrationsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetLogIntegrationsResultArrayOutput() GetLogIntegrationsResultArrayOutput
+	ToGetLogIntegrationsResultArrayOutputWithContext(context.Context) GetLogIntegrationsResultArrayOutput
+}
+
+type GetLogIntegrationsResultArray []GetLogIntegrationsResultInput
+
+func (GetLogIntegrationsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogIntegrationsResult)(nil)).Elem()
+}
+
+func (i GetLogIntegrationsResultArray) ToGetLogIntegrationsResultArrayOutput() GetLogIntegrationsResultArrayOutput {
+	return i.ToGetLogIntegrationsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetLogIntegrationsResultArray) ToGetLogIntegrationsResultArrayOutputWithContext(ctx context.Context) GetLogIntegrationsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogIntegrationsResultArrayOutput)
+}
+
+type GetLogIntegrationsResultOutput struct{ *pulumi.OutputState }
+
+func (GetLogIntegrationsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogIntegrationsResult)(nil)).Elem()
+}
+
+func (o GetLogIntegrationsResultOutput) ToGetLogIntegrationsResultOutput() GetLogIntegrationsResultOutput {
+	return o
+}
+
+func (o GetLogIntegrationsResultOutput) ToGetLogIntegrationsResultOutputWithContext(ctx context.Context) GetLogIntegrationsResultOutput {
+	return o
+}
+
+// Human-readable label that identifies the S3 bucket name for storing log files.
+func (o GetLogIntegrationsResultOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+func (o GetLogIntegrationsResultOutput) IamRoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.IamRoleId }).(pulumi.StringOutput)
+}
+
+// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+func (o GetLogIntegrationsResultOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
+// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+func (o GetLogIntegrationsResultOutput) KmsKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.KmsKey }).(pulumi.StringOutput)
+}
+
+// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+func (o GetLogIntegrationsResultOutput) LogTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) []string { return v.LogTypes }).(pulumi.StringArrayOutput)
+}
+
+// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+func (o GetLogIntegrationsResultOutput) PrefixPath() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.PrefixPath }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+func (o GetLogIntegrationsResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetLogIntegrationsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLogIntegrationsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogIntegrationsResult)(nil)).Elem()
+}
+
+func (o GetLogIntegrationsResultArrayOutput) ToGetLogIntegrationsResultArrayOutput() GetLogIntegrationsResultArrayOutput {
+	return o
+}
+
+func (o GetLogIntegrationsResultArrayOutput) ToGetLogIntegrationsResultArrayOutputWithContext(ctx context.Context) GetLogIntegrationsResultArrayOutput {
+	return o
+}
+
+func (o GetLogIntegrationsResultArrayOutput) Index(i pulumi.IntInput) GetLogIntegrationsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLogIntegrationsResult {
+		return vs[0].([]GetLogIntegrationsResult)[vs[1].(int)]
+	}).(GetLogIntegrationsResultOutput)
+}
+
 type GetMaintenanceWindowProtectedHour struct {
 	// Zero-based integer that represents the end hour of the day for the protected hours window.
 	EndHourOfDay int `pulumi:"endHourOfDay"`
@@ -50556,6 +50688,130 @@ func (o GetProjectApiKeysResultProjectAssignmentArrayOutput) Index(i pulumi.IntI
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectApiKeysResultProjectAssignment {
 		return vs[0].([]GetProjectApiKeysResultProjectAssignment)[vs[1].(int)]
 	}).(GetProjectApiKeysResultProjectAssignmentOutput)
+}
+
+type GetProjectIpAccessListsResult struct {
+	// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
+	AwsSecurityGroup string `pulumi:"awsSecurityGroup"`
+	// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `ipAddress`.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// Remark that explains the purpose or scope of this IP access list entry.
+	Comment string `pulumi:"comment"`
+	// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
+	IpAddress string `pulumi:"ipAddress"`
+}
+
+// GetProjectIpAccessListsResultInput is an input type that accepts GetProjectIpAccessListsResultArgs and GetProjectIpAccessListsResultOutput values.
+// You can construct a concrete instance of `GetProjectIpAccessListsResultInput` via:
+//
+//	GetProjectIpAccessListsResultArgs{...}
+type GetProjectIpAccessListsResultInput interface {
+	pulumi.Input
+
+	ToGetProjectIpAccessListsResultOutput() GetProjectIpAccessListsResultOutput
+	ToGetProjectIpAccessListsResultOutputWithContext(context.Context) GetProjectIpAccessListsResultOutput
+}
+
+type GetProjectIpAccessListsResultArgs struct {
+	// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
+	AwsSecurityGroup pulumi.StringInput `pulumi:"awsSecurityGroup"`
+	// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `ipAddress`.
+	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
+	// Remark that explains the purpose or scope of this IP access list entry.
+	Comment pulumi.StringInput `pulumi:"comment"`
+	// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+}
+
+func (GetProjectIpAccessListsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectIpAccessListsResult)(nil)).Elem()
+}
+
+func (i GetProjectIpAccessListsResultArgs) ToGetProjectIpAccessListsResultOutput() GetProjectIpAccessListsResultOutput {
+	return i.ToGetProjectIpAccessListsResultOutputWithContext(context.Background())
+}
+
+func (i GetProjectIpAccessListsResultArgs) ToGetProjectIpAccessListsResultOutputWithContext(ctx context.Context) GetProjectIpAccessListsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectIpAccessListsResultOutput)
+}
+
+// GetProjectIpAccessListsResultArrayInput is an input type that accepts GetProjectIpAccessListsResultArray and GetProjectIpAccessListsResultArrayOutput values.
+// You can construct a concrete instance of `GetProjectIpAccessListsResultArrayInput` via:
+//
+//	GetProjectIpAccessListsResultArray{ GetProjectIpAccessListsResultArgs{...} }
+type GetProjectIpAccessListsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectIpAccessListsResultArrayOutput() GetProjectIpAccessListsResultArrayOutput
+	ToGetProjectIpAccessListsResultArrayOutputWithContext(context.Context) GetProjectIpAccessListsResultArrayOutput
+}
+
+type GetProjectIpAccessListsResultArray []GetProjectIpAccessListsResultInput
+
+func (GetProjectIpAccessListsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectIpAccessListsResult)(nil)).Elem()
+}
+
+func (i GetProjectIpAccessListsResultArray) ToGetProjectIpAccessListsResultArrayOutput() GetProjectIpAccessListsResultArrayOutput {
+	return i.ToGetProjectIpAccessListsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectIpAccessListsResultArray) ToGetProjectIpAccessListsResultArrayOutputWithContext(ctx context.Context) GetProjectIpAccessListsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectIpAccessListsResultArrayOutput)
+}
+
+type GetProjectIpAccessListsResultOutput struct{ *pulumi.OutputState }
+
+func (GetProjectIpAccessListsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectIpAccessListsResult)(nil)).Elem()
+}
+
+func (o GetProjectIpAccessListsResultOutput) ToGetProjectIpAccessListsResultOutput() GetProjectIpAccessListsResultOutput {
+	return o
+}
+
+func (o GetProjectIpAccessListsResultOutput) ToGetProjectIpAccessListsResultOutputWithContext(ctx context.Context) GetProjectIpAccessListsResultOutput {
+	return o
+}
+
+// Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
+func (o GetProjectIpAccessListsResultOutput) AwsSecurityGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectIpAccessListsResult) string { return v.AwsSecurityGroup }).(pulumi.StringOutput)
+}
+
+// Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `awsSecurityGroup` and `ipAddress`.
+func (o GetProjectIpAccessListsResultOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectIpAccessListsResult) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// Remark that explains the purpose or scope of this IP access list entry.
+func (o GetProjectIpAccessListsResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectIpAccessListsResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
+func (o GetProjectIpAccessListsResultOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectIpAccessListsResult) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+type GetProjectIpAccessListsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectIpAccessListsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectIpAccessListsResult)(nil)).Elem()
+}
+
+func (o GetProjectIpAccessListsResultArrayOutput) ToGetProjectIpAccessListsResultArrayOutput() GetProjectIpAccessListsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectIpAccessListsResultArrayOutput) ToGetProjectIpAccessListsResultArrayOutputWithContext(ctx context.Context) GetProjectIpAccessListsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectIpAccessListsResultArrayOutput) Index(i pulumi.IntInput) GetProjectIpAccessListsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectIpAccessListsResult {
+		return vs[0].([]GetProjectIpAccessListsResult)[vs[1].(int)]
+	}).(GetProjectIpAccessListsResultOutput)
 }
 
 type GetProjectIpAddresses struct {
@@ -60333,6 +60589,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyLinkArrayInput)(nil)).Elem(), GetLdapVerifyLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyValidationInput)(nil)).Elem(), GetLdapVerifyValidationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyValidationArrayInput)(nil)).Elem(), GetLdapVerifyValidationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultInput)(nil)).Elem(), GetLogIntegrationsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultArrayInput)(nil)).Elem(), GetLogIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourArrayInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultInput)(nil)).Elem(), GetNetworkContainersResultArgs{})
@@ -60389,6 +60647,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultArrayInput)(nil)).Elem(), GetProjectApiKeysResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultProjectAssignmentInput)(nil)).Elem(), GetProjectApiKeysResultProjectAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultProjectAssignmentArrayInput)(nil)).Elem(), GetProjectApiKeysResultProjectAssignmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectIpAccessListsResultInput)(nil)).Elem(), GetProjectIpAccessListsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectIpAccessListsResultArrayInput)(nil)).Elem(), GetProjectIpAccessListsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectIpAddressesInput)(nil)).Elem(), GetProjectIpAddressesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectIpAddressesServicesInput)(nil)).Elem(), GetProjectIpAddressesServicesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectIpAddressesServicesClusterInput)(nil)).Elem(), GetProjectIpAddressesServicesClusterArgs{})
@@ -61150,6 +61410,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLdapVerifyLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapVerifyValidationOutput{})
 	pulumi.RegisterOutputType(GetLdapVerifyValidationArrayOutput{})
+	pulumi.RegisterOutputType(GetLogIntegrationsResultOutput{})
+	pulumi.RegisterOutputType(GetLogIntegrationsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultOutput{})
@@ -61206,6 +61468,8 @@ func init() {
 	pulumi.RegisterOutputType(GetProjectApiKeysResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeysResultProjectAssignmentOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeysResultProjectAssignmentArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectIpAccessListsResultOutput{})
+	pulumi.RegisterOutputType(GetProjectIpAccessListsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectIpAddressesOutput{})
 	pulumi.RegisterOutputType(GetProjectIpAddressesServicesOutput{})
 	pulumi.RegisterOutputType(GetProjectIpAddressesServicesClusterOutput{})

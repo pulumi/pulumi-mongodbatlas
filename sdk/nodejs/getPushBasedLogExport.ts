@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * > **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `mongodbatlas.LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+ *
  * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
  *
  * ## Example Usage
@@ -83,6 +85,8 @@ export interface GetPushBasedLogExportResult {
     readonly state: string;
 }
 /**
+ * > **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `mongodbatlas.LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+ *
  * `mongodbatlas.PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
  *
  * ## Example Usage

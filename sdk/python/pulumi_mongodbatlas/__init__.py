@@ -98,6 +98,8 @@ from .get_flex_snapshots import *
 from .get_global_cluster_config import *
 from .get_ldap_configuration import *
 from .get_ldap_verify import *
+from .get_log_integration import *
+from .get_log_integrations import *
 from .get_maintenance_window import *
 from .get_mongodb_employee_access_grant import *
 from .get_network_container import *
@@ -119,6 +121,7 @@ from .get_project_api_key import *
 from .get_project_api_keys import *
 from .get_project_invitation import *
 from .get_project_ip_access_list import *
+from .get_project_ip_access_lists import *
 from .get_project_ip_addresses import *
 from .get_project_service_account import *
 from .get_project_service_account_access_list_entries import *
@@ -165,6 +168,7 @@ from .get_x509_authentication_database_user import *
 from .global_cluster_config import *
 from .ldap_configuration import *
 from .ldap_verify import *
+from .log_integration import *
 from .maintenance_window import *
 from .mongodb_employee_access_grant import *
 from .network_container import *
@@ -485,6 +489,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/ldapVerify:LdapVerify": "LdapVerify"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/logIntegration",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/logIntegration:LogIntegration": "LogIntegration"
   }
  },
  {

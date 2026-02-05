@@ -350,6 +350,7 @@ __all__ = [
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
     'GetLdapVerifyValidationResult',
+    'GetLogIntegrationsResultResult',
     'GetMaintenanceWindowProtectedHourResult',
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
@@ -378,6 +379,7 @@ __all__ = [
     'GetProjectApiKeyProjectAssignmentResult',
     'GetProjectApiKeysResultResult',
     'GetProjectApiKeysResultProjectAssignmentResult',
+    'GetProjectIpAccessListsResultResult',
     'GetProjectIpAddressesResult',
     'GetProjectIpAddressesServicesResult',
     'GetProjectIpAddressesServicesClusterResult',
@@ -7988,19 +7990,15 @@ class ProjectApiKeyProjectAssignment(dict):
 class ProjectIpAccessListTimeouts(dict):
     def __init__(__self__, *,
                  delete: Optional[_builtins.str] = None,
-                 read: Optional[_builtins.str] = None,
-                 update: Optional[_builtins.str] = None):
+                 read: Optional[_builtins.str] = None):
         """
         :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         :param _builtins.str read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
-        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         if delete is not None:
             pulumi.set(__self__, "delete", delete)
         if read is not None:
             pulumi.set(__self__, "read", read)
-        if update is not None:
-            pulumi.set(__self__, "update", update)
 
     @_builtins.property
     @pulumi.getter
@@ -8017,14 +8015,6 @@ class ProjectIpAccessListTimeouts(dict):
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
         return pulumi.get(self, "read")
-
-    @_builtins.property
-    @pulumi.getter
-    def update(self) -> Optional[_builtins.str]:
-        """
-        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
-        """
-        return pulumi.get(self, "update")
 
 
 @pulumi.output_type
@@ -21943,6 +21933,90 @@ class GetLdapVerifyValidationResult(dict):
 
 
 @pulumi.output_type
+class GetLogIntegrationsResultResult(dict):
+    def __init__(__self__, *,
+                 bucket_name: _builtins.str,
+                 iam_role_id: _builtins.str,
+                 integration_id: _builtins.str,
+                 kms_key: _builtins.str,
+                 log_types: Sequence[_builtins.str],
+                 prefix_path: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
+        :param _builtins.str iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        :param _builtins.str integration_id: Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+        :param _builtins.str kms_key: AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        :param Sequence[_builtins.str] log_types: Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        :param _builtins.str prefix_path: S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        :param _builtins.str type: Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "iam_role_id", iam_role_id)
+        pulumi.set(__self__, "integration_id", integration_id)
+        pulumi.set(__self__, "kms_key", kms_key)
+        pulumi.set(__self__, "log_types", log_types)
+        pulumi.set(__self__, "prefix_path", prefix_path)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> _builtins.str:
+        """
+        Human-readable label that identifies the S3 bucket name for storing log files.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter(name="iamRoleId")
+    def iam_role_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        """
+        return pulumi.get(self, "iam_role_id")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationId")
+    def integration_id(self) -> _builtins.str:
+        """
+        Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+        """
+        return pulumi.get(self, "integration_id")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKey")
+    def kms_key(self) -> _builtins.str:
+        """
+        AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        """
+        return pulumi.get(self, "kms_key")
+
+    @_builtins.property
+    @pulumi.getter(name="logTypes")
+    def log_types(self) -> Sequence[_builtins.str]:
+        """
+        Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        """
+        return pulumi.get(self, "log_types")
+
+    @_builtins.property
+    @pulumi.getter(name="prefixPath")
+    def prefix_path(self) -> _builtins.str:
+        """
+        S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        """
+        return pulumi.get(self, "prefix_path")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetMaintenanceWindowProtectedHourResult(dict):
     def __init__(__self__, *,
                  end_hour_of_day: _builtins.int,
@@ -23519,6 +23593,57 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
         List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         return pulumi.get(self, "role_names")
+
+
+@pulumi.output_type
+class GetProjectIpAccessListsResultResult(dict):
+    def __init__(__self__, *,
+                 aws_security_group: _builtins.str,
+                 cidr_block: _builtins.str,
+                 comment: _builtins.str,
+                 ip_address: _builtins.str):
+        """
+        :param _builtins.str aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+        :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `aws_security_group` and `ip_address`.
+        :param _builtins.str comment: Remark that explains the purpose or scope of this IP access list entry.
+        :param _builtins.str ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+        """
+        pulumi.set(__self__, "aws_security_group", aws_security_group)
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "comment", comment)
+        pulumi.set(__self__, "ip_address", ip_address)
+
+    @_builtins.property
+    @pulumi.getter(name="awsSecurityGroup")
+    def aws_security_group(self) -> _builtins.str:
+        """
+        Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
+        """
+        return pulumi.get(self, "aws_security_group")
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> _builtins.str:
+        """
+        Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `aws_security_group` and `ip_address`.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter
+    def comment(self) -> _builtins.str:
+        """
+        Remark that explains the purpose or scope of this IP access list entry.
+        """
+        return pulumi.get(self, "comment")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
+        """
+        return pulumi.get(self, "ip_address")
 
 
 @pulumi.output_type
