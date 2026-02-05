@@ -613,6 +613,15 @@
                     }
                 }
             },
+            "mongodbatlas_log_integration": {
+                "current": "mongodbatlas:index/logIntegration:LogIntegration",
+                "majorVersion": 4,
+                "fields": {
+                    "log_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_maintenance_window": {
                 "current": "mongodbatlas:index/maintenanceWindow:MaintenanceWindow",
                 "majorVersion": 4,
@@ -2270,6 +2279,31 @@
                     }
                 }
             },
+            "mongodbatlas_log_integration": {
+                "current": "mongodbatlas:index/getLogIntegration:getLogIntegration",
+                "majorVersion": 4,
+                "fields": {
+                    "log_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_log_integrations": {
+                "current": "mongodbatlas:index/getLogIntegrations:getLogIntegrations",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "log_types": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_maintenance_window": {
                 "current": "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow",
                 "majorVersion": 4,
@@ -2612,6 +2646,15 @@
             "mongodbatlas_project_ip_access_list": {
                 "current": "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList",
                 "majorVersion": 4
+            },
+            "mongodbatlas_project_ip_access_lists": {
+                "current": "mongodbatlas:index/getProjectIpAccessLists:getProjectIpAccessLists",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "mongodbatlas_project_ip_addresses": {
                 "current": "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses",
@@ -3198,6 +3241,7 @@
             "mongodbatlas:index/globalClusterConfig:GlobalClusterConfig": 0,
             "mongodbatlas:index/ldapConfiguration:LdapConfiguration": 0,
             "mongodbatlas:index/ldapVerify:LdapVerify": 0,
+            "mongodbatlas:index/logIntegration:LogIntegration": 1,
             "mongodbatlas:index/maintenanceWindow:MaintenanceWindow": 0,
             "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant": 1,
             "mongodbatlas:index/networkContainer:NetworkContainer": 0,
@@ -3297,6 +3341,8 @@
             "mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig": 0,
             "mongodbatlas:index/getLdapConfiguration:getLdapConfiguration": 0,
             "mongodbatlas:index/getLdapVerify:getLdapVerify": 0,
+            "mongodbatlas:index/getLogIntegration:getLogIntegration": 1,
+            "mongodbatlas:index/getLogIntegrations:getLogIntegrations": 1,
             "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow": 0,
             "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant": 1,
             "mongodbatlas:index/getNetworkContainer:getNetworkContainer": 0,
@@ -3318,6 +3364,7 @@
             "mongodbatlas:index/getProjectApiKeys:getProjectApiKeys": 0,
             "mongodbatlas:index/getProjectInvitation:getProjectInvitation": 0,
             "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList": 1,
+            "mongodbatlas:index/getProjectIpAccessLists:getProjectIpAccessLists": 1,
             "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses": 1,
             "mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount": 1,
             "mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries": 1,

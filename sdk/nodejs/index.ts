@@ -465,6 +465,16 @@ export const getLdapVerify: typeof import("./getLdapVerify").getLdapVerify = nul
 export const getLdapVerifyOutput: typeof import("./getLdapVerify").getLdapVerifyOutput = null as any;
 utilities.lazyLoad(exports, ["getLdapVerify","getLdapVerifyOutput"], () => require("./getLdapVerify"));
 
+export { GetLogIntegrationArgs, GetLogIntegrationResult, GetLogIntegrationOutputArgs } from "./getLogIntegration";
+export const getLogIntegration: typeof import("./getLogIntegration").getLogIntegration = null as any;
+export const getLogIntegrationOutput: typeof import("./getLogIntegration").getLogIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getLogIntegration","getLogIntegrationOutput"], () => require("./getLogIntegration"));
+
+export { GetLogIntegrationsArgs, GetLogIntegrationsResult, GetLogIntegrationsOutputArgs } from "./getLogIntegrations";
+export const getLogIntegrations: typeof import("./getLogIntegrations").getLogIntegrations = null as any;
+export const getLogIntegrationsOutput: typeof import("./getLogIntegrations").getLogIntegrationsOutput = null as any;
+utilities.lazyLoad(exports, ["getLogIntegrations","getLogIntegrationsOutput"], () => require("./getLogIntegrations"));
+
 export { GetMaintenanceWindowArgs, GetMaintenanceWindowResult, GetMaintenanceWindowOutputArgs } from "./getMaintenanceWindow";
 export const getMaintenanceWindow: typeof import("./getMaintenanceWindow").getMaintenanceWindow = null as any;
 export const getMaintenanceWindowOutput: typeof import("./getMaintenanceWindow").getMaintenanceWindowOutput = null as any;
@@ -569,6 +579,11 @@ export { GetProjectIpAccessListArgs, GetProjectIpAccessListResult, GetProjectIpA
 export const getProjectIpAccessList: typeof import("./getProjectIpAccessList").getProjectIpAccessList = null as any;
 export const getProjectIpAccessListOutput: typeof import("./getProjectIpAccessList").getProjectIpAccessListOutput = null as any;
 utilities.lazyLoad(exports, ["getProjectIpAccessList","getProjectIpAccessListOutput"], () => require("./getProjectIpAccessList"));
+
+export { GetProjectIpAccessListsArgs, GetProjectIpAccessListsResult, GetProjectIpAccessListsOutputArgs } from "./getProjectIpAccessLists";
+export const getProjectIpAccessLists: typeof import("./getProjectIpAccessLists").getProjectIpAccessLists = null as any;
+export const getProjectIpAccessListsOutput: typeof import("./getProjectIpAccessLists").getProjectIpAccessListsOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectIpAccessLists","getProjectIpAccessListsOutput"], () => require("./getProjectIpAccessLists"));
 
 export { GetProjectIpAddressesArgs, GetProjectIpAddressesResult, GetProjectIpAddressesOutputArgs } from "./getProjectIpAddresses";
 export const getProjectIpAddresses: typeof import("./getProjectIpAddresses").getProjectIpAddresses = null as any;
@@ -799,6 +814,11 @@ export { LdapVerifyArgs, LdapVerifyState } from "./ldapVerify";
 export type LdapVerify = import("./ldapVerify").LdapVerify;
 export const LdapVerify: typeof import("./ldapVerify").LdapVerify = null as any;
 utilities.lazyLoad(exports, ["LdapVerify"], () => require("./ldapVerify"));
+
+export { LogIntegrationArgs, LogIntegrationState } from "./logIntegration";
+export type LogIntegration = import("./logIntegration").LogIntegration;
+export const LogIntegration: typeof import("./logIntegration").LogIntegration = null as any;
+utilities.lazyLoad(exports, ["LogIntegration"], () => require("./logIntegration"));
 
 export { MaintenanceWindowArgs, MaintenanceWindowState } from "./maintenanceWindow";
 export type MaintenanceWindow = import("./maintenanceWindow").MaintenanceWindow;
@@ -1065,6 +1085,8 @@ const _module = {
                 return new LdapConfiguration(name, <any>undefined, { urn })
             case "mongodbatlas:index/ldapVerify:LdapVerify":
                 return new LdapVerify(name, <any>undefined, { urn })
+            case "mongodbatlas:index/logIntegration:LogIntegration":
+                return new LogIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
                 return new MaintenanceWindow(name, <any>undefined, { urn })
             case "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant":
@@ -1176,6 +1198,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/flexCluster", _modu
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/globalClusterConfig", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/logIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/maintenanceWindow", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/mongodbEmployeeAccessGrant", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", _module)

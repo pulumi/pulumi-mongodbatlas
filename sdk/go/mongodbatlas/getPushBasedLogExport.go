@@ -11,6 +11,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+//
 // `PushBasedLogExport` describes the configured project level settings for the push-based log export feature.
 //
 // ## Example Usage
