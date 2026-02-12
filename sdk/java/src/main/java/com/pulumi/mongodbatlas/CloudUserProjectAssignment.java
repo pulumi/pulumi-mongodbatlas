@@ -86,11 +86,7 @@ import javax.annotation.Nullable;
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment test 9f3a7c2e54b8d1a0e6f4b3c2/test-user{@literal @}example.com
- * ```
- * 
  * OR
- * 
- * ```sh
  * $ pulumi import mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment test 9f3a7c2e54b8d1a0e6f4b3c2/5f18367ccb7a503a2b481b7a
  * ```
  * 

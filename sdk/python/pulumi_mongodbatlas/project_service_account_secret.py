@@ -233,6 +233,12 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
                  secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        `ProjectServiceAccountSecret` provides a Project Service Account Secret resource. The resource lets you create and delete secrets for a Project Service Account.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
+        > **NOTE:** This resource does not support updates. To rotate a secret, see Guide: Service Account Secret Rotation.
+
         ## Example Usage
 
         ### S
@@ -266,10 +272,10 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
         ## Import
 
         Import the Project Service Account Secret resource by using the Project ID, Client ID, and Secret ID in the format `PROJECT_ID/CLIENT_ID/SECRET_ID`, e.g.
-
         ```sh
         $ pulumi import mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678/04ed271234abcde2a3da123a
         ```
+
         For more information, see [Create One Project Service Account Secret](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupserviceaccountsecret) in the MongoDB Atlas API documentation.
 
         :param str resource_name: The name of the resource.
@@ -285,6 +291,12 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
                  args: ProjectServiceAccountSecretInitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ProjectServiceAccountSecret` provides a Project Service Account Secret resource. The resource lets you create and delete secrets for a Project Service Account.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
+        > **NOTE:** This resource does not support updates. To rotate a secret, see Guide: Service Account Secret Rotation.
+
         ## Example Usage
 
         ### S
@@ -318,10 +330,10 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
         ## Import
 
         Import the Project Service Account Secret resource by using the Project ID, Client ID, and Secret ID in the format `PROJECT_ID/CLIENT_ID/SECRET_ID`, e.g.
-
         ```sh
         $ pulumi import mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678/04ed271234abcde2a3da123a
         ```
+
         For more information, see [Create One Project Service Account Secret](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupserviceaccountsecret) in the MongoDB Atlas API documentation.
 
         :param str resource_name: The name of the resource.

@@ -12,6 +12,10 @@ namespace Pulumi.Mongodbatlas
     public static class GetServiceAccountProjectAssignments
     {
         /// <summary>
+        /// `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -70,6 +74,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountProjectAssignmentsResult>("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", args ?? new GetServiceAccountProjectAssignmentsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -128,6 +136,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountProjectAssignmentsResult>("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", args ?? new GetServiceAccountProjectAssignmentsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S

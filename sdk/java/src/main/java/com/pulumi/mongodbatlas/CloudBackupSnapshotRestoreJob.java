@@ -18,6 +18,20 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
+ * * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
+ * 
+ * * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
+ * 
+ * * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
+ * 
+ * &gt; **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
+ * 
+ * &gt; **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
+ * `mongodbatlas.CloudBackupSnapshotRestoreJob` resource, you won&#39;t be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn&#39;t support this. The provider will remove the Terraform resource from the state file but won&#39;t destroy the MongoDB Atlas resource.
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ * 
  * ## Example Usage
  * 
  * ### Example automated delivery type
@@ -241,11 +255,12 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Cloud Backup Snapshot Restore Job entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
+ * Cloud Backup Snapshot Restore Job entries can be imported using project project_id, clusterName and snapshotId (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-JOBID`, e.g.
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
  * ```
+ * 
  * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
  * 
  */

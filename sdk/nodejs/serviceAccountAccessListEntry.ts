@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ServiceAccountAccessListEntry` provides an Access List entry resource for Service Accounts. The resource lets you create, delete, and import an Access List entry for the specified Service Account.
+ *
+ * > **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S
@@ -49,11 +55,12 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Access List entries for Service Accounts can be imported using the `org_id`, `client_id` and `cidr_block` or `ip_address`, e.g.
+ * Access List entries for Service Accounts can be imported using the `orgId`, `clientId` and `cidrBlock` or `ipAddress`, e.g.
  *
  * ```sh
  * $ pulumi import mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry test 5d0f1f74cf09a29120e123cd-mdb_sa_id_1234567890abcdef12345678-10.242.88.0/21
  * ```
+ *
  * For more information, see [Add Access List Entries for One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccountaccesslist) in the MongoDB Atlas API documentation.
  */
 export class ServiceAccountAccessListEntry extends pulumi.CustomResource {

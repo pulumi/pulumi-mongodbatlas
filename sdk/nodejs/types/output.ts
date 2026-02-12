@@ -290,7 +290,19 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
      */
     computeEnabled: boolean;
     /**
-     * Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
+     * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
+     *
+     * > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+     *
+     * When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+     *
+     * **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `mongodbatlas.AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+     *
+     * **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+     *
+     * To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
+     *
+     * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
      */
     computeMaxInstanceSize: string;
     /**
@@ -1168,7 +1180,7 @@ export interface ClusterPinnedFcv {
 
 export interface ClusterReplicationSpec {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * The Terraform's unique identifier used internally for state management.
      */
     id: string;
     /**
@@ -1233,7 +1245,7 @@ export interface ClusterSnapshotBackupPolicy {
 
 export interface ClusterSnapshotBackupPolicyPolicy {
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * The Terraform's unique identifier used internally for state management.
      */
     id: string;
     policyItems: outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem[];
@@ -1243,7 +1255,7 @@ export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
     frequencyInterval: number;
     frequencyType: string;
     /**
-     * Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * The Terraform's unique identifier used internally for state management.
      */
     id: string;
     retentionUnit: string;
@@ -2159,7 +2171,7 @@ export interface GetAdvancedClustersResult {
      */
     backupEnabled: boolean;
     /**
-     * Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+     * Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `biConnector`.
      */
     biConnectorConfig: outputs.GetAdvancedClustersResultBiConnectorConfig;
     /**
@@ -6458,6 +6470,9 @@ export interface GetOrganizationsResult {
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
      */
     securityContact: string;
+    /**
+     * Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+     */
     skipDefaultAlertsSettings: boolean;
     /**
      * Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
@@ -6507,6 +6522,19 @@ export interface GetOrganizationsResultUser {
      * Last name, family name, or surname that belongs to the MongoDB Cloud user.
      */
     lastName: string;
+    /**
+     * Mobile phone number that belongs to the MongoDB Cloud user.
+     *
+     *
+     * > **NOTE:** - Users with pending invitations created using `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
+     * To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
+     *
+     *
+     * > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `mongodbatlas.Organization` resource.
+     *
+     *
+     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
+     */
     mobileNumber: string;
     /**
      * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.

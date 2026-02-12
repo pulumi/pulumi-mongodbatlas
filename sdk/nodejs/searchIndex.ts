@@ -268,6 +268,9 @@ export class SearchIndex extends pulumi.CustomResource {
      * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
      */
     declare public readonly typeSets: pulumi.Output<outputs.SearchIndexTypeSet[] | undefined>;
+    /**
+     * Wait for search index to achieve Active status before terraform considers resource built.
+     */
     declare public readonly waitForIndexBuildCompletion: pulumi.Output<boolean | undefined>;
 
     /**
@@ -444,6 +447,9 @@ export interface SearchIndexState {
      * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
      */
     typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[]>;
+    /**
+     * Wait for search index to achieve Active status before terraform considers resource built.
+     */
     waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }
 
@@ -540,5 +546,8 @@ export interface SearchIndexArgs {
      * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
      */
     typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[]>;
+    /**
+     * Wait for search index to achieve Active status before terraform considers resource built.
+     */
     waitForIndexBuildCompletion?: pulumi.Input<boolean>;
 }

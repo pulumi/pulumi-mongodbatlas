@@ -223,6 +223,7 @@ class Auditing(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
 
         :param str resource_name: The name of the resource.
@@ -263,6 +264,7 @@ class Auditing(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
 
         :param str resource_name: The name of the resource.

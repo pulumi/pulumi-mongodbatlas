@@ -12,6 +12,227 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `EncryptionAtRest` allows management of Encryption at Rest for an Atlas project using Customer Key Management configuration. The following providers are supported:
+// - [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+// - [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+// - [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+//
+// The encryption at rest Terraform module makes use of this resource and simplifies its use. It is currently limited to AWS KMS.
+//
+// Atlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 90-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.
+//
+// See [Encryption at Rest](https://docs.atlas.mongodb.com/security-kms-encryption/index.html) for more information, including prerequisites and restrictions.
+//
+// > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+//
+// > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// > **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryptionAtRestProvider = "NONE"`, or be deleted.
+//
+// ## Enabling Encryption at Rest for existing Atlas cluster
+//
+// After configuring at least one key management provider for an Atlas project, Project Owners can enable customer key management for each Atlas cluster for which they require encryption. For clusters defined in terraform, the `encryptionAtRestProvider` attribute can be used in both `AdvancedCluster` and `Cluster` resources. The key management provider does not have to match the cluster cloud service provider.
+//
+// Please reference [Enable Customer Key Management for an Atlas Cluster](https://www.mongodb.com/docs/atlas/security-kms-encryption/#enable-customer-key-management-for-an-service-cluster) documentation for additional considerations.
+//
+// ## Example Usage
+//
+// ### S
+//
+// ### Configuring encryption at rest using customer key management in AWS
+// The configuration of encryption at rest with customer key management, `EncryptionAtRest`, needs to be completed before a cluster is created in the project. Force this wait by using an implicit dependency via `projectId` as shown in the example below.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.Any(atlasProjectId),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			authRole, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: pulumi.Any(atlasProjectId),
+//				RoleId:    setupOnly.RoleId,
+//				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
+//					IamAssumedRoleArn: pulumi.Any(testRole.Arn),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			testEncryptionAtRest, err := mongodbatlas.NewEncryptionAtRest(ctx, "test", &mongodbatlas.EncryptionAtRestArgs{
+//				ProjectId: pulumi.Any(atlasProjectId),
+//				AwsKmsConfig: &mongodbatlas.EncryptionAtRestAwsKmsConfigArgs{
+//					Enabled:             pulumi.Bool(true),
+//					CustomerMasterKeyId: pulumi.Any(kmsKey.Id),
+//					Region:              pulumi.Any(atlasRegion),
+//					RoleId:              authRole.RoleId,
+//				},
+//				EnabledForSearchNodes: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewAdvancedCluster(ctx, "cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:                testEncryptionAtRest.ProjectId,
+//				Name:                     pulumi.String("MyCluster"),
+//				ClusterType:              pulumi.String("REPLICASET"),
+//				BackupEnabled:            pulumi.Bool(true),
+//				EncryptionAtRestProvider: pulumi.String("AWS"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
+//				ProjectId: testEncryptionAtRest.ProjectId,
+//			}, nil)
+//			ctx.Export("isAwsKmsEncryptionAtRestValid", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {
+//				return &test.AwsKmsConfig.Valid, nil
+//			}).(pulumi.BoolPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **NOTE**  If using the two resources path for cloud provider access, `cloudProviderAccessSetup` and `cloudProviderAccessAuthorization`, you may need to define a `dependsOn` statement for these two resources, because terraform is not able to infer the dependency.
+//
+// ### Configuring encryption at rest using customer key management in Azure
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testEncryptionAtRest, err := mongodbatlas.NewEncryptionAtRest(ctx, "test", &mongodbatlas.EncryptionAtRestArgs{
+//				ProjectId: pulumi.Any(atlasProjectId),
+//				AzureKeyVaultConfig: &mongodbatlas.EncryptionAtRestAzureKeyVaultConfigArgs{
+//					Enabled:           pulumi.Bool(true),
+//					AzureEnvironment:  pulumi.String("AZURE"),
+//					TenantId:          pulumi.Any(azureTenantId),
+//					SubscriptionId:    pulumi.Any(azureSubscriptionId),
+//					ClientId:          pulumi.Any(azureClientId),
+//					Secret:            pulumi.Any(azureClientSecret),
+//					ResourceGroupName: pulumi.Any(azureResourceGroupName),
+//					KeyVaultName:      pulumi.Any(azureKeyVaultName),
+//					KeyIdentifier:     pulumi.Any(azureKeyIdentifier),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			test := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
+//				ProjectId: testEncryptionAtRest.ProjectId,
+//			}, nil)
+//			ctx.Export("isAzureEncryptionAtRestValid", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {
+//				return &test.AzureKeyVaultConfig.Valid, nil
+//			}).(pulumi.BoolPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Manage Customer Keys with Azure Key Vault Over Private Endpoints
+// It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `EncryptionAtRestPrivateEndpoint` resource.
+//
+// Please review the `EncryptionAtRestPrivateEndpoint` resource documentation and complete the example for details on this functionality.
+//
+// ### Configuring encryption at rest using customer key management in GCP
+// For GCP environments using static service account key, we recommend configuring encryption at rest with customer key management. For more details see our Migration Guide: Encryption at Rest (GCP) Service Account JSON to Role-based Auth.
+//
+// This approach uses role-based authentication through Cloud Provider Access for a more secure solution.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "this", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.Any(atlasProjectId),
+//				ProviderName: pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			thisCloudProviderAccessAuthorization, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "this", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: pulumi.Any(atlasProjectId),
+//				RoleId:    this.RoleId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewEncryptionAtRest(ctx, "test", &mongodbatlas.EncryptionAtRestArgs{
+//				ProjectId: pulumi.Any(atlasProjectId),
+//				GoogleCloudKmsConfig: &mongodbatlas.EncryptionAtRestGoogleCloudKmsConfigArgs{
+//					Enabled:              pulumi.Bool(true),
+//					KeyVersionResourceId: pulumi.Any(cryptoKey.Primary[0].Name),
+//					RoleId:               thisCloudProviderAccessAuthorization.RoleId,
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				encrypterDecrypterBinding,
+//				viewerBinding,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Further Examples
+// - AWS KMS Encryption at Rest
+// - Azure Key Vault Encryption at Rest
+// - GCP KMS Encryption at Rest
+//
+// ## Import
+//
+// Encryption at Rest Settings can be imported using project ID, in the format `projectId`, e.g.
+//
+// For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management)
 type EncryptionAtRest struct {
 	pulumi.CustomResourceState
 

@@ -127,6 +127,9 @@ namespace Pulumi.Mongodbatlas
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+        /// </summary>
         [Output("skipWaitOnUpdate")]
         public Output<bool?> SkipWaitOnUpdate { get; private set; } = null!;
 
@@ -209,6 +212,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+        /// </summary>
         [Input("skipWaitOnUpdate")]
         public Input<bool>? SkipWaitOnUpdate { get; set; }
 
@@ -259,6 +265,9 @@ namespace Pulumi.Mongodbatlas
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+        /// </summary>
         [Input("skipWaitOnUpdate")]
         public Input<bool>? SkipWaitOnUpdate { get; set; }
 

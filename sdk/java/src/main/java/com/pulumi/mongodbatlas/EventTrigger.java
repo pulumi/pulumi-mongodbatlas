@@ -18,9 +18,215 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.EventTrigger` provides a Event Trigger resource.
+ * 
+ * Note: If the `appId` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app. If it still exists, then it creates itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/) to learn more.
+ * 
+ * ## Example Usage
+ * 
+ * ### S
+ * 
+ * ### Example Usage: Database Trigger with Function
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.EventTrigger;
+ * import com.pulumi.mongodbatlas.EventTriggerArgs;
+ * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsArgs;
+ * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsAwsEventbridgeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("DATABASE")
+ *             .functionId("FUNCTION ID")
+ *             .disabled(false)
+ *             .configOperationTypes(            
+ *                 "INSERT",
+ *                 "UPDATE")
+ *             .configDatabase("DATABASE NAME")
+ *             .configCollection("COLLECTION NAME")
+ *             .configServiceId("SERVICE ID")
+ *             .configMatch("""
+ * {
+ *   \"updateDescription.updatedFields\": {
+ *     \"status\": \"blocked\"
+ *   }
+ * }
+ *             """)
+ *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
+ *             .configFullDocument(false)
+ *             .configFullDocumentBefore(false)
+ *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
+ *                 .awsEventbridge(EventTriggerEventProcessorsAwsEventbridgeArgs.builder()
+ *                     .configAccountId("AWS ACCOUNT ID")
+ *                     .configRegion("AWS REGIOn")
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * Note: Terraform allows creating [database triggers,](https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/#:~:text=Database%20triggers%20use%20MongoDB%20change,trigger%20created%20in%20a%20collection.) but not Atlas Functions. See [Define a Function](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/functions/#define-a-function) in the Atlas documentation for more details on creating functions in Atlas.
+ * 
+ * ### Example Usage: Database Trigger with EventBridge
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.EventTrigger;
+ * import com.pulumi.mongodbatlas.EventTriggerArgs;
+ * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsArgs;
+ * import com.pulumi.mongodbatlas.inputs.EventTriggerEventProcessorsAwsEventbridgeArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("DATABASE")
+ *             .disabled(false)
+ *             .unordered(false)
+ *             .configOperationTypes(            
+ *                 "INSERT",
+ *                 "UPDATE")
+ *             .configOperationType("LOGIN")
+ *             .configProviders("anon-user")
+ *             .configDatabase("DATABASE NAME")
+ *             .configCollection("COLLECTION NAME")
+ *             .configServiceId("1")
+ *             .configMatch("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
+ *             .configProject("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}")
+ *             .configFullDocument(false)
+ *             .configFullDocumentBefore(false)
+ *             .configSchedule("*")
+ *             .eventProcessors(EventTriggerEventProcessorsArgs.builder()
+ *                 .awsEventbridge(EventTriggerEventProcessorsAwsEventbridgeArgs.builder()
+ *                     .configAccountId("AWS ACCOUNT ID")
+ *                     .configRegion("AWS REGIOn")
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example Usage: Authentication Trigger
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.EventTrigger;
+ * import com.pulumi.mongodbatlas.EventTriggerArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("AUTHENTICATION")
+ *             .functionId("1")
+ *             .disabled(false)
+ *             .configOperationType("LOGIN")
+ *             .configProviders("anon-user")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example Usage: Scheduled Trigger
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.EventTrigger;
+ * import com.pulumi.mongodbatlas.EventTriggerArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new EventTrigger("test", EventTriggerArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .appId("APPLICATION ID")
+ *             .name("NAME OF THE TRIGGER")
+ *             .type("SCHEDULED")
+ *             .functionId("1")
+ *             .disabled(false)
+ *             .configSchedule("*")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
- * Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
+ * Event trigger can be imported using project ID, App ID and Trigger ID, in the format `projectId`--`appId`-`triggerId`, e.g.
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934

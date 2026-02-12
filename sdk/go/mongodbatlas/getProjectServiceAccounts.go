@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+//
+// > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+//
 // ## Example Usage
 func LookupProjectServiceAccounts(ctx *pulumi.Context, args *LookupProjectServiceAccountsArgs, opts ...pulumi.InvokeOption) (*LookupProjectServiceAccountsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

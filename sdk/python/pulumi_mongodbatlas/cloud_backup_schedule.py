@@ -53,6 +53,9 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+               
+               **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -245,6 +248,11 @@ class CloudBackupScheduleArgs:
     @_builtins.property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+
+        **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+        """
         return pulumi.get(self, "update_snapshots")
 
     @update_snapshots.setter
@@ -305,6 +313,9 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+               
+               **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         if auto_export_enabled is not None:
@@ -541,6 +552,11 @@ class _CloudBackupScheduleState:
     @_builtins.property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+
+        **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+        """
         return pulumi.get(self, "update_snapshots")
 
     @update_snapshots.setter
@@ -583,6 +599,206 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
+
+        > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        > **NOTE:** If you need to remove the `CloudBackupSchedule`, read this guide.
+
+        > **NOTE:** When creating a backup schedule you **must either** use the `depends_on` clause to indicate the cluster to which it refers **or** specify the values of `project_id` and `cluster_name` as reference of the cluster resource (e.g. `cluster_name = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
+
+        In the Terraform MongoDB Atlas Provider 1.0.0 we have re-architected the way in which Cloud Backup Policies are managed with Terraform to significantly reduce the complexity. Due to this change we've provided the following examples to help express how this resource functions.
+
+        ## Example Usage
+
+        ### Create A Cluster With 2 Policies Items
+
+        You can create a new cluster with `cloud_backup` enabled and then immediately overwrite the default cloud backup policy that Atlas creates by default at the same time with this example.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_hourly={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 1,
+            },
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 2,
+            })
+        ```
+
+        ### Create A Cluster With Cloud Backup Enabled But No Policy Items
+
+        You can enable `cloud_backup` in the Cluster resource and then use the `cloud_backup_schedule` resource with no policy items to remove the default policy that Atlas creates when you enable Cloud Backup. This allows you to then create a policy when you are ready to via Terraform.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4)
+        ```
+
+        ### Add 4 Policies Items To A Cluster With Cloud Backup Previously Enabled But With No Policy Items
+
+        If you followed the example to Create a Cluster with Cloud Backup Enabled but No Policy Items and then want to add policy items later to the `CloudBackupSchedule` this example shows how.
+
+        The cluster already exists with `cloud_backup` enabled
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_hourly={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 1,
+            },
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 2,
+            },
+            policy_item_weeklies=[{
+                "frequency_interval": 4,
+                "retention_unit": "weeks",
+                "retention_value": 3,
+            }],
+            policy_item_monthlies=[{
+                "frequency_interval": 5,
+                "retention_unit": "months",
+                "retention_value": 4,
+            }],
+            policy_item_yearlies=[{
+                "frequency_interval": 1,
+                "retention_unit": "years",
+                "retention_value": 1,
+            }])
+        ```
+
+        ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
+
+        You can enable `cloud_backup` in the Cluster resource and then use the `cloud_backup_schedule` resource with a basic policy for Cloud Backup.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 14,
+            },
+            copy_settings=[{
+                "cloud_provider": "AWS",
+                "frequencies": [
+                    "HOURLY",
+                    "DAILY",
+                    "WEEKLY",
+                    "MONTHLY",
+                    "YEARLY",
+                    "ON_DEMAND",
+                ],
+                "region_name": "US_EAST_1",
+                "zone_id": my_cluster.replication_specs.apply(lambda replication_specs: [__item.zone_id[0] for __item in replication_specs]),
+                "should_copy_oplogs": False,
+            }])
+        ```
+
+        ### Further Examples
+        - Cloud Backup Schedule
+
         ## Import
 
         Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -590,6 +806,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
 
         :param str resource_name: The name of the resource.
@@ -609,6 +826,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+               
+               **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         ...
@@ -618,6 +838,206 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  args: CloudBackupScheduleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
+
+        > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        > **NOTE:** If you need to remove the `CloudBackupSchedule`, read this guide.
+
+        > **NOTE:** When creating a backup schedule you **must either** use the `depends_on` clause to indicate the cluster to which it refers **or** specify the values of `project_id` and `cluster_name` as reference of the cluster resource (e.g. `cluster_name = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
+
+        In the Terraform MongoDB Atlas Provider 1.0.0 we have re-architected the way in which Cloud Backup Policies are managed with Terraform to significantly reduce the complexity. Due to this change we've provided the following examples to help express how this resource functions.
+
+        ## Example Usage
+
+        ### Create A Cluster With 2 Policies Items
+
+        You can create a new cluster with `cloud_backup` enabled and then immediately overwrite the default cloud backup policy that Atlas creates by default at the same time with this example.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_hourly={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 1,
+            },
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 2,
+            })
+        ```
+
+        ### Create A Cluster With Cloud Backup Enabled But No Policy Items
+
+        You can enable `cloud_backup` in the Cluster resource and then use the `cloud_backup_schedule` resource with no policy items to remove the default policy that Atlas creates when you enable Cloud Backup. This allows you to then create a policy when you are ready to via Terraform.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4)
+        ```
+
+        ### Add 4 Policies Items To A Cluster With Cloud Backup Previously Enabled But With No Policy Items
+
+        If you followed the example to Create a Cluster with Cloud Backup Enabled but No Policy Items and then want to add policy items later to the `CloudBackupSchedule` this example shows how.
+
+        The cluster already exists with `cloud_backup` enabled
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_hourly={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 1,
+            },
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 2,
+            },
+            policy_item_weeklies=[{
+                "frequency_interval": 4,
+                "retention_unit": "weeks",
+                "retention_value": 3,
+            }],
+            policy_item_monthlies=[{
+                "frequency_interval": 5,
+                "retention_unit": "months",
+                "retention_value": 4,
+            }],
+            policy_item_yearlies=[{
+                "frequency_interval": 1,
+                "retention_unit": "years",
+                "retention_value": 1,
+            }])
+        ```
+
+        ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
+
+        You can enable `cloud_backup` in the Cluster resource and then use the `cloud_backup_schedule` resource with a basic policy for Cloud Backup.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
+            project_id="<PROJECT-ID>",
+            name="clusterTest",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "EU_CENTRAL_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.CloudBackupSchedule("test",
+            project_id=my_cluster.project_id,
+            cluster_name=my_cluster.name,
+            reference_hour_of_day=3,
+            reference_minute_of_hour=45,
+            restore_window_days=4,
+            policy_item_daily={
+                "frequency_interval": 1,
+                "retention_unit": "days",
+                "retention_value": 14,
+            },
+            copy_settings=[{
+                "cloud_provider": "AWS",
+                "frequencies": [
+                    "HOURLY",
+                    "DAILY",
+                    "WEEKLY",
+                    "MONTHLY",
+                    "YEARLY",
+                    "ON_DEMAND",
+                ],
+                "region_name": "US_EAST_1",
+                "zone_id": my_cluster.replication_specs.apply(lambda replication_specs: [__item.zone_id[0] for __item in replication_specs]),
+                "should_copy_oplogs": False,
+            }])
+        ```
+
+        ### Further Examples
+        - Cloud Backup Schedule
+
         ## Import
 
         Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -625,6 +1045,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
 
         :param str resource_name: The name of the resource.
@@ -741,6 +1162,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+               
+               **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -900,6 +1324,11 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+
+        **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+        """
         return pulumi.get(self, "update_snapshots")
 
     @_builtins.property

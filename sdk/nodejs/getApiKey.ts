@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+ *
+ * > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+ *
+ * > **NOTE:** You may find orgId in the official documentation.
+ *
  * ## Example Usage
  */
 export function getApiKey(args: GetApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetApiKeyResult> {
@@ -59,6 +65,12 @@ export interface GetApiKeyResult {
     readonly roleNames: string[];
 }
 /**
+ * `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+ *
+ * > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+ *
+ * > **NOTE:** You may find orgId in the official documentation.
+ *
  * ## Example Usage
  */
 export function getApiKeyOutput(args: GetApiKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetApiKeyResult> {

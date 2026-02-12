@@ -200,6 +200,21 @@ class ProjectInvitation(pulumi.CustomResource):
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `ProjectInvitation` invites a user to join an Atlas project.
+
+        > **DEPRECATION:** This resource is deprecated. Migrate to `CloudUserProjectAssignment` for managing project membership. See the Project Invitation to Cloud User Project Assignment Migration Guide.
+
+        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+
+        The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+
+        > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+        * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+        * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+        * If the user accepts the invitation and then leaves the project, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+
         ## Example Usage
 
         ### S
@@ -232,8 +247,8 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ## Import
 
-        ~> __IMPORTANT:__
-        A project invitation can __not__ be imported once it has been accepted.
+        > **IMPORTANT:**
+        A project invitation can **not** be imported once it has been accepted.
 
         Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
 
@@ -254,6 +269,21 @@ class ProjectInvitation(pulumi.CustomResource):
                  args: ProjectInvitationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ProjectInvitation` invites a user to join an Atlas project.
+
+        > **DEPRECATION:** This resource is deprecated. Migrate to `CloudUserProjectAssignment` for managing project membership. See the Project Invitation to Cloud User Project Assignment Migration Guide.
+
+        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+
+        The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+
+        > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+        * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+        * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+        * If the user accepts the invitation and then leaves the project, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+
         ## Example Usage
 
         ### S
@@ -286,8 +316,8 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ## Import
 
-        ~> __IMPORTANT:__
-        A project invitation can __not__ be imported once it has been accepted.
+        > **IMPORTANT:**
+        A project invitation can **not** be imported once it has been accepted.
 
         Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
 

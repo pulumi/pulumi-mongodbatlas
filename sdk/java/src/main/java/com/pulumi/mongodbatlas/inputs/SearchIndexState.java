@@ -305,9 +305,17 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.typeSets);
     }
 
+    /**
+     * Wait for search index to achieve Active status before terraform considers resource built.
+     * 
+     */
     @Import(name="waitForIndexBuildCompletion")
     private @Nullable Output<Boolean> waitForIndexBuildCompletion;
 
+    /**
+     * @return Wait for search index to achieve Active status before terraform considers resource built.
+     * 
+     */
     public Optional<Output<Boolean>> waitForIndexBuildCompletion() {
         return Optional.ofNullable(this.waitForIndexBuildCompletion);
     }
@@ -774,11 +782,23 @@ public final class SearchIndexState extends com.pulumi.resources.ResourceArgs {
             return typeSets(List.of(typeSets));
         }
 
+        /**
+         * @param waitForIndexBuildCompletion Wait for search index to achieve Active status before terraform considers resource built.
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForIndexBuildCompletion(@Nullable Output<Boolean> waitForIndexBuildCompletion) {
             $.waitForIndexBuildCompletion = waitForIndexBuildCompletion;
             return this;
         }
 
+        /**
+         * @param waitForIndexBuildCompletion Wait for search index to achieve Active status before terraform considers resource built.
+         * 
+         * @return builder
+         * 
+         */
         public Builder waitForIndexBuildCompletion(Boolean waitForIndexBuildCompletion) {
             return waitForIndexBuildCompletion(Output.of(waitForIndexBuildCompletion));
         }

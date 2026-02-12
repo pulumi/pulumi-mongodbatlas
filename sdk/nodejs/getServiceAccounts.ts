@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  */
 export function getServiceAccounts(args: GetServiceAccountsArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountsResult> {
@@ -44,6 +48,10 @@ export interface GetServiceAccountsResult {
     readonly results: outputs.GetServiceAccountsResult[];
 }
 /**
+ * `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  */
 export function getServiceAccountsOutput(args: GetServiceAccountsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceAccountsResult> {

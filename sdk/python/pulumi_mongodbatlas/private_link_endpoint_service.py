@@ -480,6 +480,134 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+
+        > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `PrivateLinkEndpoint`). You first create the service in Atlas with `PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `PrivateLinkEndpointService` resource.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="US_EAST_1")
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
+            service_name=test.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=ptfe_service["id"],
+            provider_name="AWS")
+        ```
+
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azurerm as azurerm
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
+            provider_name="AZURE",
+            region="eastus2")
+        test_private_endpoint = azurerm.index.PrivateEndpoint("test",
+            name=endpoint-test,
+            location=test_azurerm_resource_group.location,
+            resource_group_name=resource_group_name,
+            subnet_id=test_azurerm_subnet.id,
+            private_service_connection=[{
+                name: test.private_link_service_name,
+                privateConnectionResourceId: test.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link test,
+            }])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=test_private_endpoint["id"],
+            private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
+            provider_name="AZURE")
+        ```
+
+        ## Example with GCP
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project,
+            name=my-network)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google 50 Addresses
+        default_compute_address = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+                project=default_compute_subnetwork.project,
+                name=ftf-test{range.value},
+                subnetwork=default_compute_subnetwork.id,
+                address_type=INTERNAL,
+                address=f10.0.42.{range.value},
+                region=gcp_region,
+                opts = pulumi.ResourceOptions(depends_on=[test])))
+        # Create 50 Forwarding rules
+        default_compute_forwarding_rule = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+                target=test.service_attachment_names[range.value],
+                project=default_compute_address[range.value].project,
+                region=default_compute_address[range.value].region,
+                name=default_compute_address[range.value].name,
+                ip_address=default_compute_address[range.value].id,
+                network=default.id,
+                load_balancing_scheme=))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            endpoints=[{
+                "ip_address": entry["value"]["address"],
+                "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
+            } for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default["name"],
+            gcp_project_id=gcp_project,
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ### Further Examples
+        - AWS PrivateLink Endpoint and Service
+        - Azure Private Link Endpoint and Service
+        - GCP Private Service Connect Endpoint and Service
+
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -487,6 +615,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
 
         :param str resource_name: The name of the resource.
@@ -507,6 +636,134 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  args: PrivateLinkEndpointServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+
+        > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `PrivateLinkEndpoint`). You first create the service in Atlas with `PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `PrivateLinkEndpointService` resource.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="US_EAST_1")
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
+            service_name=test.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=ptfe_service["id"],
+            provider_name="AWS")
+        ```
+
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azurerm as azurerm
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
+            provider_name="AZURE",
+            region="eastus2")
+        test_private_endpoint = azurerm.index.PrivateEndpoint("test",
+            name=endpoint-test,
+            location=test_azurerm_resource_group.location,
+            resource_group_name=resource_group_name,
+            subnet_id=test_azurerm_subnet.id,
+            private_service_connection=[{
+                name: test.private_link_service_name,
+                privateConnectionResourceId: test.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link test,
+            }])
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            endpoint_service_id=test_private_endpoint["id"],
+            private_endpoint_ip_address=test_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
+            provider_name="AZURE")
+        ```
+
+        ## Example with GCP
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.PrivateLinkEndpoint("test",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project,
+            name=my-network)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google 50 Addresses
+        default_compute_address = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+                project=default_compute_subnetwork.project,
+                name=ftf-test{range.value},
+                subnetwork=default_compute_subnetwork.id,
+                address_type=INTERNAL,
+                address=f10.0.42.{range.value},
+                region=gcp_region,
+                opts = pulumi.ResourceOptions(depends_on=[test])))
+        # Create 50 Forwarding rules
+        default_compute_forwarding_rule = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+                target=test.service_attachment_names[range.value],
+                project=default_compute_address[range.value].project,
+                region=default_compute_address[range.value].region,
+                name=default_compute_address[range.value].name,
+                ip_address=default_compute_address[range.value].id,
+                network=default.id,
+                load_balancing_scheme=))
+        test_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("test",
+            endpoints=[{
+                "ip_address": entry["value"]["address"],
+                "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
+            } for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            project_id=test.project_id,
+            private_link_id=test.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default["name"],
+            gcp_project_id=gcp_project,
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ### Further Examples
+        - AWS PrivateLink Endpoint and Service
+        - Azure Private Link Endpoint and Service
+        - GCP Private Service Connect Endpoint and Service
+
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -514,6 +771,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
 
         :param str resource_name: The name of the resource.

@@ -25,6 +25,10 @@ public final class GetProjectIpAccessListResult {
      * 
      */
     private String comment;
+    /**
+     * @return Unique identifier used for terraform for internal management.
+     * 
+     */
     private String id;
     /**
      * @return Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
@@ -59,6 +63,10 @@ public final class GetProjectIpAccessListResult {
     public String comment() {
         return this.comment;
     }
+    /**
+     * @return Unique identifier used for terraform for internal management.
+     * 
+     */
     public String id() {
         return this.id;
     }

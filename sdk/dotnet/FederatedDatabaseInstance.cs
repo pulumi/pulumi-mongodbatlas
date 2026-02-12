@@ -253,17 +253,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// - The Federated Database Instance can be imported using project ID, name of the instance, in the format `project_id`--`name`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance  mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test
-    /// ```
-    /// 
-    /// - The Federated Database Instance can be imported using project ID, name of the instance and name of the AWS S3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.
-    /// 
-    /// ```sh
-    /// $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance  mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test--s3-test
-    /// ```
+    /// - The Federated Database Instance can be imported using project ID, name of the instance, in the format `ProjectId`--`Name`, e.g.
+    ///   ```sh
+    ///   $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance example 1112222b3bf99403840e8934--test
+    ///   ```
     /// 
     /// See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation) Documentation for more information.
     /// </summary>

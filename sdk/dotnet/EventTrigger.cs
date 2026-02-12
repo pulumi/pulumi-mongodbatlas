@@ -10,9 +10,164 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.EventTrigger` provides a Event Trigger resource.
+    /// 
+    /// Note: If the `AppId` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app. If it still exists, then it creates itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/) to learn more.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### S
+    /// 
+    /// ### Example Usage: Database Trigger with Function
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
+    ///         Type = "DATABASE",
+    ///         FunctionId = "FUNCTION ID",
+    ///         Disabled = false,
+    ///         ConfigOperationTypes = new[]
+    ///         {
+    ///             "INSERT",
+    ///             "UPDATE",
+    ///         },
+    ///         ConfigDatabase = "DATABASE NAME",
+    ///         ConfigCollection = "COLLECTION NAME",
+    ///         ConfigServiceId = "SERVICE ID",
+    ///         ConfigMatch = @"{
+    ///   \""updateDescription.updatedFields\"": {
+    ///     \""status\"": \""blocked\""
+    ///   }
+    /// }
+    /// ",
+    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigFullDocument = false,
+    ///         ConfigFullDocumentBefore = false,
+    ///         EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
+    ///         {
+    ///             AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
+    ///             {
+    ///                 ConfigAccountId = "AWS ACCOUNT ID",
+    ///                 ConfigRegion = "AWS REGIOn",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Note: Terraform allows creating [database triggers,](https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/#:~:text=Database%20triggers%20use%20MongoDB%20change,trigger%20created%20in%20a%20collection.) but not Atlas Functions. See [Define a Function](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/functions/#define-a-function) in the Atlas documentation for more details on creating functions in Atlas.
+    /// 
+    /// ### Example Usage: Database Trigger with EventBridge
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
+    ///         Type = "DATABASE",
+    ///         Disabled = false,
+    ///         Unordered = false,
+    ///         ConfigOperationTypes = new[]
+    ///         {
+    ///             "INSERT",
+    ///             "UPDATE",
+    ///         },
+    ///         ConfigOperationType = "LOGIN",
+    ///         ConfigProviders = new[]
+    ///         {
+    ///             "anon-user",
+    ///         },
+    ///         ConfigDatabase = "DATABASE NAME",
+    ///         ConfigCollection = "COLLECTION NAME",
+    ///         ConfigServiceId = "1",
+    ///         ConfigMatch = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigProject = "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+    ///         ConfigFullDocument = false,
+    ///         ConfigFullDocumentBefore = false,
+    ///         ConfigSchedule = "*",
+    ///         EventProcessors = new Mongodbatlas.Inputs.EventTriggerEventProcessorsArgs
+    ///         {
+    ///             AwsEventbridge = new Mongodbatlas.Inputs.EventTriggerEventProcessorsAwsEventbridgeArgs
+    ///             {
+    ///                 ConfigAccountId = "AWS ACCOUNT ID",
+    ///                 ConfigRegion = "AWS REGIOn",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example Usage: Authentication Trigger
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
+    ///         Type = "AUTHENTICATION",
+    ///         FunctionId = "1",
+    ///         Disabled = false,
+    ///         ConfigOperationType = "LOGIN",
+    ///         ConfigProviders = new[]
+    ///         {
+    ///             "anon-user",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Example Usage: Scheduled Trigger
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.EventTrigger("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         AppId = "APPLICATION ID",
+    ///         Name = "NAME OF THE TRIGGER",
+    ///         Type = "SCHEDULED",
+    ///         FunctionId = "1",
+    ///         Disabled = false,
+    ///         ConfigSchedule = "*",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
-    /// Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
+    /// Event trigger can be imported using project ID, App ID and Trigger ID, in the format `ProjectId`--`AppId`-`TriggerId`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934

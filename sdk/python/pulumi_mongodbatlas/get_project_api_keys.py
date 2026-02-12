@@ -97,6 +97,14 @@ def get_project_api_keys(items_per_page: Optional[_builtins.int] = None,
                          project_id: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectApiKeysResult:
     """
+    `get_project_api_keys` describes all API Keys. This represents API Keys that have been created.
+
+    > **IMPORTANT NOTE** The use of `get_project_api_keys` data source is no longer the recommended approach. For new configurations, we recommend using the `ApiKey` resource and the `ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `ProjectApiKey` to the new pattern.
+
+    > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
     ## Example Usage
 
     ```python
@@ -131,6 +139,14 @@ def get_project_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[_
                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectApiKeysResult]:
     """
+    `get_project_api_keys` describes all API Keys. This represents API Keys that have been created.
+
+    > **IMPORTANT NOTE** The use of `get_project_api_keys` data source is no longer the recommended approach. For new configurations, we recommend using the `ApiKey` resource and the `ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `ProjectApiKey` to the new pattern.
+
+    > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
     ## Example Usage
 
     ```python

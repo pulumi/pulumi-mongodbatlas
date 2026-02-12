@@ -10,6 +10,21 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.ProjectInvitation` invites a user to join an Atlas project.
+    /// 
+    /// &gt; **DEPRECATION:** This resource is deprecated. Migrate to `mongodbatlas.CloudUserProjectAssignment` for managing project membership. See the Project Invitation to Cloud User Project Assignment Migration Guide.
+    /// 
+    /// Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+    /// 
+    /// The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
+    /// 
+    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+    /// 
+    /// &gt; **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+    /// * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+    /// * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+    /// * If the user accepts the invitation and then leaves the project, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+    /// 
     /// ## Example Usage
     /// 
     /// ### S
@@ -62,10 +77,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// ~&gt; __IMPORTANT:__
-    /// A project invitation can __not__ be imported once it has been accepted.
+    /// &gt; **IMPORTANT:**
+    /// A project invitation can **not** be imported once it has been accepted.
     /// 
-    /// Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
+    /// Import a user's invitation to a project by separating the `ProjectId` and the `Username` with a hyphen:
     /// 
     /// ```sh
     /// $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com

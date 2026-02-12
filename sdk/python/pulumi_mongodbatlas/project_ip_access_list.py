@@ -300,6 +300,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
         ```
+
         For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
 
         :param str resource_name: The name of the resource.
@@ -386,6 +387,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
         ```
+
         For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
 
         :param str resource_name: The name of the resource.

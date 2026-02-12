@@ -365,11 +365,7 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
 
         ```sh
         $ pulumi import mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment test 63cfbf302333a3011d98592e/test-user@example.com
-        ```
-
         OR
-
-        ```sh
         $ pulumi import mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment test 63cfbf302333a3011d98592e/5f18367ccb7a503a2b481b7a
         ```
 
@@ -423,11 +419,7 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
 
         ```sh
         $ pulumi import mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment test 63cfbf302333a3011d98592e/test-user@example.com
-        ```
-
         OR
-
-        ```sh
         $ pulumi import mongodbatlas:index/cloudUserOrgAssignment:CloudUserOrgAssignment test 63cfbf302333a3011d98592e/5f18367ccb7a503a2b481b7a
         ```
 

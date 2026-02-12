@@ -195,6 +195,7 @@ class Team(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
 
         :param str resource_name: The name of the resource.
@@ -243,6 +244,7 @@ class Team(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
 
         :param str resource_name: The name of the resource.

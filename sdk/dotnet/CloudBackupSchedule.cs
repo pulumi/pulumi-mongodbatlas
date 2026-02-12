@@ -10,13 +10,316 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
+    /// 
+    /// &gt; **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+    /// 
+    /// &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+    /// 
+    /// &gt; **NOTE:** If you need to remove the `mongodbatlas.CloudBackupSchedule`, read this guide.
+    /// 
+    /// &gt; **NOTE:** When creating a backup schedule you **must either** use the `DependsOn` clause to indicate the cluster to which it refers **or** specify the values of `ProjectId` and `ClusterName` as reference of the cluster resource (e.g. `ClusterName = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
+    /// 
+    /// In the Terraform MongoDB Atlas Provider 1.0.0 we have re-architected the way in which Cloud Backup Policies are managed with Terraform to significantly reduce the complexity. Due to this change we've provided the following examples to help express how this resource functions.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ### Create A Cluster With 2 Policies Items
+    /// 
+    /// You can create a new cluster with `CloudBackup` enabled and then immediately overwrite the default cloud backup policy that Atlas creates by default at the same time with this example.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Name = "clusterTest",
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_CENTRAL_1",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         ReferenceHourOfDay = 3,
+    ///         ReferenceMinuteOfHour = 45,
+    ///         RestoreWindowDays = 4,
+    ///         PolicyItemHourly = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemHourlyArgs
+    ///         {
+    ///             FrequencyInterval = 1,
+    ///             RetentionUnit = "days",
+    ///             RetentionValue = 1,
+    ///         },
+    ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+    ///         {
+    ///             FrequencyInterval = 1,
+    ///             RetentionUnit = "days",
+    ///             RetentionValue = 2,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Create A Cluster With Cloud Backup Enabled But No Policy Items
+    /// 
+    /// You can enable `CloudBackup` in the Cluster resource and then use the `CloudBackupSchedule` resource with no policy items to remove the default policy that Atlas creates when you enable Cloud Backup. This allows you to then create a policy when you are ready to via Terraform.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Name = "clusterTest",
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_CENTRAL_1",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         ReferenceHourOfDay = 3,
+    ///         ReferenceMinuteOfHour = 45,
+    ///         RestoreWindowDays = 4,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Add 4 Policies Items To A Cluster With Cloud Backup Previously Enabled But With No Policy Items
+    /// 
+    /// If you followed the example to Create a Cluster with Cloud Backup Enabled but No Policy Items and then want to add policy items later to the `mongodbatlas.CloudBackupSchedule` this example shows how.
+    /// 
+    /// The cluster already exists with `CloudBackup` enabled
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Name = "clusterTest",
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_CENTRAL_1",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         ReferenceHourOfDay = 3,
+    ///         ReferenceMinuteOfHour = 45,
+    ///         RestoreWindowDays = 4,
+    ///         PolicyItemHourly = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemHourlyArgs
+    ///         {
+    ///             FrequencyInterval = 1,
+    ///             RetentionUnit = "days",
+    ///             RetentionValue = 1,
+    ///         },
+    ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+    ///         {
+    ///             FrequencyInterval = 1,
+    ///             RetentionUnit = "days",
+    ///             RetentionValue = 2,
+    ///         },
+    ///         PolicyItemWeeklies = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemWeeklyArgs
+    ///             {
+    ///                 FrequencyInterval = 4,
+    ///                 RetentionUnit = "weeks",
+    ///                 RetentionValue = 3,
+    ///             },
+    ///         },
+    ///         PolicyItemMonthlies = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemMonthlyArgs
+    ///             {
+    ///                 FrequencyInterval = 5,
+    ///                 RetentionUnit = "months",
+    ///                 RetentionValue = 4,
+    ///             },
+    ///         },
+    ///         PolicyItemYearlies = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemYearlyArgs
+    ///             {
+    ///                 FrequencyInterval = 1,
+    ///                 RetentionUnit = "years",
+    ///                 RetentionValue = 1,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
+    /// 
+    /// You can enable `CloudBackup` in the Cluster resource and then use the `CloudBackupSchedule` resource with a basic policy for Cloud Backup.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT-ID&gt;",
+    ///         Name = "clusterTest",
+    ///         ClusterType = "REPLICASET",
+    ///         BackupEnabled = true,
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AWS",
+    ///                         RegionName = "EU_CENTRAL_1",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
+    ///     {
+    ///         ProjectId = myCluster.ProjectId,
+    ///         ClusterName = myCluster.Name,
+    ///         ReferenceHourOfDay = 3,
+    ///         ReferenceMinuteOfHour = 45,
+    ///         RestoreWindowDays = 4,
+    ///         PolicyItemDaily = new Mongodbatlas.Inputs.CloudBackupSchedulePolicyItemDailyArgs
+    ///         {
+    ///             FrequencyInterval = 1,
+    ///             RetentionUnit = "days",
+    ///             RetentionValue = 14,
+    ///         },
+    ///         CopySettings = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingArgs
+    ///             {
+    ///                 CloudProvider = "AWS",
+    ///                 Frequencies = new[]
+    ///                 {
+    ///                     "HOURLY",
+    ///                     "DAILY",
+    ///                     "WEEKLY",
+    ///                     "MONTHLY",
+    ///                     "YEARLY",
+    ///                     "ON_DEMAND",
+    ///                 },
+    ///                 RegionName = "US_EAST_1",
+    ///                 ZoneId = myCluster.ReplicationSpecs.Apply(replicationSpecs =&gt; replicationSpecs.Select(__item =&gt; __item.ZoneId[0]).ToList()),
+    ///                 ShouldCopyOplogs = false,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Further Examples
+    /// - Cloud Backup Schedule
+    /// 
     /// ## Import
     /// 
-    /// Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+    /// Cloud Backup Schedule entries can be imported using ProjectId and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
     /// ```
+    /// 
     /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule")]
@@ -120,6 +423,11 @@ namespace Pulumi.Mongodbatlas
         [Output("restoreWindowDays")]
         public Output<int> RestoreWindowDays { get; private set; } = null!;
 
+        /// <summary>
+        /// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        /// 
+        /// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+        /// </summary>
         [Output("updateSnapshots")]
         public Output<bool> UpdateSnapshots { get; private set; } = null!;
 
@@ -279,6 +587,11 @@ namespace Pulumi.Mongodbatlas
         [Input("restoreWindowDays")]
         public Input<int>? RestoreWindowDays { get; set; }
 
+        /// <summary>
+        /// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        /// 
+        /// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+        /// </summary>
         [Input("updateSnapshots")]
         public Input<bool>? UpdateSnapshots { get; set; }
 
@@ -418,6 +731,11 @@ namespace Pulumi.Mongodbatlas
         [Input("restoreWindowDays")]
         public Input<int>? RestoreWindowDays { get; set; }
 
+        /// <summary>
+        /// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        /// 
+        /// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+        /// </summary>
         [Input("updateSnapshots")]
         public Input<bool>? UpdateSnapshots { get; set; }
 

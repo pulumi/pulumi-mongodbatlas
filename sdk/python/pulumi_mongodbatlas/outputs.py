@@ -1526,7 +1526,19 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
                  disk_gb_enabled: Optional[_builtins.bool] = None):
         """
         :param _builtins.bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
-        :param _builtins.str compute_max_instance_size: Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
+        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
+               
+               > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+               
+               When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+               
+               **Option 1 (Recommended):** Use `use_effective_fields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effective_electable_specs` and `effective_read_only_specs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+               
+               **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `read_only_specs` or `analytics_specs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+               
+               To manually update `instance_size`, `disk_size_gb`, or `disk_iops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with use_effective_fields for the detailed workflow.
+               
+               **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
@@ -1554,7 +1566,19 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> Optional[_builtins.str]:
         """
-        Minimum instance size to which your cluster can automatically scale. MongoDB Cloud requires this parameter if `"replicationSpecs[n].regionConfigs[m].autoScaling.compute.scaleDownEnabled" : true`.
+        Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
+
+        > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+
+        When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+
+        **Option 1 (Recommended):** Use `use_effective_fields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effective_electable_specs` and `effective_read_only_specs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+
+        **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `read_only_specs` or `analytics_specs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+
+        To manually update `instance_size`, `disk_size_gb`, or `disk_iops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with use_effective_fields for the detailed workflow.
+
+        **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -4977,7 +5001,7 @@ class ClusterReplicationSpec(dict):
                  zone_name: Optional[_builtins.str] = None):
         """
         :param _builtins.int num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
-        :param _builtins.str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        :param _builtins.str id: The Terraform's unique identifier used internally for state management.
         :param Sequence['ClusterReplicationSpecRegionsConfigArgs'] regions_configs: Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         :param _builtins.str zone_name: Name for the zone in a Global Cluster.
                
@@ -5004,7 +5028,7 @@ class ClusterReplicationSpec(dict):
     @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        The Terraform's unique identifier used internally for state management.
         """
         return pulumi.get(self, "id")
 
@@ -5256,7 +5280,7 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
                  id: Optional[_builtins.str] = None,
                  policy_items: Optional[Sequence['outputs.ClusterSnapshotBackupPolicyPolicyPolicyItem']] = None):
         """
-        :param _builtins.str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        :param _builtins.str id: The Terraform's unique identifier used internally for state management.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -5267,7 +5291,7 @@ class ClusterSnapshotBackupPolicyPolicy(dict):
     @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        The Terraform's unique identifier used internally for state management.
         """
         return pulumi.get(self, "id")
 
@@ -5309,7 +5333,7 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
                  retention_unit: Optional[_builtins.str] = None,
                  retention_value: Optional[_builtins.int] = None):
         """
-        :param _builtins.str id: Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        :param _builtins.str id: The Terraform's unique identifier used internally for state management.
         """
         if frequency_interval is not None:
             pulumi.set(__self__, "frequency_interval", frequency_interval)
@@ -5336,7 +5360,7 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItem(dict):
     @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
-        Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        The Terraform's unique identifier used internally for state management.
         """
         return pulumi.get(self, "id")
 
@@ -10735,7 +10759,7 @@ class GetAdvancedClustersResultResult(dict):
         """
         :param 'GetAdvancedClustersResultAdvancedConfigurationArgs' advanced_configuration: Get the advanced configuration options. See Advanced Configuration below for more details.
         :param _builtins.bool backup_enabled: Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
-        :param 'GetAdvancedClustersResultBiConnectorConfigArgs' bi_connector_config: Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+        :param 'GetAdvancedClustersResultBiConnectorConfigArgs' bi_connector_config: Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `bi_connector`.
         :param _builtins.str cluster_id: The cluster ID.
         :param _builtins.str cluster_type: Type of the cluster that you want to create.
         :param _builtins.str config_server_management_mode: Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
@@ -10812,7 +10836,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="biConnectorConfig")
     def bi_connector_config(self) -> 'outputs.GetAdvancedClustersResultBiConnectorConfigResult':
         """
-        Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+        Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `bi_connector`.
         """
         return pulumi.get(self, "bi_connector_config")
 
@@ -23064,6 +23088,7 @@ class GetOrganizationsResultResult(dict):
         :param _builtins.str name: Human-readable label that identifies the organization.
         :param _builtins.bool restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param _builtins.str security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        :param _builtins.bool skip_default_alerts_settings: Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
         :param Sequence['GetOrganizationsResultUserArgs'] users: Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
         """
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
@@ -23150,6 +23175,9 @@ class GetOrganizationsResultResult(dict):
     @_builtins.property
     @pulumi.getter(name="skipDefaultAlertsSettings")
     def skip_default_alerts_settings(self) -> _builtins.bool:
+        """
+        Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+        """
         return pulumi.get(self, "skip_default_alerts_settings")
 
     @_builtins.property
@@ -23207,6 +23235,17 @@ class GetOrganizationsResultUserResult(dict):
         :param _builtins.str inviter_username: Username of the MongoDB Cloud user who sent the invitation to join the organization.
         :param _builtins.str last_auth: Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
         :param _builtins.str last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        :param _builtins.str mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
+               
+               
+               > **NOTE:** - Users with pending invitations created using `ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
+               To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
+               
+               
+               > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `Organization` resource.
+               
+               
+               See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         :param _builtins.str org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
         :param Sequence['GetOrganizationsResultUserRoleArgs'] roles: Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
                * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
@@ -23302,6 +23341,19 @@ class GetOrganizationsResultUserResult(dict):
     @_builtins.property
     @pulumi.getter(name="mobileNumber")
     def mobile_number(self) -> _builtins.str:
+        """
+        Mobile phone number that belongs to the MongoDB Cloud user.
+
+
+        > **NOTE:** - Users with pending invitations created using `ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
+        To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
+
+
+        > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `Organization` resource.
+
+
+        See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
+        """
         return pulumi.get(self, "mobile_number")
 
     @_builtins.property

@@ -73,6 +73,9 @@ class GetProjectIpAccessListResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
+        """
+        Unique identifier used for terraform for internal management.
+        """
         return pulumi.get(self, "id")
 
     @_builtins.property
