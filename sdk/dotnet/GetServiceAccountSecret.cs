@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetServiceAccountSecret
     {
         /// <summary>
+        /// `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// ## Example Usage
         /// 
         /// ### S
@@ -62,6 +65,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountSecretResult>("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", args ?? new GetServiceAccountSecretArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// ## Example Usage
         /// 
         /// ### S
@@ -112,6 +118,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountSecretResult>("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", args ?? new GetServiceAccountSecretInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// ## Example Usage
         /// 
         /// ### S

@@ -159,11 +159,12 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * IP Access List entries can be imported using the `project_id` and `cidr_block` or `ip_address`, e.g.
+ * IP Access List entries can be imported using the `projectId` and `cidrBlock` or `ipAddress`, e.g.
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
  * ```
+ * 
  * For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
  * 
  */

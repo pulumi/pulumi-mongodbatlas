@@ -7,9 +7,124 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.EventTrigger` provides a Event Trigger resource.
+ *
+ * Note: If the `appId` changes in the mongodbatlas.EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app. If it still exists, then it creates itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/) to learn more.
+ *
+ * ## Example Usage
+ *
+ * ### S
+ *
+ * ### Example Usage: Database Trigger with Function
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     projectId: "PROJECT ID",
+ *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
+ *     type: "DATABASE",
+ *     functionId: "FUNCTION ID",
+ *     disabled: false,
+ *     configOperationTypes: [
+ *         "INSERT",
+ *         "UPDATE",
+ *     ],
+ *     configDatabase: "DATABASE NAME",
+ *     configCollection: "COLLECTION NAME",
+ *     configServiceId: "SERVICE ID",
+ *     configMatch: `{
+ *   \\"updateDescription.updatedFields\\": {
+ *     \\"status\\": \\"blocked\\"
+ *   }
+ * }
+ * `,
+ *     configProject: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configFullDocument: false,
+ *     configFullDocumentBefore: false,
+ *     eventProcessors: {
+ *         awsEventbridge: {
+ *             configAccountId: "AWS ACCOUNT ID",
+ *             configRegion: "AWS REGIOn",
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * Note: Terraform allows creating [database triggers,](https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/#:~:text=Database%20triggers%20use%20MongoDB%20change,trigger%20created%20in%20a%20collection.) but not Atlas Functions. See [Define a Function](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/functions/#define-a-function) in the Atlas documentation for more details on creating functions in Atlas.
+ *
+ * ### Example Usage: Database Trigger with EventBridge
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     projectId: "PROJECT ID",
+ *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
+ *     type: "DATABASE",
+ *     disabled: false,
+ *     unordered: false,
+ *     configOperationTypes: [
+ *         "INSERT",
+ *         "UPDATE",
+ *     ],
+ *     configOperationType: "LOGIN",
+ *     configProviders: ["anon-user"],
+ *     configDatabase: "DATABASE NAME",
+ *     configCollection: "COLLECTION NAME",
+ *     configServiceId: "1",
+ *     configMatch: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configProject: "{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}",
+ *     configFullDocument: false,
+ *     configFullDocumentBefore: false,
+ *     configSchedule: "*",
+ *     eventProcessors: {
+ *         awsEventbridge: {
+ *             configAccountId: "AWS ACCOUNT ID",
+ *             configRegion: "AWS REGIOn",
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * ### Example Usage: Authentication Trigger
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     projectId: "PROJECT ID",
+ *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
+ *     type: "AUTHENTICATION",
+ *     functionId: "1",
+ *     disabled: false,
+ *     configOperationType: "LOGIN",
+ *     configProviders: ["anon-user"],
+ * });
+ * ```
+ *
+ * ### Example Usage: Scheduled Trigger
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.EventTrigger("test", {
+ *     projectId: "PROJECT ID",
+ *     appId: "APPLICATION ID",
+ *     name: "NAME OF THE TRIGGER",
+ *     type: "SCHEDULED",
+ *     functionId: "1",
+ *     disabled: false,
+ *     configSchedule: "*",
+ * });
+ * ```
+ *
  * ## Import
  *
- * Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
+ * Event trigger can be imported using project ID, App ID and Trigger ID, in the format `projectId`--`appId`-`triggerId`, e.g.
  *
  * ```sh
  * $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934

@@ -53,6 +53,7 @@ class DatabaseUserArgs:
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+        :param pulumi.Input[_builtins.str] password: User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
                * `NONE` -	The user does not use X.509 authentication.
                * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
@@ -197,6 +198,9 @@ class DatabaseUserArgs:
     @_builtins.property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -260,6 +264,7 @@ class _DatabaseUserState:
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+        :param pulumi.Input[_builtins.str] password: User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
@@ -375,6 +380,9 @@ class _DatabaseUserState:
     @_builtins.property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -585,16 +593,14 @@ class DatabaseUser(pulumi.CustomResource):
         Database users can be imported using project ID, username, and auth database name in the format:
 
         1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
-
         2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
 
         ```sh
-        $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
+        terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user-admin # (1)
+        terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
         ```
 
-        ```sh
-        $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
-        ```
+        > **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -613,6 +619,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+        :param pulumi.Input[_builtins.str] password: User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
@@ -751,16 +758,14 @@ class DatabaseUser(pulumi.CustomResource):
         Database users can be imported using project ID, username, and auth database name in the format:
 
         1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
-
         2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
 
         ```sh
-        $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
+        terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user-admin # (1)
+        terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
         ```
 
-        ```sh
-        $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
-        ```
+        > **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
 
         :param str resource_name: The name of the resource.
         :param DatabaseUserArgs args: The arguments to use to populate this resource's properties.
@@ -864,6 +869,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
+        :param pulumi.Input[_builtins.str] password: User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
@@ -948,6 +954,9 @@ class DatabaseUser(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+        """
         return pulumi.get(self, "password")
 
     @_builtins.property

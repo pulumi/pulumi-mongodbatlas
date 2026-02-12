@@ -12,6 +12,14 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectApiKey
     {
         /// <summary>
+        /// `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+        /// 
+        /// &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+        /// 
+        /// &gt; **NOTE:** You may find ProjectId in the official documentation.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Using ProjectId and ApiKeyId attribute to query
@@ -52,6 +60,14 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectApiKeyResult>("mongodbatlas:index/getProjectApiKey:getProjectApiKey", args ?? new GetProjectApiKeyArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+        /// 
+        /// &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+        /// 
+        /// &gt; **NOTE:** You may find ProjectId in the official documentation.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Using ProjectId and ApiKeyId attribute to query
@@ -92,6 +108,14 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectApiKeyResult>("mongodbatlas:index/getProjectApiKey:getProjectApiKey", args ?? new GetProjectApiKeyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+        /// 
+        /// &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+        /// 
+        /// &gt; **NOTE:** You may find ProjectId in the official documentation.
+        /// 
         /// ## Example Usage
         /// 
         /// ### Using ProjectId and ApiKeyId attribute to query

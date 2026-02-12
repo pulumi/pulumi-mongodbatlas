@@ -252,6 +252,14 @@ class ProjectServiceAccount(pulumi.CustomResource):
                  secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        `ProjectServiceAccount` provides a Project Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Project.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
+        > **IMPORTANT:** The use of `ProjectServiceAccount` resource is not recommended for users with Organization Owner permissions. Instead, use the `ServiceAccount` and `ServiceAccountProjectAssignment` resources to manage Service Account project assignments.
+
+        > **IMPORTANT:** Deleting a `ProjectServiceAccount` resource unassigns the associated Service Account from the project, but doesn't delete it from the organization.
+
         ## Example Usage
 
         ## Import
@@ -277,6 +285,14 @@ class ProjectServiceAccount(pulumi.CustomResource):
                  args: ProjectServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ProjectServiceAccount` provides a Project Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Project.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
+        > **IMPORTANT:** The use of `ProjectServiceAccount` resource is not recommended for users with Organization Owner permissions. Instead, use the `ServiceAccount` and `ServiceAccountProjectAssignment` resources to manage Service Account project assignments.
+
+        > **IMPORTANT:** Deleting a `ProjectServiceAccount` resource unassigns the associated Service Account from the project, but doesn't delete it from the organization.
+
         ## Example Usage
 
         ## Import

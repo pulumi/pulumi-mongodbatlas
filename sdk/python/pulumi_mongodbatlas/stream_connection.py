@@ -772,6 +772,7 @@ class StreamConnection(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
         ```
+
         To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.
         The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
 
@@ -994,6 +995,7 @@ class StreamConnection(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
         ```
+
         To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.
         The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
 

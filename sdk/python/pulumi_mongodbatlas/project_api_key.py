@@ -146,6 +146,12 @@ class ProjectApiKey(pulumi.CustomResource):
                  project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
                  __props__=None):
         """
+        `ProjectApiKey` provides a Project API Key resource. This allows project API Key to be created.
+
+        > **IMPORTANT NOTE** The use of `ProjectApiKey` resource is no longer the recommended approach. For new configurations, we recommend using the `ApiKey` resource and the `ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `ProjectApiKey` to the new pattern.
+
+        > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
         ## Example Usage
 
         ### Create And Assign PAK Together
@@ -210,6 +216,12 @@ class ProjectApiKey(pulumi.CustomResource):
                  args: ProjectApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ProjectApiKey` provides a Project API Key resource. This allows project API Key to be created.
+
+        > **IMPORTANT NOTE** The use of `ProjectApiKey` resource is no longer the recommended approach. For new configurations, we recommend using the `ApiKey` resource and the `ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `ProjectApiKey` to the new pattern.
+
+        > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
         ## Example Usage
 
         ### Create And Assign PAK Together

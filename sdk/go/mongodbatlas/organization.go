@@ -60,17 +60,21 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
 // ```
-// ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
 //
-// See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
+// > **IMPORTANT:** When importing an existing organization, you should **NOT** specify the creation-only attributes (`orgOwnerId`, `description`, `roleNames`, `federationSettingsId`) in your Terraform configuration.
 //
-// For more information about the `mongodbatlas_organization` resource see: [MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations).
+// See the Guide: Importing MongoDB Atlas Organizations for more information.
+//
+// For more information about the `Organization` resource see: [MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations).
 type Organization struct {
 	pulumi.CustomResourceState
 
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
-	ApiAccessListRequired pulumi.BoolOutput      `pulumi:"apiAccessListRequired"`
-	Description           pulumi.StringPtrOutput `pulumi:"description"`
+	ApiAccessListRequired pulumi.BoolOutput `pulumi:"apiAccessListRequired"`
+	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+	//
+	// > **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
 	FederationSettingsId pulumi.StringPtrOutput `pulumi:"federationSettingsId"`
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
@@ -83,7 +87,8 @@ type Organization struct {
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId pulumi.StringPtrOutput `pulumi:"orgOwnerId"`
-	PrivateKey pulumi.StringOutput    `pulumi:"privateKey"`
+	// Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
+	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// Public API key value set for the specified organization API key.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -91,8 +96,11 @@ type Organization struct {
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           pulumi.StringPtrOutput `pulumi:"securityContact"`
-	SkipDefaultAlertsSettings pulumi.BoolOutput      `pulumi:"skipDefaultAlertsSettings"`
+	SecurityContact pulumi.StringPtrOutput `pulumi:"securityContact"`
+	// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+	//
+	// > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
+	SkipDefaultAlertsSettings pulumi.BoolOutput `pulumi:"skipDefaultAlertsSettings"`
 }
 
 // NewOrganization registers a new resource with the given unique name, arguments, and options.
@@ -131,8 +139,11 @@ func GetOrganization(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Organization resources.
 type organizationState struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
-	ApiAccessListRequired *bool   `pulumi:"apiAccessListRequired"`
-	Description           *string `pulumi:"description"`
+	ApiAccessListRequired *bool `pulumi:"apiAccessListRequired"`
+	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+	//
+	// > **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+	Description *string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
@@ -145,6 +156,7 @@ type organizationState struct {
 	OrgId *string `pulumi:"orgId"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId *string `pulumi:"orgOwnerId"`
+	// Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
 	PrivateKey *string `pulumi:"privateKey"`
 	// Public API key value set for the specified organization API key.
 	PublicKey *string `pulumi:"publicKey"`
@@ -153,14 +165,20 @@ type organizationState struct {
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames []string `pulumi:"roleNames"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           *string `pulumi:"securityContact"`
-	SkipDefaultAlertsSettings *bool   `pulumi:"skipDefaultAlertsSettings"`
+	SecurityContact *string `pulumi:"securityContact"`
+	// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+	//
+	// > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
+	SkipDefaultAlertsSettings *bool `pulumi:"skipDefaultAlertsSettings"`
 }
 
 type OrganizationState struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolPtrInput
-	Description           pulumi.StringPtrInput
+	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+	//
+	// > **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+	Description pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
 	FederationSettingsId pulumi.StringPtrInput
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
@@ -173,6 +191,7 @@ type OrganizationState struct {
 	OrgId pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId pulumi.StringPtrInput
+	// Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
 	PrivateKey pulumi.StringPtrInput
 	// Public API key value set for the specified organization API key.
 	PublicKey pulumi.StringPtrInput
@@ -181,7 +200,10 @@ type OrganizationState struct {
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames pulumi.StringArrayInput
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           pulumi.StringPtrInput
+	SecurityContact pulumi.StringPtrInput
+	// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+	//
+	// > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
 	SkipDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
@@ -191,8 +213,11 @@ func (OrganizationState) ElementType() reflect.Type {
 
 type organizationArgs struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
-	ApiAccessListRequired *bool   `pulumi:"apiAccessListRequired"`
-	Description           *string `pulumi:"description"`
+	ApiAccessListRequired *bool `pulumi:"apiAccessListRequired"`
+	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+	//
+	// > **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+	Description *string `pulumi:"description"`
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
 	FederationSettingsId *string `pulumi:"federationSettingsId"`
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
@@ -208,15 +233,21 @@ type organizationArgs struct {
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames []string `pulumi:"roleNames"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           *string `pulumi:"securityContact"`
-	SkipDefaultAlertsSettings *bool   `pulumi:"skipDefaultAlertsSettings"`
+	SecurityContact *string `pulumi:"securityContact"`
+	// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+	//
+	// > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
+	SkipDefaultAlertsSettings *bool `pulumi:"skipDefaultAlertsSettings"`
 }
 
 // The set of arguments for constructing a Organization resource.
 type OrganizationArgs struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolPtrInput
-	Description           pulumi.StringPtrInput
+	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+	//
+	// > **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+	Description pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
 	FederationSettingsId pulumi.StringPtrInput
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
@@ -232,7 +263,10 @@ type OrganizationArgs struct {
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames pulumi.StringArrayInput
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           pulumi.StringPtrInput
+	SecurityContact pulumi.StringPtrInput
+	// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+	//
+	// > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
 	SkipDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
@@ -328,6 +362,9 @@ func (o OrganizationOutput) ApiAccessListRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Organization) pulumi.BoolOutput { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
 }
 
+// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+//
+// > **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
 func (o OrganizationOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -362,6 +399,7 @@ func (o OrganizationOutput) OrgOwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.OrgOwnerId }).(pulumi.StringPtrOutput)
 }
 
+// Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
 func (o OrganizationOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
@@ -386,6 +424,9 @@ func (o OrganizationOutput) SecurityContact() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.SecurityContact }).(pulumi.StringPtrOutput)
 }
 
+// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+//
+// > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
 func (o OrganizationOutput) SkipDefaultAlertsSettings() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Organization) pulumi.BoolOutput { return v.SkipDefaultAlertsSettings }).(pulumi.BoolOutput)
 }

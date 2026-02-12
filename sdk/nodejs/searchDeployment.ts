@@ -112,6 +112,9 @@ export class SearchDeployment extends pulumi.CustomResource {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     declare public readonly projectId: pulumi.Output<string>;
+    /**
+     * If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+     */
     declare public readonly skipWaitOnUpdate: pulumi.Output<boolean | undefined>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
@@ -189,6 +192,9 @@ export interface SearchDeploymentState {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+     */
     skipWaitOnUpdate?: pulumi.Input<boolean>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
@@ -217,6 +223,9 @@ export interface SearchDeploymentArgs {
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+     */
     skipWaitOnUpdate?: pulumi.Input<boolean>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.

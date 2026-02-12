@@ -73,12 +73,18 @@ class AdvancedClusterArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
-        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+               **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+               `lifecycle {
+               ignore_changes = [paused]
+               }`
         :param pulumi.Input['AdvancedClusterPinnedFcvArgs'] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+               
+               > **NOTE** Prior version of provider had parameter as `bi_connector` state will migrate it to new value you only need to update parameter in your terraform file
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -321,7 +327,11 @@ class AdvancedClusterArgs:
     @pulumi.getter
     def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether the cluster is paused.
+        Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+        **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+        `lifecycle {
+        ignore_changes = [paused]
+        }`
         """
         return pulumi.get(self, "paused")
 
@@ -381,7 +391,9 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+        Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+
+        > **NOTE** Prior version of provider had parameter as `bi_connector` state will migrate it to new value you only need to update parameter in your terraform file
         """
         return pulumi.get(self, "retain_backups_enabled")
 
@@ -529,14 +541,20 @@ class _AdvancedClusterState:
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
-        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+               **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+               `lifecycle {
+               ignore_changes = [paused]
+               }`
         :param pulumi.Input['AdvancedClusterPinnedFcvArgs'] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+               
+               > **NOTE** Prior version of provider had parameter as `bi_connector` state will migrate it to new value you only need to update parameter in your terraform file
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[_builtins.str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -838,7 +856,11 @@ class _AdvancedClusterState:
     @pulumi.getter
     def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether the cluster is paused.
+        Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+        **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+        `lifecycle {
+        ignore_changes = [paused]
+        }`
         """
         return pulumi.get(self, "paused")
 
@@ -922,7 +944,9 @@ class _AdvancedClusterState:
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+        Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+
+        > **NOTE** Prior version of provider had parameter as `bi_connector` state will migrate it to new value you only need to update parameter in your terraform file
         """
         return pulumi.get(self, "retain_backups_enabled")
 
@@ -1059,6 +1083,550 @@ class AdvancedCluster(pulumi.CustomResource):
                  version_release_system: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters.
+
+        > **IMPORTANT:** If upgrading from our provider versions 1.x.x to 2.0.0 or later, you will be required to update your `AdvancedCluster` resource configuration. Please refer this guide for details. This new implementation uses the recommended Terraform Plugin Framework, which, in addition to providing a better user experience and other features, adds support for the `moved` block between different resource types.
+
+        > **IMPORTANT:** We recommend all new MongoDB Atlas Terraform users start with the `AdvancedCluster` resource.  Key differences between `Cluster` and `AdvancedCluster` include support for [Multi-Cloud Clusters](https://www.mongodb.com/blog/post/introducing-multicloud-clusters-on-mongodb-atlas), Asymmetric Sharding, and [Independent Scaling of Analytics Node Tiers](https://www.mongodb.com/blog/post/introducing-ability-independently-scale-atlas-analytics-node-tiers). For existing `Cluster` resource users see our Migration Guide.
+
+        > **IMPORTANT:** When modifying cluster configurations, you may see `(known after apply)` markers for many attributes, even those you haven't changed. This is expected behavior. See the "known after apply" verbosity section below for details.
+
+        > **IMPORTANT:** When configuring auto-scaling, you can now use `use_effective_fields` to simplify your Terraform workflow. See the Auto-Scaling with Effective Fields section below for details.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs[#].container_id` attribute in the Attributes Reference for more information.
+
+        > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
+
+        > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+
+        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+
+        > **NOTE:** This resource supports Flex clusters. Additionally, you can upgrade M0 clusters to Flex and Flex clusters to Dedicated. When creating a Flex cluster, make sure to set the priority value to 7.
+
+        ## Example Usage
+
+        ### Example single provider and single region
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                    "analytics_specs": {
+                        "instance_size": "M10",
+                        "node_count": 1,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "US_EAST_1",
+                }],
+            }])
+        ```
+
+        ### Example using effective fields with auto-scaling
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
+            project_id=project_id,
+            name="auto-scale-cluster",
+            cluster_type="REPLICASET",
+            use_effective_fields=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                    "auto_scaling": {
+                        "compute_enabled": True,
+                        "compute_scale_down_enabled": True,
+                        "compute_min_instance_size": "M10",
+                        "compute_max_instance_size": "M30",
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "US_EAST_1",
+                }],
+            }])
+        # Read the effective (actual) values after Atlas scales
+        this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+            name=this_advanced_cluster.name,
+            use_effective_fields=True)
+        pulumi.export("configuredInstanceSize", this.replication_specs[0].region_configs[0].electable_specs.instance_size)
+        pulumi.export("actualInstanceSize", this.replication_specs[0].region_configs[0].effective_electable_specs.instance_size)
+        ```
+
+        **For module authors:** See the Effective Fields Examples for complete examples of using `use_effective_fields` and effective specs in reusable Terraform modules.
+
+        ### Example Tenant Cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M0",
+                    },
+                    "provider_name": "TENANT",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        > **NOTE** Upgrading the tenant cluster to a Flex cluster or a dedicated cluster is supported. When upgrading to a Flex cluster, change the `provider_name` from "TENANT" to "FLEX". See Example Tenant Cluster Upgrade to Flex below. When upgrading to a dedicated cluster, change the `provider_name` to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`. See the Example Tenant Cluster Upgrade below. You can upgrade a tenant cluster only to a single provider on an M10-tier cluster or greater.
+
+        When upgrading from the tenant, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+
+        ### Example Tenant Cluster Upgrade
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                    },
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        ### Example Tenant Cluster Upgrade to Flex
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "provider_name": "FLEX",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        ### Example Flex Cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "provider_name": "FLEX",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        **NOTE**: Upgrading the Flex cluster is supported. When upgrading from a Flex cluster, change the `provider_name` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Flex Cluster Upgrade below. You can upgrade a Flex cluster only to a single provider on an M10-tier cluster or greater.
+
+        When upgrading from a flex cluster, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+
+        ### Example Flex Cluster Upgrade
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                    },
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        ### Example Multi-Cloud Cluster
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 3,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AWS",
+                        "priority": 7,
+                        "region_name": "US_EAST_1",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "provider_name": "GCP",
+                        "priority": 6,
+                        "region_name": "NORTH_AMERICA_NORTHEAST_1",
+                    },
+                ],
+            }])
+        ```
+        ### Example of a Multi Cloud Sharded Cluster with 2 shards
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id=project["id"],
+            name=cluster_name,
+            cluster_type="SHARDED",
+            backup_enabled=True,
+            replication_specs=[
+                {
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+                {
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+            ],
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 991,
+                "sample_refresh_interval_bi_connector": 300,
+            })
+        ```
+
+        ### Example of a Global Cluster with 2 zones
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id=project["id"],
+            name=cluster_name,
+            cluster_type="GEOSHARDED",
+            backup_enabled=True,
+            replication_specs=[
+                {
+                    "zone_name": "zone n1",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+                {
+                    "zone_name": "zone n1",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+                {
+                    "zone_name": "zone n2",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "EU_WEST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "EUROPE_NORTH",
+                        },
+                    ],
+                },
+                {
+                    "zone_name": "zone n2",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "EU_WEST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "EUROPE_NORTH",
+                        },
+                    ],
+                },
+            ],
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 999,
+                "sample_refresh_interval_bi_connector": 300,
+            })
+        ```
+
+        ### Example - Return a Connection String
+        Standard
+        ```python
+        import pulumi
+
+        pulumi.export("standard", cluster["connectionStrings"]["standard"])
+        ```
+        Standard srv
+        ```python
+        import pulumi
+
+        pulumi.export("standardSrv", cluster["connectionStrings"]["standardSrv"])
+        ```
+        Private with Network peering and Custom DNS AWS enabled
+        ```python
+        import pulumi
+
+        pulumi.export("private", cluster["connectionStrings"]["private"])
+        ```
+        Private srv with Network peering and Custom DNS AWS enabled
+        ```python
+        import pulumi
+
+        pulumi.export("privateSrv", cluster["connectionStrings"]["privateSrv"])
+        ```
+
+        By endpoint_service_id
+
+        Refer to the following for full privatelink endpoint connection string examples:
+        * GCP Private Endpoint
+        * Azure Private Endpoint
+        * AWS, Private Endpoint
+        * AWS, Regionalized Private Endpoints
+
+        ### Further Examples
+
+        **Cluster Types:**
+        - Replicaset
+        - Symmetric Sharded Cluster
+        - Asymmetric Sharded Cluster
+        - Global Cluster
+        - Multi-Cloud
+
+        **Auto-scaling:**
+        - Auto-Scaling Per Shard
+        - Effective Fields Examples
+
+        **Upgrades & Migrations:**
+        - Tenant Upgrade
+        - Flex Upgrade
+        - Version Upgrade with Pinned FCV
+        - Migrate Cluster to Advanced Cluster
+
+        ## Move
+
+        `mongodbatlas__cluster` resources can be moved to `AdvancedCluster` in Terraform v1.8 and later, e.g.:
+
+        More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
+
+        ## Auto-Scaling with Effective Fields
+
+        The `use_effective_fields` attribute enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and providing visibility into Atlas-managed changes. This feature only applies to dedicated clusters (M10+) and is not supported for flex and tenant clusters.
+
+        ### Why use_effective_fields?
+
+        When auto-scaling is enabled on a cluster, Atlas automatically adjusts instance sizes and disk capacity based on workload. Without `use_effective_fields`, `lifecycle.ignore_changes` blocks are required to prevent Terraform from reverting these Atlas-managed changes. This approach has limitations:
+
+        - **Configuration drift**: The actual cluster configuration diverges from your Terraform configuration
+        - **Maintenance overhead**: Careful management of `ignore_changes` blocks is required, including commenting and uncommenting when making intentional changes
+        - **Limited visibility**: Actual scaled values cannot be easily inspected within Terraform state
+
+        ### How use_effective_fields works
+
+        The `use_effective_fields` attribute changes how the provider handles specification attributes:
+
+        **When `use_effective_fields = false` (default - current behavior):**
+        - Spec attributes (`electable_specs`, `analytics_specs`, `read_only_specs`) behavior:
+          - If values are specified in your Terraform configuration (e.g., `instance_size = "M10"`), those values remain in your configuration
+          - If values are not specified, Atlas provides default values automatically
+        - With auto-scaling enabled, Atlas scales your cluster but your configured values do not update to match
+        - This creates plan drift: Terraform shows differences between your configured values and what Atlas has actually deployed
+        - `lifecycle.ignore_changes` must be used to prevent Terraform from reverting Atlas auto-scaling changes back to your original configuration
+
+        **When `use_effective_fields = true` (new behavior):**
+        - **Clear separation of concerns**:
+          - Spec attributes remain exactly as defined in your Terraform configuration
+          - Atlas-computed values (defaults and auto-scaled values) are available separately in effective specs
+        - No plan drift occurs when Atlas auto-scales your cluster
+        - Use data sources to read `effective_electable_specs`, `effective_analytics_specs`, and `effective_read_only_specs` for actual values
+
+        **Key difference:** With `use_effective_fields = true`, your configuration stays clean and represents your intent, while effective specs show the reality of what Atlas has provisioned.
+
+        See the Example using effective fields with auto-scaling in the Example Usage section.
+
+        ### Manually Updating Specs with use_effective_fields
+
+        When `use_effective_fields = true` and auto-scaling is enabled, you can update `instance_size`, `disk_size_gb`, or `disk_iops` in your configuration at any time without validation errors. However, Atlas echoes these values back in state while continuing to use auto-scaled values for actual cluster operations. To have your configured values take effect, temporarily disable auto-scaling:
+
+        1. Set `compute_enabled = false` and `disk_gb_enabled = false` in the `auto_scaling` block and apply.
+        2. Update `instance_size`, `disk_size_gb`, or `disk_iops` to your desired values and apply.
+        3. Re-enable auto-scaling by setting `compute_enabled` and/or `disk_gb_enabled` back to `true` and apply.
+
+        This workflow allows you to set specific baseline values from which auto-scaling will resume dynamic adjustments based on workload.
+
+        ### Terraform Modules
+
+        `use_effective_fields` is particularly valuable for reusable Terraform modules. Without it, separate module implementations are required (one with lifecycle blocks for auto-scaling, one without). With `use_effective_fields`, a single module handles both scenarios without lifecycle blocks. See the Effective Fields Examples for complete implementations.
+
+        ### Migration path and version 3.x
+
+        **Current behavior (provider v2.x):**
+        - `use_effective_fields` defaults to `false` for full backward compatibility
+        - Set to `true` to opt into the effective fields behavior
+        - The attribute will be deprecated later in v2.x releases in preparation for v3.x
+
+        **Future behavior (provider v3.x):**
+        - The effective fields behavior will be enabled by default
+        - The `use_effective_fields` attribute will be removed, as the new behavior becomes standard
+        - This change will reduce plan verbosity by making specification fields Optional-only (removing Computed), eliminating unnecessary `(known after apply)` markers for user-configured values
+
+        **Potential enhancements (v3.x or later):**
+        - If customer demand warrants, effective spec fields (`effective_electable_specs`, `effective_analytics_specs`, `effective_read_only_specs`) may be exposed directly in the resource (currently available only via data source)
+        - This would improve observability by providing direct access to actual operational values from the resource without requiring a separate data source
+        - Note: Effective fields would still show `(known after apply)` markers, but user-configured spec fields would not, resulting in clearer plan output overall
+
+        **Migration recommendation:** Adopt `use_effective_fields = true` in v2.x to prepare for the v3.x transition and benefit from improved auto-scaling workflows immediately. The recommendation is to toggle the flag and remove any existing `lifecycle.ignore_changes` blocks in the same apply, without combining other changes.
+
+        ## Considerations and Best Practices
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1066,10 +1634,11 @@ class AdvancedCluster(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 
-        ~> __IMPORTANT:__
-        \\n\\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+        > **IMPORTANT:**
+        <br> &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1095,14 +1664,20 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
-        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+               **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+               `lifecycle {
+               ignore_changes = [paused]
+               }`
         :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+               
+               > **NOTE** Prior version of provider had parameter as `bi_connector` state will migrate it to new value you only need to update parameter in your terraform file
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
@@ -1120,6 +1695,550 @@ class AdvancedCluster(pulumi.CustomResource):
                  args: AdvancedClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters.
+
+        > **IMPORTANT:** If upgrading from our provider versions 1.x.x to 2.0.0 or later, you will be required to update your `AdvancedCluster` resource configuration. Please refer this guide for details. This new implementation uses the recommended Terraform Plugin Framework, which, in addition to providing a better user experience and other features, adds support for the `moved` block between different resource types.
+
+        > **IMPORTANT:** We recommend all new MongoDB Atlas Terraform users start with the `AdvancedCluster` resource.  Key differences between `Cluster` and `AdvancedCluster` include support for [Multi-Cloud Clusters](https://www.mongodb.com/blog/post/introducing-multicloud-clusters-on-mongodb-atlas), Asymmetric Sharding, and [Independent Scaling of Analytics Node Tiers](https://www.mongodb.com/blog/post/introducing-ability-independently-scale-atlas-analytics-node-tiers). For existing `Cluster` resource users see our Migration Guide.
+
+        > **IMPORTANT:** When modifying cluster configurations, you may see `(known after apply)` markers for many attributes, even those you haven't changed. This is expected behavior. See the "known after apply" verbosity section below for details.
+
+        > **IMPORTANT:** When configuring auto-scaling, you can now use `use_effective_fields` to simplify your Terraform workflow. See the Auto-Scaling with Effective Fields section below for details.
+
+        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+        > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs[#].container_id` attribute in the Attributes Reference for more information.
+
+        > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
+
+        > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+
+        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+
+        > **NOTE:** This resource supports Flex clusters. Additionally, you can upgrade M0 clusters to Flex and Flex clusters to Dedicated. When creating a Flex cluster, make sure to set the priority value to 7.
+
+        ## Example Usage
+
+        ### Example single provider and single region
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                    "analytics_specs": {
+                        "instance_size": "M10",
+                        "node_count": 1,
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "US_EAST_1",
+                }],
+            }])
+        ```
+
+        ### Example using effective fields with auto-scaling
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this_advanced_cluster = mongodbatlas.AdvancedCluster("this",
+            project_id=project_id,
+            name="auto-scale-cluster",
+            cluster_type="REPLICASET",
+            use_effective_fields=True,
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                    "auto_scaling": {
+                        "compute_enabled": True,
+                        "compute_scale_down_enabled": True,
+                        "compute_min_instance_size": "M10",
+                        "compute_max_instance_size": "M30",
+                    },
+                    "provider_name": "AWS",
+                    "priority": 7,
+                    "region_name": "US_EAST_1",
+                }],
+            }])
+        # Read the effective (actual) values after Atlas scales
+        this = mongodbatlas.get_advanced_cluster_output(project_id=this_advanced_cluster.project_id,
+            name=this_advanced_cluster.name,
+            use_effective_fields=True)
+        pulumi.export("configuredInstanceSize", this.replication_specs[0].region_configs[0].electable_specs.instance_size)
+        pulumi.export("actualInstanceSize", this.replication_specs[0].region_configs[0].effective_electable_specs.instance_size)
+        ```
+
+        **For module authors:** See the Effective Fields Examples for complete examples of using `use_effective_fields` and effective specs in reusable Terraform modules.
+
+        ### Example Tenant Cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M0",
+                    },
+                    "provider_name": "TENANT",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        > **NOTE** Upgrading the tenant cluster to a Flex cluster or a dedicated cluster is supported. When upgrading to a Flex cluster, change the `provider_name` from "TENANT" to "FLEX". See Example Tenant Cluster Upgrade to Flex below. When upgrading to a dedicated cluster, change the `provider_name` to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`. See the Example Tenant Cluster Upgrade below. You can upgrade a tenant cluster only to a single provider on an M10-tier cluster or greater.
+
+        When upgrading from the tenant, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+
+        ### Example Tenant Cluster Upgrade
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                    },
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        ### Example Tenant Cluster Upgrade to Flex
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "provider_name": "FLEX",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        ### Example Flex Cluster
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "provider_name": "FLEX",
+                    "backing_provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        **NOTE**: Upgrading the Flex cluster is supported. When upgrading from a Flex cluster, change the `provider_name` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backing_provider_name`.  See the Example Flex Cluster Upgrade below. You can upgrade a Flex cluster only to a single provider on an M10-tier cluster or greater.
+
+        When upgrading from a flex cluster, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+
+        ### Example Flex Cluster Upgrade
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [{
+                    "electable_specs": {
+                        "instance_size": "M10",
+                    },
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "priority": 7,
+                }],
+            }])
+        ```
+
+        ### Example Multi-Cloud Cluster
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id="PROJECT ID",
+            name="NAME OF CLUSTER",
+            cluster_type="REPLICASET",
+            replication_specs=[{
+                "region_configs": [
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 3,
+                        },
+                        "analytics_specs": {
+                            "instance_size": "M10",
+                            "node_count": 1,
+                        },
+                        "provider_name": "AWS",
+                        "priority": 7,
+                        "region_name": "US_EAST_1",
+                    },
+                    {
+                        "electable_specs": {
+                            "instance_size": "M10",
+                            "node_count": 2,
+                        },
+                        "provider_name": "GCP",
+                        "priority": 6,
+                        "region_name": "NORTH_AMERICA_NORTHEAST_1",
+                    },
+                ],
+            }])
+        ```
+        ### Example of a Multi Cloud Sharded Cluster with 2 shards
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id=project["id"],
+            name=cluster_name,
+            cluster_type="SHARDED",
+            backup_enabled=True,
+            replication_specs=[
+                {
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+                {
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+            ],
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 991,
+                "sample_refresh_interval_bi_connector": 300,
+            })
+        ```
+
+        ### Example of a Global Cluster with 2 zones
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.AdvancedCluster("this",
+            project_id=project["id"],
+            name=cluster_name,
+            cluster_type="GEOSHARDED",
+            backup_enabled=True,
+            replication_specs=[
+                {
+                    "zone_name": "zone n1",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+                {
+                    "zone_name": "zone n1",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "US_EAST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "US_EAST_2",
+                        },
+                    ],
+                },
+                {
+                    "zone_name": "zone n2",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "EU_WEST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "EUROPE_NORTH",
+                        },
+                    ],
+                },
+                {
+                    "zone_name": "zone n2",
+                    "region_configs": [
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 3,
+                            },
+                            "provider_name": "AWS",
+                            "priority": 7,
+                            "region_name": "EU_WEST_1",
+                        },
+                        {
+                            "electable_specs": {
+                                "instance_size": "M30",
+                                "node_count": 2,
+                            },
+                            "provider_name": "AZURE",
+                            "priority": 6,
+                            "region_name": "EUROPE_NORTH",
+                        },
+                    ],
+                },
+            ],
+            advanced_configuration={
+                "javascript_enabled": True,
+                "oplog_size_mb": 999,
+                "sample_refresh_interval_bi_connector": 300,
+            })
+        ```
+
+        ### Example - Return a Connection String
+        Standard
+        ```python
+        import pulumi
+
+        pulumi.export("standard", cluster["connectionStrings"]["standard"])
+        ```
+        Standard srv
+        ```python
+        import pulumi
+
+        pulumi.export("standardSrv", cluster["connectionStrings"]["standardSrv"])
+        ```
+        Private with Network peering and Custom DNS AWS enabled
+        ```python
+        import pulumi
+
+        pulumi.export("private", cluster["connectionStrings"]["private"])
+        ```
+        Private srv with Network peering and Custom DNS AWS enabled
+        ```python
+        import pulumi
+
+        pulumi.export("privateSrv", cluster["connectionStrings"]["privateSrv"])
+        ```
+
+        By endpoint_service_id
+
+        Refer to the following for full privatelink endpoint connection string examples:
+        * GCP Private Endpoint
+        * Azure Private Endpoint
+        * AWS, Private Endpoint
+        * AWS, Regionalized Private Endpoints
+
+        ### Further Examples
+
+        **Cluster Types:**
+        - Replicaset
+        - Symmetric Sharded Cluster
+        - Asymmetric Sharded Cluster
+        - Global Cluster
+        - Multi-Cloud
+
+        **Auto-scaling:**
+        - Auto-Scaling Per Shard
+        - Effective Fields Examples
+
+        **Upgrades & Migrations:**
+        - Tenant Upgrade
+        - Flex Upgrade
+        - Version Upgrade with Pinned FCV
+        - Migrate Cluster to Advanced Cluster
+
+        ## Move
+
+        `mongodbatlas__cluster` resources can be moved to `AdvancedCluster` in Terraform v1.8 and later, e.g.:
+
+        More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
+
+        ## Auto-Scaling with Effective Fields
+
+        The `use_effective_fields` attribute enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and providing visibility into Atlas-managed changes. This feature only applies to dedicated clusters (M10+) and is not supported for flex and tenant clusters.
+
+        ### Why use_effective_fields?
+
+        When auto-scaling is enabled on a cluster, Atlas automatically adjusts instance sizes and disk capacity based on workload. Without `use_effective_fields`, `lifecycle.ignore_changes` blocks are required to prevent Terraform from reverting these Atlas-managed changes. This approach has limitations:
+
+        - **Configuration drift**: The actual cluster configuration diverges from your Terraform configuration
+        - **Maintenance overhead**: Careful management of `ignore_changes` blocks is required, including commenting and uncommenting when making intentional changes
+        - **Limited visibility**: Actual scaled values cannot be easily inspected within Terraform state
+
+        ### How use_effective_fields works
+
+        The `use_effective_fields` attribute changes how the provider handles specification attributes:
+
+        **When `use_effective_fields = false` (default - current behavior):**
+        - Spec attributes (`electable_specs`, `analytics_specs`, `read_only_specs`) behavior:
+          - If values are specified in your Terraform configuration (e.g., `instance_size = "M10"`), those values remain in your configuration
+          - If values are not specified, Atlas provides default values automatically
+        - With auto-scaling enabled, Atlas scales your cluster but your configured values do not update to match
+        - This creates plan drift: Terraform shows differences between your configured values and what Atlas has actually deployed
+        - `lifecycle.ignore_changes` must be used to prevent Terraform from reverting Atlas auto-scaling changes back to your original configuration
+
+        **When `use_effective_fields = true` (new behavior):**
+        - **Clear separation of concerns**:
+          - Spec attributes remain exactly as defined in your Terraform configuration
+          - Atlas-computed values (defaults and auto-scaled values) are available separately in effective specs
+        - No plan drift occurs when Atlas auto-scales your cluster
+        - Use data sources to read `effective_electable_specs`, `effective_analytics_specs`, and `effective_read_only_specs` for actual values
+
+        **Key difference:** With `use_effective_fields = true`, your configuration stays clean and represents your intent, while effective specs show the reality of what Atlas has provisioned.
+
+        See the Example using effective fields with auto-scaling in the Example Usage section.
+
+        ### Manually Updating Specs with use_effective_fields
+
+        When `use_effective_fields = true` and auto-scaling is enabled, you can update `instance_size`, `disk_size_gb`, or `disk_iops` in your configuration at any time without validation errors. However, Atlas echoes these values back in state while continuing to use auto-scaled values for actual cluster operations. To have your configured values take effect, temporarily disable auto-scaling:
+
+        1. Set `compute_enabled = false` and `disk_gb_enabled = false` in the `auto_scaling` block and apply.
+        2. Update `instance_size`, `disk_size_gb`, or `disk_iops` to your desired values and apply.
+        3. Re-enable auto-scaling by setting `compute_enabled` and/or `disk_gb_enabled` back to `true` and apply.
+
+        This workflow allows you to set specific baseline values from which auto-scaling will resume dynamic adjustments based on workload.
+
+        ### Terraform Modules
+
+        `use_effective_fields` is particularly valuable for reusable Terraform modules. Without it, separate module implementations are required (one with lifecycle blocks for auto-scaling, one without). With `use_effective_fields`, a single module handles both scenarios without lifecycle blocks. See the Effective Fields Examples for complete implementations.
+
+        ### Migration path and version 3.x
+
+        **Current behavior (provider v2.x):**
+        - `use_effective_fields` defaults to `false` for full backward compatibility
+        - Set to `true` to opt into the effective fields behavior
+        - The attribute will be deprecated later in v2.x releases in preparation for v3.x
+
+        **Future behavior (provider v3.x):**
+        - The effective fields behavior will be enabled by default
+        - The `use_effective_fields` attribute will be removed, as the new behavior becomes standard
+        - This change will reduce plan verbosity by making specification fields Optional-only (removing Computed), eliminating unnecessary `(known after apply)` markers for user-configured values
+
+        **Potential enhancements (v3.x or later):**
+        - If customer demand warrants, effective spec fields (`effective_electable_specs`, `effective_analytics_specs`, `effective_read_only_specs`) may be exposed directly in the resource (currently available only via data source)
+        - This would improve observability by providing direct access to actual operational values from the resource without requiring a separate data source
+        - Note: Effective fields would still show `(known after apply)` markers, but user-configured spec fields would not, resulting in clearer plan output overall
+
+        **Migration recommendation:** Adopt `use_effective_fields = true` in v2.x to prepare for the v3.x transition and benefit from improved auto-scaling workflows immediately. The recommendation is to toggle the flag and remove any existing `lifecycle.ignore_changes` blocks in the same apply, without combining other changes.
+
+        ## Considerations and Best Practices
+
         ## Import
 
         Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1127,10 +2246,11 @@ class AdvancedCluster(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 
-        ~> __IMPORTANT:__
-        \\n\\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+        > **IMPORTANT:**
+        <br> &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
 
         :param str resource_name: The name of the resource.
         :param AdvancedClusterArgs args: The arguments to use to populate this resource's properties.
@@ -1296,14 +2416,20 @@ class AdvancedCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mongo_db_major_version: Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `version_release_system` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `version_release_system`: `LTS`.
         :param pulumi.Input[_builtins.str] mongo_db_version: Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         :param pulumi.Input[_builtins.str] name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
-        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused.
+        :param pulumi.Input[_builtins.bool] paused: Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+               **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+               `lifecycle {
+               ignore_changes = [paused]
+               }`
         :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
-        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+        :param pulumi.Input[_builtins.bool] retain_backups_enabled: Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+               
+               > **NOTE** Prior version of provider had parameter as `bi_connector` state will migrate it to new value you only need to update parameter in your terraform file
         :param pulumi.Input[_builtins.str] root_cert_type: Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
         :param pulumi.Input[_builtins.str] state_name: Current state of the cluster. The possible states are:
                - IDLE
@@ -1510,7 +2636,11 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter
     def paused(self) -> pulumi.Output[_builtins.bool]:
         """
-        Flag that indicates whether the cluster is paused.
+        Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+        **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+        `lifecycle {
+        ignore_changes = [paused]
+        }`
         """
         return pulumi.get(self, "paused")
 
@@ -1566,7 +2696,9 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter(name="retainBackupsEnabled")
     def retain_backups_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+        Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+
+        > **NOTE** Prior version of provider had parameter as `bi_connector` state will migrate it to new value you only need to update parameter in your terraform file
         """
         return pulumi.get(self, "retain_backups_enabled")
 

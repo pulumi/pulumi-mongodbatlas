@@ -118,6 +118,7 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
  * ```
+ * 
  * See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
  * 
  */

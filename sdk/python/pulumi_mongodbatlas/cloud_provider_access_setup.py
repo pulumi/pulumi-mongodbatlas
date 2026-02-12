@@ -252,6 +252,23 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        ## Cloud Provider Access Configuration Paths
+
+        The Terraform MongoDB Atlas Provider offers a two-resource path to perform an authorization for a cloud provider role.
+        - The first resource, `CloudProviderAccessSetup`, only generates the initial configuration (create, delete operations).
+        - The second resource, `CloudProviderAccessAuthorization`, helps to perform the authorization using the `role_id` of the first resource.
+
+        This path is helpful in a multi-provider Terraform file, and allows for a single and decoupled apply.
+        See example of this two-resource path option with AWS Cloud here, AZURE Cloud here and GCP Cloud here.
+
+        ## CloudProviderAccessSetup
+
+        This is the first resource in the two-resource path as described above.
+
+        `CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ### With AWS
@@ -319,6 +336,23 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
                  args: CloudProviderAccessSetupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Cloud Provider Access Configuration Paths
+
+        The Terraform MongoDB Atlas Provider offers a two-resource path to perform an authorization for a cloud provider role.
+        - The first resource, `CloudProviderAccessSetup`, only generates the initial configuration (create, delete operations).
+        - The second resource, `CloudProviderAccessAuthorization`, helps to perform the authorization using the `role_id` of the first resource.
+
+        This path is helpful in a multi-provider Terraform file, and allows for a single and decoupled apply.
+        See example of this two-resource path option with AWS Cloud here, AZURE Cloud here and GCP Cloud here.
+
+        ## CloudProviderAccessSetup
+
+        This is the first resource in the two-resource path as described above.
+
+        `CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ### With AWS

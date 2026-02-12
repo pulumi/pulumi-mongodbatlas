@@ -12,18 +12,30 @@ namespace Pulumi.Mongodbatlas
     public static class GetServiceAccounts
     {
         /// <summary>
+        /// `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Task<GetServiceAccountsResult> InvokeAsync(GetServiceAccountsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountsResult>("mongodbatlas:index/getServiceAccounts:getServiceAccounts", args ?? new GetServiceAccountsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetServiceAccountsResult> Invoke(GetServiceAccountsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountsResult>("mongodbatlas:index/getServiceAccounts:getServiceAccounts", args ?? new GetServiceAccountsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetServiceAccountsResult> Invoke(GetServiceAccountsInvokeArgs args, InvokeOutputOptions options)

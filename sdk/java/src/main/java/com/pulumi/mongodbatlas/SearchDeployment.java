@@ -172,9 +172,17 @@ public class SearchDeployment extends com.pulumi.resources.CustomResource {
     public Output<String> projectId() {
         return this.projectId;
     }
+    /**
+     * If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+     * 
+     */
     @Export(name="skipWaitOnUpdate", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> skipWaitOnUpdate;
 
+    /**
+     * @return If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+     * 
+     */
     public Output<Optional<Boolean>> skipWaitOnUpdate() {
         return Codegen.optional(this.skipWaitOnUpdate);
     }

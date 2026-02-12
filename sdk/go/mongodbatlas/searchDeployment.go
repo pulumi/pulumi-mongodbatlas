@@ -113,7 +113,8 @@ type SearchDeployment struct {
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider pulumi.StringOutput `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId        pulumi.StringOutput  `pulumi:"projectId"`
+	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate pulumi.BoolPtrOutput `pulumi:"skipWaitOnUpdate"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs SearchDeploymentSpecArrayOutput `pulumi:"specs"`
@@ -168,8 +169,9 @@ type searchDeploymentState struct {
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId        *string `pulumi:"projectId"`
-	SkipWaitOnUpdate *bool   `pulumi:"skipWaitOnUpdate"`
+	ProjectId *string `pulumi:"projectId"`
+	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+	SkipWaitOnUpdate *bool `pulumi:"skipWaitOnUpdate"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs []SearchDeploymentSpec `pulumi:"specs"`
 	// Human-readable label that indicates the current operating condition of this search deployment.
@@ -185,7 +187,8 @@ type SearchDeploymentState struct {
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId        pulumi.StringPtrInput
+	ProjectId pulumi.StringPtrInput
+	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate pulumi.BoolPtrInput
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs SearchDeploymentSpecArrayInput
@@ -204,8 +207,9 @@ type searchDeploymentArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId        string `pulumi:"projectId"`
-	SkipWaitOnUpdate *bool  `pulumi:"skipWaitOnUpdate"`
+	ProjectId string `pulumi:"projectId"`
+	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+	SkipWaitOnUpdate *bool `pulumi:"skipWaitOnUpdate"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs    []SearchDeploymentSpec    `pulumi:"specs"`
 	Timeouts *SearchDeploymentTimeouts `pulumi:"timeouts"`
@@ -218,7 +222,8 @@ type SearchDeploymentArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId        pulumi.StringInput
+	ProjectId pulumi.StringInput
+	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate pulumi.BoolPtrInput
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs    SearchDeploymentSpecArrayInput
@@ -332,6 +337,7 @@ func (o SearchDeploymentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 func (o SearchDeploymentOutput) SkipWaitOnUpdate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.BoolPtrOutput { return v.SkipWaitOnUpdate }).(pulumi.BoolPtrOutput)
 }

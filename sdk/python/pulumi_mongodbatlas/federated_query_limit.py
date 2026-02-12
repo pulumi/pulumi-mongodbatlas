@@ -341,6 +341,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
 
         :param str resource_name: The name of the resource.
@@ -396,6 +397,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
 
         :param str resource_name: The name of the resource.

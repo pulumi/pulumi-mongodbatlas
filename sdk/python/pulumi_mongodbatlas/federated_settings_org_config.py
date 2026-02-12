@@ -326,6 +326,7 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.
@@ -379,6 +380,7 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
 
         :param str resource_name: The name of the resource.

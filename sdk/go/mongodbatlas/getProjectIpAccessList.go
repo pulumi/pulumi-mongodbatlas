@@ -162,7 +162,8 @@ type LookupProjectIpAccessListResult struct {
 	CidrBlock string `pulumi:"cidrBlock"`
 	// Remark that explains the purpose or scope of this IP access list entry.
 	Comment string `pulumi:"comment"`
-	Id      string `pulumi:"id"`
+	// Unique identifier used for terraform for internal management.
+	Id string `pulumi:"id"`
 	// Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
 	IpAddress string `pulumi:"ipAddress"`
 	// Unique 24-hexadecimal digit string that identifies your project.
@@ -224,6 +225,7 @@ func (o LookupProjectIpAccessListResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Comment }).(pulumi.StringOutput)
 }
 
+// Unique identifier used for terraform for internal management.
 func (o LookupProjectIpAccessListResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListResult) string { return v.Id }).(pulumi.StringOutput)
 }

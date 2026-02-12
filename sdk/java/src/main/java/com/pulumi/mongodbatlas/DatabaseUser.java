@@ -241,17 +241,15 @@ import javax.annotation.Nullable;
  * 
  * Database users can be imported using project ID, username, and auth database name in the format:
  * 
- * 1. `project_id`-`username`-`auth_database_name` Doesn&#39;t  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
- * 
- * 2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
- * 
- * ```sh
- * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
- * ```
+ * 1. `projectId`-`username`-`authDatabaseName` Doesn&#39;t  work if `-` is used in both the `username` and the `authDatabaseName`. For example `my-username` and `my-db` should use (2).
+ * 2. `projectId`/`username`/`authDatabaseName` Works when neither `username` nor `authDatabaseName` use `/`.
  * 
  * ```sh
- * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
+ * terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user-admin # (1)
+ * terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
  * ```
+ * 
+ * &gt; **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
  * 
  */
 @ResourceType(type="mongodbatlas:index/databaseUser:DatabaseUser")
@@ -352,9 +350,17 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
     public Output<String> oidcAuthType() {
         return this.oidcAuthType;
     }
+    /**
+     * User&#39;s initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+     * 
+     */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
+    /**
+     * @return User&#39;s initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+     * 
+     */
     public Output<Optional<String>> password() {
         return Codegen.optional(this.password);
     }

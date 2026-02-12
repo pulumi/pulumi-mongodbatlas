@@ -53,6 +53,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     /// $ pulumi import mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment test 9f3a7c2e54b8d1a0e6f4b3c2/a4d9f7b18e52c0fa36b7e9cd
     /// ```
+    /// 
     /// For more information, see: [MongoDB Atlas API - Teams](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-addallteamstoproject) Documentation.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment")]

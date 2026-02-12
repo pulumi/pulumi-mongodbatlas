@@ -91,7 +91,11 @@ def get_api_keys(items_per_page: Optional[_builtins.int] = None,
                  page_num: Optional[_builtins.int] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiKeysResult:
     """
-    ## Example Usage
+    `get_api_keys` describe all API Keys. This represents API Keys that have been created.
+
+    > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
 
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
@@ -116,7 +120,11 @@ def get_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[_builtins
                         page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiKeysResult]:
     """
-    ## Example Usage
+    `get_api_keys` describe all API Keys. This represents API Keys that have been created.
+
+    > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
 
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.

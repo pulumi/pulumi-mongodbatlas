@@ -252,6 +252,10 @@ class ServiceAccount(pulumi.CustomResource):
                  secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        `ServiceAccount` provides a Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Organization.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ## Import
@@ -277,6 +281,10 @@ class ServiceAccount(pulumi.CustomResource):
                  args: ServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ServiceAccount` provides a Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Organization.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ## Import

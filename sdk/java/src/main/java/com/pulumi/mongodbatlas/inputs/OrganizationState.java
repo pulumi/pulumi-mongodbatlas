@@ -32,9 +32,21 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.apiAccessListRequired);
     }
 
+    /**
+     * Programmatic API Key description. This attribute is required in creation and can&#39;t be updated later.
+     * 
+     * &gt; **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `mongodbatlas.Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+     * 
+     */
     @Import(name="description")
     private @Nullable Output<String> description;
 
+    /**
+     * @return Programmatic API Key description. This attribute is required in creation and can&#39;t be updated later.
+     * 
+     * &gt; **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `mongodbatlas.Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+     * 
+     */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
     }
@@ -129,9 +141,17 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.orgOwnerId);
     }
 
+    /**
+     * Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
+     * 
+     */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
+    /**
+     * @return Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
+     * 
+     */
     public Optional<Output<String>> privateKey() {
         return Optional.ofNullable(this.privateKey);
     }
@@ -196,9 +216,21 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.securityContact);
     }
 
+    /**
+     * Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+     * 
+     * &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `true` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
+     * 
+     */
     @Import(name="skipDefaultAlertsSettings")
     private @Nullable Output<Boolean> skipDefaultAlertsSettings;
 
+    /**
+     * @return Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+     * 
+     * &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `true` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
+     * 
+     */
     public Optional<Output<Boolean>> skipDefaultAlertsSettings() {
         return Optional.ofNullable(this.skipDefaultAlertsSettings);
     }
@@ -261,11 +293,27 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
             return apiAccessListRequired(Output.of(apiAccessListRequired));
         }
 
+        /**
+         * @param description Programmatic API Key description. This attribute is required in creation and can&#39;t be updated later.
+         * 
+         * &gt; **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `mongodbatlas.Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(@Nullable Output<String> description) {
             $.description = description;
             return this;
         }
 
+        /**
+         * @param description Programmatic API Key description. This attribute is required in creation and can&#39;t be updated later.
+         * 
+         * &gt; **NOTE:** Creating an organization will return a new API Key pair that can be used to authenticate and manage the new organization  with MongoDB Atlas Terraform modules/blueprints.  These credentials will be used by the `mongodbatlas.Organization` resource. In case of importing the resource, these credentials will be empty so the provider credentials will be used instead.
+         * 
+         * @return builder
+         * 
+         */
         public Builder description(String description) {
             return description(Output.of(description));
         }
@@ -396,11 +444,23 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
             return orgOwnerId(Output.of(orgOwnerId));
         }
 
+        /**
+         * @param privateKey Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateKey(@Nullable Output<String> privateKey) {
             $.privateKey = privateKey;
             return this;
         }
 
+        /**
+         * @param privateKey Redacted private key returned for this organization API key. This key displays unredacted when first created and is saved within the Terraform state file.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateKey(String privateKey) {
             return privateKey(Output.of(privateKey));
         }
@@ -499,11 +559,27 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
             return securityContact(Output.of(securityContact));
         }
 
+        /**
+         * @param skipDefaultAlertsSettings Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+         * 
+         * &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `true` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipDefaultAlertsSettings(@Nullable Output<Boolean> skipDefaultAlertsSettings) {
             $.skipDefaultAlertsSettings = skipDefaultAlertsSettings;
             return this;
         }
 
+        /**
+         * @param skipDefaultAlertsSettings Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+         * 
+         * &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `true` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipDefaultAlertsSettings(Boolean skipDefaultAlertsSettings) {
             return skipDefaultAlertsSettings(Output.of(skipDefaultAlertsSettings));
         }

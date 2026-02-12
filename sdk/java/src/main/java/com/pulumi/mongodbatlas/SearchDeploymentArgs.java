@@ -65,9 +65,17 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
         return this.projectId;
     }
 
+    /**
+     * If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+     * 
+     */
     @Import(name="skipWaitOnUpdate")
     private @Nullable Output<Boolean> skipWaitOnUpdate;
 
+    /**
+     * @return If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+     * 
+     */
     public Optional<Output<Boolean>> skipWaitOnUpdate() {
         return Optional.ofNullable(this.skipWaitOnUpdate);
     }
@@ -186,11 +194,23 @@ public final class SearchDeploymentArgs extends com.pulumi.resources.ResourceArg
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param skipWaitOnUpdate If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipWaitOnUpdate(@Nullable Output<Boolean> skipWaitOnUpdate) {
             $.skipWaitOnUpdate = skipWaitOnUpdate;
             return this;
         }
 
+        /**
+         * @param skipWaitOnUpdate If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+         * 
+         * @return builder
+         * 
+         */
         public Builder skipWaitOnUpdate(Boolean skipWaitOnUpdate) {
             return skipWaitOnUpdate(Output.of(skipWaitOnUpdate));
         }

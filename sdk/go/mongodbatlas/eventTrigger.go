@@ -12,9 +12,190 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `EventTrigger` provides a Event Trigger resource.
+//
+// Note: If the `appId` changes in the EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app. If it still exists, then it creates itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/) to learn more.
+//
+// ## Example Usage
+//
+// ### S
+//
+// ### Example Usage: Database Trigger with Function
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				ProjectId:  pulumi.String("PROJECT ID"),
+//				AppId:      pulumi.String("APPLICATION ID"),
+//				Name:       pulumi.String("NAME OF THE TRIGGER"),
+//				Type:       pulumi.String("DATABASE"),
+//				FunctionId: pulumi.String("FUNCTION ID"),
+//				Disabled:   pulumi.Bool(false),
+//				ConfigOperationTypes: pulumi.StringArray{
+//					pulumi.String("INSERT"),
+//					pulumi.String("UPDATE"),
+//				},
+//				ConfigDatabase:   pulumi.String("DATABASE NAME"),
+//				ConfigCollection: pulumi.String("COLLECTION NAME"),
+//				ConfigServiceId:  pulumi.String("SERVICE ID"),
+//				ConfigMatch: pulumi.String(`{
+//	  \"updateDescription.updatedFields\": {
+//	    \"status\": \"blocked\"
+//	  }
+//	}
+//
+// `),
+//
+//				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigFullDocument:       pulumi.Bool(false),
+//				ConfigFullDocumentBefore: pulumi.Bool(false),
+//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
+//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
+//						ConfigRegion:    pulumi.String("AWS REGIOn"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Note: Terraform allows creating [database triggers,](https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/#:~:text=Database%20triggers%20use%20MongoDB%20change,trigger%20created%20in%20a%20collection.) but not Atlas Functions. See [Define a Function](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/functions/#define-a-function) in the Atlas documentation for more details on creating functions in Atlas.
+//
+// ### Example Usage: Database Trigger with EventBridge
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				AppId:     pulumi.String("APPLICATION ID"),
+//				Name:      pulumi.String("NAME OF THE TRIGGER"),
+//				Type:      pulumi.String("DATABASE"),
+//				Disabled:  pulumi.Bool(false),
+//				Unordered: pulumi.Bool(false),
+//				ConfigOperationTypes: pulumi.StringArray{
+//					pulumi.String("INSERT"),
+//					pulumi.String("UPDATE"),
+//				},
+//				ConfigOperationType: pulumi.String("LOGIN"),
+//				ConfigProviders: pulumi.StringArray{
+//					pulumi.String("anon-user"),
+//				},
+//				ConfigDatabase:           pulumi.String("DATABASE NAME"),
+//				ConfigCollection:         pulumi.String("COLLECTION NAME"),
+//				ConfigServiceId:          pulumi.String("1"),
+//				ConfigMatch:              pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigProject:            pulumi.String("{\"updateDescription.updatedFields\":{\"status\":\"blocked\"}}"),
+//				ConfigFullDocument:       pulumi.Bool(false),
+//				ConfigFullDocumentBefore: pulumi.Bool(false),
+//				ConfigSchedule:           pulumi.String("*"),
+//				EventProcessors: &mongodbatlas.EventTriggerEventProcessorsArgs{
+//					AwsEventbridge: &mongodbatlas.EventTriggerEventProcessorsAwsEventbridgeArgs{
+//						ConfigAccountId: pulumi.String("AWS ACCOUNT ID"),
+//						ConfigRegion:    pulumi.String("AWS REGIOn"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example Usage: Authentication Trigger
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				ProjectId:           pulumi.String("PROJECT ID"),
+//				AppId:               pulumi.String("APPLICATION ID"),
+//				Name:                pulumi.String("NAME OF THE TRIGGER"),
+//				Type:                pulumi.String("AUTHENTICATION"),
+//				FunctionId:          pulumi.String("1"),
+//				Disabled:            pulumi.Bool(false),
+//				ConfigOperationType: pulumi.String("LOGIN"),
+//				ConfigProviders: pulumi.StringArray{
+//					pulumi.String("anon-user"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example Usage: Scheduled Trigger
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewEventTrigger(ctx, "test", &mongodbatlas.EventTriggerArgs{
+//				ProjectId:      pulumi.String("PROJECT ID"),
+//				AppId:          pulumi.String("APPLICATION ID"),
+//				Name:           pulumi.String("NAME OF THE TRIGGER"),
+//				Type:           pulumi.String("SCHEDULED"),
+//				FunctionId:     pulumi.String("1"),
+//				Disabled:       pulumi.Bool(false),
+//				ConfigSchedule: pulumi.String("*"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
-// Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
+// Event trigger can be imported using project ID, App ID and Trigger ID, in the format `projectId`--`appId`-`triggerId`, e.g.
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934

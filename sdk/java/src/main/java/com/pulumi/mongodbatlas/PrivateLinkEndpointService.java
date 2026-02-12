@@ -18,6 +18,139 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+ * 
+ * &gt; **IMPORTANT:** This resource links your cloud provider&#39;s Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `mongodbatlas.PrivateLinkEndpoint`). You first create the service in Atlas with `mongodbatlas.PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `mongodbatlas.PrivateLinkEndpointService` resource.
+ * 
+ * The private link Terraform module makes use of this resource and simplifies its use.
+ * 
+ * &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ * 
+ * &gt; **NOTE:** Create and delete wait for all clusters on the project to IDLE in order for their operations to complete. This ensures the latest connection strings can be retrieved following creation or deletion of this resource. Default timeout is 2hrs.
+ * 
+ * ## Example with AWS
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.aws.VpcEndpoint;
+ * import com.pulumi.aws.VpcEndpointArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .providerName("AWS")
+ *             .region("US_EAST_1")
+ *             .build());
+ * 
+ *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
+ *             .vpcId("vpc-7fc0a543")
+ *             .serviceName(test.endpointServiceName())
+ *             .vpcEndpointType("Interface")
+ *             .subnetIds(List.of("subnet-de0406d2"))
+ *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .build());
+ * 
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(test.projectId())
+ *             .privateLinkId(test.privateLinkId())
+ *             .endpointServiceId(ptfeService.id())
+ *             .providerName("AWS")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Example with Azure
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.azurerm.PrivateEndpoint;
+ * import com.pulumi.azurerm.PrivateEndpointArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new PrivateLinkEndpoint("test", PrivateLinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("AZURE")
+ *             .region("eastus2")
+ *             .build());
+ * 
+ *         var testPrivateEndpoint = new PrivateEndpoint("testPrivateEndpoint", PrivateEndpointArgs.builder()
+ *             .name("endpoint-test")
+ *             .location(testAzurermResourceGroup.location())
+ *             .resourceGroupName(resourceGroupName)
+ *             .subnetId(testAzurermSubnet.id())
+ *             .privateServiceConnection(List.of(Map.ofEntries(
+ *                 Map.entry("name", test.privateLinkServiceName()),
+ *                 Map.entry("privateConnectionResourceId", test.privateLinkServiceResourceId()),
+ *                 Map.entry("isManualConnection", true),
+ *                 Map.entry("requestMessage", "Azure Private Link test")
+ *             )))
+ *             .build());
+ * 
+ *         var testPrivateLinkEndpointService = new PrivateLinkEndpointService("testPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(test.projectId())
+ *             .privateLinkId(test.privateLinkId())
+ *             .endpointServiceId(testPrivateEndpoint.id())
+ *             .privateEndpointIpAddress(testPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
+ *             .providerName("AZURE")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Example with GCP
+ * 
+ * ### Further Examples
+ * - AWS PrivateLink Endpoint and Service
+ * - Azure Private Link Endpoint and Service
+ * - GCP Private Service Connect Endpoint and Service
+ * 
  * ## Import
  * 
  * Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -25,6 +158,7 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
  * ```
+ * 
  * See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
  * 
  */

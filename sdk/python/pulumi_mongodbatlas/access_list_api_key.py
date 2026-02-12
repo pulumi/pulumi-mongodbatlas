@@ -178,6 +178,17 @@ class AccessListApiKey(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `AccessListApiKey` provides an IP Access List entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
+
+        > **Note:** The `AccessListApiKey` resource can be used to manage all Programmatic API Keys, regardless of whether they were created at the Organization level or Project level.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **IMPORTANT:**
+        When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+
+        > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
         ## Example Usage
 
         ### Using CIDR Block
@@ -212,6 +223,7 @@ class AccessListApiKey(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
 
         :param str resource_name: The name of the resource.
@@ -230,6 +242,17 @@ class AccessListApiKey(pulumi.CustomResource):
                  args: AccessListApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `AccessListApiKey` provides an IP Access List entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
+
+        > **Note:** The `AccessListApiKey` resource can be used to manage all Programmatic API Keys, regardless of whether they were created at the Organization level or Project level.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **IMPORTANT:**
+        When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+
+        > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
         ## Example Usage
 
         ### Using CIDR Block
@@ -264,6 +287,7 @@ class AccessListApiKey(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/accessListApiKey:AccessListApiKey test 5d0f1f74cf09a29120e123cd-a29120e123cd-10.242.88.0/21
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKeyAccessList)
 
         :param str resource_name: The name of the resource.

@@ -173,6 +173,7 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
 // ```
+//
 // For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
 type CustomDbRole struct {
 	pulumi.CustomResourceState

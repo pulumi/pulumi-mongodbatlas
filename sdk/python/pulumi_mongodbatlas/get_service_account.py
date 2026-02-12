@@ -138,6 +138,10 @@ def get_service_account(client_id: Optional[_builtins.str] = None,
                         org_id: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountResult:
     """
+    `ServiceAccount` describes a Service Account.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
 
@@ -163,6 +167,10 @@ def get_service_account_output(client_id: Optional[pulumi.Input[_builtins.str]] 
                                org_id: Optional[pulumi.Input[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountResult]:
     """
+    `ServiceAccount` describes a Service Account.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
 

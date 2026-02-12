@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class ClusterSnapshotBackupPolicyPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        /// The Terraform's unique identifier used internally for state management.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

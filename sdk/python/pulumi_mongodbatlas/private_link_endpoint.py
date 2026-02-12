@@ -381,6 +381,21 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
+
+        > **IMPORTANT:** This resource creates a Private Endpoint *Service* in MongoDB Atlas. The endpoint itself is created in your cloud provider using the information returned by this resource. The complementary resource `PrivateLinkEndpointService` is used to link your cloud provider's endpoint to the Atlas service.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
+
+        > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+        ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
+
         ## Example Usage
 
         ```python
@@ -405,6 +420,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one/)
 
         :param str resource_name: The name of the resource.
@@ -422,6 +438,21 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  args: PrivateLinkEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
+
+        > **IMPORTANT:** This resource creates a Private Endpoint *Service* in MongoDB Atlas. The endpoint itself is created in your cloud provider using the information returned by this resource. The complementary resource `PrivateLinkEndpointService` is used to link your cloud provider's endpoint to the Atlas service.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
+
+        > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
+        ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
+        > **NOTE:** A network container is created for a private endpoint to reside in if one does not yet exist in the project.
+
         ## Example Usage
 
         ```python
@@ -446,6 +477,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one/)
 
         :param str resource_name: The name of the resource.

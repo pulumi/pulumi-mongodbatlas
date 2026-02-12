@@ -521,9 +521,17 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<SearchIndexTypeSet>>> typeSets() {
         return Codegen.optional(this.typeSets);
     }
+    /**
+     * Wait for search index to achieve Active status before terraform considers resource built.
+     * 
+     */
     @Export(name="waitForIndexBuildCompletion", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> waitForIndexBuildCompletion;
 
+    /**
+     * @return Wait for search index to achieve Active status before terraform considers resource built.
+     * 
+     */
     public Output<Optional<Boolean>> waitForIndexBuildCompletion() {
         return Codegen.optional(this.waitForIndexBuildCompletion);
     }

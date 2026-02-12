@@ -12,6 +12,19 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedCluster
     {
         /// <summary>
+        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
+        /// 
+        /// &gt; **IMPORTANT:**
+        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+        /// 
+        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -231,6 +244,19 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
+        /// 
+        /// &gt; **IMPORTANT:**
+        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+        /// 
+        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -450,6 +476,19 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
+        /// 
+        /// &gt; **IMPORTANT:**
+        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+        /// 
+        /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+        /// 
+        /// &gt; **NOTE:** This data source also includes Flex clusters.
+        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -731,6 +770,9 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetAdvancedClusterAdvancedConfigurationResult AdvancedConfiguration;
         public readonly bool BackupEnabled;
+        /// <summary>
+        /// Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `BiConnector`.
+        /// </summary>
         public readonly Outputs.GetAdvancedClusterBiConnectorConfigResult BiConnectorConfig;
         /// <summary>
         /// The cluster ID.

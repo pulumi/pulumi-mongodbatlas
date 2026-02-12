@@ -12,6 +12,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// > **DEPRECATED:** This resource is deprecated. Please use `StreamWorkspace` instead.
+//
+// `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
+//
+// ## Migration to streamWorkspace
+//
+// `StreamInstance` resources can be moved to `StreamWorkspace` in MongoDB Atlas Provider v2.2.0 and later with Terraform v1.8 and later.
+//
+// More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
+//
 // ## Example Usage
 //
 // ```go
@@ -54,6 +64,7 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/streamInstance:StreamInstance test 650972848269185c55f40ca1-InstanceName
 // ```
+//
 // To learn more, see: [MongoDB Atlas API - Stream Instance](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) Documentation.
 // The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
 type StreamInstance struct {

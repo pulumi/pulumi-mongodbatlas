@@ -48,9 +48,37 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.advancedConfiguration);
     }
 
+    /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     * 
+     * &gt; **IMPORTANT:** If `autoScalingComputeEnabled` is true,  then Atlas will automatically scale up to the maximum provided and down to the minimum, if provided.
+     * This will cause the value of `providerInstanceSizeName` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster back to the original instanceSizeName value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [providerInstanceSizeName]
+     * }`
+     * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
+     * 
+     */
     @Import(name="autoScalingComputeEnabled")
     private @Nullable Output<Boolean> autoScalingComputeEnabled;
 
+    /**
+     * @return Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     * 
+     * &gt; **IMPORTANT:** If `autoScalingComputeEnabled` is true,  then Atlas will automatically scale up to the maximum provided and down to the minimum, if provided.
+     * This will cause the value of `providerInstanceSizeName` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster back to the original instanceSizeName value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [providerInstanceSizeName]
+     * }`
+     * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
+     * 
+     */
     public Optional<Output<Boolean>> autoScalingComputeEnabled() {
         return Optional.ofNullable(this.autoScalingComputeEnabled);
     }
@@ -72,9 +100,41 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.autoScalingComputeScaleDownEnabled);
     }
 
+    /**
+     * Specifies whether disk auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable disk auto-scaling.
+     * - Set to `false` to disable disk auto-scaling.
+     * 
+     * &gt; **IMPORTANT:** If `autoScalingDiskGbEnabled` is true, then Atlas will automatically scale disk size up and down.
+     * This will cause the value of `diskSizeGb` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster disk size back to the original `diskSizeGb` value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [diskSizeGb]
+     * }`
+     * After adding the `lifecycle` block to explicitly change `diskSizeGb` comment out the `lifecycle` block and run `pulumi up`. Please be sure to uncomment the `lifecycle` block once done to prevent any accidental changes.
+     * 
+     * &gt; **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
+     * 
+     */
     @Import(name="autoScalingDiskGbEnabled")
     private @Nullable Output<Boolean> autoScalingDiskGbEnabled;
 
+    /**
+     * @return Specifies whether disk auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable disk auto-scaling.
+     * - Set to `false` to disable disk auto-scaling.
+     * 
+     * &gt; **IMPORTANT:** If `autoScalingDiskGbEnabled` is true, then Atlas will automatically scale disk size up and down.
+     * This will cause the value of `diskSizeGb` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster disk size back to the original `diskSizeGb` value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [diskSizeGb]
+     * }`
+     * After adding the `lifecycle` block to explicitly change `diskSizeGb` comment out the `lifecycle` block and run `pulumi up`. Please be sure to uncomment the `lifecycle` block once done to prevent any accidental changes.
+     * 
+     * &gt; **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
+     * 
+     */
     public Optional<Output<Boolean>> autoScalingDiskGbEnabled() {
         return Optional.ofNullable(this.autoScalingDiskGbEnabled);
     }
@@ -148,9 +208,29 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.biConnectorConfig);
     }
 
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
+     * 
+     * If true, the cluster uses Cloud Backup for backups. If cloudBackup and backupEnabled are false, the cluster does not use Atlas backups.
+     * 
+     * You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled.
+     * 
+     * &gt; **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
+     * 
+     */
     @Import(name="cloudBackup")
     private @Nullable Output<Boolean> cloudBackup;
 
+    /**
+     * @return Flag indicating if the cluster uses Cloud Backup for backups.
+     * 
+     * If true, the cluster uses Cloud Backup for backups. If cloudBackup and backupEnabled are false, the cluster does not use Atlas backups.
+     * 
+     * You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled.
+     * 
+     * &gt; **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
+     * 
+     */
     public Optional<Output<Boolean>> cloudBackup() {
         return Optional.ofNullable(this.cloudBackup);
     }
@@ -284,9 +364,25 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.numShards);
     }
 
+    /**
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)\
+     * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
+     * 
+     */
     @Import(name="paused")
     private @Nullable Output<Boolean> paused;
 
+    /**
+     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)\
+     * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
+     * 
+     */
     public Optional<Output<Boolean>> paused() {
         return Optional.ofNullable(this.paused);
     }
@@ -697,11 +793,43 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
             return advancedConfiguration(Output.of(advancedConfiguration));
         }
 
+        /**
+         * @param autoScalingComputeEnabled Specifies whether cluster tier auto-scaling is enabled. The default is false.
+         * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+         * - Set to `false` to disable cluster tier auto-scaling.
+         * 
+         * &gt; **IMPORTANT:** If `autoScalingComputeEnabled` is true,  then Atlas will automatically scale up to the maximum provided and down to the minimum, if provided.
+         * This will cause the value of `providerInstanceSizeName` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster back to the original instanceSizeName value.
+         * To prevent this a lifecycle customization should be used, i.e.:
+         * `lifecycle {
+         * ignoreChanges = [providerInstanceSizeName]
+         * }`
+         * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoScalingComputeEnabled(@Nullable Output<Boolean> autoScalingComputeEnabled) {
             $.autoScalingComputeEnabled = autoScalingComputeEnabled;
             return this;
         }
 
+        /**
+         * @param autoScalingComputeEnabled Specifies whether cluster tier auto-scaling is enabled. The default is false.
+         * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+         * - Set to `false` to disable cluster tier auto-scaling.
+         * 
+         * &gt; **IMPORTANT:** If `autoScalingComputeEnabled` is true,  then Atlas will automatically scale up to the maximum provided and down to the minimum, if provided.
+         * This will cause the value of `providerInstanceSizeName` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster back to the original instanceSizeName value.
+         * To prevent this a lifecycle customization should be used, i.e.:
+         * `lifecycle {
+         * ignoreChanges = [providerInstanceSizeName]
+         * }`
+         * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoScalingComputeEnabled(Boolean autoScalingComputeEnabled) {
             return autoScalingComputeEnabled(Output.of(autoScalingComputeEnabled));
         }
@@ -729,11 +857,47 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
             return autoScalingComputeScaleDownEnabled(Output.of(autoScalingComputeScaleDownEnabled));
         }
 
+        /**
+         * @param autoScalingDiskGbEnabled Specifies whether disk auto-scaling is enabled. The default is false.
+         * - Set to `true` to enable disk auto-scaling.
+         * - Set to `false` to disable disk auto-scaling.
+         * 
+         * &gt; **IMPORTANT:** If `autoScalingDiskGbEnabled` is true, then Atlas will automatically scale disk size up and down.
+         * This will cause the value of `diskSizeGb` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster disk size back to the original `diskSizeGb` value.
+         * To prevent this a lifecycle customization should be used, i.e.:
+         * `lifecycle {
+         * ignoreChanges = [diskSizeGb]
+         * }`
+         * After adding the `lifecycle` block to explicitly change `diskSizeGb` comment out the `lifecycle` block and run `pulumi up`. Please be sure to uncomment the `lifecycle` block once done to prevent any accidental changes.
+         * 
+         * &gt; **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoScalingDiskGbEnabled(@Nullable Output<Boolean> autoScalingDiskGbEnabled) {
             $.autoScalingDiskGbEnabled = autoScalingDiskGbEnabled;
             return this;
         }
 
+        /**
+         * @param autoScalingDiskGbEnabled Specifies whether disk auto-scaling is enabled. The default is false.
+         * - Set to `true` to enable disk auto-scaling.
+         * - Set to `false` to disable disk auto-scaling.
+         * 
+         * &gt; **IMPORTANT:** If `autoScalingDiskGbEnabled` is true, then Atlas will automatically scale disk size up and down.
+         * This will cause the value of `diskSizeGb` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster disk size back to the original `diskSizeGb` value.
+         * To prevent this a lifecycle customization should be used, i.e.:
+         * `lifecycle {
+         * ignoreChanges = [diskSizeGb]
+         * }`
+         * After adding the `lifecycle` block to explicitly change `diskSizeGb` comment out the `lifecycle` block and run `pulumi up`. Please be sure to uncomment the `lifecycle` block once done to prevent any accidental changes.
+         * 
+         * &gt; **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoScalingDiskGbEnabled(Boolean autoScalingDiskGbEnabled) {
             return autoScalingDiskGbEnabled(Output.of(autoScalingDiskGbEnabled));
         }
@@ -825,11 +989,35 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
             return biConnectorConfig(Output.of(biConnectorConfig));
         }
 
+        /**
+         * @param cloudBackup Flag indicating if the cluster uses Cloud Backup for backups.
+         * 
+         * If true, the cluster uses Cloud Backup for backups. If cloudBackup and backupEnabled are false, the cluster does not use Atlas backups.
+         * 
+         * You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled.
+         * 
+         * &gt; **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
+         * 
+         * @return builder
+         * 
+         */
         public Builder cloudBackup(@Nullable Output<Boolean> cloudBackup) {
             $.cloudBackup = cloudBackup;
             return this;
         }
 
+        /**
+         * @param cloudBackup Flag indicating if the cluster uses Cloud Backup for backups.
+         * 
+         * If true, the cluster uses Cloud Backup for backups. If cloudBackup and backupEnabled are false, the cluster does not use Atlas backups.
+         * 
+         * You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled.
+         * 
+         * &gt; **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
+         * 
+         * @return builder
+         * 
+         */
         public Builder cloudBackup(Boolean cloudBackup) {
             return cloudBackup(Output.of(cloudBackup));
         }
@@ -1015,11 +1203,31 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
             return numShards(Output.of(numShards));
         }
 
+        /**
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)\
+         * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+         * `lifecycle {
+         * ignoreChanges = [paused]
+         * }`
+         * 
+         * @return builder
+         * 
+         */
         public Builder paused(@Nullable Output<Boolean> paused) {
             $.paused = paused;
             return this;
         }
 
+        /**
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)\
+         * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+         * `lifecycle {
+         * ignoreChanges = [paused]
+         * }`
+         * 
+         * @return builder
+         * 
+         */
         public Builder paused(Boolean paused) {
             return paused(Output.of(paused));
         }
