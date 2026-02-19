@@ -33,14 +33,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+     * For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
      * 
      */
     @Import(name="endpointGroupNames")
     private @Nullable Output<List<String>> endpointGroupNames;
 
     /**
-     * @return GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+     * @return For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
      * 
      */
     public Optional<Output<List<String>>> endpointGroupNames() {
@@ -63,16 +63,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-     * AWS:
+     * Error message pertaining to the private endpoint connection. Returns null if there are no errors.
      * 
      */
     @Import(name="errorMessage")
     private @Nullable Output<String> errorMessage;
 
     /**
-     * @return Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-     * AWS:
+     * @return Error message pertaining to the private endpoint connection. Returns null if there are no errors.
      * 
      */
     public Optional<Output<String>> errorMessage() {
@@ -81,7 +79,6 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
     /**
      * Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-     * AZURE:
      * 
      */
     @Import(name="interfaceEndpoints")
@@ -89,11 +86,25 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
     /**
      * @return Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-     * AZURE:
      * 
      */
     public Optional<Output<List<String>>> interfaceEndpoints() {
         return Optional.ofNullable(this.interfaceEndpoints);
+    }
+
+    /**
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    @Import(name="portMappingEnabled")
+    private @Nullable Output<Boolean> portMappingEnabled;
+
+    /**
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    public Optional<Output<Boolean>> portMappingEnabled() {
+        return Optional.ofNullable(this.portMappingEnabled);
     }
 
     /**
@@ -112,14 +123,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Unique identifier of the AWS PrivateLink connection.
+     * Unique identifier of the private endpoint connection.
      * 
      */
     @Import(name="privateLinkId")
     private @Nullable Output<String> privateLinkId;
 
     /**
-     * @return Unique identifier of the AWS PrivateLink connection.
+     * @return Unique identifier of the private endpoint connection.
      * 
      */
     public Optional<Output<String>> privateLinkId() {
@@ -128,7 +139,6 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
     /**
      * Name of the Azure Private Link Service that Atlas manages.
-     * GCP:
      * 
      */
     @Import(name="privateLinkServiceName")
@@ -136,29 +146,36 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
     /**
      * @return Name of the Azure Private Link Service that Atlas manages.
-     * GCP:
      * 
      */
     public Optional<Output<String>> privateLinkServiceName() {
         return Optional.ofNullable(this.privateLinkServiceName);
     }
 
+    /**
+     * Resource ID of the Azure Private Link Service.
+     * 
+     */
     @Import(name="privateLinkServiceResourceId")
     private @Nullable Output<String> privateLinkServiceResourceId;
 
+    /**
+     * @return Resource ID of the Azure Private Link Service.
+     * 
+     */
     public Optional<Output<String>> privateLinkServiceResourceId() {
         return Optional.ofNullable(this.privateLinkServiceResourceId);
     }
 
     /**
-     * Required 	Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Required 	Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -198,14 +215,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * GCP region for the Private Service Connect endpoint service.
+     * Region for the Private Service Connect endpoint service.
      * 
      */
     @Import(name="regionName")
     private @Nullable Output<String> regionName;
 
     /**
-     * @return GCP region for the Private Service Connect endpoint service.
+     * @return Region for the Private Service Connect endpoint service.
      * 
      */
     public Optional<Output<String>> regionName() {
@@ -213,14 +230,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+     * For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      * 
      */
     @Import(name="serviceAttachmentNames")
     private @Nullable Output<List<String>> serviceAttachmentNames;
 
     /**
-     * @return Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+     * @return For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      * 
      */
     public Optional<Output<List<String>>> serviceAttachmentNames() {
@@ -228,44 +245,22 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-     * AWS:
-     * * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-     * * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-     * * `FAILED` 	A system failure has occurred.
-     * * `DELETING` 	The AWS PrivateLink connection is being deleted.
-     *   AZURE:
-     * * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-     * * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-     * * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-     * * `DELETING` 	Atlas is deleting the Private Link service.
-     *   GCP:
-     * * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-     * * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-     * * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-     * * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+     * values:
+     * * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+     * * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+     * * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+     * * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-     * AWS:
-     * * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-     * * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-     * * `FAILED` 	A system failure has occurred.
-     * * `DELETING` 	The AWS PrivateLink connection is being deleted.
-     *   AZURE:
-     * * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-     * * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-     * * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-     * * `DELETING` 	Atlas is deleting the Private Link service.
-     *   GCP:
-     * * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-     * * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-     * * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-     * * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+     * @return values:
+     * * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+     * * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+     * * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+     * * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
      * 
      */
     public Optional<Output<String>> status() {
@@ -280,6 +275,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         this.endpointServiceName = $.endpointServiceName;
         this.errorMessage = $.errorMessage;
         this.interfaceEndpoints = $.interfaceEndpoints;
+        this.portMappingEnabled = $.portMappingEnabled;
         this.privateEndpoints = $.privateEndpoints;
         this.privateLinkId = $.privateLinkId;
         this.privateLinkServiceName = $.privateLinkServiceName;
@@ -332,7 +328,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointGroupNames GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+         * @param endpointGroupNames For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
          * 
          * @return builder
          * 
@@ -343,7 +339,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointGroupNames GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+         * @param endpointGroupNames For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
          * 
          * @return builder
          * 
@@ -353,7 +349,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointGroupNames GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+         * @param endpointGroupNames For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
          * 
          * @return builder
          * 
@@ -384,8 +380,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param errorMessage Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-         * AWS:
+         * @param errorMessage Error message pertaining to the private endpoint connection. Returns null if there are no errors.
          * 
          * @return builder
          * 
@@ -396,8 +391,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param errorMessage Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-         * AWS:
+         * @param errorMessage Error message pertaining to the private endpoint connection. Returns null if there are no errors.
          * 
          * @return builder
          * 
@@ -408,7 +402,6 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
         /**
          * @param interfaceEndpoints Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-         * AZURE:
          * 
          * @return builder
          * 
@@ -420,7 +413,6 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
         /**
          * @param interfaceEndpoints Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-         * AZURE:
          * 
          * @return builder
          * 
@@ -431,13 +423,33 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
         /**
          * @param interfaceEndpoints Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-         * AZURE:
          * 
          * @return builder
          * 
          */
         public Builder interfaceEndpoints(String... interfaceEndpoints) {
             return interfaceEndpoints(List.of(interfaceEndpoints));
+        }
+
+        /**
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder portMappingEnabled(@Nullable Output<Boolean> portMappingEnabled) {
+            $.portMappingEnabled = portMappingEnabled;
+            return this;
+        }
+
+        /**
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder portMappingEnabled(Boolean portMappingEnabled) {
+            return portMappingEnabled(Output.of(portMappingEnabled));
         }
 
         /**
@@ -472,7 +484,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param privateLinkId Unique identifier of the AWS PrivateLink connection.
+         * @param privateLinkId Unique identifier of the private endpoint connection.
          * 
          * @return builder
          * 
@@ -483,7 +495,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param privateLinkId Unique identifier of the AWS PrivateLink connection.
+         * @param privateLinkId Unique identifier of the private endpoint connection.
          * 
          * @return builder
          * 
@@ -494,7 +506,6 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
         /**
          * @param privateLinkServiceName Name of the Azure Private Link Service that Atlas manages.
-         * GCP:
          * 
          * @return builder
          * 
@@ -506,7 +517,6 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
 
         /**
          * @param privateLinkServiceName Name of the Azure Private Link Service that Atlas manages.
-         * GCP:
          * 
          * @return builder
          * 
@@ -515,17 +525,29 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
             return privateLinkServiceName(Output.of(privateLinkServiceName));
         }
 
+        /**
+         * @param privateLinkServiceResourceId Resource ID of the Azure Private Link Service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateLinkServiceResourceId(@Nullable Output<String> privateLinkServiceResourceId) {
             $.privateLinkServiceResourceId = privateLinkServiceResourceId;
             return this;
         }
 
+        /**
+         * @param privateLinkServiceResourceId Resource ID of the Azure Private Link Service.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateLinkServiceResourceId(String privateLinkServiceResourceId) {
             return privateLinkServiceResourceId(Output.of(privateLinkServiceResourceId));
         }
 
         /**
-         * @param projectId Required 	Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -536,7 +558,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param projectId Required 	Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -590,7 +612,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param regionName GCP region for the Private Service Connect endpoint service.
+         * @param regionName Region for the Private Service Connect endpoint service.
          * 
          * @return builder
          * 
@@ -601,7 +623,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param regionName GCP region for the Private Service Connect endpoint service.
+         * @param regionName Region for the Private Service Connect endpoint service.
          * 
          * @return builder
          * 
@@ -611,7 +633,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serviceAttachmentNames Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+         * @param serviceAttachmentNames For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
          * 
          * @return builder
          * 
@@ -622,7 +644,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serviceAttachmentNames Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+         * @param serviceAttachmentNames For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
          * 
          * @return builder
          * 
@@ -632,7 +654,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serviceAttachmentNames Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+         * @param serviceAttachmentNames For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
          * 
          * @return builder
          * 
@@ -642,22 +664,11 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param status Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-         * AWS:
-         * * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-         * * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-         * * `FAILED` 	A system failure has occurred.
-         * * `DELETING` 	The AWS PrivateLink connection is being deleted.
-         *   AZURE:
-         * * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-         * * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-         * * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-         * * `DELETING` 	Atlas is deleting the Private Link service.
-         *   GCP:
-         * * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-         * * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-         * * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-         * * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+         * @param status values:
+         * * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+         * * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+         * * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+         * * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
          * 
          * @return builder
          * 
@@ -668,22 +679,11 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param status Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-         * AWS:
-         * * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-         * * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-         * * `FAILED` 	A system failure has occurred.
-         * * `DELETING` 	The AWS PrivateLink connection is being deleted.
-         *   AZURE:
-         * * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-         * * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-         * * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-         * * `DELETING` 	Atlas is deleting the Private Link service.
-         *   GCP:
-         * * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-         * * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-         * * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-         * * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+         * @param status values:
+         * * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+         * * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+         * * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+         * * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
          * 
          * @return builder
          * 

@@ -18,32 +18,16 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
 
     public static final MaintenanceWindowState Empty = new MaintenanceWindowState();
 
-    /**
-     * Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-     * 
-     */
     @Import(name="autoDefer")
     private @Nullable Output<Boolean> autoDefer;
 
-    /**
-     * @return Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-     * 
-     */
     public Optional<Output<Boolean>> autoDefer() {
         return Optional.ofNullable(this.autoDefer);
     }
 
-    /**
-     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-     * 
-     */
     @Import(name="autoDeferOnceEnabled")
     private @Nullable Output<Boolean> autoDeferOnceEnabled;
 
-    /**
-     * @return When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-     * 
-     */
     public Optional<Output<Boolean>> autoDeferOnceEnabled() {
         return Optional.ofNullable(this.autoDeferOnceEnabled);
     }
@@ -201,44 +185,20 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
             $ = new MaintenanceWindowState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param autoDefer Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoDefer(@Nullable Output<Boolean> autoDefer) {
             $.autoDefer = autoDefer;
             return this;
         }
 
-        /**
-         * @param autoDefer Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoDefer(Boolean autoDefer) {
             return autoDefer(Output.of(autoDefer));
         }
 
-        /**
-         * @param autoDeferOnceEnabled When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoDeferOnceEnabled(@Nullable Output<Boolean> autoDeferOnceEnabled) {
             $.autoDeferOnceEnabled = autoDeferOnceEnabled;
             return this;
         }
 
-        /**
-         * @param autoDeferOnceEnabled When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-         * 
-         * @return builder
-         * 
-         */
         public Builder autoDeferOnceEnabled(Boolean autoDeferOnceEnabled) {
             return autoDeferOnceEnabled(Output.of(autoDeferOnceEnabled));
         }

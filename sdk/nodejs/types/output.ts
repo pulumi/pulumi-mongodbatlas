@@ -6536,11 +6536,11 @@ export interface GetOrganizationsResultUserRoleProjectRoleAssignment {
 
 export interface GetPrivateLinkEndpointServiceEndpoint {
     /**
-     * Forwarding rule that corresponds to the endpoint you created in GCP.
+     * Forwarding rule that corresponds to the endpoint you created.
      */
     endpointName: string;
     /**
-     * Private IP address of the network endpoint group you created in GCP.
+     * Private IP address of the network endpoint group you created.
      */
     ipAddress: string;
     /**
@@ -8457,13 +8457,65 @@ export interface OnlineArchiveSchedule {
     type: string;
 }
 
+export interface OrganizationServiceAccount {
+    /**
+     * The Client ID of the Service Account.
+     */
+    clientId: string;
+    /**
+     * The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Human readable description for the Service Account.
+     */
+    description: string;
+    /**
+     * Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+     */
+    name: string;
+    /**
+     * A list of organization-level roles for the Service Account.
+     */
+    roles: string[];
+    /**
+     * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+     *
+     * > **WARNING:** Service Account secrets expire after the configured `secretExpiresAfterHours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+     */
+    secretExpiresAfterHours: number;
+    /**
+     * A list of secrets associated with the specified Service Account. See Secrets.
+     */
+    secrets: outputs.OrganizationServiceAccountSecret[];
+}
+
+export interface OrganizationServiceAccountSecret {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * The secret for the Service Account. It will be returned only the first time after creation.
+     */
+    secret: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    secretId: string;
+}
+
 export interface PrivateLinkEndpointServiceEndpoint {
     /**
-     * Forwarding rule that corresponds to the endpoint you created in GCP.
+     * Forwarding rule that corresponds to the endpoint you created.
      */
     endpointName?: string;
     /**
-     * Private IP address of the endpoint you created in GCP.
+     * Private IP address of the endpoint you created.
      */
     ipAddress?: string;
     /**
@@ -8760,8 +8812,6 @@ export interface StreamConnectionDbRoleToExecute {
     role: string;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     *
-     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     type: string;
 }
@@ -8810,6 +8860,17 @@ export interface StreamConnectionSecurity {
      * Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      */
     protocol?: string;
+}
+
+export interface StreamConnectionTimeouts {
+    /**
+     * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+     */
+    create?: string;
+    /**
+     * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+     */
+    update?: string;
 }
 
 export interface StreamInstanceDataProcessRegion {

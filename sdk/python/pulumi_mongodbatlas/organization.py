@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['OrganizationArgs', 'Organization']
 
@@ -29,6 +31,7 @@ class OrganizationArgs:
                  restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security_contact: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account: Optional[pulumi.Input['OrganizationServiceAccountArgs']] = None,
                  skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Organization resource.
@@ -41,6 +44,7 @@ class OrganizationArgs:
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        :param pulumi.Input['OrganizationServiceAccountArgs'] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         """
         if api_access_list_required is not None:
             pulumi.set(__self__, "api_access_list_required", api_access_list_required)
@@ -62,6 +66,8 @@ class OrganizationArgs:
             pulumi.set(__self__, "role_names", role_names)
         if security_contact is not None:
             pulumi.set(__self__, "security_contact", security_contact)
+        if service_account is not None:
+            pulumi.set(__self__, "service_account", service_account)
         if skip_default_alerts_settings is not None:
             pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
 
@@ -183,6 +189,18 @@ class OrganizationArgs:
         pulumi.set(self, "security_contact", value)
 
     @_builtins.property
+    @pulumi.getter(name="serviceAccount")
+    def service_account(self) -> Optional[pulumi.Input['OrganizationServiceAccountArgs']]:
+        """
+        Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
+        """
+        return pulumi.get(self, "service_account")
+
+    @service_account.setter
+    def service_account(self, value: Optional[pulumi.Input['OrganizationServiceAccountArgs']]):
+        pulumi.set(self, "service_account", value)
+
+    @_builtins.property
     @pulumi.getter(name="skipDefaultAlertsSettings")
     def skip_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
         return pulumi.get(self, "skip_default_alerts_settings")
@@ -208,6 +226,7 @@ class _OrganizationState:
                  restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security_contact: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account: Optional[pulumi.Input['OrganizationServiceAccountArgs']] = None,
                  skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
@@ -218,10 +237,10 @@ class _OrganizationState:
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] org_id: The organization id.
         :param pulumi.Input[_builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
-        :param pulumi.Input[_builtins.str] public_key: Public API key value set for the specified organization API key.
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        :param pulumi.Input['OrganizationServiceAccountArgs'] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         """
         if api_access_list_required is not None:
             pulumi.set(__self__, "api_access_list_required", api_access_list_required)
@@ -249,6 +268,8 @@ class _OrganizationState:
             pulumi.set(__self__, "role_names", role_names)
         if security_contact is not None:
             pulumi.set(__self__, "security_contact", security_contact)
+        if service_account is not None:
+            pulumi.set(__self__, "service_account", service_account)
         if skip_default_alerts_settings is not None:
             pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
 
@@ -357,9 +378,6 @@ class _OrganizationState:
     @_builtins.property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Public API key value set for the specified organization API key.
-        """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
@@ -403,6 +421,18 @@ class _OrganizationState:
         pulumi.set(self, "security_contact", value)
 
     @_builtins.property
+    @pulumi.getter(name="serviceAccount")
+    def service_account(self) -> Optional[pulumi.Input['OrganizationServiceAccountArgs']]:
+        """
+        Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
+        """
+        return pulumi.get(self, "service_account")
+
+    @service_account.setter
+    def service_account(self, value: Optional[pulumi.Input['OrganizationServiceAccountArgs']]):
+        pulumi.set(self, "service_account", value)
+
+    @_builtins.property
     @pulumi.getter(name="skipDefaultAlertsSettings")
     def skip_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
         return pulumi.get(self, "skip_default_alerts_settings")
@@ -428,41 +458,33 @@ class Organization(pulumi.CustomResource):
                  restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security_contact: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account: Optional[pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
                  skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
-        `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
-
-        > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `role_names` for new API Key must have the ORG_OWNER role specified.
-
-        > **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
-
         ## Example Usage
+
+        ### With Programmatic API Key
 
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.Organization("test",
+        this = mongodbatlas.Organization("this",
             org_owner_id="<ORG_OWNER_ID>",
             name="testCreateORG",
-            description="test API key from Org Creation Test",
+            description="test API key from Org Creation",
             role_names=["ORG_OWNER"])
         ```
-
-        ### Further Examples
-        - Organization setup - step 1
-        - Organization setup - step 2
-        - Organization import
 
         ## Import
 
         You can import an existing organization using the organization ID, e.g.:
 
         ```sh
-        $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+        $ pulumi import mongodbatlas:index/organization:Organization this 5d09d6a59ccf6445652a444a
         ```
-        ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+        ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`, `service_account`) in your Terraform configuration.
 
         See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
 
@@ -479,6 +501,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        :param pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         """
         ...
     @overload
@@ -487,38 +510,29 @@ class Organization(pulumi.CustomResource):
                  args: Optional[OrganizationArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
-
-        > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `role_names` for new API Key must have the ORG_OWNER role specified.
-
-        > **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
-
         ## Example Usage
+
+        ### With Programmatic API Key
 
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.Organization("test",
+        this = mongodbatlas.Organization("this",
             org_owner_id="<ORG_OWNER_ID>",
             name="testCreateORG",
-            description="test API key from Org Creation Test",
+            description="test API key from Org Creation",
             role_names=["ORG_OWNER"])
         ```
-
-        ### Further Examples
-        - Organization setup - step 1
-        - Organization setup - step 2
-        - Organization import
 
         ## Import
 
         You can import an existing organization using the organization ID, e.g.:
 
         ```sh
-        $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+        $ pulumi import mongodbatlas:index/organization:Organization this 5d09d6a59ccf6445652a444a
         ```
-        ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+        ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`, `service_account`) in your Terraform configuration.
 
         See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
 
@@ -549,6 +563,7 @@ class Organization(pulumi.CustomResource):
                  restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security_contact: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_account: Optional[pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
                  skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -569,6 +584,7 @@ class Organization(pulumi.CustomResource):
             __props__.__dict__["restrict_employee_access"] = restrict_employee_access
             __props__.__dict__["role_names"] = role_names
             __props__.__dict__["security_contact"] = security_contact
+            __props__.__dict__["service_account"] = service_account
             __props__.__dict__["skip_default_alerts_settings"] = skip_default_alerts_settings
             __props__.__dict__["org_id"] = None
             __props__.__dict__["private_key"] = None
@@ -598,6 +614,7 @@ class Organization(pulumi.CustomResource):
             restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
             role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             security_contact: Optional[pulumi.Input[_builtins.str]] = None,
+            service_account: Optional[pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
             skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
@@ -613,10 +630,10 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the organization.
         :param pulumi.Input[_builtins.str] org_id: The organization id.
         :param pulumi.Input[_builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
-        :param pulumi.Input[_builtins.str] public_key: Public API key value set for the specified organization API key.
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
+        :param pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -635,6 +652,7 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["restrict_employee_access"] = restrict_employee_access
         __props__.__dict__["role_names"] = role_names
         __props__.__dict__["security_contact"] = security_contact
+        __props__.__dict__["service_account"] = service_account
         __props__.__dict__["skip_default_alerts_settings"] = skip_default_alerts_settings
         return Organization(resource_name, opts=opts, __props__=__props__)
 
@@ -707,9 +725,6 @@ class Organization(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[_builtins.str]:
-        """
-        Public API key value set for the specified organization API key.
-        """
         return pulumi.get(self, "public_key")
 
     @_builtins.property
@@ -735,6 +750,14 @@ class Organization(pulumi.CustomResource):
         String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         return pulumi.get(self, "security_contact")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccount")
+    def service_account(self) -> pulumi.Output[Optional['outputs.OrganizationServiceAccount']]:
+        """
+        Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
+        """
+        return pulumi.get(self, "service_account")
 
     @_builtins.property
     @pulumi.getter(name="skipDefaultAlertsSettings")

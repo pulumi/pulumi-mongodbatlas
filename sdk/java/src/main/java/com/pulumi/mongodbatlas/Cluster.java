@@ -447,7 +447,7 @@ import javax.annotation.Nullable;
  * By endpointServiceId
  * 
  * Refer to the following for full privatelink endpoint connection string examples:
- * * GCP Private Endpoint
+ * * GCP Private Endpoint (Port-Mapped Architecture)
  * * Azure Private Endpoint
  * * AWS, Private Endpoint
  * * AWS, Regionalized Private Endpoints

@@ -13,13 +13,13 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class PrivateLinkEndpointServiceEndpointGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Forwarding rule that corresponds to the endpoint you created in GCP.
+        /// Forwarding rule that corresponds to the endpoint you created.
         /// </summary>
         [Input("endpointName")]
         public Input<string>? EndpointName { get; set; }
 
         /// <summary>
-        /// Private IP address of the endpoint you created in GCP.
+        /// Private IP address of the endpoint you created.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }

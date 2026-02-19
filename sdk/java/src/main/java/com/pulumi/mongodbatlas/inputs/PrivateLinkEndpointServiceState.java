@@ -102,30 +102,22 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         return Optional.ofNullable(this.deleteRequested);
     }
 
-    /**
-     * (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
-     * 
-     */
     @Import(name="endpointGroupName")
     private @Nullable Output<String> endpointGroupName;
 
-    /**
-     * @return (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
-     * 
-     */
     public Optional<Output<String>> endpointGroupName() {
         return Optional.ofNullable(this.endpointGroupName);
     }
 
     /**
-     * Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+     * Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      * 
      */
     @Import(name="endpointServiceId")
     private @Nullable Output<String> endpointServiceId;
 
     /**
-     * @return Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+     * @return Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      * 
      */
     public Optional<Output<String>> endpointServiceId() {
@@ -133,14 +125,14 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
-     * Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+     * Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
      * 
      */
     @Import(name="endpoints")
     private @Nullable Output<List<PrivateLinkEndpointServiceEndpointArgs>> endpoints;
 
     /**
-     * @return Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+     * @return Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
      * 
      */
     public Optional<Output<List<PrivateLinkEndpointServiceEndpointArgs>>> endpoints() {
@@ -163,14 +155,29 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
-     * Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+     * Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+     * 
+     */
+    @Import(name="gcpEndpointStatus")
+    private @Nullable Output<String> gcpEndpointStatus;
+
+    /**
+     * @return Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+     * 
+     */
+    public Optional<Output<String>> gcpEndpointStatus() {
+        return Optional.ofNullable(this.gcpEndpointStatus);
+    }
+
+    /**
+     * Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
      * 
      */
     @Import(name="gcpProjectId")
     private @Nullable Output<String> gcpProjectId;
 
     /**
-     * @return Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+     * @return Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
      * 
      */
     public Optional<Output<String>> gcpProjectId() {
@@ -178,7 +185,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
-     * Status of the interface endpoint for GCP.
+     * Status of the interface endpoint.
      * Returns one of the following values:
      * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
      * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -190,7 +197,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     private @Nullable Output<String> gcpStatus;
 
     /**
-     * @return Status of the interface endpoint for GCP.
+     * @return Status of the interface endpoint.
      * Returns one of the following values:
      * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
      * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -218,6 +225,21 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
+     * Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    @Import(name="portMappingEnabled")
+    private @Nullable Output<Boolean> portMappingEnabled;
+
+    /**
+     * @return Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    public Optional<Output<Boolean>> portMappingEnabled() {
+        return Optional.ofNullable(this.portMappingEnabled);
+    }
+
+    /**
      * Name of the connection for this private endpoint that Atlas generates.
      * 
      */
@@ -233,14 +255,14 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
-     * Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+     * Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
      * 
      */
     @Import(name="privateEndpointIpAddress")
     private @Nullable Output<String> privateEndpointIpAddress;
 
     /**
-     * @return Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+     * @return Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
      * 
      */
     public Optional<Output<String>> privateEndpointIpAddress() {
@@ -263,14 +285,14 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
-     * Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+     * Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      * 
      */
     @Import(name="privateLinkId")
     private @Nullable Output<String> privateLinkId;
 
     /**
-     * @return Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+     * @return Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      * 
      */
     public Optional<Output<String>> privateLinkId() {
@@ -278,14 +300,14 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
     }
 
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -318,9 +340,11 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         this.endpointServiceId = $.endpointServiceId;
         this.endpoints = $.endpoints;
         this.errorMessage = $.errorMessage;
+        this.gcpEndpointStatus = $.gcpEndpointStatus;
         this.gcpProjectId = $.gcpProjectId;
         this.gcpStatus = $.gcpStatus;
         this.interfaceEndpointId = $.interfaceEndpointId;
+        this.portMappingEnabled = $.portMappingEnabled;
         this.privateEndpointConnectionName = $.privateEndpointConnectionName;
         this.privateEndpointIpAddress = $.privateEndpointIpAddress;
         this.privateEndpointResourceId = $.privateEndpointResourceId;
@@ -455,29 +479,17 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
             return deleteRequested(Output.of(deleteRequested));
         }
 
-        /**
-         * @param endpointGroupName (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
-         * 
-         * @return builder
-         * 
-         */
         public Builder endpointGroupName(@Nullable Output<String> endpointGroupName) {
             $.endpointGroupName = endpointGroupName;
             return this;
         }
 
-        /**
-         * @param endpointGroupName (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
-         * 
-         * @return builder
-         * 
-         */
         public Builder endpointGroupName(String endpointGroupName) {
             return endpointGroupName(Output.of(endpointGroupName));
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
          * 
          * @return builder
          * 
@@ -488,7 +500,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
          * 
          * @return builder
          * 
@@ -498,7 +510,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
          * 
          * @return builder
          * 
@@ -509,7 +521,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
          * 
          * @return builder
          * 
@@ -519,7 +531,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
          * 
          * @return builder
          * 
@@ -550,7 +562,28 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+         * @param gcpEndpointStatus Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcpEndpointStatus(@Nullable Output<String> gcpEndpointStatus) {
+            $.gcpEndpointStatus = gcpEndpointStatus;
+            return this;
+        }
+
+        /**
+         * @param gcpEndpointStatus Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcpEndpointStatus(String gcpEndpointStatus) {
+            return gcpEndpointStatus(Output.of(gcpEndpointStatus));
+        }
+
+        /**
+         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
          * 
          * @return builder
          * 
@@ -561,7 +594,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
          * 
          * @return builder
          * 
@@ -571,7 +604,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param gcpStatus Status of the interface endpoint for GCP.
+         * @param gcpStatus Status of the interface endpoint.
          * Returns one of the following values:
          * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
          * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -587,7 +620,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param gcpStatus Status of the interface endpoint for GCP.
+         * @param gcpStatus Status of the interface endpoint.
          * Returns one of the following values:
          * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
          * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -623,6 +656,27 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
+         * @param portMappingEnabled Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder portMappingEnabled(@Nullable Output<Boolean> portMappingEnabled) {
+            $.portMappingEnabled = portMappingEnabled;
+            return this;
+        }
+
+        /**
+         * @param portMappingEnabled Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder portMappingEnabled(Boolean portMappingEnabled) {
+            return portMappingEnabled(Output.of(portMappingEnabled));
+        }
+
+        /**
          * @param privateEndpointConnectionName Name of the connection for this private endpoint that Atlas generates.
          * 
          * @return builder
@@ -644,7 +698,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
          * 
          * @return builder
          * 
@@ -655,7 +709,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
          * 
          * @return builder
          * 
@@ -686,7 +740,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param privateLinkId Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+         * @param privateLinkId Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
          * 
          * @return builder
          * 
@@ -697,7 +751,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param privateLinkId Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+         * @param privateLinkId Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
          * 
          * @return builder
          * 
@@ -707,7 +761,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -718,7 +772,7 @@ public final class PrivateLinkEndpointServiceState extends com.pulumi.resources.
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

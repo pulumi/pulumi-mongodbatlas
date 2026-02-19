@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.OrganizationArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OrganizationState;
+import com.pulumi.mongodbatlas.outputs.OrganizationServiceAccount;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -17,13 +18,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
- * 
- * &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you&#39;ll need to use them to grant access to the newly created Atlas organization. To use this resource, `roleNames` for new API Key must have the ORG_OWNER role specified.
- * 
- * &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key&#39;s organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
- * 
  * ## Example Usage
+ * 
+ * ### With Programmatic API Key
  * 
  * <pre>
  * {@code
@@ -47,10 +44,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var test = new Organization("test", OrganizationArgs.builder()
+ *         var this_ = new Organization("this", OrganizationArgs.builder()
  *             .orgOwnerId("<ORG_OWNER_ID>")
  *             .name("testCreateORG")
- *             .description("test API key from Org Creation Test")
+ *             .description("test API key from Org Creation")
  *             .roleNames("ORG_OWNER")
  *             .build());
  * 
@@ -59,19 +56,14 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * ### Further Examples
- * - Organization setup - step 1
- * - Organization setup - step 2
- * - Organization import
- * 
  * ## Import
  * 
  * You can import an existing organization using the organization ID, e.g.:
  * 
  * ```sh
- * $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+ * $ pulumi import mongodbatlas:index/organization:Organization this 5d09d6a59ccf6445652a444a
  * ```
- * ~&gt; __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+ * ~&gt; __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`, `service_account`) in your Terraform configuration.
  * 
  * See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
  * 
@@ -190,17 +182,9 @@ public class Organization extends com.pulumi.resources.CustomResource {
     public Output<String> privateKey() {
         return this.privateKey;
     }
-    /**
-     * Public API key value set for the specified organization API key.
-     * 
-     */
     @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
-    /**
-     * @return Public API key value set for the specified organization API key.
-     * 
-     */
     public Output<String> publicKey() {
         return this.publicKey;
     }
@@ -245,6 +229,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> securityContact() {
         return Codegen.optional(this.securityContact);
+    }
+    /**
+     * Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can&#39;t be updated after creation. See Service Account.
+     * 
+     */
+    @Export(name="serviceAccount", refs={OrganizationServiceAccount.class}, tree="[0]")
+    private Output</* @Nullable */ OrganizationServiceAccount> serviceAccount;
+
+    /**
+     * @return Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can&#39;t be updated after creation. See Service Account.
+     * 
+     */
+    public Output<Optional<OrganizationServiceAccount>> serviceAccount() {
+        return Codegen.optional(this.serviceAccount);
     }
     @Export(name="skipDefaultAlertsSettings", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> skipDefaultAlertsSettings;

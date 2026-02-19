@@ -24797,15 +24797,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
-     *             .projectId(testPrivateLinkEndpoint.projectId())
-     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(thisPrivateLinkEndpoint.privateLinkId())
      *             .providerName("AWS")
      *             .build());
      * 
@@ -24816,6 +24816,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args) {
@@ -24855,15 +24856,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
-     *             .projectId(testPrivateLinkEndpoint.projectId())
-     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(thisPrivateLinkEndpoint.privateLinkId())
      *             .providerName("AWS")
      *             .build());
      * 
@@ -24874,6 +24875,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointResult> getPrivateLinkEndpointPlain(GetPrivateLinkEndpointPlainArgs args) {
@@ -24913,15 +24915,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
-     *             .projectId(testPrivateLinkEndpoint.projectId())
-     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(thisPrivateLinkEndpoint.privateLinkId())
      *             .providerName("AWS")
      *             .build());
      * 
@@ -24932,6 +24934,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args, InvokeOptions options) {
@@ -24971,15 +24974,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
-     *             .projectId(testPrivateLinkEndpoint.projectId())
-     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(thisPrivateLinkEndpoint.privateLinkId())
      *             .providerName("AWS")
      *             .build());
      * 
@@ -24990,6 +24993,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
     public static Output<GetPrivateLinkEndpointResult> getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs args, InvokeOutputOptions options) {
@@ -25029,15 +25033,15 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var testPrivateLinkEndpoint = new PrivateLinkEndpoint("testPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
      *             .projectId("<PROJECT-ID>")
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
      * 
-     *         final var test = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
-     *             .projectId(testPrivateLinkEndpoint.projectId())
-     *             .privateLinkId(testPrivateLinkEndpoint.privateLinkId())
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpoint(GetPrivateLinkEndpointArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .privateLinkId(thisPrivateLinkEndpoint.privateLinkId())
      *             .providerName("AWS")
      *             .build());
      * 
@@ -25048,6 +25052,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointResult> getPrivateLinkEndpointPlain(GetPrivateLinkEndpointPlainArgs args, InvokeOptions options) {
@@ -25058,12 +25063,47 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
-     * ## Example with AWS
+     * ## Example Usage
      * 
-     * ## Example with Azure
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * See `mongodbatlas.PrivateLinkEndpointService` resource for complete examples with each cloud provider.
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
      * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args) {
@@ -25074,12 +25114,47 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
-     * ## Example with AWS
+     * ## Example Usage
      * 
-     * ## Example with Azure
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * See `mongodbatlas.PrivateLinkEndpointService` resource for complete examples with each cloud provider.
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args) {
@@ -25090,12 +25165,47 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
-     * ## Example with AWS
+     * ## Example Usage
      * 
-     * ## Example with Azure
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * See `mongodbatlas.PrivateLinkEndpointService` resource for complete examples with each cloud provider.
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
      * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args, InvokeOptions options) {
@@ -25106,12 +25216,47 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
-     * ## Example with AWS
+     * ## Example Usage
      * 
-     * ## Example with Azure
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * See `mongodbatlas.PrivateLinkEndpointService` resource for complete examples with each cloud provider.
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
      * 
      */
     public static Output<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs args, InvokeOutputOptions options) {
@@ -25122,12 +25267,47 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
-     * ## Example with AWS
+     * ## Example Usage
      * 
-     * ## Example with Azure
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * See `mongodbatlas.PrivateLinkEndpointService` resource for complete examples with each cloud provider.
      * 
      * ### Available complete examples
      * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
      * 
      */
     public static CompletableFuture<GetPrivateLinkEndpointServiceResult> getPrivateLinkEndpointServicePlain(GetPrivateLinkEndpointServicePlainArgs args, InvokeOptions options) {

@@ -11,13 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
-//
-// > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `roleNames` for new API Key must have the ORG_OWNER role specified.
-//
-// > **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
-//
 // ## Example Usage
+//
+// ### With Programmatic API Key
 //
 // ```go
 // package main
@@ -31,10 +27,10 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewOrganization(ctx, "test", &mongodbatlas.OrganizationArgs{
+//			_, err := mongodbatlas.NewOrganization(ctx, "this", &mongodbatlas.OrganizationArgs{
 //				OrgOwnerId:  pulumi.String("<ORG_OWNER_ID>"),
 //				Name:        pulumi.String("testCreateORG"),
-//				Description: pulumi.String("test API key from Org Creation Test"),
+//				Description: pulumi.String("test API key from Org Creation"),
 //				RoleNames: pulumi.StringArray{
 //					pulumi.String("ORG_OWNER"),
 //				},
@@ -48,19 +44,14 @@ import (
 //
 // ```
 //
-// ### Further Examples
-// - Organization setup - step 1
-// - Organization setup - step 2
-// - Organization import
-//
 // ## Import
 //
 // You can import an existing organization using the organization ID, e.g.:
 //
 // ```sh
-// $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+// $ pulumi import mongodbatlas:index/organization:Organization this 5d09d6a59ccf6445652a444a
 // ```
-// ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+// ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`, `service_account`) in your Terraform configuration.
 //
 // See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
 //
@@ -84,15 +75,16 @@ type Organization struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId pulumi.StringPtrOutput `pulumi:"orgOwnerId"`
 	PrivateKey pulumi.StringOutput    `pulumi:"privateKey"`
-	// Public API key value set for the specified organization API key.
-	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	PublicKey  pulumi.StringOutput    `pulumi:"publicKey"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess pulumi.BoolOutput `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           pulumi.StringPtrOutput `pulumi:"securityContact"`
-	SkipDefaultAlertsSettings pulumi.BoolOutput      `pulumi:"skipDefaultAlertsSettings"`
+	SecurityContact pulumi.StringPtrOutput `pulumi:"securityContact"`
+	// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+	ServiceAccount            OrganizationServiceAccountPtrOutput `pulumi:"serviceAccount"`
+	SkipDefaultAlertsSettings pulumi.BoolOutput                   `pulumi:"skipDefaultAlertsSettings"`
 }
 
 // NewOrganization registers a new resource with the given unique name, arguments, and options.
@@ -146,15 +138,16 @@ type organizationState struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId *string `pulumi:"orgOwnerId"`
 	PrivateKey *string `pulumi:"privateKey"`
-	// Public API key value set for the specified organization API key.
-	PublicKey *string `pulumi:"publicKey"`
+	PublicKey  *string `pulumi:"publicKey"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess *bool `pulumi:"restrictEmployeeAccess"`
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames []string `pulumi:"roleNames"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           *string `pulumi:"securityContact"`
-	SkipDefaultAlertsSettings *bool   `pulumi:"skipDefaultAlertsSettings"`
+	SecurityContact *string `pulumi:"securityContact"`
+	// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+	ServiceAccount            *OrganizationServiceAccount `pulumi:"serviceAccount"`
+	SkipDefaultAlertsSettings *bool                       `pulumi:"skipDefaultAlertsSettings"`
 }
 
 type OrganizationState struct {
@@ -174,14 +167,15 @@ type OrganizationState struct {
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId pulumi.StringPtrInput
 	PrivateKey pulumi.StringPtrInput
-	// Public API key value set for the specified organization API key.
-	PublicKey pulumi.StringPtrInput
+	PublicKey  pulumi.StringPtrInput
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess pulumi.BoolPtrInput
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames pulumi.StringArrayInput
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           pulumi.StringPtrInput
+	SecurityContact pulumi.StringPtrInput
+	// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+	ServiceAccount            OrganizationServiceAccountPtrInput
 	SkipDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
@@ -208,8 +202,10 @@ type organizationArgs struct {
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames []string `pulumi:"roleNames"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           *string `pulumi:"securityContact"`
-	SkipDefaultAlertsSettings *bool   `pulumi:"skipDefaultAlertsSettings"`
+	SecurityContact *string `pulumi:"securityContact"`
+	// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+	ServiceAccount            *OrganizationServiceAccount `pulumi:"serviceAccount"`
+	SkipDefaultAlertsSettings *bool                       `pulumi:"skipDefaultAlertsSettings"`
 }
 
 // The set of arguments for constructing a Organization resource.
@@ -232,7 +228,9 @@ type OrganizationArgs struct {
 	// List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
 	RoleNames pulumi.StringArrayInput
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           pulumi.StringPtrInput
+	SecurityContact pulumi.StringPtrInput
+	// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+	ServiceAccount            OrganizationServiceAccountPtrInput
 	SkipDefaultAlertsSettings pulumi.BoolPtrInput
 }
 
@@ -366,7 +364,6 @@ func (o OrganizationOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// Public API key value set for the specified organization API key.
 func (o OrganizationOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
@@ -384,6 +381,11 @@ func (o OrganizationOutput) RoleNames() pulumi.StringArrayOutput {
 // String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
 func (o OrganizationOutput) SecurityContact() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.SecurityContact }).(pulumi.StringPtrOutput)
+}
+
+// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+func (o OrganizationOutput) ServiceAccount() OrganizationServiceAccountPtrOutput {
+	return o.ApplyT(func(v *Organization) OrganizationServiceAccountPtrOutput { return v.ServiceAccount }).(OrganizationServiceAccountPtrOutput)
 }
 
 func (o OrganizationOutput) SkipDefaultAlertsSettings() pulumi.BoolOutput {

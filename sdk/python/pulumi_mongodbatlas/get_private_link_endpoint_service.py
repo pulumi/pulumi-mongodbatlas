@@ -27,7 +27,7 @@ class GetPrivateLinkEndpointServiceResult:
     """
     A collection of values returned by getPrivateLinkEndpointService.
     """
-    def __init__(__self__, aws_connection_status=None, azure_status=None, delete_requested=None, endpoint_service_id=None, endpoints=None, error_message=None, gcp_status=None, id=None, interface_endpoint_id=None, private_endpoint_connection_name=None, private_endpoint_ip_address=None, private_endpoint_resource_id=None, private_link_id=None, project_id=None, provider_name=None):
+    def __init__(__self__, aws_connection_status=None, azure_status=None, delete_requested=None, endpoint_service_id=None, endpoints=None, error_message=None, gcp_endpoint_status=None, gcp_project_id=None, gcp_status=None, id=None, interface_endpoint_id=None, port_mapping_enabled=None, private_endpoint_connection_name=None, private_endpoint_ip_address=None, private_endpoint_resource_id=None, private_link_id=None, project_id=None, provider_name=None):
         if aws_connection_status and not isinstance(aws_connection_status, str):
             raise TypeError("Expected argument 'aws_connection_status' to be a str")
         pulumi.set(__self__, "aws_connection_status", aws_connection_status)
@@ -46,6 +46,12 @@ class GetPrivateLinkEndpointServiceResult:
         if error_message and not isinstance(error_message, str):
             raise TypeError("Expected argument 'error_message' to be a str")
         pulumi.set(__self__, "error_message", error_message)
+        if gcp_endpoint_status and not isinstance(gcp_endpoint_status, str):
+            raise TypeError("Expected argument 'gcp_endpoint_status' to be a str")
+        pulumi.set(__self__, "gcp_endpoint_status", gcp_endpoint_status)
+        if gcp_project_id and not isinstance(gcp_project_id, str):
+            raise TypeError("Expected argument 'gcp_project_id' to be a str")
+        pulumi.set(__self__, "gcp_project_id", gcp_project_id)
         if gcp_status and not isinstance(gcp_status, str):
             raise TypeError("Expected argument 'gcp_status' to be a str")
         pulumi.set(__self__, "gcp_status", gcp_status)
@@ -55,6 +61,9 @@ class GetPrivateLinkEndpointServiceResult:
         if interface_endpoint_id and not isinstance(interface_endpoint_id, str):
             raise TypeError("Expected argument 'interface_endpoint_id' to be a str")
         pulumi.set(__self__, "interface_endpoint_id", interface_endpoint_id)
+        if port_mapping_enabled and not isinstance(port_mapping_enabled, bool):
+            raise TypeError("Expected argument 'port_mapping_enabled' to be a bool")
+        pulumi.set(__self__, "port_mapping_enabled", port_mapping_enabled)
         if private_endpoint_connection_name and not isinstance(private_endpoint_connection_name, str):
             raise TypeError("Expected argument 'private_endpoint_connection_name' to be a str")
         pulumi.set(__self__, "private_endpoint_connection_name", private_endpoint_connection_name)
@@ -80,7 +89,7 @@ class GetPrivateLinkEndpointServiceResult:
         """
         Status of the interface endpoint for AWS.
         Returns one of the following values:
-        * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+        * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn't yet created the VPC endpoint.
         * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
         * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
         * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
@@ -119,7 +128,7 @@ class GetPrivateLinkEndpointServiceResult:
     @pulumi.getter
     def endpoints(self) -> Sequence['outputs.GetPrivateLinkEndpointServiceEndpointResult']:
         """
-        Collection of individual private endpoints that comprise your network endpoint group.
+        Collection of individual private endpoints that comprise your network endpoint group. Only populated for GCP legacy private endpoint architecture.
         """
         return pulumi.get(self, "endpoints")
 
@@ -132,10 +141,26 @@ class GetPrivateLinkEndpointServiceResult:
         return pulumi.get(self, "error_message")
 
     @_builtins.property
+    @pulumi.getter(name="gcpEndpointStatus")
+    def gcp_endpoint_status(self) -> _builtins.str:
+        """
+        Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+        """
+        return pulumi.get(self, "gcp_endpoint_status")
+
+    @_builtins.property
+    @pulumi.getter(name="gcpProjectId")
+    def gcp_project_id(self) -> _builtins.str:
+        """
+        Unique identifier of the GCP project in which the endpoints were created. Only applicable for GCP provider.
+        """
+        return pulumi.get(self, "gcp_project_id")
+
+    @_builtins.property
     @pulumi.getter(name="gcpStatus")
     def gcp_status(self) -> _builtins.str:
         """
-        Status of the interface endpoint for GCP.
+        Status of the interface endpoint.
         Returns one of the following values:
         * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
         * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -161,6 +186,14 @@ class GetPrivateLinkEndpointServiceResult:
         return pulumi.get(self, "interface_endpoint_id")
 
     @_builtins.property
+    @pulumi.getter(name="portMappingEnabled")
+    def port_mapping_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether the underlying `privatelink_endpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        """
+        return pulumi.get(self, "port_mapping_enabled")
+
+    @_builtins.property
     @pulumi.getter(name="privateEndpointConnectionName")
     def private_endpoint_connection_name(self) -> _builtins.str:
         """
@@ -172,7 +205,7 @@ class GetPrivateLinkEndpointServiceResult:
     @pulumi.getter(name="privateEndpointIpAddress")
     def private_endpoint_ip_address(self) -> _builtins.str:
         """
-        Private IP address of the private endpoint network interface.
+        Private IP address of the private endpoint network interface. For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
         """
         return pulumi.get(self, "private_endpoint_ip_address")
 
@@ -212,9 +245,12 @@ class AwaitableGetPrivateLinkEndpointServiceResult(GetPrivateLinkEndpointService
             endpoint_service_id=self.endpoint_service_id,
             endpoints=self.endpoints,
             error_message=self.error_message,
+            gcp_endpoint_status=self.gcp_endpoint_status,
+            gcp_project_id=self.gcp_project_id,
             gcp_status=self.gcp_status,
             id=self.id,
             interface_endpoint_id=self.interface_endpoint_id,
+            port_mapping_enabled=self.port_mapping_enabled,
             private_endpoint_connection_name=self.private_endpoint_connection_name,
             private_endpoint_ip_address=self.private_endpoint_ip_address,
             private_endpoint_resource_id=self.private_endpoint_resource_id,
@@ -233,18 +269,29 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[_builtins.st
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-    ## Example with AWS
+    ## Example Usage
 
-    ## Example with Azure
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    this = mongodbatlas.get_private_link_endpoint_service(project_id=this_mongodbatlas_privatelink_endpoint_service["projectId"],
+        private_link_id=this_mongodbatlas_privatelink_endpoint_service["privateLinkId"],
+        endpoint_service_id=this_mongodbatlas_privatelink_endpoint_service["endpointServiceId"],
+        provider_name="AWS")
+    ```
+
+    See `PrivateLinkEndpointService` resource for complete examples with each cloud provider.
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+    - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
 
 
-    :param _builtins.str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
-    :param _builtins.str private_link_id: Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
-    :param _builtins.str project_id: Unique identifier for the project.
-    :param _builtins.str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
+    :param _builtins.str endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
+    :param _builtins.str private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+    :param _builtins.str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
     """
     __args__ = dict()
     __args__['endpointServiceId'] = endpoint_service_id
@@ -261,9 +308,12 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[_builtins.st
         endpoint_service_id=pulumi.get(__ret__, 'endpoint_service_id'),
         endpoints=pulumi.get(__ret__, 'endpoints'),
         error_message=pulumi.get(__ret__, 'error_message'),
+        gcp_endpoint_status=pulumi.get(__ret__, 'gcp_endpoint_status'),
+        gcp_project_id=pulumi.get(__ret__, 'gcp_project_id'),
         gcp_status=pulumi.get(__ret__, 'gcp_status'),
         id=pulumi.get(__ret__, 'id'),
         interface_endpoint_id=pulumi.get(__ret__, 'interface_endpoint_id'),
+        port_mapping_enabled=pulumi.get(__ret__, 'port_mapping_enabled'),
         private_endpoint_connection_name=pulumi.get(__ret__, 'private_endpoint_connection_name'),
         private_endpoint_ip_address=pulumi.get(__ret__, 'private_endpoint_ip_address'),
         private_endpoint_resource_id=pulumi.get(__ret__, 'private_endpoint_resource_id'),
@@ -280,18 +330,29 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
 
     > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
-    ## Example with AWS
+    ## Example Usage
 
-    ## Example with Azure
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    this = mongodbatlas.get_private_link_endpoint_service(project_id=this_mongodbatlas_privatelink_endpoint_service["projectId"],
+        private_link_id=this_mongodbatlas_privatelink_endpoint_service["privateLinkId"],
+        endpoint_service_id=this_mongodbatlas_privatelink_endpoint_service["endpointServiceId"],
+        provider_name="AWS")
+    ```
+
+    See `PrivateLinkEndpointService` resource for complete examples with each cloud provider.
 
     ### Available complete examples
     - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+    - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
 
 
-    :param _builtins.str endpoint_service_id: Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
-    :param _builtins.str private_link_id: Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
-    :param _builtins.str project_id: Unique identifier for the project.
-    :param _builtins.str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
+    :param _builtins.str endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
+    :param _builtins.str private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+    :param _builtins.str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
     """
     __args__ = dict()
     __args__['endpointServiceId'] = endpoint_service_id
@@ -307,9 +368,12 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
         endpoint_service_id=pulumi.get(__response__, 'endpoint_service_id'),
         endpoints=pulumi.get(__response__, 'endpoints'),
         error_message=pulumi.get(__response__, 'error_message'),
+        gcp_endpoint_status=pulumi.get(__response__, 'gcp_endpoint_status'),
+        gcp_project_id=pulumi.get(__response__, 'gcp_project_id'),
         gcp_status=pulumi.get(__response__, 'gcp_status'),
         id=pulumi.get(__response__, 'id'),
         interface_endpoint_id=pulumi.get(__response__, 'interface_endpoint_id'),
+        port_mapping_enabled=pulumi.get(__response__, 'port_mapping_enabled'),
         private_endpoint_connection_name=pulumi.get(__response__, 'private_endpoint_connection_name'),
         private_endpoint_ip_address=pulumi.get(__response__, 'private_endpoint_ip_address'),
         private_endpoint_resource_id=pulumi.get(__response__, 'private_endpoint_resource_id'),

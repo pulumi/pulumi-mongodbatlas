@@ -16,7 +16,7 @@ public final class GetPrivateLinkEndpointServiceResult {
     /**
      * @return Status of the interface endpoint for AWS.
      * Returns one of the following values:
-     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn&#39;t yet created the VPC endpoint.
      * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
      * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
      * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
@@ -42,7 +42,7 @@ public final class GetPrivateLinkEndpointServiceResult {
     private Boolean deleteRequested;
     private String endpointServiceId;
     /**
-     * @return Collection of individual private endpoints that comprise your network endpoint group.
+     * @return Collection of individual private endpoints that comprise your network endpoint group. Only populated for GCP legacy private endpoint architecture.
      * 
      */
     private List<GetPrivateLinkEndpointServiceEndpoint> endpoints;
@@ -52,7 +52,17 @@ public final class GetPrivateLinkEndpointServiceResult {
      */
     private String errorMessage;
     /**
-     * @return Status of the interface endpoint for GCP.
+     * @return Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+     * 
+     */
+    private String gcpEndpointStatus;
+    /**
+     * @return Unique identifier of the GCP project in which the endpoints were created. Only applicable for GCP provider.
+     * 
+     */
+    private String gcpProjectId;
+    /**
+     * @return Status of the interface endpoint.
      * Returns one of the following values:
      * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
      * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -72,12 +82,17 @@ public final class GetPrivateLinkEndpointServiceResult {
      */
     private String interfaceEndpointId;
     /**
+     * @return Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    private Boolean portMappingEnabled;
+    /**
      * @return Name of the connection for this private endpoint that Atlas generates.
      * 
      */
     private String privateEndpointConnectionName;
     /**
-     * @return Private IP address of the private endpoint network interface.
+     * @return Private IP address of the private endpoint network interface. For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
      * 
      */
     private String privateEndpointIpAddress;
@@ -94,7 +109,7 @@ public final class GetPrivateLinkEndpointServiceResult {
     /**
      * @return Status of the interface endpoint for AWS.
      * Returns one of the following values:
-     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn&#39;t yet created the VPC endpoint.
      * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
      * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
      * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
@@ -128,7 +143,7 @@ public final class GetPrivateLinkEndpointServiceResult {
         return this.endpointServiceId;
     }
     /**
-     * @return Collection of individual private endpoints that comprise your network endpoint group.
+     * @return Collection of individual private endpoints that comprise your network endpoint group. Only populated for GCP legacy private endpoint architecture.
      * 
      */
     public List<GetPrivateLinkEndpointServiceEndpoint> endpoints() {
@@ -142,7 +157,21 @@ public final class GetPrivateLinkEndpointServiceResult {
         return this.errorMessage;
     }
     /**
-     * @return Status of the interface endpoint for GCP.
+     * @return Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+     * 
+     */
+    public String gcpEndpointStatus() {
+        return this.gcpEndpointStatus;
+    }
+    /**
+     * @return Unique identifier of the GCP project in which the endpoints were created. Only applicable for GCP provider.
+     * 
+     */
+    public String gcpProjectId() {
+        return this.gcpProjectId;
+    }
+    /**
+     * @return Status of the interface endpoint.
      * Returns one of the following values:
      * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
      * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -168,6 +197,13 @@ public final class GetPrivateLinkEndpointServiceResult {
         return this.interfaceEndpointId;
     }
     /**
+     * @return Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    public Boolean portMappingEnabled() {
+        return this.portMappingEnabled;
+    }
+    /**
      * @return Name of the connection for this private endpoint that Atlas generates.
      * 
      */
@@ -175,7 +211,7 @@ public final class GetPrivateLinkEndpointServiceResult {
         return this.privateEndpointConnectionName;
     }
     /**
-     * @return Private IP address of the private endpoint network interface.
+     * @return Private IP address of the private endpoint network interface. For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
      * 
      */
     public String privateEndpointIpAddress() {
@@ -213,9 +249,12 @@ public final class GetPrivateLinkEndpointServiceResult {
         private String endpointServiceId;
         private List<GetPrivateLinkEndpointServiceEndpoint> endpoints;
         private String errorMessage;
+        private String gcpEndpointStatus;
+        private String gcpProjectId;
         private String gcpStatus;
         private String id;
         private String interfaceEndpointId;
+        private Boolean portMappingEnabled;
         private String privateEndpointConnectionName;
         private String privateEndpointIpAddress;
         private String privateEndpointResourceId;
@@ -231,9 +270,12 @@ public final class GetPrivateLinkEndpointServiceResult {
     	      this.endpointServiceId = defaults.endpointServiceId;
     	      this.endpoints = defaults.endpoints;
     	      this.errorMessage = defaults.errorMessage;
+    	      this.gcpEndpointStatus = defaults.gcpEndpointStatus;
+    	      this.gcpProjectId = defaults.gcpProjectId;
     	      this.gcpStatus = defaults.gcpStatus;
     	      this.id = defaults.id;
     	      this.interfaceEndpointId = defaults.interfaceEndpointId;
+    	      this.portMappingEnabled = defaults.portMappingEnabled;
     	      this.privateEndpointConnectionName = defaults.privateEndpointConnectionName;
     	      this.privateEndpointIpAddress = defaults.privateEndpointIpAddress;
     	      this.privateEndpointResourceId = defaults.privateEndpointResourceId;
@@ -294,6 +336,22 @@ public final class GetPrivateLinkEndpointServiceResult {
             return this;
         }
         @CustomType.Setter
+        public Builder gcpEndpointStatus(String gcpEndpointStatus) {
+            if (gcpEndpointStatus == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceResult", "gcpEndpointStatus");
+            }
+            this.gcpEndpointStatus = gcpEndpointStatus;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder gcpProjectId(String gcpProjectId) {
+            if (gcpProjectId == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceResult", "gcpProjectId");
+            }
+            this.gcpProjectId = gcpProjectId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder gcpStatus(String gcpStatus) {
             if (gcpStatus == null) {
               throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceResult", "gcpStatus");
@@ -315,6 +373,14 @@ public final class GetPrivateLinkEndpointServiceResult {
               throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceResult", "interfaceEndpointId");
             }
             this.interfaceEndpointId = interfaceEndpointId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder portMappingEnabled(Boolean portMappingEnabled) {
+            if (portMappingEnabled == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointServiceResult", "portMappingEnabled");
+            }
+            this.portMappingEnabled = portMappingEnabled;
             return this;
         }
         @CustomType.Setter
@@ -373,9 +439,12 @@ public final class GetPrivateLinkEndpointServiceResult {
             _resultValue.endpointServiceId = endpointServiceId;
             _resultValue.endpoints = endpoints;
             _resultValue.errorMessage = errorMessage;
+            _resultValue.gcpEndpointStatus = gcpEndpointStatus;
+            _resultValue.gcpProjectId = gcpProjectId;
             _resultValue.gcpStatus = gcpStatus;
             _resultValue.id = id;
             _resultValue.interfaceEndpointId = interfaceEndpointId;
+            _resultValue.portMappingEnabled = portMappingEnabled;
             _resultValue.privateEndpointConnectionName = privateEndpointConnectionName;
             _resultValue.privateEndpointIpAddress = privateEndpointIpAddress;
             _resultValue.privateEndpointResourceId = privateEndpointResourceId;

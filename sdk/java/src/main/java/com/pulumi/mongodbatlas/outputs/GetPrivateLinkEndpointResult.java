@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetPrivateLinkEndpointResult {
     /**
-     * @return GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+     * @return For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
      * 
      */
     private List<String> endpointGroupNames;
@@ -37,6 +38,11 @@ public final class GetPrivateLinkEndpointResult {
      */
     private List<String> interfaceEndpoints;
     /**
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    private Boolean portMappingEnabled;
+    /**
      * @return All private endpoints that you have added to this Azure Private Link Service.
      * 
      */
@@ -55,12 +61,12 @@ public final class GetPrivateLinkEndpointResult {
     private String projectId;
     private String providerName;
     /**
-     * @return GCP region for the Private Service Connect endpoint service.
+     * @return Region for the Private Service Connect endpoint service.
      * 
      */
     private String regionName;
     /**
-     * @return Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+     * @return For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
      * 
      */
     private List<String> serviceAttachmentNames;
@@ -78,7 +84,7 @@ public final class GetPrivateLinkEndpointResult {
 
     private GetPrivateLinkEndpointResult() {}
     /**
-     * @return GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+     * @return For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
      * 
      */
     public List<String> endpointGroupNames() {
@@ -113,6 +119,13 @@ public final class GetPrivateLinkEndpointResult {
         return this.interfaceEndpoints;
     }
     /**
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    public Boolean portMappingEnabled() {
+        return this.portMappingEnabled;
+    }
+    /**
      * @return All private endpoints that you have added to this Azure Private Link Service.
      * 
      */
@@ -143,14 +156,14 @@ public final class GetPrivateLinkEndpointResult {
         return this.providerName;
     }
     /**
-     * @return GCP region for the Private Service Connect endpoint service.
+     * @return Region for the Private Service Connect endpoint service.
      * 
      */
     public String regionName() {
         return this.regionName;
     }
     /**
-     * @return Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+     * @return For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
      * 
      */
     public List<String> serviceAttachmentNames() {
@@ -184,6 +197,7 @@ public final class GetPrivateLinkEndpointResult {
         private String errorMessage;
         private String id;
         private List<String> interfaceEndpoints;
+        private Boolean portMappingEnabled;
         private List<String> privateEndpoints;
         private String privateLinkId;
         private String privateLinkServiceName;
@@ -201,6 +215,7 @@ public final class GetPrivateLinkEndpointResult {
     	      this.errorMessage = defaults.errorMessage;
     	      this.id = defaults.id;
     	      this.interfaceEndpoints = defaults.interfaceEndpoints;
+    	      this.portMappingEnabled = defaults.portMappingEnabled;
     	      this.privateEndpoints = defaults.privateEndpoints;
     	      this.privateLinkId = defaults.privateLinkId;
     	      this.privateLinkServiceName = defaults.privateLinkServiceName;
@@ -257,6 +272,14 @@ public final class GetPrivateLinkEndpointResult {
         }
         public Builder interfaceEndpoints(String... interfaceEndpoints) {
             return interfaceEndpoints(List.of(interfaceEndpoints));
+        }
+        @CustomType.Setter
+        public Builder portMappingEnabled(Boolean portMappingEnabled) {
+            if (portMappingEnabled == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "portMappingEnabled");
+            }
+            this.portMappingEnabled = portMappingEnabled;
+            return this;
         }
         @CustomType.Setter
         public Builder privateEndpoints(List<String> privateEndpoints) {
@@ -343,6 +366,7 @@ public final class GetPrivateLinkEndpointResult {
             _resultValue.errorMessage = errorMessage;
             _resultValue.id = id;
             _resultValue.interfaceEndpoints = interfaceEndpoints;
+            _resultValue.portMappingEnabled = portMappingEnabled;
             _resultValue.privateEndpoints = privateEndpoints;
             _resultValue.privateLinkId = privateLinkId;
             _resultValue.privateLinkServiceName = privateLinkServiceName;

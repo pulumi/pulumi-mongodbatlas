@@ -11,12 +11,12 @@ import java.util.Objects;
 @CustomType
 public final class GetPrivateLinkEndpointServiceEndpoint {
     /**
-     * @return Forwarding rule that corresponds to the endpoint you created in GCP.
+     * @return Forwarding rule that corresponds to the endpoint you created.
      * 
      */
     private String endpointName;
     /**
-     * @return Private IP address of the network endpoint group you created in GCP.
+     * @return Private IP address of the network endpoint group you created.
      * 
      */
     private String ipAddress;
@@ -28,14 +28,14 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
 
     private GetPrivateLinkEndpointServiceEndpoint() {}
     /**
-     * @return Forwarding rule that corresponds to the endpoint you created in GCP.
+     * @return Forwarding rule that corresponds to the endpoint you created.
      * 
      */
     public String endpointName() {
         return this.endpointName;
     }
     /**
-     * @return Private IP address of the network endpoint group you created in GCP.
+     * @return Private IP address of the network endpoint group you created.
      * 
      */
     public String ipAddress() {

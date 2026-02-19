@@ -22,26 +22,30 @@ class PrivateLinkEndpointArgs:
                  project_id: pulumi.Input[_builtins.str],
                  provider_name: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None):
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
+                 port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a PrivateLinkEndpoint resource.
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.bool] port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
         pulumi.set(__self__, "region", region)
         if delete_on_create_timeout is not None:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
+        if port_mapping_enabled is not None:
+            pulumi.set(__self__, "port_mapping_enabled", port_mapping_enabled)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Required 	Unique identifier for the project.
+        Unique identifier for the project, also known as `group_id` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -86,6 +90,18 @@ class PrivateLinkEndpointArgs:
     def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
+    @_builtins.property
+    @pulumi.getter(name="portMappingEnabled")
+    def port_mapping_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        """
+        return pulumi.get(self, "port_mapping_enabled")
+
+    @port_mapping_enabled.setter
+    def port_mapping_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "port_mapping_enabled", value)
+
 
 @pulumi.input_type
 class _PrivateLinkEndpointState:
@@ -95,6 +111,7 @@ class _PrivateLinkEndpointState:
                  endpoint_service_name: Optional[pulumi.Input[_builtins.str]] = None,
                  error_message: Optional[pulumi.Input[_builtins.str]] = None,
                  interface_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
                  private_link_service_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -108,38 +125,26 @@ class _PrivateLinkEndpointState:
         """
         Input properties used for looking up and filtering PrivateLinkEndpoint resources.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoint_group_names: GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoint_group_names: For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
         :param pulumi.Input[_builtins.str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
-        :param pulumi.Input[_builtins.str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-               AWS:
+        :param pulumi.Input[_builtins.str] error_message: Error message pertaining to the private endpoint connection. Returns null if there are no errors.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-               AZURE:
+        :param pulumi.Input[_builtins.bool] port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] private_endpoints: All private endpoints that you have added to this Azure Private Link Service.
-        :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the AWS PrivateLink connection.
+        :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the private endpoint connection.
         :param pulumi.Input[_builtins.str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
-               GCP:
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] private_link_service_resource_id: Resource ID of the Azure Private Link Service.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
-        :param pulumi.Input[_builtins.str] region_name: GCP region for the Private Service Connect endpoint service.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_attachment_names: Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
-        :param pulumi.Input[_builtins.str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-               AWS:
-               * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-               * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-               * `FAILED` 	A system failure has occurred.
-               * `DELETING` 	The AWS PrivateLink connection is being deleted.
-               AZURE:
-               * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-               * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-               * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-               * `DELETING` 	Atlas is deleting the Private Link service.
-               GCP:
-               * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-               * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-               * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-               * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+        :param pulumi.Input[_builtins.str] region_name: Region for the Private Service Connect endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_attachment_names: For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+        :param pulumi.Input[_builtins.str] status: values:
+               * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+               * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+               * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+               * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
         """
         if delete_on_create_timeout is not None:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
@@ -151,6 +156,8 @@ class _PrivateLinkEndpointState:
             pulumi.set(__self__, "error_message", error_message)
         if interface_endpoints is not None:
             pulumi.set(__self__, "interface_endpoints", interface_endpoints)
+        if port_mapping_enabled is not None:
+            pulumi.set(__self__, "port_mapping_enabled", port_mapping_enabled)
         if private_endpoints is not None:
             pulumi.set(__self__, "private_endpoints", private_endpoints)
         if private_link_id is not None:
@@ -188,7 +195,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="endpointGroupNames")
     def endpoint_group_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
         """
         return pulumi.get(self, "endpoint_group_names")
 
@@ -212,8 +219,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="errorMessage")
     def error_message(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-        AWS:
+        Error message pertaining to the private endpoint connection. Returns null if there are no errors.
         """
         return pulumi.get(self, "error_message")
 
@@ -226,13 +232,24 @@ class _PrivateLinkEndpointState:
     def interface_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-        AZURE:
         """
         return pulumi.get(self, "interface_endpoints")
 
     @interface_endpoints.setter
     def interface_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "interface_endpoints", value)
+
+    @_builtins.property
+    @pulumi.getter(name="portMappingEnabled")
+    def port_mapping_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        """
+        return pulumi.get(self, "port_mapping_enabled")
+
+    @port_mapping_enabled.setter
+    def port_mapping_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "port_mapping_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
@@ -250,7 +267,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="privateLinkId")
     def private_link_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier of the AWS PrivateLink connection.
+        Unique identifier of the private endpoint connection.
         """
         return pulumi.get(self, "private_link_id")
 
@@ -263,7 +280,6 @@ class _PrivateLinkEndpointState:
     def private_link_service_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Name of the Azure Private Link Service that Atlas manages.
-        GCP:
         """
         return pulumi.get(self, "private_link_service_name")
 
@@ -274,6 +290,9 @@ class _PrivateLinkEndpointState:
     @_builtins.property
     @pulumi.getter(name="privateLinkServiceResourceId")
     def private_link_service_resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Resource ID of the Azure Private Link Service.
+        """
         return pulumi.get(self, "private_link_service_resource_id")
 
     @private_link_service_resource_id.setter
@@ -284,7 +303,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Required 	Unique identifier for the project.
+        Unique identifier for the project, also known as `group_id` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -321,7 +340,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="regionName")
     def region_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        GCP region for the Private Service Connect endpoint service.
+        Region for the Private Service Connect endpoint service.
         """
         return pulumi.get(self, "region_name")
 
@@ -333,7 +352,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="serviceAttachmentNames")
     def service_attachment_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+        For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
         """
         return pulumi.get(self, "service_attachment_names")
 
@@ -345,22 +364,11 @@ class _PrivateLinkEndpointState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-        AWS:
-        * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-        * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-        * `FAILED` 	A system failure has occurred.
-        * `DELETING` 	The AWS PrivateLink connection is being deleted.
-        AZURE:
-        * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-        * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-        * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-        * `DELETING` 	Atlas is deleting the Private Link service.
-        GCP:
-        * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-        * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-        * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-        * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+        values:
+        * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+        * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+        * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+        * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
         """
         return pulumi.get(self, "status")
 
@@ -376,6 +384,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
+                 port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -387,30 +396,33 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.PrivateLinkEndpoint("test",
+        this = mongodbatlas.PrivateLinkEndpoint("this",
             project_id="<PROJECT-ID>",
-            provider_name="AWS/AZURE",
+            provider_name="AWS",
             region="US_EAST_1")
         ```
 
         ### Further Examples
         - AWS PrivateLink Endpoint
         - Azure PrivateLink Endpoint
-        - GCP Private Service Connect Endpoint
+        - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
 
         ## Import
 
         Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
+        $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint this 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
-        See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one/)
+        For more information, see:
+        - [MongoDB API Private Endpoint Service](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointservice) for detailed arguments and attributes.
+        - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.bool] port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
@@ -428,25 +440,27 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test = mongodbatlas.PrivateLinkEndpoint("test",
+        this = mongodbatlas.PrivateLinkEndpoint("this",
             project_id="<PROJECT-ID>",
-            provider_name="AWS/AZURE",
+            provider_name="AWS",
             region="US_EAST_1")
         ```
 
         ### Further Examples
         - AWS PrivateLink Endpoint
         - Azure PrivateLink Endpoint
-        - GCP Private Service Connect Endpoint
+        - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
 
         ## Import
 
         Private Endpoint Service can be imported using project ID, private link ID, provider name and region, in the format `{project_id}-{private_link_id}-{provider_name}-{region}`, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint test 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
+        $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint this 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
-        See detailed information for arguments and attributes: [MongoDB API Private Endpoint Service](https://docs.atlas.mongodb.com/reference/api/private-endpoints-service-create-one/)
+        For more information, see:
+        - [MongoDB API Private Endpoint Service](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointservice) for detailed arguments and attributes.
+        - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.
 
         :param str resource_name: The name of the resource.
         :param PrivateLinkEndpointArgs args: The arguments to use to populate this resource's properties.
@@ -464,6 +478,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
+                 port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -477,6 +492,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             __props__ = PrivateLinkEndpointArgs.__new__(PrivateLinkEndpointArgs)
 
             __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
+            __props__.__dict__["port_mapping_enabled"] = port_mapping_enabled
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -512,6 +528,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             endpoint_service_name: Optional[pulumi.Input[_builtins.str]] = None,
             error_message: Optional[pulumi.Input[_builtins.str]] = None,
             interface_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
             private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
             private_link_service_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -530,38 +547,26 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoint_group_names: GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoint_group_names: For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
         :param pulumi.Input[_builtins.str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
-        :param pulumi.Input[_builtins.str] error_message: Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-               AWS:
+        :param pulumi.Input[_builtins.str] error_message: Error message pertaining to the private endpoint connection. Returns null if there are no errors.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-               AZURE:
+        :param pulumi.Input[_builtins.bool] port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] private_endpoints: All private endpoints that you have added to this Azure Private Link Service.
-        :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the AWS PrivateLink connection.
+        :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the private endpoint connection.
         :param pulumi.Input[_builtins.str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
-               GCP:
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] private_link_service_resource_id: Resource ID of the Azure Private Link Service.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
-        :param pulumi.Input[_builtins.str] region_name: GCP region for the Private Service Connect endpoint service.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_attachment_names: Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
-        :param pulumi.Input[_builtins.str] status: Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-               AWS:
-               * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-               * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-               * `FAILED` 	A system failure has occurred.
-               * `DELETING` 	The AWS PrivateLink connection is being deleted.
-               AZURE:
-               * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-               * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-               * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-               * `DELETING` 	Atlas is deleting the Private Link service.
-               GCP:
-               * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-               * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-               * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-               * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+        :param pulumi.Input[_builtins.str] region_name: Region for the Private Service Connect endpoint service.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_attachment_names: For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+        :param pulumi.Input[_builtins.str] status: values:
+               * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+               * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+               * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+               * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -572,6 +577,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         __props__.__dict__["endpoint_service_name"] = endpoint_service_name
         __props__.__dict__["error_message"] = error_message
         __props__.__dict__["interface_endpoints"] = interface_endpoints
+        __props__.__dict__["port_mapping_enabled"] = port_mapping_enabled
         __props__.__dict__["private_endpoints"] = private_endpoints
         __props__.__dict__["private_link_id"] = private_link_id
         __props__.__dict__["private_link_service_name"] = private_link_service_name
@@ -596,7 +602,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="endpointGroupNames")
     def endpoint_group_names(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
         """
         return pulumi.get(self, "endpoint_group_names")
 
@@ -612,8 +618,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="errorMessage")
     def error_message(self) -> pulumi.Output[_builtins.str]:
         """
-        Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
-        AWS:
+        Error message pertaining to the private endpoint connection. Returns null if there are no errors.
         """
         return pulumi.get(self, "error_message")
 
@@ -622,9 +627,16 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def interface_endpoints(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
-        AZURE:
         """
         return pulumi.get(self, "interface_endpoints")
+
+    @_builtins.property
+    @pulumi.getter(name="portMappingEnabled")
+    def port_mapping_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        """
+        return pulumi.get(self, "port_mapping_enabled")
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
@@ -638,7 +650,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="privateLinkId")
     def private_link_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique identifier of the AWS PrivateLink connection.
+        Unique identifier of the private endpoint connection.
         """
         return pulumi.get(self, "private_link_id")
 
@@ -647,20 +659,22 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def private_link_service_name(self) -> pulumi.Output[_builtins.str]:
         """
         Name of the Azure Private Link Service that Atlas manages.
-        GCP:
         """
         return pulumi.get(self, "private_link_service_name")
 
     @_builtins.property
     @pulumi.getter(name="privateLinkServiceResourceId")
     def private_link_service_resource_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        Resource ID of the Azure Private Link Service.
+        """
         return pulumi.get(self, "private_link_service_resource_id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Required 	Unique identifier for the project.
+        Unique identifier for the project, also known as `group_id` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -685,7 +699,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="regionName")
     def region_name(self) -> pulumi.Output[_builtins.str]:
         """
-        GCP region for the Private Service Connect endpoint service.
+        Region for the Private Service Connect endpoint service.
         """
         return pulumi.get(self, "region_name")
 
@@ -693,7 +707,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="serviceAttachmentNames")
     def service_attachment_names(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service. Returns an empty list while Atlas creates the service attachments.
+        For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
         """
         return pulumi.get(self, "service_attachment_names")
 
@@ -701,22 +715,11 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[_builtins.str]:
         """
-        Status of the AWS PrivateLink connection or Status of the Azure Private Link Service. Atlas returns one of the following values:
-        AWS:
-        * `AVAILABLE` 	Atlas is creating the network load balancer and VPC endpoint service.
-        * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-        * `FAILED` 	A system failure has occurred.
-        * `DELETING` 	The AWS PrivateLink connection is being deleted.
-        AZURE:
-        * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-        * `INITIATING` 	Atlas is creating the load balancer and the Private Link Service.
-        * `FAILED` 	Atlas failed to create the load balancer and the Private Link service.
-        * `DELETING` 	Atlas is deleting the Private Link service.
-        GCP:
-        * `AVAILABLE` 	Atlas created the load balancer and the GCP Private Service Connect service.
-        * `INITIATING` 	Atlas is creating the load balancer and the GCP Private Service Connect service.
-        * `FAILED`  	Atlas failed to create the load balancer and the GCP Private Service Connect service.
-        * `DELETING` 	Atlas is deleting the GCP Private Service Connect service.
+        values:
+        * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
+        * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
+        * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
+        * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
         """
         return pulumi.get(self, "status")
 

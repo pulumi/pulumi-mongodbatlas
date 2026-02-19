@@ -16,14 +16,14 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
     public static final PrivateLinkEndpointServiceEndpointArgs Empty = new PrivateLinkEndpointServiceEndpointArgs();
 
     /**
-     * Forwarding rule that corresponds to the endpoint you created in GCP.
+     * Forwarding rule that corresponds to the endpoint you created.
      * 
      */
     @Import(name="endpointName")
     private @Nullable Output<String> endpointName;
 
     /**
-     * @return Forwarding rule that corresponds to the endpoint you created in GCP.
+     * @return Forwarding rule that corresponds to the endpoint you created.
      * 
      */
     public Optional<Output<String>> endpointName() {
@@ -31,14 +31,14 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
     }
 
     /**
-     * Private IP address of the endpoint you created in GCP.
+     * Private IP address of the endpoint you created.
      * 
      */
     @Import(name="ipAddress")
     private @Nullable Output<String> ipAddress;
 
     /**
-     * @return Private IP address of the endpoint you created in GCP.
+     * @return Private IP address of the endpoint you created.
      * 
      */
     public Optional<Output<String>> ipAddress() {
@@ -87,7 +87,7 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param endpointName Forwarding rule that corresponds to the endpoint you created in GCP.
+         * @param endpointName Forwarding rule that corresponds to the endpoint you created.
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param endpointName Forwarding rule that corresponds to the endpoint you created in GCP.
+         * @param endpointName Forwarding rule that corresponds to the endpoint you created.
          * 
          * @return builder
          * 
@@ -108,7 +108,7 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param ipAddress Private IP address of the endpoint you created in GCP.
+         * @param ipAddress Private IP address of the endpoint you created.
          * 
          * @return builder
          * 
@@ -119,7 +119,7 @@ public final class PrivateLinkEndpointServiceEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param ipAddress Private IP address of the endpoint you created in GCP.
+         * @param ipAddress Private IP address of the endpoint you created.
          * 
          * @return builder
          * 

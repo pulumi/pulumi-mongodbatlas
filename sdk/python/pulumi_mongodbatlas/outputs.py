@@ -117,6 +117,8 @@ __all__ = [
     'OnlineArchiveDataProcessRegion',
     'OnlineArchivePartitionField',
     'OnlineArchiveSchedule',
+    'OrganizationServiceAccount',
+    'OrganizationServiceAccountSecret',
     'PrivateLinkEndpointServiceEndpoint',
     'ProjectApiKeyProjectAssignment',
     'ProjectIpAccessListTimeouts',
@@ -144,6 +146,7 @@ __all__ = [
     'StreamConnectionNetworkingAccess',
     'StreamConnectionSchemaRegistryAuthentication',
     'StreamConnectionSecurity',
+    'StreamConnectionTimeouts',
     'StreamInstanceDataProcessRegion',
     'StreamInstanceStreamConfig',
     'StreamProcessorOptions',
@@ -7877,6 +7880,194 @@ class OnlineArchiveSchedule(dict):
 
 
 @pulumi.output_type
+class OrganizationServiceAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "secretExpiresAfterHours":
+            suggest = "secret_expires_after_hours"
+        elif key == "clientId":
+            suggest = "client_id"
+        elif key == "createdAt":
+            suggest = "created_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OrganizationServiceAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OrganizationServiceAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OrganizationServiceAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 description: _builtins.str,
+                 name: _builtins.str,
+                 roles: Sequence[_builtins.str],
+                 secret_expires_after_hours: _builtins.int,
+                 client_id: Optional[_builtins.str] = None,
+                 created_at: Optional[_builtins.str] = None,
+                 secrets: Optional[Sequence['outputs.OrganizationServiceAccountSecret']] = None):
+        """
+        :param _builtins.str description: Human readable description for the Service Account.
+        :param _builtins.str name: Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+        :param Sequence[_builtins.str] roles: A list of organization-level roles for the Service Account.
+        :param _builtins.int secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+               
+               > **WARNING:** Service Account secrets expire after the configured `secret_expires_after_hours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+        :param _builtins.str client_id: The Client ID of the Service Account.
+        :param _builtins.str created_at: The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param Sequence['OrganizationServiceAccountSecretArgs'] secrets: A list of secrets associated with the specified Service Account. See Secrets.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "secret_expires_after_hours", secret_expires_after_hours)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if secrets is not None:
+            pulumi.set(__self__, "secrets", secrets)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        Human readable description for the Service Account.
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        A list of organization-level roles for the Service Account.
+        """
+        return pulumi.get(self, "roles")
+
+    @_builtins.property
+    @pulumi.getter(name="secretExpiresAfterHours")
+    def secret_expires_after_hours(self) -> _builtins.int:
+        """
+        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+
+        > **WARNING:** Service Account secrets expire after the configured `secret_expires_after_hours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+        """
+        return pulumi.get(self, "secret_expires_after_hours")
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[_builtins.str]:
+        """
+        The Client ID of the Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def secrets(self) -> Optional[Sequence['outputs.OrganizationServiceAccountSecret']]:
+        """
+        A list of secrets associated with the specified Service Account. See Secrets.
+        """
+        return pulumi.get(self, "secrets")
+
+
+@pulumi.output_type
+class OrganizationServiceAccountSecret(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "expiresAt":
+            suggest = "expires_at"
+        elif key == "secretId":
+            suggest = "secret_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OrganizationServiceAccountSecret. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OrganizationServiceAccountSecret.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OrganizationServiceAccountSecret.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[_builtins.str] = None,
+                 expires_at: Optional[_builtins.str] = None,
+                 secret: Optional[_builtins.str] = None,
+                 secret_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str secret: The secret for the Service Account. It will be returned only the first time after creation.
+        :param _builtins.str secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[_builtins.str]:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[_builtins.str]:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def secret(self) -> Optional[_builtins.str]:
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        return pulumi.get(self, "secret")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
 class PrivateLinkEndpointServiceEndpoint(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -7902,8 +8093,8 @@ class PrivateLinkEndpointServiceEndpoint(dict):
                  ip_address: Optional[_builtins.str] = None,
                  status: Optional[_builtins.str] = None):
         """
-        :param _builtins.str endpoint_name: Forwarding rule that corresponds to the endpoint you created in GCP.
-        :param _builtins.str ip_address: Private IP address of the endpoint you created in GCP.
+        :param _builtins.str endpoint_name: Forwarding rule that corresponds to the endpoint you created.
+        :param _builtins.str ip_address: Private IP address of the endpoint you created.
         :param _builtins.str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
         if endpoint_name is not None:
@@ -7917,7 +8108,7 @@ class PrivateLinkEndpointServiceEndpoint(dict):
     @pulumi.getter(name="endpointName")
     def endpoint_name(self) -> Optional[_builtins.str]:
         """
-        Forwarding rule that corresponds to the endpoint you created in GCP.
+        Forwarding rule that corresponds to the endpoint you created.
         """
         return pulumi.get(self, "endpoint_name")
 
@@ -7925,7 +8116,7 @@ class PrivateLinkEndpointServiceEndpoint(dict):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[_builtins.str]:
         """
-        Private IP address of the endpoint you created in GCP.
+        Private IP address of the endpoint you created.
         """
         return pulumi.get(self, "ip_address")
 
@@ -8971,8 +9162,6 @@ class StreamConnectionDbRoleToExecute(dict):
         """
         :param _builtins.str role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
         :param _builtins.str type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-               
-               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -8990,8 +9179,6 @@ class StreamConnectionDbRoleToExecute(dict):
     def type(self) -> _builtins.str:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-
-        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -9154,6 +9341,37 @@ class StreamConnectionSecurity(dict):
         Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class StreamConnectionTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        :param _builtins.str update: The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+        """
+        return pulumi.get(self, "update")
 
 
 @pulumi.output_type
@@ -23380,8 +23598,8 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
                  ip_address: _builtins.str,
                  status: _builtins.str):
         """
-        :param _builtins.str endpoint_name: Forwarding rule that corresponds to the endpoint you created in GCP.
-        :param _builtins.str ip_address: Private IP address of the network endpoint group you created in GCP.
+        :param _builtins.str endpoint_name: Forwarding rule that corresponds to the endpoint you created.
+        :param _builtins.str ip_address: Private IP address of the network endpoint group you created.
         :param _builtins.str status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
         pulumi.set(__self__, "endpoint_name", endpoint_name)
@@ -23392,7 +23610,7 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
     @pulumi.getter(name="endpointName")
     def endpoint_name(self) -> _builtins.str:
         """
-        Forwarding rule that corresponds to the endpoint you created in GCP.
+        Forwarding rule that corresponds to the endpoint you created.
         """
         return pulumi.get(self, "endpoint_name")
 
@@ -23400,7 +23618,7 @@ class GetPrivateLinkEndpointServiceEndpointResult(dict):
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> _builtins.str:
         """
-        Private IP address of the network endpoint group you created in GCP.
+        Private IP address of the network endpoint group you created.
         """
         return pulumi.get(self, "ip_address")
 

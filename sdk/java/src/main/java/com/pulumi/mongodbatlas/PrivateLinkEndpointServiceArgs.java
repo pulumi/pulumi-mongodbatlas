@@ -35,14 +35,14 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+     * Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      * 
      */
     @Import(name="endpointServiceId", required=true)
     private Output<String> endpointServiceId;
 
     /**
-     * @return Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+     * @return Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      * 
      */
     public Output<String> endpointServiceId() {
@@ -50,14 +50,14 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+     * Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
      * 
      */
     @Import(name="endpoints")
     private @Nullable Output<List<PrivateLinkEndpointServiceEndpointArgs>> endpoints;
 
     /**
-     * @return Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+     * @return Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
      * 
      */
     public Optional<Output<List<PrivateLinkEndpointServiceEndpointArgs>>> endpoints() {
@@ -65,14 +65,14 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+     * Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
      * 
      */
     @Import(name="gcpProjectId")
     private @Nullable Output<String> gcpProjectId;
 
     /**
-     * @return Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+     * @return Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
      * 
      */
     public Optional<Output<String>> gcpProjectId() {
@@ -80,14 +80,14 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+     * Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
      * 
      */
     @Import(name="privateEndpointIpAddress")
     private @Nullable Output<String> privateEndpointIpAddress;
 
     /**
-     * @return Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+     * @return Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
      * 
      */
     public Optional<Output<String>> privateEndpointIpAddress() {
@@ -95,14 +95,14 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+     * Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      * 
      */
     @Import(name="privateLinkId", required=true)
     private Output<String> privateLinkId;
 
     /**
-     * @return Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+     * @return Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      * 
      */
     public Output<String> privateLinkId() {
@@ -110,14 +110,14 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
     }
 
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -192,7 +192,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
          * 
          * @return builder
          * 
@@ -203,7 +203,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
          * 
          * @return builder
          * 
@@ -213,7 +213,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
          * 
          * @return builder
          * 
@@ -224,7 +224,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
          * 
          * @return builder
          * 
@@ -234,7 +234,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+         * @param endpoints Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
          * 
          * @return builder
          * 
@@ -244,7 +244,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
          * 
          * @return builder
          * 
@@ -255,7 +255,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+         * @param gcpProjectId Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
          * 
          * @return builder
          * 
@@ -265,7 +265,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
          * 
          * @return builder
          * 
@@ -276,7 +276,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+         * @param privateEndpointIpAddress Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
          * 
          * @return builder
          * 
@@ -286,7 +286,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param privateLinkId Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+         * @param privateLinkId Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
          * 
          * @return builder
          * 
@@ -297,7 +297,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param privateLinkId Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
+         * @param privateLinkId Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
          * 
          * @return builder
          * 
@@ -307,7 +307,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -318,7 +318,7 @@ public final class PrivateLinkEndpointServiceArgs extends com.pulumi.resources.R
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

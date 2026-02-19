@@ -38,6 +38,7 @@ class StreamConnectionArgs:
                  schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
+                 timeouts: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -45,10 +46,8 @@ class StreamConnectionArgs:
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-               
-               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
-        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
-        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         pulumi.set(__self__, "connection_name", connection_name)
         pulumi.set(__self__, "project_id", project_id)
@@ -84,6 +83,8 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "schema_registry_urls", schema_registry_urls)
         if security is not None:
             pulumi.set(__self__, "security", security)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
         if url is not None:
             pulumi.set(__self__, "url", url)
         if workspace_name is not None:
@@ -118,8 +119,6 @@ class StreamConnectionArgs:
     def type(self) -> pulumi.Input[_builtins.str]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-
-        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -204,7 +203,7 @@ class StreamConnectionArgs:
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
     def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         """
         return pulumi.get(self, "instance_name")
 
@@ -259,6 +258,15 @@ class StreamConnectionArgs:
 
     @_builtins.property
     @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
+    @_builtins.property
+    @pulumi.getter
     def url(self) -> Optional[pulumi.Input[_builtins.str]]:
         return pulumi.get(self, "url")
 
@@ -270,7 +278,7 @@ class StreamConnectionArgs:
     @pulumi.getter(name="workspaceName")
     def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "workspace_name")
 
@@ -298,18 +306,17 @@ class _StreamConnectionState:
                  schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
+                 timeouts: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamConnection resources.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-               
-               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
-        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
@@ -346,6 +353,8 @@ class _StreamConnectionState:
             pulumi.set(__self__, "schema_registry_urls", schema_registry_urls)
         if security is not None:
             pulumi.set(__self__, "security", security)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if url is not None:
@@ -442,7 +451,7 @@ class _StreamConnectionState:
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
     def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         """
         return pulumi.get(self, "instance_name")
 
@@ -509,11 +518,18 @@ class _StreamConnectionState:
 
     @_builtins.property
     @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-
-        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -534,7 +550,7 @@ class _StreamConnectionState:
     @pulumi.getter(name="workspaceName")
     def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "workspace_name")
 
@@ -565,6 +581,7 @@ class StreamConnection(pulumi.CustomResource):
                  schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -641,7 +658,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_kafka_oauthbearer = mongodbatlas.StreamConnection("example-kafka-oauthbearer",
             project_id=project_id,
-            instance_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="KafkaOAuthbearerConnection",
             type="Kafka",
             authentication={
@@ -717,7 +734,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_https = mongodbatlas.StreamConnection("example-https",
             project_id=project_id,
-            workspace_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="https_connection_tf_new",
             type="Https",
             url="https://example.com",
@@ -735,7 +752,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_schema_registry = mongodbatlas.StreamConnection("example-schema-registry",
             project_id=project_id,
-            workspace_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnection",
             type="SchemaRegistry",
             schema_registry_provider="CONFLUENT",
@@ -755,7 +772,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_schema_registry_sasl = mongodbatlas.StreamConnection("example-schema-registry-sasl",
             project_id=project_id,
-            workspace_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnectionSASL",
             type="SchemaRegistry",
             schema_registry_provider="CONFLUENT",
@@ -764,6 +781,61 @@ class StreamConnection(pulumi.CustomResource):
                 "type": "SASL_INHERIT",
             })
         ```
+
+        ### Example Usage with Stream Processor
+
+        When using a stream connection with a stream processor, the connection must be fully provisioned before the processor can be created. The provider automatically waits for connections to be ready after creation or updates. The example below shows a typical pattern:
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.StreamWorkspace("example",
+            project_id=project_id,
+            workspace_name="ExampleWorkspace",
+            data_process_region={
+                "region": "VIRGINIA_USA",
+                "cloud_provider": "AWS",
+            })
+        # Source connection (Sample data)
+        source = mongodbatlas.StreamConnection("source",
+            project_id=project_id,
+            workspace_name=example.workspace_name,
+            connection_name="sample_stream_solar",
+            type="Sample")
+        # Sink connection (Atlas Cluster)
+        sink = mongodbatlas.StreamConnection("sink",
+            project_id=project_id,
+            workspace_name=example.workspace_name,
+            connection_name="ClusterConnection",
+            type="Cluster",
+            cluster_name=example_mongodbatlas_cluster["name"],
+            db_role_to_execute={
+                "role": "atlasAdmin",
+                "type": "BUILT_IN",
+            })
+        # Stream processor that depends on both connections
+        example_stream_processor = mongodbatlas.StreamProcessor("example",
+            project_id=project_id,
+            workspace_name=example.workspace_name,
+            processor_name="ExampleProcessor",
+            pipeline=pulumi.Output.json_dumps([
+                {
+                    "$source": {
+                        "connectionName": source.connection_name,
+                    },
+                },
+                {
+                    "$emit": {
+                        "connectionName": sink.connection_name,
+                    },
+                },
+            ]),
+            state="STARTED")
+        ```
+
+        > **NOTE:** The stream processor resource automatically depends on the stream connections through the `connection_name` references in the pipeline. This ensures proper creation order. The provider waits for each connection to be fully provisioned before returning from create or update operations.
 
         ## Import
 
@@ -778,12 +850,10 @@ class StreamConnection(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-               
-               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
-        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         ...
     @overload
@@ -863,7 +933,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_kafka_oauthbearer = mongodbatlas.StreamConnection("example-kafka-oauthbearer",
             project_id=project_id,
-            instance_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="KafkaOAuthbearerConnection",
             type="Kafka",
             authentication={
@@ -939,7 +1009,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_https = mongodbatlas.StreamConnection("example-https",
             project_id=project_id,
-            workspace_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="https_connection_tf_new",
             type="Https",
             url="https://example.com",
@@ -957,7 +1027,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_schema_registry = mongodbatlas.StreamConnection("example-schema-registry",
             project_id=project_id,
-            workspace_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnection",
             type="SchemaRegistry",
             schema_registry_provider="CONFLUENT",
@@ -977,7 +1047,7 @@ class StreamConnection(pulumi.CustomResource):
 
         example_schema_registry_sasl = mongodbatlas.StreamConnection("example-schema-registry-sasl",
             project_id=project_id,
-            workspace_name=example["instanceName"],
+            workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnectionSASL",
             type="SchemaRegistry",
             schema_registry_provider="CONFLUENT",
@@ -986,6 +1056,61 @@ class StreamConnection(pulumi.CustomResource):
                 "type": "SASL_INHERIT",
             })
         ```
+
+        ### Example Usage with Stream Processor
+
+        When using a stream connection with a stream processor, the connection must be fully provisioned before the processor can be created. The provider automatically waits for connections to be ready after creation or updates. The example below shows a typical pattern:
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.StreamWorkspace("example",
+            project_id=project_id,
+            workspace_name="ExampleWorkspace",
+            data_process_region={
+                "region": "VIRGINIA_USA",
+                "cloud_provider": "AWS",
+            })
+        # Source connection (Sample data)
+        source = mongodbatlas.StreamConnection("source",
+            project_id=project_id,
+            workspace_name=example.workspace_name,
+            connection_name="sample_stream_solar",
+            type="Sample")
+        # Sink connection (Atlas Cluster)
+        sink = mongodbatlas.StreamConnection("sink",
+            project_id=project_id,
+            workspace_name=example.workspace_name,
+            connection_name="ClusterConnection",
+            type="Cluster",
+            cluster_name=example_mongodbatlas_cluster["name"],
+            db_role_to_execute={
+                "role": "atlasAdmin",
+                "type": "BUILT_IN",
+            })
+        # Stream processor that depends on both connections
+        example_stream_processor = mongodbatlas.StreamProcessor("example",
+            project_id=project_id,
+            workspace_name=example.workspace_name,
+            processor_name="ExampleProcessor",
+            pipeline=pulumi.Output.json_dumps([
+                {
+                    "$source": {
+                        "connectionName": source.connection_name,
+                    },
+                },
+                {
+                    "$emit": {
+                        "connectionName": sink.connection_name,
+                    },
+                },
+            ]),
+            state="STARTED")
+        ```
+
+        > **NOTE:** The stream processor resource automatically depends on the stream connections through the `connection_name` references in the pipeline. This ensures proper creation order. The provider waits for each connection to be fully provisioned before returning from create or update operations.
 
         ## Import
 
@@ -1028,6 +1153,7 @@ class StreamConnection(pulumi.CustomResource):
                  schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
                  schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
+                 timeouts: Optional[pulumi.Input[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1060,6 +1186,7 @@ class StreamConnection(pulumi.CustomResource):
             __props__.__dict__["schema_registry_provider"] = schema_registry_provider
             __props__.__dict__["schema_registry_urls"] = schema_registry_urls
             __props__.__dict__["security"] = security
+            __props__.__dict__["timeouts"] = timeouts
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -1091,6 +1218,7 @@ class StreamConnection(pulumi.CustomResource):
             schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
             schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
+            timeouts: Optional[pulumi.Input[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
             url: Optional[pulumi.Input[_builtins.str]] = None,
             workspace_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'StreamConnection':
@@ -1102,12 +1230,10 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-               
-               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
-        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1129,6 +1255,7 @@ class StreamConnection(pulumi.CustomResource):
         __props__.__dict__["schema_registry_provider"] = schema_registry_provider
         __props__.__dict__["schema_registry_urls"] = schema_registry_urls
         __props__.__dict__["security"] = security
+        __props__.__dict__["timeouts"] = timeouts
         __props__.__dict__["type"] = type
         __props__.__dict__["url"] = url
         __props__.__dict__["workspace_name"] = workspace_name
@@ -1187,7 +1314,7 @@ class StreamConnection(pulumi.CustomResource):
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
     def instance_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
+        Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         """
         return pulumi.get(self, "instance_name")
 
@@ -1226,11 +1353,14 @@ class StreamConnection(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def timeouts(self) -> pulumi.Output[Optional['outputs.StreamConnectionTimeouts']]:
+        return pulumi.get(self, "timeouts")
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-
-        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -1243,7 +1373,7 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter(name="workspaceName")
     def workspace_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "workspace_name")
 

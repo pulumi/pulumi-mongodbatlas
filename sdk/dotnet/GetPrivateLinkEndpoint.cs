@@ -29,17 +29,17 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("test", new()
+        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     var @this = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
         ///     {
-        ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
-        ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+        ///         ProjectId = thisPrivateLinkEndpoint.ProjectId,
+        ///         PrivateLinkId = thisPrivateLinkEndpoint.PrivateLinkId,
         ///         ProviderName = "AWS",
         ///     });
         /// 
@@ -48,6 +48,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Available complete examples
         /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
         /// </summary>
         public static Task<GetPrivateLinkEndpointResult> InvokeAsync(GetPrivateLinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointArgs(), options.WithDefaults());
@@ -70,17 +71,17 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("test", new()
+        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     var @this = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
         ///     {
-        ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
-        ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+        ///         ProjectId = thisPrivateLinkEndpoint.ProjectId,
+        ///         PrivateLinkId = thisPrivateLinkEndpoint.PrivateLinkId,
         ///         ProviderName = "AWS",
         ///     });
         /// 
@@ -89,6 +90,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Available complete examples
         /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
         /// </summary>
         public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointInvokeArgs(), options.WithDefaults());
@@ -111,17 +113,17 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("test", new()
+        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     var @this = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
         ///     {
-        ///         ProjectId = testPrivateLinkEndpoint.ProjectId,
-        ///         PrivateLinkId = testPrivateLinkEndpoint.PrivateLinkId,
+        ///         ProjectId = thisPrivateLinkEndpoint.ProjectId,
+        ///         PrivateLinkId = thisPrivateLinkEndpoint.PrivateLinkId,
         ///         ProviderName = "AWS",
         ///     });
         /// 
@@ -130,6 +132,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Available complete examples
         /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
         /// </summary>
         public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPrivateLinkEndpointResult>("mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint", args ?? new GetPrivateLinkEndpointInvokeArgs(), options.WithDefaults());
@@ -193,7 +196,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointResult
     {
         /// <summary>
-        /// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+        /// For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
         /// </summary>
         public readonly ImmutableArray<string> EndpointGroupNames;
         /// <summary>
@@ -213,6 +216,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<string> InterfaceEndpoints;
         /// <summary>
+        /// Flag that indicates whether this resource uses GCP port-mapping. When `True`, it uses the port-mapped architecture. When `False` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        /// </summary>
+        public readonly bool PortMappingEnabled;
+        /// <summary>
         /// All private endpoints that you have added to this Azure Private Link Service.
         /// </summary>
         public readonly ImmutableArray<string> PrivateEndpoints;
@@ -228,11 +235,11 @@ namespace Pulumi.Mongodbatlas
         public readonly string ProjectId;
         public readonly string ProviderName;
         /// <summary>
-        /// GCP region for the Private Service Connect endpoint service.
+        /// Region for the Private Service Connect endpoint service.
         /// </summary>
         public readonly string RegionName;
         /// <summary>
-        /// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+        /// For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
         /// </summary>
         public readonly ImmutableArray<string> ServiceAttachmentNames;
         /// <summary>
@@ -258,6 +265,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<string> interfaceEndpoints,
 
+            bool portMappingEnabled,
+
             ImmutableArray<string> privateEndpoints,
 
             string privateLinkId,
@@ -281,6 +290,7 @@ namespace Pulumi.Mongodbatlas
             ErrorMessage = errorMessage;
             Id = id;
             InterfaceEndpoints = interfaceEndpoints;
+            PortMappingEnabled = portMappingEnabled;
             PrivateEndpoints = privateEndpoints;
             PrivateLinkId = privateLinkId;
             PrivateLinkServiceName = privateLinkServiceName;

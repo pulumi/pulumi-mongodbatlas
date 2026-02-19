@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetPrivateLinkEndpointServiceEndpointResult
     {
         /// <summary>
-        /// Forwarding rule that corresponds to the endpoint you created in GCP.
+        /// Forwarding rule that corresponds to the endpoint you created.
         /// </summary>
         public readonly string EndpointName;
         /// <summary>
-        /// Private IP address of the network endpoint group you created in GCP.
+        /// Private IP address of the network endpoint group you created.
         /// </summary>
         public readonly string IpAddress;
         /// <summary>

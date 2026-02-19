@@ -14,12 +14,14 @@ import (
 
 // ## Import
 //
-// Private Endpoint Link Connection can be imported using project ID and username, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
+// Private Endpoint Link Connection can be imported using project ID, private link ID, endpoint service ID, and provider name, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
 //
 // ```sh
-// $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService test 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
+// $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService this 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
 // ```
-// See detailed information for arguments and attributes: [MongoDB API Private Endpoint Link Connection](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/)
+// For more information, see:
+// - [MongoDB API Private Endpoint Link Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointserviceendpoint) for detailed arguments and attributes.
+// - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.
 type PrivateLinkEndpointService struct {
 	pulumi.CustomResourceState
 
@@ -42,18 +44,19 @@ type PrivateLinkEndpointService struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
-	DeleteRequested pulumi.BoolOutput `pulumi:"deleteRequested"`
-	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+	DeleteRequested   pulumi.BoolOutput   `pulumi:"deleteRequested"`
 	EndpointGroupName pulumi.StringOutput `pulumi:"endpointGroupName"`
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+	// Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
 	EndpointServiceId pulumi.StringOutput `pulumi:"endpointServiceId"`
-	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	// Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
 	Endpoints PrivateLinkEndpointServiceEndpointArrayOutput `pulumi:"endpoints"`
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
-	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	// Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+	GcpEndpointStatus pulumi.StringOutput `pulumi:"gcpEndpointStatus"`
+	// Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
 	GcpProjectId pulumi.StringPtrOutput `pulumi:"gcpProjectId"`
-	// Status of the interface endpoint for GCP.
+	// Status of the interface endpoint.
 	// Returns one of the following values:
 	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
 	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -62,15 +65,17 @@ type PrivateLinkEndpointService struct {
 	GcpStatus pulumi.StringOutput `pulumi:"gcpStatus"`
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId pulumi.StringOutput `pulumi:"interfaceEndpointId"`
+	// Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+	PortMappingEnabled pulumi.BoolOutput `pulumi:"portMappingEnabled"`
 	// Name of the connection for this private endpoint that Atlas generates.
 	PrivateEndpointConnectionName pulumi.StringOutput `pulumi:"privateEndpointConnectionName"`
-	// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+	// Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
 	PrivateEndpointIpAddress pulumi.StringOutput `pulumi:"privateEndpointIpAddress"`
 	// Unique identifier of the private endpoint.
 	PrivateEndpointResourceId pulumi.StringOutput `pulumi:"privateEndpointResourceId"`
-	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+	// Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 	PrivateLinkId pulumi.StringOutput `pulumi:"privateLinkId"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
@@ -137,18 +142,19 @@ type privateLinkEndpointServiceState struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
-	DeleteRequested *bool `pulumi:"deleteRequested"`
-	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+	DeleteRequested   *bool   `pulumi:"deleteRequested"`
 	EndpointGroupName *string `pulumi:"endpointGroupName"`
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+	// Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
 	EndpointServiceId *string `pulumi:"endpointServiceId"`
-	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	// Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
 	Endpoints []PrivateLinkEndpointServiceEndpoint `pulumi:"endpoints"`
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage *string `pulumi:"errorMessage"`
-	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	// Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+	GcpEndpointStatus *string `pulumi:"gcpEndpointStatus"`
+	// Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
 	GcpProjectId *string `pulumi:"gcpProjectId"`
-	// Status of the interface endpoint for GCP.
+	// Status of the interface endpoint.
 	// Returns one of the following values:
 	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
 	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -157,15 +163,17 @@ type privateLinkEndpointServiceState struct {
 	GcpStatus *string `pulumi:"gcpStatus"`
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId *string `pulumi:"interfaceEndpointId"`
+	// Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+	PortMappingEnabled *bool `pulumi:"portMappingEnabled"`
 	// Name of the connection for this private endpoint that Atlas generates.
 	PrivateEndpointConnectionName *string `pulumi:"privateEndpointConnectionName"`
-	// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+	// Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
 	PrivateEndpointIpAddress *string `pulumi:"privateEndpointIpAddress"`
 	// Unique identifier of the private endpoint.
 	PrivateEndpointResourceId *string `pulumi:"privateEndpointResourceId"`
-	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+	// Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 	PrivateLinkId *string `pulumi:"privateLinkId"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName *string `pulumi:"providerName"`
@@ -191,18 +199,19 @@ type PrivateLinkEndpointServiceState struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
-	DeleteRequested pulumi.BoolPtrInput
-	// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
+	DeleteRequested   pulumi.BoolPtrInput
 	EndpointGroupName pulumi.StringPtrInput
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+	// Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
 	EndpointServiceId pulumi.StringPtrInput
-	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	// Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
 	Endpoints PrivateLinkEndpointServiceEndpointArrayInput
 	// Error message pertaining to the interface endpoint. Returns null if there are no errors.
 	ErrorMessage pulumi.StringPtrInput
-	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	// Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+	GcpEndpointStatus pulumi.StringPtrInput
+	// Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
 	GcpProjectId pulumi.StringPtrInput
-	// Status of the interface endpoint for GCP.
+	// Status of the interface endpoint.
 	// Returns one of the following values:
 	// * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
 	// * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -211,15 +220,17 @@ type PrivateLinkEndpointServiceState struct {
 	GcpStatus pulumi.StringPtrInput
 	// Unique identifier of the interface endpoint.
 	InterfaceEndpointId pulumi.StringPtrInput
+	// Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+	PortMappingEnabled pulumi.BoolPtrInput
 	// Name of the connection for this private endpoint that Atlas generates.
 	PrivateEndpointConnectionName pulumi.StringPtrInput
-	// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+	// Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
 	PrivateEndpointIpAddress pulumi.StringPtrInput
 	// Unique identifier of the private endpoint.
 	PrivateEndpointResourceId pulumi.StringPtrInput
-	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+	// Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 	PrivateLinkId pulumi.StringPtrInput
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName pulumi.StringPtrInput
@@ -232,17 +243,17 @@ func (PrivateLinkEndpointServiceState) ElementType() reflect.Type {
 type privateLinkEndpointServiceArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+	// Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
 	EndpointServiceId string `pulumi:"endpointServiceId"`
-	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	// Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
 	Endpoints []PrivateLinkEndpointServiceEndpoint `pulumi:"endpoints"`
-	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	// Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
 	GcpProjectId *string `pulumi:"gcpProjectId"`
-	// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+	// Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
 	PrivateEndpointIpAddress *string `pulumi:"privateEndpointIpAddress"`
-	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+	// Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 	PrivateLinkId string `pulumi:"privateLinkId"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName string `pulumi:"providerName"`
@@ -252,17 +263,17 @@ type privateLinkEndpointServiceArgs struct {
 type PrivateLinkEndpointServiceArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
-	// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+	// Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
 	EndpointServiceId pulumi.StringInput
-	// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+	// Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
 	Endpoints PrivateLinkEndpointServiceEndpointArrayInput
-	// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+	// Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
 	GcpProjectId pulumi.StringPtrInput
-	// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+	// Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
 	PrivateEndpointIpAddress pulumi.StringPtrInput
-	// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+	// Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 	PrivateLinkId pulumi.StringInput
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
 	ProviderName pulumi.StringInput
@@ -387,17 +398,16 @@ func (o PrivateLinkEndpointServiceOutput) DeleteRequested() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.BoolOutput { return v.DeleteRequested }).(pulumi.BoolOutput)
 }
 
-// (Optional) Unique identifier of the endpoint group. The endpoint group encompasses all of the endpoints that you created in GCP.
 func (o PrivateLinkEndpointServiceOutput) EndpointGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.EndpointGroupName }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the interface endpoint you created in your VPC with the `AWS`, `AZURE` or `GCP` resource.
+// Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
 func (o PrivateLinkEndpointServiceOutput) EndpointServiceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.EndpointServiceId }).(pulumi.StringOutput)
 }
 
-// Collection of individual private endpoints that comprise your endpoint group. Only for `GCP`. See below.
+// Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpointServiceId` and `privateEndpointIpAddress` instead.
 func (o PrivateLinkEndpointServiceOutput) Endpoints() PrivateLinkEndpointServiceEndpointArrayOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) PrivateLinkEndpointServiceEndpointArrayOutput { return v.Endpoints }).(PrivateLinkEndpointServiceEndpointArrayOutput)
 }
@@ -407,12 +417,17 @@ func (o PrivateLinkEndpointServiceOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.ErrorMessage }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the GCP project in which you created your endpoints. Only for `GCP`.
+// Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+func (o PrivateLinkEndpointServiceOutput) GcpEndpointStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.GcpEndpointStatus }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
 func (o PrivateLinkEndpointServiceOutput) GcpProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringPtrOutput { return v.GcpProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Status of the interface endpoint for GCP.
+// Status of the interface endpoint.
 // Returns one of the following values:
 // * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
 // * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -427,12 +442,17 @@ func (o PrivateLinkEndpointServiceOutput) InterfaceEndpointId() pulumi.StringOut
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.InterfaceEndpointId }).(pulumi.StringOutput)
 }
 
+// Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+func (o PrivateLinkEndpointServiceOutput) PortMappingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.BoolOutput { return v.PortMappingEnabled }).(pulumi.BoolOutput)
+}
+
 // Name of the connection for this private endpoint that Atlas generates.
 func (o PrivateLinkEndpointServiceOutput) PrivateEndpointConnectionName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateEndpointConnectionName }).(pulumi.StringOutput)
 }
 
-// Private IP address of the private endpoint network interface you created in your Azure VNet. Only for `AZURE`.
+// Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
 func (o PrivateLinkEndpointServiceOutput) PrivateEndpointIpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateEndpointIpAddress }).(pulumi.StringOutput)
 }
@@ -442,12 +462,12 @@ func (o PrivateLinkEndpointServiceOutput) PrivateEndpointResourceId() pulumi.Str
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateEndpointResourceId }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the `AWS` or `AZURE` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
+// Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
 func (o PrivateLinkEndpointServiceOutput) PrivateLinkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.PrivateLinkId }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the project.
+// Unique identifier for the project, also known as `groupId` in the official documentation.
 func (o PrivateLinkEndpointServiceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpointService) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

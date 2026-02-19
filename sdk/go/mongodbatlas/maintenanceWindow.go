@@ -60,6 +60,41 @@ import (
 //
 // ```
 //
+// ### Automatic Deferral
+//
+// Use `autoDeferOnceEnabled` to enable or disable automatic deferral.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
+//				ProjectId:            pulumi.String("<your-project-id>"),
+//				DayOfWeek:            pulumi.Int(3),
+//				HourOfDay:            pulumi.Int(4),
+//				AutoDeferOnceEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### One-Time Manual Deferral
+//
+// Use `defer` to defer the next scheduled maintenance event by one week. This only works when maintenance is already scheduled.
+//
 // ```go
 // package main
 //
@@ -74,6 +109,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
 //				ProjectId: pulumi.String("<your-project-id>"),
+//				DayOfWeek: pulumi.Int(3),
+//				HourOfDay: pulumi.Int(4),
 //				Defer:     pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -99,9 +136,7 @@ import (
 type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 
-	// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-	AutoDefer pulumi.BoolOutput `pulumi:"autoDefer"`
-	// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
+	AutoDefer            pulumi.BoolOutput `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled pulumi.BoolOutput `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
@@ -160,9 +195,7 @@ func GetMaintenanceWindow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MaintenanceWindow resources.
 type maintenanceWindowState struct {
-	// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-	AutoDefer *bool `pulumi:"autoDefer"`
-	// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
+	AutoDefer            *bool `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek *int `pulumi:"dayOfWeek"`
@@ -183,9 +216,7 @@ type maintenanceWindowState struct {
 }
 
 type MaintenanceWindowState struct {
-	// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-	AutoDefer pulumi.BoolPtrInput
-	// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
+	AutoDefer            pulumi.BoolPtrInput
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntPtrInput
@@ -210,9 +241,7 @@ func (MaintenanceWindowState) ElementType() reflect.Type {
 }
 
 type maintenanceWindowArgs struct {
-	// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-	AutoDefer *bool `pulumi:"autoDefer"`
-	// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
+	AutoDefer            *bool `pulumi:"autoDefer"`
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
@@ -228,9 +257,7 @@ type maintenanceWindowArgs struct {
 
 // The set of arguments for constructing a MaintenanceWindow resource.
 type MaintenanceWindowArgs struct {
-	// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-	AutoDefer pulumi.BoolPtrInput
-	// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
+	AutoDefer            pulumi.BoolPtrInput
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntInput
@@ -331,12 +358,10 @@ func (o MaintenanceWindowOutput) ToMaintenanceWindowOutputWithContext(ctx contex
 	return o
 }
 
-// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
 func (o MaintenanceWindowOutput) AutoDefer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDefer }).(pulumi.BoolOutput)
 }
 
-// When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
 func (o MaintenanceWindowOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }

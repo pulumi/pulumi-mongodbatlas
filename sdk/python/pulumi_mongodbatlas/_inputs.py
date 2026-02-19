@@ -217,6 +217,10 @@ __all__ = [
     'OnlineArchivePartitionFieldArgsDict',
     'OnlineArchiveScheduleArgs',
     'OnlineArchiveScheduleArgsDict',
+    'OrganizationServiceAccountArgs',
+    'OrganizationServiceAccountArgsDict',
+    'OrganizationServiceAccountSecretArgs',
+    'OrganizationServiceAccountSecretArgsDict',
     'PrivateLinkEndpointServiceEndpointArgs',
     'PrivateLinkEndpointServiceEndpointArgsDict',
     'ProjectApiKeyProjectAssignmentArgs',
@@ -273,6 +277,8 @@ __all__ = [
     'StreamConnectionSchemaRegistryAuthenticationArgsDict',
     'StreamConnectionSecurityArgs',
     'StreamConnectionSecurityArgsDict',
+    'StreamConnectionTimeoutsArgs',
+    'StreamConnectionTimeoutsArgsDict',
     'StreamInstanceDataProcessRegionArgs',
     'StreamInstanceDataProcessRegionArgsDict',
     'StreamInstanceStreamConfigArgs',
@@ -9598,14 +9604,260 @@ class OnlineArchiveScheduleArgs:
 
 
 if not MYPY:
+    class OrganizationServiceAccountArgsDict(TypedDict):
+        description: pulumi.Input[_builtins.str]
+        """
+        Human readable description for the Service Account.
+        """
+        name: pulumi.Input[_builtins.str]
+        """
+        Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+        """
+        roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
+        """
+        A list of organization-level roles for the Service Account.
+        """
+        secret_expires_after_hours: pulumi.Input[_builtins.int]
+        """
+        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+
+        > **WARNING:** Service Account secrets expire after the configured `secret_expires_after_hours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+        """
+        client_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The Client ID of the Service Account.
+        """
+        created_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        secrets: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgsDict']]]]
+        """
+        A list of secrets associated with the specified Service Account. See Secrets.
+        """
+elif False:
+    OrganizationServiceAccountArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OrganizationServiceAccountArgs:
+    def __init__(__self__, *,
+                 description: pulumi.Input[_builtins.str],
+                 name: pulumi.Input[_builtins.str],
+                 roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
+                 secret_expires_after_hours: pulumi.Input[_builtins.int],
+                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 secrets: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] description: Human readable description for the Service Account.
+        :param pulumi.Input[_builtins.str] name: Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
+        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+               
+               > **WARNING:** Service Account secrets expire after the configured `secret_expires_after_hours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+        :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
+        :param pulumi.Input[_builtins.str] created_at: The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]] secrets: A list of secrets associated with the specified Service Account. See Secrets.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "roles", roles)
+        pulumi.set(__self__, "secret_expires_after_hours", secret_expires_after_hours)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if secrets is not None:
+            pulumi.set(__self__, "secrets", secrets)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[_builtins.str]:
+        """
+        Human readable description for the Service Account.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
+        """
+        A list of organization-level roles for the Service Account.
+        """
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
+        pulumi.set(self, "roles", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretExpiresAfterHours")
+    def secret_expires_after_hours(self) -> pulumi.Input[_builtins.int]:
+        """
+        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+
+        > **WARNING:** Service Account secrets expire after the configured `secret_expires_after_hours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+        """
+        return pulumi.get(self, "secret_expires_after_hours")
+
+    @secret_expires_after_hours.setter
+    def secret_expires_after_hours(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "secret_expires_after_hours", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Client ID of the Service Account.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def secrets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]:
+        """
+        A list of secrets associated with the specified Service Account. See Secrets.
+        """
+        return pulumi.get(self, "secrets")
+
+    @secrets.setter
+    def secrets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]):
+        pulumi.set(self, "secrets", value)
+
+
+if not MYPY:
+    class OrganizationServiceAccountSecretArgsDict(TypedDict):
+        created_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        expires_at: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        secret: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        secret_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+elif False:
+    OrganizationServiceAccountSecretArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OrganizationServiceAccountSecretArgs:
+    def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] secret: The secret for the Service Account. It will be returned only the first time after creation.
+        :param pulumi.Input[_builtins.str] secret_id: Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if expires_at is not None:
+            pulumi.set(__self__, "expires_at", expires_at)
+        if secret is not None:
+            pulumi.set(__self__, "secret", secret)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @expires_at.setter
+    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "expires_at", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The secret for the Service Account. It will be returned only the first time after creation.
+        """
+        return pulumi.get(self, "secret")
+
+    @secret.setter
+    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_id", value)
+
+
+if not MYPY:
     class PrivateLinkEndpointServiceEndpointArgsDict(TypedDict):
         endpoint_name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Forwarding rule that corresponds to the endpoint you created in GCP.
+        Forwarding rule that corresponds to the endpoint you created.
         """
         ip_address: NotRequired[pulumi.Input[_builtins.str]]
         """
-        Private IP address of the endpoint you created in GCP.
+        Private IP address of the endpoint you created.
         """
         status: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -9621,8 +9873,8 @@ class PrivateLinkEndpointServiceEndpointArgs:
                  ip_address: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] endpoint_name: Forwarding rule that corresponds to the endpoint you created in GCP.
-        :param pulumi.Input[_builtins.str] ip_address: Private IP address of the endpoint you created in GCP.
+        :param pulumi.Input[_builtins.str] endpoint_name: Forwarding rule that corresponds to the endpoint you created.
+        :param pulumi.Input[_builtins.str] ip_address: Private IP address of the endpoint you created.
         :param pulumi.Input[_builtins.str] status: Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
         if endpoint_name is not None:
@@ -9636,7 +9888,7 @@ class PrivateLinkEndpointServiceEndpointArgs:
     @pulumi.getter(name="endpointName")
     def endpoint_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Forwarding rule that corresponds to the endpoint you created in GCP.
+        Forwarding rule that corresponds to the endpoint you created.
         """
         return pulumi.get(self, "endpoint_name")
 
@@ -9648,7 +9900,7 @@ class PrivateLinkEndpointServiceEndpointArgs:
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Private IP address of the endpoint you created in GCP.
+        Private IP address of the endpoint you created.
         """
         return pulumi.get(self, "ip_address")
 
@@ -11100,8 +11352,6 @@ if not MYPY:
         type: pulumi.Input[_builtins.str]
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-
-        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
 elif False:
     StreamConnectionDbRoleToExecuteArgsDict: TypeAlias = Mapping[str, Any]
@@ -11114,8 +11364,6 @@ class StreamConnectionDbRoleToExecuteArgs:
         """
         :param pulumi.Input[_builtins.str] role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
         :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-               
-               > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -11137,8 +11385,6 @@ class StreamConnectionDbRoleToExecuteArgs:
     def type(self) -> pulumi.Input[_builtins.str]:
         """
         Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-
-        > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
         """
         return pulumi.get(self, "type")
 
@@ -11357,6 +11603,58 @@ class StreamConnectionSecurityArgs:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "protocol", value)
+
+
+if not MYPY:
+    class StreamConnectionTimeoutsArgsDict(TypedDict):
+        create: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        """
+        update: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+        """
+elif False:
+    StreamConnectionTimeoutsArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class StreamConnectionTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: Optional[pulumi.Input[_builtins.str]] = None,
+                 update: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        :param pulumi.Input[_builtins.str] update: The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "update", value)
 
 
 if not MYPY:

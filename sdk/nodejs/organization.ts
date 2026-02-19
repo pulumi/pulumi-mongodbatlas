@@ -2,42 +2,35 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
- *
- * > **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `roleNames` for new API Key must have the ORG_OWNER role specified.
- *
- * > **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
- *
  * ## Example Usage
+ *
+ * ### With Programmatic API Key
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const test = new mongodbatlas.Organization("test", {
+ * const _this = new mongodbatlas.Organization("this", {
  *     orgOwnerId: "<ORG_OWNER_ID>",
  *     name: "testCreateORG",
- *     description: "test API key from Org Creation Test",
+ *     description: "test API key from Org Creation",
  *     roleNames: ["ORG_OWNER"],
  * });
  * ```
- *
- * ### Further Examples
- * - Organization setup - step 1
- * - Organization setup - step 2
- * - Organization import
  *
  * ## Import
  *
  * You can import an existing organization using the organization ID, e.g.:
  *
  * ```sh
- * $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+ * $ pulumi import mongodbatlas:index/organization:Organization this 5d09d6a59ccf6445652a444a
  * ```
- * ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+ * ~> __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`, `service_account`) in your Terraform configuration.
  *
  * See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
  *
@@ -101,9 +94,6 @@ export class Organization extends pulumi.CustomResource {
      */
     declare public readonly orgOwnerId: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly privateKey: pulumi.Output<string>;
-    /**
-     * Public API key value set for the specified organization API key.
-     */
     declare public /*out*/ readonly publicKey: pulumi.Output<string>;
     /**
      * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -117,6 +107,10 @@ export class Organization extends pulumi.CustomResource {
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
      */
     declare public readonly securityContact: pulumi.Output<string | undefined>;
+    /**
+     * Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+     */
+    declare public readonly serviceAccount: pulumi.Output<outputs.OrganizationServiceAccount | undefined>;
     declare public readonly skipDefaultAlertsSettings: pulumi.Output<boolean>;
 
     /**
@@ -145,6 +139,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["restrictEmployeeAccess"] = state?.restrictEmployeeAccess;
             resourceInputs["roleNames"] = state?.roleNames;
             resourceInputs["securityContact"] = state?.securityContact;
+            resourceInputs["serviceAccount"] = state?.serviceAccount;
             resourceInputs["skipDefaultAlertsSettings"] = state?.skipDefaultAlertsSettings;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
@@ -158,6 +153,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["restrictEmployeeAccess"] = args?.restrictEmployeeAccess;
             resourceInputs["roleNames"] = args?.roleNames;
             resourceInputs["securityContact"] = args?.securityContact;
+            resourceInputs["serviceAccount"] = args?.serviceAccount;
             resourceInputs["skipDefaultAlertsSettings"] = args?.skipDefaultAlertsSettings;
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
@@ -204,9 +200,6 @@ export interface OrganizationState {
      */
     orgOwnerId?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
-    /**
-     * Public API key value set for the specified organization API key.
-     */
     publicKey?: pulumi.Input<string>;
     /**
      * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -220,6 +213,10 @@ export interface OrganizationState {
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
      */
     securityContact?: pulumi.Input<string>;
+    /**
+     * Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+     */
+    serviceAccount?: pulumi.Input<inputs.OrganizationServiceAccount>;
     skipDefaultAlertsSettings?: pulumi.Input<boolean>;
 }
 
@@ -264,5 +261,9 @@ export interface OrganizationArgs {
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
      */
     securityContact?: pulumi.Input<string>;
+    /**
+     * Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
+     */
+    serviceAccount?: pulumi.Input<inputs.OrganizationServiceAccount>;
     skipDefaultAlertsSettings?: pulumi.Input<boolean>;
 }
