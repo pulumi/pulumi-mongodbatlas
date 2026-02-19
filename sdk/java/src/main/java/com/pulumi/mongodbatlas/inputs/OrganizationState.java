@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.OrganizationServiceAccountArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -136,17 +137,9 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.privateKey);
     }
 
-    /**
-     * Public API key value set for the specified organization API key.
-     * 
-     */
     @Import(name="publicKey")
     private @Nullable Output<String> publicKey;
 
-    /**
-     * @return Public API key value set for the specified organization API key.
-     * 
-     */
     public Optional<Output<String>> publicKey() {
         return Optional.ofNullable(this.publicKey);
     }
@@ -196,6 +189,21 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.securityContact);
     }
 
+    /**
+     * Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can&#39;t be updated after creation. See Service Account.
+     * 
+     */
+    @Import(name="serviceAccount")
+    private @Nullable Output<OrganizationServiceAccountArgs> serviceAccount;
+
+    /**
+     * @return Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can&#39;t be updated after creation. See Service Account.
+     * 
+     */
+    public Optional<Output<OrganizationServiceAccountArgs>> serviceAccount() {
+        return Optional.ofNullable(this.serviceAccount);
+    }
+
     @Import(name="skipDefaultAlertsSettings")
     private @Nullable Output<Boolean> skipDefaultAlertsSettings;
 
@@ -219,6 +227,7 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
         this.restrictEmployeeAccess = $.restrictEmployeeAccess;
         this.roleNames = $.roleNames;
         this.securityContact = $.securityContact;
+        this.serviceAccount = $.serviceAccount;
         this.skipDefaultAlertsSettings = $.skipDefaultAlertsSettings;
     }
 
@@ -405,23 +414,11 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
             return privateKey(Output.of(privateKey));
         }
 
-        /**
-         * @param publicKey Public API key value set for the specified organization API key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder publicKey(@Nullable Output<String> publicKey) {
             $.publicKey = publicKey;
             return this;
         }
 
-        /**
-         * @param publicKey Public API key value set for the specified organization API key.
-         * 
-         * @return builder
-         * 
-         */
         public Builder publicKey(String publicKey) {
             return publicKey(Output.of(publicKey));
         }
@@ -497,6 +494,27 @@ public final class OrganizationState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder securityContact(String securityContact) {
             return securityContact(Output.of(securityContact));
+        }
+
+        /**
+         * @param serviceAccount Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can&#39;t be updated after creation. See Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccount(@Nullable Output<OrganizationServiceAccountArgs> serviceAccount) {
+            $.serviceAccount = serviceAccount;
+            return this;
+        }
+
+        /**
+         * @param serviceAccount Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can&#39;t be updated after creation. See Service Account.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceAccount(OrganizationServiceAccountArgs serviceAccount) {
+            return serviceAccount(Output.of(serviceAccount));
         }
 
         public Builder skipDefaultAlertsSettings(@Nullable Output<Boolean> skipDefaultAlertsSettings) {

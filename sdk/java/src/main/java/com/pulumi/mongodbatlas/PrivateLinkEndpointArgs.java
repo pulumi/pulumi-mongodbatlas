@@ -33,14 +33,29 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Required 	Unique identifier for the project.
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    @Import(name="portMappingEnabled")
+    private @Nullable Output<Boolean> portMappingEnabled;
+
+    /**
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * 
+     */
+    public Optional<Output<Boolean>> portMappingEnabled() {
+        return Optional.ofNullable(this.portMappingEnabled);
+    }
+
+    /**
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Required 	Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -83,6 +98,7 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
 
     private PrivateLinkEndpointArgs(PrivateLinkEndpointArgs $) {
         this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
+        this.portMappingEnabled = $.portMappingEnabled;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
         this.region = $.region;
@@ -128,7 +144,28 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Required 	Unique identifier for the project.
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder portMappingEnabled(@Nullable Output<Boolean> portMappingEnabled) {
+            $.portMappingEnabled = portMappingEnabled;
+            return this;
+        }
+
+        /**
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder portMappingEnabled(Boolean portMappingEnabled) {
+            return portMappingEnabled(Output.of(portMappingEnabled));
+        }
+
+        /**
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -139,7 +176,7 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param projectId Required 	Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

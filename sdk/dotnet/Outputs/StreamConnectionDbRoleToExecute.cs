@@ -19,8 +19,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string Role;
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-        /// 
-        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         public readonly string Type;
 

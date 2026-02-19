@@ -16,6 +16,7 @@ import com.pulumi.mongodbatlas.outputs.StreamConnectionDbRoleToExecute;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionNetworking;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionSchemaRegistryAuthentication;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionSecurity;
+import com.pulumi.mongodbatlas.outputs.StreamConnectionTimeouts;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -185,7 +186,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example_kafka_oauthbearer = new StreamConnection("example-kafka-oauthbearer", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .instanceName(example.instanceName())
+ *             .workspaceName(example.workspaceName())
  *             .connectionName("KafkaOAuthbearerConnection")
  *             .type("Kafka")
  *             .authentication(StreamConnectionAuthenticationArgs.builder()
@@ -329,7 +330,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example_https = new StreamConnection("example-https", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .workspaceName(example.instanceName())
+ *             .workspaceName(example.workspaceName())
  *             .connectionName("https_connection_tf_new")
  *             .type("Https")
  *             .url("https://example.com")
@@ -371,7 +372,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example_schema_registry = new StreamConnection("example-schema-registry", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .workspaceName(example.instanceName())
+ *             .workspaceName(example.workspaceName())
  *             .connectionName("SchemaRegistryConnection")
  *             .type("SchemaRegistry")
  *             .schemaRegistryProvider("CONFLUENT")
@@ -415,7 +416,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example_schema_registry_sasl = new StreamConnection("example-schema-registry-sasl", StreamConnectionArgs.builder()
  *             .projectId(projectId)
- *             .workspaceName(example.instanceName())
+ *             .workspaceName(example.workspaceName())
  *             .connectionName("SchemaRegistryConnectionSASL")
  *             .type("SchemaRegistry")
  *             .schemaRegistryProvider("CONFLUENT")
@@ -429,6 +430,101 @@ import javax.annotation.Nullable;
  * }
  * }
  * </pre>
+ * 
+ * ### Example Usage with Stream Processor
+ * 
+ * When using a stream connection with a stream processor, the connection must be fully provisioned before the processor can be created. The provider automatically waits for connections to be ready after creation or updates. The example below shows a typical pattern:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamWorkspace;
+ * import com.pulumi.mongodbatlas.StreamWorkspaceArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamWorkspaceDataProcessRegionArgs;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+ * import com.pulumi.mongodbatlas.StreamProcessor;
+ * import com.pulumi.mongodbatlas.StreamProcessorArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new StreamWorkspace("example", StreamWorkspaceArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName("ExampleWorkspace")
+ *             .dataProcessRegion(StreamWorkspaceDataProcessRegionArgs.builder()
+ *                 .region("VIRGINIA_USA")
+ *                 .cloudProvider("AWS")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Source connection (Sample data)
+ *         var source = new StreamConnection("source", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.workspaceName())
+ *             .connectionName("sample_stream_solar")
+ *             .type("Sample")
+ *             .build());
+ * 
+ *         // Sink connection (Atlas Cluster)
+ *         var sink = new StreamConnection("sink", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.workspaceName())
+ *             .connectionName("ClusterConnection")
+ *             .type("Cluster")
+ *             .clusterName(exampleMongodbatlasCluster.name())
+ *             .dbRoleToExecute(StreamConnectionDbRoleToExecuteArgs.builder()
+ *                 .role("atlasAdmin")
+ *                 .type("BUILT_IN")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Stream processor that depends on both connections
+ *         var exampleStreamProcessor = new StreamProcessor("exampleStreamProcessor", StreamProcessorArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.workspaceName())
+ *             .processorName("ExampleProcessor")
+ *             .pipeline(Output.tuple(source.connectionName(), sink.connectionName()).applyValue(values -> {
+ *                 var sourceConnectionName = values.t1;
+ *                 var sinkConnectionName = values.t2;
+ *                 return serializeJson(
+ *                     jsonArray(
+ *                         jsonObject(
+ *                             jsonProperty("$source", jsonObject(
+ *                                 jsonProperty("connectionName", sourceConnectionName)
+ *                             ))
+ *                         ), 
+ *                         jsonObject(
+ *                             jsonProperty("$emit", jsonObject(
+ *                                 jsonProperty("connectionName", sinkConnectionName)
+ *                             ))
+ *                         )
+ *                     ));
+ *             }))
+ *             .state("STARTED")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &gt; **NOTE:** The stream processor resource automatically depends on the stream connections through the `connectionName` references in the pipeline. This ensures proper creation order. The provider waits for each connection to be fully provisioned before returning from create or update operations.
  * 
  * ## Import
  * 
@@ -506,7 +602,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.headers);
     }
     /**
-     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
@@ -517,7 +613,7 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> instanceName;
 
     /**
-     * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * @return Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      * 
      */
     public Output<Optional<String>> instanceName() {
@@ -567,10 +663,14 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     public Output<Optional<StreamConnectionSecurity>> security() {
         return Codegen.optional(this.security);
     }
+    @Export(name="timeouts", refs={StreamConnectionTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ StreamConnectionTimeouts> timeouts;
+
+    public Output<Optional<StreamConnectionTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
+    }
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     * 
-     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
@@ -578,8 +678,6 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     * 
-     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
      */
     public Output<String> type() {
@@ -592,14 +690,14 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.url);
     }
     /**
-     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * Label that identifies the stream processing workspace.
      * 
      */
     @Export(name="workspaceName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> workspaceName;
 
     /**
-     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * @return Label that identifies the stream processing workspace.
      * 
      */
     public Output<Optional<String>> workspaceName() {

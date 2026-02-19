@@ -81,7 +81,7 @@ import * as utilities from "./utilities";
  *
  * const example_kafka_oauthbearer = new mongodbatlas.StreamConnection("example-kafka-oauthbearer", {
  *     projectId: projectId,
- *     instanceName: example.instanceName,
+ *     workspaceName: example.workspaceName,
  *     connectionName: "KafkaOAuthbearerConnection",
  *     type: "Kafka",
  *     authentication: {
@@ -160,7 +160,7 @@ import * as utilities from "./utilities";
  *
  * const example_https = new mongodbatlas.StreamConnection("example-https", {
  *     projectId: projectId,
- *     workspaceName: example.instanceName,
+ *     workspaceName: example.workspaceName,
  *     connectionName: "https_connection_tf_new",
  *     type: "Https",
  *     url: "https://example.com",
@@ -179,7 +179,7 @@ import * as utilities from "./utilities";
  *
  * const example_schema_registry = new mongodbatlas.StreamConnection("example-schema-registry", {
  *     projectId: projectId,
- *     workspaceName: example.instanceName,
+ *     workspaceName: example.workspaceName,
  *     connectionName: "SchemaRegistryConnection",
  *     type: "SchemaRegistry",
  *     schemaRegistryProvider: "CONFLUENT",
@@ -200,7 +200,7 @@ import * as utilities from "./utilities";
  *
  * const example_schema_registry_sasl = new mongodbatlas.StreamConnection("example-schema-registry-sasl", {
  *     projectId: projectId,
- *     workspaceName: example.instanceName,
+ *     workspaceName: example.workspaceName,
  *     connectionName: "SchemaRegistryConnectionSASL",
  *     type: "SchemaRegistry",
  *     schemaRegistryProvider: "CONFLUENT",
@@ -210,6 +210,64 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ *
+ * ### Example Usage with Stream Processor
+ *
+ * When using a stream connection with a stream processor, the connection must be fully provisioned before the processor can be created. The provider automatically waits for connections to be ready after creation or updates. The example below shows a typical pattern:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const example = new mongodbatlas.StreamWorkspace("example", {
+ *     projectId: projectId,
+ *     workspaceName: "ExampleWorkspace",
+ *     dataProcessRegion: {
+ *         region: "VIRGINIA_USA",
+ *         cloudProvider: "AWS",
+ *     },
+ * });
+ * // Source connection (Sample data)
+ * const source = new mongodbatlas.StreamConnection("source", {
+ *     projectId: projectId,
+ *     workspaceName: example.workspaceName,
+ *     connectionName: "sample_stream_solar",
+ *     type: "Sample",
+ * });
+ * // Sink connection (Atlas Cluster)
+ * const sink = new mongodbatlas.StreamConnection("sink", {
+ *     projectId: projectId,
+ *     workspaceName: example.workspaceName,
+ *     connectionName: "ClusterConnection",
+ *     type: "Cluster",
+ *     clusterName: exampleMongodbatlasCluster.name,
+ *     dbRoleToExecute: {
+ *         role: "atlasAdmin",
+ *         type: "BUILT_IN",
+ *     },
+ * });
+ * // Stream processor that depends on both connections
+ * const exampleStreamProcessor = new mongodbatlas.StreamProcessor("example", {
+ *     projectId: projectId,
+ *     workspaceName: example.workspaceName,
+ *     processorName: "ExampleProcessor",
+ *     pipeline: pulumi.jsonStringify([
+ *         {
+ *             $source: {
+ *                 connectionName: source.connectionName,
+ *             },
+ *         },
+ *         {
+ *             $emit: {
+ *                 connectionName: sink.connectionName,
+ *             },
+ *         },
+ *     ]),
+ *     state: "STARTED",
+ * });
+ * ```
+ *
+ * > **NOTE:** The stream processor resource automatically depends on the stream connections through the `connectionName` references in the pipeline. This ensures proper creation order. The provider waits for each connection to be fully provisioned before returning from create or update operations.
  *
  * ## Import
  *
@@ -262,7 +320,7 @@ export class StreamConnection extends pulumi.CustomResource {
     declare public readonly dbRoleToExecute: pulumi.Output<outputs.StreamConnectionDbRoleToExecute | undefined>;
     declare public readonly headers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
@@ -276,15 +334,14 @@ export class StreamConnection extends pulumi.CustomResource {
     declare public readonly schemaRegistryProvider: pulumi.Output<string | undefined>;
     declare public readonly schemaRegistryUrls: pulumi.Output<string[] | undefined>;
     declare public readonly security: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
+    declare public readonly timeouts: pulumi.Output<outputs.StreamConnectionTimeouts | undefined>;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     *
-     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     declare public readonly type: pulumi.Output<string>;
     declare public readonly url: pulumi.Output<string | undefined>;
     /**
-     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * Label that identifies the stream processing workspace.
      */
     declare public readonly workspaceName: pulumi.Output<string | undefined>;
 
@@ -317,6 +374,7 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["schemaRegistryProvider"] = state?.schemaRegistryProvider;
             resourceInputs["schemaRegistryUrls"] = state?.schemaRegistryUrls;
             resourceInputs["security"] = state?.security;
+            resourceInputs["timeouts"] = state?.timeouts;
             resourceInputs["type"] = state?.type;
             resourceInputs["url"] = state?.url;
             resourceInputs["workspaceName"] = state?.workspaceName;
@@ -347,6 +405,7 @@ export class StreamConnection extends pulumi.CustomResource {
             resourceInputs["schemaRegistryProvider"] = args?.schemaRegistryProvider;
             resourceInputs["schemaRegistryUrls"] = args?.schemaRegistryUrls;
             resourceInputs["security"] = args?.security;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["type"] = args?.type;
             resourceInputs["url"] = args?.url;
             resourceInputs["workspaceName"] = args?.workspaceName;
@@ -373,7 +432,7 @@ export interface StreamConnectionState {
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
@@ -387,15 +446,14 @@ export interface StreamConnectionState {
     schemaRegistryProvider?: pulumi.Input<string>;
     schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[]>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
+    timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts>;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     *
-     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     type?: pulumi.Input<string>;
     url?: pulumi.Input<string>;
     /**
-     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * Label that identifies the stream processing workspace.
      */
     workspaceName?: pulumi.Input<string>;
 }
@@ -417,7 +475,7 @@ export interface StreamConnectionArgs {
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
@@ -431,15 +489,14 @@ export interface StreamConnectionArgs {
     schemaRegistryProvider?: pulumi.Input<string>;
     schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[]>;
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
+    timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts>;
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     *
-     * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
     type: pulumi.Input<string>;
     url?: pulumi.Input<string>;
     /**
-     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * Label that identifies the stream processing workspace.
      */
     workspaceName?: pulumi.Input<string>;
 }

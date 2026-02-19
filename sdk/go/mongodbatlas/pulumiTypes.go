@@ -16216,10 +16216,393 @@ func (o OnlineArchiveSchedulePtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type OrganizationServiceAccount struct {
+	// The Client ID of the Service Account.
+	ClientId *string `pulumi:"clientId"`
+	// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Human readable description for the Service Account.
+	Description string `pulumi:"description"`
+	// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+	Name string `pulumi:"name"`
+	// A list of organization-level roles for the Service Account.
+	Roles []string `pulumi:"roles"`
+	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+	//
+	// > **WARNING:** Service Account secrets expire after the configured `secretExpiresAfterHours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+	SecretExpiresAfterHours int `pulumi:"secretExpiresAfterHours"`
+	// A list of secrets associated with the specified Service Account. See Secrets.
+	Secrets []OrganizationServiceAccountSecret `pulumi:"secrets"`
+}
+
+// OrganizationServiceAccountInput is an input type that accepts OrganizationServiceAccountArgs and OrganizationServiceAccountOutput values.
+// You can construct a concrete instance of `OrganizationServiceAccountInput` via:
+//
+//	OrganizationServiceAccountArgs{...}
+type OrganizationServiceAccountInput interface {
+	pulumi.Input
+
+	ToOrganizationServiceAccountOutput() OrganizationServiceAccountOutput
+	ToOrganizationServiceAccountOutputWithContext(context.Context) OrganizationServiceAccountOutput
+}
+
+type OrganizationServiceAccountArgs struct {
+	// The Client ID of the Service Account.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Human readable description for the Service Account.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+	Name pulumi.StringInput `pulumi:"name"`
+	// A list of organization-level roles for the Service Account.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+	//
+	// > **WARNING:** Service Account secrets expire after the configured `secretExpiresAfterHours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+	SecretExpiresAfterHours pulumi.IntInput `pulumi:"secretExpiresAfterHours"`
+	// A list of secrets associated with the specified Service Account. See Secrets.
+	Secrets OrganizationServiceAccountSecretArrayInput `pulumi:"secrets"`
+}
+
+func (OrganizationServiceAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationServiceAccount)(nil)).Elem()
+}
+
+func (i OrganizationServiceAccountArgs) ToOrganizationServiceAccountOutput() OrganizationServiceAccountOutput {
+	return i.ToOrganizationServiceAccountOutputWithContext(context.Background())
+}
+
+func (i OrganizationServiceAccountArgs) ToOrganizationServiceAccountOutputWithContext(ctx context.Context) OrganizationServiceAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationServiceAccountOutput)
+}
+
+func (i OrganizationServiceAccountArgs) ToOrganizationServiceAccountPtrOutput() OrganizationServiceAccountPtrOutput {
+	return i.ToOrganizationServiceAccountPtrOutputWithContext(context.Background())
+}
+
+func (i OrganizationServiceAccountArgs) ToOrganizationServiceAccountPtrOutputWithContext(ctx context.Context) OrganizationServiceAccountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationServiceAccountOutput).ToOrganizationServiceAccountPtrOutputWithContext(ctx)
+}
+
+// OrganizationServiceAccountPtrInput is an input type that accepts OrganizationServiceAccountArgs, OrganizationServiceAccountPtr and OrganizationServiceAccountPtrOutput values.
+// You can construct a concrete instance of `OrganizationServiceAccountPtrInput` via:
+//
+//	        OrganizationServiceAccountArgs{...}
+//
+//	or:
+//
+//	        nil
+type OrganizationServiceAccountPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationServiceAccountPtrOutput() OrganizationServiceAccountPtrOutput
+	ToOrganizationServiceAccountPtrOutputWithContext(context.Context) OrganizationServiceAccountPtrOutput
+}
+
+type organizationServiceAccountPtrType OrganizationServiceAccountArgs
+
+func OrganizationServiceAccountPtr(v *OrganizationServiceAccountArgs) OrganizationServiceAccountPtrInput {
+	return (*organizationServiceAccountPtrType)(v)
+}
+
+func (*organizationServiceAccountPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationServiceAccount)(nil)).Elem()
+}
+
+func (i *organizationServiceAccountPtrType) ToOrganizationServiceAccountPtrOutput() OrganizationServiceAccountPtrOutput {
+	return i.ToOrganizationServiceAccountPtrOutputWithContext(context.Background())
+}
+
+func (i *organizationServiceAccountPtrType) ToOrganizationServiceAccountPtrOutputWithContext(ctx context.Context) OrganizationServiceAccountPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationServiceAccountPtrOutput)
+}
+
+type OrganizationServiceAccountOutput struct{ *pulumi.OutputState }
+
+func (OrganizationServiceAccountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationServiceAccount)(nil)).Elem()
+}
+
+func (o OrganizationServiceAccountOutput) ToOrganizationServiceAccountOutput() OrganizationServiceAccountOutput {
+	return o
+}
+
+func (o OrganizationServiceAccountOutput) ToOrganizationServiceAccountOutputWithContext(ctx context.Context) OrganizationServiceAccountOutput {
+	return o
+}
+
+func (o OrganizationServiceAccountOutput) ToOrganizationServiceAccountPtrOutput() OrganizationServiceAccountPtrOutput {
+	return o.ToOrganizationServiceAccountPtrOutputWithContext(context.Background())
+}
+
+func (o OrganizationServiceAccountOutput) ToOrganizationServiceAccountPtrOutputWithContext(ctx context.Context) OrganizationServiceAccountPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OrganizationServiceAccount) *OrganizationServiceAccount {
+		return &v
+	}).(OrganizationServiceAccountPtrOutput)
+}
+
+// The Client ID of the Service Account.
+func (o OrganizationServiceAccountOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationServiceAccount) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o OrganizationServiceAccountOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationServiceAccount) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Human readable description for the Service Account.
+func (o OrganizationServiceAccountOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v OrganizationServiceAccount) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+func (o OrganizationServiceAccountOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v OrganizationServiceAccount) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// A list of organization-level roles for the Service Account.
+func (o OrganizationServiceAccountOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v OrganizationServiceAccount) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+//
+// > **WARNING:** Service Account secrets expire after the configured `secretExpiresAfterHours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+func (o OrganizationServiceAccountOutput) SecretExpiresAfterHours() pulumi.IntOutput {
+	return o.ApplyT(func(v OrganizationServiceAccount) int { return v.SecretExpiresAfterHours }).(pulumi.IntOutput)
+}
+
+// A list of secrets associated with the specified Service Account. See Secrets.
+func (o OrganizationServiceAccountOutput) Secrets() OrganizationServiceAccountSecretArrayOutput {
+	return o.ApplyT(func(v OrganizationServiceAccount) []OrganizationServiceAccountSecret { return v.Secrets }).(OrganizationServiceAccountSecretArrayOutput)
+}
+
+type OrganizationServiceAccountPtrOutput struct{ *pulumi.OutputState }
+
+func (OrganizationServiceAccountPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationServiceAccount)(nil)).Elem()
+}
+
+func (o OrganizationServiceAccountPtrOutput) ToOrganizationServiceAccountPtrOutput() OrganizationServiceAccountPtrOutput {
+	return o
+}
+
+func (o OrganizationServiceAccountPtrOutput) ToOrganizationServiceAccountPtrOutputWithContext(ctx context.Context) OrganizationServiceAccountPtrOutput {
+	return o
+}
+
+func (o OrganizationServiceAccountPtrOutput) Elem() OrganizationServiceAccountOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) OrganizationServiceAccount {
+		if v != nil {
+			return *v
+		}
+		var ret OrganizationServiceAccount
+		return ret
+	}).(OrganizationServiceAccountOutput)
+}
+
+// The Client ID of the Service Account.
+func (o OrganizationServiceAccountPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o OrganizationServiceAccountPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// Human readable description for the Service Account.
+func (o OrganizationServiceAccountPtrOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Description
+	}).(pulumi.StringPtrOutput)
+}
+
+// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
+func (o OrganizationServiceAccountPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// A list of organization-level roles for the Service Account.
+func (o OrganizationServiceAccountPtrOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Roles
+	}).(pulumi.StringArrayOutput)
+}
+
+// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings.
+//
+// > **WARNING:** Service Account secrets expire after the configured `secretExpiresAfterHours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
+func (o OrganizationServiceAccountPtrOutput) SecretExpiresAfterHours() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.SecretExpiresAfterHours
+	}).(pulumi.IntPtrOutput)
+}
+
+// A list of secrets associated with the specified Service Account. See Secrets.
+func (o OrganizationServiceAccountPtrOutput) Secrets() OrganizationServiceAccountSecretArrayOutput {
+	return o.ApplyT(func(v *OrganizationServiceAccount) []OrganizationServiceAccountSecret {
+		if v == nil {
+			return nil
+		}
+		return v.Secrets
+	}).(OrganizationServiceAccountSecretArrayOutput)
+}
+
+type OrganizationServiceAccountSecret struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt *string `pulumi:"expiresAt"`
+	// The secret for the Service Account. It will be returned only the first time after creation.
+	Secret *string `pulumi:"secret"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId *string `pulumi:"secretId"`
+}
+
+// OrganizationServiceAccountSecretInput is an input type that accepts OrganizationServiceAccountSecretArgs and OrganizationServiceAccountSecretOutput values.
+// You can construct a concrete instance of `OrganizationServiceAccountSecretInput` via:
+//
+//	OrganizationServiceAccountSecretArgs{...}
+type OrganizationServiceAccountSecretInput interface {
+	pulumi.Input
+
+	ToOrganizationServiceAccountSecretOutput() OrganizationServiceAccountSecretOutput
+	ToOrganizationServiceAccountSecretOutputWithContext(context.Context) OrganizationServiceAccountSecretOutput
+}
+
+type OrganizationServiceAccountSecretArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringPtrInput `pulumi:"expiresAt"`
+	// The secret for the Service Account. It will be returned only the first time after creation.
+	Secret pulumi.StringPtrInput `pulumi:"secret"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
+}
+
+func (OrganizationServiceAccountSecretArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationServiceAccountSecret)(nil)).Elem()
+}
+
+func (i OrganizationServiceAccountSecretArgs) ToOrganizationServiceAccountSecretOutput() OrganizationServiceAccountSecretOutput {
+	return i.ToOrganizationServiceAccountSecretOutputWithContext(context.Background())
+}
+
+func (i OrganizationServiceAccountSecretArgs) ToOrganizationServiceAccountSecretOutputWithContext(ctx context.Context) OrganizationServiceAccountSecretOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationServiceAccountSecretOutput)
+}
+
+// OrganizationServiceAccountSecretArrayInput is an input type that accepts OrganizationServiceAccountSecretArray and OrganizationServiceAccountSecretArrayOutput values.
+// You can construct a concrete instance of `OrganizationServiceAccountSecretArrayInput` via:
+//
+//	OrganizationServiceAccountSecretArray{ OrganizationServiceAccountSecretArgs{...} }
+type OrganizationServiceAccountSecretArrayInput interface {
+	pulumi.Input
+
+	ToOrganizationServiceAccountSecretArrayOutput() OrganizationServiceAccountSecretArrayOutput
+	ToOrganizationServiceAccountSecretArrayOutputWithContext(context.Context) OrganizationServiceAccountSecretArrayOutput
+}
+
+type OrganizationServiceAccountSecretArray []OrganizationServiceAccountSecretInput
+
+func (OrganizationServiceAccountSecretArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationServiceAccountSecret)(nil)).Elem()
+}
+
+func (i OrganizationServiceAccountSecretArray) ToOrganizationServiceAccountSecretArrayOutput() OrganizationServiceAccountSecretArrayOutput {
+	return i.ToOrganizationServiceAccountSecretArrayOutputWithContext(context.Background())
+}
+
+func (i OrganizationServiceAccountSecretArray) ToOrganizationServiceAccountSecretArrayOutputWithContext(ctx context.Context) OrganizationServiceAccountSecretArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationServiceAccountSecretArrayOutput)
+}
+
+type OrganizationServiceAccountSecretOutput struct{ *pulumi.OutputState }
+
+func (OrganizationServiceAccountSecretOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationServiceAccountSecret)(nil)).Elem()
+}
+
+func (o OrganizationServiceAccountSecretOutput) ToOrganizationServiceAccountSecretOutput() OrganizationServiceAccountSecretOutput {
+	return o
+}
+
+func (o OrganizationServiceAccountSecretOutput) ToOrganizationServiceAccountSecretOutputWithContext(ctx context.Context) OrganizationServiceAccountSecretOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o OrganizationServiceAccountSecretOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationServiceAccountSecret) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o OrganizationServiceAccountSecretOutput) ExpiresAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationServiceAccountSecret) *string { return v.ExpiresAt }).(pulumi.StringPtrOutput)
+}
+
+// The secret for the Service Account. It will be returned only the first time after creation.
+func (o OrganizationServiceAccountSecretOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationServiceAccountSecret) *string { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o OrganizationServiceAccountSecretOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OrganizationServiceAccountSecret) *string { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+type OrganizationServiceAccountSecretArrayOutput struct{ *pulumi.OutputState }
+
+func (OrganizationServiceAccountSecretArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrganizationServiceAccountSecret)(nil)).Elem()
+}
+
+func (o OrganizationServiceAccountSecretArrayOutput) ToOrganizationServiceAccountSecretArrayOutput() OrganizationServiceAccountSecretArrayOutput {
+	return o
+}
+
+func (o OrganizationServiceAccountSecretArrayOutput) ToOrganizationServiceAccountSecretArrayOutputWithContext(ctx context.Context) OrganizationServiceAccountSecretArrayOutput {
+	return o
+}
+
+func (o OrganizationServiceAccountSecretArrayOutput) Index(i pulumi.IntInput) OrganizationServiceAccountSecretOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OrganizationServiceAccountSecret {
+		return vs[0].([]OrganizationServiceAccountSecret)[vs[1].(int)]
+	}).(OrganizationServiceAccountSecretOutput)
+}
+
 type PrivateLinkEndpointServiceEndpoint struct {
-	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	// Forwarding rule that corresponds to the endpoint you created.
 	EndpointName *string `pulumi:"endpointName"`
-	// Private IP address of the endpoint you created in GCP.
+	// Private IP address of the endpoint you created.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status *string `pulumi:"status"`
@@ -16237,9 +16620,9 @@ type PrivateLinkEndpointServiceEndpointInput interface {
 }
 
 type PrivateLinkEndpointServiceEndpointArgs struct {
-	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	// Forwarding rule that corresponds to the endpoint you created.
 	EndpointName pulumi.StringPtrInput `pulumi:"endpointName"`
-	// Private IP address of the endpoint you created in GCP.
+	// Private IP address of the endpoint you created.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringPtrInput `pulumi:"status"`
@@ -16296,12 +16679,12 @@ func (o PrivateLinkEndpointServiceEndpointOutput) ToPrivateLinkEndpointServiceEn
 	return o
 }
 
-// Forwarding rule that corresponds to the endpoint you created in GCP.
+// Forwarding rule that corresponds to the endpoint you created.
 func (o PrivateLinkEndpointServiceEndpointOutput) EndpointName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.EndpointName }).(pulumi.StringPtrOutput)
 }
 
-// Private IP address of the endpoint you created in GCP.
+// Private IP address of the endpoint you created.
 func (o PrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
@@ -19359,8 +19742,6 @@ type StreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role string `pulumi:"role"`
 	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-	//
-	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type string `pulumi:"type"`
 }
 
@@ -19379,8 +19760,6 @@ type StreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role pulumi.StringInput `pulumi:"role"`
 	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-	//
-	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -19467,8 +19846,6 @@ func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 }
 
 // Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-//
-// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -19508,8 +19885,6 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput 
 }
 
 // Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-//
-// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
 func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
 		if v == nil {
@@ -20148,6 +20523,162 @@ func (o StreamConnectionSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionTimeouts struct {
+	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+	Create *string `pulumi:"create"`
+	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+	Update *string `pulumi:"update"`
+}
+
+// StreamConnectionTimeoutsInput is an input type that accepts StreamConnectionTimeoutsArgs and StreamConnectionTimeoutsOutput values.
+// You can construct a concrete instance of `StreamConnectionTimeoutsInput` via:
+//
+//	StreamConnectionTimeoutsArgs{...}
+type StreamConnectionTimeoutsInput interface {
+	pulumi.Input
+
+	ToStreamConnectionTimeoutsOutput() StreamConnectionTimeoutsOutput
+	ToStreamConnectionTimeoutsOutputWithContext(context.Context) StreamConnectionTimeoutsOutput
+}
+
+type StreamConnectionTimeoutsArgs struct {
+	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (StreamConnectionTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionTimeouts)(nil)).Elem()
+}
+
+func (i StreamConnectionTimeoutsArgs) ToStreamConnectionTimeoutsOutput() StreamConnectionTimeoutsOutput {
+	return i.ToStreamConnectionTimeoutsOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionTimeoutsArgs) ToStreamConnectionTimeoutsOutputWithContext(ctx context.Context) StreamConnectionTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionTimeoutsOutput)
+}
+
+func (i StreamConnectionTimeoutsArgs) ToStreamConnectionTimeoutsPtrOutput() StreamConnectionTimeoutsPtrOutput {
+	return i.ToStreamConnectionTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionTimeoutsArgs) ToStreamConnectionTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionTimeoutsOutput).ToStreamConnectionTimeoutsPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionTimeoutsPtrInput is an input type that accepts StreamConnectionTimeoutsArgs, StreamConnectionTimeoutsPtr and StreamConnectionTimeoutsPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionTimeoutsPtrInput` via:
+//
+//	        StreamConnectionTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionTimeoutsPtrOutput() StreamConnectionTimeoutsPtrOutput
+	ToStreamConnectionTimeoutsPtrOutputWithContext(context.Context) StreamConnectionTimeoutsPtrOutput
+}
+
+type streamConnectionTimeoutsPtrType StreamConnectionTimeoutsArgs
+
+func StreamConnectionTimeoutsPtr(v *StreamConnectionTimeoutsArgs) StreamConnectionTimeoutsPtrInput {
+	return (*streamConnectionTimeoutsPtrType)(v)
+}
+
+func (*streamConnectionTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionTimeouts)(nil)).Elem()
+}
+
+func (i *streamConnectionTimeoutsPtrType) ToStreamConnectionTimeoutsPtrOutput() StreamConnectionTimeoutsPtrOutput {
+	return i.ToStreamConnectionTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionTimeoutsPtrType) ToStreamConnectionTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionTimeoutsPtrOutput)
+}
+
+type StreamConnectionTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionTimeouts)(nil)).Elem()
+}
+
+func (o StreamConnectionTimeoutsOutput) ToStreamConnectionTimeoutsOutput() StreamConnectionTimeoutsOutput {
+	return o
+}
+
+func (o StreamConnectionTimeoutsOutput) ToStreamConnectionTimeoutsOutputWithContext(ctx context.Context) StreamConnectionTimeoutsOutput {
+	return o
+}
+
+func (o StreamConnectionTimeoutsOutput) ToStreamConnectionTimeoutsPtrOutput() StreamConnectionTimeoutsPtrOutput {
+	return o.ToStreamConnectionTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionTimeoutsOutput) ToStreamConnectionTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionTimeouts) *StreamConnectionTimeouts {
+		return &v
+	}).(StreamConnectionTimeoutsPtrOutput)
+}
+
+// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+func (o StreamConnectionTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+func (o StreamConnectionTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionTimeouts)(nil)).Elem()
+}
+
+func (o StreamConnectionTimeoutsPtrOutput) ToStreamConnectionTimeoutsPtrOutput() StreamConnectionTimeoutsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionTimeoutsPtrOutput) ToStreamConnectionTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionTimeoutsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionTimeoutsPtrOutput) Elem() StreamConnectionTimeoutsOutput {
+	return o.ApplyT(func(v *StreamConnectionTimeouts) StreamConnectionTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionTimeouts
+		return ret
+	}).(StreamConnectionTimeoutsOutput)
+}
+
+// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+func (o StreamConnectionTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+func (o StreamConnectionTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -50094,9 +50625,9 @@ func (o GetOrganizationsResultUserRoleProjectRoleAssignmentArrayOutput) Index(i 
 }
 
 type GetPrivateLinkEndpointServiceEndpoint struct {
-	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	// Forwarding rule that corresponds to the endpoint you created.
 	EndpointName string `pulumi:"endpointName"`
-	// Private IP address of the network endpoint group you created in GCP.
+	// Private IP address of the network endpoint group you created.
 	IpAddress string `pulumi:"ipAddress"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status string `pulumi:"status"`
@@ -50114,9 +50645,9 @@ type GetPrivateLinkEndpointServiceEndpointInput interface {
 }
 
 type GetPrivateLinkEndpointServiceEndpointArgs struct {
-	// Forwarding rule that corresponds to the endpoint you created in GCP.
+	// Forwarding rule that corresponds to the endpoint you created.
 	EndpointName pulumi.StringInput `pulumi:"endpointName"`
-	// Private IP address of the network endpoint group you created in GCP.
+	// Private IP address of the network endpoint group you created.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringInput `pulumi:"status"`
@@ -50173,12 +50704,12 @@ func (o GetPrivateLinkEndpointServiceEndpointOutput) ToGetPrivateLinkEndpointSer
 	return o
 }
 
-// Forwarding rule that corresponds to the endpoint you created in GCP.
+// Forwarding rule that corresponds to the endpoint you created.
 func (o GetPrivateLinkEndpointServiceEndpointOutput) EndpointName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.EndpointName }).(pulumi.StringOutput)
 }
 
-// Private IP address of the network endpoint group you created in GCP.
+// Private IP address of the network endpoint group you created.
 func (o GetPrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -60158,6 +60689,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldArrayInput)(nil)).Elem(), OnlineArchivePartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveScheduleInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveSchedulePtrInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountInput)(nil)).Elem(), OrganizationServiceAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountPtrInput)(nil)).Elem(), OrganizationServiceAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountSecretInput)(nil)).Elem(), OrganizationServiceAccountSecretArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountSecretArrayInput)(nil)).Elem(), OrganizationServiceAccountSecretArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyProjectAssignmentInput)(nil)).Elem(), ProjectApiKeyProjectAssignmentArgs{})
@@ -60214,6 +60749,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSchemaRegistryAuthenticationPtrInput)(nil)).Elem(), StreamConnectionSchemaRegistryAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionSecurityPtrInput)(nil)).Elem(), StreamConnectionSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionTimeoutsInput)(nil)).Elem(), StreamConnectionTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionTimeoutsPtrInput)(nil)).Elem(), StreamConnectionTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceDataProcessRegionPtrInput)(nil)).Elem(), StreamInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
@@ -60979,6 +61516,10 @@ func init() {
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveScheduleOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveSchedulePtrOutput{})
+	pulumi.RegisterOutputType(OrganizationServiceAccountOutput{})
+	pulumi.RegisterOutputType(OrganizationServiceAccountPtrOutput{})
+	pulumi.RegisterOutputType(OrganizationServiceAccountSecretOutput{})
+	pulumi.RegisterOutputType(OrganizationServiceAccountSecretArrayOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(ProjectApiKeyProjectAssignmentOutput{})
@@ -61035,6 +61576,8 @@ func init() {
 	pulumi.RegisterOutputType(StreamConnectionSchemaRegistryAuthenticationPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionSecurityOutput{})
 	pulumi.RegisterOutputType(StreamConnectionSecurityPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionTimeoutsOutput{})
+	pulumi.RegisterOutputType(StreamConnectionTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(StreamInstanceDataProcessRegionPtrOutput{})
 	pulumi.RegisterOutputType(StreamInstanceStreamConfigOutput{})

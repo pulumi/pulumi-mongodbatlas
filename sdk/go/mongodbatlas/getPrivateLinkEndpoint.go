@@ -32,7 +32,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			testPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "test", &mongodbatlas.PrivateLinkEndpointArgs{
+//			thisPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "this", &mongodbatlas.PrivateLinkEndpointArgs{
 //				ProjectId:    pulumi.String("<PROJECT-ID>"),
 //				ProviderName: pulumi.String("AWS"),
 //				Region:       pulumi.String("US_EAST_1"),
@@ -41,8 +41,8 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.LookupPrivateLinkEndpointOutput(ctx, mongodbatlas.GetPrivateLinkEndpointOutputArgs{
-//				ProjectId:     testPrivateLinkEndpoint.ProjectId,
-//				PrivateLinkId: testPrivateLinkEndpoint.PrivateLinkId,
+//				ProjectId:     thisPrivateLinkEndpoint.ProjectId,
+//				PrivateLinkId: thisPrivateLinkEndpoint.PrivateLinkId,
 //				ProviderName:  pulumi.String("AWS"),
 //			}, nil)
 //			return nil
@@ -53,6 +53,7 @@ import (
 //
 // ### Available complete examples
 // - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+// - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
 func LookupPrivateLinkEndpoint(ctx *pulumi.Context, args *LookupPrivateLinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupPrivateLinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivateLinkEndpointResult
@@ -75,7 +76,7 @@ type LookupPrivateLinkEndpointArgs struct {
 
 // A collection of values returned by getPrivateLinkEndpoint.
 type LookupPrivateLinkEndpointResult struct {
-	// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+	// For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
 	EndpointGroupNames []string `pulumi:"endpointGroupNames"`
 	// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
 	EndpointServiceName string `pulumi:"endpointServiceName"`
@@ -85,6 +86,8 @@ type LookupPrivateLinkEndpointResult struct {
 	Id string `pulumi:"id"`
 	// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
 	InterfaceEndpoints []string `pulumi:"interfaceEndpoints"`
+	// Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+	PortMappingEnabled bool `pulumi:"portMappingEnabled"`
 	// All private endpoints that you have added to this Azure Private Link Service.
 	PrivateEndpoints []string `pulumi:"privateEndpoints"`
 	PrivateLinkId    string   `pulumi:"privateLinkId"`
@@ -94,9 +97,9 @@ type LookupPrivateLinkEndpointResult struct {
 	PrivateLinkServiceResourceId string `pulumi:"privateLinkServiceResourceId"`
 	ProjectId                    string `pulumi:"projectId"`
 	ProviderName                 string `pulumi:"providerName"`
-	// GCP region for the Private Service Connect endpoint service.
+	// Region for the Private Service Connect endpoint service.
 	RegionName string `pulumi:"regionName"`
-	// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+	// For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
 	ServiceAttachmentNames []string `pulumi:"serviceAttachmentNames"`
 	// Status of the AWS PrivateLink connection.
 	// Returns one of the following values:
@@ -146,7 +149,7 @@ func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResult
 	return o
 }
 
-// GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+// For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
 func (o LookupPrivateLinkEndpointResultOutput) EndpointGroupNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.EndpointGroupNames }).(pulumi.StringArrayOutput)
 }
@@ -169,6 +172,11 @@ func (o LookupPrivateLinkEndpointResultOutput) Id() pulumi.StringOutput {
 // Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
 func (o LookupPrivateLinkEndpointResultOutput) InterfaceEndpoints() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.InterfaceEndpoints }).(pulumi.StringArrayOutput)
+}
+
+// Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+func (o LookupPrivateLinkEndpointResultOutput) PortMappingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) bool { return v.PortMappingEnabled }).(pulumi.BoolOutput)
 }
 
 // All private endpoints that you have added to this Azure Private Link Service.
@@ -198,12 +206,12 @@ func (o LookupPrivateLinkEndpointResultOutput) ProviderName() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// GCP region for the Private Service Connect endpoint service.
+// Region for the Private Service Connect endpoint service.
 func (o LookupPrivateLinkEndpointResultOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+// For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
 func (o LookupPrivateLinkEndpointResultOutput) ServiceAttachmentNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.ServiceAttachmentNames }).(pulumi.StringArrayOutput)
 }

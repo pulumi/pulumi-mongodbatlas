@@ -11,12 +11,25 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
- * ## Example with AWS
+ * ## Example Usage
  *
- * ## Example with Azure
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _this = mongodbatlas.getPrivateLinkEndpointService({
+ *     projectId: thisMongodbatlasPrivatelinkEndpointService.projectId,
+ *     privateLinkId: thisMongodbatlasPrivatelinkEndpointService.privateLinkId,
+ *     endpointServiceId: thisMongodbatlasPrivatelinkEndpointService.endpointServiceId,
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * See `mongodbatlas.PrivateLinkEndpointService` resource for complete examples with each cloud provider.
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+ * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
  */
 export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -33,19 +46,19 @@ export function getPrivateLinkEndpointService(args: GetPrivateLinkEndpointServic
  */
 export interface GetPrivateLinkEndpointServiceArgs {
     /**
-     * Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
+     * Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      */
     endpointServiceId: string;
     /**
-     * Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
+     * Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      */
     privateLinkId: string;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
     providerName: string;
 }
@@ -57,7 +70,7 @@ export interface GetPrivateLinkEndpointServiceResult {
     /**
      * Status of the interface endpoint for AWS.
      * Returns one of the following values:
-     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn’t yet created the VPC endpoint.
+     * * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn't yet created the VPC endpoint.
      * * `PENDING_ACCEPTANCE` - AWS has received the connection request from your VPC endpoint to the Atlas VPC endpoint service.
      * * `PENDING` - AWS is establishing the connection between your VPC endpoint and the Atlas VPC endpoint service.
      * * `AVAILABLE` - Atlas VPC resources are connected to the VPC endpoint in your VPC. You can connect to Atlas clusters in this region using AWS PrivateLink.
@@ -80,7 +93,7 @@ export interface GetPrivateLinkEndpointServiceResult {
     readonly deleteRequested: boolean;
     readonly endpointServiceId: string;
     /**
-     * Collection of individual private endpoints that comprise your network endpoint group.
+     * Collection of individual private endpoints that comprise your network endpoint group. Only populated for GCP legacy private endpoint architecture.
      */
     readonly endpoints: outputs.GetPrivateLinkEndpointServiceEndpoint[];
     /**
@@ -88,7 +101,15 @@ export interface GetPrivateLinkEndpointServiceResult {
      */
     readonly errorMessage: string;
     /**
-     * Status of the interface endpoint for GCP.
+     * Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
+     */
+    readonly gcpEndpointStatus: string;
+    /**
+     * Unique identifier of the GCP project in which the endpoints were created. Only applicable for GCP provider.
+     */
+    readonly gcpProjectId: string;
+    /**
+     * Status of the interface endpoint.
      * Returns one of the following values:
      * * `INITIATING` - Atlas has not yet accepted the connection to your private endpoint.
      * * `AVAILABLE` - Atlas approved the connection to your private endpoint.
@@ -105,11 +126,15 @@ export interface GetPrivateLinkEndpointServiceResult {
      */
     readonly interfaceEndpointId: string;
     /**
+     * Flag that indicates whether the underlying `privatelinkEndpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     */
+    readonly portMappingEnabled: boolean;
+    /**
      * Name of the connection for this private endpoint that Atlas generates.
      */
     readonly privateEndpointConnectionName: string;
     /**
-     * Private IP address of the private endpoint network interface.
+     * Private IP address of the private endpoint network interface. For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
      */
     readonly privateEndpointIpAddress: string;
     /**
@@ -125,12 +150,25 @@ export interface GetPrivateLinkEndpointServiceResult {
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
- * ## Example with AWS
+ * ## Example Usage
  *
- * ## Example with Azure
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _this = mongodbatlas.getPrivateLinkEndpointService({
+ *     projectId: thisMongodbatlasPrivatelinkEndpointService.projectId,
+ *     privateLinkId: thisMongodbatlasPrivatelinkEndpointService.privateLinkId,
+ *     endpointServiceId: thisMongodbatlasPrivatelinkEndpointService.endpointServiceId,
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * See `mongodbatlas.PrivateLinkEndpointService` resource for complete examples with each cloud provider.
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+ * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
  */
 export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpointServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateLinkEndpointServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -147,19 +185,19 @@ export function getPrivateLinkEndpointServiceOutput(args: GetPrivateLinkEndpoint
  */
 export interface GetPrivateLinkEndpointServiceOutputArgs {
     /**
-     * Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
+     * Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      */
     endpointServiceId: pulumi.Input<string>;
     /**
-     * Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
+     * Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      */
     privateLinkId: pulumi.Input<string>;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      */
     providerName: pulumi.Input<string>;
 }

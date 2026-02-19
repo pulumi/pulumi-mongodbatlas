@@ -74,6 +74,10 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Automatic Deferral
+ * 
+ * Use `autoDeferOnceEnabled` to enable or disable automatic deferral.
+ * 
  * <pre>
  * {@code
  * package generated_program;
@@ -98,6 +102,46 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()
  *             .projectId("<your-project-id>")
+ *             .dayOfWeek(3)
+ *             .hourOfDay(4)
+ *             .autoDeferOnceEnabled(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### One-Time Manual Deferral
+ * 
+ * Use `defer` to defer the next scheduled maintenance event by one week. This only works when maintenance is already scheduled.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.MaintenanceWindow;
+ * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new MaintenanceWindow("test", MaintenanceWindowArgs.builder()
+ *             .projectId("<your-project-id>")
+ *             .dayOfWeek(3)
+ *             .hourOfDay(4)
  *             .defer(true)
  *             .build());
  * 
@@ -121,31 +165,15 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="mongodbatlas:index/maintenanceWindow:MaintenanceWindow")
 public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
-    /**
-     * Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-     * 
-     */
     @Export(name="autoDefer", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoDefer;
 
-    /**
-     * @return Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-     * 
-     */
     public Output<Boolean> autoDefer() {
         return this.autoDefer;
     }
-    /**
-     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-     * 
-     */
     @Export(name="autoDeferOnceEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoDeferOnceEnabled;
 
-    /**
-     * @return When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-     * 
-     */
     public Output<Boolean> autoDeferOnceEnabled() {
         return this.autoDeferOnceEnabled;
     }

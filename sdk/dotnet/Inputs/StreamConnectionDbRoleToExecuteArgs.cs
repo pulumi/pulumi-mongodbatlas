@@ -20,8 +20,6 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-        /// 
-        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

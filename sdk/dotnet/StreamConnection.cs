@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_kafka_oauthbearer = new Mongodbatlas.StreamConnection("example-kafka-oauthbearer", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         InstanceName = example.InstanceName,
+    ///         WorkspaceName = example.WorkspaceName,
     ///         ConnectionName = "KafkaOAuthbearerConnection",
     ///         Type = "Kafka",
     ///         Authentication = new Mongodbatlas.Inputs.StreamConnectionAuthenticationArgs
@@ -222,7 +222,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_https = new Mongodbatlas.StreamConnection("example-https", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         WorkspaceName = example.InstanceName,
+    ///         WorkspaceName = example.WorkspaceName,
     ///         ConnectionName = "https_connection_tf_new",
     ///         Type = "Https",
     ///         Url = "https://example.com",
@@ -249,7 +249,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_schema_registry = new Mongodbatlas.StreamConnection("example-schema-registry", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         WorkspaceName = example.InstanceName,
+    ///         WorkspaceName = example.WorkspaceName,
     ///         ConnectionName = "SchemaRegistryConnection",
     ///         Type = "SchemaRegistry",
     ///         SchemaRegistryProvider = "CONFLUENT",
@@ -281,7 +281,7 @@ namespace Pulumi.Mongodbatlas
     ///     var example_schema_registry_sasl = new Mongodbatlas.StreamConnection("example-schema-registry-sasl", new()
     ///     {
     ///         ProjectId = projectId,
-    ///         WorkspaceName = example.InstanceName,
+    ///         WorkspaceName = example.WorkspaceName,
     ///         ConnectionName = "SchemaRegistryConnectionSASL",
     ///         Type = "SchemaRegistry",
     ///         SchemaRegistryProvider = "CONFLUENT",
@@ -297,6 +297,85 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Example Usage with Stream Processor
+    /// 
+    /// When using a stream connection with a stream processor, the connection must be fully provisioned before the processor can be created. The provider automatically waits for connections to be ready after creation or updates. The example below shows a typical pattern:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Mongodbatlas.StreamWorkspace("example", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = "ExampleWorkspace",
+    ///         DataProcessRegion = new Mongodbatlas.Inputs.StreamWorkspaceDataProcessRegionArgs
+    ///         {
+    ///             Region = "VIRGINIA_USA",
+    ///             CloudProvider = "AWS",
+    ///         },
+    ///     });
+    /// 
+    ///     // Source connection (Sample data)
+    ///     var source = new Mongodbatlas.StreamConnection("source", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.WorkspaceName,
+    ///         ConnectionName = "sample_stream_solar",
+    ///         Type = "Sample",
+    ///     });
+    /// 
+    ///     // Sink connection (Atlas Cluster)
+    ///     var sink = new Mongodbatlas.StreamConnection("sink", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.WorkspaceName,
+    ///         ConnectionName = "ClusterConnection",
+    ///         Type = "Cluster",
+    ///         ClusterName = exampleMongodbatlasCluster.Name,
+    ///         DbRoleToExecute = new Mongodbatlas.Inputs.StreamConnectionDbRoleToExecuteArgs
+    ///         {
+    ///             Role = "atlasAdmin",
+    ///             Type = "BUILT_IN",
+    ///         },
+    ///     });
+    /// 
+    ///     // Stream processor that depends on both connections
+    ///     var exampleStreamProcessor = new Mongodbatlas.StreamProcessor("example", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.WorkspaceName,
+    ///         ProcessorName = "ExampleProcessor",
+    ///         Pipeline = Output.JsonSerialize(Output.Create(new[]
+    ///         {
+    ///             new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["connectionName"] = source.ConnectionName,
+    ///                 },
+    ///             },
+    ///             new Dictionary&lt;string, object?&gt;
+    ///             {
+    ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["connectionName"] = sink.ConnectionName,
+    ///                 },
+    ///             },
+    ///         })),
+    ///         State = "STARTED",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &gt; **NOTE:** The stream processor resource automatically depends on the stream connections through the `ConnectionName` references in the pipeline. This ensures proper creation order. The provider waits for each connection to be fully provisioned before returning from create or update operations.
     /// 
     /// ## Import
     /// 
@@ -342,7 +421,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableDictionary<string, string>?> Headers { get; private set; } = null!;
 
         /// <summary>
-        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
+        /// Label that identifies the stream processing workspace. Use `WorkspaceName` instead; this attribute will be removed in a future major version.
         /// </summary>
         [Output("instanceName")]
         public Output<string?> InstanceName { get; private set; } = null!;
@@ -368,10 +447,11 @@ namespace Pulumi.Mongodbatlas
         [Output("security")]
         public Output<Outputs.StreamConnectionSecurity?> Security { get; private set; } = null!;
 
+        [Output("timeouts")]
+        public Output<Outputs.StreamConnectionTimeouts?> Timeouts { get; private set; } = null!;
+
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-        /// 
-        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -380,7 +460,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> Url { get; private set; } = null!;
 
         /// <summary>
-        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// Label that identifies the stream processing workspace.
         /// </summary>
         [Output("workspaceName")]
         public Output<string?> WorkspaceName { get; private set; } = null!;
@@ -472,7 +552,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
+        /// Label that identifies the stream processing workspace. Use `WorkspaceName` instead; this attribute will be removed in a future major version.
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
@@ -503,10 +583,11 @@ namespace Pulumi.Mongodbatlas
         [Input("security")]
         public Input<Inputs.StreamConnectionSecurityArgs>? Security { get; set; }
 
+        [Input("timeouts")]
+        public Input<Inputs.StreamConnectionTimeoutsArgs>? Timeouts { get; set; }
+
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-        /// 
-        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -515,7 +596,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// Label that identifies the stream processing workspace.
         /// </summary>
         [Input("workspaceName")]
         public Input<string>? WorkspaceName { get; set; }
@@ -569,7 +650,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `WorkspaceName`.
+        /// Label that identifies the stream processing workspace. Use `WorkspaceName` instead; this attribute will be removed in a future major version.
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
@@ -600,10 +681,11 @@ namespace Pulumi.Mongodbatlas
         [Input("security")]
         public Input<Inputs.StreamConnectionSecurityGetArgs>? Security { get; set; }
 
+        [Input("timeouts")]
+        public Input<Inputs.StreamConnectionTimeoutsGetArgs>? Timeouts { get; set; }
+
         /// <summary>
         /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-        /// 
-        /// &gt; **NOTE:** Either `WorkspaceName` or `InstanceName` must be provided, but not both. These fields are functionally identical and `WorkspaceName` is an alias for `InstanceName`. `WorkspaceName` should be used instead of `InstanceName`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -612,7 +694,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// Label that identifies the stream processing workspace.
         /// </summary>
         [Input("workspaceName")]
         public Input<string>? WorkspaceName { get; set; }

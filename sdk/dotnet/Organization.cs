@@ -10,13 +10,9 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
-    /// 
-    /// &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial public and private Programmatic API Keys. These key values are vital to store because you'll need to use them to grant access to the newly created Atlas organization. To use this resource, `RoleNames` for new API Key must have the ORG_OWNER role specified.
-    /// 
-    /// &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
-    /// 
     /// ## Example Usage
+    /// 
+    /// ### With Programmatic API Key
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -26,11 +22,11 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Organization("test", new()
+    ///     var @this = new Mongodbatlas.Organization("this", new()
     ///     {
     ///         OrgOwnerId = "&lt;ORG_OWNER_ID&gt;",
     ///         Name = "testCreateORG",
-    ///         Description = "test API key from Org Creation Test",
+    ///         Description = "test API key from Org Creation",
     ///         RoleNames = new[]
     ///         {
     ///             "ORG_OWNER",
@@ -40,19 +36,14 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
-    /// ### Further Examples
-    /// - Organization setup - step 1
-    /// - Organization setup - step 2
-    /// - Organization import
-    /// 
     /// ## Import
     /// 
     /// You can import an existing organization using the organization ID, e.g.:
     /// 
     /// ```sh
-    /// $ pulumi import mongodbatlas:index/organization:Organization example 5d09d6a59ccf6445652a444a
+    /// $ pulumi import mongodbatlas:index/organization:Organization this 5d09d6a59ccf6445652a444a
     /// ```
-    /// ~&gt; __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`) in your Terraform configuration.
+    /// ~&gt; __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`, `service_account`) in your Terraform configuration.
     /// 
     /// See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
     /// 
@@ -109,9 +100,6 @@ namespace Pulumi.Mongodbatlas
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
-        /// <summary>
-        /// Public API key value set for the specified organization API key.
-        /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
 
@@ -132,6 +120,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("securityContact")]
         public Output<string?> SecurityContact { get; private set; } = null!;
+
+        /// <summary>
+        /// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `Description` and `RoleNames`. This block can't be updated after creation. See Service Account.
+        /// </summary>
+        [Output("serviceAccount")]
+        public Output<Outputs.OrganizationServiceAccount?> ServiceAccount { get; private set; } = null!;
 
         [Output("skipDefaultAlertsSettings")]
         public Output<bool> SkipDefaultAlertsSettings { get; private set; } = null!;
@@ -250,6 +244,12 @@ namespace Pulumi.Mongodbatlas
         [Input("securityContact")]
         public Input<string>? SecurityContact { get; set; }
 
+        /// <summary>
+        /// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `Description` and `RoleNames`. This block can't be updated after creation. See Service Account.
+        /// </summary>
+        [Input("serviceAccount")]
+        public Input<Inputs.OrganizationServiceAccountArgs>? ServiceAccount { get; set; }
+
         [Input("skipDefaultAlertsSettings")]
         public Input<bool>? SkipDefaultAlertsSettings { get; set; }
 
@@ -320,10 +320,6 @@ namespace Pulumi.Mongodbatlas
 
         [Input("publicKey")]
         private Input<string>? _publicKey;
-
-        /// <summary>
-        /// Public API key value set for the specified organization API key.
-        /// </summary>
         public Input<string>? PublicKey
         {
             get => _publicKey;
@@ -357,6 +353,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("securityContact")]
         public Input<string>? SecurityContact { get; set; }
+
+        /// <summary>
+        /// Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `Description` and `RoleNames`. This block can't be updated after creation. See Service Account.
+        /// </summary>
+        [Input("serviceAccount")]
+        public Input<Inputs.OrganizationServiceAccountGetArgs>? ServiceAccount { get; set; }
 
         [Input("skipDefaultAlertsSettings")]
         public Input<bool>? SkipDefaultAlertsSettings { get; set; }

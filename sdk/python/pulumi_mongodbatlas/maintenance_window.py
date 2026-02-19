@@ -33,8 +33,6 @@ class MaintenanceWindowArgs:
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
-        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation.
-        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer` but by directly setting the value to true or false. If `auto_defer` is modified triggering a toggle, it will impact the value of this attribute.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input['MaintenanceWindowProtectedHoursArgs'] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         """
@@ -89,9 +87,6 @@ class MaintenanceWindowArgs:
     @_builtins.property
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation.
-        """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
@@ -101,9 +96,6 @@ class MaintenanceWindowArgs:
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer` but by directly setting the value to true or false. If `auto_defer` is modified triggering a toggle, it will impact the value of this attribute.
-        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
@@ -150,8 +142,6 @@ class _MaintenanceWindowState:
                  time_zone_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
-        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation.
-        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer` but by directly setting the value to true or false. If `auto_defer` is modified triggering a toggle, it will impact the value of this attribute.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
@@ -185,9 +175,6 @@ class _MaintenanceWindowState:
     @_builtins.property
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation.
-        """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
@@ -197,9 +184,6 @@ class _MaintenanceWindowState:
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
-        """
-        When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer` but by directly setting the value to true or false. If `auto_defer` is modified triggering a toggle, it will impact the value of this attribute.
-        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
@@ -350,12 +334,33 @@ class MaintenanceWindow(pulumi.CustomResource):
             })
         ```
 
+        ### Automatic Deferral
+
+        Use `auto_defer_once_enabled` to enable or disable automatic deferral.
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.MaintenanceWindow("test",
             project_id="<your-project-id>",
+            day_of_week=3,
+            hour_of_day=4,
+            auto_defer_once_enabled=True)
+        ```
+
+        ### One-Time Manual Deferral
+
+        Use `defer` to defer the next scheduled maintenance event by one week. This only works when maintenance is already scheduled.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            project_id="<your-project-id>",
+            day_of_week=3,
+            hour_of_day=4,
             defer=True)
         ```
 
@@ -373,8 +378,6 @@ class MaintenanceWindow(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation.
-        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer` but by directly setting the value to true or false. If `auto_defer` is modified triggering a toggle, it will impact the value of this attribute.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
@@ -420,12 +423,33 @@ class MaintenanceWindow(pulumi.CustomResource):
             })
         ```
 
+        ### Automatic Deferral
+
+        Use `auto_defer_once_enabled` to enable or disable automatic deferral.
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
         test = mongodbatlas.MaintenanceWindow("test",
             project_id="<your-project-id>",
+            day_of_week=3,
+            hour_of_day=4,
+            auto_defer_once_enabled=True)
+        ```
+
+        ### One-Time Manual Deferral
+
+        Use `defer` to defer the next scheduled maintenance event by one week. This only works when maintenance is already scheduled.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.MaintenanceWindow("test",
+            project_id="<your-project-id>",
+            day_of_week=3,
+            hour_of_day=4,
             defer=True)
         ```
 
@@ -515,8 +539,6 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation.
-        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer` but by directly setting the value to true or false. If `auto_defer` is modified triggering a toggle, it will impact the value of this attribute.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
@@ -545,17 +567,11 @@ class MaintenanceWindow(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> pulumi.Output[_builtins.bool]:
-        """
-        Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation.
-        """
         return pulumi.get(self, "auto_defer")
 
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> pulumi.Output[_builtins.bool]:
-        """
-        When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer` but by directly setting the value to true or false. If `auto_defer` is modified triggering a toggle, it will impact the value of this attribute.
-        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @_builtins.property

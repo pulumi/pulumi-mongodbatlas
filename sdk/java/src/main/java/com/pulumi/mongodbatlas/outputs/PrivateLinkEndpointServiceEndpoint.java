@@ -12,12 +12,12 @@ import javax.annotation.Nullable;
 @CustomType
 public final class PrivateLinkEndpointServiceEndpoint {
     /**
-     * @return Forwarding rule that corresponds to the endpoint you created in GCP.
+     * @return Forwarding rule that corresponds to the endpoint you created.
      * 
      */
     private @Nullable String endpointName;
     /**
-     * @return Private IP address of the endpoint you created in GCP.
+     * @return Private IP address of the endpoint you created.
      * 
      */
     private @Nullable String ipAddress;
@@ -29,14 +29,14 @@ public final class PrivateLinkEndpointServiceEndpoint {
 
     private PrivateLinkEndpointServiceEndpoint() {}
     /**
-     * @return Forwarding rule that corresponds to the endpoint you created in GCP.
+     * @return Forwarding rule that corresponds to the endpoint you created.
      * 
      */
     public Optional<String> endpointName() {
         return Optional.ofNullable(this.endpointName);
     }
     /**
-     * @return Private IP address of the endpoint you created in GCP.
+     * @return Private IP address of the endpoint you created.
      * 
      */
     public Optional<String> ipAddress() {

@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionSchemaRegistryAuthenticationArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
+import com.pulumi.mongodbatlas.inputs.StreamConnectionTimeoutsArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
@@ -96,7 +97,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
@@ -107,7 +108,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
     private @Nullable Output<String> instanceName;
 
     /**
-     * @return Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+     * @return Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
@@ -168,10 +169,15 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.security);
     }
 
+    @Import(name="timeouts")
+    private @Nullable Output<StreamConnectionTimeoutsArgs> timeouts;
+
+    public Optional<Output<StreamConnectionTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
     /**
      * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     * 
-     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
      */
     @Import(name="type", required=true)
@@ -179,8 +185,6 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
 
     /**
      * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-     * 
-     * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      * 
      */
     public Output<String> type() {
@@ -195,14 +199,14 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * Label that identifies the stream processing workspace.
      * 
      */
     @Import(name="workspaceName")
     private @Nullable Output<String> workspaceName;
 
     /**
-     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * @return Label that identifies the stream processing workspace.
      * 
      */
     public Optional<Output<String>> workspaceName() {
@@ -228,6 +232,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         this.schemaRegistryProvider = $.schemaRegistryProvider;
         this.schemaRegistryUrls = $.schemaRegistryUrls;
         this.security = $.security;
+        this.timeouts = $.timeouts;
         this.type = $.type;
         this.url = $.url;
         this.workspaceName = $.workspaceName;
@@ -345,7 +350,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param instanceName Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+         * @param instanceName Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
          * 
          * @return builder
          * 
@@ -360,7 +365,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param instanceName Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+         * @param instanceName Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
          * 
          * @return builder
          * 
@@ -443,10 +448,17 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
             return security(Output.of(security));
         }
 
+        public Builder timeouts(@Nullable Output<StreamConnectionTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        public Builder timeouts(StreamConnectionTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
+        }
+
         /**
          * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-         * 
-         * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
          * 
          * @return builder
          * 
@@ -458,8 +470,6 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
 
         /**
          * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
-         * 
-         * &gt; **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
          * 
          * @return builder
          * 
@@ -478,7 +488,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param workspaceName Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+         * @param workspaceName Label that identifies the stream processing workspace.
          * 
          * @return builder
          * 
@@ -489,7 +499,7 @@ public final class StreamConnectionArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param workspaceName Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+         * @param workspaceName Label that identifies the stream processing workspace.
          * 
          * @return builder
          * 

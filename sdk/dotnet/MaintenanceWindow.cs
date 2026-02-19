@@ -51,6 +51,10 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Automatic Deferral
+    /// 
+    /// Use `AutoDeferOnceEnabled` to enable or disable automatic deferral.
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -62,6 +66,31 @@ namespace Pulumi.Mongodbatlas
     ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
     ///     {
     ///         ProjectId = "&lt;your-project-id&gt;",
+    ///         DayOfWeek = 3,
+    ///         HourOfDay = 4,
+    ///         AutoDeferOnceEnabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### One-Time Manual Deferral
+    /// 
+    /// Use `Defer` to defer the next scheduled maintenance event by one week. This only works when maintenance is already scheduled.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
+    ///     {
+    ///         ProjectId = "&lt;your-project-id&gt;",
+    ///         DayOfWeek = 3,
+    ///         HourOfDay = 4,
     ///         Defer = true,
     ///     });
     /// 
@@ -83,15 +112,9 @@ namespace Pulumi.Mongodbatlas
     [MongodbatlasResourceType("mongodbatlas:index/maintenanceWindow:MaintenanceWindow")]
     public partial class MaintenanceWindow : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation.
-        /// </summary>
         [Output("autoDefer")]
         public Output<bool> AutoDefer { get; private set; } = null!;
 
-        /// <summary>
-        /// When `True`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer` but by directly setting the value to true or false. If `AutoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-        /// </summary>
         [Output("autoDeferOnceEnabled")]
         public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
 
@@ -189,15 +212,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class MaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation.
-        /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
-        /// <summary>
-        /// When `True`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer` but by directly setting the value to true or false. If `AutoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
@@ -239,15 +256,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class MaintenanceWindowState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation.
-        /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
-        /// <summary>
-        /// When `True`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer` but by directly setting the value to true or false. If `AutoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 

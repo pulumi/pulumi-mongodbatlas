@@ -18,20 +18,21 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("test", {
+ * const thisPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("this", {
  *     projectId: "<PROJECT-ID>",
  *     providerName: "AWS",
  *     region: "US_EAST_1",
  * });
- * const test = mongodbatlas.getPrivateLinkEndpointOutput({
- *     projectId: testPrivateLinkEndpoint.projectId,
- *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ * const _this = mongodbatlas.getPrivateLinkEndpointOutput({
+ *     projectId: thisPrivateLinkEndpoint.projectId,
+ *     privateLinkId: thisPrivateLinkEndpoint.privateLinkId,
  *     providerName: "AWS",
  * });
  * ```
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+ * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
  */
 export function getPrivateLinkEndpoint(args: GetPrivateLinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateLinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -65,7 +66,7 @@ export interface GetPrivateLinkEndpointArgs {
  */
 export interface GetPrivateLinkEndpointResult {
     /**
-     * GCP network endpoint groups corresponding to the Private Service Connect endpoint service.
+     * For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
      */
     readonly endpointGroupNames: string[];
     /**
@@ -85,6 +86,10 @@ export interface GetPrivateLinkEndpointResult {
      */
     readonly interfaceEndpoints: string[];
     /**
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     */
+    readonly portMappingEnabled: boolean;
+    /**
      * All private endpoints that you have added to this Azure Private Link Service.
      */
     readonly privateEndpoints: string[];
@@ -100,11 +105,11 @@ export interface GetPrivateLinkEndpointResult {
     readonly projectId: string;
     readonly providerName: string;
     /**
-     * GCP region for the Private Service Connect endpoint service.
+     * Region for the Private Service Connect endpoint service.
      */
     readonly regionName: string;
     /**
-     * Unique alphanumeric and special character strings that identify the service attachments associated with the GCP Private Service Connect endpoint service.
+     * For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
      */
     readonly serviceAttachmentNames: string[];
     /**
@@ -132,20 +137,21 @@ export interface GetPrivateLinkEndpointResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const testPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("test", {
+ * const thisPrivateLinkEndpoint = new mongodbatlas.PrivateLinkEndpoint("this", {
  *     projectId: "<PROJECT-ID>",
  *     providerName: "AWS",
  *     region: "US_EAST_1",
  * });
- * const test = mongodbatlas.getPrivateLinkEndpointOutput({
- *     projectId: testPrivateLinkEndpoint.projectId,
- *     privateLinkId: testPrivateLinkEndpoint.privateLinkId,
+ * const _this = mongodbatlas.getPrivateLinkEndpointOutput({
+ *     projectId: thisPrivateLinkEndpoint.projectId,
+ *     privateLinkId: thisPrivateLinkEndpoint.privateLinkId,
  *     providerName: "AWS",
  * });
  * ```
  *
  * ### Available complete examples
  * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+ * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
  */
 export function getPrivateLinkEndpointOutput(args: GetPrivateLinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateLinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -40,12 +40,34 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Automatic Deferral
+ *
+ * Use `autoDeferOnceEnabled` to enable or disable automatic deferral.
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const test = new mongodbatlas.MaintenanceWindow("test", {
  *     projectId: "<your-project-id>",
+ *     dayOfWeek: 3,
+ *     hourOfDay: 4,
+ *     autoDeferOnceEnabled: true,
+ * });
+ * ```
+ *
+ * ### One-Time Manual Deferral
+ *
+ * Use `defer` to defer the next scheduled maintenance event by one week. This only works when maintenance is already scheduled.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.MaintenanceWindow("test", {
+ *     projectId: "<your-project-id>",
+ *     dayOfWeek: 3,
+ *     hourOfDay: 4,
  *     defer: true,
  * });
  * ```
@@ -90,13 +112,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
         return obj['__pulumiType'] === MaintenanceWindow.__pulumiType;
     }
 
-    /**
-     * Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-     */
     declare public readonly autoDefer: pulumi.Output<boolean>;
-    /**
-     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-     */
     declare public readonly autoDeferOnceEnabled: pulumi.Output<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
@@ -185,13 +201,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MaintenanceWindow resources.
  */
 export interface MaintenanceWindowState {
-    /**
-     * Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-     */
     autoDefer?: pulumi.Input<boolean>;
-    /**
-     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-     */
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
@@ -231,13 +241,7 @@ export interface MaintenanceWindowState {
  * The set of arguments for constructing a MaintenanceWindow resource.
  */
 export interface MaintenanceWindowArgs {
-    /**
-     * Boolean flag to toggle automatic deferral on/off. Each change flips the current state. Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation.
-     */
     autoDefer?: pulumi.Input<boolean>;
-    /**
-     * When `true`, enables automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer` but by directly setting the value to true or false. If `autoDefer` is modified triggering a toggle, it will impact the value of this attribute.
-     */
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.

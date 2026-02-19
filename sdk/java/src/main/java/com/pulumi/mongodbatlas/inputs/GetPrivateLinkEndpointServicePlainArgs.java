@@ -14,14 +14,14 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
     public static final GetPrivateLinkEndpointServicePlainArgs Empty = new GetPrivateLinkEndpointServicePlainArgs();
 
     /**
-     * Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
+     * Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      * 
      */
     @Import(name="endpointServiceId", required=true)
     private String endpointServiceId;
 
     /**
-     * @return Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
+     * @return Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
      * 
      */
     public String endpointServiceId() {
@@ -29,14 +29,14 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
     }
 
     /**
-     * Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
+     * Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      * 
      */
     @Import(name="privateLinkId", required=true)
     private String privateLinkId;
 
     /**
-     * @return Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
+     * @return Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
      * 
      */
     public String privateLinkId() {
@@ -44,14 +44,14 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
     }
 
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -59,14 +59,14 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
     }
 
     /**
-     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
+     * Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private String providerName;
 
     /**
-     * @return Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
+     * @return Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
      * 
      */
     public String providerName() {
@@ -101,7 +101,7 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param endpointServiceId Unique identifier of the `AWS` or `AZURE` or `GCP` resource.
+         * @param endpointServiceId Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
          * 
          * @return builder
          * 
@@ -112,7 +112,7 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param privateLinkId Unique identifier of the private endpoint service for which you want to retrieve a private endpoint.
+         * @param privateLinkId Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `mongodbatlas.PrivateLinkEndpoint` resource.
          * 
          * @return builder
          * 
@@ -123,7 +123,7 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -134,7 +134,7 @@ public final class GetPrivateLinkEndpointServicePlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS` or `AZURE` or `GCP`.
+         * @param providerName Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
          * 
          * @return builder
          * 
