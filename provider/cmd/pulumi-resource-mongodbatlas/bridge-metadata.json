@@ -687,6 +687,19 @@
                 "fields": {
                     "role_names": {
                         "maxItemsOne": false
+                    },
+                    "service_account": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "roles": {
+                                    "maxItemsOne": false
+                                },
+                                "secrets": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
