@@ -89,11 +89,12 @@ import (
 //
 // ## Import
 //
-// Cloud Backup Snapshot entries can be imported using project project_id, cluster_name and snapshot_id (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
+// Cloud Backup Snapshot entries can be imported using project project_id, clusterName and snapshotId (Unique identifier of the snapshot), in the format `PROJECTID-CLUSTERNAME-SNAPSHOTID`, e.g.
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5
 // ```
+//
 // For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
 type CloudBackupSnapshot struct {
 	pulumi.CustomResourceState

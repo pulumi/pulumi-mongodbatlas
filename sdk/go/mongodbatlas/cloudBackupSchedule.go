@@ -12,13 +12,322 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
+//
+// > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
+// > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+//
+// > **NOTE:** If you need to remove the `CloudBackupSchedule`, read this guide.
+//
+// > **NOTE:** When creating a backup schedule you **must either** use the `dependsOn` clause to indicate the cluster to which it refers **or** specify the values of `projectId` and `clusterName` as reference of the cluster resource (e.g. `clusterName = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
+//
+// In the Terraform MongoDB Atlas Provider 1.0.0 we have re-architected the way in which Cloud Backup Policies are managed with Terraform to significantly reduce the complexity. Due to this change we've provided the following examples to help express how this resource functions.
+//
+// ## Example Usage
+//
+// ### Create A Cluster With 2 Policies Items
+//
+// You can create a new cluster with `cloudBackup` enabled and then immediately overwrite the default cloud backup policy that Atlas creates by default at the same time with this example.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("clusterTest"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_CENTRAL_1"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
+//				ProjectId:             myCluster.ProjectId,
+//				ClusterName:           myCluster.Name,
+//				ReferenceHourOfDay:    pulumi.Int(3),
+//				ReferenceMinuteOfHour: pulumi.Int(45),
+//				RestoreWindowDays:     pulumi.Int(4),
+//				PolicyItemHourly: &mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(1),
+//				},
+//				PolicyItemDaily: &mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(2),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Create A Cluster With Cloud Backup Enabled But No Policy Items
+//
+// You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with no policy items to remove the default policy that Atlas creates when you enable Cloud Backup. This allows you to then create a policy when you are ready to via Terraform.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("clusterTest"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_CENTRAL_1"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
+//				ProjectId:             myCluster.ProjectId,
+//				ClusterName:           myCluster.Name,
+//				ReferenceHourOfDay:    pulumi.Int(3),
+//				ReferenceMinuteOfHour: pulumi.Int(45),
+//				RestoreWindowDays:     pulumi.Int(4),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Add 4 Policies Items To A Cluster With Cloud Backup Previously Enabled But With No Policy Items
+//
+// If you followed the example to Create a Cluster with Cloud Backup Enabled but No Policy Items and then want to add policy items later to the `CloudBackupSchedule` this example shows how.
+//
+// The cluster already exists with `cloudBackup` enabled
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("clusterTest"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_CENTRAL_1"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
+//				ProjectId:             myCluster.ProjectId,
+//				ClusterName:           myCluster.Name,
+//				ReferenceHourOfDay:    pulumi.Int(3),
+//				ReferenceMinuteOfHour: pulumi.Int(45),
+//				RestoreWindowDays:     pulumi.Int(4),
+//				PolicyItemHourly: &mongodbatlas.CloudBackupSchedulePolicyItemHourlyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(1),
+//				},
+//				PolicyItemDaily: &mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(2),
+//				},
+//				PolicyItemWeeklies: mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemWeeklyArgs{
+//						FrequencyInterval: pulumi.Int(4),
+//						RetentionUnit:     pulumi.String("weeks"),
+//						RetentionValue:    pulumi.Int(3),
+//					},
+//				},
+//				PolicyItemMonthlies: mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemMonthlyArgs{
+//						FrequencyInterval: pulumi.Int(5),
+//						RetentionUnit:     pulumi.String("months"),
+//						RetentionValue:    pulumi.Int(4),
+//					},
+//				},
+//				PolicyItemYearlies: mongodbatlas.CloudBackupSchedulePolicyItemYearlyArray{
+//					&mongodbatlas.CloudBackupSchedulePolicyItemYearlyArgs{
+//						FrequencyInterval: pulumi.Int(1),
+//						RetentionUnit:     pulumi.String("years"),
+//						RetentionValue:    pulumi.Int(1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
+//
+// You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+// ProjectId: pulumi.String("<PROJECT-ID>"),
+// Name: pulumi.String("clusterTest"),
+// ClusterType: pulumi.String("REPLICASET"),
+// BackupEnabled: pulumi.Bool(true),
+// ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+// &mongodbatlas.AdvancedClusterReplicationSpecArgs{
+// RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+// &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+// Priority: pulumi.Int(7),
+// ProviderName: pulumi.String("AWS"),
+// RegionName: pulumi.String("EU_CENTRAL_1"),
+// ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+// InstanceSize: pulumi.String("M10"),
+// NodeCount: pulumi.Int(3),
+// },
+// },
+// },
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// _, err = mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
+// ProjectId: myCluster.ProjectId,
+// ClusterName: myCluster.Name,
+// ReferenceHourOfDay: pulumi.Int(3),
+// ReferenceMinuteOfHour: pulumi.Int(45),
+// RestoreWindowDays: pulumi.Int(4),
+// PolicyItemDaily: &mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs{
+// FrequencyInterval: pulumi.Int(1),
+// RetentionUnit: pulumi.String("days"),
+// RetentionValue: pulumi.Int(14),
+// },
+// CopySettings: mongodbatlas.CloudBackupScheduleCopySettingArray{
+// &mongodbatlas.CloudBackupScheduleCopySettingArgs{
+// CloudProvider: pulumi.String("AWS"),
+// Frequencies: pulumi.StringArray{
+// pulumi.String("HOURLY"),
+// pulumi.String("DAILY"),
+// pulumi.String("WEEKLY"),
+// pulumi.String("MONTHLY"),
+// pulumi.String("YEARLY"),
+// pulumi.String("ON_DEMAND"),
+// },
+// RegionName: pulumi.String("US_EAST_1"),
+// ZoneId: pulumi.String(myCluster.ReplicationSpecs.ApplyT(func(replicationSpecs []mongodbatlas.AdvancedClusterReplicationSpec) ([]interface{}, error) {
+// var splat0 []interface{}
+// for _, val0 := range replicationSpecs {
+// splat0 = append(splat0, val0.ZoneId[0])
+// }
+// return splat0, nil
+// }).(pulumi.[]interface{}Output)),
+// ShouldCopyOplogs: pulumi.Bool(false),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// return nil
+// })
+// }
+// ```
+//
+// ### Further Examples
+// - Cloud Backup Schedule
+//
 // ## Import
 //
-// Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+// Cloud Backup Schedule entries can be imported using projectId and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
 // ```
+//
 // For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
 type CloudBackupSchedule struct {
 	pulumi.CustomResourceState
@@ -56,8 +365,11 @@ type CloudBackupSchedule struct {
 	// UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
 	ReferenceMinuteOfHour pulumi.IntOutput `pulumi:"referenceMinuteOfHour"`
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-	RestoreWindowDays pulumi.IntOutput  `pulumi:"restoreWindowDays"`
-	UpdateSnapshots   pulumi.BoolOutput `pulumi:"updateSnapshots"`
+	RestoreWindowDays pulumi.IntOutput `pulumi:"restoreWindowDays"`
+	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+	//
+	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+	UpdateSnapshots pulumi.BoolOutput `pulumi:"updateSnapshots"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix pulumi.BoolOutput `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
@@ -131,8 +443,11 @@ type cloudBackupScheduleState struct {
 	// UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
 	ReferenceMinuteOfHour *int `pulumi:"referenceMinuteOfHour"`
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-	RestoreWindowDays *int  `pulumi:"restoreWindowDays"`
-	UpdateSnapshots   *bool `pulumi:"updateSnapshots"`
+	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
+	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+	//
+	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+	UpdateSnapshots *bool `pulumi:"updateSnapshots"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix *bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
@@ -172,7 +487,10 @@ type CloudBackupScheduleState struct {
 	ReferenceMinuteOfHour pulumi.IntPtrInput
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 	RestoreWindowDays pulumi.IntPtrInput
-	UpdateSnapshots   pulumi.BoolPtrInput
+	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+	//
+	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+	UpdateSnapshots pulumi.BoolPtrInput
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix pulumi.BoolPtrInput
 }
@@ -209,8 +527,11 @@ type cloudBackupScheduleArgs struct {
 	// UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
 	ReferenceMinuteOfHour *int `pulumi:"referenceMinuteOfHour"`
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
-	RestoreWindowDays *int  `pulumi:"restoreWindowDays"`
-	UpdateSnapshots   *bool `pulumi:"updateSnapshots"`
+	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
+	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+	//
+	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+	UpdateSnapshots *bool `pulumi:"updateSnapshots"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix *bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
 }
@@ -245,7 +566,10 @@ type CloudBackupScheduleArgs struct {
 	ReferenceMinuteOfHour pulumi.IntPtrInput
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 	RestoreWindowDays pulumi.IntPtrInput
-	UpdateSnapshots   pulumi.BoolPtrInput
+	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+	//
+	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+	UpdateSnapshots pulumi.BoolPtrInput
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix pulumi.BoolPtrInput
 }
@@ -425,6 +749,9 @@ func (o CloudBackupScheduleOutput) RestoreWindowDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.IntOutput { return v.RestoreWindowDays }).(pulumi.IntOutput)
 }
 
+// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+//
+// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
 func (o CloudBackupScheduleOutput) UpdateSnapshots() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.UpdateSnapshots }).(pulumi.BoolOutput)
 }

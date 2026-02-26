@@ -269,9 +269,21 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
         return Optional.ofNullable(this.restoreWindowDays);
     }
 
+    /**
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+     * 
+     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     * 
+     */
     @Import(name="updateSnapshots")
     private @Nullable Output<Boolean> updateSnapshots;
 
+    /**
+     * @return Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+     * 
+     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     * 
+     */
     public Optional<Output<Boolean>> updateSnapshots() {
         return Optional.ofNullable(this.updateSnapshots);
     }
@@ -712,11 +724,27 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
             return restoreWindowDays(Output.of(restoreWindowDays));
         }
 
+        /**
+         * @param updateSnapshots Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+         * 
+         * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+         * 
+         * @return builder
+         * 
+         */
         public Builder updateSnapshots(@Nullable Output<Boolean> updateSnapshots) {
             $.updateSnapshots = updateSnapshots;
             return this;
         }
 
+        /**
+         * @param updateSnapshots Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+         * 
+         * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+         * 
+         * @return builder
+         * 
+         */
         public Builder updateSnapshots(Boolean updateSnapshots) {
             return updateSnapshots(Output.of(updateSnapshots));
         }

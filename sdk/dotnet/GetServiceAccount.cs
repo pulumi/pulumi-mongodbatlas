@@ -12,18 +12,30 @@ namespace Pulumi.Mongodbatlas
     public static class GetServiceAccount
     {
         /// <summary>
+        /// `mongodbatlas.ServiceAccount` describes a Service Account.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Task<GetServiceAccountResult> InvokeAsync(GetServiceAccountArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountResult>("mongodbatlas:index/getServiceAccount:getServiceAccount", args ?? new GetServiceAccountArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccount` describes a Service Account.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetServiceAccountResult> Invoke(GetServiceAccountInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountResult>("mongodbatlas:index/getServiceAccount:getServiceAccount", args ?? new GetServiceAccountInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccount` describes a Service Account.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetServiceAccountResult> Invoke(GetServiceAccountInvokeArgs args, InvokeOutputOptions options)

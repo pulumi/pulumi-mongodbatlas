@@ -133,17 +133,15 @@ import * as utilities from "./utilities";
  *
  * Database users can be imported using project ID, username, and auth database name in the format:
  *
- * 1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
- *
- * 2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
- *
- * ```sh
- * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
- * ```
+ * 1. `projectId`-`username`-`authDatabaseName` Doesn't  work if `-` is used in both the `username` and the `authDatabaseName`. For example `my-username` and `my-db` should use (2).
+ * 2. `projectId`/`username`/`authDatabaseName` Works when neither `username` nor `authDatabaseName` use `/`.
  *
  * ```sh
- * $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
+ * terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user-admin # (1)
+ * terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
  * ```
+ *
+ * > **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
  */
 export class DatabaseUser extends pulumi.CustomResource {
     /**
@@ -204,6 +202,9 @@ export class DatabaseUser extends pulumi.CustomResource {
      * * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     declare public readonly oidcAuthType: pulumi.Output<string>;
+    /**
+     * User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+     */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * The unique ID for the project to create the database user.
@@ -320,6 +321,9 @@ export interface DatabaseUserState {
      * * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     oidcAuthType?: pulumi.Input<string>;
+    /**
+     * User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+     */
     password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.
@@ -378,6 +382,9 @@ export interface DatabaseUserArgs {
      * * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
     oidcAuthType?: pulumi.Input<string>;
+    /**
+     * User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+     */
     password?: pulumi.Input<string>;
     /**
      * The unique ID for the project to create the database user.

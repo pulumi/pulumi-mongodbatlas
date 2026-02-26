@@ -19,6 +19,174 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
+/**
+ * ## Cloud Provider Access Configuration Paths
+ * 
+ * The Terraform MongoDB Atlas Provider offers a two-resource path to perform an authorization for a cloud provider role.
+ * - The first resource, `mongodbatlas.CloudProviderAccessSetup`, only generates the initial configuration (create, delete operations).
+ * - The second resource, `mongodbatlas.CloudProviderAccessAuthorization`, helps to perform the authorization using the `roleId` of the first resource.
+ * 
+ * This path is helpful in a multi-provider Terraform file, and allows for a single and decoupled apply.
+ * See example of this two-resource path option with AWS Cloud here, AZURE Cloud here and GCP Cloud here.
+ * 
+ * ## mongodbatlas.CloudProviderAccessAuthorization
+ * 
+ * This is the second resource in the two-resource path as described above.
+ * 
+ * `mongodbatlas.CloudProviderAccessAuthorization` allows you to authorize an AWS, AZURE or GCP IAM roles in Atlas.
+ * 
+ * &gt; **IMPORTANT:** Changes to `projectId` or `roleId` will result in the destruction and recreation of the authorization resource. This action happens as these fields uniquely identify the authorization and cannot be modified in-place.
+ * 
+ * ## Example Usage
+ * 
+ * ### With AWS
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+ *             .projectId("64259ee860c43338194b0f8e")
+ *             .providerName("AWS")
+ *             .build());
+ * 
+ *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+ *             .projectId(setupOnly.projectId())
+ *             .roleId(setupOnly.roleId())
+ *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
+ *                 .iamAssumedRoleArn("arn:aws:iam::<AWS_ACCOUNT_ID>:role/test-user-role")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Azure
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAzureArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+ *             .projectId("64259ee860c43338194b0f8e")
+ *             .providerName("AZURE")
+ *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+ *                 .atlasAzureAppId("9f2deb0d-be22-4524-a403-df531868bac0")
+ *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
+ *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
+ *                 .build())
+ *             .build());
+ * 
+ *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+ *             .projectId(setupOnly.projectId())
+ *             .roleId(setupOnly.roleId())
+ *             .azure(CloudProviderAccessAuthorizationAzureArgs.builder()
+ *                 .atlasAzureAppId("9f2deb0d-be22-4524-a403-df531868bac0")
+ *                 .servicePrincipalId("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1")
+ *                 .tenantId("91402384-d71e-22f5-22dd-759e272cdc1c")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With GCP
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+ *             .projectId("64259ee860c43338194b0f8e")
+ *             .providerName("GCP")
+ *             .build());
+ * 
+ *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+ *             .projectId(setupOnly.projectId())
+ *             .roleId(setupOnly.roleId())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Further Examples
+ * - AWS Cloud Provider Access
+ * - Azure Cloud Provider Access
+ * - GCP Cloud Provider Access
+ * 
+ * ## Import mongodbatlas.CloudProviderAccessAuthorization
+ * 
+ * You cannot import the Cloud Provider Access Authorization resource into Terraform. Instead, if the associated role is already authorized, you can recreate the resource without any adverse effects.
+ * 
+ */
 @ResourceType(type="mongodbatlas:index/cloudProviderAccessAuthorization:CloudProviderAccessAuthorization")
 public class CloudProviderAccessAuthorization extends com.pulumi.resources.CustomResource {
     /**

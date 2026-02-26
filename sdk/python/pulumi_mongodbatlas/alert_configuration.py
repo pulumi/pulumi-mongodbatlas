@@ -31,6 +31,7 @@ class AlertConfigurationArgs:
                  threshold_config: Optional[pulumi.Input['AlertConfigurationThresholdConfigArgs']] = None):
         """
         The set of arguments for constructing a AlertConfiguration resource.
+
         :param pulumi.Input[_builtins.str] event_type: The type of event that will trigger an alert.
                
                > ***IMPORTANT:*** Event Type has many possible values. Details for both conditional and metric based alerts can be found by selecting the tabs on the [alert config page](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) and checking the latest eventTypeName options.
@@ -161,6 +162,7 @@ class _AlertConfigurationState:
                  updated: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AlertConfiguration resources.
+
         :param pulumi.Input[_builtins.str] alert_configuration_id: Unique identifier for the alert configuration.
         :param pulumi.Input[_builtins.str] created: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
         :param pulumi.Input[_builtins.bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
@@ -483,6 +485,7 @@ class AlertConfiguration(pulumi.CustomResource):
 
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
@@ -645,6 +648,7 @@ class AlertConfiguration(pulumi.CustomResource):
         **NOTE**: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifier_id` attribute must be provided instead.
 
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
+
 
         :param str resource_name: The name of the resource.
         :param AlertConfigurationArgs args: The arguments to use to populate this resource's properties.

@@ -26,6 +26,7 @@ class PrivateLinkEndpointArgs:
                  port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a PrivateLinkEndpoint resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
@@ -124,6 +125,7 @@ class _PrivateLinkEndpointState:
                  status: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateLinkEndpoint resources.
+
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] endpoint_group_names: For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
         :param pulumi.Input[_builtins.str] endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
@@ -390,6 +392,16 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
+
+        > **IMPORTANT:** This resource creates a Private Endpoint *Service* in MongoDB Atlas. The endpoint itself is created in your cloud provider using the information returned by this resource. The complementary resource `PrivateLinkEndpointService` is used to link your cloud provider's endpoint to the Atlas service.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **NOTE:** You must have Organization Owner or Project Owner role. A network container is created for a private endpoint if one does not yet exist in the project. Before configuring a private endpoint for a new region, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+
+        > **IMPORTANT:** For GCP, MongoDB encourages customers to use the port-mapped architecture by setting `port_mapping_enabled = true`. This architecture uses a single set of resources to support up to 150 nodes. The legacy architecture requires dedicated resources for each Atlas node, which can lead to IP address exhaustion. For migration guidance, see the GCP Private Service Connect to Port-Mapped Architecture.
+
         ## Example Usage
 
         ```python
@@ -414,9 +426,11 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint this 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
+
         For more information, see:
         - [MongoDB API Private Endpoint Service](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointservice) for detailed arguments and attributes.
         - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -434,6 +448,16 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  args: PrivateLinkEndpointArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
+
+        > **IMPORTANT:** This resource creates a Private Endpoint *Service* in MongoDB Atlas. The endpoint itself is created in your cloud provider using the information returned by this resource. The complementary resource `PrivateLinkEndpointService` is used to link your cloud provider's endpoint to the Atlas service.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **NOTE:** You must have Organization Owner or Project Owner role. A network container is created for a private endpoint if one does not yet exist in the project. Before configuring a private endpoint for a new region, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+
+        > **IMPORTANT:** For GCP, MongoDB encourages customers to use the port-mapped architecture by setting `port_mapping_enabled = true`. This architecture uses a single set of resources to support up to 150 nodes. The legacy architecture requires dedicated resources for each Atlas node, which can lead to IP address exhaustion. For migration guidance, see the GCP Private Service Connect to Port-Mapped Architecture.
+
         ## Example Usage
 
         ```python
@@ -458,9 +482,11 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint this 1112222b3bf99403840e8934-3242342343112-AWS-us-east-1
         ```
+
         For more information, see:
         - [MongoDB API Private Endpoint Service](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointservice) for detailed arguments and attributes.
         - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.
+
 
         :param str resource_name: The name of the resource.
         :param PrivateLinkEndpointArgs args: The arguments to use to populate this resource's properties.

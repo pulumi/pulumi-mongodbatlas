@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  */
 export function getProjectServiceAccount(args: GetProjectServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectServiceAccountResult> {
@@ -69,6 +73,10 @@ export interface GetProjectServiceAccountResult {
     readonly secrets: outputs.GetProjectServiceAccountSecret[];
 }
 /**
+ * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  */
 export function getProjectServiceAccountOutput(args: GetProjectServiceAccountOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectServiceAccountResult> {

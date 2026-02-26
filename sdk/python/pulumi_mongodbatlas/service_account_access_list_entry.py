@@ -25,6 +25,7 @@ class ServiceAccountAccessListEntryArgs:
                  ip_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceAccountAccessListEntry resource.
+
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
@@ -99,6 +100,7 @@ class _ServiceAccountAccessListEntryState:
                  request_count: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountAccessListEntry resources.
+
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
         :param pulumi.Input[_builtins.str] created_at: Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
@@ -234,6 +236,12 @@ class ServiceAccountAccessListEntry(pulumi.CustomResource):
                  org_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `ServiceAccountAccessListEntry` provides an Access List entry resource for Service Accounts. The resource lets you create, delete, and import an Access List entry for the specified Service Account.
+
+        > **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ### S
@@ -276,7 +284,9 @@ class ServiceAccountAccessListEntry(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry test 5d0f1f74cf09a29120e123cd-mdb_sa_id_1234567890abcdef12345678-10.242.88.0/21
         ```
+
         For more information, see [Add Access List Entries for One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccountaccesslist) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -292,6 +302,12 @@ class ServiceAccountAccessListEntry(pulumi.CustomResource):
                  args: ServiceAccountAccessListEntryArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ServiceAccountAccessListEntry` provides an Access List entry resource for Service Accounts. The resource lets you create, delete, and import an Access List entry for the specified Service Account.
+
+        > **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ### S
@@ -334,7 +350,9 @@ class ServiceAccountAccessListEntry(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/serviceAccountAccessListEntry:ServiceAccountAccessListEntry test 5d0f1f74cf09a29120e123cd-mdb_sa_id_1234567890abcdef12345678-10.242.88.0/21
         ```
+
         For more information, see [Add Access List Entries for One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccountaccesslist) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountAccessListEntryArgs args: The arguments to use to populate this resource's properties.

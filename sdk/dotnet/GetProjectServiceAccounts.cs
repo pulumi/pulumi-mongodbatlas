@@ -12,18 +12,30 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectServiceAccounts
     {
         /// <summary>
+        /// `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Task<GetProjectServiceAccountsResult> InvokeAsync(GetProjectServiceAccountsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectServiceAccountsResult>("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", args ?? new GetProjectServiceAccountsArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetProjectServiceAccountsResult> Invoke(GetProjectServiceAccountsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectServiceAccountsResult>("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", args ?? new GetProjectServiceAccountsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetProjectServiceAccountsResult> Invoke(GetProjectServiceAccountsInvokeArgs args, InvokeOutputOptions options)

@@ -124,6 +124,9 @@ export interface GetProjectIpAccessListResult {
      * Remark that explains the purpose or scope of this IP access list entry.
      */
     readonly comment: string;
+    /**
+     * Unique identifier used for terraform for internal management.
+     */
     readonly id: string;
     /**
      * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.

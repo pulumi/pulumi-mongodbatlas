@@ -16,6 +16,12 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.ProjectApiKey` provides a Project API Key resource. This allows project API Key to be created.
+ * 
+ * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` resource is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+ * 
+ * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+ * 
  * ## Example Usage
  * 
  * ### Create And Assign PAK Together

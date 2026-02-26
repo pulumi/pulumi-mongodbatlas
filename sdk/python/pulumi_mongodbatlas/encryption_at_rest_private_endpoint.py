@@ -28,6 +28,7 @@ class EncryptionAtRestPrivateEndpointArgs:
                  timeouts: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a EncryptionAtRestPrivateEndpoint resource.
+
         :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] region_name: Cloud provider region in which the Encryption At Rest private endpoint is located.
@@ -112,6 +113,7 @@ class _EncryptionAtRestPrivateEndpointState:
                  timeouts: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering EncryptionAtRestPrivateEndpoint resources.
+
         :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] error_message: Error message for failures associated with the Encryption At Rest private endpoint.
@@ -338,6 +340,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         - [MongoDB Atlas API - Private Endpoint for Encryption at Rest Using Customer Key Management](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getencryptionatrestprivateendpoint) Documentation.
         - [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/).
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
@@ -445,6 +448,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
         For more information see:
         - [MongoDB Atlas API - Private Endpoint for Encryption at Rest Using Customer Key Management](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getencryptionatrestprivateendpoint) Documentation.
         - [Manage Customer Keys with Azure Key Vault Over Private Endpoints](https://www.mongodb.com/docs/atlas/security/azure-kms-over-private-endpoint/).
+
 
         :param str resource_name: The name of the resource.
         :param EncryptionAtRestPrivateEndpointArgs args: The arguments to use to populate this resource's properties.

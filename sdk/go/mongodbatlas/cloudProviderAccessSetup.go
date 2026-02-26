@@ -12,6 +12,23 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Cloud Provider Access Configuration Paths
+//
+// The Terraform MongoDB Atlas Provider offers a two-resource path to perform an authorization for a cloud provider role.
+// - The first resource, `CloudProviderAccessSetup`, only generates the initial configuration (create, delete operations).
+// - The second resource, `CloudProviderAccessAuthorization`, helps to perform the authorization using the `roleId` of the first resource.
+//
+// This path is helpful in a multi-provider Terraform file, and allows for a single and decoupled apply.
+// See example of this two-resource path option with AWS Cloud here, AZURE Cloud here and GCP Cloud here.
+//
+// ## CloudProviderAccessSetup
+//
+// This is the first resource in the two-resource path as described above.
+//
+// `CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+//
 // ## Example Usage
 //
 // ### With AWS
@@ -109,7 +126,7 @@ import (
 //
 // ## Import
 //
-// It can be imported using project ID, provider name and role_id in the format `project_id`-`provider_name`-`role_id`, e.g.
+// It can be imported using project ID, provider name and roleId in the format `projectId`-`providerName`-`roleId`, e.g.
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/cloudProviderAccessSetup:CloudProviderAccessSetup my_role 1112222b3bf99403840e8934-AWS-5fc17d476f7a33224f5b224e

@@ -29,6 +29,7 @@ class ProjectIpAccessListArgs:
                  timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a ProjectIpAccessList resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
@@ -128,6 +129,7 @@ class _ProjectIpAccessListState:
                  timeouts: Optional[pulumi.Input['ProjectIpAccessListTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering ProjectIpAccessList resources.
+
         :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
@@ -300,7 +302,9 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
         ```
+
         For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -386,7 +390,9 @@ class ProjectIpAccessList(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/projectIpAccessList:ProjectIpAccessList this 5d0f1f74cf09a29120e123cd-10.242.88.0/21
         ```
+
         For more information, see [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/access-lists/).
+
 
         :param str resource_name: The name of the resource.
         :param ProjectIpAccessListArgs args: The arguments to use to populate this resource's properties.

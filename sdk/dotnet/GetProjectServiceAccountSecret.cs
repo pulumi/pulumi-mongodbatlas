@@ -12,6 +12,10 @@ namespace Pulumi.Mongodbatlas
     public static class GetProjectServiceAccountSecret
     {
         /// <summary>
+        /// `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -62,6 +66,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectServiceAccountSecretResult>("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", args ?? new GetProjectServiceAccountSecretArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -112,6 +120,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectServiceAccountSecretResult>("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", args ?? new GetProjectServiceAccountSecretInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S

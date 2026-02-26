@@ -25,13 +25,334 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
+ * 
+ * &gt; **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ * 
+ * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+ * 
+ * &gt; **NOTE:** If you need to remove the `mongodbatlas.CloudBackupSchedule`, read this guide.
+ * 
+ * &gt; **NOTE:** When creating a backup schedule you **must either** use the `dependsOn` clause to indicate the cluster to which it refers **or** specify the values of `projectId` and `clusterName` as reference of the cluster resource (e.g. `clusterName = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
+ * 
+ * In the Terraform MongoDB Atlas Provider 1.0.0 we have re-architected the way in which Cloud Backup Policies are managed with Terraform to significantly reduce the complexity. Due to this change we&#39;ve provided the following examples to help express how this resource functions.
+ * 
+ * ## Example Usage
+ * 
+ * ### Create A Cluster With 2 Policies Items
+ * 
+ * You can create a new cluster with `cloudBackup` enabled and then immediately overwrite the default cloud backup policy that Atlas creates by default at the same time with this example.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+ * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .name("clusterTest")
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("AWS")
+ *                     .regionName("EU_CENTRAL_1")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var test = new CloudBackupSchedule("test", CloudBackupScheduleArgs.builder()
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .referenceHourOfDay(3)
+ *             .referenceMinuteOfHour(45)
+ *             .restoreWindowDays(4)
+ *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(1)
+ *                 .build())
+ *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(2)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Create A Cluster With Cloud Backup Enabled But No Policy Items
+ * 
+ * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with no policy items to remove the default policy that Atlas creates when you enable Cloud Backup. This allows you to then create a policy when you are ready to via Terraform.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+ * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .name("clusterTest")
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("AWS")
+ *                     .regionName("EU_CENTRAL_1")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var test = new CloudBackupSchedule("test", CloudBackupScheduleArgs.builder()
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .referenceHourOfDay(3)
+ *             .referenceMinuteOfHour(45)
+ *             .restoreWindowDays(4)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Add 4 Policies Items To A Cluster With Cloud Backup Previously Enabled But With No Policy Items
+ * 
+ * If you followed the example to Create a Cluster with Cloud Backup Enabled but No Policy Items and then want to add policy items later to the `mongodbatlas.CloudBackupSchedule` this example shows how.
+ * 
+ * The cluster already exists with `cloudBackup` enabled
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+ * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemWeeklyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemMonthlyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemYearlyArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .name("clusterTest")
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("AWS")
+ *                     .regionName("EU_CENTRAL_1")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var test = new CloudBackupSchedule("test", CloudBackupScheduleArgs.builder()
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .referenceHourOfDay(3)
+ *             .referenceMinuteOfHour(45)
+ *             .restoreWindowDays(4)
+ *             .policyItemHourly(CloudBackupSchedulePolicyItemHourlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(1)
+ *                 .build())
+ *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(2)
+ *                 .build())
+ *             .policyItemWeeklies(CloudBackupSchedulePolicyItemWeeklyArgs.builder()
+ *                 .frequencyInterval(4)
+ *                 .retentionUnit("weeks")
+ *                 .retentionValue(3)
+ *                 .build())
+ *             .policyItemMonthlies(CloudBackupSchedulePolicyItemMonthlyArgs.builder()
+ *                 .frequencyInterval(5)
+ *                 .retentionUnit("months")
+ *                 .retentionValue(4)
+ *                 .build())
+ *             .policyItemYearlies(CloudBackupSchedulePolicyItemYearlyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("years")
+ *                 .retentionValue(1)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
+ * 
+ * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.CloudBackupSchedule;
+ * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var myCluster = new AdvancedCluster("myCluster", AdvancedClusterArgs.builder()
+ *             .projectId("<PROJECT-ID>")
+ *             .name("clusterTest")
+ *             .clusterType("REPLICASET")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("AWS")
+ *                     .regionName("EU_CENTRAL_1")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var test = new CloudBackupSchedule("test", CloudBackupScheduleArgs.builder()
+ *             .projectId(myCluster.projectId())
+ *             .clusterName(myCluster.name())
+ *             .referenceHourOfDay(3)
+ *             .referenceMinuteOfHour(45)
+ *             .restoreWindowDays(4)
+ *             .policyItemDaily(CloudBackupSchedulePolicyItemDailyArgs.builder()
+ *                 .frequencyInterval(1)
+ *                 .retentionUnit("days")
+ *                 .retentionValue(14)
+ *                 .build())
+ *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
+ *                 .cloudProvider("AWS")
+ *                 .frequencies(                
+ *                     "HOURLY",
+ *                     "DAILY",
+ *                     "WEEKLY",
+ *                     "MONTHLY",
+ *                     "YEARLY",
+ *                     "ON_DEMAND")
+ *                 .regionName("US_EAST_1")
+ *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
+ *                 .shouldCopyOplogs(false)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Further Examples
+ * - Cloud Backup Schedule
+ * 
  * ## Import
  * 
- * Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+ * Cloud Backup Schedule entries can be imported using projectId and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
  * ```
+ * 
  * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
  * 
  */
@@ -265,9 +586,21 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
     public Output<Integer> restoreWindowDays() {
         return this.restoreWindowDays;
     }
+    /**
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+     * 
+     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     * 
+     */
     @Export(name="updateSnapshots", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> updateSnapshots;
 
+    /**
+     * @return Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+     * 
+     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     * 
+     */
     public Output<Boolean> updateSnapshots() {
         return this.updateSnapshots;
     }

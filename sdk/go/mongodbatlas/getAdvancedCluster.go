@@ -11,6 +11,18 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+//
+// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+//
+// > **IMPORTANT:**
+// <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+// <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+//
+// > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+//
+// > **NOTE:** This data source also includes Flex clusters.
+//
 // ## Example Usage
 //
 // ```go
@@ -251,7 +263,8 @@ type LookupAdvancedClusterResult struct {
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
 	AdvancedConfiguration GetAdvancedClusterAdvancedConfiguration `pulumi:"advancedConfiguration"`
 	BackupEnabled         bool                                    `pulumi:"backupEnabled"`
-	BiConnectorConfig     GetAdvancedClusterBiConnectorConfig     `pulumi:"biConnectorConfig"`
+	// Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `biConnector`.
+	BiConnectorConfig GetAdvancedClusterBiConnectorConfig `pulumi:"biConnectorConfig"`
 	// The cluster ID.
 	ClusterId string `pulumi:"clusterId"`
 	// Type of the cluster that you want to create.
@@ -351,6 +364,7 @@ func (o LookupAdvancedClusterResultOutput) BackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.BackupEnabled }).(pulumi.BoolOutput)
 }
 
+// Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `biConnector`.
 func (o LookupAdvancedClusterResultOutput) BiConnectorConfig() GetAdvancedClusterBiConnectorConfigOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) GetAdvancedClusterBiConnectorConfig { return v.BiConnectorConfig }).(GetAdvancedClusterBiConnectorConfigOutput)
 }

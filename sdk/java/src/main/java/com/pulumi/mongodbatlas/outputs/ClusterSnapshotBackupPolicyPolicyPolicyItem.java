@@ -15,7 +15,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
     private @Nullable Integer frequencyInterval;
     private @Nullable String frequencyType;
     /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * @return The Terraform&#39;s unique identifier used internally for state management.
      * 
      */
     private @Nullable String id;
@@ -30,7 +30,7 @@ public final class ClusterSnapshotBackupPolicyPolicyPolicyItem {
         return Optional.ofNullable(this.frequencyType);
     }
     /**
-     * @return Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+     * @return The Terraform&#39;s unique identifier used internally for state management.
      * 
      */
     public Optional<String> id() {

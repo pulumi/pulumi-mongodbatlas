@@ -25,6 +25,7 @@ class OrgInvitationArgs:
                  teams_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OrgInvitation resource.
+
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
         :param pulumi.Input[_builtins.str] username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
@@ -98,6 +99,7 @@ class _OrgInvitationState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OrgInvitation resources.
+
         :param pulumi.Input[_builtins.str] created_at: Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
         :param pulumi.Input[_builtins.str] expires_at: Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
         :param pulumi.Input[_builtins.str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
@@ -233,6 +235,19 @@ class OrgInvitation(pulumi.CustomResource):
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `OrgInvitation` invites a user to join an Atlas organization.
+
+        > **DEPRECATION:** This resource is deprecated. Migrate to `CloudUserOrgAssignment` for managing organization membership. See the Org Invitation to Cloud User Org Assignment Migration Guide.
+
+        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+
+        The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+
+        > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+        * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+        * If the user has accepted the invitation and is now an organization member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+        * If the user accepts the invitation and then leaves the organization, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+
         ## Example Usage
 
         ### S
@@ -279,14 +294,15 @@ class OrgInvitation(pulumi.CustomResource):
 
         ## Import
 
-        ~> __IMPORTANT:__
-        An organization invitation can __not__ be imported once it has been accepted.
+        > **IMPORTANT:**
+        An organization invitation can **not** be imported once it has been accepted.
 
         Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
 
         ```sh
         $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -302,6 +318,19 @@ class OrgInvitation(pulumi.CustomResource):
                  args: OrgInvitationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `OrgInvitation` invites a user to join an Atlas organization.
+
+        > **DEPRECATION:** This resource is deprecated. Migrate to `CloudUserOrgAssignment` for managing organization membership. See the Org Invitation to Cloud User Org Assignment Migration Guide.
+
+        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+
+        The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+
+        > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+        * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+        * If the user has accepted the invitation and is now an organization member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+        * If the user accepts the invitation and then leaves the organization, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+
         ## Example Usage
 
         ### S
@@ -348,14 +377,15 @@ class OrgInvitation(pulumi.CustomResource):
 
         ## Import
 
-        ~> __IMPORTANT:__
-        An organization invitation can __not__ be imported once it has been accepted.
+        > **IMPORTANT:**
+        An organization invitation can **not** be imported once it has been accepted.
 
         Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
 
         ```sh
         $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
+
 
         :param str resource_name: The name of the resource.
         :param OrgInvitationArgs args: The arguments to use to populate this resource's properties.

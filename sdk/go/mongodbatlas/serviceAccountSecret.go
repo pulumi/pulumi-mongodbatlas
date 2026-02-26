@@ -12,6 +12,12 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `ServiceAccountSecret` provides a Service Account Secret resource. The resource lets you create and delete secrets for a Service Account.
+//
+// > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+//
+// > **NOTE:** This resource does not support updates. To rotate secrets, see Guide: Service Account Secret Rotation.
+//
 // ## Example Usage
 //
 // ### S
@@ -71,10 +77,10 @@ import (
 // ## Import
 //
 // Import the Service Account Secret resource by using the Organization ID, Client ID, and Secret ID in the format `ORG_ID/CLIENT_ID/SECRET_ID`, e.g.
-//
 // ```sh
 // $ pulumi import mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678/04ed271234abcde2a3da123a
 // ```
+//
 // For more information, see [Create One Organization Service Account Secret](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccountsecret) in the MongoDB Atlas API documentation.
 type ServiceAccountSecret struct {
 	pulumi.CustomResourceState

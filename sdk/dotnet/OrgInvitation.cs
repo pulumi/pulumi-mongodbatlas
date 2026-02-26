@@ -10,6 +10,19 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.OrgInvitation` invites a user to join an Atlas organization.
+    /// 
+    /// &gt; **DEPRECATION:** This resource is deprecated. Migrate to `mongodbatlas.CloudUserOrgAssignment` for managing organization membership. See the Org Invitation to Cloud User Org Assignment Migration Guide.
+    /// 
+    /// Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+    /// 
+    /// The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
+    /// 
+    /// &gt; **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+    /// * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+    /// * If the user has accepted the invitation and is now an organization member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+    /// * If the user accepts the invitation and then leaves the organization, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+    /// 
     /// ## Example Usage
     /// 
     /// ### S
@@ -88,10 +101,10 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// ~&gt; __IMPORTANT:__
-    /// An organization invitation can __not__ be imported once it has been accepted.
+    /// &gt; **IMPORTANT:**
+    /// An organization invitation can **not** be imported once it has been accepted.
     /// 
-    /// Import a user's invitation to an organization by separating the `org_id` and the `username` with a hyphen:
+    /// Import a user's invitation to an organization by separating the `OrgId` and the `Username` with a hyphen:
     /// 
     /// ```sh
     /// $ pulumi import mongodbatlas:index/orgInvitation:OrgInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com

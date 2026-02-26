@@ -36,6 +36,7 @@ class OnlineArchiveArgs:
                  sync_creation: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a OnlineArchive resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[_builtins.str] coll_name: Name of the collection.
         :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data. See criteria.
@@ -249,6 +250,7 @@ class _OnlineArchiveState:
                  sync_creation: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering OnlineArchive resources.
+
         :param pulumi.Input[_builtins.str] archive_id: ID of the online archive.
         :param pulumi.Input[_builtins.str] cluster_name: Name of the cluster that contains the collection.
         :param pulumi.Input[_builtins.str] coll_name: Name of the collection.
@@ -606,6 +608,7 @@ class OnlineArchive(pulumi.CustomResource):
 
         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Name of the cluster that contains the collection.
@@ -736,6 +739,7 @@ class OnlineArchive(pulumi.CustomResource):
         ## Import
 
         See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param OnlineArchiveArgs args: The arguments to use to populate this resource's properties.

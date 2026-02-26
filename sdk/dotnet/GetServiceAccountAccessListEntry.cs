@@ -12,6 +12,12 @@ namespace Pulumi.Mongodbatlas
     public static class GetServiceAccountAccessListEntry
     {
         /// <summary>
+        /// `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+        /// 
+        /// &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -79,6 +85,12 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountAccessListEntryResult>("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", args ?? new GetServiceAccountAccessListEntryArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+        /// 
+        /// &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -146,6 +158,12 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountAccessListEntryResult>("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", args ?? new GetServiceAccountAccessListEntryInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+        /// 
+        /// &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S

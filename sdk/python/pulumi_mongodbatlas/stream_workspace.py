@@ -27,6 +27,7 @@ class StreamWorkspaceArgs:
                  stream_config: Optional[pulumi.Input['StreamWorkspaceStreamConfigArgs']] = None):
         """
         The set of arguments for constructing a StreamWorkspace resource.
+
         :param pulumi.Input['StreamWorkspaceDataProcessRegionArgs'] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
@@ -97,6 +98,7 @@ class _StreamWorkspaceState:
                  workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamWorkspace resources.
+
         :param pulumi.Input['StreamWorkspaceDataProcessRegionArgs'] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: List that contains the hostnames assigned to the stream workspace.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -234,6 +236,7 @@ class StreamWorkspace(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/streamWorkspace:StreamWorkspace test 650972848269185c55f40ca1-WorkspaceName
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
@@ -294,6 +297,7 @@ class StreamWorkspace(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/streamWorkspace:StreamWorkspace test 650972848269185c55f40ca1-WorkspaceName
         ```
+
 
         :param str resource_name: The name of the resource.
         :param StreamWorkspaceArgs args: The arguments to use to populate this resource's properties.

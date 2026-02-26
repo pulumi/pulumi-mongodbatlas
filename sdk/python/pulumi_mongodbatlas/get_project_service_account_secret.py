@@ -138,6 +138,10 @@ def get_project_service_account_secret(client_id: Optional[_builtins.str] = None
                                        secret_id: Optional[_builtins.str] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectServiceAccountSecretResult:
     """
+    `ProjectServiceAccountSecret` describes a Project Service Account Secret.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
     ### S
@@ -193,6 +197,10 @@ def get_project_service_account_secret_output(client_id: Optional[pulumi.Input[_
                                               secret_id: Optional[pulumi.Input[_builtins.str]] = None,
                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectServiceAccountSecretResult]:
     """
+    `ProjectServiceAccountSecret` describes a Project Service Account Secret.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
     ### S

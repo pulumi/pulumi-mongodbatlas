@@ -154,6 +154,9 @@ namespace Pulumi.Mongodbatlas
         /// (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         /// </summary>
         public readonly string SecurityContact;
+        /// <summary>
+        /// (Optional) Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`.
+        /// </summary>
         public readonly bool SkipDefaultAlertsSettings;
         /// <summary>
         /// Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.

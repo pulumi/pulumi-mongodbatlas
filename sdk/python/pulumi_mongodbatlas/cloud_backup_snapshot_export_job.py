@@ -28,6 +28,7 @@ class CloudBackupSnapshotExportJobArgs:
                  custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotExportJob resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
@@ -120,6 +121,7 @@ class _CloudBackupSnapshotExportJobState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshotExportJob resources.
+
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]] components: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param pulumi.Input[_builtins.str] created_at: Timestamp in ISO 8601 date and time format in UTC when the export job was created.
@@ -414,7 +416,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5-5d116d82014b764445b2f9b5
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-job/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -514,7 +518,9 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportJob:CloudBackupSnapshotExportJob test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5-5d116d82014b764445b2f9b5
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-job/)
+
 
         :param str resource_name: The name of the resource.
         :param CloudBackupSnapshotExportJobArgs args: The arguments to use to populate this resource's properties.

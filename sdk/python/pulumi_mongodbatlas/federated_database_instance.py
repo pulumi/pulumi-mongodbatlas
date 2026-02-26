@@ -29,6 +29,7 @@ class FederatedDatabaseInstanceArgs:
                  storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None):
         """
         The set of arguments for constructing a FederatedDatabaseInstance resource.
+
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance.
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs'] cloud_provider_config: Cloud provider linked to this data federated instance.
                * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
@@ -226,6 +227,7 @@ class _FederatedDatabaseInstanceState:
                  storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None):
         """
         Input properties used for looking up and filtering FederatedDatabaseInstance resources.
+
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs'] cloud_provider_config: Cloud provider linked to this data federated instance.
                * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
                * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
@@ -619,18 +621,12 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         ## Import
 
         - The Federated Database Instance can be imported using project ID, name of the instance, in the format `project_id`--`name`, e.g.
-
-        ```sh
-        $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance  mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test
-        ```
-
-        - The Federated Database Instance can be imported using project ID, name of the instance and name of the AWS S3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.
-
-        ```sh
-        $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance  mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test--s3-test
-        ```
+          ```sh
+          $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance example 1112222b3bf99403840e8934--test
+          ```
 
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -854,18 +850,12 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         ## Import
 
         - The Federated Database Instance can be imported using project ID, name of the instance, in the format `project_id`--`name`, e.g.
-
-        ```sh
-        $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance  mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test
-        ```
-
-        - The Federated Database Instance can be imported using project ID, name of the instance and name of the AWS S3 bucket, in the format `project_id`--`name`--`aws_test_s3_bucket`, e.g.
-
-        ```sh
-        $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance  mongodbatlas_federated_database_instance.example 1112222b3bf99403840e8934--test--s3-test
-        ```
+          ```sh
+          $ pulumi import mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance example 1112222b3bf99403840e8934--test
+          ```
 
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param FederatedDatabaseInstanceArgs args: The arguments to use to populate this resource's properties.

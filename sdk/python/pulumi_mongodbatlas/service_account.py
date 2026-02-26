@@ -28,6 +28,7 @@ class ServiceAccountArgs:
                  secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ServiceAccount resource.
+
         :param pulumi.Input[_builtins.str] description: Human readable description for the Service Account.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
@@ -116,6 +117,7 @@ class _ServiceAccountState:
                  secrets: Optional[pulumi.Input[Sequence[pulumi.Input['ServiceAccountSecretArgs']]]] = None):
         """
         Input properties used for looking up and filtering ServiceAccount resources.
+
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
         :param pulumi.Input[_builtins.str] created_at: The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] description: Human readable description for the Service Account.
@@ -252,6 +254,10 @@ class ServiceAccount(pulumi.CustomResource):
                  secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        `ServiceAccount` provides a Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Organization.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ## Import
@@ -261,6 +267,7 @@ class ServiceAccount(pulumi.CustomResource):
         > **NOTE:** `secret_expires_after_hours` is not populated during import and should be omitted in the resource definition when importing the resource.
 
         For more information, see [Create One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccount) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -277,6 +284,10 @@ class ServiceAccount(pulumi.CustomResource):
                  args: ServiceAccountArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ServiceAccount` provides a Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Organization.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ## Import
@@ -286,6 +297,7 @@ class ServiceAccount(pulumi.CustomResource):
         > **NOTE:** `secret_expires_after_hours` is not populated during import and should be omitted in the resource definition when importing the resource.
 
         For more information, see [Create One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccount) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountArgs args: The arguments to use to populate this resource's properties.

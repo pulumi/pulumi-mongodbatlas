@@ -260,8 +260,9 @@ type SearchIndex struct {
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
-	TypeSets                    SearchIndexTypeSetArrayOutput `pulumi:"typeSets"`
-	WaitForIndexBuildCompletion pulumi.BoolPtrOutput          `pulumi:"waitForIndexBuildCompletion"`
+	TypeSets SearchIndexTypeSetArrayOutput `pulumi:"typeSets"`
+	// Wait for search index to achieve Active status before terraform considers resource built.
+	WaitForIndexBuildCompletion pulumi.BoolPtrOutput `pulumi:"waitForIndexBuildCompletion"`
 }
 
 // NewSearchIndex registers a new resource with the given unique name, arguments, and options.
@@ -343,8 +344,9 @@ type searchIndexState struct {
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
 	Type *string `pulumi:"type"`
 	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
-	TypeSets                    []SearchIndexTypeSet `pulumi:"typeSets"`
-	WaitForIndexBuildCompletion *bool                `pulumi:"waitForIndexBuildCompletion"`
+	TypeSets []SearchIndexTypeSet `pulumi:"typeSets"`
+	// Wait for search index to achieve Active status before terraform considers resource built.
+	WaitForIndexBuildCompletion *bool `pulumi:"waitForIndexBuildCompletion"`
 }
 
 type SearchIndexState struct {
@@ -385,7 +387,8 @@ type SearchIndexState struct {
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
 	Type pulumi.StringPtrInput
 	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
-	TypeSets                    SearchIndexTypeSetArrayInput
+	TypeSets SearchIndexTypeSetArrayInput
+	// Wait for search index to achieve Active status before terraform considers resource built.
 	WaitForIndexBuildCompletion pulumi.BoolPtrInput
 }
 
@@ -427,8 +430,9 @@ type searchIndexArgs struct {
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
 	Type *string `pulumi:"type"`
 	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
-	TypeSets                    []SearchIndexTypeSet `pulumi:"typeSets"`
-	WaitForIndexBuildCompletion *bool                `pulumi:"waitForIndexBuildCompletion"`
+	TypeSets []SearchIndexTypeSet `pulumi:"typeSets"`
+	// Wait for search index to achieve Active status before terraform considers resource built.
+	WaitForIndexBuildCompletion *bool `pulumi:"waitForIndexBuildCompletion"`
 }
 
 // The set of arguments for constructing a SearchIndex resource.
@@ -466,7 +470,8 @@ type SearchIndexArgs struct {
 	// Type of index: `search` or `vectorSearch`. Default type is `search`.
 	Type pulumi.StringPtrInput
 	// One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
-	TypeSets                    SearchIndexTypeSetArrayInput
+	TypeSets SearchIndexTypeSetArrayInput
+	// Wait for search index to achieve Active status before terraform considers resource built.
 	WaitForIndexBuildCompletion pulumi.BoolPtrInput
 }
 
@@ -652,6 +657,7 @@ func (o SearchIndexOutput) TypeSets() SearchIndexTypeSetArrayOutput {
 	return o.ApplyT(func(v *SearchIndex) SearchIndexTypeSetArrayOutput { return v.TypeSets }).(SearchIndexTypeSetArrayOutput)
 }
 
+// Wait for search index to achieve Active status before terraform considers resource built.
 func (o SearchIndexOutput) WaitForIndexBuildCompletion() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.BoolPtrOutput { return v.WaitForIndexBuildCompletion }).(pulumi.BoolPtrOutput)
 }

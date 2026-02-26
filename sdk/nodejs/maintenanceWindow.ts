@@ -82,6 +82,7 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
  * ```
+ *
  * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
  */
 export class MaintenanceWindow extends pulumi.CustomResource {
@@ -112,7 +113,13 @@ export class MaintenanceWindow extends pulumi.CustomResource {
         return obj['__pulumiType'] === MaintenanceWindow.__pulumiType;
     }
 
+    /**
+     * Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+     */
     declare public readonly autoDefer: pulumi.Output<boolean>;
+    /**
+     * **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+     */
     declare public readonly autoDeferOnceEnabled: pulumi.Output<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
@@ -201,7 +208,13 @@ export class MaintenanceWindow extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MaintenanceWindow resources.
  */
 export interface MaintenanceWindowState {
+    /**
+     * Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+     */
     autoDefer?: pulumi.Input<boolean>;
+    /**
+     * **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+     */
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
@@ -241,7 +254,13 @@ export interface MaintenanceWindowState {
  * The set of arguments for constructing a MaintenanceWindow resource.
  */
 export interface MaintenanceWindowArgs {
+    /**
+     * Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+     */
     autoDefer?: pulumi.Input<boolean>;
+    /**
+     * **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+     */
     autoDeferOnceEnabled?: pulumi.Input<boolean>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.

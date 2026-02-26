@@ -23,6 +23,7 @@ class PrivateEndpointRegionalModeArgs:
                  enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a PrivateEndpointRegionalMode resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project.
         :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
                * More than one private endpoint in more than one region, or
@@ -68,6 +69,7 @@ class _PrivateEndpointRegionalModeState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateEndpointRegionalMode resources.
+
         :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
@@ -132,7 +134,9 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
         ```
-        See detailed information for arguments and attributes: __Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+
+        See detailed information for arguments and attributes: **Private Endpoints** [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -164,7 +168,9 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
         ```
-        See detailed information for arguments and attributes: __Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+
+        See detailed information for arguments and attributes: **Private Endpoints** [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+
 
         :param str resource_name: The name of the resource.
         :param PrivateEndpointRegionalModeArgs args: The arguments to use to populate this resource's properties.

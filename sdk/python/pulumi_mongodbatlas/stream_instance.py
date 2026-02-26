@@ -27,6 +27,7 @@ class StreamInstanceArgs:
                  stream_config: Optional[pulumi.Input['StreamInstanceStreamConfigArgs']] = None):
         """
         The set of arguments for constructing a StreamInstance resource.
+
         :param pulumi.Input['StreamInstanceDataProcessRegionArgs'] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[_builtins.str] instance_name: Human-readable label that identifies the stream instance.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
@@ -97,6 +98,7 @@ class _StreamInstanceState:
                  stream_config: Optional[pulumi.Input['StreamInstanceStreamConfigArgs']] = None):
         """
         Input properties used for looking up and filtering StreamInstance resources.
+
         :param pulumi.Input['StreamInstanceDataProcessRegionArgs'] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: List that contains the hostnames assigned to the stream instance.
         :param pulumi.Input[_builtins.str] instance_name: Human-readable label that identifies the stream instance.
@@ -187,6 +189,16 @@ class StreamInstance(pulumi.CustomResource):
                  stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
                  __props__=None):
         """
+        > **DEPRECATED:** This resource is deprecated. Please use `StreamWorkspace` instead.
+
+        `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
+
+        ## Migration to stream_workspace
+
+        `StreamInstance` resources can be moved to `StreamWorkspace` in MongoDB Atlas Provider v2.2.0 and later with Terraform v1.8 and later.
+
+        More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
+
         ## Example Usage
 
         ```python
@@ -213,8 +225,10 @@ class StreamInstance(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/streamInstance:StreamInstance test 650972848269185c55f40ca1-InstanceName
         ```
+
         To learn more, see: [MongoDB Atlas API - Stream Instance](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) Documentation.
         The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -230,6 +244,16 @@ class StreamInstance(pulumi.CustomResource):
                  args: StreamInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **DEPRECATED:** This resource is deprecated. Please use `StreamWorkspace` instead.
+
+        `StreamInstance` provides a Stream Instance resource. The resource lets you create, edit, and delete stream instances in a project.
+
+        ## Migration to stream_workspace
+
+        `StreamInstance` resources can be moved to `StreamWorkspace` in MongoDB Atlas Provider v2.2.0 and later with Terraform v1.8 and later.
+
+        More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
+
         ## Example Usage
 
         ```python
@@ -256,8 +280,10 @@ class StreamInstance(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/streamInstance:StreamInstance test 650972848269185c55f40ca1-InstanceName
         ```
+
         To learn more, see: [MongoDB Atlas API - Stream Instance](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) Documentation.
         The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
+
 
         :param str resource_name: The name of the resource.
         :param StreamInstanceArgs args: The arguments to use to populate this resource's properties.

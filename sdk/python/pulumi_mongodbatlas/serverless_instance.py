@@ -34,6 +34,7 @@ class ServerlessInstanceArgs:
                  termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServerlessInstance resource.
+
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within.
         :param pulumi.Input[_builtins.str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
@@ -222,6 +223,7 @@ class _ServerlessInstanceState:
                  termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ServerlessInstance resources.
+
         :param pulumi.Input[_builtins.bool] auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] connection_strings_private_endpoint_srvs: List of Serverless Private Endpoint Connections
         :param pulumi.Input[_builtins.str] connection_strings_standard_srv: Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
@@ -500,10 +502,11 @@ class ServerlessInstance(pulumi.CustomResource):
         Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
+        $ terraform import mongodbatlas_serverless_instance.my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
         ```
 
         For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -552,10 +555,11 @@ class ServerlessInstance(pulumi.CustomResource):
         Serverless Instance can be imported using the group ID and serverless instance name, in the format `GROUP_ID-SERVERLESS_INSTANCE_NAME`, e.g.
 
         ```sh
-        $ pulumi import mongodbatlas:index/serverlessInstance:ServerlessInstance my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
+        $ terraform import mongodbatlas_serverless_instance.my_serverless_instance 1112222b3bf99403840e8934-My Serverless Instance
         ```
 
         For more information see: [MongoDB Atlas API - Serverless Instance](https://docs.atlas.mongodb.com/reference/api/serverless-instances/) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param ServerlessInstanceArgs args: The arguments to use to populate this resource's properties.

@@ -24,6 +24,7 @@ class ServiceAccountSecretInitArgs:
                  secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a ServiceAccountSecret resource.
+
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
@@ -84,6 +85,7 @@ class _ServiceAccountSecretState:
                  secret_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountSecret resources.
+
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
         :param pulumi.Input[_builtins.str] created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -233,6 +235,12 @@ class ServiceAccountSecret(pulumi.CustomResource):
                  secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
                  __props__=None):
         """
+        `ServiceAccountSecret` provides a Service Account Secret resource. The resource lets you create and delete secrets for a Service Account.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
+        > **NOTE:** This resource does not support updates. To rotate secrets, see Guide: Service Account Secret Rotation.
+
         ## Example Usage
 
         ### S
@@ -266,11 +274,12 @@ class ServiceAccountSecret(pulumi.CustomResource):
         ## Import
 
         Import the Service Account Secret resource by using the Organization ID, Client ID, and Secret ID in the format `ORG_ID/CLIENT_ID/SECRET_ID`, e.g.
-
         ```sh
         $ pulumi import mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678/04ed271234abcde2a3da123a
         ```
+
         For more information, see [Create One Organization Service Account Secret](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccountsecret) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -285,6 +294,12 @@ class ServiceAccountSecret(pulumi.CustomResource):
                  args: ServiceAccountSecretInitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ServiceAccountSecret` provides a Service Account Secret resource. The resource lets you create and delete secrets for a Service Account.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
+        > **NOTE:** This resource does not support updates. To rotate secrets, see Guide: Service Account Secret Rotation.
+
         ## Example Usage
 
         ### S
@@ -318,11 +333,12 @@ class ServiceAccountSecret(pulumi.CustomResource):
         ## Import
 
         Import the Service Account Secret resource by using the Organization ID, Client ID, and Secret ID in the format `ORG_ID/CLIENT_ID/SECRET_ID`, e.g.
-
         ```sh
         $ pulumi import mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678/04ed271234abcde2a3da123a
         ```
+
         For more information, see [Create One Organization Service Account Secret](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccountsecret) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountSecretInitArgs args: The arguments to use to populate this resource's properties.

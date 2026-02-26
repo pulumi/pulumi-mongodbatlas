@@ -26,6 +26,7 @@ class CloudUserTeamAssignmentArgs:
                  user_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a CloudUserTeamAssignment resource.
+
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations) endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[_builtins.str] team_id: Unique 24-hexadecimal digit string that identifies the team to which you want to assign the MongoDB Cloud user. Use the [/teams](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-teams) endpoint to retrieve all teams to which the authenticated user has access.
         :param pulumi.Input[_builtins.str] user_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
@@ -92,6 +93,7 @@ class _CloudUserTeamAssignmentState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudUserTeamAssignment resources.
+
         :param pulumi.Input[_builtins.str] country: Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
         :param pulumi.Input[_builtins.str] created_at: Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] first_name: First or given name that belongs to the MongoDB Cloud user.
@@ -381,15 +383,12 @@ class CloudUserTeamAssignment(pulumi.CustomResource):
 
         ```sh
         $ pulumi import mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment test 63cfbf302333a3011d98592e/9f3c1e7a4d8b2f6051acde47/5f18367ccb7a503a2b481b7a
-        ```
-
         OR
-
-        ```sh
         $ pulumi import mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment test 63cfbf302333a3011d98592e/9f3c1e7a4d8b2f6051acde47/test-user@example.com
         ```
 
         For more information see: [MongoDB Atlas API - Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-addusertoteam) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -439,15 +438,12 @@ class CloudUserTeamAssignment(pulumi.CustomResource):
 
         ```sh
         $ pulumi import mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment test 63cfbf302333a3011d98592e/9f3c1e7a4d8b2f6051acde47/5f18367ccb7a503a2b481b7a
-        ```
-
         OR
-
-        ```sh
         $ pulumi import mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment test 63cfbf302333a3011d98592e/9f3c1e7a4d8b2f6051acde47/test-user@example.com
         ```
 
         For more information see: [MongoDB Atlas API - Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-addusertoteam) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param CloudUserTeamAssignmentArgs args: The arguments to use to populate this resource's properties.

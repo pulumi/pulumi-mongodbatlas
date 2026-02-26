@@ -27,6 +27,7 @@ class ClusterOutageSimulationArgs:
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ClusterOutageSimulation resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]] outage_filters: List of settings that specify the type of cluster outage simulation.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
@@ -99,6 +100,7 @@ class _ClusterOutageSimulationState:
                  state: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ClusterOutageSimulation resources.
+
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]] outage_filters: List of settings that specify the type of cluster outage simulation.
@@ -272,9 +274,10 @@ class ClusterOutageSimulation(pulumi.CustomResource):
 
         ## Import
 
-        The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
+        The `ClusterOutageSimulation` resource does not support import operation.
 
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -331,9 +334,10 @@ class ClusterOutageSimulation(pulumi.CustomResource):
 
         ## Import
 
-        The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
+        The `ClusterOutageSimulation` resource does not support import operation.
 
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param ClusterOutageSimulationArgs args: The arguments to use to populate this resource's properties.

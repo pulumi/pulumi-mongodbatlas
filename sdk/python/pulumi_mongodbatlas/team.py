@@ -24,6 +24,7 @@ class TeamArgs:
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
+
         :param pulumi.Input[_builtins.str] org_id: The unique identifier for the organization you want to associate the team with.
         :param pulumi.Input[_builtins.str] name: The name of the team you want to create.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usernames: **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
@@ -84,6 +85,7 @@ class _TeamState:
                  usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Team resources.
+
         :param pulumi.Input[_builtins.str] name: The name of the team you want to create.
         :param pulumi.Input[_builtins.str] org_id: The unique identifier for the organization you want to associate the team with.
         :param pulumi.Input[_builtins.str] team_id: The unique identifier for the team.
@@ -195,7 +197,9 @@ class Team(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -243,7 +247,9 @@ class Team(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
+
 
         :param str resource_name: The name of the resource.
         :param TeamArgs args: The arguments to use to populate this resource's properties.

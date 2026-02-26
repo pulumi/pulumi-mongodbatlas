@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ServiceAccountProjectAssignment` provides a Service Account Project Assignment resource. The resource lets you assign a Service Account to a Project with specific roles.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S
@@ -40,10 +44,10 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Import the Service Account Project Assignment resource by using the Project ID and Client ID in the format `PROJECT_ID/CLIENT_ID`, e.g.
- *
  * ```sh
  * $ pulumi import mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678
  * ```
+ *
  * For more information, see [Assign One Service Account to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-invitegroupserviceaccount) in the MongoDB Atlas API documentation.
  */
 export class ServiceAccountProjectAssignment extends pulumi.CustomResource {

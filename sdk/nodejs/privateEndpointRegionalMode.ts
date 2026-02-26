@@ -20,7 +20,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode test 1112222b3bf99403840e8934
  * ```
- * See detailed information for arguments and attributes: __Private Endpoints__ [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
+ *
+ * See detailed information for arguments and attributes: **Private Endpoints** [Get Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-get-regional-mode/) | [Update Regional Mode](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-update-regional-mode/)
  */
 export class PrivateEndpointRegionalMode extends pulumi.CustomResource {
     /**

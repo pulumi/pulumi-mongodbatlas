@@ -18,16 +18,32 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
 
     public static final MaintenanceWindowState Empty = new MaintenanceWindowState();
 
+    /**
+     * Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** &lt;!-- see CLOUDP-375465 for details --&gt;
+     * 
+     */
     @Import(name="autoDefer")
     private @Nullable Output<Boolean> autoDefer;
 
+    /**
+     * @return Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** &lt;!-- see CLOUDP-375465 for details --&gt;
+     * 
+     */
     public Optional<Output<Boolean>> autoDefer() {
         return Optional.ofNullable(this.autoDefer);
     }
 
+    /**
+     * **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+     * 
+     */
     @Import(name="autoDeferOnceEnabled")
     private @Nullable Output<Boolean> autoDeferOnceEnabled;
 
+    /**
+     * @return **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+     * 
+     */
     public Optional<Output<Boolean>> autoDeferOnceEnabled() {
         return Optional.ofNullable(this.autoDeferOnceEnabled);
     }
@@ -185,20 +201,44 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
             $ = new MaintenanceWindowState(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param autoDefer Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** &lt;!-- see CLOUDP-375465 for details --&gt;
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDefer(@Nullable Output<Boolean> autoDefer) {
             $.autoDefer = autoDefer;
             return this;
         }
 
+        /**
+         * @param autoDefer Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** &lt;!-- see CLOUDP-375465 for details --&gt;
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDefer(Boolean autoDefer) {
             return autoDefer(Output.of(autoDefer));
         }
 
+        /**
+         * @param autoDeferOnceEnabled **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDeferOnceEnabled(@Nullable Output<Boolean> autoDeferOnceEnabled) {
             $.autoDeferOnceEnabled = autoDeferOnceEnabled;
             return this;
         }
 
+        /**
+         * @param autoDeferOnceEnabled **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+         * 
+         * @return builder
+         * 
+         */
         public Builder autoDeferOnceEnabled(Boolean autoDeferOnceEnabled) {
             return autoDeferOnceEnabled(Output.of(autoDeferOnceEnabled));
         }

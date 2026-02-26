@@ -28,6 +28,7 @@ class LogIntegrationArgs:
                  kms_key: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogIntegration resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
         :param pulumi.Input[_builtins.str] iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
@@ -143,6 +144,7 @@ class _LogIntegrationState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering LogIntegration resources.
+
         :param pulumi.Input[_builtins.str] bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
         :param pulumi.Input[_builtins.str] iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
         :param pulumi.Input[_builtins.str] integration_id: Unique 24-character hexadecimal digit string that identifies the log integration configuration.
@@ -325,6 +327,7 @@ class LogIntegration(pulumi.CustomResource):
 
         For more information see: [MongoDB Atlas API - Log Integration](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-push-based-log-export) Documentation.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
@@ -385,6 +388,7 @@ class LogIntegration(pulumi.CustomResource):
         Log integration resource can be imported using the project ID and log integration ID, separated by a slash, e.g.
 
         For more information see: [MongoDB Atlas API - Log Integration](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-push-based-log-export) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param LogIntegrationArgs args: The arguments to use to populate this resource's properties.

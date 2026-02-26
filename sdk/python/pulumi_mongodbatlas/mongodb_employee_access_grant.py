@@ -25,6 +25,7 @@ class MongodbEmployeeAccessGrantArgs:
                  project_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a MongodbEmployeeAccessGrant resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies this cluster.
         :param pulumi.Input[_builtins.str] expiration_time: Expiration date for the employee access grant.
         :param pulumi.Input[_builtins.str] grant_type: Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
@@ -93,6 +94,7 @@ class _MongodbEmployeeAccessGrantState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MongodbEmployeeAccessGrant resources.
+
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies this cluster.
         :param pulumi.Input[_builtins.str] expiration_time: Expiration date for the employee access grant.
         :param pulumi.Input[_builtins.str] grant_type: Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
@@ -198,6 +200,7 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
 
         For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-grantmongodbemployeeaccess).
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies this cluster.
@@ -241,6 +244,7 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         The resource can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
 
         For more information see: [MongoDB Employee Access Grant API doc](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-grantmongodbemployeeaccess).
+
 
         :param str resource_name: The name of the resource.
         :param MongodbEmployeeAccessGrantArgs args: The arguments to use to populate this resource's properties.

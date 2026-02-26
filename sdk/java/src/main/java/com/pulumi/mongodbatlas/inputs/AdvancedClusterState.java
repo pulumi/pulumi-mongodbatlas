@@ -300,14 +300,22 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Flag that indicates whether the cluster is paused.
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+     * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
      * 
      */
     @Import(name="paused")
     private @Nullable Output<Boolean> paused;
 
     /**
-     * @return Flag that indicates whether the cluster is paused.
+     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+     * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
      * 
      */
     public Optional<Output<Boolean>> paused() {
@@ -405,14 +413,18 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+     * Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+     * 
+     * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
      * 
      */
     @Import(name="retainBackupsEnabled")
     private @Nullable Output<Boolean> retainBackupsEnabled;
 
     /**
-     * @return Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+     * @return Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+     * 
+     * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
      * 
      */
     public Optional<Output<Boolean>> retainBackupsEnabled() {
@@ -977,7 +989,11 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param paused Flag that indicates whether the cluster is paused.
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+         * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+         * `lifecycle {
+         * ignoreChanges = [paused]
+         * }`
          * 
          * @return builder
          * 
@@ -988,7 +1004,11 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param paused Flag that indicates whether the cluster is paused.
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+         * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+         * `lifecycle {
+         * ignoreChanges = [paused]
+         * }`
          * 
          * @return builder
          * 
@@ -1134,7 +1154,9 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+         * 
+         * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
          * 
          * @return builder
          * 
@@ -1145,7 +1167,9 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param retainBackupsEnabled Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+         * 
+         * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
          * 
          * @return builder
          * 

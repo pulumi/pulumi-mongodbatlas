@@ -142,6 +142,9 @@ class GetOrganizationResult:
     @_builtins.property
     @pulumi.getter(name="skipDefaultAlertsSettings")
     def skip_default_alerts_settings(self) -> _builtins.bool:
+        """
+        (Optional) Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+        """
         return pulumi.get(self, "skip_default_alerts_settings")
 
     @_builtins.property

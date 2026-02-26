@@ -18,6 +18,238 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+ * 
+ * &gt; **IMPORTANT:** This resource links your cloud provider&#39;s Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `mongodbatlas.PrivateLinkEndpoint`). You first create the service in Atlas with `mongodbatlas.PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `mongodbatlas.PrivateLinkEndpointService` resource.
+ * 
+ * The private link Terraform module makes use of this resource and simplifies its use.
+ * 
+ * &gt; **NOTE:** You must have Organization Owner or Project Owner role. Create and delete operations wait for all clusters on the project to IDLE to ensure the latest connection strings can be retrieved (default timeout: 2hrs).
+ * 
+ * &gt; **IMPORTANT:** For GCP, MongoDB encourages customers to use the port-mapped architecture by setting `portMappingEnabled = true` on the `mongodbatlas.PrivateLinkEndpoint` resource. This architecture uses a single set of resources to support up to 150 nodes. The legacy architecture requires dedicated resources for each Atlas node, which can lead to IP address exhaustion. For migration guidance, see the GCP Private Service Connect to Port-Mapped Architecture.
+ * 
+ * ## Example with AWS
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.aws.VpcEndpoint;
+ * import com.pulumi.aws.VpcEndpointArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new PrivateLinkEndpoint("this", PrivateLinkEndpointArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .providerName("AWS")
+ *             .region("US_EAST_1")
+ *             .build());
+ * 
+ *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
+ *             .vpcId("vpc-7fc0a543")
+ *             .serviceName(this_.endpointServiceName())
+ *             .vpcEndpointType("Interface")
+ *             .subnetIds(List.of("subnet-de0406d2"))
+ *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .build());
+ * 
+ *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(this_.projectId())
+ *             .privateLinkId(this_.privateLinkId())
+ *             .endpointServiceId(ptfeService.id())
+ *             .providerName("AWS")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Example with Azure
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.azurerm.PrivateEndpoint;
+ * import com.pulumi.azurerm.PrivateEndpointArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new PrivateLinkEndpoint("this", PrivateLinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("AZURE")
+ *             .region("eastus2")
+ *             .build());
+ * 
+ *         var thisPrivateEndpoint = new PrivateEndpoint("thisPrivateEndpoint", PrivateEndpointArgs.builder()
+ *             .name("endpoint-this")
+ *             .location(thisAzurermResourceGroup.location())
+ *             .resourceGroupName(resourceGroupName)
+ *             .subnetId(thisAzurermSubnet.id())
+ *             .privateServiceConnection(List.of(Map.ofEntries(
+ *                 Map.entry("name", this_.privateLinkServiceName()),
+ *                 Map.entry("privateConnectionResourceId", this_.privateLinkServiceResourceId()),
+ *                 Map.entry("isManualConnection", true),
+ *                 Map.entry("requestMessage", "Azure Private Link this")
+ *             )))
+ *             .build());
+ * 
+ *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(this_.projectId())
+ *             .privateLinkId(this_.privateLinkId())
+ *             .endpointServiceId(thisPrivateEndpoint.id())
+ *             .privateEndpointIpAddress(thisPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
+ *             .providerName("AZURE")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Example with GCP (Legacy Architecture)
+ * 
+ * ## Example with GCP (Port-Mapped Architecture)
+ * 
+ * The port-mapped architecture uses port mapping to reduce resource provisioning. In the GCP legacy private endpoint architecture, service attachments were mapped 1:1 with Atlas nodes (one service attachment per node). In the port-mapped architecture, regardless of cloud provider, one service attachment can be mapped to up to 150 nodes via ports designated per node, enabling direct targeting of specific nodes using only one customer IP address. Enable it by setting `portMappingEnabled = true` on the `mongodbatlas.PrivateLinkEndpoint` resource.
+ * 
+ * **Important:** For the port-mapped architecture, use `endpointServiceId` (the forwarding rule name) and `privateEndpointIpAddress` (the IP address). The `endpoints` list is no longer used for the port-mapped architecture.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.google.ComputeNetwork;
+ * import com.pulumi.google.ComputeNetworkArgs;
+ * import com.pulumi.google.ComputeSubnetwork;
+ * import com.pulumi.google.ComputeSubnetworkArgs;
+ * import com.pulumi.google.ComputeAddress;
+ * import com.pulumi.google.ComputeAddressArgs;
+ * import com.pulumi.google.ComputeForwardingRule;
+ * import com.pulumi.google.ComputeForwardingRuleArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new PrivateLinkEndpoint("this", PrivateLinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("GCP")
+ *             .region(gcpRegion)
+ *             .portMappingEnabled(true)
+ *             .build());
+ * 
+ *         // Create a Google Network
+ *         var default_ = new ComputeNetwork("default", ComputeNetworkArgs.builder()
+ *             .project(gcpProjectId)
+ *             .name("my-network")
+ *             .autoCreateSubnetworks(false)
+ *             .build());
+ * 
+ *         // Create a Google Sub Network
+ *         var defaultComputeSubnetwork = new ComputeSubnetwork("defaultComputeSubnetwork", ComputeSubnetworkArgs.builder()
+ *             .project(default_.project())
+ *             .name("my-subnet")
+ *             .ipCidrRange("10.0.0.0/16")
+ *             .region(gcpRegion)
+ *             .network(default_.id())
+ *             .build());
+ * 
+ *         // Create Google Address (1 address for port-mapped architecture)
+ *         var defaultComputeAddress = new ComputeAddress("defaultComputeAddress", ComputeAddressArgs.builder()
+ *             .project(defaultComputeSubnetwork.project())
+ *             .name("tf-this-psc-endpoint")
+ *             .subnetwork(defaultComputeSubnetwork.id())
+ *             .addressType("INTERNAL")
+ *             .address("10.0.42.1")
+ *             .region(defaultComputeSubnetwork.region())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(List.of(this_))
+ *                 .build());
+ * 
+ *         // Create Forwarding Rule (1 rule for port-mapped architecture)
+ *         var defaultComputeForwardingRule = new ComputeForwardingRule("defaultComputeForwardingRule", ComputeForwardingRuleArgs.builder()
+ *             .target(this_.serviceAttachmentNames()[0])
+ *             .project(defaultComputeAddress.project())
+ *             .region(defaultComputeAddress.region())
+ *             .name(defaultComputeAddress.name())
+ *             .ipAddress(defaultComputeAddress.id())
+ *             .network(default_.id())
+ *             .loadBalancingScheme("")
+ *             .build());
+ * 
+ *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(this_.projectId())
+ *             .privateLinkId(this_.privateLinkId())
+ *             .providerName("GCP")
+ *             .endpointServiceId(defaultComputeForwardingRule.name())
+ *             .privateEndpointIpAddress(defaultComputeAddress.address())
+ *             .gcpProjectId(gcpProjectId)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(defaultComputeForwardingRule)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Further Examples
+ * - AWS PrivateLink Endpoint and Service
+ * - Azure Private Link Endpoint and Service
+ * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
+ * 
  * ## Import
  * 
  * Private Endpoint Link Connection can be imported using project ID, private link ID, endpoint service ID, and provider name, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -25,6 +257,7 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService this 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
  * ```
+ * 
  * For more information, see:
  * - [MongoDB API Private Endpoint Link Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointserviceendpoint) for detailed arguments and attributes.
  * - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.

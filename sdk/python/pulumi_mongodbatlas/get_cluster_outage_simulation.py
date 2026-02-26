@@ -126,6 +126,14 @@ def get_cluster_outage_simulation(cluster_name: Optional[_builtins.str] = None,
                                   project_id: Optional[_builtins.str] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClusterOutageSimulationResult:
     """
+    `ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+
+    Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
+
+    Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
     ## Example Usage
 
     ### S
@@ -160,6 +168,14 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[_bu
                                          project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterOutageSimulationResult]:
     """
+    `ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+
+    Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
+
+    Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
+
+    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+
     ## Example Usage
 
     ### S

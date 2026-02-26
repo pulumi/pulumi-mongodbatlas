@@ -27,6 +27,7 @@ class CustomDbRoleArgs:
                  inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None):
         """
         The set of arguments for constructing a CustomDbRole resource.
+
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project.
         :param pulumi.Input[_builtins.str] role_name: Name of the custom role.
                
@@ -103,6 +104,7 @@ class _CustomDbRoleState:
                  role_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomDbRole resources.
+
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project.
         :param pulumi.Input[_builtins.str] role_name: Name of the custom role.
                
@@ -287,7 +289,9 @@ class CustomDbRole(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -411,7 +415,9 @@ class CustomDbRole(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/customDbRole:CustomDbRole my_role 1112222b3bf99403840e8934-MyCustomRole
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/custom-roles/)
+
 
         :param str resource_name: The name of the resource.
         :param CustomDbRoleArgs args: The arguments to use to populate this resource's properties.

@@ -39,6 +39,7 @@ class FederatedSettingsIdentityProviderArgs:
                  user_claim: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a FederatedSettingsIdentityProvider resource.
+
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] issuer_uri: Unique string that identifies the issuer of the IdP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] associated_domains: List that contains the domains associated with the identity provider.
@@ -337,6 +338,7 @@ class _FederatedSettingsIdentityProviderState:
                  user_claim: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsIdentityProvider resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] associated_domains: List that contains the domains associated with the identity provider.
         :param pulumi.Input[_builtins.str] audience: Identifier of the intended recipient of the token used in OIDC IdP.
         :param pulumi.Input[_builtins.str] authorization_type: Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
@@ -714,12 +716,14 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
+        Identity Provider **must** be imported before using federation_settings_id-idp_id, e.g.
 
         ```sh
         $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk12971234
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -797,12 +801,14 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
 
         ## Import
 
-        Identity Provider __must__ be imported before using federation_settings_id-idp_id, e.g.
+        Identity Provider **must** be imported before using federation_settings_id-idp_id, e.g.
 
         ```sh
         $ pulumi import mongodbatlas:index/federatedSettingsIdentityProvider:FederatedSettingsIdentityProvider identity_provider 6287a663c660f52b1c441c6c-0oad4fas87jL5Xnk12971234
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+
 
         :param str resource_name: The name of the resource.
         :param FederatedSettingsIdentityProviderArgs args: The arguments to use to populate this resource's properties.

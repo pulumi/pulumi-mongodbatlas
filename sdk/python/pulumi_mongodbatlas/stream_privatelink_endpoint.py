@@ -30,6 +30,7 @@ class StreamPrivatelinkEndpointArgs:
                  service_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a StreamPrivatelinkEndpoint resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
         :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param pulumi.Input[_builtins.str] vendor: Vendor that manages the endpoint. The following are the vendor values per provider:
@@ -204,6 +205,7 @@ class _StreamPrivatelinkEndpointState:
                  vendor: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamPrivatelinkEndpoint resources.
+
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
         :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Required for the following provider and vendor combinations:
                				
@@ -583,6 +585,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         - GCP Confluent PrivateLink
         - Azure PrivateLink
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
@@ -740,6 +743,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         - AWS S3 PrivateLink
         - GCP Confluent PrivateLink
         - Azure PrivateLink
+
 
         :param str resource_name: The name of the resource.
         :param StreamPrivatelinkEndpointArgs args: The arguments to use to populate this resource's properties.

@@ -57,6 +57,17 @@ public final class GetOrganizationsResultUser {
      * 
      */
     private String lastName;
+    /**
+     * @return Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     * &gt; **NOTE:** - Users with pending invitations created using `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
+     * To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
+     * 
+     * &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `true` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `mongodbatlas.Organization` resource.
+     * 
+     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
+     * 
+     */
     private String mobileNumber;
     /**
      * @return String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
@@ -140,6 +151,17 @@ public final class GetOrganizationsResultUser {
     public String lastName() {
         return this.lastName;
     }
+    /**
+     * @return Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     * &gt; **NOTE:** - Users with pending invitations created using `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
+     * To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
+     * 
+     * &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `true` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `mongodbatlas.Organization` resource.
+     * 
+     * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
+     * 
+     */
     public String mobileNumber() {
         return this.mobileNumber;
     }

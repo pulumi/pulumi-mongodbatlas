@@ -29,6 +29,7 @@ class PushBasedLogExportArgs:
                  timeouts: Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a PushBasedLogExport resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket to which the agent sends the logs to.
         :param pulumi.Input[_builtins.str] iam_role_id: ID of the AWS IAM role that is used to write to the S3 bucket.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
@@ -128,6 +129,7 @@ class _PushBasedLogExportState:
                  timeouts: Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering PushBasedLogExport resources.
+
         :param pulumi.Input[_builtins.str] bucket_name: The name of the bucket to which the agent sends the logs to.
         :param pulumi.Input[_builtins.str] create_date: Date and time that this feature was enabled on.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
@@ -261,6 +263,13 @@ class PushBasedLogExport(pulumi.CustomResource):
                  timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
+        > **DEPRECATED:** This resource is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+
+        `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
+        can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
+
+        The push based log export Terraform module makes use of this resource and simplifies its use.
+
         ## Example Usage
 
         ### S
@@ -300,6 +309,7 @@ class PushBasedLogExport(pulumi.CustomResource):
         Push-based log export resource can be imported using the project ID, e.g.
 
         For more information see: [MongoDB Atlas API - Push-Based Log Export](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-push-based-log-export) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -316,6 +326,13 @@ class PushBasedLogExport(pulumi.CustomResource):
                  args: PushBasedLogExportArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **DEPRECATED:** This resource is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
+
+        `PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable & disable the project level settings for the push-based log export feature. Using this resource you
+        can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
+
+        The push based log export Terraform module makes use of this resource and simplifies its use.
+
         ## Example Usage
 
         ### S
@@ -355,6 +372,7 @@ class PushBasedLogExport(pulumi.CustomResource):
         Push-based log export resource can be imported using the project ID, e.g.
 
         For more information see: [MongoDB Atlas API - Push-Based Log Export](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-push-based-log-export) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param PushBasedLogExportArgs args: The arguments to use to populate this resource's properties.

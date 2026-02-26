@@ -12,6 +12,10 @@ namespace Pulumi.Mongodbatlas
     public static class GetServiceAccountProjectAssignment
     {
         /// <summary>
+        /// `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -70,6 +74,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountProjectAssignmentResult>("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", args ?? new GetServiceAccountProjectAssignmentArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -128,6 +136,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountProjectAssignmentResult>("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", args ?? new GetServiceAccountProjectAssignmentInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S

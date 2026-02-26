@@ -27,6 +27,7 @@ class ResourcePolicyArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ResourcePolicy resource.
+
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input['ResourcePolicyPolicyArgs']]] policies: List of policies that make up the Atlas resource policy.
         :param pulumi.Input[_builtins.str] description: Description of the Atlas resource policy.
@@ -102,6 +103,7 @@ class _ResourcePolicyState:
                  version: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ResourcePolicy resources.
+
         :param pulumi.Input['ResourcePolicyCreatedByUserArgs'] created_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[_builtins.str] created_date: Date and time in UTC when the Atlas resource policy was created.
         :param pulumi.Input[_builtins.str] description: Description of the Atlas resource policy.
@@ -262,6 +264,7 @@ class ResourcePolicy(pulumi.CustomResource):
 
         For more information see: [MongoDB Atlas API - Resource Policies](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-resource-policies) Documentation.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Description of the Atlas resource policy.
@@ -285,6 +288,7 @@ class ResourcePolicy(pulumi.CustomResource):
         Resource Policy resource can be imported using the org ID and policy ID, in the format `{ORG_ID}-{POLICY_ID}`, e.g.
 
         For more information see: [MongoDB Atlas API - Resource Policies](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-resource-policies) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param ResourcePolicyArgs args: The arguments to use to populate this resource's properties.
