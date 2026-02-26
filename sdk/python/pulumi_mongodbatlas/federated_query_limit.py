@@ -28,6 +28,7 @@ class FederatedQueryLimitArgs:
                  maximum_limit: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a FederatedQueryLimit resource.
+
         :param pulumi.Input[_builtins.str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
                * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
                * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
@@ -153,6 +154,7 @@ class _FederatedQueryLimitState:
                  value: Optional[pulumi.Input[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering FederatedQueryLimit resources.
+
         :param pulumi.Input[_builtins.int] current_usage: Amount that indicates the current usage of the limit.
         :param pulumi.Input[_builtins.int] default_limit: Default value of the limit.
                * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
@@ -341,7 +343,9 @@ class FederatedQueryLimit(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -396,7 +400,9 @@ class FederatedQueryLimit(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedQueryLimit:FederatedQueryLimit example 1112222b3bf99403840e8934--FederatedDatabaseInstance0--bytesProcessed.daily
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createOneDataFederationQueryLimit) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param FederatedQueryLimitArgs args: The arguments to use to populate this resource's properties.

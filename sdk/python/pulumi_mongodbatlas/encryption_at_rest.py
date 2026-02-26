@@ -28,6 +28,7 @@ class EncryptionAtRestArgs:
                  google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None):
         """
         The set of arguments for constructing a EncryptionAtRest resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input['EncryptionAtRestAwsKmsConfigArgs'] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
@@ -115,6 +116,7 @@ class _EncryptionAtRestState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EncryptionAtRest resources.
+
         :param pulumi.Input['EncryptionAtRestAwsKmsConfigArgs'] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         :param pulumi.Input[_builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
@@ -206,7 +208,150 @@ class EncryptionAtRest(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a EncryptionAtRest resource with the given unique name, props, and options.
+        `EncryptionAtRest` allows management of Encryption at Rest for an Atlas project using Customer Key Management configuration. The following providers are supported:
+        - [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+        - [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+        - [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+
+        The encryption at rest Terraform module makes use of this resource and simplifies its use. It is currently limited to AWS KMS.
+
+        Atlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 90-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.
+
+        See [Encryption at Rest](https://docs.atlas.mongodb.com/security-kms-encryption/index.html) for more information, including prerequisites and restrictions.
+
+        > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+
+        > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryption_at_rest_provider = "NONE"`, or be deleted.
+
+        ## Enabling Encryption at Rest for existing Atlas cluster
+
+        After configuring at least one key management provider for an Atlas project, Project Owners can enable customer key management for each Atlas cluster for which they require encryption. For clusters defined in terraform, the `encryption_at_rest_provider` attribute can be used in both `AdvancedCluster` and `Cluster` resources. The key management provider does not have to match the cluster cloud service provider.
+
+        Please reference [Enable Customer Key Management for an Atlas Cluster](https://www.mongodb.com/docs/atlas/security-kms-encryption/#enable-customer-key-management-for-an-service-cluster) documentation for additional considerations.
+
+        ## Example Usage
+
+        ### S
+
+        ### Configuring encryption at rest using customer key management in AWS
+        The configuration of encryption at rest with customer key management, `EncryptionAtRest`, needs to be completed before a cluster is created in the project. Force this wait by using an implicit dependency via `project_id` as shown in the example below.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
+            project_id=atlas_project_id,
+            provider_name="AWS")
+        auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
+            project_id=atlas_project_id,
+            role_id=setup_only.role_id,
+            aws={
+                "iam_assumed_role_arn": test_role["arn"],
+            })
+        test_encryption_at_rest = mongodbatlas.EncryptionAtRest("test",
+            project_id=atlas_project_id,
+            aws_kms_config={
+                "enabled": True,
+                "customer_master_key_id": kms_key["id"],
+                "region": atlas_region,
+                "role_id": auth_role.role_id,
+            },
+            enabled_for_search_nodes=True)
+        cluster = mongodbatlas.AdvancedCluster("cluster",
+            project_id=test_encryption_at_rest.project_id,
+            name="MyCluster",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            encryption_at_rest_provider="AWS",
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
+        pulumi.export("isAwsKmsEncryptionAtRestValid", test.aws_kms_config.valid)
+        ```
+
+        **NOTE**  If using the two resources path for cloud provider access, `cloud_provider_access_setup` and `cloud_provider_access_authorization`, you may need to define a `depends_on` statement for these two resources, because terraform is not able to infer the dependency.
+
+        ### Configuring encryption at rest using customer key management in Azure
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_encryption_at_rest = mongodbatlas.EncryptionAtRest("test",
+            project_id=atlas_project_id,
+            azure_key_vault_config={
+                "enabled": True,
+                "azure_environment": "AZURE",
+                "tenant_id": azure_tenant_id,
+                "subscription_id": azure_subscription_id,
+                "client_id": azure_client_id,
+                "secret": azure_client_secret,
+                "resource_group_name": azure_resource_group_name,
+                "key_vault_name": azure_key_vault_name,
+                "key_identifier": azure_key_identifier,
+            })
+        test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
+        pulumi.export("isAzureEncryptionAtRestValid", test.azure_key_vault_config.valid)
+        ```
+
+        ### Manage Customer Keys with Azure Key Vault Over Private Endpoints
+        It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `EncryptionAtRestPrivateEndpoint` resource.
+
+        Please review the `EncryptionAtRestPrivateEndpoint` resource documentation and complete the example for details on this functionality.
+
+        ### Configuring encryption at rest using customer key management in GCP
+        For GCP environments using static service account key, we recommend configuring encryption at rest with customer key management. For more details see our Migration Guide: Encryption at Rest (GCP) Service Account JSON to Role-based Auth.
+
+        This approach uses role-based authentication through Cloud Provider Access for a more secure solution.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.CloudProviderAccessSetup("this",
+            project_id=atlas_project_id,
+            provider_name="GCP")
+        this_cloud_provider_access_authorization = mongodbatlas.CloudProviderAccessAuthorization("this",
+            project_id=atlas_project_id,
+            role_id=this.role_id)
+        test = mongodbatlas.EncryptionAtRest("test",
+            project_id=atlas_project_id,
+            google_cloud_kms_config={
+                "enabled": True,
+                "key_version_resource_id": crypto_key["primary"][0]["name"],
+                "role_id": this_cloud_provider_access_authorization.role_id,
+            },
+            opts = pulumi.ResourceOptions(depends_on=[
+                    encrypter_decrypter_binding,
+                    viewer_binding,
+                ]))
+        ```
+
+        ### Further Examples
+        - AWS KMS Encryption at Rest
+        - Azure Key Vault Encryption at Rest
+        - GCP KMS Encryption at Rest
+
+        ## Import
+
+        Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
+
+        For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management)
+
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
@@ -222,7 +367,150 @@ class EncryptionAtRest(pulumi.CustomResource):
                  args: EncryptionAtRestArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a EncryptionAtRest resource with the given unique name, props, and options.
+        `EncryptionAtRest` allows management of Encryption at Rest for an Atlas project using Customer Key Management configuration. The following providers are supported:
+        - [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
+        - [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
+        - [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+
+        The encryption at rest Terraform module makes use of this resource and simplifies its use. It is currently limited to AWS KMS.
+
+        Atlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 90-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.
+
+        See [Encryption at Rest](https://docs.atlas.mongodb.com/security-kms-encryption/index.html) for more information, including prerequisites and restrictions.
+
+        > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
+
+        > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
+        > **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryption_at_rest_provider = "NONE"`, or be deleted.
+
+        ## Enabling Encryption at Rest for existing Atlas cluster
+
+        After configuring at least one key management provider for an Atlas project, Project Owners can enable customer key management for each Atlas cluster for which they require encryption. For clusters defined in terraform, the `encryption_at_rest_provider` attribute can be used in both `AdvancedCluster` and `Cluster` resources. The key management provider does not have to match the cluster cloud service provider.
+
+        Please reference [Enable Customer Key Management for an Atlas Cluster](https://www.mongodb.com/docs/atlas/security-kms-encryption/#enable-customer-key-management-for-an-service-cluster) documentation for additional considerations.
+
+        ## Example Usage
+
+        ### S
+
+        ### Configuring encryption at rest using customer key management in AWS
+        The configuration of encryption at rest with customer key management, `EncryptionAtRest`, needs to be completed before a cluster is created in the project. Force this wait by using an implicit dependency via `project_id` as shown in the example below.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
+            project_id=atlas_project_id,
+            provider_name="AWS")
+        auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
+            project_id=atlas_project_id,
+            role_id=setup_only.role_id,
+            aws={
+                "iam_assumed_role_arn": test_role["arn"],
+            })
+        test_encryption_at_rest = mongodbatlas.EncryptionAtRest("test",
+            project_id=atlas_project_id,
+            aws_kms_config={
+                "enabled": True,
+                "customer_master_key_id": kms_key["id"],
+                "region": atlas_region,
+                "role_id": auth_role.role_id,
+            },
+            enabled_for_search_nodes=True)
+        cluster = mongodbatlas.AdvancedCluster("cluster",
+            project_id=test_encryption_at_rest.project_id,
+            name="MyCluster",
+            cluster_type="REPLICASET",
+            backup_enabled=True,
+            encryption_at_rest_provider="AWS",
+            replication_specs=[{
+                "region_configs": [{
+                    "priority": 7,
+                    "provider_name": "AWS",
+                    "region_name": "US_EAST_1",
+                    "electable_specs": {
+                        "instance_size": "M10",
+                        "node_count": 3,
+                    },
+                }],
+            }])
+        test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
+        pulumi.export("isAwsKmsEncryptionAtRestValid", test.aws_kms_config.valid)
+        ```
+
+        **NOTE**  If using the two resources path for cloud provider access, `cloud_provider_access_setup` and `cloud_provider_access_authorization`, you may need to define a `depends_on` statement for these two resources, because terraform is not able to infer the dependency.
+
+        ### Configuring encryption at rest using customer key management in Azure
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_encryption_at_rest = mongodbatlas.EncryptionAtRest("test",
+            project_id=atlas_project_id,
+            azure_key_vault_config={
+                "enabled": True,
+                "azure_environment": "AZURE",
+                "tenant_id": azure_tenant_id,
+                "subscription_id": azure_subscription_id,
+                "client_id": azure_client_id,
+                "secret": azure_client_secret,
+                "resource_group_name": azure_resource_group_name,
+                "key_vault_name": azure_key_vault_name,
+                "key_identifier": azure_key_identifier,
+            })
+        test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
+        pulumi.export("isAzureEncryptionAtRestValid", test.azure_key_vault_config.valid)
+        ```
+
+        ### Manage Customer Keys with Azure Key Vault Over Private Endpoints
+        It is possible to configure Atlas Encryption at Rest to communicate with Customer Managed Keys (Azure Key Vault or AWS KMS) over private network interfaces (Azure Private Link or AWS PrivateLink). This requires enabling the `azure_key_vault_config.require_private_networking` or the `aws_kms_config.require_private_networking` attribute, together with the configuration of the `EncryptionAtRestPrivateEndpoint` resource.
+
+        Please review the `EncryptionAtRestPrivateEndpoint` resource documentation and complete the example for details on this functionality.
+
+        ### Configuring encryption at rest using customer key management in GCP
+        For GCP environments using static service account key, we recommend configuring encryption at rest with customer key management. For more details see our Migration Guide: Encryption at Rest (GCP) Service Account JSON to Role-based Auth.
+
+        This approach uses role-based authentication through Cloud Provider Access for a more secure solution.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.CloudProviderAccessSetup("this",
+            project_id=atlas_project_id,
+            provider_name="GCP")
+        this_cloud_provider_access_authorization = mongodbatlas.CloudProviderAccessAuthorization("this",
+            project_id=atlas_project_id,
+            role_id=this.role_id)
+        test = mongodbatlas.EncryptionAtRest("test",
+            project_id=atlas_project_id,
+            google_cloud_kms_config={
+                "enabled": True,
+                "key_version_resource_id": crypto_key["primary"][0]["name"],
+                "role_id": this_cloud_provider_access_authorization.role_id,
+            },
+            opts = pulumi.ResourceOptions(depends_on=[
+                    encrypter_decrypter_binding,
+                    viewer_binding,
+                ]))
+        ```
+
+        ### Further Examples
+        - AWS KMS Encryption at Rest
+        - Azure Key Vault Encryption at Rest
+        - GCP KMS Encryption at Rest
+
+        ## Import
+
+        Encryption at Rest Settings can be imported using project ID, in the format `project_id`, e.g.
+
+        For more information see: [MongoDB Atlas API Reference for Encryption at Rest using Customer Key Management.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management)
+
+
         :param str resource_name: The name of the resource.
         :param EncryptionAtRestArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

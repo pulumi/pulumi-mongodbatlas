@@ -24,6 +24,7 @@ class TeamProjectAssignmentArgs:
                  team_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a TeamProjectAssignment resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: One or more project-level roles assigned to the team.
         :param pulumi.Input[_builtins.str] team_id: Unique 24-hexadecimal character string that identifies the team.
@@ -77,6 +78,7 @@ class _TeamProjectAssignmentState:
                  team_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering TeamProjectAssignment resources.
+
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: One or more project-level roles assigned to the team.
         :param pulumi.Input[_builtins.str] team_id: Unique 24-hexadecimal character string that identifies the team.
@@ -166,7 +168,9 @@ class TeamProjectAssignment(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment test 9f3a7c2e54b8d1a0e6f4b3c2/a4d9f7b18e52c0fa36b7e9cd
         ```
+
         For more information, see: [MongoDB Atlas API - Teams](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-addallteamstoproject) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -211,7 +215,9 @@ class TeamProjectAssignment(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/teamProjectAssignment:TeamProjectAssignment test 9f3a7c2e54b8d1a0e6f4b3c2/a4d9f7b18e52c0fa36b7e9cd
         ```
+
         For more information, see: [MongoDB Atlas API - Teams](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-addallteamstoproject) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param TeamProjectAssignmentArgs args: The arguments to use to populate this resource's properties.

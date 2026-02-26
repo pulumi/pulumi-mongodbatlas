@@ -30,6 +30,7 @@ class LdapVerifyArgs:
                  ca_certificate: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LdapVerify resource.
+
         :param pulumi.Input[_builtins.str] bind_password: The password used to authenticate the `bind_username`.
         :param pulumi.Input[_builtins.str] bind_username: The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
@@ -149,6 +150,7 @@ class _LdapVerifyState:
                  validations: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]] = None):
         """
         Input properties used for looking up and filtering LdapVerify resources.
+
         :param pulumi.Input[_builtins.str] authz_query_template: An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         :param pulumi.Input[_builtins.str] bind_password: The password used to authenticate the `bind_username`.
         :param pulumi.Input[_builtins.str] bind_username: The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
@@ -375,7 +377,9 @@ class LdapVerify(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -437,7 +441,9 @@ class LdapVerify(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+
 
         :param str resource_name: The name of the resource.
         :param LdapVerifyArgs args: The arguments to use to populate this resource's properties.

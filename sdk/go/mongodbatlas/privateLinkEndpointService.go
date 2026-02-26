@@ -12,6 +12,225 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+//
+// > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `PrivateLinkEndpoint`). You first create the service in Atlas with `PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `PrivateLinkEndpointService` resource.
+//
+// The private link Terraform module makes use of this resource and simplifies its use.
+//
+// > **NOTE:** You must have Organization Owner or Project Owner role. Create and delete operations wait for all clusters on the project to IDLE to ensure the latest connection strings can be retrieved (default timeout: 2hrs).
+//
+// > **IMPORTANT:** For GCP, MongoDB encourages customers to use the port-mapped architecture by setting `portMappingEnabled = true` on the `PrivateLinkEndpoint` resource. This architecture uses a single set of resources to support up to 150 nodes. The legacy architecture requires dedicated resources for each Atlas node, which can lead to IP address exhaustion. For migration guidance, see the GCP Private Service Connect to Port-Mapped Architecture.
+//
+// ## Example with AWS
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "this", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//				Region:       pulumi.String("US_EAST_1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ptfeService, err := aws.NewVpcEndpoint(ctx, "ptfe_service", &aws.VpcEndpointArgs{
+//				VpcId:           "vpc-7fc0a543",
+//				ServiceName:     this.EndpointServiceName,
+//				VpcEndpointType: "Interface",
+//				SubnetIds: []string{
+//					"subnet-de0406d2",
+//				},
+//				SecurityGroupIds: []string{
+//					"sg-3f238186",
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "this", &mongodbatlas.PrivateLinkEndpointServiceArgs{
+//				ProjectId:         this.ProjectId,
+//				PrivateLinkId:     this.PrivateLinkId,
+//				EndpointServiceId: ptfeService.Id,
+//				ProviderName:      pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example with Azure
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-azurerm/sdk/go/azurerm"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "this", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ProviderName: pulumi.String("AZURE"),
+//				Region:       pulumi.String("eastus2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			thisPrivateEndpoint, err := azurerm.NewPrivateEndpoint(ctx, "this", &azurerm.PrivateEndpointArgs{
+//				Name:              "endpoint-this",
+//				Location:          thisAzurermResourceGroup.Location,
+//				ResourceGroupName: resourceGroupName,
+//				SubnetId:          thisAzurermSubnet.Id,
+//				PrivateServiceConnection: []map[string]interface{}{
+//					map[string]interface{}{
+//						"name":                        this.PrivateLinkServiceName,
+//						"privateConnectionResourceId": this.PrivateLinkServiceResourceId,
+//						"isManualConnection":          true,
+//						"requestMessage":              "Azure Private Link this",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "this", &mongodbatlas.PrivateLinkEndpointServiceArgs{
+//				ProjectId:                this.ProjectId,
+//				PrivateLinkId:            this.PrivateLinkId,
+//				EndpointServiceId:        thisPrivateEndpoint.Id,
+//				PrivateEndpointIpAddress: thisPrivateEndpoint.PrivateServiceConnection[0].PrivateIpAddress,
+//				ProviderName:             pulumi.String("AZURE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example with GCP (Legacy Architecture)
+//
+// ## Example with GCP (Port-Mapped Architecture)
+//
+// The port-mapped architecture uses port mapping to reduce resource provisioning. In the GCP legacy private endpoint architecture, service attachments were mapped 1:1 with Atlas nodes (one service attachment per node). In the port-mapped architecture, regardless of cloud provider, one service attachment can be mapped to up to 150 nodes via ports designated per node, enabling direct targeting of specific nodes using only one customer IP address. Enable it by setting `portMappingEnabled = true` on the `PrivateLinkEndpoint` resource.
+//
+// **Important:** For the port-mapped architecture, use `endpointServiceId` (the forwarding rule name) and `privateEndpointIpAddress` (the IP address). The `endpoints` list is no longer used for the port-mapped architecture.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-google/sdk/go/google"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "this", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:          pulumi.Any(projectId),
+//				ProviderName:       pulumi.String("GCP"),
+//				Region:             pulumi.Any(gcpRegion),
+//				PortMappingEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create a Google Network
+//			_default, err := google.NewComputeNetwork(ctx, "default", &google.ComputeNetworkArgs{
+//				Project:               gcpProjectId,
+//				Name:                  "my-network",
+//				AutoCreateSubnetworks: false,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create a Google Sub Network
+//			defaultComputeSubnetwork, err := google.NewComputeSubnetwork(ctx, "default", &google.ComputeSubnetworkArgs{
+//				Project:     _default.Project,
+//				Name:        "my-subnet",
+//				IpCidrRange: "10.0.0.0/16",
+//				Region:      gcpRegion,
+//				Network:     _default.Id,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create Google Address (1 address for port-mapped architecture)
+//			defaultComputeAddress, err := google.NewComputeAddress(ctx, "default", &google.ComputeAddressArgs{
+//				Project:     defaultComputeSubnetwork.Project,
+//				Name:        "tf-this-psc-endpoint",
+//				Subnetwork:  defaultComputeSubnetwork.Id,
+//				AddressType: "INTERNAL",
+//				Address:     "10.0.42.1",
+//				Region:      defaultComputeSubnetwork.Region,
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				this,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			// Create Forwarding Rule (1 rule for port-mapped architecture)
+//			defaultComputeForwardingRule, err := google.NewComputeForwardingRule(ctx, "default", &google.ComputeForwardingRuleArgs{
+//				Target:              this.ServiceAttachmentNames[0],
+//				Project:             defaultComputeAddress.Project,
+//				Region:              defaultComputeAddress.Region,
+//				Name:                defaultComputeAddress.Name,
+//				IpAddress:           defaultComputeAddress.Id,
+//				Network:             _default.Id,
+//				LoadBalancingScheme: "",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "this", &mongodbatlas.PrivateLinkEndpointServiceArgs{
+//				ProjectId:                this.ProjectId,
+//				PrivateLinkId:            this.PrivateLinkId,
+//				ProviderName:             pulumi.String("GCP"),
+//				EndpointServiceId:        defaultComputeForwardingRule.Name,
+//				PrivateEndpointIpAddress: defaultComputeAddress.Address,
+//				GcpProjectId:             pulumi.Any(gcpProjectId),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				defaultComputeForwardingRule,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Further Examples
+// - AWS PrivateLink Endpoint and Service
+// - Azure Private Link Endpoint and Service
+// - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
+//
 // ## Import
 //
 // Private Endpoint Link Connection can be imported using project ID, private link ID, endpoint service ID, and provider name, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -19,6 +238,7 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService this 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
 // ```
+//
 // For more information, see:
 // - [MongoDB API Private Endpoint Link Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointserviceendpoint) for detailed arguments and attributes.
 // - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.

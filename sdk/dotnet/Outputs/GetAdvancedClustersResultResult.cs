@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool BackupEnabled;
         /// <summary>
-        /// Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+        /// Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `BiConnector`.
         /// </summary>
         public readonly Outputs.GetAdvancedClustersResultBiConnectorConfigResult BiConnectorConfig;
         /// <summary>

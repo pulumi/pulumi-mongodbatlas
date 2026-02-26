@@ -12,6 +12,149 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Cloud Provider Access Configuration Paths
+//
+// The Terraform MongoDB Atlas Provider offers a two-resource path to perform an authorization for a cloud provider role.
+// - The first resource, `CloudProviderAccessSetup`, only generates the initial configuration (create, delete operations).
+// - The second resource, `CloudProviderAccessAuthorization`, helps to perform the authorization using the `roleId` of the first resource.
+//
+// This path is helpful in a multi-provider Terraform file, and allows for a single and decoupled apply.
+// See example of this two-resource path option with AWS Cloud here, AZURE Cloud here and GCP Cloud here.
+//
+// ## CloudProviderAccessAuthorization
+//
+// This is the second resource in the two-resource path as described above.
+//
+// `CloudProviderAccessAuthorization` allows you to authorize an AWS, AZURE or GCP IAM roles in Atlas.
+//
+// > **IMPORTANT:** Changes to `projectId` or `roleId` will result in the destruction and recreation of the authorization resource. This action happens as these fields uniquely identify the authorization and cannot be modified in-place.
+//
+// ## Example Usage
+//
+// ### With AWS
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: setupOnly.ProjectId,
+//				RoleId:    setupOnly.RoleId,
+//				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
+//					IamAssumedRoleArn: pulumi.String("arn:aws:iam::<AWS_ACCOUNT_ID>:role/test-user-role"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Azure
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("AZURE"),
+//				AzureConfigs: mongodbatlas.CloudProviderAccessSetupAzureConfigArray{
+//					&mongodbatlas.CloudProviderAccessSetupAzureConfigArgs{
+//						AtlasAzureAppId:    pulumi.String("9f2deb0d-be22-4524-a403-df531868bac0"),
+//						ServicePrincipalId: pulumi.String("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1"),
+//						TenantId:           pulumi.String("91402384-d71e-22f5-22dd-759e272cdc1c"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: setupOnly.ProjectId,
+//				RoleId:    setupOnly.RoleId,
+//				Azure: &mongodbatlas.CloudProviderAccessAuthorizationAzureArgs{
+//					AtlasAzureAppId:    pulumi.String("9f2deb0d-be22-4524-a403-df531868bac0"),
+//					ServicePrincipalId: pulumi.String("22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1"),
+//					TenantId:           pulumi.String("91402384-d71e-22f5-22dd-759e272cdc1c"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With GCP
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.String("64259ee860c43338194b0f8e"),
+//				ProviderName: pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: setupOnly.ProjectId,
+//				RoleId:    setupOnly.RoleId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Further Examples
+// - AWS Cloud Provider Access
+// - Azure Cloud Provider Access
+// - GCP Cloud Provider Access
+//
+// ## Import CloudProviderAccessAuthorization
+//
+// You cannot import the Cloud Provider Access Authorization resource into Terraform. Instead, if the associated role is already authorized, you can recreate the resource without any adverse effects.
 type CloudProviderAccessAuthorization struct {
 	pulumi.CustomResourceState
 

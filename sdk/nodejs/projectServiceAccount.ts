@@ -7,6 +7,14 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ProjectServiceAccount` provides a Project Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Project.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
+ * > **IMPORTANT:** The use of `mongodbatlas.ProjectServiceAccount` resource is not recommended for users with Organization Owner permissions. Instead, use the `mongodbatlas.ServiceAccount` and `mongodbatlas.ServiceAccountProjectAssignment` resources to manage Service Account project assignments.
+ *
+ * > **IMPORTANT:** Deleting a `mongodbatlas.ProjectServiceAccount` resource unassigns the associated Service Account from the project, but doesn't delete it from the organization.
+ *
  * ## Example Usage
  *
  * ## Import

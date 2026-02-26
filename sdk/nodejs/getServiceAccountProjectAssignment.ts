@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S
@@ -81,6 +85,10 @@ export interface GetServiceAccountProjectAssignmentResult {
     readonly roles: string[];
 }
 /**
+ * `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S

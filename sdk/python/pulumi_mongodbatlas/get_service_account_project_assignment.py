@@ -89,6 +89,10 @@ def get_service_account_project_assignment(client_id: Optional[_builtins.str] = 
                                            project_id: Optional[_builtins.str] = None,
                                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountProjectAssignmentResult:
     """
+    `ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
     ### S
@@ -134,6 +138,10 @@ def get_service_account_project_assignment_output(client_id: Optional[pulumi.Inp
                                                   project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountProjectAssignmentResult]:
     """
+    `ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
     ### S

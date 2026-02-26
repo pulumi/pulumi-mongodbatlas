@@ -24,6 +24,7 @@ class ProjectInvitationArgs:
                  username: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a ProjectInvitation resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[_builtins.str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
@@ -81,6 +82,7 @@ class _ProjectInvitationState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProjectInvitation resources.
+
         :param pulumi.Input[_builtins.str] created_at: Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
         :param pulumi.Input[_builtins.str] expires_at: Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
         :param pulumi.Input[_builtins.str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
@@ -200,6 +202,21 @@ class ProjectInvitation(pulumi.CustomResource):
                  username: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `ProjectInvitation` invites a user to join an Atlas project.
+
+        > **DEPRECATION:** This resource is deprecated. Migrate to `CloudUserProjectAssignment` for managing project membership. See the Project Invitation to Cloud User Project Assignment Migration Guide.
+
+        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+
+        The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+
+        > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+        * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+        * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+        * If the user accepts the invitation and then leaves the project, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+
         ## Example Usage
 
         ### S
@@ -232,14 +249,15 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ## Import
 
-        ~> __IMPORTANT:__
-        A project invitation can __not__ be imported once it has been accepted.
+        > **IMPORTANT:**
+        A project invitation can **not** be imported once it has been accepted.
 
         Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
 
         ```sh
         $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,6 +272,21 @@ class ProjectInvitation(pulumi.CustomResource):
                  args: ProjectInvitationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ProjectInvitation` invites a user to join an Atlas project.
+
+        > **DEPRECATION:** This resource is deprecated. Migrate to `CloudUserProjectAssignment` for managing project membership. See the Project Invitation to Cloud User Project Assignment Migration Guide.
+
+        Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
+
+        The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
+
+        > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
+        * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
+        * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
+        * If the user accepts the invitation and then leaves the project, the provider will re-add the invitation if the resource definition is not removed from the Terraform configuration.
+
         ## Example Usage
 
         ### S
@@ -286,14 +319,15 @@ class ProjectInvitation(pulumi.CustomResource):
 
         ## Import
 
-        ~> __IMPORTANT:__
-        A project invitation can __not__ be imported once it has been accepted.
+        > **IMPORTANT:**
+        A project invitation can **not** be imported once it has been accepted.
 
         Import a user's invitation to a project by separating the `project_id` and the `username` with a hyphen:
 
         ```sh
         $ pulumi import mongodbatlas:index/projectInvitation:ProjectInvitation my_user 1112222b3bf99403840e8934-my_user@mongodb.com
         ```
+
 
         :param str resource_name: The name of the resource.
         :param ProjectInvitationArgs args: The arguments to use to populate this resource's properties.

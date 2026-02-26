@@ -24,6 +24,7 @@ class ApiKeyProjectAssignmentArgs:
                  roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a ApiKeyProjectAssignment resource.
+
         :param pulumi.Input[_builtins.str] api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
@@ -77,6 +78,7 @@ class _ApiKeyProjectAssignmentState:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ApiKeyProjectAssignment resources.
+
         :param pulumi.Input[_builtins.str] api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
@@ -187,6 +189,7 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
 
         For more information see: [MongoDB Atlas API - Programmatic API Keys Project Assignment](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-programmatic-api-keys) Documentation.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
@@ -250,6 +253,7 @@ class ApiKeyProjectAssignment(pulumi.CustomResource):
         API Key Project Assignment resource can be imported using the project ID and API key ID, in the format `{PROJECT_ID}/{API_KEY_ID}`, e.g.
 
         For more information see: [MongoDB Atlas API - Programmatic API Keys Project Assignment](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-programmatic-api-keys) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param ApiKeyProjectAssignmentArgs args: The arguments to use to populate this resource's properties.

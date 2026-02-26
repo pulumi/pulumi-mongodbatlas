@@ -23,6 +23,7 @@ class CustomDnsConfigurationClusterAwsArgs:
                  project_id: pulumi.Input[_builtins.str]):
         """
         The set of arguments for constructing a CustomDnsConfigurationClusterAws resource.
+
         :param pulumi.Input[_builtins.bool] enabled: Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
         :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
         """
@@ -61,6 +62,7 @@ class _CustomDnsConfigurationClusterAwsState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomDnsConfigurationClusterAws resources.
+
         :param pulumi.Input[_builtins.bool] enabled: Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
         :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
         """
@@ -128,7 +130,9 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws test 1112222b3bf99403840e8934
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Custom DNS Configuration for Atlas Clusters on AWS](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/AWS-Clusters-DNS/operation/getAWSCustomDNS).
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -166,7 +170,9 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws test 1112222b3bf99403840e8934
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Custom DNS Configuration for Atlas Clusters on AWS](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/AWS-Clusters-DNS/operation/getAWSCustomDNS).
+
 
         :param str resource_name: The name of the resource.
         :param CustomDnsConfigurationClusterAwsArgs args: The arguments to use to populate this resource's properties.

@@ -31,7 +31,7 @@ public final class GetAdvancedClustersResult {
      */
     private Boolean backupEnabled;
     /**
-     * @return Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `biConnector`.
      * 
      */
     private GetAdvancedClustersResultBiConnectorConfig biConnectorConfig;
@@ -177,7 +177,7 @@ public final class GetAdvancedClustersResult {
         return this.backupEnabled;
     }
     /**
-     * @return Settings needed to configure the MongoDB Connector for Business Intelligence for this cluster.
+     * @return Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `biConnector`.
      * 
      */
     public GetAdvancedClustersResultBiConnectorConfig biConnectorConfig() {

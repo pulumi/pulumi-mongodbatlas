@@ -56,6 +56,10 @@ public final class GetOrganizationResult {
      * 
      */
     private String securityContact;
+    /**
+     * @return (Optional) Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+     * 
+     */
     private Boolean skipDefaultAlertsSettings;
     /**
      * @return Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
@@ -126,6 +130,10 @@ public final class GetOrganizationResult {
     public String securityContact() {
         return this.securityContact;
     }
+    /**
+     * @return (Optional) Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+     * 
+     */
     public Boolean skipDefaultAlertsSettings() {
         return this.skipDefaultAlertsSettings;
     }

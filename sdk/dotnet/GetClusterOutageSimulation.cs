@@ -12,6 +12,15 @@ namespace Pulumi.Mongodbatlas
     public static class GetClusterOutageSimulation
     {
         /// <summary>
+        /// `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+        /// 
+        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider. 
+        /// 
+        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -38,6 +47,15 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterOutageSimulationResult>("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args ?? new GetClusterOutageSimulationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+        /// 
+        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider. 
+        /// 
+        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -64,6 +82,15 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterOutageSimulationResult>("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args ?? new GetClusterOutageSimulationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+        /// 
+        /// Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider. 
+        /// 
+        /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
+        /// 
+        /// 
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// 
         /// ## Example Usage
         /// 
         /// ### S

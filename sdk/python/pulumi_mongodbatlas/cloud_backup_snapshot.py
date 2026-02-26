@@ -28,6 +28,7 @@ class CloudBackupSnapshotArgs:
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshot resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
@@ -125,6 +126,7 @@ class _CloudBackupSnapshotState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshot resources.
+
         :param pulumi.Input[_builtins.str] cloud_provider: Cloud provider that stores this snapshot.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[_builtins.str] created_at: UTC ISO 8601 formatted point in time when Atlas took the snapshot.
@@ -465,7 +467,9 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -536,7 +540,9 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot test 5d0f1f73cf09a29120e173cf-MyClusterTest-5d116d82014b764445b2f9b5
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/backups/)
+
 
         :param str resource_name: The name of the resource.
         :param CloudBackupSnapshotArgs args: The arguments to use to populate this resource's properties.

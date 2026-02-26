@@ -30,6 +30,7 @@ class FlexClusterArgs:
                  timeouts: Optional[pulumi.Input['FlexClusterTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a FlexCluster resource.
+
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal character string that identifies the project.
         :param pulumi.Input['FlexClusterProviderSettingsArgs'] provider_settings: Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
@@ -151,6 +152,7 @@ class _FlexClusterState:
                  version_release_system: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FlexCluster resources.
+
         :param pulumi.Input['FlexClusterBackupSettingsArgs'] backup_settings: Flex backup configuration
         :param pulumi.Input[_builtins.str] cluster_type: Flex cluster topology.
         :param pulumi.Input['FlexClusterConnectionStringsArgs'] connection_strings: Collection of Uniform Resource Locators that point to the MongoDB database.
@@ -411,6 +413,7 @@ class FlexCluster(pulumi.CustomResource):
 
         For more information see: [MongoDB Atlas API - Flex Cluster](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Flex-Clusters/operation/createFlexcluster) Documentation.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
@@ -462,6 +465,7 @@ class FlexCluster(pulumi.CustomResource):
         You can import the Flex Cluster resource by using the Project ID and Flex Cluster name, in the format `PROJECT_ID-FLEX_CLUSTER_NAME`. For example:
 
         For more information see: [MongoDB Atlas API - Flex Cluster](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Flex-Clusters/operation/createFlexcluster) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param FlexClusterArgs args: The arguments to use to populate this resource's properties.

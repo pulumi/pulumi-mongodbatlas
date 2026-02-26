@@ -27,6 +27,7 @@ class CloudBackupSnapshotRestoreJobArgs:
                  snapshot_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotRestoreJob resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
@@ -121,6 +122,7 @@ class _CloudBackupSnapshotRestoreJobState:
                  timestamp: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshotRestoreJob resources.
+
         :param pulumi.Input[_builtins.bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
         :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
@@ -360,6 +362,20 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
+        * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
+
+        * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
+
+        * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
+
+        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
+
+        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
+        `CloudBackupSnapshotRestoreJob` resource, you won't be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn't support this. The provider will remove the Terraform resource from the state file but won't destroy the MongoDB Atlas resource.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ### Example automated delivery type
@@ -487,7 +503,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -511,6 +529,20 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  args: CloudBackupSnapshotRestoreJobArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
+        * **automated:** Atlas automatically restores the snapshot with snapshotId to the Atlas cluster with name targetClusterName in the Atlas project with targetGroupId.
+
+        * **download:** Atlas provides a URL to download a .tar.gz of the snapshot with snapshotId. The contents of the archive contain the data files for your Atlas cluster.
+
+        * **pointInTime:**  Atlas performs a Continuous Cloud Backup restore.
+
+        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your request body to create an automated restore job, Atlas removes all existing data on the target cluster prior to the restore.
+
+        > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
+        `CloudBackupSnapshotRestoreJob` resource, you won't be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn't support this. The provider will remove the Terraform resource from the state file but won't destroy the MongoDB Atlas resource.
+
+        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+
         ## Example Usage
 
         ### Example automated delivery type
@@ -638,7 +670,9 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/cloudBackupSnapshotRestoreJob:CloudBackupSnapshotRestoreJob test 5cf5a45a9ccf6400e60981b6-MyCluster-5d1b654ecf09a24b888f4c79
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/restore/restores/)
+
 
         :param str resource_name: The name of the resource.
         :param CloudBackupSnapshotRestoreJobArgs args: The arguments to use to populate this resource's properties.

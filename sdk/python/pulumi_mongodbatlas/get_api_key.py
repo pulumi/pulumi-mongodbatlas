@@ -113,6 +113,12 @@ def get_api_key(api_key_id: Optional[_builtins.str] = None,
                 org_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiKeyResult:
     """
+    `ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+
+    > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
+    > **NOTE:** You may find org_id in the official documentation.
+
     ## Example Usage
 
 
@@ -136,6 +142,12 @@ def get_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
                        org_id: Optional[pulumi.Input[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiKeyResult]:
     """
+    `ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+
+    > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
+    > **NOTE:** You may find org_id in the official documentation.
+
     ## Example Usage
 
 

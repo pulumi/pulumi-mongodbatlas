@@ -107,14 +107,21 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     /// $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
     /// ```
+    /// 
     /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/maintenanceWindow:MaintenanceWindow")]
     public partial class MaintenanceWindow : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `AutoDeferOnceEnabled` instead.** &lt;!-- see CLOUDP-375465 for details --&gt;
+        /// </summary>
         [Output("autoDefer")]
         public Output<bool> AutoDefer { get; private set; } = null!;
 
+        /// <summary>
+        /// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer`, but by directly setting the value to `True` or `False`, which is idempotent and keeps Terraform state aligned with Atlas. If `AutoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+        /// </summary>
         [Output("autoDeferOnceEnabled")]
         public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
 
@@ -212,9 +219,15 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class MaintenanceWindowArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `AutoDeferOnceEnabled` instead.** &lt;!-- see CLOUDP-375465 for details --&gt;
+        /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
+        /// <summary>
+        /// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer`, but by directly setting the value to `True` or `False`, which is idempotent and keeps Terraform state aligned with Atlas. If `AutoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
@@ -256,9 +269,15 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class MaintenanceWindowState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `AutoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `AutoDeferOnceEnabled` instead.** &lt;!-- see CLOUDP-375465 for details --&gt;
+        /// </summary>
         [Input("autoDefer")]
         public Input<bool>? AutoDefer { get; set; }
 
+        /// <summary>
+        /// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `AutoDefer`, but by directly setting the value to `True` or `False`, which is idempotent and keeps Terraform state aligned with Atlas. If `AutoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+        /// </summary>
         [Input("autoDeferOnceEnabled")]
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 

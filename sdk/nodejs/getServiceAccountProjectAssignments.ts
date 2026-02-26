@@ -7,6 +7,10 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S
@@ -83,6 +87,10 @@ export interface GetServiceAccountProjectAssignmentsResult {
     readonly results: outputs.GetServiceAccountProjectAssignmentsResult[];
 }
 /**
+ * `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S

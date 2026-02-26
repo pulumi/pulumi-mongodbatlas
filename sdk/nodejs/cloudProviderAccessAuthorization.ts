@@ -6,6 +6,95 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * ## Cloud Provider Access Configuration Paths
+ *
+ * The Terraform MongoDB Atlas Provider offers a two-resource path to perform an authorization for a cloud provider role.
+ * - The first resource, `mongodbatlas.CloudProviderAccessSetup`, only generates the initial configuration (create, delete operations).
+ * - The second resource, `mongodbatlas.CloudProviderAccessAuthorization`, helps to perform the authorization using the `roleId` of the first resource.
+ *
+ * This path is helpful in a multi-provider Terraform file, and allows for a single and decoupled apply.
+ * See example of this two-resource path option with AWS Cloud here, AZURE Cloud here and GCP Cloud here.
+ *
+ * ## mongodbatlas.CloudProviderAccessAuthorization
+ *
+ * This is the second resource in the two-resource path as described above.
+ *
+ * `mongodbatlas.CloudProviderAccessAuthorization` allows you to authorize an AWS, AZURE or GCP IAM roles in Atlas.
+ *
+ * > **IMPORTANT:** Changes to `projectId` or `roleId` will result in the destruction and recreation of the authorization resource. This action happens as these fields uniquely identify the authorization and cannot be modified in-place.
+ *
+ * ## Example Usage
+ *
+ * ### With AWS
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AWS",
+ * });
+ * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
+ *     projectId: setupOnly.projectId,
+ *     roleId: setupOnly.roleId,
+ *     aws: {
+ *         iamAssumedRoleArn: "arn:aws:iam::<AWS_ACCOUNT_ID>:role/test-user-role",
+ *     },
+ * });
+ * ```
+ *
+ * ### With Azure
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "AZURE",
+ *     azureConfigs: [{
+ *         atlasAzureAppId: "9f2deb0d-be22-4524-a403-df531868bac0",
+ *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+ *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
+ *     }],
+ * });
+ * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
+ *     projectId: setupOnly.projectId,
+ *     roleId: setupOnly.roleId,
+ *     azure: {
+ *         atlasAzureAppId: "9f2deb0d-be22-4524-a403-df531868bac0",
+ *         servicePrincipalId: "22f1d2a6-d0e9-482a-83a4-b8dd7dddc2c1",
+ *         tenantId: "91402384-d71e-22f5-22dd-759e272cdc1c",
+ *     },
+ * });
+ * ```
+ *
+ * ### With GCP
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
+ *     projectId: "64259ee860c43338194b0f8e",
+ *     providerName: "GCP",
+ * });
+ * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
+ *     projectId: setupOnly.projectId,
+ *     roleId: setupOnly.roleId,
+ * });
+ * ```
+ *
+ * ### Further Examples
+ * - AWS Cloud Provider Access
+ * - Azure Cloud Provider Access
+ * - GCP Cloud Provider Access
+ *
+ * ## Import mongodbatlas.CloudProviderAccessAuthorization
+ *
+ * You cannot import the Cloud Provider Access Authorization resource into Terraform. Instead, if the associated role is already authorized, you can recreate the resource without any adverse effects.
+ */
 export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
     /**
      * Get an existing CloudProviderAccessAuthorization resource's state with the given name, ID, and optional extra

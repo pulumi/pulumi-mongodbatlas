@@ -5,6 +5,10 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S
@@ -99,6 +103,10 @@ export interface GetProjectServiceAccountSecretResult {
     readonly secretId: string;
 }
 /**
+ * `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+ *
+ * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+ *
  * ## Example Usage
  *
  * ### S

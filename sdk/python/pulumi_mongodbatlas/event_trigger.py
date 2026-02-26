@@ -42,6 +42,7 @@ class EventTriggerArgs:
                  unordered: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a EventTrigger resource.
+
         :param pulumi.Input[_builtins.str] app_id: The ObjectID of your application.
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger.
@@ -356,6 +357,7 @@ class _EventTriggerState:
                  unordered: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering EventTrigger resources.
+
         :param pulumi.Input[_builtins.str] app_id: The ObjectID of your application.
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
         :param pulumi.Input[_builtins.str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
@@ -714,6 +716,117 @@ class EventTrigger(pulumi.CustomResource):
                  unordered: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
+        `EventTrigger` provides a Event Trigger resource.
+
+        Note: If the `app_id` changes in the EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app. If it still exists, then it creates itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/) to learn more.
+
+        ## Example Usage
+
+        ### S
+
+        ### Example Usage: Database Trigger with Function
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="DATABASE",
+            function_id="FUNCTION ID",
+            disabled=False,
+            config_operation_types=[
+                "INSERT",
+                "UPDATE",
+            ],
+            config_database="DATABASE NAME",
+            config_collection="COLLECTION NAME",
+            config_service_id="SERVICE ID",
+            config_match=\"\"\"{
+          \\"updateDescription.updatedFields\\": {
+            \\"status\\": \\"blocked\\"
+          }
+        }
+        \"\"\",
+            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_full_document=False,
+            config_full_document_before=False,
+            event_processors={
+                "aws_eventbridge": {
+                    "config_account_id": "AWS ACCOUNT ID",
+                    "config_region": "AWS REGIOn",
+                },
+            })
+        ```
+
+        Note: Terraform allows creating [database triggers,](https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/#:~:text=Database%20triggers%20use%20MongoDB%20change,trigger%20created%20in%20a%20collection.) but not Atlas Functions. See [Define a Function](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/functions/#define-a-function) in the Atlas documentation for more details on creating functions in Atlas.
+
+        ### Example Usage: Database Trigger with EventBridge
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="DATABASE",
+            disabled=False,
+            unordered=False,
+            config_operation_types=[
+                "INSERT",
+                "UPDATE",
+            ],
+            config_operation_type="LOGIN",
+            config_providers=["anon-user"],
+            config_database="DATABASE NAME",
+            config_collection="COLLECTION NAME",
+            config_service_id="1",
+            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_full_document=False,
+            config_full_document_before=False,
+            config_schedule="*",
+            event_processors={
+                "aws_eventbridge": {
+                    "config_account_id": "AWS ACCOUNT ID",
+                    "config_region": "AWS REGIOn",
+                },
+            })
+        ```
+
+        ### Example Usage: Authentication Trigger
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="AUTHENTICATION",
+            function_id="1",
+            disabled=False,
+            config_operation_type="LOGIN",
+            config_providers=["anon-user"])
+        ```
+
+        ### Example Usage: Scheduled Trigger
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="SCHEDULED",
+            function_id="1",
+            disabled=False,
+            config_schedule="*")
+        ```
+
         ## Import
 
         Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
@@ -722,6 +835,7 @@ class EventTrigger(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
         ```
         For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -754,6 +868,117 @@ class EventTrigger(pulumi.CustomResource):
                  args: EventTriggerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `EventTrigger` provides a Event Trigger resource.
+
+        Note: If the `app_id` changes in the EventTrigger resource, it will force a replacement and delete itself from the old Atlas App Services app. If it still exists, then it creates itself in the new  Atlas App Services app. See [Atlas Triggers](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/) to learn more.
+
+        ## Example Usage
+
+        ### S
+
+        ### Example Usage: Database Trigger with Function
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="DATABASE",
+            function_id="FUNCTION ID",
+            disabled=False,
+            config_operation_types=[
+                "INSERT",
+                "UPDATE",
+            ],
+            config_database="DATABASE NAME",
+            config_collection="COLLECTION NAME",
+            config_service_id="SERVICE ID",
+            config_match=\"\"\"{
+          \\"updateDescription.updatedFields\\": {
+            \\"status\\": \\"blocked\\"
+          }
+        }
+        \"\"\",
+            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_full_document=False,
+            config_full_document_before=False,
+            event_processors={
+                "aws_eventbridge": {
+                    "config_account_id": "AWS ACCOUNT ID",
+                    "config_region": "AWS REGIOn",
+                },
+            })
+        ```
+
+        Note: Terraform allows creating [database triggers,](https://www.mongodb.com/docs/atlas/app-services/triggers/database-triggers/#:~:text=Database%20triggers%20use%20MongoDB%20change,trigger%20created%20in%20a%20collection.) but not Atlas Functions. See [Define a Function](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/functions/#define-a-function) in the Atlas documentation for more details on creating functions in Atlas.
+
+        ### Example Usage: Database Trigger with EventBridge
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="DATABASE",
+            disabled=False,
+            unordered=False,
+            config_operation_types=[
+                "INSERT",
+                "UPDATE",
+            ],
+            config_operation_type="LOGIN",
+            config_providers=["anon-user"],
+            config_database="DATABASE NAME",
+            config_collection="COLLECTION NAME",
+            config_service_id="1",
+            config_match="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_project="{\\"updateDescription.updatedFields\\":{\\"status\\":\\"blocked\\"}}",
+            config_full_document=False,
+            config_full_document_before=False,
+            config_schedule="*",
+            event_processors={
+                "aws_eventbridge": {
+                    "config_account_id": "AWS ACCOUNT ID",
+                    "config_region": "AWS REGIOn",
+                },
+            })
+        ```
+
+        ### Example Usage: Authentication Trigger
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="AUTHENTICATION",
+            function_id="1",
+            disabled=False,
+            config_operation_type="LOGIN",
+            config_providers=["anon-user"])
+        ```
+
+        ### Example Usage: Scheduled Trigger
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.EventTrigger("test",
+            project_id="PROJECT ID",
+            app_id="APPLICATION ID",
+            name="NAME OF THE TRIGGER",
+            type="SCHEDULED",
+            function_id="1",
+            disabled=False,
+            config_schedule="*")
+        ```
+
         ## Import
 
         Event trigger can be imported using project ID, App ID and Trigger ID, in the format `project_id`--`app_id`-`trigger_id`, e.g.
@@ -762,6 +987,7 @@ class EventTrigger(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/eventTrigger:EventTrigger test 1112222b3bf99403840e8934--testing-example--1112222b3bf99403840e8934
         ```
         For more details on this resource see [Triggers resource](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/#tag/triggers) in Atlas App Services Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param EventTriggerArgs args: The arguments to use to populate this resource's properties.

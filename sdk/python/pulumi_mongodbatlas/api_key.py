@@ -24,6 +24,7 @@ class ApiKeyArgs:
                  role_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a ApiKey resource.
+
         :param pulumi.Input[_builtins.str] description: Description of this Organization API key.
         :param pulumi.Input[_builtins.str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
@@ -92,6 +93,7 @@ class _ApiKeyState:
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ApiKey resources.
+
         :param pulumi.Input[_builtins.str] description: Description of this Organization API key.
         :param pulumi.Input[_builtins.str] org_id: Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: Name of the role. This resource returns all the roles the user has in Atlas.
@@ -196,6 +198,10 @@ class ApiKey(pulumi.CustomResource):
                  role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        `ApiKey` provides a Organization API key resource. This allows an Organizational API key to be created.
+
+        > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
         ## Example Usage
 
         ```python
@@ -225,6 +231,7 @@ class ApiKey(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/apiKey:ApiKey test 5d09d6a59ccf6445652a444a-6576974933969669
         ```
         See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKey) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -245,6 +252,10 @@ class ApiKey(pulumi.CustomResource):
                  args: ApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ApiKey` provides a Organization API key resource. This allows an Organizational API key to be created.
+
+        > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+
         ## Example Usage
 
         ```python
@@ -274,6 +285,7 @@ class ApiKey(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/apiKey:ApiKey test 5d09d6a59ccf6445652a444a-6576974933969669
         ```
         See [MongoDB Atlas API - API Key](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Programmatic-API-Keys/operation/createApiKey) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param ApiKeyArgs args: The arguments to use to populate this resource's properties.

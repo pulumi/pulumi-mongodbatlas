@@ -7,6 +7,30 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
+ *
+ * > **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
+ *
+ * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+ *
+ * > **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`containerId` attribute on the cluster.
+ *
+ * > **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
+ *
+ * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+ *
+ * > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, i.e. `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+ *
+ * > **IMPORTANT:**
+ * <br> &#8226; Multi Region Cluster: The `mongodbatlas.Cluster` resource doesn't return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend to use the `mongodbatlas.AdvancedCluster` resource instead.
+ * <br> &#8226; Free tier cluster creation (M0) is supported.
+ * <br> &#8226; Free tier clusters (M0) can be upgraded to dedicated tiers (M10+) via this provider. WARNING WHEN UPGRADING FREE CLUSTERS!!! Any change from free tier to a different instance size will be considered a tenant upgrade. When upgrading from free tier to dedicated simply change the `providerName` from "TENANT"  to your preferred provider (AWS, GCP, AZURE) and remove the variable `backingProviderName`, for example if you have an existing free cluster and want to upgrade your Terraform config should be changed from:
+ *
+ * To:
+ *
+ * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\
+ * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+ *
  * ## Example Usage
  *
  * ### Example AWS cluster
@@ -232,6 +256,7 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
+ *
  * See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
  */
 export class Cluster extends pulumi.CustomResource {
@@ -267,12 +292,40 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly acceptDataRisksAndForceReplicaSetReconfig: pulumi.Output<string>;
     declare public readonly advancedConfiguration: pulumi.Output<outputs.ClusterAdvancedConfiguration>;
+    /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     *
+     * > **IMPORTANT:** If `autoScalingComputeEnabled` is true,  then Atlas will automatically scale up to the maximum provided and down to the minimum, if provided.
+     * This will cause the value of `providerInstanceSizeName` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster back to the original instanceSizeName value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [providerInstanceSizeName]
+     * }`
+     * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
+     */
     declare public readonly autoScalingComputeEnabled: pulumi.Output<boolean>;
     /**
      * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
     declare public readonly autoScalingComputeScaleDownEnabled: pulumi.Output<boolean>;
+    /**
+     * Specifies whether disk auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable disk auto-scaling.
+     * - Set to `false` to disable disk auto-scaling.
+     *
+     * > **IMPORTANT:** If `autoScalingDiskGbEnabled` is true, then Atlas will automatically scale disk size up and down.
+     * This will cause the value of `diskSizeGb` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster disk size back to the original `diskSizeGb` value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [diskSizeGb]
+     * }`
+     * After adding the `lifecycle` block to explicitly change `diskSizeGb` comment out the `lifecycle` block and run `pulumi up`. Please be sure to uncomment the `lifecycle` block once done to prevent any accidental changes.
+     *
+     * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
+     */
     declare public readonly autoScalingDiskGbEnabled: pulumi.Output<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -302,6 +355,15 @@ export class Cluster extends pulumi.CustomResource {
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     declare public readonly biConnectorConfig: pulumi.Output<outputs.ClusterBiConnectorConfig>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
+     *
+     * If true, the cluster uses Cloud Backup for backups. If cloudBackup and backupEnabled are false, the cluster does not use Atlas backups.
+     *
+     * You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled.
+     *
+     * > **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
+     */
     declare public readonly cloudBackup: pulumi.Output<boolean>;
     /**
      * The cluster ID.
@@ -371,6 +433,13 @@ export class Cluster extends pulumi.CustomResource {
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     declare public readonly numShards: pulumi.Output<number>;
+    /**
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
+     * **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
+     */
     declare public readonly paused: pulumi.Output<boolean>;
     /**
      * Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
@@ -615,12 +684,40 @@ export interface ClusterState {
      */
     acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string>;
     advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
+    /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     *
+     * > **IMPORTANT:** If `autoScalingComputeEnabled` is true,  then Atlas will automatically scale up to the maximum provided and down to the minimum, if provided.
+     * This will cause the value of `providerInstanceSizeName` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster back to the original instanceSizeName value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [providerInstanceSizeName]
+     * }`
+     * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
+     */
     autoScalingComputeEnabled?: pulumi.Input<boolean>;
     /**
      * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
     autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether disk auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable disk auto-scaling.
+     * - Set to `false` to disable disk auto-scaling.
+     *
+     * > **IMPORTANT:** If `autoScalingDiskGbEnabled` is true, then Atlas will automatically scale disk size up and down.
+     * This will cause the value of `diskSizeGb` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster disk size back to the original `diskSizeGb` value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [diskSizeGb]
+     * }`
+     * After adding the `lifecycle` block to explicitly change `diskSizeGb` comment out the `lifecycle` block and run `pulumi up`. Please be sure to uncomment the `lifecycle` block once done to prevent any accidental changes.
+     *
+     * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
+     */
     autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -650,6 +747,15 @@ export interface ClusterState {
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
+     *
+     * If true, the cluster uses Cloud Backup for backups. If cloudBackup and backupEnabled are false, the cluster does not use Atlas backups.
+     *
+     * You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled.
+     *
+     * > **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
+     */
     cloudBackup?: pulumi.Input<boolean>;
     /**
      * The cluster ID.
@@ -719,6 +825,13 @@ export interface ClusterState {
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     numShards?: pulumi.Input<number>;
+    /**
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
+     * **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
+     */
     paused?: pulumi.Input<boolean>;
     /**
      * Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
@@ -840,12 +953,40 @@ export interface ClusterArgs {
      */
     acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string>;
     advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
+    /**
+     * Specifies whether cluster tier auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
+     * - Set to `false` to disable cluster tier auto-scaling.
+     *
+     * > **IMPORTANT:** If `autoScalingComputeEnabled` is true,  then Atlas will automatically scale up to the maximum provided and down to the minimum, if provided.
+     * This will cause the value of `providerInstanceSizeName` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster back to the original instanceSizeName value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [providerInstanceSizeName]
+     * }`
+     * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
+     */
     autoScalingComputeEnabled?: pulumi.Input<boolean>;
     /**
      * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
     autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    /**
+     * Specifies whether disk auto-scaling is enabled. The default is false.
+     * - Set to `true` to enable disk auto-scaling.
+     * - Set to `false` to disable disk auto-scaling.
+     *
+     * > **IMPORTANT:** If `autoScalingDiskGbEnabled` is true, then Atlas will automatically scale disk size up and down.
+     * This will cause the value of `diskSizeGb` returned to potentially be different than what is specified in the Terraform config and if one then applies a plan, not noting this, Terraform will scale the cluster disk size back to the original `diskSizeGb` value.
+     * To prevent this a lifecycle customization should be used, i.e.:
+     * `lifecycle {
+     * ignoreChanges = [diskSizeGb]
+     * }`
+     * After adding the `lifecycle` block to explicitly change `diskSizeGb` comment out the `lifecycle` block and run `pulumi up`. Please be sure to uncomment the `lifecycle` block once done to prevent any accidental changes.
+     *
+     * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
+     */
     autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
@@ -875,6 +1016,15 @@ export interface ClusterArgs {
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
     biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    /**
+     * Flag indicating if the cluster uses Cloud Backup for backups.
+     *
+     * If true, the cluster uses Cloud Backup for backups. If cloudBackup and backupEnabled are false, the cluster does not use Atlas backups.
+     *
+     * You cannot enable cloud backup if you have an existing cluster in the project with legacy backup enabled.
+     *
+     * > **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
+     */
     cloudBackup?: pulumi.Input<boolean>;
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
@@ -916,6 +1066,13 @@ export interface ClusterArgs {
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
     numShards?: pulumi.Input<number>;
+    /**
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
+     * **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
+     */
     paused?: pulumi.Input<boolean>;
     /**
      * Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.

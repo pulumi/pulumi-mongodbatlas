@@ -41,6 +41,7 @@ class SearchIndexArgs:
                  wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SearchIndex resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: The name of the cluster where you want to create the search index within.
         :param pulumi.Input[_builtins.str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
@@ -79,6 +80,7 @@ class SearchIndexArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "collection_name", collection_name)
@@ -341,6 +343,9 @@ class SearchIndexArgs:
     @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")
     def wait_for_index_build_completion(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Wait for search index to achieve Active status before terraform considers resource built.
+        """
         return pulumi.get(self, "wait_for_index_build_completion")
 
     @wait_for_index_build_completion.setter
@@ -373,6 +378,7 @@ class _SearchIndexState:
                  wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SearchIndex resources.
+
         :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
                ```
@@ -413,6 +419,7 @@ class _SearchIndexState:
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
         """
         if analyzer is not None:
             pulumi.set(__self__, "analyzer", analyzer)
@@ -707,6 +714,9 @@ class _SearchIndexState:
     @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")
     def wait_for_index_build_completion(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Wait for search index to achieve Active status before terraform considers resource built.
+        """
         return pulumi.get(self, "wait_for_index_build_completion")
 
     @wait_for_index_build_completion.setter
@@ -872,6 +882,7 @@ class SearchIndex(pulumi.CustomResource):
             }])
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
@@ -912,6 +923,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
         """
         ...
     @overload
@@ -1051,6 +1063,7 @@ class SearchIndex(pulumi.CustomResource):
         \"\"\",
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param SearchIndexArgs args: The arguments to use to populate this resource's properties.
@@ -1199,6 +1212,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1402,5 +1416,8 @@ class SearchIndex(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")
     def wait_for_index_build_completion(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Wait for search index to achieve Active status before terraform considers resource built.
+        """
         return pulumi.get(self, "wait_for_index_build_completion")
 

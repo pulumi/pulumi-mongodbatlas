@@ -30,6 +30,7 @@ class FederatedSettingsOrgConfigArgs:
                  post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FederatedSettingsOrgConfig resource.
+
         :param pulumi.Input[_builtins.bool] domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -152,6 +153,7 @@ class _FederatedSettingsOrgConfigState:
                  user_conflicts: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgConfigUserConflictArgs']]]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsOrgConfig resources.
+
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] data_access_identity_provider_ids: The collection of unique ids representing the identity providers that can be used for data access in this organization.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_allow_lists: List that contains the approved domains from which organization users can log in.
         :param pulumi.Input[_builtins.bool] domain_restriction_enabled: Flag that indicates whether domain restriction is enabled for the connected organization.
@@ -326,7 +328,9 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -379,7 +383,9 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/federatedSettingsOrgConfig:FederatedSettingsOrgConfig org_connection 627a9687f7f7f7f774de306f14-627a9683ea7ff7f74de306f14
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/federation-configuration/)
+
 
         :param str resource_name: The name of the resource.
         :param FederatedSettingsOrgConfigArgs args: The arguments to use to populate this resource's properties.

@@ -31,6 +31,7 @@ class PrivateLinkEndpointServiceArgs:
                  private_endpoint_ip_address: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateLinkEndpointService resource.
+
         :param pulumi.Input[_builtins.str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
@@ -174,6 +175,7 @@ class _PrivateLinkEndpointServiceState:
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateLinkEndpointService resources.
+
         :param pulumi.Input[_builtins.str] aws_connection_status: Status of the interface endpoint for AWS.
                Returns one of the following values:
                * `NONE` - Atlas created the network load balancer and VPC endpoint service, but AWS hasn't yet created the VPC endpoint.
@@ -508,6 +510,189 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+
+        > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `PrivateLinkEndpoint`). You first create the service in Atlas with `PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `PrivateLinkEndpointService` resource.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **NOTE:** You must have Organization Owner or Project Owner role. Create and delete operations wait for all clusters on the project to IDLE to ensure the latest connection strings can be retrieved (default timeout: 2hrs).
+
+        > **IMPORTANT:** For GCP, MongoDB encourages customers to use the port-mapped architecture by setting `port_mapping_enabled = true` on the `PrivateLinkEndpoint` resource. This architecture uses a single set of resources to support up to 150 nodes. The legacy architecture requires dedicated resources for each Atlas node, which can lead to IP address exhaustion. For migration guidance, see the GCP Private Service Connect to Port-Mapped Architecture.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="US_EAST_1")
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
+            service_name=this.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            endpoint_service_id=ptfe_service["id"],
+            provider_name="AWS")
+        ```
+
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azurerm as azurerm
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id=project_id,
+            provider_name="AZURE",
+            region="eastus2")
+        this_private_endpoint = azurerm.index.PrivateEndpoint("this",
+            name=endpoint-this,
+            location=this_azurerm_resource_group.location,
+            resource_group_name=resource_group_name,
+            subnet_id=this_azurerm_subnet.id,
+            private_service_connection=[{
+                name: this.private_link_service_name,
+                privateConnectionResourceId: this.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link this,
+            }])
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            endpoint_service_id=this_private_endpoint["id"],
+            private_endpoint_ip_address=this_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
+            provider_name="AZURE")
+        ```
+
+        ## Example with GCP (Legacy Architecture)
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project_id,
+            name=my-network,
+            auto_create_subnetworks=False)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
+        default_compute_address = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+                project=default_compute_subnetwork.project,
+                name=ftf-this{range.value},
+                subnetwork=default_compute_subnetwork.id,
+                address_type=INTERNAL,
+                address=f10.0.42.{range.value},
+                region=gcp_region,
+                opts = pulumi.ResourceOptions(depends_on=[this])))
+        # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
+        default_compute_forwarding_rule = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+                target=this.service_attachment_names[range.value],
+                project=default_compute_address[range.value].project,
+                region=default_compute_address[range.value].region,
+                name=default_compute_address[range.value].name,
+                ip_address=default_compute_address[range.value].id,
+                network=default.id,
+                load_balancing_scheme=))
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            endpoints=[{
+                "ip_address": entry["value"]["address"],
+                "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
+            } for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default["name"],
+            gcp_project_id=gcp_project_id,
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ## Example with GCP (Port-Mapped Architecture)
+
+        The port-mapped architecture uses port mapping to reduce resource provisioning. In the GCP legacy private endpoint architecture, service attachments were mapped 1:1 with Atlas nodes (one service attachment per node). In the port-mapped architecture, regardless of cloud provider, one service attachment can be mapped to up to 150 nodes via ports designated per node, enabling direct targeting of specific nodes using only one customer IP address. Enable it by setting `port_mapping_enabled = true` on the `PrivateLinkEndpoint` resource.
+
+        **Important:** For the port-mapped architecture, use `endpoint_service_id` (the forwarding rule name) and `private_endpoint_ip_address` (the IP address). The `endpoints` list is no longer used for the port-mapped architecture.
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region,
+            port_mapping_enabled=True)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project_id,
+            name=my-network,
+            auto_create_subnetworks=False)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google Address (1 address for port-mapped architecture)
+        default_compute_address = google.index.ComputeAddress("default",
+            project=default_compute_subnetwork.project,
+            name=tf-this-psc-endpoint,
+            subnetwork=default_compute_subnetwork.id,
+            address_type=INTERNAL,
+            address=10.0.42.1,
+            region=default_compute_subnetwork.region,
+            opts = pulumi.ResourceOptions(depends_on=[this]))
+        # Create Forwarding Rule (1 rule for port-mapped architecture)
+        default_compute_forwarding_rule = google.index.ComputeForwardingRule("default",
+            target=this.service_attachment_names[0],
+            project=default_compute_address.project,
+            region=default_compute_address.region,
+            name=default_compute_address.name,
+            ip_address=default_compute_address.id,
+            network=default.id,
+            load_balancing_scheme=)
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default_compute_forwarding_rule["name"],
+            private_endpoint_ip_address=default_compute_address["address"],
+            gcp_project_id=gcp_project_id,
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ### Further Examples
+        - AWS PrivateLink Endpoint and Service
+        - Azure Private Link Endpoint and Service
+        - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
+
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID, private link ID, endpoint service ID, and provider name, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -515,9 +700,11 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService this 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
         ```
+
         For more information, see:
         - [MongoDB API Private Endpoint Link Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointserviceendpoint) for detailed arguments and attributes.
         - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -537,6 +724,189 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  args: PrivateLinkEndpointServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+
+        > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `PrivateLinkEndpoint`). You first create the service in Atlas with `PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `PrivateLinkEndpointService` resource.
+
+        The private link Terraform module makes use of this resource and simplifies its use.
+
+        > **NOTE:** You must have Organization Owner or Project Owner role. Create and delete operations wait for all clusters on the project to IDLE to ensure the latest connection strings can be retrieved (default timeout: 2hrs).
+
+        > **IMPORTANT:** For GCP, MongoDB encourages customers to use the port-mapped architecture by setting `port_mapping_enabled = true` on the `PrivateLinkEndpoint` resource. This architecture uses a single set of resources to support up to 150 nodes. The legacy architecture requires dedicated resources for each Atlas node, which can lead to IP address exhaustion. For migration guidance, see the GCP Private Service Connect to Port-Mapped Architecture.
+
+        ## Example with AWS
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="US_EAST_1")
+        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+            vpc_id=vpc-7fc0a543,
+            service_name=this.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186])
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            endpoint_service_id=ptfe_service["id"],
+            provider_name="AWS")
+        ```
+
+        ## Example with Azure
+
+        ```python
+        import pulumi
+        import pulumi_azurerm as azurerm
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id=project_id,
+            provider_name="AZURE",
+            region="eastus2")
+        this_private_endpoint = azurerm.index.PrivateEndpoint("this",
+            name=endpoint-this,
+            location=this_azurerm_resource_group.location,
+            resource_group_name=resource_group_name,
+            subnet_id=this_azurerm_subnet.id,
+            private_service_connection=[{
+                name: this.private_link_service_name,
+                privateConnectionResourceId: this.private_link_service_resource_id,
+                isManualConnection: True,
+                requestMessage: Azure Private Link this,
+            }])
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            endpoint_service_id=this_private_endpoint["id"],
+            private_endpoint_ip_address=this_private_endpoint["privateServiceConnection"][0]["privateIpAddress"],
+            provider_name="AZURE")
+        ```
+
+        ## Example with GCP (Legacy Architecture)
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project_id,
+            name=my-network,
+            auto_create_subnetworks=False)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
+        default_compute_address = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+                project=default_compute_subnetwork.project,
+                name=ftf-this{range.value},
+                subnetwork=default_compute_subnetwork.id,
+                address_type=INTERNAL,
+                address=f10.0.42.{range.value},
+                region=gcp_region,
+                opts = pulumi.ResourceOptions(depends_on=[this])))
+        # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
+        default_compute_forwarding_rule = []
+        for range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+                target=this.service_attachment_names[range.value],
+                project=default_compute_address[range.value].project,
+                region=default_compute_address[range.value].region,
+                name=default_compute_address[range.value].name,
+                ip_address=default_compute_address[range.value].id,
+                network=default.id,
+                load_balancing_scheme=))
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            endpoints=[{
+                "ip_address": entry["value"]["address"],
+                "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
+            } for entry in [{"key": k, "value": v} for k, v in default_compute_address]],
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default["name"],
+            gcp_project_id=gcp_project_id,
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ## Example with GCP (Port-Mapped Architecture)
+
+        The port-mapped architecture uses port mapping to reduce resource provisioning. In the GCP legacy private endpoint architecture, service attachments were mapped 1:1 with Atlas nodes (one service attachment per node). In the port-mapped architecture, regardless of cloud provider, one service attachment can be mapped to up to 150 nodes via ports designated per node, enabling direct targeting of specific nodes using only one customer IP address. Enable it by setting `port_mapping_enabled = true` on the `PrivateLinkEndpoint` resource.
+
+        **Important:** For the port-mapped architecture, use `endpoint_service_id` (the forwarding rule name) and `private_endpoint_ip_address` (the IP address). The `endpoints` list is no longer used for the port-mapped architecture.
+
+        ```python
+        import pulumi
+        import pulumi_google as google
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id=project_id,
+            provider_name="GCP",
+            region=gcp_region,
+            port_mapping_enabled=True)
+        # Create a Google Network
+        default = google.index.ComputeNetwork("default",
+            project=gcp_project_id,
+            name=my-network,
+            auto_create_subnetworks=False)
+        # Create a Google Sub Network
+        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+            project=default.project,
+            name=my-subnet,
+            ip_cidr_range=10.0.0.0/16,
+            region=gcp_region,
+            network=default.id)
+        # Create Google Address (1 address for port-mapped architecture)
+        default_compute_address = google.index.ComputeAddress("default",
+            project=default_compute_subnetwork.project,
+            name=tf-this-psc-endpoint,
+            subnetwork=default_compute_subnetwork.id,
+            address_type=INTERNAL,
+            address=10.0.42.1,
+            region=default_compute_subnetwork.region,
+            opts = pulumi.ResourceOptions(depends_on=[this]))
+        # Create Forwarding Rule (1 rule for port-mapped architecture)
+        default_compute_forwarding_rule = google.index.ComputeForwardingRule("default",
+            target=this.service_attachment_names[0],
+            project=default_compute_address.project,
+            region=default_compute_address.region,
+            name=default_compute_address.name,
+            ip_address=default_compute_address.id,
+            network=default.id,
+            load_balancing_scheme=)
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            provider_name="GCP",
+            endpoint_service_id=default_compute_forwarding_rule["name"],
+            private_endpoint_ip_address=default_compute_address["address"],
+            gcp_project_id=gcp_project_id,
+            opts = pulumi.ResourceOptions(depends_on=[default_compute_forwarding_rule]))
+        ```
+
+        ### Further Examples
+        - AWS PrivateLink Endpoint and Service
+        - Azure Private Link Endpoint and Service
+        - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
+
         ## Import
 
         Private Endpoint Link Connection can be imported using project ID, private link ID, endpoint service ID, and provider name, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -544,9 +914,11 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService this 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
         ```
+
         For more information, see:
         - [MongoDB API Private Endpoint Link Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointserviceendpoint) for detailed arguments and attributes.
         - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.
+
 
         :param str resource_name: The name of the resource.
         :param PrivateLinkEndpointServiceArgs args: The arguments to use to populate this resource's properties.

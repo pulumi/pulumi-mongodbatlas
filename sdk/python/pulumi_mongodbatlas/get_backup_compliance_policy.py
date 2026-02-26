@@ -254,6 +254,14 @@ class AwaitableGetBackupCompliancePolicyResult(GetBackupCompliancePolicyResult):
 def get_backup_compliance_policy(project_id: Optional[_builtins.str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackupCompliancePolicyResult:
     """
+    `BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.
+
+    > **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+    > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+
+    > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
+
     ## Example Usage
 
     ```python
@@ -381,6 +389,14 @@ def get_backup_compliance_policy(project_id: Optional[_builtins.str] = None,
 def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackupCompliancePolicyResult]:
     """
+    `BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.
+
+    > **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+
+    > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+
+    > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
+
     ## Example Usage
 
     ```python

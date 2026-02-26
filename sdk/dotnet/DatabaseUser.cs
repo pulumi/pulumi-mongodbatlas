@@ -202,17 +202,15 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// Database users can be imported using project ID, username, and auth database name in the format:
     /// 
-    /// 1. `project_id`-`username`-`auth_database_name` Doesn't  work if `-` is used in both the `username` and the `auth_database_name`. For example `my-username` and `my-db` should use (2).
-    /// 
-    /// 2. `project_id`/`username`/`auth_database_name` Works when neither `username` nor `auth_database_name` use `/`.
-    /// 
-    /// ```sh
-    /// $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934-my_user-admin # (1)
-    /// ```
+    /// 1. `ProjectId`-`Username`-`AuthDatabaseName` Doesn't  work if `-` is used in both the `Username` and the `AuthDatabaseName`. For example `my-username` and `my-db` should use (2).
+    /// 2. `ProjectId`/`Username`/`AuthDatabaseName` Works when neither `Username` nor `AuthDatabaseName` use `/`.
     /// 
     /// ```sh
-    /// $ pulumi import mongodbatlas:index/databaseUser:DatabaseUser my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
+    /// terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934-my_user-admin # (1)
+    /// terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
     /// ```
+    /// 
+    /// &gt; **NOTE:** Terraform will want to change the password after importing the user if a `Password` argument is specified.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/databaseUser:DatabaseUser")]
     public partial class DatabaseUser : global::Pulumi.CustomResource
@@ -260,6 +258,9 @@ namespace Pulumi.Mongodbatlas
         [Output("oidcAuthType")]
         public Output<string> OidcAuthType { get; private set; } = null!;
 
+        /// <summary>
+        /// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+        /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
 
@@ -393,6 +394,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("password")]
         private Input<string>? _password;
+
+        /// <summary>
+        /// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;
@@ -502,6 +507,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("password")]
         private Input<string>? _password;
+
+        /// <summary>
+        /// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+        /// </summary>
         public Input<string>? Password
         {
             get => _password;

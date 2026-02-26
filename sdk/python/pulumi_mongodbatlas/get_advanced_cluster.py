@@ -132,6 +132,9 @@ class GetAdvancedClusterResult:
     @_builtins.property
     @pulumi.getter(name="biConnectorConfig")
     def bi_connector_config(self) -> 'outputs.GetAdvancedClusterBiConnectorConfigResult':
+        """
+        Configuration settings applied to BI Connector for Atlas on this cluster. See below. In prior versions of the MongoDB Atlas Terraform Provider, this parameter was named `bi_connector`.
+        """
         return pulumi.get(self, "bi_connector_config")
 
     @_builtins.property
@@ -373,6 +376,18 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
                          use_effective_fields: Optional[_builtins.bool] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClusterResult:
     """
+    `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+
+    > **IMPORTANT:**
+    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+    > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+
+    > **NOTE:** This data source also includes Flex clusters.
+
     ## Example Usage
 
     ```python
@@ -544,6 +559,18 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
                                 use_effective_fields: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
+    `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+
+    > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+
+    > **IMPORTANT:**
+    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+
+    > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+
+    > **NOTE:** This data source also includes Flex clusters.
+
     ## Example Usage
 
     ```python

@@ -28,6 +28,7 @@ class CloudBackupSnapshotExportBucketArgs:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotExportBucket resource.
+
         :param pulumi.Input[_builtins.str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
         :param pulumi.Input[_builtins.str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
@@ -150,6 +151,7 @@ class _CloudBackupSnapshotExportBucketState:
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshotExportBucket resources.
+
         :param pulumi.Input[_builtins.str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
         :param pulumi.Input[_builtins.str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the snapshot export bucket.
@@ -341,6 +343,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
 
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
@@ -406,6 +409,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         ```
 
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/create-one-export-bucket/)
+
 
         :param str resource_name: The name of the resource.
         :param CloudBackupSnapshotExportBucketArgs args: The arguments to use to populate this resource's properties.

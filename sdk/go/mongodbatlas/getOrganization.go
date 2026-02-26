@@ -74,8 +74,9 @@ type LookupOrganizationResult struct {
 	// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
 	// (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-	SecurityContact           string `pulumi:"securityContact"`
-	SkipDefaultAlertsSettings bool   `pulumi:"skipDefaultAlertsSettings"`
+	SecurityContact string `pulumi:"securityContact"`
+	// (Optional) Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
+	SkipDefaultAlertsSettings bool `pulumi:"skipDefaultAlertsSettings"`
 	// Returns a list of all pending and active MongoDB Cloud users associated with the specified organization.
 	Users []GetOrganizationUser `pulumi:"users"`
 }
@@ -162,6 +163,7 @@ func (o LookupOrganizationResultOutput) SecurityContact() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) string { return v.SecurityContact }).(pulumi.StringOutput)
 }
 
+// (Optional) Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
 func (o LookupOrganizationResultOutput) SkipDefaultAlertsSettings() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.SkipDefaultAlertsSettings }).(pulumi.BoolOutput)
 }

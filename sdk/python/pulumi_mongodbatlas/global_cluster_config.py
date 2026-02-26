@@ -27,6 +27,7 @@ class GlobalClusterConfigArgs:
                  managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None):
         """
         The set of arguments for constructing a GlobalClusterConfig resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Global Cluster.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
@@ -98,6 +99,7 @@ class _GlobalClusterConfigState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalClusterConfig resources.
+
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Global Cluster.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_zone_mapping_zone_id: A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         :param pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]] custom_zone_mappings: Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
@@ -258,7 +260,9 @@ class GlobalClusterConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -344,7 +348,9 @@ class GlobalClusterConfig(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
         ```
+
         See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+
 
         :param str resource_name: The name of the resource.
         :param GlobalClusterConfigArgs args: The arguments to use to populate this resource's properties.

@@ -27,6 +27,7 @@ class X509AuthenticationDatabaseUserArgs:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a X509AuthenticationDatabaseUser resource.
+
         :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
         :param pulumi.Input[_builtins.str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
         :param pulumi.Input[_builtins.int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
@@ -100,6 +101,7 @@ class _X509AuthenticationDatabaseUserState:
                  username: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering X509AuthenticationDatabaseUser resources.
+
         :param pulumi.Input[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]] certificates: Array of objects where each details one unexpired database user certificate.
         :param pulumi.Input[_builtins.str] current_certificate: Contains the last X.509 certificate and private key created for a database user.
         :param pulumi.Input[_builtins.str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
@@ -290,6 +292,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
 
         Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
@@ -297,7 +300,9 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -398,6 +403,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
 
         Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
@@ -405,7 +411,9 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+
 
         :param str resource_name: The name of the resource.
         :param X509AuthenticationDatabaseUserArgs args: The arguments to use to populate this resource's properties.

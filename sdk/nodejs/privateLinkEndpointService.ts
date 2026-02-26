@@ -7,6 +7,213 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
+ *
+ * > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `mongodbatlas.PrivateLinkEndpoint`). You first create the service in Atlas with `mongodbatlas.PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `mongodbatlas.PrivateLinkEndpointService` resource.
+ *
+ * The private link Terraform module makes use of this resource and simplifies its use.
+ *
+ * > **NOTE:** You must have Organization Owner or Project Owner role. Create and delete operations wait for all clusters on the project to IDLE to ensure the latest connection strings can be retrieved (default timeout: 2hrs).
+ *
+ * > **IMPORTANT:** For GCP, MongoDB encourages customers to use the port-mapped architecture by setting `portMappingEnabled = true` on the `mongodbatlas.PrivateLinkEndpoint` resource. This architecture uses a single set of resources to support up to 150 nodes. The legacy architecture requires dedicated resources for each Atlas node, which can lead to IP address exhaustion. For migration guidance, see the GCP Private Service Connect to Port-Mapped Architecture.
+ *
+ * ## Example with AWS
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _this = new mongodbatlas.PrivateLinkEndpoint("this", {
+ *     projectId: "<PROJECT_ID>",
+ *     providerName: "AWS",
+ *     region: "US_EAST_1",
+ * });
+ * const ptfeService = new aws.index.VpcEndpoint("ptfe_service", {
+ *     vpcId: "vpc-7fc0a543",
+ *     serviceName: _this.endpointServiceName,
+ *     vpcEndpointType: "Interface",
+ *     subnetIds: ["subnet-de0406d2"],
+ *     securityGroupIds: ["sg-3f238186"],
+ * });
+ * const thisPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("this", {
+ *     projectId: _this.projectId,
+ *     privateLinkId: _this.privateLinkId,
+ *     endpointServiceId: ptfeService.id,
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * ## Example with Azure
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as azurerm from "@pulumi/azurerm";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _this = new mongodbatlas.PrivateLinkEndpoint("this", {
+ *     projectId: projectId,
+ *     providerName: "AZURE",
+ *     region: "eastus2",
+ * });
+ * const thisPrivateEndpoint = new azurerm.index.PrivateEndpoint("this", {
+ *     name: "endpoint-this",
+ *     location: thisAzurermResourceGroup.location,
+ *     resourceGroupName: resourceGroupName,
+ *     subnetId: thisAzurermSubnet.id,
+ *     privateServiceConnection: [{
+ *         name: _this.privateLinkServiceName,
+ *         privateConnectionResourceId: _this.privateLinkServiceResourceId,
+ *         isManualConnection: true,
+ *         requestMessage: "Azure Private Link this",
+ *     }],
+ * });
+ * const thisPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("this", {
+ *     projectId: _this.projectId,
+ *     privateLinkId: _this.privateLinkId,
+ *     endpointServiceId: thisPrivateEndpoint.id,
+ *     privateEndpointIpAddress: thisPrivateEndpoint.privateServiceConnection[0].privateIpAddress,
+ *     providerName: "AZURE",
+ * });
+ * ```
+ *
+ * ## Example with GCP (Legacy Architecture)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as google from "@pulumi/google";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _this = new mongodbatlas.PrivateLinkEndpoint("this", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     region: gcpRegion,
+ * });
+ * // Create a Google Network
+ * const _default = new google.index.ComputeNetwork("default", {
+ *     project: gcpProjectId,
+ *     name: "my-network",
+ *     autoCreateSubnetworks: false,
+ * });
+ * // Create a Google Sub Network
+ * const defaultComputeSubnetwork = new google.index.ComputeSubnetwork("default", {
+ *     project: _default.project,
+ *     name: "my-subnet",
+ *     ipCidrRange: "10.0.0.0/16",
+ *     region: gcpRegion,
+ *     network: _default.id,
+ * });
+ * // Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
+ * const defaultComputeAddress: google.index.ComputeAddress[] = [];
+ * for (const range = {value: 0}; range.value < 50; range.value++) {
+ *     defaultComputeAddress.push(new google.index.ComputeAddress(`default-${range.value}`, {
+ *         project: defaultComputeSubnetwork.project,
+ *         name: `tf-this${range.value}`,
+ *         subnetwork: defaultComputeSubnetwork.id,
+ *         addressType: "INTERNAL",
+ *         address: `10.0.42.${range.value}`,
+ *         region: gcpRegion,
+ *     }, {
+ *     dependsOn: [_this],
+ * }));
+ * }
+ * // Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
+ * const defaultComputeForwardingRule: google.index.ComputeForwardingRule[] = [];
+ * for (const range = {value: 0}; range.value < 50; range.value++) {
+ *     defaultComputeForwardingRule.push(new google.index.ComputeForwardingRule(`default-${range.value}`, {
+ *         target: _this.serviceAttachmentNames[range.value],
+ *         project: defaultComputeAddress[range.value].project,
+ *         region: defaultComputeAddress[range.value].region,
+ *         name: defaultComputeAddress[range.value].name,
+ *         ipAddress: defaultComputeAddress[range.value].id,
+ *         network: _default.id,
+ *         loadBalancingScheme: "",
+ *     }));
+ * }
+ * const thisPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("this", {
+ *     endpoints: defaultComputeAddress.map((v, k) => ({key: k, value: v})).map(entry => ({
+ *         ipAddress: entry.value.address,
+ *         endpointName: defaultComputeForwardingRule[entry.key].name,
+ *     })),
+ *     projectId: _this.projectId,
+ *     privateLinkId: _this.privateLinkId,
+ *     providerName: "GCP",
+ *     endpointServiceId: _default.name,
+ *     gcpProjectId: gcpProjectId,
+ * }, {
+ *     dependsOn: [defaultComputeForwardingRule],
+ * });
+ * ```
+ *
+ * ## Example with GCP (Port-Mapped Architecture)
+ *
+ * The port-mapped architecture uses port mapping to reduce resource provisioning. In the GCP legacy private endpoint architecture, service attachments were mapped 1:1 with Atlas nodes (one service attachment per node). In the port-mapped architecture, regardless of cloud provider, one service attachment can be mapped to up to 150 nodes via ports designated per node, enabling direct targeting of specific nodes using only one customer IP address. Enable it by setting `portMappingEnabled = true` on the `mongodbatlas.PrivateLinkEndpoint` resource.
+ *
+ * **Important:** For the port-mapped architecture, use `endpointServiceId` (the forwarding rule name) and `privateEndpointIpAddress` (the IP address). The `endpoints` list is no longer used for the port-mapped architecture.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as google from "@pulumi/google";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _this = new mongodbatlas.PrivateLinkEndpoint("this", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     region: gcpRegion,
+ *     portMappingEnabled: true,
+ * });
+ * // Create a Google Network
+ * const _default = new google.index.ComputeNetwork("default", {
+ *     project: gcpProjectId,
+ *     name: "my-network",
+ *     autoCreateSubnetworks: false,
+ * });
+ * // Create a Google Sub Network
+ * const defaultComputeSubnetwork = new google.index.ComputeSubnetwork("default", {
+ *     project: _default.project,
+ *     name: "my-subnet",
+ *     ipCidrRange: "10.0.0.0/16",
+ *     region: gcpRegion,
+ *     network: _default.id,
+ * });
+ * // Create Google Address (1 address for port-mapped architecture)
+ * const defaultComputeAddress = new google.index.ComputeAddress("default", {
+ *     project: defaultComputeSubnetwork.project,
+ *     name: "tf-this-psc-endpoint",
+ *     subnetwork: defaultComputeSubnetwork.id,
+ *     addressType: "INTERNAL",
+ *     address: "10.0.42.1",
+ *     region: defaultComputeSubnetwork.region,
+ * }, {
+ *     dependsOn: [_this],
+ * });
+ * // Create Forwarding Rule (1 rule for port-mapped architecture)
+ * const defaultComputeForwardingRule = new google.index.ComputeForwardingRule("default", {
+ *     target: _this.serviceAttachmentNames[0],
+ *     project: defaultComputeAddress.project,
+ *     region: defaultComputeAddress.region,
+ *     name: defaultComputeAddress.name,
+ *     ipAddress: defaultComputeAddress.id,
+ *     network: _default.id,
+ *     loadBalancingScheme: "",
+ * });
+ * const thisPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("this", {
+ *     projectId: _this.projectId,
+ *     privateLinkId: _this.privateLinkId,
+ *     providerName: "GCP",
+ *     endpointServiceId: defaultComputeForwardingRule.name,
+ *     privateEndpointIpAddress: defaultComputeAddress.address,
+ *     gcpProjectId: gcpProjectId,
+ * }, {
+ *     dependsOn: [defaultComputeForwardingRule],
+ * });
+ * ```
+ *
+ * ### Further Examples
+ * - AWS PrivateLink Endpoint and Service
+ * - Azure Private Link Endpoint and Service
+ * - GCP Private Service Connect Endpoint and Service (Port-Mapped Architecture)
+ *
  * ## Import
  *
  * Private Endpoint Link Connection can be imported using project ID, private link ID, endpoint service ID, and provider name, in the format `{project_id}--{private_link_id}--{endpoint_service_id}--{provider_name}`, e.g.
@@ -14,6 +221,7 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService this 1112222b3bf99403840e8934--3242342343112--vpce-4242342343--AWS
  * ```
+ *
  * For more information, see:
  * - [MongoDB API Private Endpoint Link Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupprivateendpointendpointserviceendpoint) for detailed arguments and attributes.
  * - [Set Up a Private Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/) for general guidance on private endpoints in MongoDB Atlas.

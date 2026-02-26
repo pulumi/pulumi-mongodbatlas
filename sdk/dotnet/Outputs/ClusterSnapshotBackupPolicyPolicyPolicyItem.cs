@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly int? FrequencyInterval;
         public readonly string? FrequencyType;
         /// <summary>
-        /// Unique identifer of the replication document for a zone in a Global Cluster. This value corresponds to the legacy sharding schema (no independent shard scaling) and is different from the Shard ID you may see in the Atlas UI.
+        /// The Terraform's unique identifier used internally for state management.
         /// </summary>
         public readonly string? Id;
         public readonly string? RetentionUnit;

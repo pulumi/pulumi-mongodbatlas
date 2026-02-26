@@ -39,6 +39,7 @@ class ThirdPartyIntegrationArgs:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a ThirdPartyIntegration resource.
+
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations
         :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
@@ -289,6 +290,7 @@ class _ThirdPartyIntegrationState:
                  user_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ThirdPartyIntegration resources.
+
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations
         :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
@@ -577,7 +579,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration test_datadog 1112222b3bf99403840e8934-DATADOG
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -634,7 +638,9 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/thirdPartyIntegration:ThirdPartyIntegration test_datadog 1112222b3bf99403840e8934-DATADOG
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Third-Party-Integrations/operation/createThirdPartyIntegration) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param ThirdPartyIntegrationArgs args: The arguments to use to populate this resource's properties.

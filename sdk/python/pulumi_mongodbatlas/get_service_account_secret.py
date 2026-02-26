@@ -138,6 +138,9 @@ def get_service_account_secret(client_id: Optional[_builtins.str] = None,
                                secret_id: Optional[_builtins.str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountSecretResult:
     """
+    `ServiceAccountSecret` describes a Service Account Secret.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
     ## Example Usage
 
     ### S
@@ -193,6 +196,9 @@ def get_service_account_secret_output(client_id: Optional[pulumi.Input[_builtins
                                       secret_id: Optional[pulumi.Input[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountSecretResult]:
     """
+    `ServiceAccountSecret` describes a Service Account Secret.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
     ## Example Usage
 
     ### S

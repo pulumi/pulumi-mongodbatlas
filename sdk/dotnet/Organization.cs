@@ -10,6 +10,12 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
+    /// 
+    /// &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial credentials. Defining `Description` and `RoleNames` creates a Programmatic API Key (public and private key) — in this case, `RoleNames` must have the ORG_OWNER role specified. Defining a `ServiceAccount` block creates a Service Account (client ID and client secret) instead. The API does not allow creating both in the same request. These credential values are stored in the Terraform state and used by the resource for subsequent operations on the organization.
+    /// 
+    /// &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key's organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.
+    /// 
     /// ## Example Usage
     /// 
     /// ### With Programmatic API Key
@@ -43,11 +49,12 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     /// $ pulumi import mongodbatlas:index/organization:Organization this 5d09d6a59ccf6445652a444a
     /// ```
-    /// ~&gt; __IMPORTANT:__ When importing an existing organization, you should __NOT__ specify the creation-only attributes (`org_owner_id`, `description`, `role_names`, `federation_settings_id`, `service_account`) in your Terraform configuration.
     /// 
-    /// See the [Guide: Importing MongoDB Atlas Organizations](../guides/importing-organization) for more information.
+    /// &gt; **IMPORTANT:** When importing an existing organization, you should **NOT** specify the creation-only attributes (`OrgOwnerId`, `Description`, `RoleNames`, `FederationSettingsId`, `ServiceAccount`) in your Terraform configuration.
     /// 
-    /// For more information about the `mongodbatlas_organization` resource see: [MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations).
+    /// See the Guide: Importing MongoDB Atlas Organizations for more information.
+    /// 
+    /// For more information about the `mongodbatlas.Organization` resource see: [MongoDB Atlas Admin API Organization](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations).
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/organization:Organization")]
     public partial class Organization : global::Pulumi.CustomResource
@@ -58,6 +65,15 @@ namespace Pulumi.Mongodbatlas
         [Output("apiAccessListRequired")]
         public Output<bool> ApiAccessListRequired { get; private set; } = null!;
 
+        /// <summary>
+        /// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+        /// 
+        /// &gt; **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
+        /// - **Programmatic API Key:** `PublicKey` and `PrivateKey` are stored. These credentials do not expire.
+        /// - **Service Account:** `service_account.client_id` and `service_account.secrets.0.secret` are stored. Service Account secrets expire after the configured `SecretExpiresAfterHours` period. When the secret expires, the resource automatically falls back to provider-level credentials for subsequent operations.
+        /// - In case of importing the resource, no organization-specific credentials are stored and provider credentials are used instead.
+        /// - Terraform state contains sensitive credential data. Follow Terraform's best practices for sensitive data in state.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
@@ -97,9 +113,15 @@ namespace Pulumi.Mongodbatlas
         [Output("orgOwnerId")]
         public Output<string?> OrgOwnerId { get; private set; } = null!;
 
+        /// <summary>
+        /// Private key returned for this organization API key. This key displays unredacted when first created and is stored in the Terraform state file. Used for subsequent resource operations. Only populated when no `ServiceAccount` block is defined.
+        /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Public API key value set for the specified organization API key. Stored in the Terraform state and used for subsequent resource operations. Only populated when no `ServiceAccount` block is defined.
+        /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
 
@@ -127,6 +149,11 @@ namespace Pulumi.Mongodbatlas
         [Output("serviceAccount")]
         public Output<Outputs.OrganizationServiceAccount?> ServiceAccount { get; private set; } = null!;
 
+        /// <summary>
+        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`. 
+        /// 
+        /// &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `True` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `False`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `True`.
+        /// </summary>
         [Output("skipDefaultAlertsSettings")]
         public Output<bool> SkipDefaultAlertsSettings { get; private set; } = null!;
 
@@ -187,6 +214,15 @@ namespace Pulumi.Mongodbatlas
         [Input("apiAccessListRequired")]
         public Input<bool>? ApiAccessListRequired { get; set; }
 
+        /// <summary>
+        /// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+        /// 
+        /// &gt; **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
+        /// - **Programmatic API Key:** `PublicKey` and `PrivateKey` are stored. These credentials do not expire.
+        /// - **Service Account:** `service_account.client_id` and `service_account.secrets.0.secret` are stored. Service Account secrets expire after the configured `SecretExpiresAfterHours` period. When the secret expires, the resource automatically falls back to provider-level credentials for subsequent operations.
+        /// - In case of importing the resource, no organization-specific credentials are stored and provider credentials are used instead.
+        /// - Terraform state contains sensitive credential data. Follow Terraform's best practices for sensitive data in state.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -250,6 +286,11 @@ namespace Pulumi.Mongodbatlas
         [Input("serviceAccount")]
         public Input<Inputs.OrganizationServiceAccountArgs>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`. 
+        /// 
+        /// &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `True` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `False`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `True`.
+        /// </summary>
         [Input("skipDefaultAlertsSettings")]
         public Input<bool>? SkipDefaultAlertsSettings { get; set; }
 
@@ -267,6 +308,15 @@ namespace Pulumi.Mongodbatlas
         [Input("apiAccessListRequired")]
         public Input<bool>? ApiAccessListRequired { get; set; }
 
+        /// <summary>
+        /// Programmatic API Key description. This attribute is required in creation and can't be updated later.
+        /// 
+        /// &gt; **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
+        /// - **Programmatic API Key:** `PublicKey` and `PrivateKey` are stored. These credentials do not expire.
+        /// - **Service Account:** `service_account.client_id` and `service_account.secrets.0.secret` are stored. Service Account secrets expire after the configured `SecretExpiresAfterHours` period. When the secret expires, the resource automatically falls back to provider-level credentials for subsequent operations.
+        /// - In case of importing the resource, no organization-specific credentials are stored and provider credentials are used instead.
+        /// - Terraform state contains sensitive credential data. Follow Terraform's best practices for sensitive data in state.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
@@ -308,6 +358,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("privateKey")]
         private Input<string>? _privateKey;
+
+        /// <summary>
+        /// Private key returned for this organization API key. This key displays unredacted when first created and is stored in the Terraform state file. Used for subsequent resource operations. Only populated when no `ServiceAccount` block is defined.
+        /// </summary>
         public Input<string>? PrivateKey
         {
             get => _privateKey;
@@ -320,6 +374,10 @@ namespace Pulumi.Mongodbatlas
 
         [Input("publicKey")]
         private Input<string>? _publicKey;
+
+        /// <summary>
+        /// Public API key value set for the specified organization API key. Stored in the Terraform state and used for subsequent resource operations. Only populated when no `ServiceAccount` block is defined.
+        /// </summary>
         public Input<string>? PublicKey
         {
             get => _publicKey;
@@ -360,6 +418,11 @@ namespace Pulumi.Mongodbatlas
         [Input("serviceAccount")]
         public Input<Inputs.OrganizationServiceAccountGetArgs>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`. 
+        /// 
+        /// &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `True` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `False`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `True`.
+        /// </summary>
         [Input("skipDefaultAlertsSettings")]
         public Input<bool>? SkipDefaultAlertsSettings { get; set; }
 

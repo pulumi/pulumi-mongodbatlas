@@ -11,7 +11,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// ## Example Usage
+// `getApiKeys` describe all API Keys. This represents API Keys that have been created.
+//
+// > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+//
+// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 func LookupApiKeys(ctx *pulumi.Context, args *LookupApiKeysArgs, opts ...pulumi.InvokeOption) (*LookupApiKeysResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupApiKeysResult

@@ -29,10 +29,12 @@ class SearchDeploymentArgs:
                  timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a SearchDeployment resource.
+
         :param pulumi.Input[_builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "project_id", project_id)
@@ -95,6 +97,9 @@ class SearchDeploymentArgs:
     @_builtins.property
     @pulumi.getter(name="skipWaitOnUpdate")
     def skip_wait_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+        """
         return pulumi.get(self, "skip_wait_on_update")
 
     @skip_wait_on_update.setter
@@ -124,10 +129,12 @@ class _SearchDeploymentState:
                  timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering SearchDeployment resources.
+
         :param pulumi.Input[_builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[_builtins.str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
@@ -199,6 +206,9 @@ class _SearchDeploymentState:
     @_builtins.property
     @pulumi.getter(name="skipWaitOnUpdate")
     def skip_wait_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+        """
         return pulumi.get(self, "skip_wait_on_update")
 
     @skip_wait_on_update.setter
@@ -309,11 +319,13 @@ class SearchDeployment(pulumi.CustomResource):
 
         For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         ...
@@ -378,6 +390,7 @@ class SearchDeployment(pulumi.CustomResource):
         After an import, a non-empty plan is expected if the configuration defines the `skip_wait_on_update` attribute. However, the update will not have any effect on the search deployment since `skip_wait_on_update` only relates to the update operations wait time.
 
         For more information see: [MongoDB Atlas API - Search Node](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Atlas-Search/operation/createAtlasSearchDeployment) Documentation.
+
 
         :param str resource_name: The name of the resource.
         :param SearchDeploymentArgs args: The arguments to use to populate this resource's properties.
@@ -452,6 +465,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[_builtins.str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
@@ -504,6 +518,9 @@ class SearchDeployment(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="skipWaitOnUpdate")
     def skip_wait_on_update(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
+        """
         return pulumi.get(self, "skip_wait_on_update")
 
     @_builtins.property

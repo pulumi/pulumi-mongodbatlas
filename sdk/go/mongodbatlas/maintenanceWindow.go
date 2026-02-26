@@ -132,11 +132,14 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
 // ```
+//
 // For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
 type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 
-	AutoDefer            pulumi.BoolOutput `pulumi:"autoDefer"`
+	// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+	AutoDefer pulumi.BoolOutput `pulumi:"autoDefer"`
+	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled pulumi.BoolOutput `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
@@ -195,7 +198,9 @@ func GetMaintenanceWindow(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MaintenanceWindow resources.
 type maintenanceWindowState struct {
-	AutoDefer            *bool `pulumi:"autoDefer"`
+	// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+	AutoDefer *bool `pulumi:"autoDefer"`
+	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek *int `pulumi:"dayOfWeek"`
@@ -216,7 +221,9 @@ type maintenanceWindowState struct {
 }
 
 type MaintenanceWindowState struct {
-	AutoDefer            pulumi.BoolPtrInput
+	// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+	AutoDefer pulumi.BoolPtrInput
+	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntPtrInput
@@ -241,7 +248,9 @@ func (MaintenanceWindowState) ElementType() reflect.Type {
 }
 
 type maintenanceWindowArgs struct {
-	AutoDefer            *bool `pulumi:"autoDefer"`
+	// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+	AutoDefer *bool `pulumi:"autoDefer"`
+	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
@@ -257,7 +266,9 @@ type maintenanceWindowArgs struct {
 
 // The set of arguments for constructing a MaintenanceWindow resource.
 type MaintenanceWindowArgs struct {
-	AutoDefer            pulumi.BoolPtrInput
+	// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
+	AutoDefer pulumi.BoolPtrInput
+	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek pulumi.IntInput
@@ -358,10 +369,12 @@ func (o MaintenanceWindowOutput) ToMaintenanceWindowOutputWithContext(ctx contex
 	return o
 }
 
+// Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
 func (o MaintenanceWindowOutput) AutoDefer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDefer }).(pulumi.BoolOutput)
 }
 
+// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 func (o MaintenanceWindowOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }

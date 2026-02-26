@@ -11,6 +11,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `ProjectServiceAccount` describes a Project Service Account.
+//
+// > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+//
 // ## Example Usage
 func LookupProjectServiceAccount(ctx *pulumi.Context, args *LookupProjectServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupProjectServiceAccountResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

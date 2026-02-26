@@ -7,13 +7,222 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * `mongodbatlas.CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
+ *
+ * > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+ *
+ * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+ *
+ * > **NOTE:** If you need to remove the `mongodbatlas.CloudBackupSchedule`, read this guide.
+ *
+ * > **NOTE:** When creating a backup schedule you **must either** use the `dependsOn` clause to indicate the cluster to which it refers **or** specify the values of `projectId` and `clusterName` as reference of the cluster resource (e.g. `clusterName = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
+ *
+ * In the Terraform MongoDB Atlas Provider 1.0.0 we have re-architected the way in which Cloud Backup Policies are managed with Terraform to significantly reduce the complexity. Due to this change we've provided the following examples to help express how this resource functions.
+ *
+ * ## Example Usage
+ *
+ * ### Create A Cluster With 2 Policies Items
+ *
+ * You can create a new cluster with `cloudBackup` enabled and then immediately overwrite the default cloud backup policy that Atlas creates by default at the same time with this example.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const test = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 1,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 2,
+ *     },
+ * });
+ * ```
+ *
+ * ### Create A Cluster With Cloud Backup Enabled But No Policy Items
+ *
+ * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with no policy items to remove the default policy that Atlas creates when you enable Cloud Backup. This allows you to then create a policy when you are ready to via Terraform.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const test = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ * });
+ * ```
+ *
+ * ### Add 4 Policies Items To A Cluster With Cloud Backup Previously Enabled But With No Policy Items
+ *
+ * If you followed the example to Create a Cluster with Cloud Backup Enabled but No Policy Items and then want to add policy items later to the `mongodbatlas.CloudBackupSchedule` this example shows how.
+ *
+ * The cluster already exists with `cloudBackup` enabled
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const test = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemHourly: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 1,
+ *     },
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 2,
+ *     },
+ *     policyItemWeeklies: [{
+ *         frequencyInterval: 4,
+ *         retentionUnit: "weeks",
+ *         retentionValue: 3,
+ *     }],
+ *     policyItemMonthlies: [{
+ *         frequencyInterval: 5,
+ *         retentionUnit: "months",
+ *         retentionValue: 4,
+ *     }],
+ *     policyItemYearlies: [{
+ *         frequencyInterval: 1,
+ *         retentionUnit: "years",
+ *         retentionValue: 1,
+ *     }],
+ * });
+ * ```
+ *
+ * ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
+ *
+ * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const myCluster = new mongodbatlas.AdvancedCluster("my_cluster", {
+ *     projectId: "<PROJECT-ID>",
+ *     name: "clusterTest",
+ *     clusterType: "REPLICASET",
+ *     backupEnabled: true,
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AWS",
+ *             regionName: "EU_CENTRAL_1",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const test = new mongodbatlas.CloudBackupSchedule("test", {
+ *     projectId: myCluster.projectId,
+ *     clusterName: myCluster.name,
+ *     referenceHourOfDay: 3,
+ *     referenceMinuteOfHour: 45,
+ *     restoreWindowDays: 4,
+ *     policyItemDaily: {
+ *         frequencyInterval: 1,
+ *         retentionUnit: "days",
+ *         retentionValue: 14,
+ *     },
+ *     copySettings: [{
+ *         cloudProvider: "AWS",
+ *         frequencies: [
+ *             "HOURLY",
+ *             "DAILY",
+ *             "WEEKLY",
+ *             "MONTHLY",
+ *             "YEARLY",
+ *             "ON_DEMAND",
+ *         ],
+ *         regionName: "US_EAST_1",
+ *         zoneId: myCluster.replicationSpecs.apply(replicationSpecs => replicationSpecs.map(__item => __item.zoneId?.[0])),
+ *         shouldCopyOplogs: false,
+ *     }],
+ * });
+ * ```
+ *
+ * ### Further Examples
+ * - Cloud Backup Schedule
+ *
  * ## Import
  *
- * Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
+ * Cloud Backup Schedule entries can be imported using projectId and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
  *
  * ```sh
  * $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
  * ```
+ *
  * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
  */
 export class CloudBackupSchedule extends pulumi.CustomResource {
@@ -110,6 +319,11 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
     declare public readonly restoreWindowDays: pulumi.Output<number>;
+    /**
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+     *
+     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     */
     declare public readonly updateSnapshots: pulumi.Output<boolean>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -249,6 +463,11 @@ export interface CloudBackupScheduleState {
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
     restoreWindowDays?: pulumi.Input<number>;
+    /**
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+     *
+     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     */
     updateSnapshots?: pulumi.Input<boolean>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -314,6 +533,11 @@ export interface CloudBackupScheduleArgs {
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
     restoreWindowDays?: pulumi.Input<number>;
+    /**
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+     *
+     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     */
     updateSnapshots?: pulumi.Input<boolean>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).

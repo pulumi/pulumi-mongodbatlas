@@ -321,6 +321,9 @@ namespace Pulumi.Mongodbatlas
         [Output("typeSets")]
         public Output<ImmutableArray<Outputs.SearchIndexTypeSet>> TypeSets { get; private set; } = null!;
 
+        /// <summary>
+        /// Wait for search index to achieve Active status before terraform considers resource built.
+        /// </summary>
         [Output("waitForIndexBuildCompletion")]
         public Output<bool?> WaitForIndexBuildCompletion { get; private set; } = null!;
 
@@ -505,6 +508,9 @@ namespace Pulumi.Mongodbatlas
             set => _typeSets = value;
         }
 
+        /// <summary>
+        /// Wait for search index to achieve Active status before terraform considers resource built.
+        /// </summary>
         [Input("waitForIndexBuildCompletion")]
         public Input<bool>? WaitForIndexBuildCompletion { get; set; }
 
@@ -663,6 +669,9 @@ namespace Pulumi.Mongodbatlas
             set => _typeSets = value;
         }
 
+        /// <summary>
+        /// Wait for search index to achieve Active status before terraform considers resource built.
+        /// </summary>
         [Input("waitForIndexBuildCompletion")]
         public Input<bool>? WaitForIndexBuildCompletion { get; set; }
 

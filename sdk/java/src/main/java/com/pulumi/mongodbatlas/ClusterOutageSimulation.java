@@ -82,7 +82,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * The `mongodbatlas_cluster_outage_simulation` resource does not support import operation.
+ * The `mongodbatlas.ClusterOutageSimulation` resource does not support import operation.
  * 
  * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cluster-Outage-Simulation) Documentation for more information.
  * 

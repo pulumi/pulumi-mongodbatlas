@@ -24,6 +24,868 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
+ * `mongodbatlas.AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters.
+ * 
+ * &gt; **IMPORTANT:** If upgrading from our provider versions 1.x.x to 2.0.0 or later, you will be required to update your `mongodbatlas.AdvancedCluster` resource configuration. Please refer this guide for details. This new implementation uses the recommended Terraform Plugin Framework, which, in addition to providing a better user experience and other features, adds support for the `moved` block between different resource types.
+ * 
+ * &gt; **IMPORTANT:** We recommend all new MongoDB Atlas Terraform users start with the `mongodbatlas.AdvancedCluster` resource.  Key differences between `mongodbatlas.Cluster` and `mongodbatlas.AdvancedCluster` include support for [Multi-Cloud Clusters](https://www.mongodb.com/blog/post/introducing-multicloud-clusters-on-mongodb-atlas), Asymmetric Sharding, and [Independent Scaling of Analytics Node Tiers](https://www.mongodb.com/blog/post/introducing-ability-independently-scale-atlas-analytics-node-tiers). For existing `mongodbatlas.Cluster` resource users see our Migration Guide.
+ * 
+ * &gt; **IMPORTANT:** When modifying cluster configurations, you may see `(known after apply)` markers for many attributes, even those you haven&#39;t changed. This is expected behavior. See the &#34;known after apply&#34; verbosity section below for details.
+ * 
+ * &gt; **IMPORTANT:** When configuring auto-scaling, you can now use `useEffectiveFields` to simplify your Terraform workflow. See the Auto-Scaling with Effective Fields section below for details.
+ * 
+ * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+ * 
+ * &gt; **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs[#].container_id` attribute in the Attributes Reference for more information.
+ * 
+ * &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
+ * 
+ * &gt; **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+ * 
+ * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+ * 
+ * &gt; **NOTE:** This resource supports Flex clusters. Additionally, you can upgrade M0 clusters to Flex and Flex clusters to Dedicated. When creating a Flex cluster, make sure to set the priority value to 7.
+ * 
+ * ## Example Usage
+ * 
+ * ### Example single provider and single region
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(1)
+ *                         .build())
+ *                     .providerName("AWS")
+ *                     .priority(7)
+ *                     .regionName("US_EAST_1")
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example using effective fields with auto-scaling
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var thisAdvancedCluster = new AdvancedCluster("thisAdvancedCluster", AdvancedClusterArgs.builder()
+ *             .projectId(projectId)
+ *             .name("auto-scale-cluster")
+ *             .clusterType("REPLICASET")
+ *             .useEffectiveFields(true)
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .autoScaling(AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs.builder()
+ *                         .computeEnabled(true)
+ *                         .computeScaleDownEnabled(true)
+ *                         .computeMinInstanceSize("M10")
+ *                         .computeMaxInstanceSize("M30")
+ *                         .build())
+ *                     .providerName("AWS")
+ *                     .priority(7)
+ *                     .regionName("US_EAST_1")
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         // Read the effective (actual) values after Atlas scales
+ *         final var this = MongodbatlasFunctions.getAdvancedCluster(GetAdvancedClusterArgs.builder()
+ *             .projectId(thisAdvancedCluster.projectId())
+ *             .name(thisAdvancedCluster.name())
+ *             .useEffectiveFields(true)
+ *             .build());
+ * 
+ *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].electableSpecs().instanceSize()));
+ *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].effectiveElectableSpecs().instanceSize()));
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * **For module authors:** See the Effective Fields Examples for complete examples of using `useEffectiveFields` and effective specs in reusable Terraform modules.
+ * 
+ * ### Example Tenant Cluster
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M0")
+ *                         .build())
+ *                     .providerName("TENANT")
+ *                     .backingProviderName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &gt; **NOTE** Upgrading the tenant cluster to a Flex cluster or a dedicated cluster is supported. When upgrading to a Flex cluster, change the `providerName` from &#34;TENANT&#34; to &#34;FLEX&#34;. See Example Tenant Cluster Upgrade to Flex below. When upgrading to a dedicated cluster, change the `providerName` to your preferred provider (AWS, GCP or Azure) and remove the variable `backingProviderName`. See the Example Tenant Cluster Upgrade below. You can upgrade a tenant cluster only to a single provider on an M10-tier cluster or greater.
+ * 
+ * When upgrading from the tenant, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+ * 
+ * ### Example Tenant Cluster Upgrade
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .build())
+ *                     .providerName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example Tenant Cluster Upgrade to Flex
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .providerName("FLEX")
+ *                     .backingProviderName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example Flex Cluster
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .providerName("FLEX")
+ *                     .backingProviderName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * **NOTE**: Upgrading the Flex cluster is supported. When upgrading from a Flex cluster, change the `providerName` from &#34;TENANT&#34; to your preferred provider (AWS, GCP or Azure) and remove the variable `backingProviderName`.  See the Example Flex Cluster Upgrade below. You can upgrade a Flex cluster only to a single provider on an M10-tier cluster or greater.
+ * 
+ * When upgrading from a flex cluster, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+ * 
+ * ### Example Flex Cluster Upgrade
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .build())
+ *                     .providerName("AWS")
+ *                     .regionName("US_EAST_1")
+ *                     .priority(7)
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example Multi-Cloud Cluster
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .name("NAME OF CLUSTER")
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(                
+ *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                             .instanceSize("M10")
+ *                             .nodeCount(3)
+ *                             .build())
+ *                         .analyticsSpecs(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs.builder()
+ *                             .instanceSize("M10")
+ *                             .nodeCount(1)
+ *                             .build())
+ *                         .providerName("AWS")
+ *                         .priority(7)
+ *                         .regionName("US_EAST_1")
+ *                         .build(),
+ *                     AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                         .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                             .instanceSize("M10")
+ *                             .nodeCount(2)
+ *                             .build())
+ *                         .providerName("GCP")
+ *                         .priority(6)
+ *                         .regionName("NORTH_AMERICA_NORTHEAST_1")
+ *                         .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * ### Example of a Multi Cloud Sharded Cluster with 2 shards
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterAdvancedConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId(project.id())
+ *             .name(clusterName)
+ *             .clusterType("SHARDED")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(            
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("US_EAST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("US_EAST_2")
+ *                             .build())
+ *                     .build(),
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("US_EAST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("US_EAST_2")
+ *                             .build())
+ *                     .build())
+ *             .advancedConfiguration(AdvancedClusterAdvancedConfigurationArgs.builder()
+ *                 .javascriptEnabled(true)
+ *                 .oplogSizeMb(991)
+ *                 .sampleRefreshIntervalBiConnector(300)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example of a Global Cluster with 2 zones
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterAdvancedConfigurationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
+ *             .projectId(project.id())
+ *             .name(clusterName)
+ *             .clusterType("GEOSHARDED")
+ *             .backupEnabled(true)
+ *             .replicationSpecs(            
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .zoneName("zone n1")
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("US_EAST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("US_EAST_2")
+ *                             .build())
+ *                     .build(),
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .zoneName("zone n1")
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("US_EAST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("US_EAST_2")
+ *                             .build())
+ *                     .build(),
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .zoneName("zone n2")
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("EU_WEST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("EUROPE_NORTH")
+ *                             .build())
+ *                     .build(),
+ *                 AdvancedClusterReplicationSpecArgs.builder()
+ *                     .zoneName("zone n2")
+ *                     .regionConfigs(                    
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(3)
+ *                                 .build())
+ *                             .providerName("AWS")
+ *                             .priority(7)
+ *                             .regionName("EU_WEST_1")
+ *                             .build(),
+ *                         AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                             .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                                 .instanceSize("M30")
+ *                                 .nodeCount(2)
+ *                                 .build())
+ *                             .providerName("AZURE")
+ *                             .priority(6)
+ *                             .regionName("EUROPE_NORTH")
+ *                             .build())
+ *                     .build())
+ *             .advancedConfiguration(AdvancedClusterAdvancedConfigurationArgs.builder()
+ *                 .javascriptEnabled(true)
+ *                 .oplogSizeMb(999)
+ *                 .sampleRefreshIntervalBiConnector(300)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Example - Return a Connection String
+ * Standard
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         ctx.export("standard", cluster.connectionStrings().standard());
+ *     }
+ * }
+ * }
+ * </pre>
+ * Standard srv
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         ctx.export("standardSrv", cluster.connectionStrings().standardSrv());
+ *     }
+ * }
+ * }
+ * </pre>
+ * Private with Network peering and Custom DNS AWS enabled
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         ctx.export("private", cluster.connectionStrings().private());
+ *     }
+ * }
+ * }
+ * </pre>
+ * Private srv with Network peering and Custom DNS AWS enabled
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         ctx.export("privateSrv", cluster.connectionStrings().privateSrv());
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * By endpointServiceId
+ * 
+ * Refer to the following for full privatelink endpoint connection string examples:
+ * * GCP Private Endpoint (Port-Mapped Architecture)
+ * * Azure Private Endpoint
+ * * AWS, Private Endpoint
+ * * AWS, Regionalized Private Endpoints
+ * 
+ * ### Further Examples
+ * 
+ * **Cluster Types:**
+ * - Replicaset
+ * - Symmetric Sharded Cluster
+ * - Asymmetric Sharded Cluster
+ * - Global Cluster
+ * - Multi-Cloud
+ * 
+ * **Auto-scaling:**
+ * - Auto-Scaling Per Shard
+ * - Effective Fields Examples
+ * 
+ * **Upgrades &amp; Migrations:**
+ * - Tenant Upgrade
+ * - Flex Upgrade
+ * - Version Upgrade with Pinned FCV
+ * - Migrate Cluster to Advanced Cluster
+ * 
+ * ## Move
+ * 
+ * `mongodbatlas__cluster` resources can be moved to `mongodbatlas.AdvancedCluster` in Terraform v1.8 and later, e.g.:
+ * 
+ * More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
+ * 
+ * ## Auto-Scaling with Effective Fields
+ * 
+ * The `useEffectiveFields` attribute enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and providing visibility into Atlas-managed changes. This feature only applies to dedicated clusters (M10+) and is not supported for flex and tenant clusters.
+ * 
+ * ### Why use_effective_fields?
+ * 
+ * When auto-scaling is enabled on a cluster, Atlas automatically adjusts instance sizes and disk capacity based on workload. Without `useEffectiveFields`, `lifecycle.ignore_changes` blocks are required to prevent Terraform from reverting these Atlas-managed changes. This approach has limitations:
+ * 
+ * - **Configuration drift**: The actual cluster configuration diverges from your Terraform configuration
+ * - **Maintenance overhead**: Careful management of `ignoreChanges` blocks is required, including commenting and uncommenting when making intentional changes
+ * - **Limited visibility**: Actual scaled values cannot be easily inspected within Terraform state
+ * 
+ * ### How useEffectiveFields works
+ * 
+ * The `useEffectiveFields` attribute changes how the provider handles specification attributes:
+ * 
+ * **When `useEffectiveFields = false` (default - current behavior):**
+ * - Spec attributes (`electableSpecs`, `analyticsSpecs`, `readOnlySpecs`) behavior:
+ *   - If values are specified in your Terraform configuration (e.g., `instanceSize = &#34;M10&#34;`), those values remain in your configuration
+ *   - If values are not specified, Atlas provides default values automatically
+ * - With auto-scaling enabled, Atlas scales your cluster but your configured values do not update to match
+ * - This creates plan drift: Terraform shows differences between your configured values and what Atlas has actually deployed
+ * - `lifecycle.ignore_changes` must be used to prevent Terraform from reverting Atlas auto-scaling changes back to your original configuration
+ * 
+ * **When `useEffectiveFields = true` (new behavior):**
+ * - **Clear separation of concerns**:
+ *   - Spec attributes remain exactly as defined in your Terraform configuration
+ *   - Atlas-computed values (defaults and auto-scaled values) are available separately in effective specs
+ * - No plan drift occurs when Atlas auto-scales your cluster
+ * - Use data sources to read `effectiveElectableSpecs`, `effectiveAnalyticsSpecs`, and `effectiveReadOnlySpecs` for actual values
+ * 
+ * **Key difference:** With `useEffectiveFields = true`, your configuration stays clean and represents your intent, while effective specs show the reality of what Atlas has provisioned.
+ * 
+ * See the Example using effective fields with auto-scaling in the Example Usage section.
+ * 
+ * ### Manually Updating Specs with useEffectiveFields
+ * 
+ * When `useEffectiveFields = true` and auto-scaling is enabled, you can update `instanceSize`, `diskSizeGb`, or `diskIops` in your configuration at any time without validation errors. However, Atlas echoes these values back in state while continuing to use auto-scaled values for actual cluster operations. To have your configured values take effect, temporarily disable auto-scaling:
+ * 
+ * 1. Set `computeEnabled = false` and `diskGbEnabled = false` in the `autoScaling` block and apply.
+ * 2. Update `instanceSize`, `diskSizeGb`, or `diskIops` to your desired values and apply.
+ * 3. Re-enable auto-scaling by setting `computeEnabled` and/or `diskGbEnabled` back to `true` and apply.
+ * 
+ * This workflow allows you to set specific baseline values from which auto-scaling will resume dynamic adjustments based on workload.
+ * 
+ * ### Terraform Modules
+ * 
+ * `useEffectiveFields` is particularly valuable for reusable Terraform modules. Without it, separate module implementations are required (one with lifecycle blocks for auto-scaling, one without). With `useEffectiveFields`, a single module handles both scenarios without lifecycle blocks. See the Effective Fields Examples for complete implementations.
+ * 
+ * ### Migration path and version 3.x
+ * 
+ * **Current behavior (provider v2.x):**
+ * - `useEffectiveFields` defaults to `false` for full backward compatibility
+ * - Set to `true` to opt into the effective fields behavior
+ * - The attribute will be deprecated later in v2.x releases in preparation for v3.x
+ * 
+ * **Future behavior (provider v3.x):**
+ * - The effective fields behavior will be enabled by default
+ * - The `useEffectiveFields` attribute will be removed, as the new behavior becomes standard
+ * - This change will reduce plan verbosity by making specification fields Optional-only (removing Computed), eliminating unnecessary `(known after apply)` markers for user-configured values
+ * 
+ * **Potential enhancements (v3.x or later):**
+ * - If customer demand warrants, effective spec fields (`effectiveElectableSpecs`, `effectiveAnalyticsSpecs`, `effectiveReadOnlySpecs`) may be exposed directly in the resource (currently available only via data source)
+ * - This would improve observability by providing direct access to actual operational values from the resource without requiring a separate data source
+ * - Note: Effective fields would still show `(known after apply)` markers, but user-configured spec fields would not, resulting in clearer plan output overall
+ * 
+ * **Migration recommendation:** Adopt `useEffectiveFields = true` in v2.x to prepare for the v3.x transition and benefit from improved auto-scaling workflows immediately. The recommendation is to toggle the flag and remove any existing `lifecycle.ignore_changes` blocks in the same apply, without combining other changes.
+ * 
+ * ## Considerations and Best Practices
+ * 
  * ## Import
  * 
  * Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -31,10 +893,11 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
  * ```
+ * 
  * See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
  * 
- * ~&gt; __IMPORTANT:__
- * \n\n &amp;#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+ * &gt; **IMPORTANT:**
+ * &lt;br&gt; &amp;#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replicationSpecs` per independent shards of the cluster.
  * 
  */
 @ResourceType(type="mongodbatlas:index/advancedCluster:AdvancedCluster")
@@ -298,14 +1161,22 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * Flag that indicates whether the cluster is paused.
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+     * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
      * 
      */
     @Export(name="paused", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> paused;
 
     /**
-     * @return Flag that indicates whether the cluster is paused.
+     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+     * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+     * `lifecycle {
+     * ignoreChanges = [paused]
+     * }`
      * 
      */
     public Output<Boolean> paused() {
@@ -396,14 +1267,18 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.replicationSpecs;
     }
     /**
-     * Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+     * Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+     * 
+     * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
      * 
      */
     @Export(name="retainBackupsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> retainBackupsEnabled;
 
     /**
-     * @return Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+     * @return Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+     * 
+     * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
      * 
      */
     public Output<Optional<Boolean>> retainBackupsEnabled() {

@@ -10,6 +10,10 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
+    /// `mongodbatlas.ServiceAccount` provides a Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Organization.
+    /// 
+    /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+    /// 
     /// ## Example Usage
     /// 
     /// ## Import

@@ -12,6 +12,796 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters.
+//
+// > **IMPORTANT:** If upgrading from our provider versions 1.x.x to 2.0.0 or later, you will be required to update your `AdvancedCluster` resource configuration. Please refer this guide for details. This new implementation uses the recommended Terraform Plugin Framework, which, in addition to providing a better user experience and other features, adds support for the `moved` block between different resource types.
+//
+// > **IMPORTANT:** We recommend all new MongoDB Atlas Terraform users start with the `AdvancedCluster` resource.  Key differences between `Cluster` and `AdvancedCluster` include support for [Multi-Cloud Clusters](https://www.mongodb.com/blog/post/introducing-multicloud-clusters-on-mongodb-atlas), Asymmetric Sharding, and [Independent Scaling of Analytics Node Tiers](https://www.mongodb.com/blog/post/introducing-ability-independently-scale-atlas-analytics-node-tiers). For existing `Cluster` resource users see our Migration Guide.
+//
+// > **IMPORTANT:** When modifying cluster configurations, you may see `(known after apply)` markers for many attributes, even those you haven't changed. This is expected behavior. See the "known after apply" verbosity section below for details.
+//
+// > **IMPORTANT:** When configuring auto-scaling, you can now use `useEffectiveFields` to simplify your Terraform workflow. See the Auto-Scaling with Effective Fields section below for details.
+//
+// > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+//
+// > **NOTE:** A network container is created for each provider/region combination on the advanced cluster. This can be referenced via a computed attribute for use with other resources. Refer to the `replication_specs[#].container_id` attribute in the Attributes Reference for more information.
+//
+// > **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the Project resource.
+//
+// > **NOTE:** The Low-CPU instance clusters are prefixed with `R`, for example `R40`. For complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+//
+// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+//
+// > **NOTE:** This resource supports Flex clusters. Additionally, you can upgrade M0 clusters to Flex and Flex clusters to Dedicated. When creating a Flex cluster, make sure to set the priority value to 7.
+//
+// ## Example Usage
+//
+// ### Example single provider and single region
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				Name:        pulumi.String("NAME OF CLUSTER"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								AnalyticsSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(1),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example using effective fields with auto-scaling
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			thisAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:          pulumi.Any(projectId),
+//				Name:               pulumi.String("auto-scale-cluster"),
+//				ClusterType:        pulumi.String("REPLICASET"),
+//				UseEffectiveFields: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								AutoScaling: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{
+//									ComputeEnabled:          pulumi.Bool(true),
+//									ComputeScaleDownEnabled: pulumi.Bool(true),
+//									ComputeMinInstanceSize:  pulumi.String("M10"),
+//									ComputeMaxInstanceSize:  pulumi.String("M30"),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Read the effective (actual) values after Atlas scales
+//			this := mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//				ProjectId:          thisAdvancedCluster.ProjectId,
+//				Name:               thisAdvancedCluster.Name,
+//				UseEffectiveFields: pulumi.Bool(true),
+//			}, nil)
+//			ctx.Export("configuredInstanceSize", this.ApplyT(func(this mongodbatlas.GetAdvancedClusterResult) (*string, error) {
+//				return &this.ReplicationSpecs[0].RegionConfigs[0].ElectableSpecs.InstanceSize, nil
+//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("actualInstanceSize", this.ApplyT(func(this mongodbatlas.GetAdvancedClusterResult) (*string, error) {
+//				return &this.ReplicationSpecs[0].RegionConfigs[0].EffectiveElectableSpecs.InstanceSize, nil
+//			}).(pulumi.StringPtrOutput))
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **For module authors:** See the Effective Fields Examples for complete examples of using `useEffectiveFields` and effective specs in reusable Terraform modules.
+//
+// ### Example Tenant Cluster
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				Name:        pulumi.String("NAME OF CLUSTER"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M0"),
+//								},
+//								ProviderName:        pulumi.String("TENANT"),
+//								BackingProviderName: pulumi.String("AWS"),
+//								RegionName:          pulumi.String("US_EAST_1"),
+//								Priority:            pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// > **NOTE** Upgrading the tenant cluster to a Flex cluster or a dedicated cluster is supported. When upgrading to a Flex cluster, change the `providerName` from "TENANT" to "FLEX". See Example Tenant Cluster Upgrade to Flex below. When upgrading to a dedicated cluster, change the `providerName` to your preferred provider (AWS, GCP or Azure) and remove the variable `backingProviderName`. See the Example Tenant Cluster Upgrade below. You can upgrade a tenant cluster only to a single provider on an M10-tier cluster or greater.
+//
+// When upgrading from the tenant, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+//
+// ### Example Tenant Cluster Upgrade
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				Name:        pulumi.String("NAME OF CLUSTER"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//								Priority:     pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example Tenant Cluster Upgrade to Flex
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				Name:        pulumi.String("NAME OF CLUSTER"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ProviderName:        pulumi.String("FLEX"),
+//								BackingProviderName: pulumi.String("AWS"),
+//								RegionName:          pulumi.String("US_EAST_1"),
+//								Priority:            pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example Flex Cluster
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				Name:        pulumi.String("NAME OF CLUSTER"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ProviderName:        pulumi.String("FLEX"),
+//								BackingProviderName: pulumi.String("AWS"),
+//								RegionName:          pulumi.String("US_EAST_1"),
+//								Priority:            pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **NOTE**: Upgrading the Flex cluster is supported. When upgrading from a Flex cluster, change the `providerName` from "TENANT" to your preferred provider (AWS, GCP or Azure) and remove the variable `backingProviderName`.  See the Example Flex Cluster Upgrade below. You can upgrade a Flex cluster only to a single provider on an M10-tier cluster or greater.
+//
+// When upgrading from a flex cluster, *only* the upgrade changes will be applied. This helps avoid a corrupt state file in the event that the upgrade succeeds but subsequent updates fail within the same `pulumi up`. To apply additional cluster changes, run a secondary `pulumi up` after the upgrade succeeds.
+//
+// ### Example Flex Cluster Upgrade
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				Name:        pulumi.String("NAME OF CLUSTER"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//								Priority:     pulumi.Int(7),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example Multi-Cloud Cluster
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.String("PROJECT ID"),
+//				Name:        pulumi.String("NAME OF CLUSTER"),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								AnalyticsSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(1),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								ProviderName: pulumi.String("GCP"),
+//								Priority:     pulumi.Int(6),
+//								RegionName:   pulumi.String("NORTH_AMERICA_NORTHEAST_1"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Example of a Multi Cloud Sharded Cluster with 2 shards
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.Any(project.Id),
+//				Name:          pulumi.Any(clusterName),
+//				ClusterType:   pulumi.String("SHARDED"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								ProviderName: pulumi.String("AZURE"),
+//								Priority:     pulumi.Int(6),
+//								RegionName:   pulumi.String("US_EAST_2"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								ProviderName: pulumi.String("AZURE"),
+//								Priority:     pulumi.Int(6),
+//								RegionName:   pulumi.String("US_EAST_2"),
+//							},
+//						},
+//					},
+//				},
+//				AdvancedConfiguration: &mongodbatlas.AdvancedClusterAdvancedConfigurationArgs{
+//					JavascriptEnabled:                pulumi.Bool(true),
+//					OplogSizeMb:                      pulumi.Int(991),
+//					SampleRefreshIntervalBiConnector: pulumi.Int(300),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example of a Global Cluster with 2 zones
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.Any(project.Id),
+//				Name:          pulumi.Any(clusterName),
+//				ClusterType:   pulumi.String("GEOSHARDED"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("zone n1"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								ProviderName: pulumi.String("AZURE"),
+//								Priority:     pulumi.Int(6),
+//								RegionName:   pulumi.String("US_EAST_2"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("zone n1"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("US_EAST_1"),
+//							},
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								ProviderName: pulumi.String("AZURE"),
+//								Priority:     pulumi.Int(6),
+//								RegionName:   pulumi.String("US_EAST_2"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("zone n2"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_WEST_1"),
+//							},
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								ProviderName: pulumi.String("AZURE"),
+//								Priority:     pulumi.Int(6),
+//								RegionName:   pulumi.String("EUROPE_NORTH"),
+//							},
+//						},
+//					},
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						ZoneName: pulumi.String("zone n2"),
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//								ProviderName: pulumi.String("AWS"),
+//								Priority:     pulumi.Int(7),
+//								RegionName:   pulumi.String("EU_WEST_1"),
+//							},
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M30"),
+//									NodeCount:    pulumi.Int(2),
+//								},
+//								ProviderName: pulumi.String("AZURE"),
+//								Priority:     pulumi.Int(6),
+//								RegionName:   pulumi.String("EUROPE_NORTH"),
+//							},
+//						},
+//					},
+//				},
+//				AdvancedConfiguration: &mongodbatlas.AdvancedClusterAdvancedConfigurationArgs{
+//					JavascriptEnabled:                pulumi.Bool(true),
+//					OplogSizeMb:                      pulumi.Int(999),
+//					SampleRefreshIntervalBiConnector: pulumi.Int(300),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Example - Return a Connection String
+// Standard
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ctx.Export("standard", cluster.ConnectionStrings.Standard)
+//			return nil
+//		})
+//	}
+//
+// ```
+// Standard srv
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ctx.Export("standardSrv", cluster.ConnectionStrings.StandardSrv)
+//			return nil
+//		})
+//	}
+//
+// ```
+// Private with Network peering and Custom DNS AWS enabled
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ctx.Export("private", cluster.ConnectionStrings.Private)
+//			return nil
+//		})
+//	}
+//
+// ```
+// Private srv with Network peering and Custom DNS AWS enabled
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ctx.Export("privateSrv", cluster.ConnectionStrings.PrivateSrv)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// # By endpointServiceId
+//
+// Refer to the following for full privatelink endpoint connection string examples:
+// * GCP Private Endpoint (Port-Mapped Architecture)
+// * Azure Private Endpoint
+// * AWS, Private Endpoint
+// * AWS, Regionalized Private Endpoints
+//
+// ### Further Examples
+//
+// **Cluster Types:**
+// - Replicaset
+// - Symmetric Sharded Cluster
+// - Asymmetric Sharded Cluster
+// - Global Cluster
+// - Multi-Cloud
+//
+// **Auto-scaling:**
+// - Auto-Scaling Per Shard
+// - Effective Fields Examples
+//
+// **Upgrades & Migrations:**
+// - Tenant Upgrade
+// - Flex Upgrade
+// - Version Upgrade with Pinned FCV
+// - Migrate Cluster to Advanced Cluster
+//
+// ## Move
+//
+// `mongodbatlas__cluster` resources can be moved to `AdvancedCluster` in Terraform v1.8 and later, e.g.:
+//
+// More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
+//
+// ## Auto-Scaling with Effective Fields
+//
+// The `useEffectiveFields` attribute enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and providing visibility into Atlas-managed changes. This feature only applies to dedicated clusters (M10+) and is not supported for flex and tenant clusters.
+//
+// ### Why use_effective_fields?
+//
+// When auto-scaling is enabled on a cluster, Atlas automatically adjusts instance sizes and disk capacity based on workload. Without `useEffectiveFields`, `lifecycle.ignore_changes` blocks are required to prevent Terraform from reverting these Atlas-managed changes. This approach has limitations:
+//
+// - **Configuration drift**: The actual cluster configuration diverges from your Terraform configuration
+// - **Maintenance overhead**: Careful management of `ignoreChanges` blocks is required, including commenting and uncommenting when making intentional changes
+// - **Limited visibility**: Actual scaled values cannot be easily inspected within Terraform state
+//
+// ### How useEffectiveFields works
+//
+// The `useEffectiveFields` attribute changes how the provider handles specification attributes:
+//
+// **When `useEffectiveFields = false` (default - current behavior):**
+// - Spec attributes (`electableSpecs`, `analyticsSpecs`, `readOnlySpecs`) behavior:
+//   - If values are specified in your Terraform configuration (e.g., `instanceSize = "M10"`), those values remain in your configuration
+//   - If values are not specified, Atlas provides default values automatically
+//
+// - With auto-scaling enabled, Atlas scales your cluster but your configured values do not update to match
+// - This creates plan drift: Terraform shows differences between your configured values and what Atlas has actually deployed
+// - `lifecycle.ignore_changes` must be used to prevent Terraform from reverting Atlas auto-scaling changes back to your original configuration
+//
+// **When `useEffectiveFields = true` (new behavior):**
+// - **Clear separation of concerns**:
+//   - Spec attributes remain exactly as defined in your Terraform configuration
+//   - Atlas-computed values (defaults and auto-scaled values) are available separately in effective specs
+//
+// - No plan drift occurs when Atlas auto-scales your cluster
+// - Use data sources to read `effectiveElectableSpecs`, `effectiveAnalyticsSpecs`, and `effectiveReadOnlySpecs` for actual values
+//
+// **Key difference:** With `useEffectiveFields = true`, your configuration stays clean and represents your intent, while effective specs show the reality of what Atlas has provisioned.
+//
+// See the Example using effective fields with auto-scaling in the Example Usage section.
+//
+// ### Manually Updating Specs with useEffectiveFields
+//
+// When `useEffectiveFields = true` and auto-scaling is enabled, you can update `instanceSize`, `diskSizeGb`, or `diskIops` in your configuration at any time without validation errors. However, Atlas echoes these values back in state while continuing to use auto-scaled values for actual cluster operations. To have your configured values take effect, temporarily disable auto-scaling:
+//
+// 1. Set `computeEnabled = false` and `diskGbEnabled = false` in the `autoScaling` block and apply.
+// 2. Update `instanceSize`, `diskSizeGb`, or `diskIops` to your desired values and apply.
+// 3. Re-enable auto-scaling by setting `computeEnabled` and/or `diskGbEnabled` back to `true` and apply.
+//
+// This workflow allows you to set specific baseline values from which auto-scaling will resume dynamic adjustments based on workload.
+//
+// ### Terraform Modules
+//
+// `useEffectiveFields` is particularly valuable for reusable Terraform modules. Without it, separate module implementations are required (one with lifecycle blocks for auto-scaling, one without). With `useEffectiveFields`, a single module handles both scenarios without lifecycle blocks. See the Effective Fields Examples for complete implementations.
+//
+// ### Migration path and version 3.x
+//
+// **Current behavior (provider v2.x):**
+// - `useEffectiveFields` defaults to `false` for full backward compatibility
+// - Set to `true` to opt into the effective fields behavior
+// - The attribute will be deprecated later in v2.x releases in preparation for v3.x
+//
+// **Future behavior (provider v3.x):**
+// - The effective fields behavior will be enabled by default
+// - The `useEffectiveFields` attribute will be removed, as the new behavior becomes standard
+// - This change will reduce plan verbosity by making specification fields Optional-only (removing Computed), eliminating unnecessary `(known after apply)` markers for user-configured values
+//
+// **Potential enhancements (v3.x or later):**
+// - If customer demand warrants, effective spec fields (`effectiveElectableSpecs`, `effectiveAnalyticsSpecs`, `effectiveReadOnlySpecs`) may be exposed directly in the resource (currently available only via data source)
+// - This would improve observability by providing direct access to actual operational values from the resource without requiring a separate data source
+// - Note: Effective fields would still show `(known after apply)` markers, but user-configured spec fields would not, resulting in clearer plan output overall
+//
+// **Migration recommendation:** Adopt `useEffectiveFields = true` in v2.x to prepare for the v3.x transition and benefit from improved auto-scaling workflows immediately. The recommendation is to toggle the flag and remove any existing `lifecycle.ignore_changes` blocks in the same apply, without combining other changes.
+//
+// ## Considerations and Best Practices
+//
 // ## Import
 //
 // Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -19,10 +809,11 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/advancedCluster:AdvancedCluster my_cluster 1112222b3bf99403840e8934-Cluster0
 // ```
+//
 // See detailed information for arguments and attributes: [MongoDB API Advanced Clusters](https://docs.atlas.mongodb.com/reference/api/cluster-advanced/create-one-cluster-advanced/)
 //
-// ~> __IMPORTANT:__
-// \n\n &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replication_specs` per independent shards of the cluster.
+// > **IMPORTANT:**
+// <br> &#8226; When a cluster is imported, the resulting schema structure will always return the new schema including `replicationSpecs` per independent shards of the cluster.
 type AdvancedCluster struct {
 	pulumi.CustomResourceState
 
@@ -70,7 +861,11 @@ type AdvancedCluster struct {
 	MongoDbVersion pulumi.StringOutput `pulumi:"mongoDbVersion"`
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Flag that indicates whether the cluster is paused.
+	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+	// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+	// `lifecycle {
+	// ignoreChanges = [paused]
+	// }`
 	Paused pulumi.BoolOutput `pulumi:"paused"`
 	// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
 	PinnedFcv AdvancedClusterPinnedFcvPtrOutput `pulumi:"pinnedFcv"`
@@ -84,7 +879,9 @@ type AdvancedCluster struct {
 	ReplicaSetScalingStrategy pulumi.StringOutput `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayOutput `pulumi:"replicationSpecs"`
-	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+	//
+	// > **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
 	RetainBackupsEnabled pulumi.BoolPtrOutput `pulumi:"retainBackupsEnabled"`
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType pulumi.StringOutput `pulumi:"rootCertType"`
@@ -195,7 +992,11 @@ type advancedClusterState struct {
 	MongoDbVersion *string `pulumi:"mongoDbVersion"`
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
 	Name *string `pulumi:"name"`
-	// Flag that indicates whether the cluster is paused.
+	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+	// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+	// `lifecycle {
+	// ignoreChanges = [paused]
+	// }`
 	Paused *bool `pulumi:"paused"`
 	// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
 	PinnedFcv *AdvancedClusterPinnedFcv `pulumi:"pinnedFcv"`
@@ -209,7 +1010,9 @@ type advancedClusterState struct {
 	ReplicaSetScalingStrategy *string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
-	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+	//
+	// > **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
 	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType *string `pulumi:"rootCertType"`
@@ -282,7 +1085,11 @@ type AdvancedClusterState struct {
 	MongoDbVersion pulumi.StringPtrInput
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
 	Name pulumi.StringPtrInput
-	// Flag that indicates whether the cluster is paused.
+	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+	// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+	// `lifecycle {
+	// ignoreChanges = [paused]
+	// }`
 	Paused pulumi.BoolPtrInput
 	// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
 	PinnedFcv AdvancedClusterPinnedFcvPtrInput
@@ -296,7 +1103,9 @@ type AdvancedClusterState struct {
 	ReplicaSetScalingStrategy pulumi.StringPtrInput
 	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
-	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+	//
+	// > **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
 	RetainBackupsEnabled pulumi.BoolPtrInput
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType pulumi.StringPtrInput
@@ -363,7 +1172,11 @@ type advancedClusterArgs struct {
 	MongoDbMajorVersion *string `pulumi:"mongoDbMajorVersion"`
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
 	Name *string `pulumi:"name"`
-	// Flag that indicates whether the cluster is paused.
+	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+	// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+	// `lifecycle {
+	// ignoreChanges = [paused]
+	// }`
 	Paused *bool `pulumi:"paused"`
 	// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
 	PinnedFcv *AdvancedClusterPinnedFcv `pulumi:"pinnedFcv"`
@@ -377,7 +1190,9 @@ type advancedClusterArgs struct {
 	ReplicaSetScalingStrategy *string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
-	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+	//
+	// > **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
 	RetainBackupsEnabled *bool `pulumi:"retainBackupsEnabled"`
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType *string `pulumi:"rootCertType"`
@@ -432,7 +1247,11 @@ type AdvancedClusterArgs struct {
 	MongoDbMajorVersion pulumi.StringPtrInput
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
 	Name pulumi.StringPtrInput
-	// Flag that indicates whether the cluster is paused.
+	// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+	// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+	// `lifecycle {
+	// ignoreChanges = [paused]
+	// }`
 	Paused pulumi.BoolPtrInput
 	// Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
 	PinnedFcv AdvancedClusterPinnedFcvPtrInput
@@ -446,7 +1265,9 @@ type AdvancedClusterArgs struct {
 	ReplicaSetScalingStrategy pulumi.StringPtrInput
 	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
-	// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+	//
+	// > **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
 	RetainBackupsEnabled pulumi.BoolPtrInput
 	// Certificate Authority that MongoDB Atlas clusters use. You can specify ISRGROOTX1 (for ISRG Root X1).
 	RootCertType pulumi.StringPtrInput
@@ -647,7 +1468,11 @@ func (o AdvancedClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Flag that indicates whether the cluster is paused.
+// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
+// `lifecycle {
+// ignoreChanges = [paused]
+// }`
 func (o AdvancedClusterOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolOutput { return v.Paused }).(pulumi.BoolOutput)
 }
@@ -682,7 +1507,9 @@ func (o AdvancedClusterOutput) ReplicationSpecs() AdvancedClusterReplicationSpec
 	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterReplicationSpecArrayOutput { return v.ReplicationSpecs }).(AdvancedClusterReplicationSpecArrayOutput)
 }
 
-// Flag that indicates whether to retain backup snapshots for the deleted dedicated cluster.
+// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+//
+// > **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
 func (o AdvancedClusterOutput) RetainBackupsEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolPtrOutput { return v.RetainBackupsEnabled }).(pulumi.BoolPtrOutput)
 }

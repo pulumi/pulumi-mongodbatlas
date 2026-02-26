@@ -30,9 +30,12 @@ class MaintenanceWindowArgs:
                  protected_hours: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']] = None):
         """
         The set of arguments for constructing a MaintenanceWindow resource.
+
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
+        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
+        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input['MaintenanceWindowProtectedHoursArgs'] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         """
@@ -87,6 +90,9 @@ class MaintenanceWindowArgs:
     @_builtins.property
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
+        """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
@@ -96,6 +102,9 @@ class MaintenanceWindowArgs:
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
@@ -142,6 +151,9 @@ class _MaintenanceWindowState:
                  time_zone_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
+
+        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
+        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
@@ -175,6 +187,9 @@ class _MaintenanceWindowState:
     @_builtins.property
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
+        """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
@@ -184,6 +199,9 @@ class _MaintenanceWindowState:
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
@@ -374,10 +392,14 @@ class MaintenanceWindow(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
+        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
@@ -463,7 +485,9 @@ class MaintenanceWindow(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
         ```
+
         For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/maintenance-windows/)
+
 
         :param str resource_name: The name of the resource.
         :param MaintenanceWindowArgs args: The arguments to use to populate this resource's properties.
@@ -539,6 +563,8 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
+        :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
@@ -567,11 +593,17 @@ class MaintenanceWindow(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="autoDefer")
     def auto_defer(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
+        """
         return pulumi.get(self, "auto_defer")
 
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
     def auto_defer_once_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+        """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @_builtins.property

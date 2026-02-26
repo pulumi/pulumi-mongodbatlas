@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and bucket_id (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
+    /// Cloud Backup Snapshot Export Backup entries can be imported using project project_id, and BucketId (Unique identifier of the snapshot export bucket), in the format `PROJECTID-BUCKETID`, e.g.
     /// 
     /// ```sh
     /// $ pulumi import mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket test 5d0f1f73cf09a29120e173cf-5d116d82014b764445b2f9b5

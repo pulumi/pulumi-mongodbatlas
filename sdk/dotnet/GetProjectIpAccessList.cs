@@ -423,6 +423,9 @@ namespace Pulumi.Mongodbatlas
         /// Remark that explains the purpose or scope of this IP access list entry.
         /// </summary>
         public readonly string Comment;
+        /// <summary>
+        /// Unique identifier used for terraform for internal management.
+        /// </summary>
         public readonly string Id;
         /// <summary>
         /// Single IP address to be added to the access list. Mutually exclusive with `CidrBlock` and `AwsSecurityGroup`.

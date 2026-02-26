@@ -77,6 +77,10 @@ class AwaitableGetServiceAccountsResult(GetServiceAccountsResult):
 def get_service_accounts(org_id: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServiceAccountsResult:
     """
+    `get_service_accounts` returns all Service Accounts for the specified Organization.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
 
@@ -94,6 +98,10 @@ def get_service_accounts(org_id: Optional[_builtins.str] = None,
 def get_service_accounts_output(org_id: Optional[pulumi.Input[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountsResult]:
     """
+    `get_service_accounts` returns all Service Accounts for the specified Organization.
+
+    > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
     ## Example Usage
 
 

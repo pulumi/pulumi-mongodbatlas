@@ -27,6 +27,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivatelinkEndpointServiceDataFederationOnlineArchive resource.
+
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
@@ -129,6 +130,7 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivatelinkEndpointServiceDataFederationOnlineArchive resources.
+
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
@@ -294,7 +296,9 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         ```sh
         $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934--vpce-3bf78b0ddee411ba1
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -355,7 +359,9 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         ```sh
         $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934--vpce-3bf78b0ddee411ba1
         ```
+
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) Documentation for more information.
+
 
         :param str resource_name: The name of the resource.
         :param PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs args: The arguments to use to populate this resource's properties.

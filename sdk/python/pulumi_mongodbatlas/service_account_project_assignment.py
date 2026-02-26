@@ -24,6 +24,7 @@ class ServiceAccountProjectAssignmentArgs:
                  roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
         The set of arguments for constructing a ServiceAccountProjectAssignment resource.
+
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The Project permissions for the Service Account in the specified Project.
@@ -77,6 +78,7 @@ class _ServiceAccountProjectAssignmentState:
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountProjectAssignment resources.
+
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The Project permissions for the Service Account in the specified Project.
@@ -136,6 +138,10 @@ class ServiceAccountProjectAssignment(pulumi.CustomResource):
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
+        `ServiceAccountProjectAssignment` provides a Service Account Project Assignment resource. The resource lets you assign a Service Account to a Project with specific roles.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ### S
@@ -165,11 +171,12 @@ class ServiceAccountProjectAssignment(pulumi.CustomResource):
         ## Import
 
         Import the Service Account Project Assignment resource by using the Project ID and Client ID in the format `PROJECT_ID/CLIENT_ID`, e.g.
-
         ```sh
         $ pulumi import mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678
         ```
+
         For more information, see [Assign One Service Account to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-invitegroupserviceaccount) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -184,6 +191,10 @@ class ServiceAccountProjectAssignment(pulumi.CustomResource):
                  args: ServiceAccountProjectAssignmentArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        `ServiceAccountProjectAssignment` provides a Service Account Project Assignment resource. The resource lets you assign a Service Account to a Project with specific roles.
+
+        > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
+
         ## Example Usage
 
         ### S
@@ -213,11 +224,12 @@ class ServiceAccountProjectAssignment(pulumi.CustomResource):
         ## Import
 
         Import the Service Account Project Assignment resource by using the Project ID and Client ID in the format `PROJECT_ID/CLIENT_ID`, e.g.
-
         ```sh
         $ pulumi import mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678
         ```
+
         For more information, see [Assign One Service Account to One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-invitegroupserviceaccount) in the MongoDB Atlas API documentation.
+
 
         :param str resource_name: The name of the resource.
         :param ServiceAccountProjectAssignmentArgs args: The arguments to use to populate this resource's properties.

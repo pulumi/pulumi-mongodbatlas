@@ -12,18 +12,36 @@ namespace Pulumi.Mongodbatlas
     public static class GetApiKey
     {
         /// <summary>
+        /// `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+        /// 
+        /// &gt; **NOTE:** You may find OrgId in the official documentation.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Task<GetApiKeyResult> InvokeAsync(GetApiKeyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetApiKeyResult>("mongodbatlas:index/getApiKey:getApiKey", args ?? new GetApiKeyArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+        /// 
+        /// &gt; **NOTE:** You may find OrgId in the official documentation.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetApiKeyResult> Invoke(GetApiKeyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetApiKeyResult>("mongodbatlas:index/getApiKey:getApiKey", args ?? new GetApiKeyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+        /// 
+        /// &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+        /// 
+        /// &gt; **NOTE:** You may find OrgId in the official documentation.
+        /// 
         /// ## Example Usage
         /// </summary>
         public static Output<GetApiKeyResult> Invoke(GetApiKeyInvokeArgs args, InvokeOutputOptions options)

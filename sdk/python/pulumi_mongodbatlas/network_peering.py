@@ -38,6 +38,7 @@ class NetworkPeeringArgs:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a NetworkPeering resource.
+
         :param pulumi.Input[_builtins.str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
@@ -331,6 +332,7 @@ class _NetworkPeeringState:
                  vpc_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering NetworkPeering resources.
+
         :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         :param pulumi.Input[_builtins.str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
@@ -893,11 +895,12 @@ class NetworkPeering(pulumi.CustomResource):
 
         Use the [MongoDB Atlas CLI][https://www.mongodb.com/docs/atlas/cli/current/command/atlas-networking-peering-list/#std-label-atlas-networking-peering-list] to obtain your `project_id` and `peering_id`. Attention gcp and azure users: The `atlas networking peering list` command returns only `AWS` peerings by default. You have to include the `--provider` parameter to list peerings for your cloud provider. Valid values are AWS, AZURE, or GCP.
 
+        ```sh
         atlas projects list
-
         atlas networking peering list --projectId <projectId> --provider <AZURE|GCP|AWS>
-
+        ```
         See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1086,11 +1089,12 @@ class NetworkPeering(pulumi.CustomResource):
 
         Use the [MongoDB Atlas CLI][https://www.mongodb.com/docs/atlas/cli/current/command/atlas-networking-peering-list/#std-label-atlas-networking-peering-list] to obtain your `project_id` and `peering_id`. Attention gcp and azure users: The `atlas networking peering list` command returns only `AWS` peerings by default. You have to include the `--provider` parameter to list peerings for your cloud provider. Valid values are AWS, AZURE, or GCP.
 
+        ```sh
         atlas projects list
-
         atlas networking peering list --projectId <projectId> --provider <AZURE|GCP|AWS>
-
+        ```
         See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+
 
         :param str resource_name: The name of the resource.
         :param NetworkPeeringArgs args: The arguments to use to populate this resource's properties.

@@ -394,6 +394,15 @@ import java.util.concurrent.CompletableFuture;
 
 public final class MongodbatlasFunctions {
     /**
+     * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -442,6 +451,15 @@ public final class MongodbatlasFunctions {
         return getAccessListApiKey(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -490,6 +508,15 @@ public final class MongodbatlasFunctions {
         return getAccessListApiKeyPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -538,6 +565,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -586,6 +622,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -634,6 +679,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAccessListApiKey:getAccessListApiKey", TypeShape.of(GetAccessListApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -681,6 +735,15 @@ public final class MongodbatlasFunctions {
         return getAccessListApiKeys(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -728,6 +791,15 @@ public final class MongodbatlasFunctions {
         return getAccessListApiKeysPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -775,6 +847,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -822,6 +903,15 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -869,6 +959,18 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1113,6 +1215,18 @@ public final class MongodbatlasFunctions {
         return getAdvancedCluster(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1357,6 +1471,18 @@ public final class MongodbatlasFunctions {
         return getAdvancedClusterPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1601,6 +1727,18 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1845,6 +1983,18 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** This data source also includes Flex clusters.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -3794,6 +3944,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", TypeShape.of(GetAlertConfigurationsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find orgId in the official documentation.
+     * 
      * ## Example Usage
      * 
      */
@@ -3801,6 +3957,12 @@ public final class MongodbatlasFunctions {
         return getApiKey(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find orgId in the official documentation.
+     * 
      * ## Example Usage
      * 
      */
@@ -3808,6 +3970,12 @@ public final class MongodbatlasFunctions {
         return getApiKeyPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find orgId in the official documentation.
+     * 
      * ## Example Usage
      * 
      */
@@ -3815,6 +3983,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find orgId in the official documentation.
+     * 
      * ## Example Usage
      * 
      */
@@ -3822,6 +3996,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKey:getApiKey", TypeShape.of(GetApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find orgId in the official documentation.
+     * 
      * ## Example Usage
      * 
      */
@@ -3939,35 +4119,55 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments", TypeShape.of(GetApiKeyProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## Example Usage
+     * `mongodbatlas.getApiKeys` describe all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args) {
         return getApiKeys(args, InvokeOptions.Empty);
     }
     /**
-     * ## Example Usage
+     * `mongodbatlas.getApiKeys` describe all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      */
     public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args) {
         return getApiKeysPlain(args, InvokeOptions.Empty);
     }
     /**
-     * ## Example Usage
+     * `mongodbatlas.getApiKeys` describe all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## Example Usage
+     * `mongodbatlas.getApiKeys` describe all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * ## Example Usage
+     * `mongodbatlas.getApiKeys` describe all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      */
     public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args, InvokeOptions options) {
@@ -5559,6 +5759,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAuditing:getAuditing", TypeShape.of(GetAuditingResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.
+     * 
+     * &gt; **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5713,6 +5921,14 @@ public final class MongodbatlasFunctions {
         return getBackupCompliancePolicy(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.
+     * 
+     * &gt; **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5867,6 +6083,14 @@ public final class MongodbatlasFunctions {
         return getBackupCompliancePolicyPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.
+     * 
+     * &gt; **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6021,6 +6245,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.
+     * 
+     * &gt; **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6175,6 +6407,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.
+     * 
+     * &gt; **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6329,6 +6569,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6419,6 +6665,12 @@ public final class MongodbatlasFunctions {
         return getCloudBackupSchedule(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6509,6 +6761,12 @@ public final class MongodbatlasFunctions {
         return getCloudBackupSchedulePlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6599,6 +6857,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", TypeShape.of(GetCloudBackupScheduleResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6689,6 +6953,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule", TypeShape.of(GetCloudBackupScheduleResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -10629,6 +10899,19 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudUserTeamAssignment:getCloudUserTeamAssignment", TypeShape.of(GetCloudUserTeamAssignmentResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -10690,6 +10973,19 @@ public final class MongodbatlasFunctions {
         return getCluster(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -10751,6 +11047,19 @@ public final class MongodbatlasFunctions {
         return getClusterPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -10812,6 +11121,19 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -10873,6 +11195,19 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.Cluster` describes a Cluster. The data source requires your Project ID.
+     * 
+     * &gt; **DEPRECATION:** This datasource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
+     * 
+     * &gt; **IMPORTANT:**
+     * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
+     * 
+     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -10934,6 +11269,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+     * 
+     * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
+     * 
+     * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -10975,6 +11318,14 @@ public final class MongodbatlasFunctions {
         return getClusterOutageSimulation(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+     * 
+     * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
+     * 
+     * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -11016,6 +11367,14 @@ public final class MongodbatlasFunctions {
         return getClusterOutageSimulationPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+     * 
+     * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
+     * 
+     * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -11057,6 +11416,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", TypeShape.of(GetClusterOutageSimulationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+     * 
+     * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
+     * 
+     * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -11098,6 +11465,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", TypeShape.of(GetClusterOutageSimulationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
+     * 
+     * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
+     * 
+     * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -26626,6 +27001,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProject:getProject", TypeShape.of(GetProjectResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find projectId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### Using projectId and apiKeyId attribute to query
@@ -26677,6 +27060,14 @@ public final class MongodbatlasFunctions {
         return getProjectApiKey(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find projectId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### Using projectId and apiKeyId attribute to query
@@ -26728,6 +27119,14 @@ public final class MongodbatlasFunctions {
         return getProjectApiKeyPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find projectId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### Using projectId and apiKeyId attribute to query
@@ -26779,6 +27178,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find projectId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### Using projectId and apiKeyId attribute to query
@@ -26830,6 +27237,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.ProjectApiKey` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** You may find projectId in the official documentation.
+     * 
      * ## Example Usage
      * 
      * ### Using projectId and apiKeyId attribute to query
@@ -26881,6 +27296,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectApiKey:getProjectApiKey", TypeShape.of(GetProjectApiKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectApiKeys` describes all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.getProjectApiKeys` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -26921,6 +27344,14 @@ public final class MongodbatlasFunctions {
         return getProjectApiKeys(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getProjectApiKeys` describes all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.getProjectApiKeys` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -26961,6 +27392,14 @@ public final class MongodbatlasFunctions {
         return getProjectApiKeysPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getProjectApiKeys` describes all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.getProjectApiKeys` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -27001,6 +27440,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectApiKeys` describes all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.getProjectApiKeys` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -27041,6 +27488,14 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", TypeShape.of(GetProjectApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectApiKeys` describes all API Keys. This represents API Keys that have been created.
+     * 
+     * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.getProjectApiKeys` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
+     * 
      * ## Example Usage
      * 
      * <pre>
@@ -28636,6 +29091,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", TypeShape.of(GetProjectIpAddressesResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -28643,6 +29102,10 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccount(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -28650,6 +29113,10 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -28657,6 +29124,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -28664,6 +29135,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -28671,6 +29146,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectServiceAccountAccessListEntries` returns all Access List entries for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -28749,6 +29230,12 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountAccessListEntries(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getProjectServiceAccountAccessListEntries` returns all Access List entries for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -28827,6 +29314,12 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountAccessListEntriesPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getProjectServiceAccountAccessListEntries` returns all Access List entries for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -28905,6 +29398,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", TypeShape.of(GetProjectServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectServiceAccountAccessListEntries` returns all Access List entries for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -28983,6 +29482,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", TypeShape.of(GetProjectServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectServiceAccountAccessListEntries` returns all Access List entries for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29061,6 +29566,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", TypeShape.of(GetProjectServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountAccessListEntry` returns an Access List entry for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29139,6 +29650,12 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountAccessListEntry(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountAccessListEntry` returns an Access List entry for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29217,6 +29734,12 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountAccessListEntryPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountAccessListEntry` returns an Access List entry for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29295,6 +29818,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", TypeShape.of(GetProjectServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountAccessListEntry` returns an Access List entry for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29373,6 +29902,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", TypeShape.of(GetProjectServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountAccessListEntry` returns an Access List entry for the specified Project Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29451,6 +29986,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", TypeShape.of(GetProjectServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29517,6 +30056,10 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountSecret(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29583,6 +30126,10 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountSecretPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29649,6 +30196,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", TypeShape.of(GetProjectServiceAccountSecretResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29715,6 +30266,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", TypeShape.of(GetProjectServiceAccountSecretResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ProjectServiceAccountSecret` describes a Project Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -29781,6 +30336,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectServiceAccountSecret:getProjectServiceAccountSecret", TypeShape.of(GetProjectServiceAccountSecretResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -29788,6 +30347,10 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccounts(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -29795,6 +30358,10 @@ public final class MongodbatlasFunctions {
         return getProjectServiceAccountsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -29802,6 +30369,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", TypeShape.of(GetProjectServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -29809,6 +30380,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", TypeShape.of(GetProjectServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getProjectServiceAccounts` returns all Service Accounts for the specified Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -32143,6 +32718,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServerlessInstances:getServerlessInstances", TypeShape.of(GetServerlessInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccount` describes a Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -32150,6 +32729,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccount(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccount` describes a Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -32157,6 +32740,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccountPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccount` describes a Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -32164,6 +32751,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccount` describes a Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -32171,6 +32762,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccount` describes a Service Account.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -32178,6 +32773,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccountAccessListEntries` returns all Access List entries for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32256,6 +32857,12 @@ public final class MongodbatlasFunctions {
         return getServiceAccountAccessListEntries(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getServiceAccountAccessListEntries` returns all Access List entries for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32334,6 +32941,12 @@ public final class MongodbatlasFunctions {
         return getServiceAccountAccessListEntriesPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getServiceAccountAccessListEntries` returns all Access List entries for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32412,6 +33025,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries", TypeShape.of(GetServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccountAccessListEntries` returns all Access List entries for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32490,6 +33109,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries", TypeShape.of(GetServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccountAccessListEntries` returns all Access List entries for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32568,6 +33193,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries", TypeShape.of(GetServiceAccountAccessListEntriesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32646,6 +33277,12 @@ public final class MongodbatlasFunctions {
         return getServiceAccountAccessListEntry(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32724,6 +33361,12 @@ public final class MongodbatlasFunctions {
         return getServiceAccountAccessListEntryPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32802,6 +33445,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", TypeShape.of(GetServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32880,6 +33529,12 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", TypeShape.of(GetServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.
+     * 
+     * &gt; **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -32958,6 +33613,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", TypeShape.of(GetServiceAccountAccessListEntryResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33025,6 +33684,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccountProjectAssignment(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33092,6 +33755,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccountProjectAssignmentPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33159,6 +33826,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", TypeShape.of(GetServiceAccountProjectAssignmentResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33226,6 +33897,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", TypeShape.of(GetServiceAccountProjectAssignmentResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountProjectAssignment` describes a Service Account assigned to a Project.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33293,6 +33968,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", TypeShape.of(GetServiceAccountProjectAssignmentResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33360,6 +34039,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccountProjectAssignments(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33427,6 +34110,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccountProjectAssignmentsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33494,6 +34181,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", TypeShape.of(GetServiceAccountProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33561,6 +34252,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", TypeShape.of(GetServiceAccountProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccountProjectAssignments` returns all Projects that the specified Service Account is assigned to.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      * ### S
@@ -33628,6 +34323,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountProjectAssignments:getServiceAccountProjectAssignments", TypeShape.of(GetServiceAccountProjectAssignmentsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * ## Example Usage
      * 
      * ### S
@@ -33694,6 +34392,9 @@ public final class MongodbatlasFunctions {
         return getServiceAccountSecret(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * ## Example Usage
      * 
      * ### S
@@ -33760,6 +34461,9 @@ public final class MongodbatlasFunctions {
         return getServiceAccountSecretPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * ## Example Usage
      * 
      * ### S
@@ -33826,6 +34530,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", TypeShape.of(GetServiceAccountSecretResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * ## Example Usage
      * 
      * ### S
@@ -33892,6 +34599,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", TypeShape.of(GetServiceAccountSecretResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ServiceAccountSecret` describes a Service Account Secret.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * ## Example Usage
      * 
      * ### S
@@ -33958,6 +34668,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", TypeShape.of(GetServiceAccountSecretResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -33965,6 +34679,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccounts(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -33972,6 +34690,10 @@ public final class MongodbatlasFunctions {
         return getServiceAccountsPlain(args, InvokeOptions.Empty);
     }
     /**
+     * `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -33979,6 +34701,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccounts:getServiceAccounts", TypeShape.of(GetServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
@@ -33986,6 +34712,10 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccounts:getServiceAccounts", TypeShape.of(GetServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.getServiceAccounts` returns all Service Accounts for the specified Organization.
+     * 
+     * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
      * ## Example Usage
      * 
      */
