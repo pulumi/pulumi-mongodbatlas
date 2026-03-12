@@ -225,7 +225,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryption_at_rest_provider = "NONE"`, or be deleted.
+        > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryption_at_rest_provider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
 
         ## Enabling Encryption at Rest for existing Atlas cluster
 
@@ -295,13 +295,11 @@ class EncryptionAtRest(pulumi.CustomResource):
             azure_key_vault_config={
                 "enabled": True,
                 "azure_environment": "AZURE",
-                "tenant_id": azure_tenant_id,
                 "subscription_id": azure_subscription_id,
-                "client_id": azure_client_id,
-                "secret": azure_client_secret,
                 "resource_group_name": azure_resource_group_name,
                 "key_vault_name": azure_key_vault_name,
                 "key_identifier": azure_key_identifier,
+                "role_id": azure_role_id,
             })
         test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
         pulumi.export("isAzureEncryptionAtRestValid", test.azure_key_vault_config.valid)
@@ -384,7 +382,7 @@ class EncryptionAtRest(pulumi.CustomResource):
 
         > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
-        > **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryption_at_rest_provider = "NONE"`, or be deleted.
+        > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryption_at_rest_provider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
 
         ## Enabling Encryption at Rest for existing Atlas cluster
 
@@ -454,13 +452,11 @@ class EncryptionAtRest(pulumi.CustomResource):
             azure_key_vault_config={
                 "enabled": True,
                 "azure_environment": "AZURE",
-                "tenant_id": azure_tenant_id,
                 "subscription_id": azure_subscription_id,
-                "client_id": azure_client_id,
-                "secret": azure_client_secret,
                 "resource_group_name": azure_resource_group_name,
                 "key_vault_name": azure_key_vault_name,
                 "key_identifier": azure_key_identifier,
+                "role_id": azure_role_id,
             })
         test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
         pulumi.export("isAzureEncryptionAtRestValid", test.azure_key_vault_config.valid)

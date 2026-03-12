@@ -53,7 +53,7 @@ class GetLogIntegrationsResult:
     @pulumi.getter(name="integrationType")
     def integration_type(self) -> Optional[_builtins.str]:
         """
-        Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+        Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
         """
         return pulumi.get(self, "integration_type")
 
@@ -90,47 +90,25 @@ def get_log_integrations(integration_type: Optional[_builtins.str] = None,
                          project_id: Optional[_builtins.str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLogIntegrationsResult:
     """
-    `get_log_integrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+    `get_log_integrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 
     To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 
     ## Example Usage
 
-    ### S
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    project = mongodbatlas.Project("project",
-        name=atlas_project_name,
-        org_id=atlas_org_id)
-    # Set up cloud provider access in Atlas using the created IAM role
-    setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
-        project_id=project.id,
-        provider_name="AWS")
-    auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
-        project_id=project.id,
-        role_id=setup_only.role_id,
-        aws={
-            "iam_assumed_role_arn": atlas_role["arn"],
-        })
-    # Set up log integration with authorized IAM role
-    example_log_integration = mongodbatlas.LogIntegration("example",
-        project_id=project.id,
-        bucket_name=log_bucket["bucket"],
-        iam_role_id=auth_role.role_id,
-        prefix_path="atlas-logs",
-        type="S3_LOG_EXPORT",
-        log_types=["MONGOD_AUDIT"])
-    example = mongodbatlas.get_log_integration_output(project_id=example_log_integration.project_id,
-        integration_id=example_log_integration.integration_id)
-    example_get_log_integrations = mongodbatlas.get_log_integrations_output(project_id=example_log_integration.project_id)
-    pulumi.export("logIntegrationBucketName", example.bucket_name)
-    pulumi.export("logIntegrationsResults", example_get_log_integrations.results)
+    example = mongodbatlas.get_log_integrations(project_id=example_mongodbatlas_log_integration["projectId"])
+    pulumi.export("logIntegrationIds", [r.integration_id for r in example.results])
     ```
 
+    ### Further Examples
+    - Log Integration Examples
 
-    :param _builtins.str integration_type: Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+
+    :param _builtins.str integration_type: Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()
@@ -148,47 +126,25 @@ def get_log_integrations_output(integration_type: Optional[pulumi.Input[Optional
                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLogIntegrationsResult]:
     """
-    `get_log_integrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+    `get_log_integrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 
     To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 
     ## Example Usage
 
-    ### S
     ```python
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    project = mongodbatlas.Project("project",
-        name=atlas_project_name,
-        org_id=atlas_org_id)
-    # Set up cloud provider access in Atlas using the created IAM role
-    setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
-        project_id=project.id,
-        provider_name="AWS")
-    auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
-        project_id=project.id,
-        role_id=setup_only.role_id,
-        aws={
-            "iam_assumed_role_arn": atlas_role["arn"],
-        })
-    # Set up log integration with authorized IAM role
-    example_log_integration = mongodbatlas.LogIntegration("example",
-        project_id=project.id,
-        bucket_name=log_bucket["bucket"],
-        iam_role_id=auth_role.role_id,
-        prefix_path="atlas-logs",
-        type="S3_LOG_EXPORT",
-        log_types=["MONGOD_AUDIT"])
-    example = mongodbatlas.get_log_integration_output(project_id=example_log_integration.project_id,
-        integration_id=example_log_integration.integration_id)
-    example_get_log_integrations = mongodbatlas.get_log_integrations_output(project_id=example_log_integration.project_id)
-    pulumi.export("logIntegrationBucketName", example.bucket_name)
-    pulumi.export("logIntegrationsResults", example_get_log_integrations.results)
+    example = mongodbatlas.get_log_integrations(project_id=example_mongodbatlas_log_integration["projectId"])
+    pulumi.export("logIntegrationIds", [r.integration_id for r in example.results])
     ```
 
+    ### Further Examples
+    - Log Integration Examples
 
-    :param _builtins.str integration_type: Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+
+    :param _builtins.str integration_type: Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
     """
     __args__ = dict()

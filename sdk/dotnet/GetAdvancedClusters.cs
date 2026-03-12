@@ -12,16 +12,10 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedClusters
     {
         /// <summary>
-        /// `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+        /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -281,16 +275,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+        /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -550,16 +538,10 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClustersResult>("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", args ?? new GetAdvancedClustersInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+        /// `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
         /// 
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 

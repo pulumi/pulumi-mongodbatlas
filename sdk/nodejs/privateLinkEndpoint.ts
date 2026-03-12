@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * const _this = new mongodbatlas.PrivateLinkEndpoint("this", {
- *     projectId: "<PROJECT-ID>",
+ *     projectId: projectId,
  *     providerName: "AWS",
  *     region: "US_EAST_1",
  * });
@@ -78,15 +78,15 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      */
     declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean | undefined>;
     /**
-     * For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+     * List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
      */
     declare public /*out*/ readonly endpointGroupNames: pulumi.Output<string[]>;
     /**
-     * Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+     * Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
      */
     declare public /*out*/ readonly endpointServiceName: pulumi.Output<string>;
     /**
-     * Error message pertaining to the private endpoint connection. Returns null if there are no errors.
+     * Error message for the private endpoint connection. Returns `null` if there are no errors.
      */
     declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
     /**
@@ -94,7 +94,7 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly interfaceEndpoints: pulumi.Output<string[]>;
     /**
-     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      */
     declare public readonly portMappingEnabled: pulumi.Output<boolean | undefined>;
     /**
@@ -118,7 +118,7 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      */
     declare public readonly providerName: pulumi.Output<string>;
     /**
@@ -131,7 +131,7 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly regionName: pulumi.Output<string>;
     /**
-     * For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+     * List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      */
     declare public /*out*/ readonly serviceAttachmentNames: pulumi.Output<string[]>;
     /**
@@ -214,15 +214,15 @@ export interface PrivateLinkEndpointState {
      */
     deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
-     * For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+     * List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
      */
     endpointGroupNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+     * Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
      */
     endpointServiceName?: pulumi.Input<string>;
     /**
-     * Error message pertaining to the private endpoint connection. Returns null if there are no errors.
+     * Error message for the private endpoint connection. Returns `null` if there are no errors.
      */
     errorMessage?: pulumi.Input<string>;
     /**
@@ -230,7 +230,7 @@ export interface PrivateLinkEndpointState {
      */
     interfaceEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      */
     portMappingEnabled?: pulumi.Input<boolean>;
     /**
@@ -254,7 +254,7 @@ export interface PrivateLinkEndpointState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      */
     providerName?: pulumi.Input<string>;
     /**
@@ -267,7 +267,7 @@ export interface PrivateLinkEndpointState {
      */
     regionName?: pulumi.Input<string>;
     /**
-     * For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+     * List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      */
     serviceAttachmentNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -289,7 +289,7 @@ export interface PrivateLinkEndpointArgs {
      */
     deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
-     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      */
     portMappingEnabled?: pulumi.Input<boolean>;
     /**
@@ -297,7 +297,7 @@ export interface PrivateLinkEndpointArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      */
     providerName: pulumi.Input<string>;
     /**

@@ -183,13 +183,11 @@ def get_encryption_at_rest(project_id: Optional[_builtins.str] = None,
         azure_key_vault_config={
             "enabled": True,
             "azure_environment": "AZURE",
-            "tenant_id": azure_tenant_id,
             "subscription_id": azure_subscription_id,
-            "client_id": azure_client_id,
-            "secret": azure_client_secret,
             "resource_group_name": azure_resource_group_name,
             "key_vault_name": azure_key_vault_name,
             "key_identifier": azure_key_identifier,
+            "role_id": azure_role_id,
         })
     test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
     pulumi.export("isAzureEncryptionAtRestValid", test.azure_key_vault_config.valid)
@@ -303,13 +301,11 @@ def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[_builtins.st
         azure_key_vault_config={
             "enabled": True,
             "azure_environment": "AZURE",
-            "tenant_id": azure_tenant_id,
             "subscription_id": azure_subscription_id,
-            "client_id": azure_client_id,
-            "secret": azure_client_secret,
             "resource_group_name": azure_resource_group_name,
             "key_vault_name": azure_key_vault_name,
             "key_identifier": azure_key_identifier,
+            "role_id": azure_role_id,
         })
     test = mongodbatlas.get_encryption_at_rest_output(project_id=test_encryption_at_rest.project_id)
     pulumi.export("isAzureEncryptionAtRestValid", test.azure_key_vault_config.valid)

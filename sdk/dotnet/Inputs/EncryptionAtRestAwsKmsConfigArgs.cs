@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         }
 
         /// <summary>
-        /// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `False`.
+        /// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `False` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }

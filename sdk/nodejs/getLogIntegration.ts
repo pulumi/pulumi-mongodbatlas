@@ -2,10 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+ * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
  *
  * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
  *
@@ -15,41 +17,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const project = new mongodbatlas.Project("project", {
- *     name: atlasProjectName,
- *     orgId: atlasOrgId,
+ * const example = mongodbatlas.getLogIntegration({
+ *     projectId: exampleMongodbatlasLogIntegration.projectId,
+ *     integrationId: exampleMongodbatlasLogIntegration.integrationId,
  * });
- * // Set up cloud provider access in Atlas using the created IAM role
- * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
- *     projectId: project.id,
- *     providerName: "AWS",
- * });
- * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
- *     projectId: project.id,
- *     roleId: setupOnly.roleId,
- *     aws: {
- *         iamAssumedRoleArn: atlasRole.arn,
- *     },
- * });
- * // Set up log integration with authorized IAM role
- * const exampleLogIntegration = new mongodbatlas.LogIntegration("example", {
- *     projectId: project.id,
- *     bucketName: logBucket.bucket,
- *     iamRoleId: authRole.roleId,
- *     prefixPath: "atlas-logs",
- *     type: "S3_LOG_EXPORT",
- *     logTypes: ["MONGOD_AUDIT"],
- * });
- * const example = mongodbatlas.getLogIntegrationOutput({
- *     projectId: exampleLogIntegration.projectId,
- *     integrationId: exampleLogIntegration.integrationId,
- * });
- * const exampleGetLogIntegrations = mongodbatlas.getLogIntegrationsOutput({
- *     projectId: exampleLogIntegration.projectId,
- * });
- * export const logIntegrationBucketName = example.apply(example => example.bucketName);
- * export const logIntegrationsResults = exampleGetLogIntegrations.apply(exampleGetLogIntegrations => exampleGetLogIntegrations.results);
+ * export const logIntegrationType = example.then(example => example.type);
  * ```
+ *
+ * ### Further Examples
+ * - Log Integration Examples
  */
 export function getLogIntegration(args: GetLogIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetLogIntegrationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -77,13 +53,10 @@ export interface GetLogIntegrationArgs {
  * A collection of values returned by getLogIntegration.
  */
 export interface GetLogIntegrationResult {
-    /**
-     * Human-readable label that identifies the S3 bucket name for storing log files.
-     */
+    readonly apiKey: string;
     readonly bucketName: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-     */
+    readonly hecToken: string;
+    readonly hecUrl: string;
     readonly iamRoleId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -93,29 +66,29 @@ export interface GetLogIntegrationResult {
      * Unique identifier of the log integration configuration.
      */
     readonly integrationId: string;
-    /**
-     * AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-     */
     readonly kmsKey: string;
     /**
-     * Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * Array of log types exported by this integration.
      */
     readonly logTypes: string[];
-    /**
-     * S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-     */
+    readonly otelEndpoint: string;
+    readonly otelSuppliedHeaders: outputs.GetLogIntegrationOtelSuppliedHeader[];
     readonly prefixPath: string;
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
      */
     readonly projectId: string;
+    readonly region: string;
+    readonly roleId: string;
+    readonly storageAccountName: string;
+    readonly storageContainerName: string;
     /**
-     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
     readonly type: string;
 }
 /**
- * `mongodbatlas.LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+ * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
  *
  * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
  *
@@ -125,41 +98,15 @@ export interface GetLogIntegrationResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const project = new mongodbatlas.Project("project", {
- *     name: atlasProjectName,
- *     orgId: atlasOrgId,
+ * const example = mongodbatlas.getLogIntegration({
+ *     projectId: exampleMongodbatlasLogIntegration.projectId,
+ *     integrationId: exampleMongodbatlasLogIntegration.integrationId,
  * });
- * // Set up cloud provider access in Atlas using the created IAM role
- * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
- *     projectId: project.id,
- *     providerName: "AWS",
- * });
- * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
- *     projectId: project.id,
- *     roleId: setupOnly.roleId,
- *     aws: {
- *         iamAssumedRoleArn: atlasRole.arn,
- *     },
- * });
- * // Set up log integration with authorized IAM role
- * const exampleLogIntegration = new mongodbatlas.LogIntegration("example", {
- *     projectId: project.id,
- *     bucketName: logBucket.bucket,
- *     iamRoleId: authRole.roleId,
- *     prefixPath: "atlas-logs",
- *     type: "S3_LOG_EXPORT",
- *     logTypes: ["MONGOD_AUDIT"],
- * });
- * const example = mongodbatlas.getLogIntegrationOutput({
- *     projectId: exampleLogIntegration.projectId,
- *     integrationId: exampleLogIntegration.integrationId,
- * });
- * const exampleGetLogIntegrations = mongodbatlas.getLogIntegrationsOutput({
- *     projectId: exampleLogIntegration.projectId,
- * });
- * export const logIntegrationBucketName = example.apply(example => example.bucketName);
- * export const logIntegrationsResults = exampleGetLogIntegrations.apply(exampleGetLogIntegrations => exampleGetLogIntegrations.results);
+ * export const logIntegrationType = example.then(example => example.type);
  * ```
+ *
+ * ### Further Examples
+ * - Log Integration Examples
  */
 export function getLogIntegrationOutput(args: GetLogIntegrationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLogIntegrationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -13,17 +13,17 @@ import java.util.Objects;
 @CustomType
 public final class GetPrivateLinkEndpointResult {
     /**
-     * @return For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+     * @return List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
      * 
      */
     private List<String> endpointGroupNames;
     /**
-     * @return Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+     * @return Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
      * 
      */
     private String endpointServiceName;
     /**
-     * @return Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+     * @return Error message for the private endpoint connection. Returns `null` if there are no errors.
      * 
      */
     private String errorMessage;
@@ -38,7 +38,7 @@ public final class GetPrivateLinkEndpointResult {
      */
     private List<String> interfaceEndpoints;
     /**
-     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      * 
      */
     private Boolean portMappingEnabled;
@@ -66,39 +66,39 @@ public final class GetPrivateLinkEndpointResult {
      */
     private String regionName;
     /**
-     * @return For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
+     * @return List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      * 
      */
     private List<String> serviceAttachmentNames;
     /**
      * @return Status of the AWS PrivateLink connection.
      * Returns one of the following values:
-     * * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-     * * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
-     * * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-     * * `FAILED` 	A system failure has occurred.
-     * * `DELETING` 	The Private Link service is being deleted.
+     * * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+     * * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+     * * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+     * * `FAILED` - A system failure occurred.
+     * * `DELETING` - Atlas is deleting the Private Link service.
      * 
      */
     private String status;
 
     private GetPrivateLinkEndpointResult() {}
     /**
-     * @return For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+     * @return List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
      * 
      */
     public List<String> endpointGroupNames() {
         return this.endpointGroupNames;
     }
     /**
-     * @return Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+     * @return Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
      * 
      */
     public String endpointServiceName() {
         return this.endpointServiceName;
     }
     /**
-     * @return Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+     * @return Error message for the private endpoint connection. Returns `null` if there are no errors.
      * 
      */
     public String errorMessage() {
@@ -119,7 +119,7 @@ public final class GetPrivateLinkEndpointResult {
         return this.interfaceEndpoints;
     }
     /**
-     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      * 
      */
     public Boolean portMappingEnabled() {
@@ -163,7 +163,7 @@ public final class GetPrivateLinkEndpointResult {
         return this.regionName;
     }
     /**
-     * @return For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
+     * @return List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      * 
      */
     public List<String> serviceAttachmentNames() {
@@ -172,11 +172,11 @@ public final class GetPrivateLinkEndpointResult {
     /**
      * @return Status of the AWS PrivateLink connection.
      * Returns one of the following values:
-     * * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-     * * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
-     * * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-     * * `FAILED` 	A system failure has occurred.
-     * * `DELETING` 	The Private Link service is being deleted.
+     * * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+     * * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+     * * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+     * * `FAILED` - A system failure occurred.
+     * * `DELETING` - Atlas is deleting the Private Link service.
      * 
      */
     public String status() {

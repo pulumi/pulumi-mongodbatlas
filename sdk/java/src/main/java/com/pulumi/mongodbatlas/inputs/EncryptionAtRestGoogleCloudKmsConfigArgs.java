@@ -17,14 +17,14 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
     public static final EncryptionAtRestGoogleCloudKmsConfigArgs Empty = new EncryptionAtRestGoogleCloudKmsConfigArgs();
 
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -120,7 +120,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
          * 
          * @return builder
          * 
@@ -131,7 +131,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfigArgs extends com.pulumi.r
         }
 
         /**
-         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
          * 
          * @return builder
          * 

@@ -27,7 +27,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_effective_fields=None, version_release_system=None):
+    def __init__(__self__, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_aws_time_based_snapshot_copy_for_fast_initial_sync=None, use_effective_fields=None, version_release_system=None):
         if advanced_configuration and not isinstance(advanced_configuration, dict):
             raise TypeError("Expected argument 'advanced_configuration' to be a dict")
         pulumi.set(__self__, "advanced_configuration", advanced_configuration)
@@ -109,6 +109,9 @@ class GetAdvancedClusterResult:
         if termination_protection_enabled and not isinstance(termination_protection_enabled, bool):
             raise TypeError("Expected argument 'termination_protection_enabled' to be a bool")
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        if use_aws_time_based_snapshot_copy_for_fast_initial_sync and not isinstance(use_aws_time_based_snapshot_copy_for_fast_initial_sync, bool):
+            raise TypeError("Expected argument 'use_aws_time_based_snapshot_copy_for_fast_initial_sync' to be a bool")
+        pulumi.set(__self__, "use_aws_time_based_snapshot_copy_for_fast_initial_sync", use_aws_time_based_snapshot_copy_for_fast_initial_sync)
         if use_effective_fields and not isinstance(use_effective_fields, bool):
             raise TypeError("Expected argument 'use_effective_fields' to be a bool")
         pulumi.set(__self__, "use_effective_fields", use_effective_fields)
@@ -268,7 +271,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> _builtins.bool:
         """
-        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+        Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -276,7 +279,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="replicaSetScalingStrategy")
     def replica_set_scaling_strategy(self) -> _builtins.str:
         """
-        (Optional) Replica set scaling mode for your cluster.
+        Replica set scaling mode for your cluster.
         """
         return pulumi.get(self, "replica_set_scaling_strategy")
 
@@ -319,6 +322,14 @@ class GetAdvancedClusterResult:
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="useAwsTimeBasedSnapshotCopyForFastInitialSync")
+    def use_aws_time_based_snapshot_copy_for_fast_initial_sync(self) -> _builtins.bool:
+        """
+        Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+        """
+        return pulumi.get(self, "use_aws_time_based_snapshot_copy_for_fast_initial_sync")
 
     @_builtins.property
     @pulumi.getter(name="useEffectiveFields")
@@ -367,6 +378,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             state_name=self.state_name,
             tags=self.tags,
             termination_protection_enabled=self.termination_protection_enabled,
+            use_aws_time_based_snapshot_copy_for_fast_initial_sync=self.use_aws_time_based_snapshot_copy_for_fast_initial_sync,
             use_effective_fields=self.use_effective_fields,
             version_release_system=self.version_release_system)
 
@@ -376,17 +388,9 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
                          use_effective_fields: Optional[_builtins.bool] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAdvancedClusterResult:
     """
-    `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+    `AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
 
     > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
-
-    > **IMPORTANT:**
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-
-    > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-
-    > **NOTE:** This data source also includes Flex clusters.
 
     ## Example Usage
 
@@ -552,6 +556,7 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
         state_name=pulumi.get(__ret__, 'state_name'),
         tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
+        use_aws_time_based_snapshot_copy_for_fast_initial_sync=pulumi.get(__ret__, 'use_aws_time_based_snapshot_copy_for_fast_initial_sync'),
         use_effective_fields=pulumi.get(__ret__, 'use_effective_fields'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
 def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -559,17 +564,9 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
                                 use_effective_fields: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
-    `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+    `AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
 
     > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
-
-    > **IMPORTANT:**
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-    <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-
-    > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-
-    > **NOTE:** This data source also includes Flex clusters.
 
     ## Example Usage
 
@@ -734,5 +731,6 @@ def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = No
         state_name=pulumi.get(__response__, 'state_name'),
         tags=pulumi.get(__response__, 'tags'),
         termination_protection_enabled=pulumi.get(__response__, 'termination_protection_enabled'),
+        use_aws_time_based_snapshot_copy_for_fast_initial_sync=pulumi.get(__response__, 'use_aws_time_based_snapshot_copy_for_fast_initial_sync'),
         use_effective_fields=pulumi.get(__response__, 'use_effective_fields'),
         version_release_system=pulumi.get(__response__, 'version_release_system')))

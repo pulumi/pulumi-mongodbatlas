@@ -346,3 +346,6 @@ For detailed authentication configuration, see:
 
 MongoDB Atlas for Government is a dedicated deployment option for government agencies and contractors requiring FedRAMP compliance.
 For more details on configuration, see the Provider Configuration Guide.
+## Troubleshooting
+
+For common issues and networking diagnostics, see the Troubleshooting Guide.

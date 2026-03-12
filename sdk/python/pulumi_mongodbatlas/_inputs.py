@@ -205,6 +205,8 @@ __all__ = [
     'LdapVerifyLinkArgsDict',
     'LdapVerifyValidationArgs',
     'LdapVerifyValidationArgsDict',
+    'LogIntegrationOtelSuppliedHeaderArgs',
+    'LogIntegrationOtelSuppliedHeaderArgsDict',
     'MaintenanceWindowProtectedHoursArgs',
     'MaintenanceWindowProtectedHoursArgsDict',
     'OnlineArchiveCriteriaArgs',
@@ -1490,6 +1492,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict(TypedDict
     instance_size: NotRequired[pulumi.Input[_builtins.str]]
     """
     Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+    > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
     """
     node_count: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -1511,6 +1515,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+               
+               > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1567,6 +1573,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+        > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         """
         return pulumi.get(self, "instance_size")
 
@@ -1750,6 +1758,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict(TypedDict
     instance_size: NotRequired[pulumi.Input[_builtins.str]]
     """
     Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+    > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
     """
     node_count: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -1771,6 +1781,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+               
+               > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1827,6 +1839,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+        > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         """
         return pulumi.get(self, "instance_size")
 
@@ -1865,6 +1879,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict(TypedDict)
     instance_size: NotRequired[pulumi.Input[_builtins.str]]
     """
     Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+    > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
     """
     node_count: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -1886,6 +1902,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+               
+               > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1942,6 +1960,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+        > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         """
         return pulumi.get(self, "instance_size")
 
@@ -6684,7 +6704,7 @@ class EncryptionAtRestAwsKmsConfigArgsDict(TypedDict):
     """
     enabled: NotRequired[pulumi.Input[_builtins.bool]]
     """
-    Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+    Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
     """
     region: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -6721,7 +6741,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
         """
         :param pulumi.Input[_builtins.str] access_key_id: Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
         :param pulumi.Input[_builtins.str] customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
-        :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param pulumi.Input[_builtins.str] region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         :param pulumi.Input[_builtins.bool] require_private_networking: Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
         :param pulumi.Input[_builtins.str] role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
@@ -6773,7 +6793,7 @@ class EncryptionAtRestAwsKmsConfigArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -6853,7 +6873,7 @@ class EncryptionAtRestAzureKeyVaultConfigArgsDict(TypedDict):
     """
     enabled: NotRequired[pulumi.Input[_builtins.bool]]
     """
-    Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+    Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
     """
     key_identifier: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -6870,6 +6890,10 @@ class EncryptionAtRestAzureKeyVaultConfigArgsDict(TypedDict):
     resource_group_name: NotRequired[pulumi.Input[_builtins.str]]
     """
     Name of the Azure resource group that contains your Azure Key Vault.
+    """
+    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
     """
     secret: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -6898,6 +6922,7 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
                  key_vault_name: Optional[pulumi.Input[_builtins.str]] = None,
                  require_private_networking: Optional[pulumi.Input[_builtins.bool]] = None,
                  resource_group_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
                  subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -6905,11 +6930,12 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
         """
         :param pulumi.Input[_builtins.str] azure_environment: Azure environment in which your account credentials reside.
         :param pulumi.Input[_builtins.str] client_id: Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
-        :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param pulumi.Input[_builtins.str] key_identifier: Web address with a unique key that identifies for your Azure Key Vault.
         :param pulumi.Input[_builtins.str] key_vault_name: Unique string that identifies the Azure Key Vault that contains your key.
         :param pulumi.Input[_builtins.bool] require_private_networking: Enable connection to your Azure Key Vault over private networking.
         :param pulumi.Input[_builtins.str] resource_group_name: Name of the Azure resource group that contains your Azure Key Vault.
+        :param pulumi.Input[_builtins.str] role_id: Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
         :param pulumi.Input[_builtins.str] secret: Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
         :param pulumi.Input[_builtins.str] subscription_id: Unique 36-hexadecimal character string that identifies your Azure subscription.
         :param pulumi.Input[_builtins.str] tenant_id: Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
@@ -6929,6 +6955,8 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
             pulumi.set(__self__, "require_private_networking", require_private_networking)
         if resource_group_name is not None:
             pulumi.set(__self__, "resource_group_name", resource_group_name)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
         if subscription_id is not None:
@@ -6966,7 +6994,7 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -7023,6 +7051,18 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
         pulumi.set(self, "resource_group_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "role_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -7074,7 +7114,7 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
 class EncryptionAtRestGoogleCloudKmsConfigArgsDict(TypedDict):
     enabled: NotRequired[pulumi.Input[_builtins.bool]]
     """
-    Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+    Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
     """
     key_version_resource_id: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -7102,7 +7142,7 @@ class EncryptionAtRestGoogleCloudKmsConfigArgs:
                  service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
                  valid: Optional[pulumi.Input[_builtins.bool]] = None):
         """
-        :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param pulumi.Input[_builtins.str] key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
         :param pulumi.Input[_builtins.str] role_id: Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
         :param pulumi.Input[_builtins.str] service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
@@ -7123,7 +7163,7 @@ class EncryptionAtRestGoogleCloudKmsConfigArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -8867,6 +8907,53 @@ class LdapVerifyValidationArgs:
     @validation_type.setter
     def validation_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "validation_type", value)
+
+
+class LogIntegrationOtelSuppliedHeaderArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Header name.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Header value.
+    """
+
+@pulumi.input_type
+class LogIntegrationOtelSuppliedHeaderArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] name: Header name.
+        :param pulumi.Input[_builtins.str] value: Header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
 
 
 class MaintenanceWindowProtectedHoursArgsDict(TypedDict):
@@ -11251,6 +11338,10 @@ class StreamConnectionTimeoutsArgsDict(TypedDict):
     """
     The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
     """
+    delete: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+    """
     update: NotRequired[pulumi.Input[_builtins.str]]
     """
     The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
@@ -11260,13 +11351,17 @@ class StreamConnectionTimeoutsArgsDict(TypedDict):
 class StreamConnectionTimeoutsArgs:
     def __init__(__self__, *,
                  create: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete: Optional[pulumi.Input[_builtins.str]] = None,
                  update: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        :param pulumi.Input[_builtins.str] delete: The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
         :param pulumi.Input[_builtins.str] update: The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
         """
         if create is not None:
             pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
         if update is not None:
             pulumi.set(__self__, "update", update)
 
@@ -11281,6 +11376,18 @@ class StreamConnectionTimeoutsArgs:
     @create.setter
     def create(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter

@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ClientId;
         /// <summary>
-        /// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `False`.
+        /// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `False` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
@@ -41,6 +41,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Name of the Azure resource group that contains your Azure Key Vault.
         /// </summary>
         public readonly string ResourceGroupName;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+        /// </summary>
+        public readonly string RoleId;
         /// <summary>
         /// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
         /// </summary>
@@ -74,6 +78,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string resourceGroupName,
 
+            string roleId,
+
             string secret,
 
             string subscriptionId,
@@ -89,6 +95,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             KeyVaultName = keyVaultName;
             RequirePrivateNetworking = requirePrivateNetworking;
             ResourceGroupName = resourceGroupName;
+            RoleId = roleId;
             Secret = secret;
             SubscriptionId = subscriptionId;
             TenantId = tenantId;

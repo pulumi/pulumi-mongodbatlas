@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+// `LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 //
 // To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 //
@@ -29,63 +29,22 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := mongodbatlas.NewProject(ctx, "project", &mongodbatlas.ProjectArgs{
-//				Name:  pulumi.Any(atlasProjectName),
-//				OrgId: pulumi.Any(atlasOrgId),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Set up cloud provider access in Atlas using the created IAM role
-//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
-//				ProjectId:    project.ID(),
-//				ProviderName: pulumi.String("AWS"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			authRole, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
-//				ProjectId: project.ID(),
-//				RoleId:    setupOnly.RoleId,
-//				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
-//					IamAssumedRoleArn: pulumi.Any(atlasRole.Arn),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Set up log integration with authorized IAM role
-//			exampleLogIntegration, err := mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
-//				ProjectId:  project.ID(),
-//				BucketName: pulumi.Any(logBucket.Bucket),
-//				IamRoleId:  authRole.RoleId,
-//				PrefixPath: pulumi.String("atlas-logs"),
-//				Type:       pulumi.String("S3_LOG_EXPORT"),
-//				LogTypes: pulumi.StringArray{
-//					pulumi.String("MONGOD_AUDIT"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			example := mongodbatlas.LookupLogIntegrationOutput(ctx, mongodbatlas.GetLogIntegrationOutputArgs{
-//				ProjectId:     exampleLogIntegration.ProjectId,
-//				IntegrationId: exampleLogIntegration.IntegrationId,
+//			example, err := mongodbatlas.LookupLogIntegration(ctx, &mongodbatlas.LookupLogIntegrationArgs{
+//				ProjectId:     exampleMongodbatlasLogIntegration.ProjectId,
+//				IntegrationId: exampleMongodbatlasLogIntegration.IntegrationId,
 //			}, nil)
-//			exampleGetLogIntegrations := mongodbatlas.LookupLogIntegrationsOutput(ctx, mongodbatlas.GetLogIntegrationsOutputArgs{
-//				ProjectId: exampleLogIntegration.ProjectId,
-//			}, nil)
-//			ctx.Export("logIntegrationBucketName", example.ApplyT(func(example mongodbatlas.GetLogIntegrationResult) (*string, error) {
-//				return &example.BucketName, nil
-//			}).(pulumi.StringPtrOutput))
-//			ctx.Export("logIntegrationsResults", exampleGetLogIntegrations.ApplyT(func(exampleGetLogIntegrations mongodbatlas.GetLogIntegrationsResult) ([]mongodbatlas.GetLogIntegrationsResult, error) {
-//				return []mongodbatlas.GetLogIntegrationsResult(exampleGetLogIntegrations.Results), nil
-//			}).([]mongodbatlas.GetLogIntegrationsResultOutput))
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("logIntegrationType", example.Type)
 //			return nil
 //		})
 //	}
 //
 // ```
+//
+// ### Further Examples
+// - Log Integration Examples
 func LookupLogIntegration(ctx *pulumi.Context, args *LookupLogIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupLogIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLogIntegrationResult
@@ -106,23 +65,28 @@ type LookupLogIntegrationArgs struct {
 
 // A collection of values returned by getLogIntegration.
 type LookupLogIntegrationResult struct {
-	// Human-readable label that identifies the S3 bucket name for storing log files.
+	ApiKey     string `pulumi:"apiKey"`
 	BucketName string `pulumi:"bucketName"`
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-	IamRoleId string `pulumi:"iamRoleId"`
+	HecToken   string `pulumi:"hecToken"`
+	HecUrl     string `pulumi:"hecUrl"`
+	IamRoleId  string `pulumi:"iamRoleId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique identifier of the log integration configuration.
 	IntegrationId string `pulumi:"integrationId"`
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-	KmsKey string `pulumi:"kmsKey"`
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
-	LogTypes []string `pulumi:"logTypes"`
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-	PrefixPath string `pulumi:"prefixPath"`
+	KmsKey        string `pulumi:"kmsKey"`
+	// Array of log types exported by this integration.
+	LogTypes            []string                              `pulumi:"logTypes"`
+	OtelEndpoint        string                                `pulumi:"otelEndpoint"`
+	OtelSuppliedHeaders []GetLogIntegrationOtelSuppliedHeader `pulumi:"otelSuppliedHeaders"`
+	PrefixPath          string                                `pulumi:"prefixPath"`
 	// Unique 24-hexadecimal digit string that identifies your project.
-	ProjectId string `pulumi:"projectId"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	ProjectId            string `pulumi:"projectId"`
+	Region               string `pulumi:"region"`
+	RoleId               string `pulumi:"roleId"`
+	StorageAccountName   string `pulumi:"storageAccountName"`
+	StorageContainerName string `pulumi:"storageContainerName"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type string `pulumi:"type"`
 }
 
@@ -162,12 +126,22 @@ func (o LookupLogIntegrationResultOutput) ToLookupLogIntegrationResultOutputWith
 	return o
 }
 
-// Human-readable label that identifies the S3 bucket name for storing log files.
+func (o LookupLogIntegrationResultOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
 func (o LookupLogIntegrationResultOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+func (o LookupLogIntegrationResultOutput) HecToken() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.HecToken }).(pulumi.StringOutput)
+}
+
+func (o LookupLogIntegrationResultOutput) HecUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.HecUrl }).(pulumi.StringOutput)
+}
+
 func (o LookupLogIntegrationResultOutput) IamRoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.IamRoleId }).(pulumi.StringOutput)
 }
@@ -182,17 +156,23 @@ func (o LookupLogIntegrationResultOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
-// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 func (o LookupLogIntegrationResultOutput) KmsKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.KmsKey }).(pulumi.StringOutput)
 }
 
-// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+// Array of log types exported by this integration.
 func (o LookupLogIntegrationResultOutput) LogTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) []string { return v.LogTypes }).(pulumi.StringArrayOutput)
 }
 
-// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+func (o LookupLogIntegrationResultOutput) OtelEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.OtelEndpoint }).(pulumi.StringOutput)
+}
+
+func (o LookupLogIntegrationResultOutput) OtelSuppliedHeaders() GetLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) []GetLogIntegrationOtelSuppliedHeader { return v.OtelSuppliedHeaders }).(GetLogIntegrationOtelSuppliedHeaderArrayOutput)
+}
+
 func (o LookupLogIntegrationResultOutput) PrefixPath() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.PrefixPath }).(pulumi.StringOutput)
 }
@@ -202,7 +182,23 @@ func (o LookupLogIntegrationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+func (o LookupLogIntegrationResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+func (o LookupLogIntegrationResultOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+func (o LookupLogIntegrationResultOutput) StorageAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.StorageAccountName }).(pulumi.StringOutput)
+}
+
+func (o LookupLogIntegrationResultOutput) StorageContainerName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.StorageContainerName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 func (o LookupLogIntegrationResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.Type }).(pulumi.StringOutput)
 }

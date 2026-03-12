@@ -105,12 +105,12 @@ public final class GetAdvancedClusterResult {
     private Boolean pitEnabled;
     private String projectId;
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+     * @return Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     private Boolean redactClientLogData;
     /**
-     * @return (Optional) Replica set scaling mode for your cluster.
+     * @return Replica set scaling mode for your cluster.
      * 
      */
     private String replicaSetScalingStrategy;
@@ -139,6 +139,11 @@ public final class GetAdvancedClusterResult {
      * 
      */
     private Boolean terminationProtectionEnabled;
+    /**
+     * @return Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     * 
+     */
+    private Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync;
     private @Nullable Boolean useEffectiveFields;
     /**
      * @return Release cadence that Atlas uses for this cluster.
@@ -272,14 +277,14 @@ public final class GetAdvancedClusterResult {
         return this.projectId;
     }
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+     * @return Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     public Boolean redactClientLogData() {
         return this.redactClientLogData;
     }
     /**
-     * @return (Optional) Replica set scaling mode for your cluster.
+     * @return Replica set scaling mode for your cluster.
      * 
      */
     public String replicaSetScalingStrategy() {
@@ -319,6 +324,13 @@ public final class GetAdvancedClusterResult {
      */
     public Boolean terminationProtectionEnabled() {
         return this.terminationProtectionEnabled;
+    }
+    /**
+     * @return Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     * 
+     */
+    public Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync() {
+        return this.useAwsTimeBasedSnapshotCopyForFastInitialSync;
     }
     public Optional<Boolean> useEffectiveFields() {
         return Optional.ofNullable(this.useEffectiveFields);
@@ -367,6 +379,7 @@ public final class GetAdvancedClusterResult {
         private String stateName;
         private Map<String,String> tags;
         private Boolean terminationProtectionEnabled;
+        private Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync;
         private @Nullable Boolean useEffectiveFields;
         private String versionReleaseSystem;
         public Builder() {}
@@ -399,6 +412,7 @@ public final class GetAdvancedClusterResult {
     	      this.stateName = defaults.stateName;
     	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
+    	      this.useAwsTimeBasedSnapshotCopyForFastInitialSync = defaults.useAwsTimeBasedSnapshotCopyForFastInitialSync;
     	      this.useEffectiveFields = defaults.useEffectiveFields;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
@@ -623,6 +637,14 @@ public final class GetAdvancedClusterResult {
             return this;
         }
         @CustomType.Setter
+        public Builder useAwsTimeBasedSnapshotCopyForFastInitialSync(Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync) {
+            if (useAwsTimeBasedSnapshotCopyForFastInitialSync == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "useAwsTimeBasedSnapshotCopyForFastInitialSync");
+            }
+            this.useAwsTimeBasedSnapshotCopyForFastInitialSync = useAwsTimeBasedSnapshotCopyForFastInitialSync;
+            return this;
+        }
+        @CustomType.Setter
         public Builder useEffectiveFields(@Nullable Boolean useEffectiveFields) {
 
             this.useEffectiveFields = useEffectiveFields;
@@ -665,6 +687,7 @@ public final class GetAdvancedClusterResult {
             _resultValue.stateName = stateName;
             _resultValue.tags = tags;
             _resultValue.terminationProtectionEnabled = terminationProtectionEnabled;
+            _resultValue.useAwsTimeBasedSnapshotCopyForFastInitialSync = useAwsTimeBasedSnapshotCopyForFastInitialSync;
             _resultValue.useEffectiveFields = useEffectiveFields;
             _resultValue.versionReleaseSystem = versionReleaseSystem;
             return _resultValue;

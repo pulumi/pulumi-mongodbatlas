@@ -23,7 +23,7 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
      */
     private @Nullable String clientId;
     /**
-     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     private @Nullable Boolean enabled;
@@ -47,6 +47,11 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
      * 
      */
     private @Nullable String resourceGroupName;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+     * 
+     */
+    private @Nullable String roleId;
     /**
      * @return Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      * 
@@ -84,7 +89,7 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
         return Optional.ofNullable(this.clientId);
     }
     /**
-     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     public Optional<Boolean> enabled() {
@@ -117,6 +122,13 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
      */
     public Optional<String> resourceGroupName() {
         return Optional.ofNullable(this.resourceGroupName);
+    }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+     * 
+     */
+    public Optional<String> roleId() {
+        return Optional.ofNullable(this.roleId);
     }
     /**
      * @return Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
@@ -163,6 +175,7 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
         private @Nullable String keyVaultName;
         private @Nullable Boolean requirePrivateNetworking;
         private @Nullable String resourceGroupName;
+        private @Nullable String roleId;
         private @Nullable String secret;
         private @Nullable String subscriptionId;
         private @Nullable String tenantId;
@@ -177,6 +190,7 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
     	      this.keyVaultName = defaults.keyVaultName;
     	      this.requirePrivateNetworking = defaults.requirePrivateNetworking;
     	      this.resourceGroupName = defaults.resourceGroupName;
+    	      this.roleId = defaults.roleId;
     	      this.secret = defaults.secret;
     	      this.subscriptionId = defaults.subscriptionId;
     	      this.tenantId = defaults.tenantId;
@@ -226,6 +240,12 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
             return this;
         }
         @CustomType.Setter
+        public Builder roleId(@Nullable String roleId) {
+
+            this.roleId = roleId;
+            return this;
+        }
+        @CustomType.Setter
         public Builder secret(@Nullable String secret) {
 
             this.secret = secret;
@@ -258,6 +278,7 @@ public final class EncryptionAtRestAzureKeyVaultConfig {
             _resultValue.keyVaultName = keyVaultName;
             _resultValue.requirePrivateNetworking = requirePrivateNetworking;
             _resultValue.resourceGroupName = resourceGroupName;
+            _resultValue.roleId = roleId;
             _resultValue.secret = secret;
             _resultValue.subscriptionId = subscriptionId;
             _resultValue.tenantId = tenantId;

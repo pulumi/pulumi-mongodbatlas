@@ -125,13 +125,11 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             Enabled = true,
         ///             AzureEnvironment = "AZURE",
-        ///             TenantId = azureTenantId,
         ///             SubscriptionId = azureSubscriptionId,
-        ///             ClientId = azureClientId,
-        ///             Secret = azureClientSecret,
         ///             ResourceGroupName = azureResourceGroupName,
         ///             KeyVaultName = azureKeyVaultName,
         ///             KeyIdentifier = azureKeyIdentifier,
+        ///             RoleId = azureRoleId,
         ///         },
         ///     });
         /// 
@@ -300,13 +298,11 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             Enabled = true,
         ///             AzureEnvironment = "AZURE",
-        ///             TenantId = azureTenantId,
         ///             SubscriptionId = azureSubscriptionId,
-        ///             ClientId = azureClientId,
-        ///             Secret = azureClientSecret,
         ///             ResourceGroupName = azureResourceGroupName,
         ///             KeyVaultName = azureKeyVaultName,
         ///             KeyIdentifier = azureKeyIdentifier,
+        ///             RoleId = azureRoleId,
         ///         },
         ///     });
         /// 
@@ -475,13 +471,11 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             Enabled = true,
         ///             AzureEnvironment = "AZURE",
-        ///             TenantId = azureTenantId,
         ///             SubscriptionId = azureSubscriptionId,
-        ///             ClientId = azureClientId,
-        ///             Secret = azureClientSecret,
         ///             ResourceGroupName = azureResourceGroupName,
         ///             KeyVaultName = azureKeyVaultName,
         ///             KeyIdentifier = azureKeyIdentifier,
+        ///             RoleId = azureRoleId,
         ///         },
         ///     });
         /// 

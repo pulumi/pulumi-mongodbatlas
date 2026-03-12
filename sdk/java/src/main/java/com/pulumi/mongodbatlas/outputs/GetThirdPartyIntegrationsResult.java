@@ -68,8 +68,13 @@ public final class GetThirdPartyIntegrationsResult {
      */
     private Boolean sendDatabaseMetrics;
     /**
-     * @return Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * @return Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
      * * `OPS_GENIE`
+     * 
+     */
+    private Boolean sendQueryStatsMetrics;
+    /**
+     * @return Toggle sending user provided group and cluster resource tags with the Datadog metrics.
      * 
      */
     private Boolean sendUserProvidedResourceTags;
@@ -183,8 +188,15 @@ public final class GetThirdPartyIntegrationsResult {
         return this.sendDatabaseMetrics;
     }
     /**
-     * @return Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * @return Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
      * * `OPS_GENIE`
+     * 
+     */
+    public Boolean sendQueryStatsMetrics() {
+        return this.sendQueryStatsMetrics;
+    }
+    /**
+     * @return Toggle sending user provided group and cluster resource tags with the Datadog metrics.
      * 
      */
     public Boolean sendUserProvidedResourceTags() {
@@ -251,6 +263,7 @@ public final class GetThirdPartyIntegrationsResult {
         private String secret;
         private Boolean sendCollectionLatencyMetrics;
         private Boolean sendDatabaseMetrics;
+        private Boolean sendQueryStatsMetrics;
         private Boolean sendUserProvidedResourceTags;
         private String serviceDiscovery;
         private String serviceKey;
@@ -273,6 +286,7 @@ public final class GetThirdPartyIntegrationsResult {
     	      this.secret = defaults.secret;
     	      this.sendCollectionLatencyMetrics = defaults.sendCollectionLatencyMetrics;
     	      this.sendDatabaseMetrics = defaults.sendDatabaseMetrics;
+    	      this.sendQueryStatsMetrics = defaults.sendQueryStatsMetrics;
     	      this.sendUserProvidedResourceTags = defaults.sendUserProvidedResourceTags;
     	      this.serviceDiscovery = defaults.serviceDiscovery;
     	      this.serviceKey = defaults.serviceKey;
@@ -379,6 +393,14 @@ public final class GetThirdPartyIntegrationsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder sendQueryStatsMetrics(Boolean sendQueryStatsMetrics) {
+            if (sendQueryStatsMetrics == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "sendQueryStatsMetrics");
+            }
+            this.sendQueryStatsMetrics = sendQueryStatsMetrics;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sendUserProvidedResourceTags(Boolean sendUserProvidedResourceTags) {
             if (sendUserProvidedResourceTags == null) {
               throw new MissingRequiredPropertyException("GetThirdPartyIntegrationsResult", "sendUserProvidedResourceTags");
@@ -448,6 +470,7 @@ public final class GetThirdPartyIntegrationsResult {
             _resultValue.secret = secret;
             _resultValue.sendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
             _resultValue.sendDatabaseMetrics = sendDatabaseMetrics;
+            _resultValue.sendQueryStatsMetrics = sendQueryStatsMetrics;
             _resultValue.sendUserProvidedResourceTags = sendUserProvidedResourceTags;
             _resultValue.serviceDiscovery = serviceDiscovery;
             _resultValue.serviceKey = serviceKey;

@@ -47,14 +47,14 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
     }
 
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     @Import(name="enabled")
     private @Nullable Output<Boolean> enabled;
 
     /**
-     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     public Optional<Output<Boolean>> enabled() {
@@ -119,6 +119,21 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
      */
     public Optional<Output<String>> resourceGroupName() {
         return Optional.ofNullable(this.resourceGroupName);
+    }
+
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+     * 
+     */
+    @Import(name="roleId")
+    private @Nullable Output<String> roleId;
+
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+     * 
+     */
+    public Optional<Output<String>> roleId() {
+        return Optional.ofNullable(this.roleId);
     }
 
     /**
@@ -191,6 +206,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         this.keyVaultName = $.keyVaultName;
         this.requirePrivateNetworking = $.requirePrivateNetworking;
         this.resourceGroupName = $.resourceGroupName;
+        this.roleId = $.roleId;
         this.secret = $.secret;
         this.subscriptionId = $.subscriptionId;
         this.tenantId = $.tenantId;
@@ -258,7 +274,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
          * 
          * @return builder
          * 
@@ -269,7 +285,7 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
         }
 
         /**
-         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+         * @param enabled Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
          * 
          * @return builder
          * 
@@ -360,6 +376,27 @@ public final class EncryptionAtRestAzureKeyVaultConfigArgs extends com.pulumi.re
          */
         public Builder resourceGroupName(String resourceGroupName) {
             return resourceGroupName(Output.of(resourceGroupName));
+        }
+
+        /**
+         * @param roleId Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(@Nullable Output<String> roleId) {
+            $.roleId = roleId;
+            return this;
+        }
+
+        /**
+         * @param roleId Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(String roleId) {
+            return roleId(Output.of(roleId));
         }
 
         /**

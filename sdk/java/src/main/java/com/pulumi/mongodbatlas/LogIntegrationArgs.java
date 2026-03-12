@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.inputs.LogIntegrationOtelSuppliedHeaderArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -18,44 +19,89 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
     public static final LogIntegrationArgs Empty = new LogIntegrationArgs();
 
     /**
-     * Human-readable label that identifies the S3 bucket name for storing log files.
+     * Required for type: DATADOG_LOG_EXPORT. API key for authentication.
      * 
      */
-    @Import(name="bucketName", required=true)
-    private Output<String> bucketName;
+    @Import(name="apiKey")
+    private @Nullable Output<String> apiKey;
 
     /**
-     * @return Human-readable label that identifies the S3 bucket name for storing log files.
+     * @return Required for type: DATADOG_LOG_EXPORT. API key for authentication.
      * 
      */
-    public Output<String> bucketName() {
-        return this.bucketName;
+    public Optional<Output<String>> apiKey() {
+        return Optional.ofNullable(this.apiKey);
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     * Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      * 
      */
-    @Import(name="iamRoleId", required=true)
-    private Output<String> iamRoleId;
+    @Import(name="bucketName")
+    private @Nullable Output<String> bucketName;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     * @return Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      * 
      */
-    public Output<String> iamRoleId() {
-        return this.iamRoleId;
+    public Optional<Output<String>> bucketName() {
+        return Optional.ofNullable(this.bucketName);
     }
 
     /**
-     * AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+     * 
+     */
+    @Import(name="hecToken")
+    private @Nullable Output<String> hecToken;
+
+    /**
+     * @return Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+     * 
+     */
+    public Optional<Output<String>> hecToken() {
+        return Optional.ofNullable(this.hecToken);
+    }
+
+    /**
+     * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+     * 
+     */
+    @Import(name="hecUrl")
+    private @Nullable Output<String> hecUrl;
+
+    /**
+     * @return Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+     * 
+     */
+    public Optional<Output<String>> hecUrl() {
+        return Optional.ofNullable(this.hecUrl);
+    }
+
+    /**
+     * Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+     * 
+     */
+    @Import(name="iamRoleId")
+    private @Nullable Output<String> iamRoleId;
+
+    /**
+     * @return Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+     * 
+     */
+    public Optional<Output<String>> iamRoleId() {
+        return Optional.ofNullable(this.iamRoleId);
+    }
+
+    /**
+     * Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      * 
      */
     @Import(name="kmsKey")
     private @Nullable Output<String> kmsKey;
 
     /**
-     * @return AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     * @return Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      * 
      */
     public Optional<Output<String>> kmsKey() {
@@ -63,14 +109,14 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * Array of log types exported by this integration.
      * 
      */
     @Import(name="logTypes", required=true)
     private Output<List<String>> logTypes;
 
     /**
-     * @return Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * @return Array of log types exported by this integration.
      * 
      */
     public Output<List<String>> logTypes() {
@@ -78,18 +124,48 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     * Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
      * 
      */
-    @Import(name="prefixPath", required=true)
-    private Output<String> prefixPath;
+    @Import(name="otelEndpoint")
+    private @Nullable Output<String> otelEndpoint;
 
     /**
-     * @return S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     * @return Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
      * 
      */
-    public Output<String> prefixPath() {
-        return this.prefixPath;
+    public Optional<Output<String>> otelEndpoint() {
+        return Optional.ofNullable(this.otelEndpoint);
+    }
+
+    /**
+     * Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+     * 
+     */
+    @Import(name="otelSuppliedHeaders")
+    private @Nullable Output<List<LogIntegrationOtelSuppliedHeaderArgs>> otelSuppliedHeaders;
+
+    /**
+     * @return Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+     * 
+     */
+    public Optional<Output<List<LogIntegrationOtelSuppliedHeaderArgs>>> otelSuppliedHeaders() {
+        return Optional.ofNullable(this.otelSuppliedHeaders);
+    }
+
+    /**
+     * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+     * 
+     */
+    @Import(name="prefixPath")
+    private @Nullable Output<String> prefixPath;
+
+    /**
+     * @return Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+     * 
+     */
+    public Optional<Output<String>> prefixPath() {
+        return Optional.ofNullable(this.prefixPath);
     }
 
     /**
@@ -108,14 +184,74 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+     * 
+     */
+    @Import(name="region")
+    private @Nullable Output<String> region;
+
+    /**
+     * @return Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+     * 
+     */
+    public Optional<Output<String>> region() {
+        return Optional.ofNullable(this.region);
+    }
+
+    /**
+     * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+     * 
+     */
+    @Import(name="roleId")
+    private @Nullable Output<String> roleId;
+
+    /**
+     * @return Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+     * 
+     */
+    public Optional<Output<String>> roleId() {
+        return Optional.ofNullable(this.roleId);
+    }
+
+    /**
+     * Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+     * 
+     */
+    @Import(name="storageAccountName")
+    private @Nullable Output<String> storageAccountName;
+
+    /**
+     * @return Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+     * 
+     */
+    public Optional<Output<String>> storageAccountName() {
+        return Optional.ofNullable(this.storageAccountName);
+    }
+
+    /**
+     * Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+     * 
+     */
+    @Import(name="storageContainerName")
+    private @Nullable Output<String> storageContainerName;
+
+    /**
+     * @return Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+     * 
+     */
+    public Optional<Output<String>> storageContainerName() {
+        return Optional.ofNullable(this.storageContainerName);
+    }
+
+    /**
+     * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * @return Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     public Output<String> type() {
@@ -125,12 +261,21 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
     private LogIntegrationArgs() {}
 
     private LogIntegrationArgs(LogIntegrationArgs $) {
+        this.apiKey = $.apiKey;
         this.bucketName = $.bucketName;
+        this.hecToken = $.hecToken;
+        this.hecUrl = $.hecUrl;
         this.iamRoleId = $.iamRoleId;
         this.kmsKey = $.kmsKey;
         this.logTypes = $.logTypes;
+        this.otelEndpoint = $.otelEndpoint;
+        this.otelSuppliedHeaders = $.otelSuppliedHeaders;
         this.prefixPath = $.prefixPath;
         this.projectId = $.projectId;
+        this.region = $.region;
+        this.roleId = $.roleId;
+        this.storageAccountName = $.storageAccountName;
+        this.storageContainerName = $.storageContainerName;
         this.type = $.type;
     }
 
@@ -153,18 +298,39 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param bucketName Human-readable label that identifies the S3 bucket name for storing log files.
+         * @param apiKey Required for type: DATADOG_LOG_EXPORT. API key for authentication.
          * 
          * @return builder
          * 
          */
-        public Builder bucketName(Output<String> bucketName) {
+        public Builder apiKey(@Nullable Output<String> apiKey) {
+            $.apiKey = apiKey;
+            return this;
+        }
+
+        /**
+         * @param apiKey Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiKey(String apiKey) {
+            return apiKey(Output.of(apiKey));
+        }
+
+        /**
+         * @param bucketName Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder bucketName(@Nullable Output<String> bucketName) {
             $.bucketName = bucketName;
             return this;
         }
 
         /**
-         * @param bucketName Human-readable label that identifies the S3 bucket name for storing log files.
+         * @param bucketName Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
          * 
          * @return builder
          * 
@@ -174,18 +340,60 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param iamRoleId Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+         * @param hecToken Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
          * 
          * @return builder
          * 
          */
-        public Builder iamRoleId(Output<String> iamRoleId) {
+        public Builder hecToken(@Nullable Output<String> hecToken) {
+            $.hecToken = hecToken;
+            return this;
+        }
+
+        /**
+         * @param hecToken Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hecToken(String hecToken) {
+            return hecToken(Output.of(hecToken));
+        }
+
+        /**
+         * @param hecUrl Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hecUrl(@Nullable Output<String> hecUrl) {
+            $.hecUrl = hecUrl;
+            return this;
+        }
+
+        /**
+         * @param hecUrl Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hecUrl(String hecUrl) {
+            return hecUrl(Output.of(hecUrl));
+        }
+
+        /**
+         * @param iamRoleId Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder iamRoleId(@Nullable Output<String> iamRoleId) {
             $.iamRoleId = iamRoleId;
             return this;
         }
 
         /**
-         * @param iamRoleId Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+         * @param iamRoleId Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
          * 
          * @return builder
          * 
@@ -195,7 +403,7 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param kmsKey AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+         * @param kmsKey Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
          * 
          * @return builder
          * 
@@ -206,7 +414,7 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param kmsKey AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+         * @param kmsKey Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
          * 
          * @return builder
          * 
@@ -216,7 +424,7 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param logTypes Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+         * @param logTypes Array of log types exported by this integration.
          * 
          * @return builder
          * 
@@ -227,7 +435,7 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param logTypes Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+         * @param logTypes Array of log types exported by this integration.
          * 
          * @return builder
          * 
@@ -237,7 +445,7 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param logTypes Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+         * @param logTypes Array of log types exported by this integration.
          * 
          * @return builder
          * 
@@ -247,18 +455,70 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param prefixPath S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+         * @param otelEndpoint Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
          * 
          * @return builder
          * 
          */
-        public Builder prefixPath(Output<String> prefixPath) {
+        public Builder otelEndpoint(@Nullable Output<String> otelEndpoint) {
+            $.otelEndpoint = otelEndpoint;
+            return this;
+        }
+
+        /**
+         * @param otelEndpoint Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder otelEndpoint(String otelEndpoint) {
+            return otelEndpoint(Output.of(otelEndpoint));
+        }
+
+        /**
+         * @param otelSuppliedHeaders Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder otelSuppliedHeaders(@Nullable Output<List<LogIntegrationOtelSuppliedHeaderArgs>> otelSuppliedHeaders) {
+            $.otelSuppliedHeaders = otelSuppliedHeaders;
+            return this;
+        }
+
+        /**
+         * @param otelSuppliedHeaders Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder otelSuppliedHeaders(List<LogIntegrationOtelSuppliedHeaderArgs> otelSuppliedHeaders) {
+            return otelSuppliedHeaders(Output.of(otelSuppliedHeaders));
+        }
+
+        /**
+         * @param otelSuppliedHeaders Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder otelSuppliedHeaders(LogIntegrationOtelSuppliedHeaderArgs... otelSuppliedHeaders) {
+            return otelSuppliedHeaders(List.of(otelSuppliedHeaders));
+        }
+
+        /**
+         * @param prefixPath Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder prefixPath(@Nullable Output<String> prefixPath) {
             $.prefixPath = prefixPath;
             return this;
         }
 
         /**
-         * @param prefixPath S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+         * @param prefixPath Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
          * 
          * @return builder
          * 
@@ -289,7 +549,91 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+         * @param region Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(@Nullable Output<String> region) {
+            $.region = region;
+            return this;
+        }
+
+        /**
+         * @param region Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder region(String region) {
+            return region(Output.of(region));
+        }
+
+        /**
+         * @param roleId Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(@Nullable Output<String> roleId) {
+            $.roleId = roleId;
+            return this;
+        }
+
+        /**
+         * @param roleId Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder roleId(String roleId) {
+            return roleId(Output.of(roleId));
+        }
+
+        /**
+         * @param storageAccountName Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storageAccountName(@Nullable Output<String> storageAccountName) {
+            $.storageAccountName = storageAccountName;
+            return this;
+        }
+
+        /**
+         * @param storageAccountName Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storageAccountName(String storageAccountName) {
+            return storageAccountName(Output.of(storageAccountName));
+        }
+
+        /**
+         * @param storageContainerName Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storageContainerName(@Nullable Output<String> storageContainerName) {
+            $.storageContainerName = storageContainerName;
+            return this;
+        }
+
+        /**
+         * @param storageContainerName Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storageContainerName(String storageContainerName) {
+            return storageContainerName(Output.of(storageContainerName));
+        }
+
+        /**
+         * @param type Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
          * 
          * @return builder
          * 
@@ -300,7 +644,7 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param type Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+         * @param type Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
          * 
          * @return builder
          * 
@@ -310,17 +654,8 @@ public final class LogIntegrationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         public LogIntegrationArgs build() {
-            if ($.bucketName == null) {
-                throw new MissingRequiredPropertyException("LogIntegrationArgs", "bucketName");
-            }
-            if ($.iamRoleId == null) {
-                throw new MissingRequiredPropertyException("LogIntegrationArgs", "iamRoleId");
-            }
             if ($.logTypes == null) {
                 throw new MissingRequiredPropertyException("LogIntegrationArgs", "logTypes");
-            }
-            if ($.prefixPath == null) {
-                throw new MissingRequiredPropertyException("LogIntegrationArgs", "prefixPath");
             }
             if ($.projectId == null) {
                 throw new MissingRequiredPropertyException("LogIntegrationArgs", "projectId");

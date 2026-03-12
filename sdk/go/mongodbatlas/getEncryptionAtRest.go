@@ -125,13 +125,11 @@ import (
 //				AzureKeyVaultConfig: &mongodbatlas.EncryptionAtRestAzureKeyVaultConfigArgs{
 //					Enabled:           pulumi.Bool(true),
 //					AzureEnvironment:  pulumi.String("AZURE"),
-//					TenantId:          pulumi.Any(azureTenantId),
 //					SubscriptionId:    pulumi.Any(azureSubscriptionId),
-//					ClientId:          pulumi.Any(azureClientId),
-//					Secret:            pulumi.Any(azureClientSecret),
 //					ResourceGroupName: pulumi.Any(azureResourceGroupName),
 //					KeyVaultName:      pulumi.Any(azureKeyVaultName),
 //					KeyIdentifier:     pulumi.Any(azureKeyIdentifier),
+//					RoleId:            pulumi.Any(azureRoleId),
 //				},
 //			})
 //			if err != nil {

@@ -125,6 +125,7 @@
         "getPrivateLinkEndpointService.ts",
         "getPrivatelinkEndpointServiceDataFederationOnlineArchive.ts",
         "getPrivatelinkEndpointServiceDataFederationOnlineArchives.ts",
+        "getPrivatelinkEndpoints.ts",
         "getProject.ts",
         "getProjectApiKey.ts",
         "getProjectApiKeys.ts",

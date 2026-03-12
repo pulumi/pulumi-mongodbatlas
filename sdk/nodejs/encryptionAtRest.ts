@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
- * > **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryptionAtRestProvider = "NONE"`, or be deleted.
+ * > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryptionAtRestProvider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
  *
  * ## Enabling Encryption at Rest for existing Atlas cluster
  *
@@ -100,13 +100,11 @@ import * as utilities from "./utilities";
  *     azureKeyVaultConfig: {
  *         enabled: true,
  *         azureEnvironment: "AZURE",
- *         tenantId: azureTenantId,
  *         subscriptionId: azureSubscriptionId,
- *         clientId: azureClientId,
- *         secret: azureClientSecret,
  *         resourceGroupName: azureResourceGroupName,
  *         keyVaultName: azureKeyVaultName,
  *         keyIdentifier: azureKeyIdentifier,
+ *         roleId: azureRoleId,
  *     },
  * });
  * const test = mongodbatlas.getEncryptionAtRestOutput({

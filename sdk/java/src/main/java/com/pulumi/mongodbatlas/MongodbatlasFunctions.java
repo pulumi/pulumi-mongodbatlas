@@ -165,6 +165,8 @@ import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederatio
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
 import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
+import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
@@ -340,6 +342,7 @@ import com.pulumi.mongodbatlas.outputs.GetPrivateLinkEndpointResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivateLinkEndpointServiceResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetPrivatelinkEndpointsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectInvitationResult;
@@ -959,17 +962,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", TypeShape.of(GetAccessListApiKeysInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1215,17 +1210,9 @@ public final class MongodbatlasFunctions {
         return getAdvancedCluster(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1471,17 +1458,9 @@ public final class MongodbatlasFunctions {
         return getAdvancedClusterPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1727,17 +1706,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -1983,17 +1954,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+     * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -2239,15 +2202,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", TypeShape.of(GetAdvancedClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -2428,15 +2385,9 @@ public final class MongodbatlasFunctions {
         return getAdvancedClusters(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -2617,15 +2568,9 @@ public final class MongodbatlasFunctions {
         return getAdvancedClustersPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -2806,15 +2751,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", TypeShape.of(GetAdvancedClustersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -2995,15 +2934,9 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", TypeShape.of(GetAdvancedClustersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getAdvancedClusters` returns all Advanced Clusters for a project_id.
+     * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
      * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
-     * &gt; **IMPORTANT:**
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-     * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** This data source also includes Flex clusters.
      * 
      * ## Example Usage
      * 
@@ -14376,13 +14309,11 @@ public final class MongodbatlasFunctions {
      *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
      *                 .enabled(true)
      *                 .azureEnvironment("AZURE")
-     *                 .tenantId(azureTenantId)
      *                 .subscriptionId(azureSubscriptionId)
-     *                 .clientId(azureClientId)
-     *                 .secret(azureClientSecret)
      *                 .resourceGroupName(azureResourceGroupName)
      *                 .keyVaultName(azureKeyVaultName)
      *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .roleId(azureRoleId)
      *                 .build())
      *             .build());
      * 
@@ -14584,13 +14515,11 @@ public final class MongodbatlasFunctions {
      *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
      *                 .enabled(true)
      *                 .azureEnvironment("AZURE")
-     *                 .tenantId(azureTenantId)
      *                 .subscriptionId(azureSubscriptionId)
-     *                 .clientId(azureClientId)
-     *                 .secret(azureClientSecret)
      *                 .resourceGroupName(azureResourceGroupName)
      *                 .keyVaultName(azureKeyVaultName)
      *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .roleId(azureRoleId)
      *                 .build())
      *             .build());
      * 
@@ -14792,13 +14721,11 @@ public final class MongodbatlasFunctions {
      *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
      *                 .enabled(true)
      *                 .azureEnvironment("AZURE")
-     *                 .tenantId(azureTenantId)
      *                 .subscriptionId(azureSubscriptionId)
-     *                 .clientId(azureClientId)
-     *                 .secret(azureClientSecret)
      *                 .resourceGroupName(azureResourceGroupName)
      *                 .keyVaultName(azureKeyVaultName)
      *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .roleId(azureRoleId)
      *                 .build())
      *             .build());
      * 
@@ -15000,13 +14927,11 @@ public final class MongodbatlasFunctions {
      *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
      *                 .enabled(true)
      *                 .azureEnvironment("AZURE")
-     *                 .tenantId(azureTenantId)
      *                 .subscriptionId(azureSubscriptionId)
-     *                 .clientId(azureClientId)
-     *                 .secret(azureClientSecret)
      *                 .resourceGroupName(azureResourceGroupName)
      *                 .keyVaultName(azureKeyVaultName)
      *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .roleId(azureRoleId)
      *                 .build())
      *             .build());
      * 
@@ -15208,13 +15133,11 @@ public final class MongodbatlasFunctions {
      *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
      *                 .enabled(true)
      *                 .azureEnvironment("AZURE")
-     *                 .tenantId(azureTenantId)
      *                 .subscriptionId(azureSubscriptionId)
-     *                 .clientId(azureClientId)
-     *                 .secret(azureClientSecret)
      *                 .resourceGroupName(azureResourceGroupName)
      *                 .keyVaultName(azureKeyVaultName)
      *                 .keyIdentifier(azureKeyIdentifier)
+     *                 .roleId(azureRoleId)
      *                 .build())
      *             .build());
      * 
@@ -20772,7 +20695,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getLdapVerify:getLdapVerify", TypeShape.of(GetLdapVerifyResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
@@ -20785,18 +20708,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -20810,57 +20723,26 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
+     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
      *             .build());
      * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
+     *         ctx.export("logIntegrationType", example.type());
      *     }
      * }
      * }
      * </pre>
+     * 
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static Output<GetLogIntegrationResult> getLogIntegration(GetLogIntegrationArgs args) {
         return getLogIntegration(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
@@ -20873,18 +20755,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -20898,57 +20770,26 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
+     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
      *             .build());
      * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
+     *         ctx.export("logIntegrationType", example.type());
      *     }
      * }
      * }
      * </pre>
+     * 
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static CompletableFuture<GetLogIntegrationResult> getLogIntegrationPlain(GetLogIntegrationPlainArgs args) {
         return getLogIntegrationPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
@@ -20961,18 +20802,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -20986,57 +20817,26 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
+     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
      *             .build());
      * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
+     *         ctx.export("logIntegrationType", example.type());
      *     }
      * }
      * }
      * </pre>
+     * 
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static Output<GetLogIntegrationResult> getLogIntegration(GetLogIntegrationArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getLogIntegration:getLogIntegration", TypeShape.of(GetLogIntegrationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
@@ -21049,18 +20849,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -21074,57 +20864,26 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
+     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
      *             .build());
      * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
+     *         ctx.export("logIntegrationType", example.type());
      *     }
      * }
      * }
      * </pre>
+     * 
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static Output<GetLogIntegrationResult> getLogIntegration(GetLogIntegrationArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getLogIntegration:getLogIntegration", TypeShape.of(GetLogIntegrationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
@@ -21137,18 +20896,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Context;
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -21162,495 +20911,89 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
+     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
      *             .build());
      * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
+     *         ctx.export("logIntegrationType", example.type());
      *     }
      * }
      * }
      * </pre>
+     * 
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static CompletableFuture<GetLogIntegrationResult> getLogIntegrationPlain(GetLogIntegrationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getLogIntegration:getLogIntegration", TypeShape.of(GetLogIntegrationResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
      * ## Example Usage
      * 
-     * ### S
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
-     *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
-     *             .build());
-     * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
-     *     }
-     * }
-     * }
-     * </pre>
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static Output<GetLogIntegrationsInvokeResult> getLogIntegrations(GetLogIntegrationsArgs args) {
         return getLogIntegrations(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
      * ## Example Usage
      * 
-     * ### S
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
-     *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
-     *             .build());
-     * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
-     *     }
-     * }
-     * }
-     * </pre>
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static CompletableFuture<GetLogIntegrationsInvokeResult> getLogIntegrationsPlain(GetLogIntegrationsPlainArgs args) {
         return getLogIntegrationsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
      * ## Example Usage
      * 
-     * ### S
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
-     *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
-     *             .build());
-     * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
-     *     }
-     * }
-     * }
-     * </pre>
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static Output<GetLogIntegrationsInvokeResult> getLogIntegrations(GetLogIntegrationsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getLogIntegrations:getLogIntegrations", TypeShape.of(GetLogIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
      * ## Example Usage
      * 
-     * ### S
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
-     *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
-     *             .build());
-     * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
-     *     }
-     * }
-     * }
-     * </pre>
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static Output<GetLogIntegrationsInvokeResult> getLogIntegrations(GetLogIntegrationsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getLogIntegrations:getLogIntegrations", TypeShape.of(GetLogIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+     * `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
      * 
      * ## Example Usage
      * 
-     * ### S
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.mongodbatlas.Project;
-     * import com.pulumi.mongodbatlas.ProjectArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
-     * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
-     * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
-     * import com.pulumi.mongodbatlas.LogIntegration;
-     * import com.pulumi.mongodbatlas.LogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var project = new Project("project", ProjectArgs.builder()
-     *             .name(atlasProjectName)
-     *             .orgId(atlasOrgId)
-     *             .build());
-     * 
-     *         // Set up cloud provider access in Atlas using the created IAM role
-     *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
-     *             .projectId(project.id())
-     *             .providerName("AWS")
-     *             .build());
-     * 
-     *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
-     *             .projectId(project.id())
-     *             .roleId(setupOnly.roleId())
-     *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(atlasRole.arn())
-     *                 .build())
-     *             .build());
-     * 
-     *         // Set up log integration with authorized IAM role
-     *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
-     *             .projectId(project.id())
-     *             .bucketName(logBucket.bucket())
-     *             .iamRoleId(authRole.roleId())
-     *             .prefixPath("atlas-logs")
-     *             .type("S3_LOG_EXPORT")
-     *             .logTypes("MONGOD_AUDIT")
-     *             .build());
-     * 
-     *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .integrationId(exampleLogIntegration.integrationId())
-     *             .build());
-     * 
-     *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
-     *             .projectId(exampleLogIntegration.projectId())
-     *             .build());
-     * 
-     *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
-     *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
-     *     }
-     * }
-     * }
-     * </pre>
+     * ### Further Examples
+     * - Log Integration Examples
      * 
      */
     public static CompletableFuture<GetLogIntegrationsInvokeResult> getLogIntegrationsPlain(GetLogIntegrationsPlainArgs args, InvokeOptions options) {
@@ -25141,10 +24484,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
-     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
      * 
@@ -25173,7 +24515,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *             .projectId(projectId)
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
@@ -25189,8 +24531,9 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
      * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
@@ -25200,10 +24543,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
-     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
      * 
@@ -25232,7 +24574,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *             .projectId(projectId)
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
@@ -25248,8 +24590,9 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
      * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
@@ -25259,10 +24602,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
-     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
      * 
@@ -25291,7 +24633,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *             .projectId(projectId)
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
@@ -25307,8 +24649,9 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
      * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
@@ -25318,10 +24661,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
-     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
      * 
@@ -25350,7 +24692,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *             .projectId(projectId)
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
@@ -25366,8 +24708,9 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
      * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
@@ -25377,10 +24720,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
-     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-     * ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
      * 
@@ -25409,7 +24751,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
-     *             .projectId("<PROJECT-ID>")
+     *             .projectId(projectId)
      *             .providerName("AWS")
      *             .region("US_EAST_1")
      *             .build());
@@ -25425,8 +24767,9 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * ### Available complete examples
-     * - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
      * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
      * 
      */
@@ -26292,6 +25635,296 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult> getPrivatelinkEndpointServiceDataFederationOnlineArchivesPlain(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives", TypeShape.of(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
+     * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .region("US_EAST_1")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsInvokeResult> getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs args) {
+        return getPrivatelinkEndpoints(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
+     * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .region("US_EAST_1")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointsInvokeResult> getPrivatelinkEndpointsPlain(GetPrivatelinkEndpointsPlainArgs args) {
+        return getPrivatelinkEndpointsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
+     * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .region("US_EAST_1")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsInvokeResult> getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
+     * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .region("US_EAST_1")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
+     * 
+     */
+    public static Output<GetPrivatelinkEndpointsInvokeResult> getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
+     * 
+     * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+     * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisPrivateLinkEndpoint = new PrivateLinkEndpoint("thisPrivateLinkEndpoint", PrivateLinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .providerName("AWS")
+     *             .region("US_EAST_1")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getPrivatelinkEndpoints(GetPrivatelinkEndpointsArgs.builder()
+     *             .projectId(thisPrivateLinkEndpoint.projectId())
+     *             .providerName("AWS")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Further Examples
+     * - AWS PrivateLink Endpoint
+     * - Azure PrivateLink Endpoint
+     * - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
+     * 
+     */
+    public static CompletableFuture<GetPrivatelinkEndpointsInvokeResult> getPrivatelinkEndpointsPlain(GetPrivatelinkEndpointsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", TypeShape.of(GetPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.

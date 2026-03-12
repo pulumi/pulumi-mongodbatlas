@@ -31,6 +31,21 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
     }
 
     /**
+     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * 
+     */
+    @Import(name="delete")
+    private @Nullable Output<String> delete;
+
+    /**
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * 
+     */
+    public Optional<Output<String>> delete() {
+        return Optional.ofNullable(this.delete);
+    }
+
+    /**
      * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
      * 
      */
@@ -49,6 +64,7 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
 
     private StreamConnectionTimeoutsArgs(StreamConnectionTimeoutsArgs $) {
         this.create = $.create;
+        this.delete = $.delete;
         this.update = $.update;
     }
 
@@ -89,6 +105,27 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
          */
         public Builder create(String create) {
             return create(Output.of(create));
+        }
+
+        /**
+         * @param delete The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delete(@Nullable Output<String> delete) {
+            $.delete = delete;
+            return this;
+        }
+
+        /**
+         * @param delete The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+         * 
+         * @return builder
+         * 
+         */
+        public Builder delete(String delete) {
+            return delete(Output.of(delete));
         }
 
         /**

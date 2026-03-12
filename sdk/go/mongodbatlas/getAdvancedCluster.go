@@ -11,17 +11,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+// `AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
 //
 // > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-//
-// > **IMPORTANT:**
-// <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-// <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-//
-// > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-//
-// > **NOTE:** This data source also includes Flex clusters.
 //
 // ## Example Usage
 //
@@ -296,9 +288,9 @@ type LookupAdvancedClusterResult struct {
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool   `pulumi:"pitEnabled"`
 	ProjectId  string `pulumi:"projectId"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
-	// (Optional) Replica set scaling mode for your cluster.
+	// Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below.
 	ReplicationSpecs []GetAdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
@@ -309,8 +301,10 @@ type LookupAdvancedClusterResult struct {
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
 	Tags map[string]string `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
-	TerminationProtectionEnabled bool  `pulumi:"terminationProtectionEnabled"`
-	UseEffectiveFields           *bool `pulumi:"useEffectiveFields"`
+	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
+	// Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+	UseAwsTimeBasedSnapshotCopyForFastInitialSync bool  `pulumi:"useAwsTimeBasedSnapshotCopyForFastInitialSync"`
+	UseEffectiveFields                            *bool `pulumi:"useEffectiveFields"`
 	// Release cadence that Atlas uses for this cluster.
 	VersionReleaseSystem string `pulumi:"versionReleaseSystem"`
 }
@@ -451,12 +445,12 @@ func (o LookupAdvancedClusterResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 func (o LookupAdvancedClusterResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
 
-// (Optional) Replica set scaling mode for your cluster.
+// Replica set scaling mode for your cluster.
 func (o LookupAdvancedClusterResultOutput) ReplicaSetScalingStrategy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.ReplicaSetScalingStrategy }).(pulumi.StringOutput)
 }
@@ -484,6 +478,11 @@ func (o LookupAdvancedClusterResultOutput) Tags() pulumi.StringMapOutput {
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 func (o LookupAdvancedClusterResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+func (o LookupAdvancedClusterResultOutput) UseAwsTimeBasedSnapshotCopyForFastInitialSync() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.UseAwsTimeBasedSnapshotCopyForFastInitialSync }).(pulumi.BoolOutput)
 }
 
 func (o LookupAdvancedClusterResultOutput) UseEffectiveFields() pulumi.BoolPtrOutput {

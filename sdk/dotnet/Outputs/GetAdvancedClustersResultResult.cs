@@ -90,11 +90,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+        /// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         /// </summary>
         public readonly bool RedactClientLogData;
         /// <summary>
-        /// (Optional) Replica set scaling mode for your cluster.
+        /// Replica set scaling mode for your cluster.
         /// </summary>
         public readonly string ReplicaSetScalingStrategy;
         /// <summary>
@@ -117,6 +117,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
+        /// <summary>
+        /// Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+        /// </summary>
+        public readonly bool UseAwsTimeBasedSnapshotCopyForFastInitialSync;
         /// <summary>
         /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`EffectiveElectableSpecs`, `EffectiveReadOnlySpecs`, `EffectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
         /// </summary>
@@ -180,6 +184,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool terminationProtectionEnabled,
 
+            bool useAwsTimeBasedSnapshotCopyForFastInitialSync,
+
             bool? useEffectiveFields,
 
             string versionReleaseSystem)
@@ -210,6 +216,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             StateName = stateName;
             Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
+            UseAwsTimeBasedSnapshotCopyForFastInitialSync = useAwsTimeBasedSnapshotCopyForFastInitialSync;
             UseEffectiveFields = useEffectiveFields;
             VersionReleaseSystem = versionReleaseSystem;
         }

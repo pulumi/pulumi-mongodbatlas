@@ -10,17 +10,22 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.LogIntegrationArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.LogIntegrationState;
+import com.pulumi.mongodbatlas.outputs.LogIntegrationOtelSuppliedHeader;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * `mongodbatlas.LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+ * `mongodbatlas.LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs at 1-minute intervals. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
  * 
  * To use this resource, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
  * 
  * ## Example Usage
+ * 
+ * ### S
+ * 
+ * ### AWS S3
  * 
  * <pre>
  * {@code
@@ -29,8 +34,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
- * import com.pulumi.mongodbatlas.Project;
- * import com.pulumi.mongodbatlas.ProjectArgs;
  * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
  * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
  * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
@@ -38,9 +41,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAwsArgs;
  * import com.pulumi.mongodbatlas.LogIntegration;
  * import com.pulumi.mongodbatlas.LogIntegrationArgs;
- * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
- * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
- * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -54,50 +54,266 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var project = new Project("project", ProjectArgs.builder()
- *             .name(atlasProjectName)
- *             .orgId(atlasOrgId)
- *             .build());
- * 
- *         // Set up cloud provider access in Atlas using the created IAM role
- *         var setupOnly = new CloudProviderAccessSetup("setupOnly", CloudProviderAccessSetupArgs.builder()
+ *         // Set up cloud provider access in Atlas for AWS
+ *         var setup = new CloudProviderAccessSetup("setup", CloudProviderAccessSetupArgs.builder()
  *             .projectId(project.id())
  *             .providerName("AWS")
  *             .build());
  * 
- *         var authRole = new CloudProviderAccessAuthorization("authRole", CloudProviderAccessAuthorizationArgs.builder()
+ *         var auth = new CloudProviderAccessAuthorization("auth", CloudProviderAccessAuthorizationArgs.builder()
  *             .projectId(project.id())
- *             .roleId(setupOnly.roleId())
+ *             .roleId(setup.roleId())
  *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
  *                 .iamAssumedRoleArn(atlasRole.arn())
  *                 .build())
  *             .build());
  * 
- *         // Set up log integration with authorized IAM role
- *         var exampleLogIntegration = new LogIntegration("exampleLogIntegration", LogIntegrationArgs.builder()
+ *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
  *             .projectId(project.id())
- *             .bucketName(logBucket.bucket())
- *             .iamRoleId(authRole.roleId())
- *             .prefixPath("atlas-logs")
  *             .type("S3_LOG_EXPORT")
  *             .logTypes("MONGOD_AUDIT")
+ *             .bucketName(logBucket.bucket())
+ *             .iamRoleId(auth.roleId())
+ *             .prefixPath("atlas-logs")
  *             .build());
  * 
- *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
- *             .projectId(exampleLogIntegration.projectId())
- *             .integrationId(exampleLogIntegration.integrationId())
- *             .build());
- * 
- *         final var exampleGetLogIntegrations = MongodbatlasFunctions.getLogIntegrations(GetLogIntegrationsArgs.builder()
- *             .projectId(exampleLogIntegration.projectId())
- *             .build());
- * 
- *         ctx.export("logIntegrationBucketName", example.applyValue(_example -> _example.bucketName()));
- *         ctx.export("logIntegrationsResults", exampleGetLogIntegrations.applyValue(_exampleGetLogIntegrations -> _exampleGetLogIntegrations.results()));
  *     }
  * }
  * }
  * </pre>
+ * 
+ * ### Google Cloud Storage (GCS)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.LogIntegration;
+ * import com.pulumi.mongodbatlas.LogIntegrationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Set up cloud provider access in Atlas for GCP
+ *         var setup = new CloudProviderAccessSetup("setup", CloudProviderAccessSetupArgs.builder()
+ *             .projectId(project.id())
+ *             .providerName("GCP")
+ *             .build());
+ * 
+ *         var auth = new CloudProviderAccessAuthorization("auth", CloudProviderAccessAuthorizationArgs.builder()
+ *             .projectId(project.id())
+ *             .roleId(setup.roleId())
+ *             .build());
+ * 
+ *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
+ *             .projectId(project.id())
+ *             .type("GCS_LOG_EXPORT")
+ *             .logTypes("MONGOD")
+ *             .bucketName(logBucket.name())
+ *             .roleId(auth.roleId())
+ *             .prefixPath("atlas-logs")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Azure Blob Storage
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessAuthorizationAzureArgs;
+ * import com.pulumi.mongodbatlas.LogIntegration;
+ * import com.pulumi.mongodbatlas.LogIntegrationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Set up cloud provider access in Atlas for Azure
+ *         var setup = new CloudProviderAccessSetup("setup", CloudProviderAccessSetupArgs.builder()
+ *             .projectId(project.id())
+ *             .providerName("AZURE")
+ *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
+ *                 .atlasAzureAppId(atlasAzureAppId)
+ *                 .servicePrincipalId(azureServicePrincipalId)
+ *                 .tenantId(azureTenantId)
+ *                 .build())
+ *             .build());
+ * 
+ *         var auth = new CloudProviderAccessAuthorization("auth", CloudProviderAccessAuthorizationArgs.builder()
+ *             .projectId(project.id())
+ *             .roleId(setup.roleId())
+ *             .azure(CloudProviderAccessAuthorizationAzureArgs.builder()
+ *                 .atlasAzureAppId(atlasAzureAppId)
+ *                 .servicePrincipalId(azureServicePrincipalId)
+ *                 .tenantId(azureTenantId)
+ *                 .build())
+ *             .build());
+ * 
+ *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
+ *             .projectId(project.id())
+ *             .type("AZURE_LOG_EXPORT")
+ *             .logTypes("MONGOD")
+ *             .roleId(auth.roleId())
+ *             .storageAccountName(logStorage.name())
+ *             .storageContainerName(logContainer.name())
+ *             .prefixPath("atlas-logs")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Datadog
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.LogIntegration;
+ * import com.pulumi.mongodbatlas.LogIntegrationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
+ *             .projectId(project.id())
+ *             .type("DATADOG_LOG_EXPORT")
+ *             .logTypes("MONGOD")
+ *             .apiKey(datadogApiKey)
+ *             .region(datadogRegion)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Splunk
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.LogIntegration;
+ * import com.pulumi.mongodbatlas.LogIntegrationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
+ *             .projectId(project.id())
+ *             .type("SPLUNK_LOG_EXPORT")
+ *             .logTypes("MONGOD")
+ *             .hecToken(splunkHecToken)
+ *             .hecUrl(splunkHecUrl)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### OpenTelemetry
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.LogIntegration;
+ * import com.pulumi.mongodbatlas.LogIntegrationArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
+ *             .projectId(project.id())
+ *             .type("OTEL_LOG_EXPORT")
+ *             .logTypes("MONGOD")
+ *             .otelEndpoint(otelEndpoint)
+ *             .otelSuppliedHeaders(otelSuppliedHeaders)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Further Examples
+ * - Log Integration Examples
  * 
  * ## Import
  * 
@@ -109,32 +325,74 @@ import javax.annotation.Nullable;
 @ResourceType(type="mongodbatlas:index/logIntegration:LogIntegration")
 public class LogIntegration extends com.pulumi.resources.CustomResource {
     /**
-     * Human-readable label that identifies the S3 bucket name for storing log files.
+     * Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+     * 
+     */
+    @Export(name="apiKey", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> apiKey;
+
+    /**
+     * @return Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+     * 
+     */
+    public Output<Optional<String>> apiKey() {
+        return Codegen.optional(this.apiKey);
+    }
+    /**
+     * Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      * 
      */
     @Export(name="bucketName", refs={String.class}, tree="[0]")
-    private Output<String> bucketName;
+    private Output</* @Nullable */ String> bucketName;
 
     /**
-     * @return Human-readable label that identifies the S3 bucket name for storing log files.
+     * @return Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      * 
      */
-    public Output<String> bucketName() {
-        return this.bucketName;
+    public Output<Optional<String>> bucketName() {
+        return Codegen.optional(this.bucketName);
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+     * 
+     */
+    @Export(name="hecToken", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> hecToken;
+
+    /**
+     * @return Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+     * 
+     */
+    public Output<Optional<String>> hecToken() {
+        return Codegen.optional(this.hecToken);
+    }
+    /**
+     * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+     * 
+     */
+    @Export(name="hecUrl", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> hecUrl;
+
+    /**
+     * @return Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+     * 
+     */
+    public Output<Optional<String>> hecUrl() {
+        return Codegen.optional(this.hecUrl);
+    }
+    /**
+     * Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
      * 
      */
     @Export(name="iamRoleId", refs={String.class}, tree="[0]")
-    private Output<String> iamRoleId;
+    private Output</* @Nullable */ String> iamRoleId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     * @return Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
      * 
      */
-    public Output<String> iamRoleId() {
-        return this.iamRoleId;
+    public Output<Optional<String>> iamRoleId() {
+        return Codegen.optional(this.iamRoleId);
     }
     /**
      * Unique 24-character hexadecimal digit string that identifies the log integration configuration.
@@ -151,46 +409,74 @@ public class LogIntegration extends com.pulumi.resources.CustomResource {
         return this.integrationId;
     }
     /**
-     * AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     * Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      * 
      */
     @Export(name="kmsKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> kmsKey;
 
     /**
-     * @return AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     * @return Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      * 
      */
     public Output<Optional<String>> kmsKey() {
         return Codegen.optional(this.kmsKey);
     }
     /**
-     * Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * Array of log types exported by this integration.
      * 
      */
     @Export(name="logTypes", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> logTypes;
 
     /**
-     * @return Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * @return Array of log types exported by this integration.
      * 
      */
     public Output<List<String>> logTypes() {
         return this.logTypes;
     }
     /**
-     * S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     * Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+     * 
+     */
+    @Export(name="otelEndpoint", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> otelEndpoint;
+
+    /**
+     * @return Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+     * 
+     */
+    public Output<Optional<String>> otelEndpoint() {
+        return Codegen.optional(this.otelEndpoint);
+    }
+    /**
+     * Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+     * 
+     */
+    @Export(name="otelSuppliedHeaders", refs={List.class,LogIntegrationOtelSuppliedHeader.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<LogIntegrationOtelSuppliedHeader>> otelSuppliedHeaders;
+
+    /**
+     * @return Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+     * 
+     */
+    public Output<Optional<List<LogIntegrationOtelSuppliedHeader>>> otelSuppliedHeaders() {
+        return Codegen.optional(this.otelSuppliedHeaders);
+    }
+    /**
+     * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
      * 
      */
     @Export(name="prefixPath", refs={String.class}, tree="[0]")
-    private Output<String> prefixPath;
+    private Output</* @Nullable */ String> prefixPath;
 
     /**
-     * @return S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     * @return Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
      * 
      */
-    public Output<String> prefixPath() {
-        return this.prefixPath;
+    public Output<Optional<String>> prefixPath() {
+        return Codegen.optional(this.prefixPath);
     }
     /**
      * Unique 24-hexadecimal digit string that identifies your project.
@@ -207,14 +493,70 @@ public class LogIntegration extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+     * 
+     */
+    @Export(name="region", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> region;
+
+    /**
+     * @return Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+     * 
+     */
+    public Output<Optional<String>> region() {
+        return Codegen.optional(this.region);
+    }
+    /**
+     * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+     * 
+     */
+    @Export(name="roleId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> roleId;
+
+    /**
+     * @return Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+     * 
+     */
+    public Output<Optional<String>> roleId() {
+        return Codegen.optional(this.roleId);
+    }
+    /**
+     * Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+     * 
+     */
+    @Export(name="storageAccountName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> storageAccountName;
+
+    /**
+     * @return Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+     * 
+     */
+    public Output<Optional<String>> storageAccountName() {
+        return Codegen.optional(this.storageAccountName);
+    }
+    /**
+     * Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+     * 
+     */
+    @Export(name="storageContainerName", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> storageContainerName;
+
+    /**
+     * @return Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+     * 
+     */
+    public Output<Optional<String>> storageContainerName() {
+        return Codegen.optional(this.storageContainerName);
+    }
+    /**
+     * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * @return Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     public Output<String> type() {
@@ -260,6 +602,11 @@ public class LogIntegration extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "apiKey",
+                "hecToken",
+                "otelSuppliedHeaders"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

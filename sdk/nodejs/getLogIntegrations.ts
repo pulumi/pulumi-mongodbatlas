@@ -7,52 +7,24 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+ * `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
  *
  * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
  *
  * ## Example Usage
  *
- * ### S
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const project = new mongodbatlas.Project("project", {
- *     name: atlasProjectName,
- *     orgId: atlasOrgId,
+ * const example = mongodbatlas.getLogIntegrations({
+ *     projectId: exampleMongodbatlasLogIntegration.projectId,
  * });
- * // Set up cloud provider access in Atlas using the created IAM role
- * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
- *     projectId: project.id,
- *     providerName: "AWS",
- * });
- * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
- *     projectId: project.id,
- *     roleId: setupOnly.roleId,
- *     aws: {
- *         iamAssumedRoleArn: atlasRole.arn,
- *     },
- * });
- * // Set up log integration with authorized IAM role
- * const exampleLogIntegration = new mongodbatlas.LogIntegration("example", {
- *     projectId: project.id,
- *     bucketName: logBucket.bucket,
- *     iamRoleId: authRole.roleId,
- *     prefixPath: "atlas-logs",
- *     type: "S3_LOG_EXPORT",
- *     logTypes: ["MONGOD_AUDIT"],
- * });
- * const example = mongodbatlas.getLogIntegrationOutput({
- *     projectId: exampleLogIntegration.projectId,
- *     integrationId: exampleLogIntegration.integrationId,
- * });
- * const exampleGetLogIntegrations = mongodbatlas.getLogIntegrationsOutput({
- *     projectId: exampleLogIntegration.projectId,
- * });
- * export const logIntegrationBucketName = example.apply(example => example.bucketName);
- * export const logIntegrationsResults = exampleGetLogIntegrations.apply(exampleGetLogIntegrations => exampleGetLogIntegrations.results);
+ * export const logIntegrationIds = example.then(example => .map(r => (r.integrationId)));
  * ```
+ *
+ * ### Further Examples
+ * - Log Integration Examples
  */
 export function getLogIntegrations(args: GetLogIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetLogIntegrationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -67,7 +39,7 @@ export function getLogIntegrations(args: GetLogIntegrationsArgs, opts?: pulumi.I
  */
 export interface GetLogIntegrationsArgs {
     /**
-     * Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+     * Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      */
     integrationType?: string;
     /**
@@ -85,7 +57,7 @@ export interface GetLogIntegrationsResult {
      */
     readonly id: string;
     /**
-     * Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+     * Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      */
     readonly integrationType?: string;
     /**
@@ -98,52 +70,24 @@ export interface GetLogIntegrationsResult {
     readonly results: outputs.GetLogIntegrationsResult[];
 }
 /**
- * `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+ * `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
  *
  * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
  *
  * ## Example Usage
  *
- * ### S
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const project = new mongodbatlas.Project("project", {
- *     name: atlasProjectName,
- *     orgId: atlasOrgId,
+ * const example = mongodbatlas.getLogIntegrations({
+ *     projectId: exampleMongodbatlasLogIntegration.projectId,
  * });
- * // Set up cloud provider access in Atlas using the created IAM role
- * const setupOnly = new mongodbatlas.CloudProviderAccessSetup("setup_only", {
- *     projectId: project.id,
- *     providerName: "AWS",
- * });
- * const authRole = new mongodbatlas.CloudProviderAccessAuthorization("auth_role", {
- *     projectId: project.id,
- *     roleId: setupOnly.roleId,
- *     aws: {
- *         iamAssumedRoleArn: atlasRole.arn,
- *     },
- * });
- * // Set up log integration with authorized IAM role
- * const exampleLogIntegration = new mongodbatlas.LogIntegration("example", {
- *     projectId: project.id,
- *     bucketName: logBucket.bucket,
- *     iamRoleId: authRole.roleId,
- *     prefixPath: "atlas-logs",
- *     type: "S3_LOG_EXPORT",
- *     logTypes: ["MONGOD_AUDIT"],
- * });
- * const example = mongodbatlas.getLogIntegrationOutput({
- *     projectId: exampleLogIntegration.projectId,
- *     integrationId: exampleLogIntegration.integrationId,
- * });
- * const exampleGetLogIntegrations = mongodbatlas.getLogIntegrationsOutput({
- *     projectId: exampleLogIntegration.projectId,
- * });
- * export const logIntegrationBucketName = example.apply(example => example.bucketName);
- * export const logIntegrationsResults = exampleGetLogIntegrations.apply(exampleGetLogIntegrations => exampleGetLogIntegrations.results);
+ * export const logIntegrationIds = example.then(example => .map(r => (r.integrationId)));
  * ```
+ *
+ * ### Further Examples
+ * - Log Integration Examples
  */
 export function getLogIntegrationsOutput(args: GetLogIntegrationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLogIntegrationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -158,7 +102,7 @@ export function getLogIntegrationsOutput(args: GetLogIntegrationsOutputArgs, opt
  */
 export interface GetLogIntegrationsOutputArgs {
     /**
-     * Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+     * Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      */
     integrationType?: pulumi.Input<string>;
     /**

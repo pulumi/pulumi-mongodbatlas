@@ -276,6 +276,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     ebsVolumeType: string;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+     *
+     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
     instanceSize: string;
     /**
@@ -336,6 +338,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     ebsVolumeType: string;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+     *
+     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
     instanceSize: string;
     /**
@@ -361,6 +365,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     ebsVolumeType: string;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+     *
+     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
     instanceSize: string;
     /**
@@ -1372,7 +1378,7 @@ export interface EncryptionAtRestAwsKmsConfig {
      */
     customerMasterKeyId?: string;
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled: boolean;
     /**
@@ -1405,9 +1411,9 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
      * Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      */
-    clientId?: string;
+    clientId: string;
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled: boolean;
     /**
@@ -1427,6 +1433,10 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
      */
     resourceGroupName?: string;
     /**
+     * Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+     */
+    roleId?: string;
+    /**
      * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      */
     secret?: string;
@@ -1437,7 +1447,7 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
      * Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      */
-    tenantId?: string;
+    tenantId: string;
     /**
      * Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
      */
@@ -1446,7 +1456,7 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
 
 export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled: boolean;
     /**
@@ -2239,11 +2249,11 @@ export interface GetAdvancedClustersResult {
      */
     projectId: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      */
     redactClientLogData: boolean;
     /**
-     * (Optional) Replica set scaling mode for your cluster.
+     * Replica set scaling mode for your cluster.
      */
     replicaSetScalingStrategy: string;
     /**
@@ -2266,6 +2276,10 @@ export interface GetAdvancedClustersResult {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     terminationProtectionEnabled: boolean;
+    /**
+     * Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     */
+    useAwsTimeBasedSnapshotCopyForFastInitialSync: boolean;
     /**
      * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
      */
@@ -4761,7 +4775,7 @@ export interface GetEncryptionAtRestAwsKmsConfig {
      */
     customerMasterKeyId: string;
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled: boolean;
     /**
@@ -4796,7 +4810,7 @@ export interface GetEncryptionAtRestAzureKeyVaultConfig {
      */
     clientId: string;
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled: boolean;
     /**
@@ -4815,6 +4829,10 @@ export interface GetEncryptionAtRestAzureKeyVaultConfig {
      * Name of the Azure resource group that contains your Azure Key Vault.
      */
     resourceGroupName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+     */
+    roleId: string;
     /**
      * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      */
@@ -4835,7 +4853,7 @@ export interface GetEncryptionAtRestAzureKeyVaultConfig {
 
 export interface GetEncryptionAtRestGoogleCloudKmsConfig {
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled: boolean;
     /**
@@ -6100,13 +6118,36 @@ export interface GetLdapVerifyValidation {
     validationType: string;
 }
 
+export interface GetLogIntegrationOtelSuppliedHeader {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Header value.
+     */
+    value: string;
+}
+
 export interface GetLogIntegrationsResult {
     /**
-     * Human-readable label that identifies the S3 bucket name for storing log files.
+     * Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+     */
+    apiKey: string;
+    /**
+     * Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      */
     bucketName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     * Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+     */
+    hecToken: string;
+    /**
+     * Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+     */
+    hecUrl: string;
+    /**
+     * Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
      */
     iamRoleId: string;
     /**
@@ -6114,21 +6155,56 @@ export interface GetLogIntegrationsResult {
      */
     integrationId: string;
     /**
-     * AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     * Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      */
     kmsKey: string;
     /**
-     * Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * Array of log types exported by this integration.
      */
     logTypes: string[];
     /**
-     * S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     * Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+     */
+    otelEndpoint: string;
+    /**
+     * Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+     */
+    otelSuppliedHeaders: outputs.GetLogIntegrationsResultOtelSuppliedHeader[];
+    /**
+     * Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
      */
     prefixPath: string;
     /**
-     * Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+     */
+    region: string;
+    /**
+     * Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+     */
+    roleId: string;
+    /**
+     * Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+     */
+    storageAccountName: string;
+    /**
+     * Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+     */
+    storageContainerName: string;
+    /**
+     * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
     type: string;
+}
+
+export interface GetLogIntegrationsResultOtelSuppliedHeader {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Header value.
+     */
+    value: string;
 }
 
 export interface GetMaintenanceWindowProtectedHour {
@@ -6602,6 +6678,63 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
      * Human-readable label that identifies the resource type associated with this private endpoint.
      */
     type: string;
+}
+
+export interface GetPrivatelinkEndpointsResult {
+    /**
+     * List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
+     */
+    endpointGroupNames: string[];
+    /**
+     * Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
+     */
+    endpointServiceName: string;
+    /**
+     * Error message for the private endpoint connection. Returns `null` if there are no errors.
+     */
+    errorMessage: string;
+    /**
+     * Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+     */
+    interfaceEndpoints: string[];
+    /**
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     */
+    portMappingEnabled: boolean;
+    /**
+     * All private endpoints that you have added to this Azure Private Link Service.
+     */
+    privateEndpoints: string[];
+    /**
+     * Unique identifier of the private endpoint.
+     */
+    privateLinkId: string;
+    /**
+     * Name of the Azure Private Link Service that Atlas manages.
+     */
+    privateLinkServiceName: string;
+    /**
+     * Resource ID of the Azure Private Link Service that Atlas manages.
+     */
+    privateLinkServiceResourceId: string;
+    /**
+     * Region for the Private Service Connect endpoint service.
+     */
+    regionName: string;
+    /**
+     * List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+     */
+    serviceAttachmentNames: string[];
+    /**
+     * Status of the AWS PrivateLink connection.
+     * Returns one of the following values:
+     * * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+     * * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+     * * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+     * * `FAILED` - A system failure occurred.
+     * * `DELETING` - Atlas is deleting the Private Link service.
+     */
+    status: string;
 }
 
 export interface GetProjectApiKeyProjectAssignment {
@@ -8292,8 +8425,12 @@ export interface GetThirdPartyIntegrationsResult {
      */
     sendDatabaseMetrics: boolean;
     /**
-     * Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
      * * `OPS_GENIE`
+     */
+    sendQueryStatsMetrics: boolean;
+    /**
+     * Toggle sending user provided group and cluster resource tags with the Datadog metrics.
      */
     sendUserProvidedResourceTags: boolean;
     /**
@@ -8379,6 +8516,17 @@ export interface LdapVerifyValidation {
      */
     status: string;
     validationType: string;
+}
+
+export interface LogIntegrationOtelSuppliedHeader {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Header value.
+     */
+    value: string;
 }
 
 export interface MaintenanceWindowProtectedHours {
@@ -8895,6 +9043,10 @@ export interface StreamConnectionTimeouts {
      * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
      */
     create?: string;
+    /**
+     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     */
+    delete?: string;
     /**
      * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
      */

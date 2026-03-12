@@ -16,14 +16,14 @@ public final class GetLogIntegrationsPlainArgs extends com.pulumi.resources.Invo
     public static final GetLogIntegrationsPlainArgs Empty = new GetLogIntegrationsPlainArgs();
 
     /**
-     * Optional filter by integration type (e.g., &#39;S3*LOG*EXPORT&#39;).
+     * Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      * 
      */
     @Import(name="integrationType")
     private @Nullable String integrationType;
 
     /**
-     * @return Optional filter by integration type (e.g., &#39;S3*LOG*EXPORT&#39;).
+     * @return Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      * 
      */
     public Optional<String> integrationType() {
@@ -71,7 +71,7 @@ public final class GetLogIntegrationsPlainArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param integrationType Optional filter by integration type (e.g., &#39;S3*LOG*EXPORT&#39;).
+         * @param integrationType Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
          * 
          * @return builder
          * 

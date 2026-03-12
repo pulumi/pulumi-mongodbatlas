@@ -276,6 +276,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     ebsVolumeType?: pulumi.Input<string>;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+     *
+     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
     instanceSize?: pulumi.Input<string>;
     /**
@@ -336,6 +338,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     ebsVolumeType?: pulumi.Input<string>;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+     *
+     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
     instanceSize?: pulumi.Input<string>;
     /**
@@ -361,6 +365,8 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     ebsVolumeType?: pulumi.Input<string>;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+     *
+     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
     instanceSize?: pulumi.Input<string>;
     /**
@@ -1372,7 +1378,7 @@ export interface EncryptionAtRestAwsKmsConfig {
      */
     customerMasterKeyId?: pulumi.Input<string>;
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -1407,7 +1413,7 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
      */
     clientId?: pulumi.Input<string>;
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -1426,6 +1432,10 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
      * Name of the Azure resource group that contains your Azure Key Vault.
      */
     resourceGroupName?: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+     */
+    roleId?: pulumi.Input<string>;
     /**
      * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      */
@@ -1446,7 +1456,7 @@ export interface EncryptionAtRestAzureKeyVaultConfig {
 
 export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
-     * Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
     enabled?: pulumi.Input<boolean>;
     /**
@@ -1999,6 +2009,17 @@ export interface LdapVerifyValidation {
     validationType?: pulumi.Input<string>;
 }
 
+export interface LogIntegrationOtelSuppliedHeader {
+    /**
+     * Header name.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Header value.
+     */
+    value: pulumi.Input<string>;
+}
+
 export interface MaintenanceWindowProtectedHours {
     /**
      * Zero-based integer that represents the end hour of the day for the protected hours window.
@@ -2520,6 +2541,10 @@ export interface StreamConnectionTimeouts {
      * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
      */
     create?: pulumi.Input<string>;
+    /**
+     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     */
+    delete?: pulumi.Input<string>;
     /**
      * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
      */

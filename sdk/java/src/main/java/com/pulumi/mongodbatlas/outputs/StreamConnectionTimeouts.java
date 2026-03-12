@@ -17,6 +17,11 @@ public final class StreamConnectionTimeouts {
      */
     private @Nullable String create;
     /**
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * 
+     */
+    private @Nullable String delete;
+    /**
      * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
      * 
      */
@@ -29,6 +34,13 @@ public final class StreamConnectionTimeouts {
      */
     public Optional<String> create() {
         return Optional.ofNullable(this.create);
+    }
+    /**
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * 
+     */
+    public Optional<String> delete() {
+        return Optional.ofNullable(this.delete);
     }
     /**
      * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
@@ -48,11 +60,13 @@ public final class StreamConnectionTimeouts {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String create;
+        private @Nullable String delete;
         private @Nullable String update;
         public Builder() {}
         public Builder(StreamConnectionTimeouts defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.create = defaults.create;
+    	      this.delete = defaults.delete;
     	      this.update = defaults.update;
         }
 
@@ -60,6 +74,12 @@ public final class StreamConnectionTimeouts {
         public Builder create(@Nullable String create) {
 
             this.create = create;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder delete(@Nullable String delete) {
+
+            this.delete = delete;
             return this;
         }
         @CustomType.Setter
@@ -71,6 +91,7 @@ public final class StreamConnectionTimeouts {
         public StreamConnectionTimeouts build() {
             final var _resultValue = new StreamConnectionTimeouts();
             _resultValue.create = create;
+            _resultValue.delete = delete;
             _resultValue.update = update;
             return _resultValue;
         }

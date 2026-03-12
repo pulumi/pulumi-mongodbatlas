@@ -31,6 +31,7 @@ class ThirdPartyIntegrationArgs:
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
                  send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
+                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
                  service_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -75,6 +76,8 @@ class ThirdPartyIntegrationArgs:
             pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
         if send_database_metrics is not None:
             pulumi.set(__self__, "send_database_metrics", send_database_metrics)
+        if send_query_stats_metrics is not None:
+            pulumi.set(__self__, "send_query_stats_metrics", send_query_stats_metrics)
         if send_user_provided_resource_tags is not None:
             pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
         if service_discovery is not None:
@@ -213,6 +216,15 @@ class ThirdPartyIntegrationArgs:
         pulumi.set(self, "send_database_metrics", value)
 
     @_builtins.property
+    @pulumi.getter(name="sendQueryStatsMetrics")
+    def send_query_stats_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "send_query_stats_metrics")
+
+    @send_query_stats_metrics.setter
+    def send_query_stats_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "send_query_stats_metrics", value)
+
+    @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
     def send_user_provided_resource_tags(self) -> Optional[pulumi.Input[_builtins.bool]]:
         return pulumi.get(self, "send_user_provided_resource_tags")
@@ -281,6 +293,7 @@ class _ThirdPartyIntegrationState:
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
                  send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
+                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
                  service_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -326,6 +339,8 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
         if send_database_metrics is not None:
             pulumi.set(__self__, "send_database_metrics", send_database_metrics)
+        if send_query_stats_metrics is not None:
+            pulumi.set(__self__, "send_query_stats_metrics", send_query_stats_metrics)
         if send_user_provided_resource_tags is not None:
             pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
         if service_discovery is not None:
@@ -444,6 +459,15 @@ class _ThirdPartyIntegrationState:
         pulumi.set(self, "send_database_metrics", value)
 
     @_builtins.property
+    @pulumi.getter(name="sendQueryStatsMetrics")
+    def send_query_stats_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        return pulumi.get(self, "send_query_stats_metrics")
+
+    @send_query_stats_metrics.setter
+    def send_query_stats_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "send_query_stats_metrics", value)
+
+    @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
     def send_user_provided_resource_tags(self) -> Optional[pulumi.Input[_builtins.bool]]:
         return pulumi.get(self, "send_user_provided_resource_tags")
@@ -537,6 +561,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
                  send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
+                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
                  service_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -552,7 +577,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
-        > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+        > **IMPORTANT** Each project can only have one configuration per integration `type`.
 
         > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
@@ -611,7 +636,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
-        > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+        > **IMPORTANT** Each project can only have one configuration per integration `type`.
 
         > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
 
@@ -668,6 +693,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
                  send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
+                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
                  service_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -697,6 +723,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             __props__.__dict__["secret"] = None if secret is None else pulumi.Output.secret(secret)
             __props__.__dict__["send_collection_latency_metrics"] = send_collection_latency_metrics
             __props__.__dict__["send_database_metrics"] = send_database_metrics
+            __props__.__dict__["send_query_stats_metrics"] = send_query_stats_metrics
             __props__.__dict__["send_user_provided_resource_tags"] = send_user_provided_resource_tags
             __props__.__dict__["service_discovery"] = None if service_discovery is None else pulumi.Output.secret(service_discovery)
             __props__.__dict__["service_key"] = None if service_key is None else pulumi.Output.secret(service_key)
@@ -729,6 +756,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             secret: Optional[pulumi.Input[_builtins.str]] = None,
             send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
             send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
+            send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
             send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
             service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
             service_key: Optional[pulumi.Input[_builtins.str]] = None,
@@ -771,6 +799,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         __props__.__dict__["secret"] = secret
         __props__.__dict__["send_collection_latency_metrics"] = send_collection_latency_metrics
         __props__.__dict__["send_database_metrics"] = send_database_metrics
+        __props__.__dict__["send_query_stats_metrics"] = send_query_stats_metrics
         __props__.__dict__["send_user_provided_resource_tags"] = send_user_provided_resource_tags
         __props__.__dict__["service_discovery"] = service_discovery
         __props__.__dict__["service_key"] = service_key
@@ -837,6 +866,11 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter(name="sendDatabaseMetrics")
     def send_database_metrics(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "send_database_metrics")
+
+    @_builtins.property
+    @pulumi.getter(name="sendQueryStatsMetrics")
+    def send_query_stats_metrics(self) -> pulumi.Output[_builtins.bool]:
+        return pulumi.get(self, "send_query_stats_metrics")
 
     @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
