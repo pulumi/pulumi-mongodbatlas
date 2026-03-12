@@ -60,8 +60,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool SendDatabaseMetrics;
         /// <summary>
-        /// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+        /// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
         /// * `OPS_GENIE`
+        /// </summary>
+        public readonly bool SendQueryStatsMetrics;
+        /// <summary>
+        /// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
         /// </summary>
         public readonly bool SendUserProvidedResourceTags;
         /// <summary>
@@ -113,6 +117,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool sendDatabaseMetrics,
 
+            bool sendQueryStatsMetrics,
+
             bool sendUserProvidedResourceTags,
 
             string serviceDiscovery,
@@ -139,6 +145,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Secret = secret;
             SendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
             SendDatabaseMetrics = sendDatabaseMetrics;
+            SendQueryStatsMetrics = sendQueryStatsMetrics;
             SendUserProvidedResourceTags = sendUserProvidedResourceTags;
             ServiceDiscovery = serviceDiscovery;
             ServiceKey = serviceKey;

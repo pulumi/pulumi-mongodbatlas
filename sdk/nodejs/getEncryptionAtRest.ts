@@ -83,13 +83,11 @@ import * as utilities from "./utilities";
  *     azureKeyVaultConfig: {
  *         enabled: true,
  *         azureEnvironment: "AZURE",
- *         tenantId: azureTenantId,
  *         subscriptionId: azureSubscriptionId,
- *         clientId: azureClientId,
- *         secret: azureClientSecret,
  *         resourceGroupName: azureResourceGroupName,
  *         keyVaultName: azureKeyVaultName,
  *         keyIdentifier: azureKeyIdentifier,
+ *         roleId: azureRoleId,
  *     },
  * });
  * const test = mongodbatlas.getEncryptionAtRestOutput({
@@ -244,13 +242,11 @@ export interface GetEncryptionAtRestResult {
  *     azureKeyVaultConfig: {
  *         enabled: true,
  *         azureEnvironment: "AZURE",
- *         tenantId: azureTenantId,
  *         subscriptionId: azureSubscriptionId,
- *         clientId: azureClientId,
- *         secret: azureClientSecret,
  *         resourceGroupName: azureResourceGroupName,
  *         keyVaultName: azureKeyVaultName,
  *         keyIdentifier: azureKeyIdentifier,
+ *         roleId: azureRoleId,
  *     },
  * });
  * const test = mongodbatlas.getEncryptionAtRestOutput({

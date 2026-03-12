@@ -23,7 +23,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  * 
- * &gt; **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+ * &gt; **IMPORTANT** Each project can only have one configuration per integration `type`.
  * 
  * &gt; **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
  * 
@@ -152,6 +152,12 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
 
     public Output<Boolean> sendDatabaseMetrics() {
         return this.sendDatabaseMetrics;
+    }
+    @Export(name="sendQueryStatsMetrics", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> sendQueryStatsMetrics;
+
+    public Output<Boolean> sendQueryStatsMetrics() {
+        return this.sendQueryStatsMetrics;
     }
     @Export(name="sendUserProvidedResourceTags", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> sendUserProvidedResourceTags;

@@ -13,86 +13,91 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['LogIntegrationArgs', 'LogIntegration']
 
 @pulumi.input_type
 class LogIntegrationArgs:
     def __init__(__self__, *,
-                 bucket_name: pulumi.Input[_builtins.str],
-                 iam_role_id: pulumi.Input[_builtins.str],
                  log_types: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 prefix_path: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 kms_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 kms_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]] = None,
+                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a LogIntegration resource.
 
-        :param pulumi.Input[_builtins.str] bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
-        :param pulumi.Input[_builtins.str] iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
-        :param pulumi.Input[_builtins.str] prefix_path: S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types exported by this integration.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
-        :param pulumi.Input[_builtins.str] kms_key: AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        :param pulumi.Input[_builtins.str] api_key: Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+        :param pulumi.Input[_builtins.str] bucket_name: Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+        :param pulumi.Input[_builtins.str] hec_token: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        :param pulumi.Input[_builtins.str] hec_url: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        :param pulumi.Input[_builtins.str] iam_role_id: Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+        :param pulumi.Input[_builtins.str] kms_key: Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+        :param pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+        :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
         """
-        pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "iam_role_id", iam_role_id)
         pulumi.set(__self__, "log_types", log_types)
-        pulumi.set(__self__, "prefix_path", prefix_path)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "type", type)
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if hec_token is not None:
+            pulumi.set(__self__, "hec_token", hec_token)
+        if hec_url is not None:
+            pulumi.set(__self__, "hec_url", hec_url)
+        if iam_role_id is not None:
+            pulumi.set(__self__, "iam_role_id", iam_role_id)
         if kms_key is not None:
             pulumi.set(__self__, "kms_key", kms_key)
-
-    @_builtins.property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> pulumi.Input[_builtins.str]:
-        """
-        Human-readable label that identifies the S3 bucket name for storing log files.
-        """
-        return pulumi.get(self, "bucket_name")
-
-    @bucket_name.setter
-    def bucket_name(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "bucket_name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="iamRoleId")
-    def iam_role_id(self) -> pulumi.Input[_builtins.str]:
-        """
-        Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-        """
-        return pulumi.get(self, "iam_role_id")
-
-    @iam_role_id.setter
-    def iam_role_id(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "iam_role_id", value)
+        if otel_endpoint is not None:
+            pulumi.set(__self__, "otel_endpoint", otel_endpoint)
+        if otel_supplied_headers is not None:
+            pulumi.set(__self__, "otel_supplied_headers", otel_supplied_headers)
+        if prefix_path is not None:
+            pulumi.set(__self__, "prefix_path", prefix_path)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
+        if storage_account_name is not None:
+            pulumi.set(__self__, "storage_account_name", storage_account_name)
+        if storage_container_name is not None:
+            pulumi.set(__self__, "storage_container_name", storage_container_name)
 
     @_builtins.property
     @pulumi.getter(name="logTypes")
     def log_types(self) -> pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]:
         """
-        Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        Array of log types exported by this integration.
         """
         return pulumi.get(self, "log_types")
 
     @log_types.setter
     def log_types(self, value: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         pulumi.set(self, "log_types", value)
-
-    @_builtins.property
-    @pulumi.getter(name="prefixPath")
-    def prefix_path(self) -> pulumi.Input[_builtins.str]:
-        """
-        S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-        """
-        return pulumi.get(self, "prefix_path")
-
-    @prefix_path.setter
-    def prefix_path(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "prefix_path", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -110,7 +115,7 @@ class LogIntegrationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
 
@@ -119,63 +124,22 @@ class LogIntegrationArgs:
         pulumi.set(self, "type", value)
 
     @_builtins.property
-    @pulumi.getter(name="kmsKey")
-    def kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        Required for type: DATADOG_LOG_EXPORT. API key for authentication.
         """
-        return pulumi.get(self, "kms_key")
+        return pulumi.get(self, "api_key")
 
-    @kms_key.setter
-    def kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "kms_key", value)
-
-
-@pulumi.input_type
-class _LogIntegrationState:
-    def __init__(__self__, *,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 integration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
-        """
-        Input properties used for looking up and filtering LogIntegration resources.
-
-        :param pulumi.Input[_builtins.str] bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
-        :param pulumi.Input[_builtins.str] iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-        :param pulumi.Input[_builtins.str] integration_id: Unique 24-character hexadecimal digit string that identifies the log integration configuration.
-        :param pulumi.Input[_builtins.str] kms_key: AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
-        :param pulumi.Input[_builtins.str] prefix_path: S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
-        """
-        if bucket_name is not None:
-            pulumi.set(__self__, "bucket_name", bucket_name)
-        if iam_role_id is not None:
-            pulumi.set(__self__, "iam_role_id", iam_role_id)
-        if integration_id is not None:
-            pulumi.set(__self__, "integration_id", integration_id)
-        if kms_key is not None:
-            pulumi.set(__self__, "kms_key", kms_key)
-        if log_types is not None:
-            pulumi.set(__self__, "log_types", log_types)
-        if prefix_path is not None:
-            pulumi.set(__self__, "prefix_path", prefix_path)
-        if project_id is not None:
-            pulumi.set(__self__, "project_id", project_id)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
+    @api_key.setter
+    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Human-readable label that identifies the S3 bucket name for storing log files.
+        Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
         """
         return pulumi.get(self, "bucket_name")
 
@@ -184,10 +148,267 @@ class _LogIntegrationState:
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="hecToken")
+    def hec_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        """
+        return pulumi.get(self, "hec_token")
+
+    @hec_token.setter
+    def hec_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hec_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hecUrl")
+    def hec_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        """
+        return pulumi.get(self, "hec_url")
+
+    @hec_url.setter
+    def hec_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hec_url", value)
+
+    @_builtins.property
     @pulumi.getter(name="iamRoleId")
     def iam_role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+        """
+        return pulumi.get(self, "iam_role_id")
+
+    @iam_role_id.setter
+    def iam_role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "iam_role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKey")
+    def kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        """
+        return pulumi.get(self, "kms_key")
+
+    @kms_key.setter
+    def kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "kms_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="otelEndpoint")
+    def otel_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+        """
+        return pulumi.get(self, "otel_endpoint")
+
+    @otel_endpoint.setter
+    def otel_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "otel_endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="otelSuppliedHeaders")
+    def otel_supplied_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]:
+        """
+        Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        """
+        return pulumi.get(self, "otel_supplied_headers")
+
+    @otel_supplied_headers.setter
+    def otel_supplied_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]):
+        pulumi.set(self, "otel_supplied_headers", value)
+
+    @_builtins.property
+    @pulumi.getter(name="prefixPath")
+    def prefix_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+        """
+        return pulumi.get(self, "prefix_path")
+
+    @prefix_path.setter
+    def prefix_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "prefix_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+    @storage_account_name.setter
+    def storage_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "storage_account_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageContainerName")
+    def storage_container_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+        """
+        return pulumi.get(self, "storage_container_name")
+
+    @storage_container_name.setter
+    def storage_container_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "storage_container_name", value)
+
+
+@pulumi.input_type
+class _LogIntegrationState:
+    def __init__(__self__, *,
+                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 integration_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 kms_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]] = None,
+                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
+                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering LogIntegration resources.
+
+        :param pulumi.Input[_builtins.str] api_key: Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+        :param pulumi.Input[_builtins.str] bucket_name: Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+        :param pulumi.Input[_builtins.str] hec_token: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        :param pulumi.Input[_builtins.str] hec_url: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        :param pulumi.Input[_builtins.str] iam_role_id: Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+        :param pulumi.Input[_builtins.str] integration_id: Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+        :param pulumi.Input[_builtins.str] kms_key: Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types exported by this integration.
+        :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+        :param pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        """
+        if api_key is not None:
+            pulumi.set(__self__, "api_key", api_key)
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if hec_token is not None:
+            pulumi.set(__self__, "hec_token", hec_token)
+        if hec_url is not None:
+            pulumi.set(__self__, "hec_url", hec_url)
+        if iam_role_id is not None:
+            pulumi.set(__self__, "iam_role_id", iam_role_id)
+        if integration_id is not None:
+            pulumi.set(__self__, "integration_id", integration_id)
+        if kms_key is not None:
+            pulumi.set(__self__, "kms_key", kms_key)
+        if log_types is not None:
+            pulumi.set(__self__, "log_types", log_types)
+        if otel_endpoint is not None:
+            pulumi.set(__self__, "otel_endpoint", otel_endpoint)
+        if otel_supplied_headers is not None:
+            pulumi.set(__self__, "otel_supplied_headers", otel_supplied_headers)
+        if prefix_path is not None:
+            pulumi.set(__self__, "prefix_path", prefix_path)
+        if project_id is not None:
+            pulumi.set(__self__, "project_id", project_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
+        if storage_account_name is not None:
+            pulumi.set(__self__, "storage_account_name", storage_account_name)
+        if storage_container_name is not None:
+            pulumi.set(__self__, "storage_container_name", storage_container_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @bucket_name.setter
+    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "bucket_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hecToken")
+    def hec_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        """
+        return pulumi.get(self, "hec_token")
+
+    @hec_token.setter
+    def hec_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hec_token", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hecUrl")
+    def hec_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        """
+        return pulumi.get(self, "hec_url")
+
+    @hec_url.setter
+    def hec_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hec_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="iamRoleId")
+    def iam_role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         """
         return pulumi.get(self, "iam_role_id")
 
@@ -211,7 +432,7 @@ class _LogIntegrationState:
     @pulumi.getter(name="kmsKey")
     def kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         """
         return pulumi.get(self, "kms_key")
 
@@ -223,7 +444,7 @@ class _LogIntegrationState:
     @pulumi.getter(name="logTypes")
     def log_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        Array of log types exported by this integration.
         """
         return pulumi.get(self, "log_types")
 
@@ -232,10 +453,34 @@ class _LogIntegrationState:
         pulumi.set(self, "log_types", value)
 
     @_builtins.property
+    @pulumi.getter(name="otelEndpoint")
+    def otel_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+        """
+        return pulumi.get(self, "otel_endpoint")
+
+    @otel_endpoint.setter
+    def otel_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "otel_endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="otelSuppliedHeaders")
+    def otel_supplied_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]:
+        """
+        Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        """
+        return pulumi.get(self, "otel_supplied_headers")
+
+    @otel_supplied_headers.setter
+    def otel_supplied_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]):
+        pulumi.set(self, "otel_supplied_headers", value)
+
+    @_builtins.property
     @pulumi.getter(name="prefixPath")
     def prefix_path(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         """
         return pulumi.get(self, "prefix_path")
 
@@ -257,9 +502,57 @@ class _LogIntegrationState:
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+    @storage_account_name.setter
+    def storage_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "storage_account_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageContainerName")
+    def storage_container_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+        """
+        return pulumi.get(self, "storage_container_name")
+
+    @storage_container_name.setter
+    def storage_container_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "storage_container_name", value)
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
 
@@ -274,52 +567,156 @@ class LogIntegration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
                  bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
                  iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
                  prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+        `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs at 1-minute intervals. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 
         To use this resource, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 
         ## Example Usage
 
+        ### S
+
+        ### AWS S3
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        project = mongodbatlas.Project("project",
-            name=atlas_project_name,
-            org_id=atlas_org_id)
-        # Set up cloud provider access in Atlas using the created IAM role
-        setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
-            project_id=project.id,
+        # Set up cloud provider access in Atlas for AWS
+        setup = mongodbatlas.CloudProviderAccessSetup("setup",
+            project_id=project["id"],
             provider_name="AWS")
-        auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
-            project_id=project.id,
-            role_id=setup_only.role_id,
+        auth = mongodbatlas.CloudProviderAccessAuthorization("auth",
+            project_id=project["id"],
+            role_id=setup.role_id,
             aws={
                 "iam_assumed_role_arn": atlas_role["arn"],
             })
-        # Set up log integration with authorized IAM role
-        example_log_integration = mongodbatlas.LogIntegration("example",
-            project_id=project.id,
-            bucket_name=log_bucket["bucket"],
-            iam_role_id=auth_role.role_id,
-            prefix_path="atlas-logs",
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
             type="S3_LOG_EXPORT",
-            log_types=["MONGOD_AUDIT"])
-        example = mongodbatlas.get_log_integration_output(project_id=example_log_integration.project_id,
-            integration_id=example_log_integration.integration_id)
-        example_get_log_integrations = mongodbatlas.get_log_integrations_output(project_id=example_log_integration.project_id)
-        pulumi.export("logIntegrationBucketName", example.bucket_name)
-        pulumi.export("logIntegrationsResults", example_get_log_integrations.results)
+            log_types=["MONGOD_AUDIT"],
+            bucket_name=log_bucket["bucket"],
+            iam_role_id=auth.role_id,
+            prefix_path="atlas-logs")
         ```
+
+        ### Google Cloud Storage (GCS)
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Set up cloud provider access in Atlas for GCP
+        setup = mongodbatlas.CloudProviderAccessSetup("setup",
+            project_id=project["id"],
+            provider_name="GCP")
+        auth = mongodbatlas.CloudProviderAccessAuthorization("auth",
+            project_id=project["id"],
+            role_id=setup.role_id)
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="GCS_LOG_EXPORT",
+            log_types=["MONGOD"],
+            bucket_name=log_bucket["name"],
+            role_id=auth.role_id,
+            prefix_path="atlas-logs")
+        ```
+
+        ### Azure Blob Storage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Set up cloud provider access in Atlas for Azure
+        setup = mongodbatlas.CloudProviderAccessSetup("setup",
+            project_id=project["id"],
+            provider_name="AZURE",
+            azure_configs=[{
+                "atlas_azure_app_id": atlas_azure_app_id,
+                "service_principal_id": azure_service_principal_id,
+                "tenant_id": azure_tenant_id,
+            }])
+        auth = mongodbatlas.CloudProviderAccessAuthorization("auth",
+            project_id=project["id"],
+            role_id=setup.role_id,
+            azure={
+                "atlas_azure_app_id": atlas_azure_app_id,
+                "service_principal_id": azure_service_principal_id,
+                "tenant_id": azure_tenant_id,
+            })
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="AZURE_LOG_EXPORT",
+            log_types=["MONGOD"],
+            role_id=auth.role_id,
+            storage_account_name=log_storage["name"],
+            storage_container_name=log_container["name"],
+            prefix_path="atlas-logs")
+        ```
+
+        ### Datadog
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="DATADOG_LOG_EXPORT",
+            log_types=["MONGOD"],
+            api_key=datadog_api_key,
+            region=datadog_region)
+        ```
+
+        ### Splunk
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="SPLUNK_LOG_EXPORT",
+            log_types=["MONGOD"],
+            hec_token=splunk_hec_token,
+            hec_url=splunk_hec_url)
+        ```
+
+        ### OpenTelemetry
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="OTEL_LOG_EXPORT",
+            log_types=["MONGOD"],
+            otel_endpoint=otel_endpoint,
+            otel_supplied_headers=otel_supplied_headers)
+        ```
+
+        ### Further Examples
+        - Log Integration Examples
 
         ## Import
 
@@ -330,13 +727,22 @@ class LogIntegration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
-        :param pulumi.Input[_builtins.str] iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-        :param pulumi.Input[_builtins.str] kms_key: AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
-        :param pulumi.Input[_builtins.str] prefix_path: S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        :param pulumi.Input[_builtins.str] api_key: Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+        :param pulumi.Input[_builtins.str] bucket_name: Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+        :param pulumi.Input[_builtins.str] hec_token: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        :param pulumi.Input[_builtins.str] hec_url: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        :param pulumi.Input[_builtins.str] iam_role_id: Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+        :param pulumi.Input[_builtins.str] kms_key: Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types exported by this integration.
+        :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         ...
     @overload
@@ -345,43 +751,138 @@ class LogIntegration(pulumi.CustomResource):
                  args: LogIntegrationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+        `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs at 1-minute intervals. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 
         To use this resource, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 
         ## Example Usage
 
+        ### S
+
+        ### AWS S3
+
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        project = mongodbatlas.Project("project",
-            name=atlas_project_name,
-            org_id=atlas_org_id)
-        # Set up cloud provider access in Atlas using the created IAM role
-        setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
-            project_id=project.id,
+        # Set up cloud provider access in Atlas for AWS
+        setup = mongodbatlas.CloudProviderAccessSetup("setup",
+            project_id=project["id"],
             provider_name="AWS")
-        auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
-            project_id=project.id,
-            role_id=setup_only.role_id,
+        auth = mongodbatlas.CloudProviderAccessAuthorization("auth",
+            project_id=project["id"],
+            role_id=setup.role_id,
             aws={
                 "iam_assumed_role_arn": atlas_role["arn"],
             })
-        # Set up log integration with authorized IAM role
-        example_log_integration = mongodbatlas.LogIntegration("example",
-            project_id=project.id,
-            bucket_name=log_bucket["bucket"],
-            iam_role_id=auth_role.role_id,
-            prefix_path="atlas-logs",
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
             type="S3_LOG_EXPORT",
-            log_types=["MONGOD_AUDIT"])
-        example = mongodbatlas.get_log_integration_output(project_id=example_log_integration.project_id,
-            integration_id=example_log_integration.integration_id)
-        example_get_log_integrations = mongodbatlas.get_log_integrations_output(project_id=example_log_integration.project_id)
-        pulumi.export("logIntegrationBucketName", example.bucket_name)
-        pulumi.export("logIntegrationsResults", example_get_log_integrations.results)
+            log_types=["MONGOD_AUDIT"],
+            bucket_name=log_bucket["bucket"],
+            iam_role_id=auth.role_id,
+            prefix_path="atlas-logs")
         ```
+
+        ### Google Cloud Storage (GCS)
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Set up cloud provider access in Atlas for GCP
+        setup = mongodbatlas.CloudProviderAccessSetup("setup",
+            project_id=project["id"],
+            provider_name="GCP")
+        auth = mongodbatlas.CloudProviderAccessAuthorization("auth",
+            project_id=project["id"],
+            role_id=setup.role_id)
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="GCS_LOG_EXPORT",
+            log_types=["MONGOD"],
+            bucket_name=log_bucket["name"],
+            role_id=auth.role_id,
+            prefix_path="atlas-logs")
+        ```
+
+        ### Azure Blob Storage
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Set up cloud provider access in Atlas for Azure
+        setup = mongodbatlas.CloudProviderAccessSetup("setup",
+            project_id=project["id"],
+            provider_name="AZURE",
+            azure_configs=[{
+                "atlas_azure_app_id": atlas_azure_app_id,
+                "service_principal_id": azure_service_principal_id,
+                "tenant_id": azure_tenant_id,
+            }])
+        auth = mongodbatlas.CloudProviderAccessAuthorization("auth",
+            project_id=project["id"],
+            role_id=setup.role_id,
+            azure={
+                "atlas_azure_app_id": atlas_azure_app_id,
+                "service_principal_id": azure_service_principal_id,
+                "tenant_id": azure_tenant_id,
+            })
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="AZURE_LOG_EXPORT",
+            log_types=["MONGOD"],
+            role_id=auth.role_id,
+            storage_account_name=log_storage["name"],
+            storage_container_name=log_container["name"],
+            prefix_path="atlas-logs")
+        ```
+
+        ### Datadog
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="DATADOG_LOG_EXPORT",
+            log_types=["MONGOD"],
+            api_key=datadog_api_key,
+            region=datadog_region)
+        ```
+
+        ### Splunk
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="SPLUNK_LOG_EXPORT",
+            log_types=["MONGOD"],
+            hec_token=splunk_hec_token,
+            hec_url=splunk_hec_url)
+        ```
+
+        ### OpenTelemetry
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example = mongodbatlas.LogIntegration("example",
+            project_id=project["id"],
+            type="OTEL_LOG_EXPORT",
+            log_types=["MONGOD"],
+            otel_endpoint=otel_endpoint,
+            otel_supplied_headers=otel_supplied_headers)
+        ```
+
+        ### Further Examples
+        - Log Integration Examples
 
         ## Import
 
@@ -405,12 +906,21 @@ class LogIntegration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
                  bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
+                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
                  iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  kms_key: Optional[pulumi.Input[_builtins.str]] = None,
                  log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
                  prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -421,26 +931,31 @@ class LogIntegration(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LogIntegrationArgs.__new__(LogIntegrationArgs)
 
-            if bucket_name is None and not opts.urn:
-                raise TypeError("Missing required property 'bucket_name'")
+            __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
             __props__.__dict__["bucket_name"] = bucket_name
-            if iam_role_id is None and not opts.urn:
-                raise TypeError("Missing required property 'iam_role_id'")
+            __props__.__dict__["hec_token"] = None if hec_token is None else pulumi.Output.secret(hec_token)
+            __props__.__dict__["hec_url"] = hec_url
             __props__.__dict__["iam_role_id"] = iam_role_id
             __props__.__dict__["kms_key"] = kms_key
             if log_types is None and not opts.urn:
                 raise TypeError("Missing required property 'log_types'")
             __props__.__dict__["log_types"] = log_types
-            if prefix_path is None and not opts.urn:
-                raise TypeError("Missing required property 'prefix_path'")
+            __props__.__dict__["otel_endpoint"] = otel_endpoint
+            __props__.__dict__["otel_supplied_headers"] = None if otel_supplied_headers is None else pulumi.Output.secret(otel_supplied_headers)
             __props__.__dict__["prefix_path"] = prefix_path
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["region"] = region
+            __props__.__dict__["role_id"] = role_id
+            __props__.__dict__["storage_account_name"] = storage_account_name
+            __props__.__dict__["storage_container_name"] = storage_container_name
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["integration_id"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey", "hecToken", "otelSuppliedHeaders"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(LogIntegration, __self__).__init__(
             'mongodbatlas:index/logIntegration:LogIntegration',
             resource_name,
@@ -451,13 +966,22 @@ class LogIntegration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            api_key: Optional[pulumi.Input[_builtins.str]] = None,
             bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
+            hec_token: Optional[pulumi.Input[_builtins.str]] = None,
+            hec_url: Optional[pulumi.Input[_builtins.str]] = None,
             iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
             integration_id: Optional[pulumi.Input[_builtins.str]] = None,
             kms_key: Optional[pulumi.Input[_builtins.str]] = None,
             log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
+            otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
             prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
+            region: Optional[pulumi.Input[_builtins.str]] = None,
+            role_id: Optional[pulumi.Input[_builtins.str]] = None,
+            storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
+            storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'LogIntegration':
         """
         Get an existing LogIntegration resource's state with the given name, id, and optional extra
@@ -466,42 +990,84 @@ class LogIntegration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
-        :param pulumi.Input[_builtins.str] iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        :param pulumi.Input[_builtins.str] api_key: Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+        :param pulumi.Input[_builtins.str] bucket_name: Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+        :param pulumi.Input[_builtins.str] hec_token: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        :param pulumi.Input[_builtins.str] hec_url: Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        :param pulumi.Input[_builtins.str] iam_role_id: Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         :param pulumi.Input[_builtins.str] integration_id: Unique 24-character hexadecimal digit string that identifies the log integration configuration.
-        :param pulumi.Input[_builtins.str] kms_key: AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
-        :param pulumi.Input[_builtins.str] prefix_path: S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        :param pulumi.Input[_builtins.str] kms_key: Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types exported by this integration.
+        :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+        :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _LogIntegrationState.__new__(_LogIntegrationState)
 
+        __props__.__dict__["api_key"] = api_key
         __props__.__dict__["bucket_name"] = bucket_name
+        __props__.__dict__["hec_token"] = hec_token
+        __props__.__dict__["hec_url"] = hec_url
         __props__.__dict__["iam_role_id"] = iam_role_id
         __props__.__dict__["integration_id"] = integration_id
         __props__.__dict__["kms_key"] = kms_key
         __props__.__dict__["log_types"] = log_types
+        __props__.__dict__["otel_endpoint"] = otel_endpoint
+        __props__.__dict__["otel_supplied_headers"] = otel_supplied_headers
         __props__.__dict__["prefix_path"] = prefix_path
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["region"] = region
+        __props__.__dict__["role_id"] = role_id
+        __props__.__dict__["storage_account_name"] = storage_account_name
+        __props__.__dict__["storage_container_name"] = storage_container_name
         __props__.__dict__["type"] = type
         return LogIntegration(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
-    @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Human-readable label that identifies the S3 bucket name for storing log files.
+        Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
         """
         return pulumi.get(self, "bucket_name")
 
     @_builtins.property
-    @pulumi.getter(name="iamRoleId")
-    def iam_role_id(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="hecToken")
+    def hec_token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        """
+        return pulumi.get(self, "hec_token")
+
+    @_builtins.property
+    @pulumi.getter(name="hecUrl")
+    def hec_url(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        """
+        return pulumi.get(self, "hec_url")
+
+    @_builtins.property
+    @pulumi.getter(name="iamRoleId")
+    def iam_role_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         """
         return pulumi.get(self, "iam_role_id")
 
@@ -517,7 +1083,7 @@ class LogIntegration(pulumi.CustomResource):
     @pulumi.getter(name="kmsKey")
     def kms_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         """
         return pulumi.get(self, "kms_key")
 
@@ -525,15 +1091,31 @@ class LogIntegration(pulumi.CustomResource):
     @pulumi.getter(name="logTypes")
     def log_types(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        Array of log types exported by this integration.
         """
         return pulumi.get(self, "log_types")
 
     @_builtins.property
-    @pulumi.getter(name="prefixPath")
-    def prefix_path(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="otelEndpoint")
+    def otel_endpoint(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+        """
+        return pulumi.get(self, "otel_endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="otelSuppliedHeaders")
+    def otel_supplied_headers(self) -> pulumi.Output[Optional[Sequence['outputs.LogIntegrationOtelSuppliedHeader']]]:
+        """
+        Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        """
+        return pulumi.get(self, "otel_supplied_headers")
+
+    @_builtins.property
+    @pulumi.getter(name="prefixPath")
+    def prefix_path(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         """
         return pulumi.get(self, "prefix_path")
 
@@ -547,9 +1129,41 @@ class LogIntegration(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        """
+        return pulumi.get(self, "role_id")
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+    @_builtins.property
+    @pulumi.getter(name="storageContainerName")
+    def storage_container_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+        """
+        return pulumi.get(self, "storage_container_name")
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
 

@@ -555,6 +555,11 @@ export const getPrivatelinkEndpointServiceDataFederationOnlineArchives: typeof i
 export const getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput: typeof import("./getPrivatelinkEndpointServiceDataFederationOnlineArchives").getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput = null as any;
 utilities.lazyLoad(exports, ["getPrivatelinkEndpointServiceDataFederationOnlineArchives","getPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput"], () => require("./getPrivatelinkEndpointServiceDataFederationOnlineArchives"));
 
+export { GetPrivatelinkEndpointsArgs, GetPrivatelinkEndpointsResult, GetPrivatelinkEndpointsOutputArgs } from "./getPrivatelinkEndpoints";
+export const getPrivatelinkEndpoints: typeof import("./getPrivatelinkEndpoints").getPrivatelinkEndpoints = null as any;
+export const getPrivatelinkEndpointsOutput: typeof import("./getPrivatelinkEndpoints").getPrivatelinkEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["getPrivatelinkEndpoints","getPrivatelinkEndpointsOutput"], () => require("./getPrivatelinkEndpoints"));
+
 export { GetProjectArgs, GetProjectResult, GetProjectOutputArgs } from "./getProject";
 export const getProject: typeof import("./getProject").getProject = null as any;
 export const getProjectOutput: typeof import("./getProject").getProjectOutput = null as any;

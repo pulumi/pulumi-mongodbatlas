@@ -14,14 +14,14 @@ public final class GetPrivateLinkEndpointPlainArgs extends com.pulumi.resources.
     public static final GetPrivateLinkEndpointPlainArgs Empty = new GetPrivateLinkEndpointPlainArgs();
 
     /**
-     * Unique identifier of the private endpoint service that you want to retrieve.
+     * Unique identifier of the private endpoint that you want to retrieve.
      * 
      */
     @Import(name="privateLinkId", required=true)
     private String privateLinkId;
 
     /**
-     * @return Unique identifier of the private endpoint service that you want to retrieve.
+     * @return Unique identifier of the private endpoint that you want to retrieve.
      * 
      */
     public String privateLinkId() {
@@ -44,14 +44,14 @@ public final class GetPrivateLinkEndpointPlainArgs extends com.pulumi.resources.
     }
 
     /**
-     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private String providerName;
 
     /**
-     * @return Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * @return Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
      * 
      */
     public String providerName() {
@@ -85,7 +85,7 @@ public final class GetPrivateLinkEndpointPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param privateLinkId Unique identifier of the private endpoint service that you want to retrieve.
+         * @param privateLinkId Unique identifier of the private endpoint that you want to retrieve.
          * 
          * @return builder
          * 
@@ -107,7 +107,7 @@ public final class GetPrivateLinkEndpointPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param providerName Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+         * @param providerName Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
          * 
          * @return builder
          * 

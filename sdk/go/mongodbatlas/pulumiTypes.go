@@ -1821,6 +1821,8 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+	//
+	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -1847,6 +1849,8 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+	//
+	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -1947,6 +1951,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolum
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+//
+// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2013,6 +2019,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVo
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+//
+// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -2303,6 +2311,8 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+	//
+	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2329,6 +2339,8 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+	//
+	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2429,6 +2441,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolum
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+//
+// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2495,6 +2509,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVo
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+//
+// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2524,6 +2540,8 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+	//
+	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2550,6 +2568,8 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+	//
+	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2650,6 +2670,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolume
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+//
+// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2716,6 +2738,8 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVol
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+//
+// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -10757,7 +10781,7 @@ type EncryptionAtRestAwsKmsConfig struct {
 	AccessKeyId *string `pulumi:"accessKeyId"`
 	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId *string `pulumi:"customerMasterKeyId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 	Region *string `pulumi:"region"`
@@ -10787,7 +10811,7 @@ type EncryptionAtRestAwsKmsConfigArgs struct {
 	AccessKeyId pulumi.StringPtrInput `pulumi:"accessKeyId"`
 	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId pulumi.StringPtrInput `pulumi:"customerMasterKeyId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 	Region pulumi.StringPtrInput `pulumi:"region"`
@@ -10888,7 +10912,7 @@ func (o EncryptionAtRestAwsKmsConfigOutput) CustomerMasterKeyId() pulumi.StringP
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *string { return v.CustomerMasterKeyId }).(pulumi.StringPtrOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o EncryptionAtRestAwsKmsConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAwsKmsConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -10962,7 +10986,7 @@ func (o EncryptionAtRestAwsKmsConfigPtrOutput) CustomerMasterKeyId() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o EncryptionAtRestAwsKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAwsKmsConfig) *bool {
 		if v == nil {
@@ -11027,7 +11051,7 @@ type EncryptionAtRestAzureKeyVaultConfig struct {
 	AzureEnvironment *string `pulumi:"azureEnvironment"`
 	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 	ClientId *string `pulumi:"clientId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// Web address with a unique key that identifies for your Azure Key Vault.
 	KeyIdentifier *string `pulumi:"keyIdentifier"`
@@ -11037,6 +11061,8 @@ type EncryptionAtRestAzureKeyVaultConfig struct {
 	RequirePrivateNetworking *bool `pulumi:"requirePrivateNetworking"`
 	// Name of the Azure resource group that contains your Azure Key Vault.
 	ResourceGroupName *string `pulumi:"resourceGroupName"`
+	// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+	RoleId *string `pulumi:"roleId"`
 	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 	Secret *string `pulumi:"secret"`
 	// Unique 36-hexadecimal character string that identifies your Azure subscription.
@@ -11063,7 +11089,7 @@ type EncryptionAtRestAzureKeyVaultConfigArgs struct {
 	AzureEnvironment pulumi.StringPtrInput `pulumi:"azureEnvironment"`
 	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Web address with a unique key that identifies for your Azure Key Vault.
 	KeyIdentifier pulumi.StringPtrInput `pulumi:"keyIdentifier"`
@@ -11073,6 +11099,8 @@ type EncryptionAtRestAzureKeyVaultConfigArgs struct {
 	RequirePrivateNetworking pulumi.BoolPtrInput `pulumi:"requirePrivateNetworking"`
 	// Name of the Azure resource group that contains your Azure Key Vault.
 	ResourceGroupName pulumi.StringPtrInput `pulumi:"resourceGroupName"`
+	// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+	RoleId pulumi.StringPtrInput `pulumi:"roleId"`
 	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 	Secret pulumi.StringPtrInput `pulumi:"secret"`
 	// Unique 36-hexadecimal character string that identifies your Azure subscription.
@@ -11170,7 +11198,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigOutput) ClientId() pulumi.StringPtrOu
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.ClientId }).(pulumi.StringPtrOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -11193,6 +11221,11 @@ func (o EncryptionAtRestAzureKeyVaultConfigOutput) RequirePrivateNetworking() pu
 // Name of the Azure resource group that contains your Azure Key Vault.
 func (o EncryptionAtRestAzureKeyVaultConfigOutput) ResourceGroupName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.ResourceGroupName }).(pulumi.StringPtrOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+func (o EncryptionAtRestAzureKeyVaultConfigOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EncryptionAtRestAzureKeyVaultConfig) *string { return v.RoleId }).(pulumi.StringPtrOutput)
 }
 
 // Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
@@ -11259,7 +11292,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ClientId() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *bool {
 		if v == nil {
@@ -11309,6 +11342,16 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) ResourceGroupName() pulumi
 	}).(pulumi.StringPtrOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RoleId
+	}).(pulumi.StringPtrOutput)
+}
+
 // Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestAzureKeyVaultConfig) *string {
@@ -11350,7 +11393,7 @@ func (o EncryptionAtRestAzureKeyVaultConfigPtrOutput) Valid() pulumi.BoolPtrOutp
 }
 
 type EncryptionAtRestGoogleCloudKmsConfig struct {
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled *bool `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId *string `pulumi:"keyVersionResourceId"`
@@ -11374,7 +11417,7 @@ type EncryptionAtRestGoogleCloudKmsConfigInput interface {
 }
 
 type EncryptionAtRestGoogleCloudKmsConfigArgs struct {
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId pulumi.StringPtrInput `pulumi:"keyVersionResourceId"`
@@ -11463,7 +11506,7 @@ func (o EncryptionAtRestGoogleCloudKmsConfigOutput) ToEncryptionAtRestGoogleClou
 	}).(EncryptionAtRestGoogleCloudKmsConfigPtrOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o EncryptionAtRestGoogleCloudKmsConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v EncryptionAtRestGoogleCloudKmsConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
@@ -11512,7 +11555,7 @@ func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Elem() EncryptionAtRestGo
 	}).(EncryptionAtRestGoogleCloudKmsConfigOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o EncryptionAtRestGoogleCloudKmsConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *EncryptionAtRestGoogleCloudKmsConfig) *bool {
 		if v == nil {
@@ -15210,6 +15253,112 @@ func (o LdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) LdapVerifyVali
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LdapVerifyValidation {
 		return vs[0].([]LdapVerifyValidation)[vs[1].(int)]
 	}).(LdapVerifyValidationOutput)
+}
+
+type LogIntegrationOtelSuppliedHeader struct {
+	// Header name.
+	Name string `pulumi:"name"`
+	// Header value.
+	Value string `pulumi:"value"`
+}
+
+// LogIntegrationOtelSuppliedHeaderInput is an input type that accepts LogIntegrationOtelSuppliedHeaderArgs and LogIntegrationOtelSuppliedHeaderOutput values.
+// You can construct a concrete instance of `LogIntegrationOtelSuppliedHeaderInput` via:
+//
+//	LogIntegrationOtelSuppliedHeaderArgs{...}
+type LogIntegrationOtelSuppliedHeaderInput interface {
+	pulumi.Input
+
+	ToLogIntegrationOtelSuppliedHeaderOutput() LogIntegrationOtelSuppliedHeaderOutput
+	ToLogIntegrationOtelSuppliedHeaderOutputWithContext(context.Context) LogIntegrationOtelSuppliedHeaderOutput
+}
+
+type LogIntegrationOtelSuppliedHeaderArgs struct {
+	// Header name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Header value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (LogIntegrationOtelSuppliedHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i LogIntegrationOtelSuppliedHeaderArgs) ToLogIntegrationOtelSuppliedHeaderOutput() LogIntegrationOtelSuppliedHeaderOutput {
+	return i.ToLogIntegrationOtelSuppliedHeaderOutputWithContext(context.Background())
+}
+
+func (i LogIntegrationOtelSuppliedHeaderArgs) ToLogIntegrationOtelSuppliedHeaderOutputWithContext(ctx context.Context) LogIntegrationOtelSuppliedHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIntegrationOtelSuppliedHeaderOutput)
+}
+
+// LogIntegrationOtelSuppliedHeaderArrayInput is an input type that accepts LogIntegrationOtelSuppliedHeaderArray and LogIntegrationOtelSuppliedHeaderArrayOutput values.
+// You can construct a concrete instance of `LogIntegrationOtelSuppliedHeaderArrayInput` via:
+//
+//	LogIntegrationOtelSuppliedHeaderArray{ LogIntegrationOtelSuppliedHeaderArgs{...} }
+type LogIntegrationOtelSuppliedHeaderArrayInput interface {
+	pulumi.Input
+
+	ToLogIntegrationOtelSuppliedHeaderArrayOutput() LogIntegrationOtelSuppliedHeaderArrayOutput
+	ToLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(context.Context) LogIntegrationOtelSuppliedHeaderArrayOutput
+}
+
+type LogIntegrationOtelSuppliedHeaderArray []LogIntegrationOtelSuppliedHeaderInput
+
+func (LogIntegrationOtelSuppliedHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i LogIntegrationOtelSuppliedHeaderArray) ToLogIntegrationOtelSuppliedHeaderArrayOutput() LogIntegrationOtelSuppliedHeaderArrayOutput {
+	return i.ToLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i LogIntegrationOtelSuppliedHeaderArray) ToLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) LogIntegrationOtelSuppliedHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LogIntegrationOtelSuppliedHeaderArrayOutput)
+}
+
+type LogIntegrationOtelSuppliedHeaderOutput struct{ *pulumi.OutputState }
+
+func (LogIntegrationOtelSuppliedHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o LogIntegrationOtelSuppliedHeaderOutput) ToLogIntegrationOtelSuppliedHeaderOutput() LogIntegrationOtelSuppliedHeaderOutput {
+	return o
+}
+
+func (o LogIntegrationOtelSuppliedHeaderOutput) ToLogIntegrationOtelSuppliedHeaderOutputWithContext(ctx context.Context) LogIntegrationOtelSuppliedHeaderOutput {
+	return o
+}
+
+// Header name.
+func (o LogIntegrationOtelSuppliedHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIntegrationOtelSuppliedHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Header value.
+func (o LogIntegrationOtelSuppliedHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v LogIntegrationOtelSuppliedHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type LogIntegrationOtelSuppliedHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (LogIntegrationOtelSuppliedHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o LogIntegrationOtelSuppliedHeaderArrayOutput) ToLogIntegrationOtelSuppliedHeaderArrayOutput() LogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o LogIntegrationOtelSuppliedHeaderArrayOutput) ToLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) LogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o LogIntegrationOtelSuppliedHeaderArrayOutput) Index(i pulumi.IntInput) LogIntegrationOtelSuppliedHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogIntegrationOtelSuppliedHeader {
+		return vs[0].([]LogIntegrationOtelSuppliedHeader)[vs[1].(int)]
+	}).(LogIntegrationOtelSuppliedHeaderOutput)
 }
 
 type MaintenanceWindowProtectedHours struct {
@@ -20577,6 +20726,8 @@ func (o StreamConnectionSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
 type StreamConnectionTimeouts struct {
 	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
 	Create *string `pulumi:"create"`
+	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+	Delete *string `pulumi:"delete"`
 	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
 	Update *string `pulumi:"update"`
 }
@@ -20595,6 +20746,8 @@ type StreamConnectionTimeoutsInput interface {
 type StreamConnectionTimeoutsArgs struct {
 	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
 	Create pulumi.StringPtrInput `pulumi:"create"`
+	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
 	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
 	Update pulumi.StringPtrInput `pulumi:"update"`
 }
@@ -20681,6 +20834,11 @@ func (o StreamConnectionTimeoutsOutput) Create() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
 }
 
+// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+func (o StreamConnectionTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
 // The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
 func (o StreamConnectionTimeoutsOutput) Update() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
@@ -20717,6 +20875,16 @@ func (o StreamConnectionTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+func (o StreamConnectionTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -23888,9 +24056,9 @@ type GetAdvancedClustersResult struct {
 	PitEnabled bool `pulumi:"pitEnabled"`
 	// The unique ID for the project to get the clusters.
 	ProjectId string `pulumi:"projectId"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
-	// (Optional) Replica set scaling mode for your cluster.
+	// Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy string `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
 	ReplicationSpecs []GetAdvancedClustersResultReplicationSpec `pulumi:"replicationSpecs"`
@@ -23902,6 +24070,8 @@ type GetAdvancedClustersResult struct {
 	Tags map[string]string `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled bool `pulumi:"terminationProtectionEnabled"`
+	// Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+	UseAwsTimeBasedSnapshotCopyForFastInitialSync bool `pulumi:"useAwsTimeBasedSnapshotCopyForFastInitialSync"`
 	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
 	UseEffectiveFields *bool `pulumi:"useEffectiveFields"`
 	// Release cadence that Atlas uses for this cluster.
@@ -23958,9 +24128,9 @@ type GetAdvancedClustersResultArgs struct {
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
 	// The unique ID for the project to get the clusters.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
-	// (Optional) Replica set scaling mode for your cluster.
+	// Replica set scaling mode for your cluster.
 	ReplicaSetScalingStrategy pulumi.StringInput `pulumi:"replicaSetScalingStrategy"`
 	// List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
 	ReplicationSpecs GetAdvancedClustersResultReplicationSpecArrayInput `pulumi:"replicationSpecs"`
@@ -23972,6 +24142,8 @@ type GetAdvancedClustersResultArgs struct {
 	Tags pulumi.StringMapInput `pulumi:"tags"`
 	// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 	TerminationProtectionEnabled pulumi.BoolInput `pulumi:"terminationProtectionEnabled"`
+	// Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+	UseAwsTimeBasedSnapshotCopyForFastInitialSync pulumi.BoolInput `pulumi:"useAwsTimeBasedSnapshotCopyForFastInitialSync"`
 	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
 	UseEffectiveFields pulumi.BoolPtrInput `pulumi:"useEffectiveFields"`
 	// Release cadence that Atlas uses for this cluster.
@@ -24130,12 +24302,12 @@ func (o GetAdvancedClustersResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 func (o GetAdvancedClustersResultOutput) RedactClientLogData() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.RedactClientLogData }).(pulumi.BoolOutput)
 }
 
-// (Optional) Replica set scaling mode for your cluster.
+// Replica set scaling mode for your cluster.
 func (o GetAdvancedClustersResultOutput) ReplicaSetScalingStrategy() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ReplicaSetScalingStrategy }).(pulumi.StringOutput)
 }
@@ -24165,6 +24337,11 @@ func (o GetAdvancedClustersResultOutput) Tags() pulumi.StringMapOutput {
 // Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
 func (o GetAdvancedClustersResultOutput) TerminationProtectionEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.TerminationProtectionEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+func (o GetAdvancedClustersResultOutput) UseAwsTimeBasedSnapshotCopyForFastInitialSync() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.UseAwsTimeBasedSnapshotCopyForFastInitialSync }).(pulumi.BoolOutput)
 }
 
 // Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
@@ -38508,7 +38685,7 @@ type GetEncryptionAtRestAwsKmsConfig struct {
 	AccessKeyId string `pulumi:"accessKeyId"`
 	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId string `pulumi:"customerMasterKeyId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled bool `pulumi:"enabled"`
 	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 	Region string `pulumi:"region"`
@@ -38538,7 +38715,7 @@ type GetEncryptionAtRestAwsKmsConfigArgs struct {
 	AccessKeyId pulumi.StringInput `pulumi:"accessKeyId"`
 	// Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
 	CustomerMasterKeyId pulumi.StringInput `pulumi:"customerMasterKeyId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
 	Region pulumi.StringInput `pulumi:"region"`
@@ -38588,7 +38765,7 @@ func (o GetEncryptionAtRestAwsKmsConfigOutput) CustomerMasterKeyId() pulumi.Stri
 	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) string { return v.CustomerMasterKeyId }).(pulumi.StringOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o GetEncryptionAtRestAwsKmsConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetEncryptionAtRestAwsKmsConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -38623,7 +38800,7 @@ type GetEncryptionAtRestAzureKeyVaultConfig struct {
 	AzureEnvironment string `pulumi:"azureEnvironment"`
 	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 	ClientId string `pulumi:"clientId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled bool `pulumi:"enabled"`
 	// Web address with a unique key that identifies for your Azure Key Vault.
 	KeyIdentifier string `pulumi:"keyIdentifier"`
@@ -38633,6 +38810,8 @@ type GetEncryptionAtRestAzureKeyVaultConfig struct {
 	RequirePrivateNetworking bool `pulumi:"requirePrivateNetworking"`
 	// Name of the Azure resource group that contains your Azure Key Vault.
 	ResourceGroupName string `pulumi:"resourceGroupName"`
+	// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+	RoleId string `pulumi:"roleId"`
 	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 	Secret string `pulumi:"secret"`
 	// Unique 36-hexadecimal character string that identifies your Azure subscription.
@@ -38659,7 +38838,7 @@ type GetEncryptionAtRestAzureKeyVaultConfigArgs struct {
 	AzureEnvironment pulumi.StringInput `pulumi:"azureEnvironment"`
 	// Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Web address with a unique key that identifies for your Azure Key Vault.
 	KeyIdentifier pulumi.StringInput `pulumi:"keyIdentifier"`
@@ -38669,6 +38848,8 @@ type GetEncryptionAtRestAzureKeyVaultConfigArgs struct {
 	RequirePrivateNetworking pulumi.BoolInput `pulumi:"requirePrivateNetworking"`
 	// Name of the Azure resource group that contains your Azure Key Vault.
 	ResourceGroupName pulumi.StringInput `pulumi:"resourceGroupName"`
+	// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
 	// Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 	Secret pulumi.StringInput `pulumi:"secret"`
 	// Unique 36-hexadecimal character string that identifies your Azure subscription.
@@ -38715,7 +38896,7 @@ func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) ClientId() pulumi.StringOu
 	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -38740,6 +38921,11 @@ func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) ResourceGroupName() pulumi
 	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.ResourceGroupName }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
 // Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
 func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEncryptionAtRestAzureKeyVaultConfig) string { return v.Secret }).(pulumi.StringOutput)
@@ -38761,7 +38947,7 @@ func (o GetEncryptionAtRestAzureKeyVaultConfigOutput) Valid() pulumi.BoolOutput 
 }
 
 type GetEncryptionAtRestGoogleCloudKmsConfig struct {
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled bool `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId string `pulumi:"keyVersionResourceId"`
@@ -38785,7 +38971,7 @@ type GetEncryptionAtRestGoogleCloudKmsConfigInput interface {
 }
 
 type GetEncryptionAtRestGoogleCloudKmsConfigArgs struct {
-	// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+	// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Resource path that displays the key version resource ID for your Google Cloud KMS.
 	KeyVersionResourceId pulumi.StringInput `pulumi:"keyVersionResourceId"`
@@ -38823,7 +39009,7 @@ func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) ToGetEncryptionAtRestGoog
 	return o
 }
 
-// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
 func (o GetEncryptionAtRestGoogleCloudKmsConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetEncryptionAtRestGoogleCloudKmsConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -47463,20 +47649,144 @@ func (o GetLdapVerifyValidationArrayOutput) Index(i pulumi.IntInput) GetLdapVeri
 	}).(GetLdapVerifyValidationOutput)
 }
 
+type GetLogIntegrationOtelSuppliedHeader struct {
+	// Header name.
+	Name string `pulumi:"name"`
+	// Header value.
+	Value string `pulumi:"value"`
+}
+
+// GetLogIntegrationOtelSuppliedHeaderInput is an input type that accepts GetLogIntegrationOtelSuppliedHeaderArgs and GetLogIntegrationOtelSuppliedHeaderOutput values.
+// You can construct a concrete instance of `GetLogIntegrationOtelSuppliedHeaderInput` via:
+//
+//	GetLogIntegrationOtelSuppliedHeaderArgs{...}
+type GetLogIntegrationOtelSuppliedHeaderInput interface {
+	pulumi.Input
+
+	ToGetLogIntegrationOtelSuppliedHeaderOutput() GetLogIntegrationOtelSuppliedHeaderOutput
+	ToGetLogIntegrationOtelSuppliedHeaderOutputWithContext(context.Context) GetLogIntegrationOtelSuppliedHeaderOutput
+}
+
+type GetLogIntegrationOtelSuppliedHeaderArgs struct {
+	// Header name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Header value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetLogIntegrationOtelSuppliedHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i GetLogIntegrationOtelSuppliedHeaderArgs) ToGetLogIntegrationOtelSuppliedHeaderOutput() GetLogIntegrationOtelSuppliedHeaderOutput {
+	return i.ToGetLogIntegrationOtelSuppliedHeaderOutputWithContext(context.Background())
+}
+
+func (i GetLogIntegrationOtelSuppliedHeaderArgs) ToGetLogIntegrationOtelSuppliedHeaderOutputWithContext(ctx context.Context) GetLogIntegrationOtelSuppliedHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogIntegrationOtelSuppliedHeaderOutput)
+}
+
+// GetLogIntegrationOtelSuppliedHeaderArrayInput is an input type that accepts GetLogIntegrationOtelSuppliedHeaderArray and GetLogIntegrationOtelSuppliedHeaderArrayOutput values.
+// You can construct a concrete instance of `GetLogIntegrationOtelSuppliedHeaderArrayInput` via:
+//
+//	GetLogIntegrationOtelSuppliedHeaderArray{ GetLogIntegrationOtelSuppliedHeaderArgs{...} }
+type GetLogIntegrationOtelSuppliedHeaderArrayInput interface {
+	pulumi.Input
+
+	ToGetLogIntegrationOtelSuppliedHeaderArrayOutput() GetLogIntegrationOtelSuppliedHeaderArrayOutput
+	ToGetLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(context.Context) GetLogIntegrationOtelSuppliedHeaderArrayOutput
+}
+
+type GetLogIntegrationOtelSuppliedHeaderArray []GetLogIntegrationOtelSuppliedHeaderInput
+
+func (GetLogIntegrationOtelSuppliedHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i GetLogIntegrationOtelSuppliedHeaderArray) ToGetLogIntegrationOtelSuppliedHeaderArrayOutput() GetLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return i.ToGetLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i GetLogIntegrationOtelSuppliedHeaderArray) ToGetLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) GetLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogIntegrationOtelSuppliedHeaderArrayOutput)
+}
+
+type GetLogIntegrationOtelSuppliedHeaderOutput struct{ *pulumi.OutputState }
+
+func (GetLogIntegrationOtelSuppliedHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o GetLogIntegrationOtelSuppliedHeaderOutput) ToGetLogIntegrationOtelSuppliedHeaderOutput() GetLogIntegrationOtelSuppliedHeaderOutput {
+	return o
+}
+
+func (o GetLogIntegrationOtelSuppliedHeaderOutput) ToGetLogIntegrationOtelSuppliedHeaderOutputWithContext(ctx context.Context) GetLogIntegrationOtelSuppliedHeaderOutput {
+	return o
+}
+
+// Header name.
+func (o GetLogIntegrationOtelSuppliedHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationOtelSuppliedHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Header value.
+func (o GetLogIntegrationOtelSuppliedHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationOtelSuppliedHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetLogIntegrationOtelSuppliedHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLogIntegrationOtelSuppliedHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o GetLogIntegrationOtelSuppliedHeaderArrayOutput) ToGetLogIntegrationOtelSuppliedHeaderArrayOutput() GetLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o GetLogIntegrationOtelSuppliedHeaderArrayOutput) ToGetLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) GetLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o GetLogIntegrationOtelSuppliedHeaderArrayOutput) Index(i pulumi.IntInput) GetLogIntegrationOtelSuppliedHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLogIntegrationOtelSuppliedHeader {
+		return vs[0].([]GetLogIntegrationOtelSuppliedHeader)[vs[1].(int)]
+	}).(GetLogIntegrationOtelSuppliedHeaderOutput)
+}
+
 type GetLogIntegrationsResult struct {
-	// Human-readable label that identifies the S3 bucket name for storing log files.
+	// Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+	ApiKey string `pulumi:"apiKey"`
+	// Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
 	BucketName string `pulumi:"bucketName"`
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+	// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+	HecToken string `pulumi:"hecToken"`
+	// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+	HecUrl string `pulumi:"hecUrl"`
+	// Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
 	IamRoleId string `pulumi:"iamRoleId"`
 	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
 	IntegrationId string `pulumi:"integrationId"`
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	// Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 	KmsKey string `pulumi:"kmsKey"`
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	// Array of log types exported by this integration.
 	LogTypes []string `pulumi:"logTypes"`
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+	// Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+	OtelEndpoint string `pulumi:"otelEndpoint"`
+	// Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+	OtelSuppliedHeaders []GetLogIntegrationsResultOtelSuppliedHeader `pulumi:"otelSuppliedHeaders"`
+	// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath string `pulumi:"prefixPath"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	// Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+	Region string `pulumi:"region"`
+	// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+	RoleId string `pulumi:"roleId"`
+	// Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+	StorageAccountName string `pulumi:"storageAccountName"`
+	// Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+	StorageContainerName string `pulumi:"storageContainerName"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type string `pulumi:"type"`
 }
 
@@ -47492,19 +47802,37 @@ type GetLogIntegrationsResultInput interface {
 }
 
 type GetLogIntegrationsResultArgs struct {
-	// Human-readable label that identifies the S3 bucket name for storing log files.
+	// Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+	// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+	HecToken pulumi.StringInput `pulumi:"hecToken"`
+	// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+	HecUrl pulumi.StringInput `pulumi:"hecUrl"`
+	// Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
 	IamRoleId pulumi.StringInput `pulumi:"iamRoleId"`
 	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
 	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	// Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 	KmsKey pulumi.StringInput `pulumi:"kmsKey"`
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	// Array of log types exported by this integration.
 	LogTypes pulumi.StringArrayInput `pulumi:"logTypes"`
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+	// Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+	OtelEndpoint pulumi.StringInput `pulumi:"otelEndpoint"`
+	// Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+	OtelSuppliedHeaders GetLogIntegrationsResultOtelSuppliedHeaderArrayInput `pulumi:"otelSuppliedHeaders"`
+	// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath pulumi.StringInput `pulumi:"prefixPath"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	// Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+	// Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+	StorageAccountName pulumi.StringInput `pulumi:"storageAccountName"`
+	// Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+	StorageContainerName pulumi.StringInput `pulumi:"storageContainerName"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -47559,12 +47887,27 @@ func (o GetLogIntegrationsResultOutput) ToGetLogIntegrationsResultOutputWithCont
 	return o
 }
 
-// Human-readable label that identifies the S3 bucket name for storing log files.
+// Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+func (o GetLogIntegrationsResultOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
 func (o GetLogIntegrationsResultOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+func (o GetLogIntegrationsResultOutput) HecToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.HecToken }).(pulumi.StringOutput)
+}
+
+// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+func (o GetLogIntegrationsResultOutput) HecUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.HecUrl }).(pulumi.StringOutput)
+}
+
+// Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
 func (o GetLogIntegrationsResultOutput) IamRoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.IamRoleId }).(pulumi.StringOutput)
 }
@@ -47574,22 +47917,54 @@ func (o GetLogIntegrationsResultOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
-// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+// Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 func (o GetLogIntegrationsResultOutput) KmsKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.KmsKey }).(pulumi.StringOutput)
 }
 
-// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+// Array of log types exported by this integration.
 func (o GetLogIntegrationsResultOutput) LogTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) []string { return v.LogTypes }).(pulumi.StringArrayOutput)
 }
 
-// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+// Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+func (o GetLogIntegrationsResultOutput) OtelEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.OtelEndpoint }).(pulumi.StringOutput)
+}
+
+// Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+func (o GetLogIntegrationsResultOutput) OtelSuppliedHeaders() GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) []GetLogIntegrationsResultOtelSuppliedHeader {
+		return v.OtelSuppliedHeaders
+	}).(GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput)
+}
+
+// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 func (o GetLogIntegrationsResultOutput) PrefixPath() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.PrefixPath }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+// Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+func (o GetLogIntegrationsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+func (o GetLogIntegrationsResultOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+// Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+func (o GetLogIntegrationsResultOutput) StorageAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.StorageAccountName }).(pulumi.StringOutput)
+}
+
+// Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+func (o GetLogIntegrationsResultOutput) StorageContainerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.StorageContainerName }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 func (o GetLogIntegrationsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -47612,6 +47987,112 @@ func (o GetLogIntegrationsResultArrayOutput) Index(i pulumi.IntInput) GetLogInte
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLogIntegrationsResult {
 		return vs[0].([]GetLogIntegrationsResult)[vs[1].(int)]
 	}).(GetLogIntegrationsResultOutput)
+}
+
+type GetLogIntegrationsResultOtelSuppliedHeader struct {
+	// Header name.
+	Name string `pulumi:"name"`
+	// Header value.
+	Value string `pulumi:"value"`
+}
+
+// GetLogIntegrationsResultOtelSuppliedHeaderInput is an input type that accepts GetLogIntegrationsResultOtelSuppliedHeaderArgs and GetLogIntegrationsResultOtelSuppliedHeaderOutput values.
+// You can construct a concrete instance of `GetLogIntegrationsResultOtelSuppliedHeaderInput` via:
+//
+//	GetLogIntegrationsResultOtelSuppliedHeaderArgs{...}
+type GetLogIntegrationsResultOtelSuppliedHeaderInput interface {
+	pulumi.Input
+
+	ToGetLogIntegrationsResultOtelSuppliedHeaderOutput() GetLogIntegrationsResultOtelSuppliedHeaderOutput
+	ToGetLogIntegrationsResultOtelSuppliedHeaderOutputWithContext(context.Context) GetLogIntegrationsResultOtelSuppliedHeaderOutput
+}
+
+type GetLogIntegrationsResultOtelSuppliedHeaderArgs struct {
+	// Header name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Header value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetLogIntegrationsResultOtelSuppliedHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogIntegrationsResultOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i GetLogIntegrationsResultOtelSuppliedHeaderArgs) ToGetLogIntegrationsResultOtelSuppliedHeaderOutput() GetLogIntegrationsResultOtelSuppliedHeaderOutput {
+	return i.ToGetLogIntegrationsResultOtelSuppliedHeaderOutputWithContext(context.Background())
+}
+
+func (i GetLogIntegrationsResultOtelSuppliedHeaderArgs) ToGetLogIntegrationsResultOtelSuppliedHeaderOutputWithContext(ctx context.Context) GetLogIntegrationsResultOtelSuppliedHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogIntegrationsResultOtelSuppliedHeaderOutput)
+}
+
+// GetLogIntegrationsResultOtelSuppliedHeaderArrayInput is an input type that accepts GetLogIntegrationsResultOtelSuppliedHeaderArray and GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput values.
+// You can construct a concrete instance of `GetLogIntegrationsResultOtelSuppliedHeaderArrayInput` via:
+//
+//	GetLogIntegrationsResultOtelSuppliedHeaderArray{ GetLogIntegrationsResultOtelSuppliedHeaderArgs{...} }
+type GetLogIntegrationsResultOtelSuppliedHeaderArrayInput interface {
+	pulumi.Input
+
+	ToGetLogIntegrationsResultOtelSuppliedHeaderArrayOutput() GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput
+	ToGetLogIntegrationsResultOtelSuppliedHeaderArrayOutputWithContext(context.Context) GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput
+}
+
+type GetLogIntegrationsResultOtelSuppliedHeaderArray []GetLogIntegrationsResultOtelSuppliedHeaderInput
+
+func (GetLogIntegrationsResultOtelSuppliedHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogIntegrationsResultOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i GetLogIntegrationsResultOtelSuppliedHeaderArray) ToGetLogIntegrationsResultOtelSuppliedHeaderArrayOutput() GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput {
+	return i.ToGetLogIntegrationsResultOtelSuppliedHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i GetLogIntegrationsResultOtelSuppliedHeaderArray) ToGetLogIntegrationsResultOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput)
+}
+
+type GetLogIntegrationsResultOtelSuppliedHeaderOutput struct{ *pulumi.OutputState }
+
+func (GetLogIntegrationsResultOtelSuppliedHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLogIntegrationsResultOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o GetLogIntegrationsResultOtelSuppliedHeaderOutput) ToGetLogIntegrationsResultOtelSuppliedHeaderOutput() GetLogIntegrationsResultOtelSuppliedHeaderOutput {
+	return o
+}
+
+func (o GetLogIntegrationsResultOtelSuppliedHeaderOutput) ToGetLogIntegrationsResultOtelSuppliedHeaderOutputWithContext(ctx context.Context) GetLogIntegrationsResultOtelSuppliedHeaderOutput {
+	return o
+}
+
+// Header name.
+func (o GetLogIntegrationsResultOtelSuppliedHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResultOtelSuppliedHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Header value.
+func (o GetLogIntegrationsResultOtelSuppliedHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResultOtelSuppliedHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLogIntegrationsResultOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput) ToGetLogIntegrationsResultOtelSuppliedHeaderArrayOutput() GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput) ToGetLogIntegrationsResultOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput) Index(i pulumi.IntInput) GetLogIntegrationsResultOtelSuppliedHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLogIntegrationsResultOtelSuppliedHeader {
+		return vs[0].([]GetLogIntegrationsResultOtelSuppliedHeader)[vs[1].(int)]
+	}).(GetLogIntegrationsResultOtelSuppliedHeaderOutput)
 }
 
 type GetMaintenanceWindowProtectedHour struct {
@@ -50956,6 +51437,220 @@ func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArrayOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult {
 		return vs[0].([]GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult)[vs[1].(int)]
 	}).(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput)
+}
+
+type GetPrivatelinkEndpointsResult struct {
+	// List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
+	EndpointGroupNames []string `pulumi:"endpointGroupNames"`
+	// Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
+	EndpointServiceName string `pulumi:"endpointServiceName"`
+	// Error message for the private endpoint connection. Returns `null` if there are no errors.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+	InterfaceEndpoints []string `pulumi:"interfaceEndpoints"`
+	// Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
+	PortMappingEnabled bool `pulumi:"portMappingEnabled"`
+	// All private endpoints that you have added to this Azure Private Link Service.
+	PrivateEndpoints []string `pulumi:"privateEndpoints"`
+	// Unique identifier of the private endpoint.
+	PrivateLinkId string `pulumi:"privateLinkId"`
+	// Name of the Azure Private Link Service that Atlas manages.
+	PrivateLinkServiceName string `pulumi:"privateLinkServiceName"`
+	// Resource ID of the Azure Private Link Service that Atlas manages.
+	PrivateLinkServiceResourceId string `pulumi:"privateLinkServiceResourceId"`
+	// Region for the Private Service Connect endpoint service.
+	RegionName string `pulumi:"regionName"`
+	// List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+	ServiceAttachmentNames []string `pulumi:"serviceAttachmentNames"`
+	// Status of the AWS PrivateLink connection.
+	// Returns one of the following values:
+	// * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+	// * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+	// * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+	// * `FAILED` - A system failure occurred.
+	// * `DELETING` - Atlas is deleting the Private Link service.
+	Status string `pulumi:"status"`
+}
+
+// GetPrivatelinkEndpointsResultInput is an input type that accepts GetPrivatelinkEndpointsResultArgs and GetPrivatelinkEndpointsResultOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsResultInput` via:
+//
+//	GetPrivatelinkEndpointsResultArgs{...}
+type GetPrivatelinkEndpointsResultInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsResultOutput() GetPrivatelinkEndpointsResultOutput
+	ToGetPrivatelinkEndpointsResultOutputWithContext(context.Context) GetPrivatelinkEndpointsResultOutput
+}
+
+type GetPrivatelinkEndpointsResultArgs struct {
+	// List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
+	EndpointGroupNames pulumi.StringArrayInput `pulumi:"endpointGroupNames"`
+	// Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
+	EndpointServiceName pulumi.StringInput `pulumi:"endpointServiceName"`
+	// Error message for the private endpoint connection. Returns `null` if there are no errors.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+	InterfaceEndpoints pulumi.StringArrayInput `pulumi:"interfaceEndpoints"`
+	// Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
+	PortMappingEnabled pulumi.BoolInput `pulumi:"portMappingEnabled"`
+	// All private endpoints that you have added to this Azure Private Link Service.
+	PrivateEndpoints pulumi.StringArrayInput `pulumi:"privateEndpoints"`
+	// Unique identifier of the private endpoint.
+	PrivateLinkId pulumi.StringInput `pulumi:"privateLinkId"`
+	// Name of the Azure Private Link Service that Atlas manages.
+	PrivateLinkServiceName pulumi.StringInput `pulumi:"privateLinkServiceName"`
+	// Resource ID of the Azure Private Link Service that Atlas manages.
+	PrivateLinkServiceResourceId pulumi.StringInput `pulumi:"privateLinkServiceResourceId"`
+	// Region for the Private Service Connect endpoint service.
+	RegionName pulumi.StringInput `pulumi:"regionName"`
+	// List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+	ServiceAttachmentNames pulumi.StringArrayInput `pulumi:"serviceAttachmentNames"`
+	// Status of the AWS PrivateLink connection.
+	// Returns one of the following values:
+	// * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+	// * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+	// * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+	// * `FAILED` - A system failure occurred.
+	// * `DELETING` - Atlas is deleting the Private Link service.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetPrivatelinkEndpointsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsResultArgs) ToGetPrivatelinkEndpointsResultOutput() GetPrivatelinkEndpointsResultOutput {
+	return i.ToGetPrivatelinkEndpointsResultOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsResultArgs) ToGetPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsResultOutput)
+}
+
+// GetPrivatelinkEndpointsResultArrayInput is an input type that accepts GetPrivatelinkEndpointsResultArray and GetPrivatelinkEndpointsResultArrayOutput values.
+// You can construct a concrete instance of `GetPrivatelinkEndpointsResultArrayInput` via:
+//
+//	GetPrivatelinkEndpointsResultArray{ GetPrivatelinkEndpointsResultArgs{...} }
+type GetPrivatelinkEndpointsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetPrivatelinkEndpointsResultArrayOutput() GetPrivatelinkEndpointsResultArrayOutput
+	ToGetPrivatelinkEndpointsResultArrayOutputWithContext(context.Context) GetPrivatelinkEndpointsResultArrayOutput
+}
+
+type GetPrivatelinkEndpointsResultArray []GetPrivatelinkEndpointsResultInput
+
+func (GetPrivatelinkEndpointsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (i GetPrivatelinkEndpointsResultArray) ToGetPrivatelinkEndpointsResultArrayOutput() GetPrivatelinkEndpointsResultArrayOutput {
+	return i.ToGetPrivatelinkEndpointsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetPrivatelinkEndpointsResultArray) ToGetPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivatelinkEndpointsResultArrayOutput)
+}
+
+type GetPrivatelinkEndpointsResultOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsResultOutput) ToGetPrivatelinkEndpointsResultOutput() GetPrivatelinkEndpointsResultOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsResultOutput) ToGetPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsResultOutput {
+	return o
+}
+
+// List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
+func (o GetPrivatelinkEndpointsResultOutput) EndpointGroupNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) []string { return v.EndpointGroupNames }).(pulumi.StringArrayOutput)
+}
+
+// Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
+func (o GetPrivatelinkEndpointsResultOutput) EndpointServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.EndpointServiceName }).(pulumi.StringOutput)
+}
+
+// Error message for the private endpoint connection. Returns `null` if there are no errors.
+func (o GetPrivatelinkEndpointsResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+func (o GetPrivatelinkEndpointsResultOutput) InterfaceEndpoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) []string { return v.InterfaceEndpoints }).(pulumi.StringArrayOutput)
+}
+
+// Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
+func (o GetPrivatelinkEndpointsResultOutput) PortMappingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) bool { return v.PortMappingEnabled }).(pulumi.BoolOutput)
+}
+
+// All private endpoints that you have added to this Azure Private Link Service.
+func (o GetPrivatelinkEndpointsResultOutput) PrivateEndpoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) []string { return v.PrivateEndpoints }).(pulumi.StringArrayOutput)
+}
+
+// Unique identifier of the private endpoint.
+func (o GetPrivatelinkEndpointsResultOutput) PrivateLinkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.PrivateLinkId }).(pulumi.StringOutput)
+}
+
+// Name of the Azure Private Link Service that Atlas manages.
+func (o GetPrivatelinkEndpointsResultOutput) PrivateLinkServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.PrivateLinkServiceName }).(pulumi.StringOutput)
+}
+
+// Resource ID of the Azure Private Link Service that Atlas manages.
+func (o GetPrivatelinkEndpointsResultOutput) PrivateLinkServiceResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.PrivateLinkServiceResourceId }).(pulumi.StringOutput)
+}
+
+// Region for the Private Service Connect endpoint service.
+func (o GetPrivatelinkEndpointsResultOutput) RegionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.RegionName }).(pulumi.StringOutput)
+}
+
+// List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+func (o GetPrivatelinkEndpointsResultOutput) ServiceAttachmentNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) []string { return v.ServiceAttachmentNames }).(pulumi.StringArrayOutput)
+}
+
+// Status of the AWS PrivateLink connection.
+// Returns one of the following values:
+// * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+// * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+// * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+// * `FAILED` - A system failure occurred.
+// * `DELETING` - Atlas is deleting the Private Link service.
+func (o GetPrivatelinkEndpointsResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetPrivatelinkEndpointsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPrivatelinkEndpointsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (o GetPrivatelinkEndpointsResultArrayOutput) ToGetPrivatelinkEndpointsResultArrayOutput() GetPrivatelinkEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsResultArrayOutput) ToGetPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetPrivatelinkEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetPrivatelinkEndpointsResultArrayOutput) Index(i pulumi.IntInput) GetPrivatelinkEndpointsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPrivatelinkEndpointsResult {
+		return vs[0].([]GetPrivatelinkEndpointsResult)[vs[1].(int)]
+	}).(GetPrivatelinkEndpointsResultOutput)
 }
 
 type GetProjectApiKeyProjectAssignment struct {
@@ -60202,8 +60897,10 @@ type GetThirdPartyIntegrationsResult struct {
 	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
 	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
-	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
 	// * `OPS_GENIE`
+	SendQueryStatsMetrics bool `pulumi:"sendQueryStatsMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery string `pulumi:"serviceDiscovery"`
@@ -60257,8 +60954,10 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	SendCollectionLatencyMetrics pulumi.BoolInput `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
 	SendDatabaseMetrics pulumi.BoolInput `pulumi:"sendDatabaseMetrics"`
-	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
 	// * `OPS_GENIE`
+	SendQueryStatsMetrics pulumi.BoolInput `pulumi:"sendQueryStatsMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 	SendUserProvidedResourceTags pulumi.BoolInput `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery pulumi.StringInput `pulumi:"serviceDiscovery"`
@@ -60387,8 +61086,13 @@ func (o GetThirdPartyIntegrationsResultOutput) SendDatabaseMetrics() pulumi.Bool
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
 }
 
-// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
 // * `OPS_GENIE`
+func (o GetThirdPartyIntegrationsResultOutput) SendQueryStatsMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendQueryStatsMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 func (o GetThirdPartyIntegrationsResultOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendUserProvidedResourceTags }).(pulumi.BoolOutput)
 }
@@ -60752,6 +61456,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyLinkArrayInput)(nil)).Elem(), LdapVerifyLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyValidationInput)(nil)).Elem(), LdapVerifyValidationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LdapVerifyValidationArrayInput)(nil)).Elem(), LdapVerifyValidationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIntegrationOtelSuppliedHeaderInput)(nil)).Elem(), LogIntegrationOtelSuppliedHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogIntegrationOtelSuppliedHeaderArrayInput)(nil)).Elem(), LogIntegrationOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursPtrInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
@@ -61201,8 +61907,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyLinkArrayInput)(nil)).Elem(), GetLdapVerifyLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyValidationInput)(nil)).Elem(), GetLdapVerifyValidationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLdapVerifyValidationArrayInput)(nil)).Elem(), GetLdapVerifyValidationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationOtelSuppliedHeaderInput)(nil)).Elem(), GetLogIntegrationOtelSuppliedHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationOtelSuppliedHeaderArrayInput)(nil)).Elem(), GetLogIntegrationOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultInput)(nil)).Elem(), GetLogIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultArrayInput)(nil)).Elem(), GetLogIntegrationsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultOtelSuppliedHeaderInput)(nil)).Elem(), GetLogIntegrationsResultOtelSuppliedHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultOtelSuppliedHeaderArrayInput)(nil)).Elem(), GetLogIntegrationsResultOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourArrayInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultInput)(nil)).Elem(), GetNetworkContainersResultArgs{})
@@ -61253,6 +61963,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), GetPrivateLinkEndpointServiceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultInput)(nil)).Elem(), GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArrayInput)(nil)).Elem(), GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsResultInput)(nil)).Elem(), GetPrivatelinkEndpointsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivatelinkEndpointsResultArrayInput)(nil)).Elem(), GetPrivatelinkEndpointsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyProjectAssignmentInput)(nil)).Elem(), GetProjectApiKeyProjectAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeyProjectAssignmentArrayInput)(nil)).Elem(), GetProjectApiKeyProjectAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectApiKeysResultInput)(nil)).Elem(), GetProjectApiKeysResultArgs{})
@@ -61579,6 +62291,8 @@ func init() {
 	pulumi.RegisterOutputType(LdapVerifyLinkArrayOutput{})
 	pulumi.RegisterOutputType(LdapVerifyValidationOutput{})
 	pulumi.RegisterOutputType(LdapVerifyValidationArrayOutput{})
+	pulumi.RegisterOutputType(LogIntegrationOtelSuppliedHeaderOutput{})
+	pulumi.RegisterOutputType(LogIntegrationOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursOutput{})
 	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaOutput{})
@@ -62028,8 +62742,12 @@ func init() {
 	pulumi.RegisterOutputType(GetLdapVerifyLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetLdapVerifyValidationOutput{})
 	pulumi.RegisterOutputType(GetLdapVerifyValidationArrayOutput{})
+	pulumi.RegisterOutputType(GetLogIntegrationOtelSuppliedHeaderOutput{})
+	pulumi.RegisterOutputType(GetLogIntegrationOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(GetLogIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetLogIntegrationsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetLogIntegrationsResultOtelSuppliedHeaderOutput{})
+	pulumi.RegisterOutputType(GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultOutput{})
@@ -62080,6 +62798,8 @@ func init() {
 	pulumi.RegisterOutputType(GetPrivateLinkEndpointServiceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput{})
 	pulumi.RegisterOutputType(GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsResultOutput{})
+	pulumi.RegisterOutputType(GetPrivatelinkEndpointsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyProjectAssignmentOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeyProjectAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectApiKeysResultOutput{})

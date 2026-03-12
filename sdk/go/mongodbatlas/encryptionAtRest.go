@@ -29,7 +29,7 @@ import (
 //
 // > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 //
-// > **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryptionAtRestProvider = "NONE"`, or be deleted.
+// > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryptionAtRestProvider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
 //
 // ## Enabling Encryption at Rest for existing Atlas cluster
 //
@@ -143,13 +143,11 @@ import (
 //				AzureKeyVaultConfig: &mongodbatlas.EncryptionAtRestAzureKeyVaultConfigArgs{
 //					Enabled:           pulumi.Bool(true),
 //					AzureEnvironment:  pulumi.String("AZURE"),
-//					TenantId:          pulumi.Any(azureTenantId),
 //					SubscriptionId:    pulumi.Any(azureSubscriptionId),
-//					ClientId:          pulumi.Any(azureClientId),
-//					Secret:            pulumi.Any(azureClientSecret),
 //					ResourceGroupName: pulumi.Any(azureResourceGroupName),
 //					KeyVaultName:      pulumi.Any(azureKeyVaultName),
 //					KeyIdentifier:     pulumi.Any(azureKeyIdentifier),
+//					RoleId:            pulumi.Any(azureRoleId),
 //				},
 //			})
 //			if err != nil {

@@ -20,7 +20,7 @@ public final class GetLogIntegrationsInvokeResult {
      */
     private String id;
     /**
-     * @return Optional filter by integration type (e.g., &#39;S3*LOG*EXPORT&#39;).
+     * @return Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      * 
      */
     private @Nullable String integrationType;
@@ -44,7 +44,7 @@ public final class GetLogIntegrationsInvokeResult {
         return this.id;
     }
     /**
-     * @return Optional filter by integration type (e.g., &#39;S3*LOG*EXPORT&#39;).
+     * @return Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      * 
      */
     public Optional<String> integrationType() {

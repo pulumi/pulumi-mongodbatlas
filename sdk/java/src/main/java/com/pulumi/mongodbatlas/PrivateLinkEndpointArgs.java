@@ -33,14 +33,14 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      * 
      */
     @Import(name="portMappingEnabled")
     private @Nullable Output<Boolean> portMappingEnabled;
 
     /**
-     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      * 
      */
     public Optional<Output<Boolean>> portMappingEnabled() {
@@ -63,14 +63,14 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
     /**
-     * @return Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * @return Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      * 
      */
     public Output<String> providerName() {
@@ -144,7 +144,7 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
          * 
          * @return builder
          * 
@@ -155,7 +155,7 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
          * 
          * @return builder
          * 
@@ -186,7 +186,7 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
          * 
          * @return builder
          * 
@@ -197,7 +197,7 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
          * 
          * @return builder
          * 

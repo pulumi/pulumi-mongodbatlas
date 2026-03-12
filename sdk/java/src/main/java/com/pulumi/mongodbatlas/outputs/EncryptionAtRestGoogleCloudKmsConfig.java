@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class EncryptionAtRestGoogleCloudKmsConfig {
     /**
-     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     private @Nullable Boolean enabled;
@@ -40,7 +40,7 @@ public final class EncryptionAtRestGoogleCloudKmsConfig {
 
     private EncryptionAtRestGoogleCloudKmsConfig() {}
     /**
-     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+     * @return Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      * 
      */
     public Optional<Boolean> enabled() {

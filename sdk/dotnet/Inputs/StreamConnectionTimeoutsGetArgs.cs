@@ -19,6 +19,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Create { get; set; }
 
         /// <summary>
+        /// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        /// </summary>
+        [Input("delete")]
+        public Input<string>? Delete { get; set; }
+
+        /// <summary>
         /// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
         /// </summary>
         [Input("update")]

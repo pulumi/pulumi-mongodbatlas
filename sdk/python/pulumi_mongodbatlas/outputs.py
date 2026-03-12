@@ -111,6 +111,7 @@ __all__ = [
     'LdapConfigurationUserToDnMapping',
     'LdapVerifyLink',
     'LdapVerifyValidation',
+    'LogIntegrationOtelSuppliedHeader',
     'MaintenanceWindowProtectedHours',
     'OnlineArchiveCriteria',
     'OnlineArchiveDataExpirationRule',
@@ -353,7 +354,9 @@ __all__ = [
     'GetLdapConfigurationUserToDnMappingResult',
     'GetLdapVerifyLinkResult',
     'GetLdapVerifyValidationResult',
+    'GetLogIntegrationOtelSuppliedHeaderResult',
     'GetLogIntegrationsResultResult',
+    'GetLogIntegrationsResultOtelSuppliedHeaderResult',
     'GetMaintenanceWindowProtectedHourResult',
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
@@ -379,6 +382,7 @@ __all__ = [
     'GetOrganizationsResultUserRoleProjectRoleAssignmentResult',
     'GetPrivateLinkEndpointServiceEndpointResult',
     'GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult',
+    'GetPrivatelinkEndpointsResultResult',
     'GetProjectApiKeyProjectAssignmentResult',
     'GetProjectApiKeysResultResult',
     'GetProjectApiKeysResultProjectAssignmentResult',
@@ -1438,6 +1442,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+               
+               > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1482,6 +1488,8 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     def instance_size(self) -> Optional[_builtins.str]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+        > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         """
         return pulumi.get(self, "instance_size")
 
@@ -1650,6 +1658,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+               
+               > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1694,6 +1704,8 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     def instance_size(self) -> Optional[_builtins.str]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+        > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         """
         return pulumi.get(self, "instance_size")
 
@@ -1746,6 +1758,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
                * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
                * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+               
+               > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1790,6 +1804,8 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     def instance_size(self) -> Optional[_builtins.str]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
+
+        > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
         """
         return pulumi.get(self, "instance_size")
 
@@ -5743,7 +5759,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
         """
         :param _builtins.str access_key_id: Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
         :param _builtins.str customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
-        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param _builtins.str region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         :param _builtins.bool require_private_networking: Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
         :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
@@ -5787,7 +5803,7 @@ class EncryptionAtRestAwsKmsConfig(dict):
     @pulumi.getter
     def enabled(self) -> Optional[_builtins.bool]:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -5849,6 +5865,8 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
             suggest = "require_private_networking"
         elif key == "resourceGroupName":
             suggest = "resource_group_name"
+        elif key == "roleId":
+            suggest = "role_id"
         elif key == "subscriptionId":
             suggest = "subscription_id"
         elif key == "tenantId":
@@ -5873,6 +5891,7 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
                  key_vault_name: Optional[_builtins.str] = None,
                  require_private_networking: Optional[_builtins.bool] = None,
                  resource_group_name: Optional[_builtins.str] = None,
+                 role_id: Optional[_builtins.str] = None,
                  secret: Optional[_builtins.str] = None,
                  subscription_id: Optional[_builtins.str] = None,
                  tenant_id: Optional[_builtins.str] = None,
@@ -5880,11 +5899,12 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
         """
         :param _builtins.str azure_environment: Azure environment in which your account credentials reside.
         :param _builtins.str client_id: Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
-        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param _builtins.str key_identifier: Web address with a unique key that identifies for your Azure Key Vault.
         :param _builtins.str key_vault_name: Unique string that identifies the Azure Key Vault that contains your key.
         :param _builtins.bool require_private_networking: Enable connection to your Azure Key Vault over private networking.
         :param _builtins.str resource_group_name: Name of the Azure resource group that contains your Azure Key Vault.
+        :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
         :param _builtins.str secret: Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
         :param _builtins.str subscription_id: Unique 36-hexadecimal character string that identifies your Azure subscription.
         :param _builtins.str tenant_id: Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
@@ -5904,6 +5924,8 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
             pulumi.set(__self__, "require_private_networking", require_private_networking)
         if resource_group_name is not None:
             pulumi.set(__self__, "resource_group_name", resource_group_name)
+        if role_id is not None:
+            pulumi.set(__self__, "role_id", role_id)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
         if subscription_id is not None:
@@ -5933,7 +5955,7 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
     @pulumi.getter
     def enabled(self) -> Optional[_builtins.bool]:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -5968,6 +5990,14 @@ class EncryptionAtRestAzureKeyVaultConfig(dict):
         Name of the Azure resource group that contains your Azure Key Vault.
         """
         return pulumi.get(self, "resource_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+        """
+        return pulumi.get(self, "role_id")
 
     @_builtins.property
     @pulumi.getter
@@ -6032,7 +6062,7 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
                  service_account_key: Optional[_builtins.str] = None,
                  valid: Optional[_builtins.bool] = None):
         """
-        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param _builtins.str key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
         :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
         :param _builtins.str service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
@@ -6053,7 +6083,7 @@ class EncryptionAtRestGoogleCloudKmsConfig(dict):
     @pulumi.getter
     def enabled(self) -> Optional[_builtins.bool]:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -7494,6 +7524,35 @@ class LdapVerifyValidation(dict):
     @pulumi.getter(name="validationType")
     def validation_type(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "validation_type")
+
+
+@pulumi.output_type
+class LogIntegrationOtelSuppliedHeader(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -9371,13 +9430,17 @@ class StreamConnectionSecurity(dict):
 class StreamConnectionTimeouts(dict):
     def __init__(__self__, *,
                  create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
                  update: Optional[_builtins.str] = None):
         """
         :param _builtins.str create: The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        :param _builtins.str delete: The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
         :param _builtins.str update: The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
         """
         if create is not None:
             pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
         if update is not None:
             pulumi.set(__self__, "update", update)
 
@@ -9388,6 +9451,14 @@ class StreamConnectionTimeouts(dict):
         The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
         """
         return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        """
+        return pulumi.get(self, "delete")
 
     @_builtins.property
     @pulumi.getter
@@ -10972,6 +11043,7 @@ class GetAdvancedClustersResultResult(dict):
                  state_name: _builtins.str,
                  tags: Mapping[str, _builtins.str],
                  termination_protection_enabled: _builtins.bool,
+                 use_aws_time_based_snapshot_copy_for_fast_initial_sync: _builtins.bool,
                  version_release_system: _builtins.str,
                  use_effective_fields: Optional[_builtins.bool] = None):
         """
@@ -10994,13 +11066,14 @@ class GetAdvancedClustersResultResult(dict):
         :param 'GetAdvancedClustersResultPinnedFcvArgs' pinned_fcv: The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
         :param _builtins.bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
         :param _builtins.str project_id: The unique ID for the project to get the clusters.
-        :param _builtins.bool redact_client_log_data: (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
-        :param _builtins.str replica_set_scaling_strategy: (Optional) Replica set scaling mode for your cluster.
+        :param _builtins.bool redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+        :param _builtins.str replica_set_scaling_strategy: Replica set scaling mode for your cluster.
         :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
         :param _builtins.str root_cert_type: Certificate Authority that MongoDB Atlas clusters use.
         :param _builtins.str state_name: Current state of the cluster. The possible states are:
         :param Mapping[str, _builtins.str] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param _builtins.bool termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
+        :param _builtins.bool use_aws_time_based_snapshot_copy_for_fast_initial_sync: Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
         :param _builtins.str version_release_system: Release cadence that Atlas uses for this cluster.
         :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
         """
@@ -11030,6 +11103,7 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "state_name", state_name)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "termination_protection_enabled", termination_protection_enabled)
+        pulumi.set(__self__, "use_aws_time_based_snapshot_copy_for_fast_initial_sync", use_aws_time_based_snapshot_copy_for_fast_initial_sync)
         pulumi.set(__self__, "version_release_system", version_release_system)
         if use_effective_fields is not None:
             pulumi.set(__self__, "use_effective_fields", use_effective_fields)
@@ -11190,7 +11264,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="redactClientLogData")
     def redact_client_log_data(self) -> _builtins.bool:
         """
-        (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+        Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         """
         return pulumi.get(self, "redact_client_log_data")
 
@@ -11198,7 +11272,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="replicaSetScalingStrategy")
     def replica_set_scaling_strategy(self) -> _builtins.str:
         """
-        (Optional) Replica set scaling mode for your cluster.
+        Replica set scaling mode for your cluster.
         """
         return pulumi.get(self, "replica_set_scaling_strategy")
 
@@ -11241,6 +11315,14 @@ class GetAdvancedClustersResultResult(dict):
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="useAwsTimeBasedSnapshotCopyForFastInitialSync")
+    def use_aws_time_based_snapshot_copy_for_fast_initial_sync(self) -> _builtins.bool:
+        """
+        Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+        """
+        return pulumi.get(self, "use_aws_time_based_snapshot_copy_for_fast_initial_sync")
 
     @_builtins.property
     @pulumi.getter(name="versionReleaseSystem")
@@ -18190,7 +18272,7 @@ class GetEncryptionAtRestAwsKmsConfigResult(dict):
         """
         :param _builtins.str access_key_id: Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
         :param _builtins.str customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
-        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param _builtins.str region: Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Atlas deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         :param _builtins.bool require_private_networking: Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
         :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
@@ -18226,7 +18308,7 @@ class GetEncryptionAtRestAwsKmsConfigResult(dict):
     @pulumi.getter
     def enabled(self) -> _builtins.bool:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -18281,6 +18363,7 @@ class GetEncryptionAtRestAzureKeyVaultConfigResult(dict):
                  key_vault_name: _builtins.str,
                  require_private_networking: _builtins.bool,
                  resource_group_name: _builtins.str,
+                 role_id: _builtins.str,
                  secret: _builtins.str,
                  subscription_id: _builtins.str,
                  tenant_id: _builtins.str,
@@ -18288,11 +18371,12 @@ class GetEncryptionAtRestAzureKeyVaultConfigResult(dict):
         """
         :param _builtins.str azure_environment: Azure environment in which your account credentials reside.
         :param _builtins.str client_id: Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
-        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param _builtins.str key_identifier: Web address with a unique key that identifies for your Azure Key Vault.
         :param _builtins.str key_vault_name: Unique string that identifies the Azure Key Vault that contains your key.
         :param _builtins.bool require_private_networking: Enable connection to your Azure Key Vault over private networking.
         :param _builtins.str resource_group_name: Name of the Azure resource group that contains your Azure Key Vault.
+        :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
         :param _builtins.str secret: Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
         :param _builtins.str subscription_id: Unique 36-hexadecimal character string that identifies your Azure subscription.
         :param _builtins.str tenant_id: Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
@@ -18305,6 +18389,7 @@ class GetEncryptionAtRestAzureKeyVaultConfigResult(dict):
         pulumi.set(__self__, "key_vault_name", key_vault_name)
         pulumi.set(__self__, "require_private_networking", require_private_networking)
         pulumi.set(__self__, "resource_group_name", resource_group_name)
+        pulumi.set(__self__, "role_id", role_id)
         pulumi.set(__self__, "secret", secret)
         pulumi.set(__self__, "subscription_id", subscription_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -18330,7 +18415,7 @@ class GetEncryptionAtRestAzureKeyVaultConfigResult(dict):
     @pulumi.getter
     def enabled(self) -> _builtins.bool:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -18365,6 +18450,14 @@ class GetEncryptionAtRestAzureKeyVaultConfigResult(dict):
         Name of the Azure resource group that contains your Azure Key Vault.
         """
         return pulumi.get(self, "resource_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
+        """
+        return pulumi.get(self, "role_id")
 
     @_builtins.property
     @pulumi.getter
@@ -18408,7 +18501,7 @@ class GetEncryptionAtRestGoogleCloudKmsConfigResult(dict):
                  service_account_key: _builtins.str,
                  valid: _builtins.bool):
         """
-        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        :param _builtins.bool enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param _builtins.str key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
         :param _builtins.str role_id: Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
         :param _builtins.str service_account_key: JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
@@ -18424,7 +18517,7 @@ class GetEncryptionAtRestGoogleCloudKmsConfigResult(dict):
     @pulumi.getter
     def enabled(self) -> _builtins.bool:
         """
-        Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `false`.
+        Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
@@ -22175,45 +22268,125 @@ class GetLdapVerifyValidationResult(dict):
 
 
 @pulumi.output_type
+class GetLogIntegrationOtelSuppliedHeaderResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetLogIntegrationsResultResult(dict):
     def __init__(__self__, *,
+                 api_key: _builtins.str,
                  bucket_name: _builtins.str,
+                 hec_token: _builtins.str,
+                 hec_url: _builtins.str,
                  iam_role_id: _builtins.str,
                  integration_id: _builtins.str,
                  kms_key: _builtins.str,
                  log_types: Sequence[_builtins.str],
+                 otel_endpoint: _builtins.str,
+                 otel_supplied_headers: Sequence['outputs.GetLogIntegrationsResultOtelSuppliedHeaderResult'],
                  prefix_path: _builtins.str,
+                 region: _builtins.str,
+                 role_id: _builtins.str,
+                 storage_account_name: _builtins.str,
+                 storage_container_name: _builtins.str,
                  type: _builtins.str):
         """
-        :param _builtins.str bucket_name: Human-readable label that identifies the S3 bucket name for storing log files.
-        :param _builtins.str iam_role_id: Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        :param _builtins.str api_key: Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+        :param _builtins.str bucket_name: Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+        :param _builtins.str hec_token: Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        :param _builtins.str hec_url: Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        :param _builtins.str iam_role_id: Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         :param _builtins.str integration_id: Unique 24-character hexadecimal digit string that identifies the log integration configuration.
-        :param _builtins.str kms_key: AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-        :param Sequence[_builtins.str] log_types: Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
-        :param _builtins.str prefix_path: S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-        :param _builtins.str type: Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        :param _builtins.str kms_key: Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        :param Sequence[_builtins.str] log_types: Array of log types exported by this integration.
+        :param _builtins.str otel_endpoint: Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+        :param Sequence['GetLogIntegrationsResultOtelSuppliedHeaderArgs'] otel_supplied_headers: Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        :param _builtins.str prefix_path: Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+        :param _builtins.str region: Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        :param _builtins.str role_id: Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        :param _builtins.str storage_account_name: Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        :param _builtins.str storage_container_name: Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+        :param _builtins.str type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
+        pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "hec_token", hec_token)
+        pulumi.set(__self__, "hec_url", hec_url)
         pulumi.set(__self__, "iam_role_id", iam_role_id)
         pulumi.set(__self__, "integration_id", integration_id)
         pulumi.set(__self__, "kms_key", kms_key)
         pulumi.set(__self__, "log_types", log_types)
+        pulumi.set(__self__, "otel_endpoint", otel_endpoint)
+        pulumi.set(__self__, "otel_supplied_headers", otel_supplied_headers)
         pulumi.set(__self__, "prefix_path", prefix_path)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "role_id", role_id)
+        pulumi.set(__self__, "storage_account_name", storage_account_name)
+        pulumi.set(__self__, "storage_container_name", storage_container_name)
         pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+        """
+        return pulumi.get(self, "api_key")
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> _builtins.str:
         """
-        Human-readable label that identifies the S3 bucket name for storing log files.
+        Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
         """
         return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hecToken")
+    def hec_token(self) -> _builtins.str:
+        """
+        Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        """
+        return pulumi.get(self, "hec_token")
+
+    @_builtins.property
+    @pulumi.getter(name="hecUrl")
+    def hec_url(self) -> _builtins.str:
+        """
+        Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        """
+        return pulumi.get(self, "hec_url")
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")
     def iam_role_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         """
         return pulumi.get(self, "iam_role_id")
 
@@ -22229,7 +22402,7 @@ class GetLogIntegrationsResultResult(dict):
     @pulumi.getter(name="kmsKey")
     def kms_key(self) -> _builtins.str:
         """
-        AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         """
         return pulumi.get(self, "kms_key")
 
@@ -22237,25 +22410,102 @@ class GetLogIntegrationsResultResult(dict):
     @pulumi.getter(name="logTypes")
     def log_types(self) -> Sequence[_builtins.str]:
         """
-        Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        Array of log types exported by this integration.
         """
         return pulumi.get(self, "log_types")
+
+    @_builtins.property
+    @pulumi.getter(name="otelEndpoint")
+    def otel_endpoint(self) -> _builtins.str:
+        """
+        Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+        """
+        return pulumi.get(self, "otel_endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="otelSuppliedHeaders")
+    def otel_supplied_headers(self) -> Sequence['outputs.GetLogIntegrationsResultOtelSuppliedHeaderResult']:
+        """
+        Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        """
+        return pulumi.get(self, "otel_supplied_headers")
 
     @_builtins.property
     @pulumi.getter(name="prefixPath")
     def prefix_path(self) -> _builtins.str:
         """
-        S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         """
         return pulumi.get(self, "prefix_path")
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> _builtins.str:
+        """
+        Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        """
+        return pulumi.get(self, "role_id")
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> _builtins.str:
+        """
+        Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+    @_builtins.property
+    @pulumi.getter(name="storageContainerName")
+    def storage_container_name(self) -> _builtins.str:
+        """
+        Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+        """
+        return pulumi.get(self, "storage_container_name")
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetLogIntegrationsResultOtelSuppliedHeaderResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -23754,6 +24004,157 @@ class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultResult(dict
         Human-readable label that identifies the resource type associated with this private endpoint.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetPrivatelinkEndpointsResultResult(dict):
+    def __init__(__self__, *,
+                 endpoint_group_names: Sequence[_builtins.str],
+                 endpoint_service_name: _builtins.str,
+                 error_message: _builtins.str,
+                 interface_endpoints: Sequence[_builtins.str],
+                 port_mapping_enabled: _builtins.bool,
+                 private_endpoints: Sequence[_builtins.str],
+                 private_link_id: _builtins.str,
+                 private_link_service_name: _builtins.str,
+                 private_link_service_resource_id: _builtins.str,
+                 region_name: _builtins.str,
+                 service_attachment_names: Sequence[_builtins.str],
+                 status: _builtins.str):
+        """
+        :param Sequence[_builtins.str] endpoint_group_names: List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
+        :param _builtins.str endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
+        :param _builtins.str error_message: Error message for the private endpoint connection. Returns `null` if there are no errors.
+        :param Sequence[_builtins.str] interface_endpoints: Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        :param _builtins.bool port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        :param Sequence[_builtins.str] private_endpoints: All private endpoints that you have added to this Azure Private Link Service.
+        :param _builtins.str private_link_id: Unique identifier of the private endpoint.
+        :param _builtins.str private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
+        :param _builtins.str private_link_service_resource_id: Resource ID of the Azure Private Link Service that Atlas manages.
+        :param _builtins.str region_name: Region for the Private Service Connect endpoint service.
+        :param Sequence[_builtins.str] service_attachment_names: List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+        :param _builtins.str status: Status of the AWS PrivateLink connection.
+               Returns one of the following values:
+               * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+               * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+               * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+               * `FAILED` - A system failure occurred.
+               * `DELETING` - Atlas is deleting the Private Link service.
+        """
+        pulumi.set(__self__, "endpoint_group_names", endpoint_group_names)
+        pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "interface_endpoints", interface_endpoints)
+        pulumi.set(__self__, "port_mapping_enabled", port_mapping_enabled)
+        pulumi.set(__self__, "private_endpoints", private_endpoints)
+        pulumi.set(__self__, "private_link_id", private_link_id)
+        pulumi.set(__self__, "private_link_service_name", private_link_service_name)
+        pulumi.set(__self__, "private_link_service_resource_id", private_link_service_resource_id)
+        pulumi.set(__self__, "region_name", region_name)
+        pulumi.set(__self__, "service_attachment_names", service_attachment_names)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="endpointGroupNames")
+    def endpoint_group_names(self) -> Sequence[_builtins.str]:
+        """
+        List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
+        """
+        return pulumi.get(self, "endpoint_group_names")
+
+    @_builtins.property
+    @pulumi.getter(name="endpointServiceName")
+    def endpoint_service_name(self) -> _builtins.str:
+        """
+        Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
+        """
+        return pulumi.get(self, "endpoint_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        Error message for the private endpoint connection. Returns `null` if there are no errors.
+        """
+        return pulumi.get(self, "error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="interfaceEndpoints")
+    def interface_endpoints(self) -> Sequence[_builtins.str]:
+        """
+        Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
+        """
+        return pulumi.get(self, "interface_endpoints")
+
+    @_builtins.property
+    @pulumi.getter(name="portMappingEnabled")
+    def port_mapping_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        """
+        return pulumi.get(self, "port_mapping_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoints")
+    def private_endpoints(self) -> Sequence[_builtins.str]:
+        """
+        All private endpoints that you have added to this Azure Private Link Service.
+        """
+        return pulumi.get(self, "private_endpoints")
+
+    @_builtins.property
+    @pulumi.getter(name="privateLinkId")
+    def private_link_id(self) -> _builtins.str:
+        """
+        Unique identifier of the private endpoint.
+        """
+        return pulumi.get(self, "private_link_id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateLinkServiceName")
+    def private_link_service_name(self) -> _builtins.str:
+        """
+        Name of the Azure Private Link Service that Atlas manages.
+        """
+        return pulumi.get(self, "private_link_service_name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateLinkServiceResourceId")
+    def private_link_service_resource_id(self) -> _builtins.str:
+        """
+        Resource ID of the Azure Private Link Service that Atlas manages.
+        """
+        return pulumi.get(self, "private_link_service_resource_id")
+
+    @_builtins.property
+    @pulumi.getter(name="regionName")
+    def region_name(self) -> _builtins.str:
+        """
+        Region for the Private Service Connect endpoint service.
+        """
+        return pulumi.get(self, "region_name")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAttachmentNames")
+    def service_attachment_names(self) -> Sequence[_builtins.str]:
+        """
+        List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+        """
+        return pulumi.get(self, "service_attachment_names")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        Status of the AWS PrivateLink connection.
+        Returns one of the following values:
+        * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+        * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+        * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+        * `FAILED` - A system failure occurred.
+        * `DELETING` - Atlas is deleting the Private Link service.
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -28384,6 +28785,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
                  secret: _builtins.str,
                  send_collection_latency_metrics: _builtins.bool,
                  send_database_metrics: _builtins.bool,
+                 send_query_stats_metrics: _builtins.bool,
                  send_user_provided_resource_tags: _builtins.bool,
                  service_discovery: _builtins.str,
                  service_key: _builtins.str,
@@ -28406,8 +28808,9 @@ class GetThirdPartyIntegrationsResultResult(dict):
                * `MICROSOFT_TEAMS`
         :param _builtins.bool send_collection_latency_metrics: Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
         :param _builtins.bool send_database_metrics: Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-        :param _builtins.bool send_user_provided_resource_tags: Toggle sending user provided group and cluster resource tags with the datadog metrics.
+        :param _builtins.bool send_query_stats_metrics: Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
                * `OPS_GENIE`
+        :param _builtins.bool send_user_provided_resource_tags: Toggle sending user provided group and cluster resource tags with the Datadog metrics.
         :param _builtins.str service_discovery: Indicates which service discovery method is used, either file or http.
         :param _builtins.str service_key: Your Service Key.
                * `DATADOG`
@@ -28427,6 +28830,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
         pulumi.set(__self__, "secret", secret)
         pulumi.set(__self__, "send_collection_latency_metrics", send_collection_latency_metrics)
         pulumi.set(__self__, "send_database_metrics", send_database_metrics)
+        pulumi.set(__self__, "send_query_stats_metrics", send_query_stats_metrics)
         pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
         pulumi.set(__self__, "service_discovery", service_discovery)
         pulumi.set(__self__, "service_key", service_key)
@@ -28530,11 +28934,19 @@ class GetThirdPartyIntegrationsResultResult(dict):
         return pulumi.get(self, "send_database_metrics")
 
     @_builtins.property
+    @pulumi.getter(name="sendQueryStatsMetrics")
+    def send_query_stats_metrics(self) -> _builtins.bool:
+        """
+        Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
+        * `OPS_GENIE`
+        """
+        return pulumi.get(self, "send_query_stats_metrics")
+
+    @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
     def send_user_provided_resource_tags(self) -> _builtins.bool:
         """
-        Toggle sending user provided group and cluster resource tags with the datadog metrics.
-        * `OPS_GENIE`
+        Toggle sending user provided group and cluster resource tags with the Datadog metrics.
         """
         return pulumi.get(self, "send_user_provided_resource_tags")
 

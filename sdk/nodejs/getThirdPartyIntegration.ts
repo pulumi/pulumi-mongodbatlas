@@ -96,7 +96,7 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly secret: string;
     /**
-     * Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+     * Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
      */
     readonly sendCollectionLatencyMetrics: boolean;
     /**
@@ -104,8 +104,12 @@ export interface GetThirdPartyIntegrationResult {
      */
     readonly sendDatabaseMetrics: boolean;
     /**
-     * Toggle sending user provided group and cluster resource tags with the datadog metrics.
+     * Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
      * * `OPS_GENIE`
+     */
+    readonly sendQueryStatsMetrics: boolean;
+    /**
+     * Toggle sending user provided group and cluster resource tags with the Datadog metrics.
      */
     readonly sendUserProvidedResourceTags: boolean;
     /**

@@ -33,14 +33,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+     * List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
      * 
      */
     @Import(name="endpointGroupNames")
     private @Nullable Output<List<String>> endpointGroupNames;
 
     /**
-     * @return For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+     * @return List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
      * 
      */
     public Optional<Output<List<String>>> endpointGroupNames() {
@@ -48,14 +48,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+     * Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
      * 
      */
     @Import(name="endpointServiceName")
     private @Nullable Output<String> endpointServiceName;
 
     /**
-     * @return Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+     * @return Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
      * 
      */
     public Optional<Output<String>> endpointServiceName() {
@@ -63,14 +63,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Error message pertaining to the private endpoint connection. Returns null if there are no errors.
+     * Error message for the private endpoint connection. Returns `null` if there are no errors.
      * 
      */
     @Import(name="errorMessage")
     private @Nullable Output<String> errorMessage;
 
     /**
-     * @return Error message pertaining to the private endpoint connection. Returns null if there are no errors.
+     * @return Error message for the private endpoint connection. Returns `null` if there are no errors.
      * 
      */
     public Optional<Output<String>> errorMessage() {
@@ -93,14 +93,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      * 
      */
     @Import(name="portMappingEnabled")
     private @Nullable Output<Boolean> portMappingEnabled;
 
     /**
-     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+     * @return Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      * 
      */
     public Optional<Output<Boolean>> portMappingEnabled() {
@@ -183,14 +183,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      * 
      */
     @Import(name="providerName")
     private @Nullable Output<String> providerName;
 
     /**
-     * @return Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * @return Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      * 
      */
     public Optional<Output<String>> providerName() {
@@ -230,14 +230,14 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+     * List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      * 
      */
     @Import(name="serviceAttachmentNames")
     private @Nullable Output<List<String>> serviceAttachmentNames;
 
     /**
-     * @return For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+     * @return List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      * 
      */
     public Optional<Output<List<String>>> serviceAttachmentNames() {
@@ -328,7 +328,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointGroupNames For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+         * @param endpointGroupNames List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
          * 
          * @return builder
          * 
@@ -339,7 +339,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointGroupNames For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+         * @param endpointGroupNames List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
          * 
          * @return builder
          * 
@@ -349,7 +349,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointGroupNames For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+         * @param endpointGroupNames List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
          * 
          * @return builder
          * 
@@ -359,7 +359,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointServiceName Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+         * @param endpointServiceName Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
          * 
          * @return builder
          * 
@@ -370,7 +370,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param endpointServiceName Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+         * @param endpointServiceName Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
          * 
          * @return builder
          * 
@@ -380,7 +380,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param errorMessage Error message pertaining to the private endpoint connection. Returns null if there are no errors.
+         * @param errorMessage Error message for the private endpoint connection. Returns `null` if there are no errors.
          * 
          * @return builder
          * 
@@ -391,7 +391,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param errorMessage Error message pertaining to the private endpoint connection. Returns null if there are no errors.
+         * @param errorMessage Error message for the private endpoint connection. Returns `null` if there are no errors.
          * 
          * @return builder
          * 
@@ -432,7 +432,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
          * 
          * @return builder
          * 
@@ -443,7 +443,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+         * @param portMappingEnabled Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
          * 
          * @return builder
          * 
@@ -568,7 +568,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
          * 
          * @return builder
          * 
@@ -579,7 +579,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+         * @param providerName Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
          * 
          * @return builder
          * 
@@ -633,7 +633,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serviceAttachmentNames For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+         * @param serviceAttachmentNames List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
          * 
          * @return builder
          * 
@@ -644,7 +644,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serviceAttachmentNames For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+         * @param serviceAttachmentNames List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
          * 
          * @return builder
          * 
@@ -654,7 +654,7 @@ public final class PrivateLinkEndpointState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param serviceAttachmentNames For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
+         * @param serviceAttachmentNames List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
          * 
          * @return builder
          * 

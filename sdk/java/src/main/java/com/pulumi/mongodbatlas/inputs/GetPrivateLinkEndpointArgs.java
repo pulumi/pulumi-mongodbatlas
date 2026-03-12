@@ -15,14 +15,14 @@ public final class GetPrivateLinkEndpointArgs extends com.pulumi.resources.Invok
     public static final GetPrivateLinkEndpointArgs Empty = new GetPrivateLinkEndpointArgs();
 
     /**
-     * Unique identifier of the private endpoint service that you want to retrieve.
+     * Unique identifier of the private endpoint that you want to retrieve.
      * 
      */
     @Import(name="privateLinkId", required=true)
     private Output<String> privateLinkId;
 
     /**
-     * @return Unique identifier of the private endpoint service that you want to retrieve.
+     * @return Unique identifier of the private endpoint that you want to retrieve.
      * 
      */
     public Output<String> privateLinkId() {
@@ -45,14 +45,14 @@ public final class GetPrivateLinkEndpointArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
      * 
      */
     @Import(name="providerName", required=true)
     private Output<String> providerName;
 
     /**
-     * @return Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+     * @return Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
      * 
      */
     public Output<String> providerName() {
@@ -86,7 +86,7 @@ public final class GetPrivateLinkEndpointArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param privateLinkId Unique identifier of the private endpoint service that you want to retrieve.
+         * @param privateLinkId Unique identifier of the private endpoint that you want to retrieve.
          * 
          * @return builder
          * 
@@ -97,7 +97,7 @@ public final class GetPrivateLinkEndpointArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param privateLinkId Unique identifier of the private endpoint service that you want to retrieve.
+         * @param privateLinkId Unique identifier of the private endpoint that you want to retrieve.
          * 
          * @return builder
          * 
@@ -128,7 +128,7 @@ public final class GetPrivateLinkEndpointArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param providerName Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+         * @param providerName Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
          * 
          * @return builder
          * 
@@ -139,7 +139,7 @@ public final class GetPrivateLinkEndpointArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param providerName Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+         * @param providerName Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
          * 
          * @return builder
          * 

@@ -5,21 +5,17 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetLogIntegrationOtelSuppliedHeader;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetLogIntegrationResult {
-    /**
-     * @return Human-readable label that identifies the S3 bucket name for storing log files.
-     * 
-     */
+    private String apiKey;
     private String bucketName;
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-     * 
-     */
+    private String hecToken;
+    private String hecUrl;
     private String iamRoleId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -31,44 +27,43 @@ public final class GetLogIntegrationResult {
      * 
      */
     private String integrationId;
-    /**
-     * @return AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-     * 
-     */
     private String kmsKey;
     /**
-     * @return Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * @return Array of log types exported by this integration.
      * 
      */
     private List<String> logTypes;
-    /**
-     * @return S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-     * 
-     */
+    private String otelEndpoint;
+    private List<GetLogIntegrationOtelSuppliedHeader> otelSuppliedHeaders;
     private String prefixPath;
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project.
      * 
      */
     private String projectId;
+    private String region;
+    private String roleId;
+    private String storageAccountName;
+    private String storageContainerName;
     /**
-     * @return Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * @return Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     private String type;
 
     private GetLogIntegrationResult() {}
-    /**
-     * @return Human-readable label that identifies the S3 bucket name for storing log files.
-     * 
-     */
+    public String apiKey() {
+        return this.apiKey;
+    }
     public String bucketName() {
         return this.bucketName;
     }
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-     * 
-     */
+    public String hecToken() {
+        return this.hecToken;
+    }
+    public String hecUrl() {
+        return this.hecUrl;
+    }
     public String iamRoleId() {
         return this.iamRoleId;
     }
@@ -86,24 +81,22 @@ public final class GetLogIntegrationResult {
     public String integrationId() {
         return this.integrationId;
     }
-    /**
-     * @return AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-     * 
-     */
     public String kmsKey() {
         return this.kmsKey;
     }
     /**
-     * @return Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * @return Array of log types exported by this integration.
      * 
      */
     public List<String> logTypes() {
         return this.logTypes;
     }
-    /**
-     * @return S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-     * 
-     */
+    public String otelEndpoint() {
+        return this.otelEndpoint;
+    }
+    public List<GetLogIntegrationOtelSuppliedHeader> otelSuppliedHeaders() {
+        return this.otelSuppliedHeaders;
+    }
     public String prefixPath() {
         return this.prefixPath;
     }
@@ -114,8 +107,20 @@ public final class GetLogIntegrationResult {
     public String projectId() {
         return this.projectId;
     }
+    public String region() {
+        return this.region;
+    }
+    public String roleId() {
+        return this.roleId;
+    }
+    public String storageAccountName() {
+        return this.storageAccountName;
+    }
+    public String storageContainerName() {
+        return this.storageContainerName;
+    }
     /**
-     * @return Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * @return Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     public String type() {
@@ -131,35 +136,77 @@ public final class GetLogIntegrationResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String apiKey;
         private String bucketName;
+        private String hecToken;
+        private String hecUrl;
         private String iamRoleId;
         private String id;
         private String integrationId;
         private String kmsKey;
         private List<String> logTypes;
+        private String otelEndpoint;
+        private List<GetLogIntegrationOtelSuppliedHeader> otelSuppliedHeaders;
         private String prefixPath;
         private String projectId;
+        private String region;
+        private String roleId;
+        private String storageAccountName;
+        private String storageContainerName;
         private String type;
         public Builder() {}
         public Builder(GetLogIntegrationResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.apiKey = defaults.apiKey;
     	      this.bucketName = defaults.bucketName;
+    	      this.hecToken = defaults.hecToken;
+    	      this.hecUrl = defaults.hecUrl;
     	      this.iamRoleId = defaults.iamRoleId;
     	      this.id = defaults.id;
     	      this.integrationId = defaults.integrationId;
     	      this.kmsKey = defaults.kmsKey;
     	      this.logTypes = defaults.logTypes;
+    	      this.otelEndpoint = defaults.otelEndpoint;
+    	      this.otelSuppliedHeaders = defaults.otelSuppliedHeaders;
     	      this.prefixPath = defaults.prefixPath;
     	      this.projectId = defaults.projectId;
+    	      this.region = defaults.region;
+    	      this.roleId = defaults.roleId;
+    	      this.storageAccountName = defaults.storageAccountName;
+    	      this.storageContainerName = defaults.storageContainerName;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder apiKey(String apiKey) {
+            if (apiKey == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "apiKey");
+            }
+            this.apiKey = apiKey;
+            return this;
+        }
         @CustomType.Setter
         public Builder bucketName(String bucketName) {
             if (bucketName == null) {
               throw new MissingRequiredPropertyException("GetLogIntegrationResult", "bucketName");
             }
             this.bucketName = bucketName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder hecToken(String hecToken) {
+            if (hecToken == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "hecToken");
+            }
+            this.hecToken = hecToken;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder hecUrl(String hecUrl) {
+            if (hecUrl == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "hecUrl");
+            }
+            this.hecUrl = hecUrl;
             return this;
         }
         @CustomType.Setter
@@ -206,6 +253,25 @@ public final class GetLogIntegrationResult {
             return logTypes(List.of(logTypes));
         }
         @CustomType.Setter
+        public Builder otelEndpoint(String otelEndpoint) {
+            if (otelEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "otelEndpoint");
+            }
+            this.otelEndpoint = otelEndpoint;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder otelSuppliedHeaders(List<GetLogIntegrationOtelSuppliedHeader> otelSuppliedHeaders) {
+            if (otelSuppliedHeaders == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "otelSuppliedHeaders");
+            }
+            this.otelSuppliedHeaders = otelSuppliedHeaders;
+            return this;
+        }
+        public Builder otelSuppliedHeaders(GetLogIntegrationOtelSuppliedHeader... otelSuppliedHeaders) {
+            return otelSuppliedHeaders(List.of(otelSuppliedHeaders));
+        }
+        @CustomType.Setter
         public Builder prefixPath(String prefixPath) {
             if (prefixPath == null) {
               throw new MissingRequiredPropertyException("GetLogIntegrationResult", "prefixPath");
@@ -222,6 +288,38 @@ public final class GetLogIntegrationResult {
             return this;
         }
         @CustomType.Setter
+        public Builder region(String region) {
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "region");
+            }
+            this.region = region;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder roleId(String roleId) {
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "roleId");
+            }
+            this.roleId = roleId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder storageAccountName(String storageAccountName) {
+            if (storageAccountName == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "storageAccountName");
+            }
+            this.storageAccountName = storageAccountName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder storageContainerName(String storageContainerName) {
+            if (storageContainerName == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "storageContainerName");
+            }
+            this.storageContainerName = storageContainerName;
+            return this;
+        }
+        @CustomType.Setter
         public Builder type(String type) {
             if (type == null) {
               throw new MissingRequiredPropertyException("GetLogIntegrationResult", "type");
@@ -231,14 +329,23 @@ public final class GetLogIntegrationResult {
         }
         public GetLogIntegrationResult build() {
             final var _resultValue = new GetLogIntegrationResult();
+            _resultValue.apiKey = apiKey;
             _resultValue.bucketName = bucketName;
+            _resultValue.hecToken = hecToken;
+            _resultValue.hecUrl = hecUrl;
             _resultValue.iamRoleId = iamRoleId;
             _resultValue.id = id;
             _resultValue.integrationId = integrationId;
             _resultValue.kmsKey = kmsKey;
             _resultValue.logTypes = logTypes;
+            _resultValue.otelEndpoint = otelEndpoint;
+            _resultValue.otelSuppliedHeaders = otelSuppliedHeaders;
             _resultValue.prefixPath = prefixPath;
             _resultValue.projectId = projectId;
+            _resultValue.region = region;
+            _resultValue.roleId = roleId;
+            _resultValue.storageAccountName = storageAccountName;
+            _resultValue.storageContainerName = storageContainerName;
             _resultValue.type = type;
             return _resultValue;
         }

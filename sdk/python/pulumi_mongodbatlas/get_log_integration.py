@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetLogIntegrationResult',
@@ -26,10 +27,19 @@ class GetLogIntegrationResult:
     """
     A collection of values returned by getLogIntegration.
     """
-    def __init__(__self__, bucket_name=None, iam_role_id=None, id=None, integration_id=None, kms_key=None, log_types=None, prefix_path=None, project_id=None, type=None):
+    def __init__(__self__, api_key=None, bucket_name=None, hec_token=None, hec_url=None, iam_role_id=None, id=None, integration_id=None, kms_key=None, log_types=None, otel_endpoint=None, otel_supplied_headers=None, prefix_path=None, project_id=None, region=None, role_id=None, storage_account_name=None, storage_container_name=None, type=None):
+        if api_key and not isinstance(api_key, str):
+            raise TypeError("Expected argument 'api_key' to be a str")
+        pulumi.set(__self__, "api_key", api_key)
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
         pulumi.set(__self__, "bucket_name", bucket_name)
+        if hec_token and not isinstance(hec_token, str):
+            raise TypeError("Expected argument 'hec_token' to be a str")
+        pulumi.set(__self__, "hec_token", hec_token)
+        if hec_url and not isinstance(hec_url, str):
+            raise TypeError("Expected argument 'hec_url' to be a str")
+        pulumi.set(__self__, "hec_url", hec_url)
         if iam_role_id and not isinstance(iam_role_id, str):
             raise TypeError("Expected argument 'iam_role_id' to be a str")
         pulumi.set(__self__, "iam_role_id", iam_role_id)
@@ -45,30 +55,57 @@ class GetLogIntegrationResult:
         if log_types and not isinstance(log_types, list):
             raise TypeError("Expected argument 'log_types' to be a list")
         pulumi.set(__self__, "log_types", log_types)
+        if otel_endpoint and not isinstance(otel_endpoint, str):
+            raise TypeError("Expected argument 'otel_endpoint' to be a str")
+        pulumi.set(__self__, "otel_endpoint", otel_endpoint)
+        if otel_supplied_headers and not isinstance(otel_supplied_headers, list):
+            raise TypeError("Expected argument 'otel_supplied_headers' to be a list")
+        pulumi.set(__self__, "otel_supplied_headers", otel_supplied_headers)
         if prefix_path and not isinstance(prefix_path, str):
             raise TypeError("Expected argument 'prefix_path' to be a str")
         pulumi.set(__self__, "prefix_path", prefix_path)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+        if role_id and not isinstance(role_id, str):
+            raise TypeError("Expected argument 'role_id' to be a str")
+        pulumi.set(__self__, "role_id", role_id)
+        if storage_account_name and not isinstance(storage_account_name, str):
+            raise TypeError("Expected argument 'storage_account_name' to be a str")
+        pulumi.set(__self__, "storage_account_name", storage_account_name)
+        if storage_container_name and not isinstance(storage_container_name, str):
+            raise TypeError("Expected argument 'storage_container_name' to be a str")
+        pulumi.set(__self__, "storage_container_name", storage_container_name)
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
 
     @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> _builtins.str:
-        """
-        Human-readable label that identifies the S3 bucket name for storing log files.
-        """
         return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter(name="hecToken")
+    def hec_token(self) -> _builtins.str:
+        return pulumi.get(self, "hec_token")
+
+    @_builtins.property
+    @pulumi.getter(name="hecUrl")
+    def hec_url(self) -> _builtins.str:
+        return pulumi.get(self, "hec_url")
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")
     def iam_role_id(self) -> _builtins.str:
-        """
-        Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-        """
         return pulumi.get(self, "iam_role_id")
 
     @_builtins.property
@@ -90,25 +127,29 @@ class GetLogIntegrationResult:
     @_builtins.property
     @pulumi.getter(name="kmsKey")
     def kms_key(self) -> _builtins.str:
-        """
-        AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
-        """
         return pulumi.get(self, "kms_key")
 
     @_builtins.property
     @pulumi.getter(name="logTypes")
     def log_types(self) -> Sequence[_builtins.str]:
         """
-        Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        Array of log types exported by this integration.
         """
         return pulumi.get(self, "log_types")
 
     @_builtins.property
+    @pulumi.getter(name="otelEndpoint")
+    def otel_endpoint(self) -> _builtins.str:
+        return pulumi.get(self, "otel_endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="otelSuppliedHeaders")
+    def otel_supplied_headers(self) -> Sequence['outputs.GetLogIntegrationOtelSuppliedHeaderResult']:
+        return pulumi.get(self, "otel_supplied_headers")
+
+    @_builtins.property
     @pulumi.getter(name="prefixPath")
     def prefix_path(self) -> _builtins.str:
-        """
-        S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-        """
         return pulumi.get(self, "prefix_path")
 
     @_builtins.property
@@ -121,9 +162,29 @@ class GetLogIntegrationResult:
 
     @_builtins.property
     @pulumi.getter
+    def region(self) -> _builtins.str:
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> _builtins.str:
+        return pulumi.get(self, "role_id")
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> _builtins.str:
+        return pulumi.get(self, "storage_account_name")
+
+    @_builtins.property
+    @pulumi.getter(name="storageContainerName")
+    def storage_container_name(self) -> _builtins.str:
+        return pulumi.get(self, "storage_container_name")
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
 
@@ -134,14 +195,23 @@ class AwaitableGetLogIntegrationResult(GetLogIntegrationResult):
         if False:
             yield self
         return GetLogIntegrationResult(
+            api_key=self.api_key,
             bucket_name=self.bucket_name,
+            hec_token=self.hec_token,
+            hec_url=self.hec_url,
             iam_role_id=self.iam_role_id,
             id=self.id,
             integration_id=self.integration_id,
             kms_key=self.kms_key,
             log_types=self.log_types,
+            otel_endpoint=self.otel_endpoint,
+            otel_supplied_headers=self.otel_supplied_headers,
             prefix_path=self.prefix_path,
             project_id=self.project_id,
+            region=self.region,
+            role_id=self.role_id,
+            storage_account_name=self.storage_account_name,
+            storage_container_name=self.storage_container_name,
             type=self.type)
 
 
@@ -149,7 +219,7 @@ def get_log_integration(integration_id: Optional[_builtins.str] = None,
                         project_id: Optional[_builtins.str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLogIntegrationResult:
     """
-    `LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+    `LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 
     To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 
@@ -159,33 +229,13 @@ def get_log_integration(integration_id: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    project = mongodbatlas.Project("project",
-        name=atlas_project_name,
-        org_id=atlas_org_id)
-    # Set up cloud provider access in Atlas using the created IAM role
-    setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
-        project_id=project.id,
-        provider_name="AWS")
-    auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
-        project_id=project.id,
-        role_id=setup_only.role_id,
-        aws={
-            "iam_assumed_role_arn": atlas_role["arn"],
-        })
-    # Set up log integration with authorized IAM role
-    example_log_integration = mongodbatlas.LogIntegration("example",
-        project_id=project.id,
-        bucket_name=log_bucket["bucket"],
-        iam_role_id=auth_role.role_id,
-        prefix_path="atlas-logs",
-        type="S3_LOG_EXPORT",
-        log_types=["MONGOD_AUDIT"])
-    example = mongodbatlas.get_log_integration_output(project_id=example_log_integration.project_id,
-        integration_id=example_log_integration.integration_id)
-    example_get_log_integrations = mongodbatlas.get_log_integrations_output(project_id=example_log_integration.project_id)
-    pulumi.export("logIntegrationBucketName", example.bucket_name)
-    pulumi.export("logIntegrationsResults", example_get_log_integrations.results)
+    example = mongodbatlas.get_log_integration(project_id=example_mongodbatlas_log_integration["projectId"],
+        integration_id=example_mongodbatlas_log_integration["integrationId"])
+    pulumi.export("logIntegrationType", example.type)
     ```
+
+    ### Further Examples
+    - Log Integration Examples
 
 
     :param _builtins.str integration_id: Unique identifier of the log integration configuration.
@@ -198,20 +248,29 @@ def get_log_integration(integration_id: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getLogIntegration:getLogIntegration', __args__, opts=opts, typ=GetLogIntegrationResult).value
 
     return AwaitableGetLogIntegrationResult(
+        api_key=pulumi.get(__ret__, 'api_key'),
         bucket_name=pulumi.get(__ret__, 'bucket_name'),
+        hec_token=pulumi.get(__ret__, 'hec_token'),
+        hec_url=pulumi.get(__ret__, 'hec_url'),
         iam_role_id=pulumi.get(__ret__, 'iam_role_id'),
         id=pulumi.get(__ret__, 'id'),
         integration_id=pulumi.get(__ret__, 'integration_id'),
         kms_key=pulumi.get(__ret__, 'kms_key'),
         log_types=pulumi.get(__ret__, 'log_types'),
+        otel_endpoint=pulumi.get(__ret__, 'otel_endpoint'),
+        otel_supplied_headers=pulumi.get(__ret__, 'otel_supplied_headers'),
         prefix_path=pulumi.get(__ret__, 'prefix_path'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        role_id=pulumi.get(__ret__, 'role_id'),
+        storage_account_name=pulumi.get(__ret__, 'storage_account_name'),
+        storage_container_name=pulumi.get(__ret__, 'storage_container_name'),
         type=pulumi.get(__ret__, 'type'))
 def get_log_integration_output(integration_id: Optional[pulumi.Input[_builtins.str]] = None,
                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLogIntegrationResult]:
     """
-    `LogIntegration` describes the configuration for a log integration identified by its unique ID. Log integrations are managed at the project level and allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+    `LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 
     To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 
@@ -221,33 +280,13 @@ def get_log_integration_output(integration_id: Optional[pulumi.Input[_builtins.s
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    project = mongodbatlas.Project("project",
-        name=atlas_project_name,
-        org_id=atlas_org_id)
-    # Set up cloud provider access in Atlas using the created IAM role
-    setup_only = mongodbatlas.CloudProviderAccessSetup("setup_only",
-        project_id=project.id,
-        provider_name="AWS")
-    auth_role = mongodbatlas.CloudProviderAccessAuthorization("auth_role",
-        project_id=project.id,
-        role_id=setup_only.role_id,
-        aws={
-            "iam_assumed_role_arn": atlas_role["arn"],
-        })
-    # Set up log integration with authorized IAM role
-    example_log_integration = mongodbatlas.LogIntegration("example",
-        project_id=project.id,
-        bucket_name=log_bucket["bucket"],
-        iam_role_id=auth_role.role_id,
-        prefix_path="atlas-logs",
-        type="S3_LOG_EXPORT",
-        log_types=["MONGOD_AUDIT"])
-    example = mongodbatlas.get_log_integration_output(project_id=example_log_integration.project_id,
-        integration_id=example_log_integration.integration_id)
-    example_get_log_integrations = mongodbatlas.get_log_integrations_output(project_id=example_log_integration.project_id)
-    pulumi.export("logIntegrationBucketName", example.bucket_name)
-    pulumi.export("logIntegrationsResults", example_get_log_integrations.results)
+    example = mongodbatlas.get_log_integration(project_id=example_mongodbatlas_log_integration["projectId"],
+        integration_id=example_mongodbatlas_log_integration["integrationId"])
+    pulumi.export("logIntegrationType", example.type)
     ```
+
+    ### Further Examples
+    - Log Integration Examples
 
 
     :param _builtins.str integration_id: Unique identifier of the log integration configuration.
@@ -259,12 +298,21 @@ def get_log_integration_output(integration_id: Optional[pulumi.Input[_builtins.s
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getLogIntegration:getLogIntegration', __args__, opts=opts, typ=GetLogIntegrationResult)
     return __ret__.apply(lambda __response__: GetLogIntegrationResult(
+        api_key=pulumi.get(__response__, 'api_key'),
         bucket_name=pulumi.get(__response__, 'bucket_name'),
+        hec_token=pulumi.get(__response__, 'hec_token'),
+        hec_url=pulumi.get(__response__, 'hec_url'),
         iam_role_id=pulumi.get(__response__, 'iam_role_id'),
         id=pulumi.get(__response__, 'id'),
         integration_id=pulumi.get(__response__, 'integration_id'),
         kms_key=pulumi.get(__response__, 'kms_key'),
         log_types=pulumi.get(__response__, 'log_types'),
+        otel_endpoint=pulumi.get(__response__, 'otel_endpoint'),
+        otel_supplied_headers=pulumi.get(__response__, 'otel_supplied_headers'),
         prefix_path=pulumi.get(__response__, 'prefix_path'),
         project_id=pulumi.get(__response__, 'project_id'),
+        region=pulumi.get(__response__, 'region'),
+        role_id=pulumi.get(__response__, 'role_id'),
+        storage_account_name=pulumi.get(__response__, 'storage_account_name'),
+        storage_container_name=pulumi.get(__response__, 'storage_container_name'),
         type=pulumi.get(__response__, 'type')))

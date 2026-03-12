@@ -12,11 +12,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+// `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs at 1-minute intervals. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 //
 // To use this resource, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 //
 // ## Example Usage
+//
+// ### S
+//
+// ### AWS S3
 //
 // ```go
 // package main
@@ -30,24 +34,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := mongodbatlas.NewProject(ctx, "project", &mongodbatlas.ProjectArgs{
-//				Name:  pulumi.Any(atlasProjectName),
-//				OrgId: pulumi.Any(atlasOrgId),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Set up cloud provider access in Atlas using the created IAM role
-//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
-//				ProjectId:    project.ID(),
+//			// Set up cloud provider access in Atlas for AWS
+//			setup, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.Any(project.Id),
 //				ProviderName: pulumi.String("AWS"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			authRole, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
-//				ProjectId: project.ID(),
-//				RoleId:    setupOnly.RoleId,
+//			auth, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				RoleId:    setup.RoleId,
 //				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
 //					IamAssumedRoleArn: pulumi.Any(atlasRole.Arn),
 //				},
@@ -55,38 +52,232 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Set up log integration with authorized IAM role
-//			exampleLogIntegration, err := mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
-//				ProjectId:  project.ID(),
-//				BucketName: pulumi.Any(logBucket.Bucket),
-//				IamRoleId:  authRole.RoleId,
-//				PrefixPath: pulumi.String("atlas-logs"),
-//				Type:       pulumi.String("S3_LOG_EXPORT"),
+//			_, err = mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				Type:      pulumi.String("S3_LOG_EXPORT"),
 //				LogTypes: pulumi.StringArray{
 //					pulumi.String("MONGOD_AUDIT"),
 //				},
+//				BucketName: pulumi.Any(logBucket.Bucket),
+//				IamRoleId:  auth.RoleId,
+//				PrefixPath: pulumi.String("atlas-logs"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			example := mongodbatlas.LookupLogIntegrationOutput(ctx, mongodbatlas.GetLogIntegrationOutputArgs{
-//				ProjectId:     exampleLogIntegration.ProjectId,
-//				IntegrationId: exampleLogIntegration.IntegrationId,
-//			}, nil)
-//			exampleGetLogIntegrations := mongodbatlas.LookupLogIntegrationsOutput(ctx, mongodbatlas.GetLogIntegrationsOutputArgs{
-//				ProjectId: exampleLogIntegration.ProjectId,
-//			}, nil)
-//			ctx.Export("logIntegrationBucketName", example.ApplyT(func(example mongodbatlas.GetLogIntegrationResult) (*string, error) {
-//				return &example.BucketName, nil
-//			}).(pulumi.StringPtrOutput))
-//			ctx.Export("logIntegrationsResults", exampleGetLogIntegrations.ApplyT(func(exampleGetLogIntegrations mongodbatlas.GetLogIntegrationsResult) ([]mongodbatlas.GetLogIntegrationsResult, error) {
-//				return []mongodbatlas.GetLogIntegrationsResult(exampleGetLogIntegrations.Results), nil
-//			}).([]mongodbatlas.GetLogIntegrationsResultOutput))
 //			return nil
 //		})
 //	}
 //
 // ```
+//
+// ### Google Cloud Storage (GCS)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Set up cloud provider access in Atlas for GCP
+//			setup, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.Any(project.Id),
+//				ProviderName: pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			auth, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				RoleId:    setup.RoleId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				Type:      pulumi.String("GCS_LOG_EXPORT"),
+//				LogTypes: pulumi.StringArray{
+//					pulumi.String("MONGOD"),
+//				},
+//				BucketName: pulumi.Any(logBucket.Name),
+//				RoleId:     auth.RoleId,
+//				PrefixPath: pulumi.String("atlas-logs"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Azure Blob Storage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Set up cloud provider access in Atlas for Azure
+//			setup, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.Any(project.Id),
+//				ProviderName: pulumi.String("AZURE"),
+//				AzureConfigs: mongodbatlas.CloudProviderAccessSetupAzureConfigArray{
+//					&mongodbatlas.CloudProviderAccessSetupAzureConfigArgs{
+//						AtlasAzureAppId:    pulumi.Any(atlasAzureAppId),
+//						ServicePrincipalId: pulumi.Any(azureServicePrincipalId),
+//						TenantId:           pulumi.Any(azureTenantId),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			auth, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				RoleId:    setup.RoleId,
+//				Azure: &mongodbatlas.CloudProviderAccessAuthorizationAzureArgs{
+//					AtlasAzureAppId:    pulumi.Any(atlasAzureAppId),
+//					ServicePrincipalId: pulumi.Any(azureServicePrincipalId),
+//					TenantId:           pulumi.Any(azureTenantId),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				Type:      pulumi.String("AZURE_LOG_EXPORT"),
+//				LogTypes: pulumi.StringArray{
+//					pulumi.String("MONGOD"),
+//				},
+//				RoleId:               auth.RoleId,
+//				StorageAccountName:   pulumi.Any(logStorage.Name),
+//				StorageContainerName: pulumi.Any(logContainer.Name),
+//				PrefixPath:           pulumi.String("atlas-logs"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Datadog
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				Type:      pulumi.String("DATADOG_LOG_EXPORT"),
+//				LogTypes: pulumi.StringArray{
+//					pulumi.String("MONGOD"),
+//				},
+//				ApiKey: pulumi.Any(datadogApiKey),
+//				Region: pulumi.Any(datadogRegion),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Splunk
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				Type:      pulumi.String("SPLUNK_LOG_EXPORT"),
+//				LogTypes: pulumi.StringArray{
+//					pulumi.String("MONGOD"),
+//				},
+//				HecToken: pulumi.Any(splunkHecToken),
+//				HecUrl:   pulumi.Any(splunkHecUrl),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### OpenTelemetry
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
+//				ProjectId: pulumi.Any(project.Id),
+//				Type:      pulumi.String("OTEL_LOG_EXPORT"),
+//				LogTypes: pulumi.StringArray{
+//					pulumi.String("MONGOD"),
+//				},
+//				OtelEndpoint:        pulumi.Any(otelEndpoint),
+//				OtelSuppliedHeaders: pulumi.Any(otelSuppliedHeaders),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Further Examples
+// - Log Integration Examples
 //
 // ## Import
 //
@@ -96,21 +287,39 @@ import (
 type LogIntegration struct {
 	pulumi.CustomResourceState
 
-	// Human-readable label that identifies the S3 bucket name for storing log files.
-	BucketName pulumi.StringOutput `pulumi:"bucketName"`
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-	IamRoleId pulumi.StringOutput `pulumi:"iamRoleId"`
+	// Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
+	// Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+	BucketName pulumi.StringPtrOutput `pulumi:"bucketName"`
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+	HecToken pulumi.StringPtrOutput `pulumi:"hecToken"`
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+	HecUrl pulumi.StringPtrOutput `pulumi:"hecUrl"`
+	// Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+	IamRoleId pulumi.StringPtrOutput `pulumi:"iamRoleId"`
 	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
 	IntegrationId pulumi.StringOutput `pulumi:"integrationId"`
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	// Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 	KmsKey pulumi.StringPtrOutput `pulumi:"kmsKey"`
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	// Array of log types exported by this integration.
 	LogTypes pulumi.StringArrayOutput `pulumi:"logTypes"`
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-	PrefixPath pulumi.StringOutput `pulumi:"prefixPath"`
+	// Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+	OtelEndpoint pulumi.StringPtrOutput `pulumi:"otelEndpoint"`
+	// Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+	OtelSuppliedHeaders LogIntegrationOtelSuppliedHeaderArrayOutput `pulumi:"otelSuppliedHeaders"`
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+	PrefixPath pulumi.StringPtrOutput `pulumi:"prefixPath"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+	RoleId pulumi.StringPtrOutput `pulumi:"roleId"`
+	// Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+	StorageAccountName pulumi.StringPtrOutput `pulumi:"storageAccountName"`
+	// Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+	StorageContainerName pulumi.StringPtrOutput `pulumi:"storageContainerName"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -121,17 +330,8 @@ func NewLogIntegration(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.BucketName == nil {
-		return nil, errors.New("invalid value for required argument 'BucketName'")
-	}
-	if args.IamRoleId == nil {
-		return nil, errors.New("invalid value for required argument 'IamRoleId'")
-	}
 	if args.LogTypes == nil {
 		return nil, errors.New("invalid value for required argument 'LogTypes'")
-	}
-	if args.PrefixPath == nil {
-		return nil, errors.New("invalid value for required argument 'PrefixPath'")
 	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
@@ -139,6 +339,21 @@ func NewLogIntegration(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	if args.ApiKey != nil {
+		args.ApiKey = pulumi.ToSecret(args.ApiKey).(pulumi.StringPtrInput)
+	}
+	if args.HecToken != nil {
+		args.HecToken = pulumi.ToSecret(args.HecToken).(pulumi.StringPtrInput)
+	}
+	if args.OtelSuppliedHeaders != nil {
+		args.OtelSuppliedHeaders = pulumi.ToSecret(args.OtelSuppliedHeaders).(LogIntegrationOtelSuppliedHeaderArrayInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"apiKey",
+		"hecToken",
+		"otelSuppliedHeaders",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogIntegration
 	err := ctx.RegisterResource("mongodbatlas:index/logIntegration:LogIntegration", name, args, &resource, opts...)
@@ -162,40 +377,76 @@ func GetLogIntegration(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogIntegration resources.
 type logIntegrationState struct {
-	// Human-readable label that identifies the S3 bucket name for storing log files.
+	// Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+	ApiKey *string `pulumi:"apiKey"`
+	// Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
 	BucketName *string `pulumi:"bucketName"`
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+	HecToken *string `pulumi:"hecToken"`
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+	HecUrl *string `pulumi:"hecUrl"`
+	// Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
 	IamRoleId *string `pulumi:"iamRoleId"`
 	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
 	IntegrationId *string `pulumi:"integrationId"`
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	// Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 	KmsKey *string `pulumi:"kmsKey"`
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	// Array of log types exported by this integration.
 	LogTypes []string `pulumi:"logTypes"`
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+	// Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+	OtelEndpoint *string `pulumi:"otelEndpoint"`
+	// Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+	OtelSuppliedHeaders []LogIntegrationOtelSuppliedHeader `pulumi:"otelSuppliedHeaders"`
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath *string `pulumi:"prefixPath"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId *string `pulumi:"projectId"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+	Region *string `pulumi:"region"`
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+	RoleId *string `pulumi:"roleId"`
+	// Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+	StorageAccountName *string `pulumi:"storageAccountName"`
+	// Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+	StorageContainerName *string `pulumi:"storageContainerName"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type *string `pulumi:"type"`
 }
 
 type LogIntegrationState struct {
-	// Human-readable label that identifies the S3 bucket name for storing log files.
+	// Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+	ApiKey pulumi.StringPtrInput
+	// Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
 	BucketName pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+	HecToken pulumi.StringPtrInput
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+	HecUrl pulumi.StringPtrInput
+	// Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
 	IamRoleId pulumi.StringPtrInput
 	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
 	IntegrationId pulumi.StringPtrInput
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	// Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 	KmsKey pulumi.StringPtrInput
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	// Array of log types exported by this integration.
 	LogTypes pulumi.StringArrayInput
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+	// Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+	OtelEndpoint pulumi.StringPtrInput
+	// Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+	OtelSuppliedHeaders LogIntegrationOtelSuppliedHeaderArrayInput
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringPtrInput
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+	Region pulumi.StringPtrInput
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+	RoleId pulumi.StringPtrInput
+	// Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+	StorageAccountName pulumi.StringPtrInput
+	// Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+	StorageContainerName pulumi.StringPtrInput
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringPtrInput
 }
 
@@ -204,37 +455,73 @@ func (LogIntegrationState) ElementType() reflect.Type {
 }
 
 type logIntegrationArgs struct {
-	// Human-readable label that identifies the S3 bucket name for storing log files.
-	BucketName string `pulumi:"bucketName"`
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-	IamRoleId string `pulumi:"iamRoleId"`
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	// Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+	ApiKey *string `pulumi:"apiKey"`
+	// Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+	BucketName *string `pulumi:"bucketName"`
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+	HecToken *string `pulumi:"hecToken"`
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+	HecUrl *string `pulumi:"hecUrl"`
+	// Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+	IamRoleId *string `pulumi:"iamRoleId"`
+	// Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 	KmsKey *string `pulumi:"kmsKey"`
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	// Array of log types exported by this integration.
 	LogTypes []string `pulumi:"logTypes"`
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-	PrefixPath string `pulumi:"prefixPath"`
+	// Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+	OtelEndpoint *string `pulumi:"otelEndpoint"`
+	// Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+	OtelSuppliedHeaders []LogIntegrationOtelSuppliedHeader `pulumi:"otelSuppliedHeaders"`
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+	PrefixPath *string `pulumi:"prefixPath"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+	Region *string `pulumi:"region"`
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+	RoleId *string `pulumi:"roleId"`
+	// Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+	StorageAccountName *string `pulumi:"storageAccountName"`
+	// Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+	StorageContainerName *string `pulumi:"storageContainerName"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a LogIntegration resource.
 type LogIntegrationArgs struct {
-	// Human-readable label that identifies the S3 bucket name for storing log files.
-	BucketName pulumi.StringInput
-	// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-	IamRoleId pulumi.StringInput
-	// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+	// Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+	ApiKey pulumi.StringPtrInput
+	// Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+	BucketName pulumi.StringPtrInput
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+	HecToken pulumi.StringPtrInput
+	// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+	HecUrl pulumi.StringPtrInput
+	// Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+	IamRoleId pulumi.StringPtrInput
+	// Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 	KmsKey pulumi.StringPtrInput
-	// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+	// Array of log types exported by this integration.
 	LogTypes pulumi.StringArrayInput
-	// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-	PrefixPath pulumi.StringInput
+	// Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+	OtelEndpoint pulumi.StringPtrInput
+	// Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+	OtelSuppliedHeaders LogIntegrationOtelSuppliedHeaderArrayInput
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+	PrefixPath pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput
-	// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+	Region pulumi.StringPtrInput
+	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+	RoleId pulumi.StringPtrInput
+	// Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+	StorageAccountName pulumi.StringPtrInput
+	// Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+	StorageContainerName pulumi.StringPtrInput
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringInput
 }
 
@@ -325,14 +612,29 @@ func (o LogIntegrationOutput) ToLogIntegrationOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Human-readable label that identifies the S3 bucket name for storing log files.
-func (o LogIntegrationOutput) BucketName() pulumi.StringOutput {
-	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.BucketName }).(pulumi.StringOutput)
+// Required for type: DATADOG_LOG_EXPORT. API key for authentication.
+func (o LogIntegrationOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
-func (o LogIntegrationOutput) IamRoleId() pulumi.StringOutput {
-	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.IamRoleId }).(pulumi.StringOutput)
+// Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
+func (o LogIntegrationOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.BucketName }).(pulumi.StringPtrOutput)
+}
+
+// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+func (o LogIntegrationOutput) HecToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.HecToken }).(pulumi.StringPtrOutput)
+}
+
+// Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+func (o LogIntegrationOutput) HecUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.HecUrl }).(pulumi.StringPtrOutput)
+}
+
+// Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
+func (o LogIntegrationOutput) IamRoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.IamRoleId }).(pulumi.StringPtrOutput)
 }
 
 // Unique 24-character hexadecimal digit string that identifies the log integration configuration.
@@ -340,19 +642,29 @@ func (o LogIntegrationOutput) IntegrationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.IntegrationId }).(pulumi.StringOutput)
 }
 
-// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+// Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
 func (o LogIntegrationOutput) KmsKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.KmsKey }).(pulumi.StringPtrOutput)
 }
 
-// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+// Array of log types exported by this integration.
 func (o LogIntegrationOutput) LogTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringArrayOutput { return v.LogTypes }).(pulumi.StringArrayOutput)
 }
 
-// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
-func (o LogIntegrationOutput) PrefixPath() pulumi.StringOutput {
-	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.PrefixPath }).(pulumi.StringOutput)
+// Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
+func (o LogIntegrationOutput) OtelEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.OtelEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+func (o LogIntegrationOutput) OtelSuppliedHeaders() LogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o.ApplyT(func(v *LogIntegration) LogIntegrationOtelSuppliedHeaderArrayOutput { return v.OtelSuppliedHeaders }).(LogIntegrationOtelSuppliedHeaderArrayOutput)
+}
+
+// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
+func (o LogIntegrationOutput) PrefixPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.PrefixPath }).(pulumi.StringPtrOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project.
@@ -360,7 +672,27 @@ func (o LogIntegrationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+func (o LogIntegrationOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+func (o LogIntegrationOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.RoleId }).(pulumi.StringPtrOutput)
+}
+
+// Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+func (o LogIntegrationOutput) StorageAccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.StorageAccountName }).(pulumi.StringPtrOutput)
+}
+
+// Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+func (o LogIntegrationOutput) StorageContainerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.StorageContainerName }).(pulumi.StringPtrOutput)
+}
+
+// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 func (o LogIntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

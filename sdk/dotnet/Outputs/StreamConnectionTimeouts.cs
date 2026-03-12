@@ -18,6 +18,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? Create;
         /// <summary>
+        /// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        /// </summary>
+        public readonly string? Delete;
+        /// <summary>
         /// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
         /// </summary>
         public readonly string? Update;
@@ -26,9 +30,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         private StreamConnectionTimeouts(
             string? create,
 
+            string? delete,
+
             string? update)
         {
             Create = create;
+            Delete = delete;
             Update = update;
         }
     }

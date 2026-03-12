@@ -16,7 +16,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
     /// 
-    /// &gt; **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+    /// &gt; **IMPORTANT** Each project can only have one configuration per integration `Type`.
     /// 
     /// &gt; **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
     /// 
@@ -92,6 +92,9 @@ namespace Pulumi.Mongodbatlas
 
         [Output("sendDatabaseMetrics")]
         public Output<bool> SendDatabaseMetrics { get; private set; } = null!;
+
+        [Output("sendQueryStatsMetrics")]
+        public Output<bool> SendQueryStatsMetrics { get; private set; } = null!;
 
         [Output("sendUserProvidedResourceTags")]
         public Output<bool> SendUserProvidedResourceTags { get; private set; } = null!;
@@ -265,6 +268,9 @@ namespace Pulumi.Mongodbatlas
         [Input("sendDatabaseMetrics")]
         public Input<bool>? SendDatabaseMetrics { get; set; }
 
+        [Input("sendQueryStatsMetrics")]
+        public Input<bool>? SendQueryStatsMetrics { get; set; }
+
         [Input("sendUserProvidedResourceTags")]
         public Input<bool>? SendUserProvidedResourceTags { get; set; }
 
@@ -414,6 +420,9 @@ namespace Pulumi.Mongodbatlas
 
         [Input("sendDatabaseMetrics")]
         public Input<bool>? SendDatabaseMetrics { get; set; }
+
+        [Input("sendQueryStatsMetrics")]
+        public Input<bool>? SendQueryStatsMetrics { get; set; }
 
         [Input("sendUserProvidedResourceTags")]
         public Input<bool>? SendUserProvidedResourceTags { get; set; }

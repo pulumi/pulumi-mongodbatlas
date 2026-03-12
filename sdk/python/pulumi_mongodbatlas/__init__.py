@@ -116,6 +116,7 @@ from .get_private_link_endpoint import *
 from .get_private_link_endpoint_service import *
 from .get_privatelink_endpoint_service_data_federation_online_archive import *
 from .get_privatelink_endpoint_service_data_federation_online_archives import *
+from .get_privatelink_endpoints import *
 from .get_project import *
 from .get_project_api_key import *
 from .get_project_api_keys import *

@@ -18,7 +18,7 @@ import (
 //
 // > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 //
-// > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+// > **IMPORTANT** Each project can only have one configuration per integration `type`.
 //
 // > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
 //
@@ -78,6 +78,7 @@ type ThirdPartyIntegration struct {
 	Secret                       pulumi.StringPtrOutput `pulumi:"secret"`
 	SendCollectionLatencyMetrics pulumi.BoolOutput      `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          pulumi.BoolOutput      `pulumi:"sendDatabaseMetrics"`
+	SendQueryStatsMetrics        pulumi.BoolOutput      `pulumi:"sendQueryStatsMetrics"`
 	SendUserProvidedResourceTags pulumi.BoolOutput      `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             pulumi.StringOutput    `pulumi:"serviceDiscovery"`
 	ServiceKey                   pulumi.StringOutput    `pulumi:"serviceKey"`
@@ -180,6 +181,7 @@ type thirdPartyIntegrationState struct {
 	Secret                       *string `pulumi:"secret"`
 	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
+	SendQueryStatsMetrics        *bool   `pulumi:"sendQueryStatsMetrics"`
 	SendUserProvidedResourceTags *bool   `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
 	ServiceKey                   *string `pulumi:"serviceKey"`
@@ -212,6 +214,7 @@ type ThirdPartyIntegrationState struct {
 	Secret                       pulumi.StringPtrInput
 	SendCollectionLatencyMetrics pulumi.BoolPtrInput
 	SendDatabaseMetrics          pulumi.BoolPtrInput
+	SendQueryStatsMetrics        pulumi.BoolPtrInput
 	SendUserProvidedResourceTags pulumi.BoolPtrInput
 	ServiceDiscovery             pulumi.StringPtrInput
 	ServiceKey                   pulumi.StringPtrInput
@@ -248,6 +251,7 @@ type thirdPartyIntegrationArgs struct {
 	Secret                       *string `pulumi:"secret"`
 	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
+	SendQueryStatsMetrics        *bool   `pulumi:"sendQueryStatsMetrics"`
 	SendUserProvidedResourceTags *bool   `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
 	ServiceKey                   *string `pulumi:"serviceKey"`
@@ -281,6 +285,7 @@ type ThirdPartyIntegrationArgs struct {
 	Secret                       pulumi.StringPtrInput
 	SendCollectionLatencyMetrics pulumi.BoolPtrInput
 	SendDatabaseMetrics          pulumi.BoolPtrInput
+	SendQueryStatsMetrics        pulumi.BoolPtrInput
 	SendUserProvidedResourceTags pulumi.BoolPtrInput
 	ServiceDiscovery             pulumi.StringPtrInput
 	ServiceKey                   pulumi.StringPtrInput
@@ -430,6 +435,10 @@ func (o ThirdPartyIntegrationOutput) SendCollectionLatencyMetrics() pulumi.BoolO
 
 func (o ThirdPartyIntegrationOutput) SendDatabaseMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
+}
+
+func (o ThirdPartyIntegrationOutput) SendQueryStatsMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendQueryStatsMetrics }).(pulumi.BoolOutput)
 }
 
 func (o ThirdPartyIntegrationOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {

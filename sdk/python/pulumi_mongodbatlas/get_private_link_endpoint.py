@@ -77,7 +77,7 @@ class GetPrivateLinkEndpointResult:
     @pulumi.getter(name="endpointGroupNames")
     def endpoint_group_names(self) -> Sequence[_builtins.str]:
         """
-        For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+        List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
         """
         return pulumi.get(self, "endpoint_group_names")
 
@@ -85,7 +85,7 @@ class GetPrivateLinkEndpointResult:
     @pulumi.getter(name="endpointServiceName")
     def endpoint_service_name(self) -> _builtins.str:
         """
-        Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+        Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
         """
         return pulumi.get(self, "endpoint_service_name")
 
@@ -93,7 +93,7 @@ class GetPrivateLinkEndpointResult:
     @pulumi.getter(name="errorMessage")
     def error_message(self) -> _builtins.str:
         """
-        Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        Error message for the private endpoint connection. Returns `null` if there are no errors.
         """
         return pulumi.get(self, "error_message")
 
@@ -117,7 +117,7 @@ class GetPrivateLinkEndpointResult:
     @pulumi.getter(name="portMappingEnabled")
     def port_mapping_enabled(self) -> _builtins.bool:
         """
-        Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
         """
         return pulumi.get(self, "port_mapping_enabled")
 
@@ -172,7 +172,7 @@ class GetPrivateLinkEndpointResult:
     @pulumi.getter(name="serviceAttachmentNames")
     def service_attachment_names(self) -> Sequence[_builtins.str]:
         """
-        For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
+        List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
         """
         return pulumi.get(self, "service_attachment_names")
 
@@ -182,11 +182,11 @@ class GetPrivateLinkEndpointResult:
         """
         Status of the AWS PrivateLink connection.
         Returns one of the following values:
-        * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-        * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
-        * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-        * `FAILED` 	A system failure has occurred.
-        * `DELETING` 	The Private Link service is being deleted.
+        * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+        * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+        * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+        * `FAILED` - A system failure occurred.
+        * `DELETING` - Atlas is deleting the Private Link service.
         """
         return pulumi.get(self, "status")
 
@@ -221,10 +221,9 @@ def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
     """
     `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `group_id`.
 
-    > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-    ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+    > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
 
     ## Example Usage
 
@@ -233,7 +232,7 @@ def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     this_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("this",
-        project_id="<PROJECT-ID>",
+        project_id=project_id,
         provider_name="AWS",
         region="US_EAST_1")
     this = mongodbatlas.get_private_link_endpoint_output(project_id=this_private_link_endpoint.project_id,
@@ -241,14 +240,15 @@ def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
         provider_name="AWS")
     ```
 
-    ### Available complete examples
-    - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+    ### Further Examples
+    - AWS PrivateLink Endpoint
+    - Azure PrivateLink Endpoint
     - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
 
 
-    :param _builtins.str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.
+    :param _builtins.str private_link_id: Unique identifier of the private endpoint that you want to retrieve.
     :param _builtins.str project_id: Unique identifier for the project.
-    :param _builtins.str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+    :param _builtins.str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
     """
     __args__ = dict()
     __args__['privateLinkId'] = private_link_id
@@ -280,10 +280,9 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_bui
     """
     `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
+    > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `group_id`.
 
-    > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-    ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+    > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
 
     ## Example Usage
 
@@ -292,7 +291,7 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_bui
     import pulumi_mongodbatlas as mongodbatlas
 
     this_private_link_endpoint = mongodbatlas.PrivateLinkEndpoint("this",
-        project_id="<PROJECT-ID>",
+        project_id=project_id,
         provider_name="AWS",
         region="US_EAST_1")
     this = mongodbatlas.get_private_link_endpoint_output(project_id=this_private_link_endpoint.project_id,
@@ -300,14 +299,15 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_bui
         provider_name="AWS")
     ```
 
-    ### Available complete examples
-    - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+    ### Further Examples
+    - AWS PrivateLink Endpoint
+    - Azure PrivateLink Endpoint
     - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
 
 
-    :param _builtins.str private_link_id: Unique identifier of the private endpoint service that you want to retrieve.
+    :param _builtins.str private_link_id: Unique identifier of the private endpoint that you want to retrieve.
     :param _builtins.str project_id: Unique identifier for the project.
-    :param _builtins.str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+    :param _builtins.str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
     """
     __args__ = dict()
     __args__['privateLinkId'] = private_link_id

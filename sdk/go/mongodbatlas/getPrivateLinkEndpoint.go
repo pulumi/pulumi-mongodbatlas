@@ -13,10 +13,9 @@ import (
 
 // `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
+// > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
 //
-// > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-// ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+// > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
 //
 // ## Example Usage
 //
@@ -33,7 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			thisPrivateLinkEndpoint, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "this", &mongodbatlas.PrivateLinkEndpointArgs{
-//				ProjectId:    pulumi.String("<PROJECT-ID>"),
+//				ProjectId:    pulumi.Any(projectId),
 //				ProviderName: pulumi.String("AWS"),
 //				Region:       pulumi.String("US_EAST_1"),
 //			})
@@ -51,8 +50,9 @@ import (
 //
 // ```
 //
-// ### Available complete examples
-// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+// ### Further Examples
+// - AWS PrivateLink Endpoint
+// - Azure PrivateLink Endpoint
 // - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
 func LookupPrivateLinkEndpoint(ctx *pulumi.Context, args *LookupPrivateLinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupPrivateLinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -66,27 +66,27 @@ func LookupPrivateLinkEndpoint(ctx *pulumi.Context, args *LookupPrivateLinkEndpo
 
 // A collection of arguments for invoking getPrivateLinkEndpoint.
 type LookupPrivateLinkEndpointArgs struct {
-	// Unique identifier of the private endpoint service that you want to retrieve.
+	// Unique identifier of the private endpoint that you want to retrieve.
 	PrivateLinkId string `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId string `pulumi:"projectId"`
-	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
 	ProviderName string `pulumi:"providerName"`
 }
 
 // A collection of values returned by getPrivateLinkEndpoint.
 type LookupPrivateLinkEndpointResult struct {
-	// For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+	// List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
 	EndpointGroupNames []string `pulumi:"endpointGroupNames"`
-	// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+	// Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
 	EndpointServiceName string `pulumi:"endpointServiceName"`
-	// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+	// Error message for the private endpoint connection. Returns `null` if there are no errors.
 	ErrorMessage string `pulumi:"errorMessage"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
 	InterfaceEndpoints []string `pulumi:"interfaceEndpoints"`
-	// Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+	// Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
 	PortMappingEnabled bool `pulumi:"portMappingEnabled"`
 	// All private endpoints that you have added to this Azure Private Link Service.
 	PrivateEndpoints []string `pulumi:"privateEndpoints"`
@@ -99,15 +99,15 @@ type LookupPrivateLinkEndpointResult struct {
 	ProviderName                 string `pulumi:"providerName"`
 	// Region for the Private Service Connect endpoint service.
 	RegionName string `pulumi:"regionName"`
-	// For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
+	// List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
 	ServiceAttachmentNames []string `pulumi:"serviceAttachmentNames"`
 	// Status of the AWS PrivateLink connection.
 	// Returns one of the following values:
-	// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-	// * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
-	// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-	// * `FAILED` 	A system failure has occurred.
-	// * `DELETING` 	The Private Link service is being deleted.
+	// * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+	// * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+	// * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+	// * `FAILED` - A system failure occurred.
+	// * `DELETING` - Atlas is deleting the Private Link service.
 	Status string `pulumi:"status"`
 }
 
@@ -122,11 +122,11 @@ func LookupPrivateLinkEndpointOutput(ctx *pulumi.Context, args LookupPrivateLink
 
 // A collection of arguments for invoking getPrivateLinkEndpoint.
 type LookupPrivateLinkEndpointOutputArgs struct {
-	// Unique identifier of the private endpoint service that you want to retrieve.
+	// Unique identifier of the private endpoint that you want to retrieve.
 	PrivateLinkId pulumi.StringInput `pulumi:"privateLinkId"`
 	// Unique identifier for the project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+	// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
 }
 
@@ -149,17 +149,17 @@ func (o LookupPrivateLinkEndpointResultOutput) ToLookupPrivateLinkEndpointResult
 	return o
 }
 
-// For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+// List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
 func (o LookupPrivateLinkEndpointResultOutput) EndpointGroupNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.EndpointGroupNames }).(pulumi.StringArrayOutput)
 }
 
-// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+// Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
 func (o LookupPrivateLinkEndpointResultOutput) EndpointServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.EndpointServiceName }).(pulumi.StringOutput)
 }
 
-// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+// Error message for the private endpoint connection. Returns `null` if there are no errors.
 func (o LookupPrivateLinkEndpointResultOutput) ErrorMessage() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
 }
@@ -174,7 +174,7 @@ func (o LookupPrivateLinkEndpointResultOutput) InterfaceEndpoints() pulumi.Strin
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.InterfaceEndpoints }).(pulumi.StringArrayOutput)
 }
 
-// Flag that indicates whether this resource uses GCP port-mapping. When `true`, it uses the port-mapped architecture. When `false` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+// Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
 func (o LookupPrivateLinkEndpointResultOutput) PortMappingEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) bool { return v.PortMappingEnabled }).(pulumi.BoolOutput)
 }
@@ -211,18 +211,18 @@ func (o LookupPrivateLinkEndpointResultOutput) RegionName() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
+// List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
 func (o LookupPrivateLinkEndpointResultOutput) ServiceAttachmentNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.ServiceAttachmentNames }).(pulumi.StringArrayOutput)
 }
 
 // Status of the AWS PrivateLink connection.
 // Returns one of the following values:
-// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-// * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
-// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-// * `FAILED` 	A system failure has occurred.
-// * `DELETING` 	The Private Link service is being deleted.
+// * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+// * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+// * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+// * `FAILED` - A system failure occurred.
+// * `DELETING` - Atlas is deleting the Private Link service.
 func (o LookupPrivateLinkEndpointResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.Status }).(pulumi.StringOutput)
 }

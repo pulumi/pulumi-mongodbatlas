@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  *
- * > **IMPORTANT** Each project can only have one configuration per {INTEGRATION-TYPE}.
+ * > **IMPORTANT** Each project can only have one configuration per integration `type`.
  *
  * > **IMPORTANT:** All arguments including the secrets will be stored in the raw state as plain-text. Read more about sensitive data in state.
  *
@@ -84,6 +84,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     declare public readonly secret: pulumi.Output<string | undefined>;
     declare public readonly sendCollectionLatencyMetrics: pulumi.Output<boolean>;
     declare public readonly sendDatabaseMetrics: pulumi.Output<boolean>;
+    declare public readonly sendQueryStatsMetrics: pulumi.Output<boolean>;
     declare public readonly sendUserProvidedResourceTags: pulumi.Output<boolean>;
     declare public readonly serviceDiscovery: pulumi.Output<string>;
     declare public readonly serviceKey: pulumi.Output<string>;
@@ -129,6 +130,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["secret"] = state?.secret;
             resourceInputs["sendCollectionLatencyMetrics"] = state?.sendCollectionLatencyMetrics;
             resourceInputs["sendDatabaseMetrics"] = state?.sendDatabaseMetrics;
+            resourceInputs["sendQueryStatsMetrics"] = state?.sendQueryStatsMetrics;
             resourceInputs["sendUserProvidedResourceTags"] = state?.sendUserProvidedResourceTags;
             resourceInputs["serviceDiscovery"] = state?.serviceDiscovery;
             resourceInputs["serviceKey"] = state?.serviceKey;
@@ -155,6 +157,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
             resourceInputs["sendCollectionLatencyMetrics"] = args?.sendCollectionLatencyMetrics;
             resourceInputs["sendDatabaseMetrics"] = args?.sendDatabaseMetrics;
+            resourceInputs["sendQueryStatsMetrics"] = args?.sendQueryStatsMetrics;
             resourceInputs["sendUserProvidedResourceTags"] = args?.sendUserProvidedResourceTags;
             resourceInputs["serviceDiscovery"] = args?.serviceDiscovery ? pulumi.secret(args.serviceDiscovery) : undefined;
             resourceInputs["serviceKey"] = args?.serviceKey ? pulumi.secret(args.serviceKey) : undefined;
@@ -188,6 +191,7 @@ export interface ThirdPartyIntegrationState {
     secret?: pulumi.Input<string>;
     sendCollectionLatencyMetrics?: pulumi.Input<boolean>;
     sendDatabaseMetrics?: pulumi.Input<boolean>;
+    sendQueryStatsMetrics?: pulumi.Input<boolean>;
     sendUserProvidedResourceTags?: pulumi.Input<boolean>;
     serviceDiscovery?: pulumi.Input<string>;
     serviceKey?: pulumi.Input<string>;
@@ -228,6 +232,7 @@ export interface ThirdPartyIntegrationArgs {
     secret?: pulumi.Input<string>;
     sendCollectionLatencyMetrics?: pulumi.Input<boolean>;
     sendDatabaseMetrics?: pulumi.Input<boolean>;
+    sendQueryStatsMetrics?: pulumi.Input<boolean>;
     sendUserProvidedResourceTags?: pulumi.Input<boolean>;
     serviceDiscovery?: pulumi.Input<string>;
     serviceKey?: pulumi.Input<string>;

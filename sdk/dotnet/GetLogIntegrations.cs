@@ -12,13 +12,12 @@ namespace Pulumi.Mongodbatlas
     public static class GetLogIntegrations
     {
         /// <summary>
-        /// `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `Mongod`, `Mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+        /// `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
         /// 
         /// To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -27,73 +26,34 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var project = new Mongodbatlas.Project("project", new()
+        ///     var example = Mongodbatlas.GetLogIntegrations.Invoke(new()
         ///     {
-        ///         Name = atlasProjectName,
-        ///         OrgId = atlasOrgId,
-        ///     });
-        /// 
-        ///     // Set up cloud provider access in Atlas using the created IAM role
-        ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         ProviderName = "AWS",
-        ///     });
-        /// 
-        ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         RoleId = setupOnly.RoleId,
-        ///         Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs
-        ///         {
-        ///             IamAssumedRoleArn = atlasRole.Arn,
-        ///         },
-        ///     });
-        /// 
-        ///     // Set up log integration with authorized IAM role
-        ///     var exampleLogIntegration = new Mongodbatlas.LogIntegration("example", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         BucketName = logBucket.Bucket,
-        ///         IamRoleId = authRole.RoleId,
-        ///         PrefixPath = "atlas-logs",
-        ///         Type = "S3_LOG_EXPORT",
-        ///         LogTypes = new[]
-        ///         {
-        ///             "MONGOD_AUDIT",
-        ///         },
-        ///     });
-        /// 
-        ///     var example = Mongodbatlas.GetLogIntegration.Invoke(new()
-        ///     {
-        ///         ProjectId = exampleLogIntegration.ProjectId,
-        ///         IntegrationId = exampleLogIntegration.IntegrationId,
-        ///     });
-        /// 
-        ///     var exampleGetLogIntegrations = Mongodbatlas.GetLogIntegrations.Invoke(new()
-        ///     {
-        ///         ProjectId = exampleLogIntegration.ProjectId,
+        ///         ProjectId = exampleMongodbatlasLogIntegration.ProjectId,
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["logIntegrationBucketName"] = example.Apply(getLogIntegrationResult =&gt; getLogIntegrationResult.BucketName),
-        ///         ["logIntegrationsResults"] = exampleGetLogIntegrations.Apply(getLogIntegrationsResult =&gt; getLogIntegrationsResult.Results),
+        ///         ["logIntegrationIds"] = .Select(r =&gt; 
+        ///         {
+        ///             return r.IntegrationId;
+        ///         }).ToList(),
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### Further Examples
+        /// - Log Integration Examples
         /// </summary>
         public static Task<GetLogIntegrationsResult> InvokeAsync(GetLogIntegrationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLogIntegrationsResult>("mongodbatlas:index/getLogIntegrations:getLogIntegrations", args ?? new GetLogIntegrationsArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `Mongod`, `Mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+        /// `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
         /// 
         /// To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -102,73 +62,34 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var project = new Mongodbatlas.Project("project", new()
+        ///     var example = Mongodbatlas.GetLogIntegrations.Invoke(new()
         ///     {
-        ///         Name = atlasProjectName,
-        ///         OrgId = atlasOrgId,
-        ///     });
-        /// 
-        ///     // Set up cloud provider access in Atlas using the created IAM role
-        ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         ProviderName = "AWS",
-        ///     });
-        /// 
-        ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         RoleId = setupOnly.RoleId,
-        ///         Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs
-        ///         {
-        ///             IamAssumedRoleArn = atlasRole.Arn,
-        ///         },
-        ///     });
-        /// 
-        ///     // Set up log integration with authorized IAM role
-        ///     var exampleLogIntegration = new Mongodbatlas.LogIntegration("example", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         BucketName = logBucket.Bucket,
-        ///         IamRoleId = authRole.RoleId,
-        ///         PrefixPath = "atlas-logs",
-        ///         Type = "S3_LOG_EXPORT",
-        ///         LogTypes = new[]
-        ///         {
-        ///             "MONGOD_AUDIT",
-        ///         },
-        ///     });
-        /// 
-        ///     var example = Mongodbatlas.GetLogIntegration.Invoke(new()
-        ///     {
-        ///         ProjectId = exampleLogIntegration.ProjectId,
-        ///         IntegrationId = exampleLogIntegration.IntegrationId,
-        ///     });
-        /// 
-        ///     var exampleGetLogIntegrations = Mongodbatlas.GetLogIntegrations.Invoke(new()
-        ///     {
-        ///         ProjectId = exampleLogIntegration.ProjectId,
+        ///         ProjectId = exampleMongodbatlasLogIntegration.ProjectId,
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["logIntegrationBucketName"] = example.Apply(getLogIntegrationResult =&gt; getLogIntegrationResult.BucketName),
-        ///         ["logIntegrationsResults"] = exampleGetLogIntegrations.Apply(getLogIntegrationsResult =&gt; getLogIntegrationsResult.Results),
+        ///         ["logIntegrationIds"] = .Select(r =&gt; 
+        ///         {
+        ///             return r.IntegrationId;
+        ///         }).ToList(),
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### Further Examples
+        /// - Log Integration Examples
         /// </summary>
         public static Output<GetLogIntegrationsResult> Invoke(GetLogIntegrationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLogIntegrationsResult>("mongodbatlas:index/getLogIntegrations:getLogIntegrations", args ?? new GetLogIntegrationsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `Mongod`, `Mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+        /// `mongodbatlas.getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
         /// 
         /// To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
         /// 
         /// ## Example Usage
         /// 
-        /// ### S
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -177,61 +98,23 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var project = new Mongodbatlas.Project("project", new()
+        ///     var example = Mongodbatlas.GetLogIntegrations.Invoke(new()
         ///     {
-        ///         Name = atlasProjectName,
-        ///         OrgId = atlasOrgId,
-        ///     });
-        /// 
-        ///     // Set up cloud provider access in Atlas using the created IAM role
-        ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         ProviderName = "AWS",
-        ///     });
-        /// 
-        ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         RoleId = setupOnly.RoleId,
-        ///         Aws = new Mongodbatlas.Inputs.CloudProviderAccessAuthorizationAwsArgs
-        ///         {
-        ///             IamAssumedRoleArn = atlasRole.Arn,
-        ///         },
-        ///     });
-        /// 
-        ///     // Set up log integration with authorized IAM role
-        ///     var exampleLogIntegration = new Mongodbatlas.LogIntegration("example", new()
-        ///     {
-        ///         ProjectId = project.Id,
-        ///         BucketName = logBucket.Bucket,
-        ///         IamRoleId = authRole.RoleId,
-        ///         PrefixPath = "atlas-logs",
-        ///         Type = "S3_LOG_EXPORT",
-        ///         LogTypes = new[]
-        ///         {
-        ///             "MONGOD_AUDIT",
-        ///         },
-        ///     });
-        /// 
-        ///     var example = Mongodbatlas.GetLogIntegration.Invoke(new()
-        ///     {
-        ///         ProjectId = exampleLogIntegration.ProjectId,
-        ///         IntegrationId = exampleLogIntegration.IntegrationId,
-        ///     });
-        /// 
-        ///     var exampleGetLogIntegrations = Mongodbatlas.GetLogIntegrations.Invoke(new()
-        ///     {
-        ///         ProjectId = exampleLogIntegration.ProjectId,
+        ///         ProjectId = exampleMongodbatlasLogIntegration.ProjectId,
         ///     });
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["logIntegrationBucketName"] = example.Apply(getLogIntegrationResult =&gt; getLogIntegrationResult.BucketName),
-        ///         ["logIntegrationsResults"] = exampleGetLogIntegrations.Apply(getLogIntegrationsResult =&gt; getLogIntegrationsResult.Results),
+        ///         ["logIntegrationIds"] = .Select(r =&gt; 
+        ///         {
+        ///             return r.IntegrationId;
+        ///         }).ToList(),
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### Further Examples
+        /// - Log Integration Examples
         /// </summary>
         public static Output<GetLogIntegrationsResult> Invoke(GetLogIntegrationsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetLogIntegrationsResult>("mongodbatlas:index/getLogIntegrations:getLogIntegrations", args ?? new GetLogIntegrationsInvokeArgs(), options.WithDefaults());
@@ -241,7 +124,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetLogIntegrationsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+        /// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
         /// </summary>
         [Input("integrationType")]
         public string? IntegrationType { get; set; }
@@ -261,7 +144,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetLogIntegrationsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+        /// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
         /// </summary>
         [Input("integrationType")]
         public Input<string>? IntegrationType { get; set; }
@@ -287,7 +170,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+        /// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
         /// </summary>
         public readonly string? IntegrationType;
         /// <summary>

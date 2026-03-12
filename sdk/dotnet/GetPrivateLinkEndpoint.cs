@@ -14,10 +14,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `GroupId`.
         /// 
-        /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-        /// ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+        /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -31,7 +30,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
         ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
@@ -46,8 +45,9 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Available complete examples
-        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// ### Further Examples
+        /// - AWS PrivateLink Endpoint
+        /// - Azure PrivateLink Endpoint
         /// - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
         /// </summary>
         public static Task<GetPrivateLinkEndpointResult> InvokeAsync(GetPrivateLinkEndpointArgs args, InvokeOptions? options = null)
@@ -56,10 +56,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `GroupId`.
         /// 
-        /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-        /// ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+        /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -73,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
         ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
@@ -88,8 +87,9 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Available complete examples
-        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// ### Further Examples
+        /// - AWS PrivateLink Endpoint
+        /// - Azure PrivateLink Endpoint
         /// - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
         /// </summary>
         public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOptions? options = null)
@@ -98,10 +98,9 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
+        /// &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `GroupId`.
         /// 
-        /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster,
-        /// ensure that you review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
+        /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -115,7 +114,7 @@ namespace Pulumi.Mongodbatlas
         /// {
         ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
         ///     {
-        ///         ProjectId = "&lt;PROJECT-ID&gt;",
+        ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
@@ -130,8 +129,9 @@ namespace Pulumi.Mongodbatlas
         /// });
         /// ```
         /// 
-        /// ### Available complete examples
-        /// - Setup private connection to a MongoDB Atlas Cluster with AWS VPC
+        /// ### Further Examples
+        /// - AWS PrivateLink Endpoint
+        /// - Azure PrivateLink Endpoint
         /// - GCP Private Service Connect Endpoint (Port-Mapped Architecture)
         /// </summary>
         public static Output<GetPrivateLinkEndpointResult> Invoke(GetPrivateLinkEndpointInvokeArgs args, InvokeOutputOptions options)
@@ -142,7 +142,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier of the private endpoint service that you want to retrieve.
+        /// Unique identifier of the private endpoint that you want to retrieve.
         /// </summary>
         [Input("privateLinkId", required: true)]
         public string PrivateLinkId { get; set; } = null!;
@@ -154,7 +154,7 @@ namespace Pulumi.Mongodbatlas
         public string ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public string ProviderName { get; set; } = null!;
@@ -168,7 +168,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier of the private endpoint service that you want to retrieve.
+        /// Unique identifier of the private endpoint that you want to retrieve.
         /// </summary>
         [Input("privateLinkId", required: true)]
         public Input<string> PrivateLinkId { get; set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE` or `GCP`.
+        /// Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
         /// </summary>
         [Input("providerName", required: true)]
         public Input<string> ProviderName { get; set; } = null!;
@@ -196,15 +196,15 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivateLinkEndpointResult
     {
         /// <summary>
-        /// For port-mapped architectures, this is a list of private endpoint names associated with the private endpoint service. For GCP legacy private endpoint architectures, this is a list of the endpoint group names associated with the private endpoint service.
+        /// List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
         /// </summary>
         public readonly ImmutableArray<string> EndpointGroupNames;
         /// <summary>
-        /// Name of the PrivateLink endpoint service in AWS. Returns null while the endpoint service is being created.
+        /// Name of the PrivateLink endpoint service in AWS. Returns `Null` while Atlas creates the endpoint service.
         /// </summary>
         public readonly string EndpointServiceName;
         /// <summary>
-        /// Error message pertaining to the AWS PrivateLink connection. Returns null if there are no errors.
+        /// Error message for the private endpoint connection. Returns `Null` if there are no errors.
         /// </summary>
         public readonly string ErrorMessage;
         /// <summary>
@@ -216,7 +216,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<string> InterfaceEndpoints;
         /// <summary>
-        /// Flag that indicates whether this resource uses GCP port-mapping. When `True`, it uses the port-mapped architecture. When `False` or unset, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        /// Flag that indicates whether this resource uses GCP port-mapping. When `True`, the resource uses port-mapped architecture. When `False` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
         /// </summary>
         public readonly bool PortMappingEnabled;
         /// <summary>
@@ -239,17 +239,17 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string RegionName;
         /// <summary>
-        /// For port-mapped architecture, this is a list containing one service attachment connected to the private endpoint service. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node).
+        /// List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
         /// </summary>
         public readonly ImmutableArray<string> ServiceAttachmentNames;
         /// <summary>
         /// Status of the AWS PrivateLink connection.
         /// Returns one of the following values:
-        /// * `AVAILABLE` 	Atlas created the load balancer and the Private Link Service.
-        /// * `INITIATING` 	Atlas is creating the network load balancer and VPC endpoint service.
-        /// * `WAITING_FOR_USER` The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
-        /// * `FAILED` 	A system failure has occurred.
-        /// * `DELETING` 	The Private Link service is being deleted.
+        /// * `AVAILABLE` - Atlas created the load balancer and the Private Link Service.
+        /// * `INITIATING` - Atlas is creating the network load balancer and VPC endpoint service.
+        /// * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
+        /// * `FAILED` - A system failure occurred.
+        /// * `DELETING` - Atlas is deleting the Private Link service.
         /// </summary>
         public readonly string Status;
 

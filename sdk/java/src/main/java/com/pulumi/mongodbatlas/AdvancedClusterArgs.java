@@ -59,9 +59,11 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
      * 
      * Backup uses:
-     * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-     * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
+     * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
+     * 
+     * &gt; **NOTE:** If you have a Backup Compliance Policy enabled for the project, you can&#39;t disable Cloud Backup without assistance from [MongoDB Support](https://www.mongodb.com/docs/atlas/support/#request-support).
      * 
      */
     @Import(name="backupEnabled")
@@ -72,9 +74,11 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
      * 
      * Backup uses:
-     * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-     * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
+     * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
+     * 
+     * &gt; **NOTE:** If you have a Backup Compliance Policy enabled for the project, you can&#39;t disable Cloud Backup without assistance from [MongoDB Support](https://www.mongodb.com/docs/atlas/support/#request-support).
      * 
      */
     public Optional<Output<Boolean>> backupEnabled() {
@@ -280,12 +284,16 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     /**
      * Unique ID for the project to create the cluster.
      * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
      * @return Unique ID for the project to create the cluster.
+     * 
+     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -338,7 +346,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+     * Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
      * 
      * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
      * 
@@ -347,7 +355,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     private @Nullable Output<Boolean> retainBackupsEnabled;
 
     /**
-     * @return Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+     * @return Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
      * 
      * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
      * 
@@ -417,6 +425,21 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     * 
+     */
+    @Import(name="useAwsTimeBasedSnapshotCopyForFastInitialSync")
+    private @Nullable Output<Boolean> useAwsTimeBasedSnapshotCopyForFastInitialSync;
+
+    /**
+     * @return Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     * 
+     */
+    public Optional<Output<Boolean>> useAwsTimeBasedSnapshotCopyForFastInitialSync() {
+        return Optional.ofNullable(this.useAwsTimeBasedSnapshotCopyForFastInitialSync);
+    }
+
+    /**
      * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
      * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
      * 
@@ -479,6 +502,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.tags = $.tags;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
         this.timeouts = $.timeouts;
+        this.useAwsTimeBasedSnapshotCopyForFastInitialSync = $.useAwsTimeBasedSnapshotCopyForFastInitialSync;
         this.useEffectiveFields = $.useEffectiveFields;
         this.versionReleaseSystem = $.versionReleaseSystem;
     }
@@ -548,9 +572,11 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
          * 
          * Backup uses:
-         * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-         * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
+         * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+         * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
          * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
+         * 
+         * &gt; **NOTE:** If you have a Backup Compliance Policy enabled for the project, you can&#39;t disable Cloud Backup without assistance from [MongoDB Support](https://www.mongodb.com/docs/atlas/support/#request-support).
          * 
          * @return builder
          * 
@@ -565,9 +591,11 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
          * 
          * Backup uses:
-         * [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
-         * [Flex Cluster Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
+         * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+         * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
          * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
+         * 
+         * &gt; **NOTE:** If you have a Backup Compliance Policy enabled for the project, you can&#39;t disable Cloud Backup without assistance from [MongoDB Support](https://www.mongodb.com/docs/atlas/support/#request-support).
          * 
          * @return builder
          * 
@@ -847,6 +875,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param projectId Unique ID for the project to create the cluster.
          * 
+         * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+         * 
          * @return builder
          * 
          */
@@ -857,6 +887,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param projectId Unique ID for the project to create the cluster.
+         * 
+         * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
          * 
          * @return builder
          * 
@@ -939,7 +971,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
          * 
          * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
          * 
@@ -952,7 +984,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
+         * @param retainBackupsEnabled Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
          * 
          * &gt; **NOTE** Prior version of provider had parameter as `biConnector` state will migrate it to new value you only need to update parameter in your terraform file
          * 
@@ -1045,6 +1077,27 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder timeouts(AdvancedClusterTimeoutsArgs timeouts) {
             return timeouts(Output.of(timeouts));
+        }
+
+        /**
+         * @param useAwsTimeBasedSnapshotCopyForFastInitialSync Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAwsTimeBasedSnapshotCopyForFastInitialSync(@Nullable Output<Boolean> useAwsTimeBasedSnapshotCopyForFastInitialSync) {
+            $.useAwsTimeBasedSnapshotCopyForFastInitialSync = useAwsTimeBasedSnapshotCopyForFastInitialSync;
+            return this;
+        }
+
+        /**
+         * @param useAwsTimeBasedSnapshotCopyForFastInitialSync Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useAwsTimeBasedSnapshotCopyForFastInitialSync(Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync) {
+            return useAwsTimeBasedSnapshotCopyForFastInitialSync(Output.of(useAwsTimeBasedSnapshotCopyForFastInitialSync));
         }
 
         /**

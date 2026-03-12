@@ -95,12 +95,14 @@ type LookupThirdPartyIntegrationResult struct {
 	// An optional field for your webhook secret.
 	// * `MICROSOFT_TEAMS`
 	Secret string `pulumi:"secret"`
-	// Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
 	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
 	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
-	// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
 	// * `OPS_GENIE`
+	SendQueryStatsMetrics bool `pulumi:"sendQueryStatsMetrics"`
+	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
 	ServiceDiscovery string `pulumi:"serviceDiscovery"`
@@ -209,7 +211,7 @@ func (o LookupThirdPartyIntegrationResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) string { return v.Secret }).(pulumi.StringOutput)
 }
 
-// Toggle sending collection latency metrics that includes database names and collection name sand latency metrics on reads, writes, commands, and transactions.
+// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
 func (o LookupThirdPartyIntegrationResultOutput) SendCollectionLatencyMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendCollectionLatencyMetrics }).(pulumi.BoolOutput)
 }
@@ -219,8 +221,13 @@ func (o LookupThirdPartyIntegrationResultOutput) SendDatabaseMetrics() pulumi.Bo
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
 }
 
-// Toggle sending user provided group and cluster resource tags with the datadog metrics.
+// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
 // * `OPS_GENIE`
+func (o LookupThirdPartyIntegrationResultOutput) SendQueryStatsMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendQueryStatsMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 func (o LookupThirdPartyIntegrationResultOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendUserProvidedResourceTags }).(pulumi.BoolOutput)
 }

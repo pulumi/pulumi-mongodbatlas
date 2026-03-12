@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
     /// 
-    /// &gt; **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `EncryptionAtRestProvider = "NONE"`, or be deleted.
+    /// &gt; **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `EncryptionAtRestProvider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
     /// 
     /// ## Enabling Encryption at Rest for existing Atlas cluster
     /// 
@@ -138,13 +138,11 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             Enabled = true,
     ///             AzureEnvironment = "AZURE",
-    ///             TenantId = azureTenantId,
     ///             SubscriptionId = azureSubscriptionId,
-    ///             ClientId = azureClientId,
-    ///             Secret = azureClientSecret,
     ///             ResourceGroupName = azureResourceGroupName,
     ///             KeyVaultName = azureKeyVaultName,
     ///             KeyIdentifier = azureKeyIdentifier,
+    ///             RoleId = azureRoleId,
     ///         },
     ///     });
     /// 

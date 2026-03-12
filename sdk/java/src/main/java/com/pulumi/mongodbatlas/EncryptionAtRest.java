@@ -36,7 +36,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  * 
- * &gt; **IMPORTANT NOTE** To disable the encryption at rest with customer key management for a project all existing clusters in the project must first either have encryption at rest for the provider set to none, e.g. `encryptionAtRestProvider = &#34;NONE&#34;`, or be deleted.
+ * &gt; **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryptionAtRestProvider` to `&#34;NONE&#34;` in all existing clusters in the project that use custom key management or delete said clusters.
  * 
  * ## Enabling Encryption at Rest for existing Atlas cluster
  * 
@@ -170,13 +170,11 @@ import javax.annotation.Nullable;
  *             .azureKeyVaultConfig(EncryptionAtRestAzureKeyVaultConfigArgs.builder()
  *                 .enabled(true)
  *                 .azureEnvironment("AZURE")
- *                 .tenantId(azureTenantId)
  *                 .subscriptionId(azureSubscriptionId)
- *                 .clientId(azureClientId)
- *                 .secret(azureClientSecret)
  *                 .resourceGroupName(azureResourceGroupName)
  *                 .keyVaultName(azureKeyVaultName)
  *                 .keyIdentifier(azureKeyIdentifier)
+ *                 .roleId(azureRoleId)
  *                 .build())
  *             .build());
  * 

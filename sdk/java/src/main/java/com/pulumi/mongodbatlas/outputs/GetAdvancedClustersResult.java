@@ -116,12 +116,12 @@ public final class GetAdvancedClustersResult {
      */
     private String projectId;
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+     * @return Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     private Boolean redactClientLogData;
     /**
-     * @return (Optional) Replica set scaling mode for your cluster.
+     * @return Replica set scaling mode for your cluster.
      * 
      */
     private String replicaSetScalingStrategy;
@@ -150,6 +150,11 @@ public final class GetAdvancedClustersResult {
      * 
      */
     private Boolean terminationProtectionEnabled;
+    /**
+     * @return Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     * 
+     */
+    private Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync;
     /**
      * @return Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
      * 
@@ -296,14 +301,14 @@ public final class GetAdvancedClustersResult {
         return this.projectId;
     }
     /**
-     * @return (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+     * @return Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      * 
      */
     public Boolean redactClientLogData() {
         return this.redactClientLogData;
     }
     /**
-     * @return (Optional) Replica set scaling mode for your cluster.
+     * @return Replica set scaling mode for your cluster.
      * 
      */
     public String replicaSetScalingStrategy() {
@@ -343,6 +348,13 @@ public final class GetAdvancedClustersResult {
      */
     public Boolean terminationProtectionEnabled() {
         return this.terminationProtectionEnabled;
+    }
+    /**
+     * @return Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     * 
+     */
+    public Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync() {
+        return this.useAwsTimeBasedSnapshotCopyForFastInitialSync;
     }
     /**
      * @return Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
@@ -394,6 +406,7 @@ public final class GetAdvancedClustersResult {
         private String stateName;
         private Map<String,String> tags;
         private Boolean terminationProtectionEnabled;
+        private Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync;
         private @Nullable Boolean useEffectiveFields;
         private String versionReleaseSystem;
         public Builder() {}
@@ -425,6 +438,7 @@ public final class GetAdvancedClustersResult {
     	      this.stateName = defaults.stateName;
     	      this.tags = defaults.tags;
     	      this.terminationProtectionEnabled = defaults.terminationProtectionEnabled;
+    	      this.useAwsTimeBasedSnapshotCopyForFastInitialSync = defaults.useAwsTimeBasedSnapshotCopyForFastInitialSync;
     	      this.useEffectiveFields = defaults.useEffectiveFields;
     	      this.versionReleaseSystem = defaults.versionReleaseSystem;
         }
@@ -641,6 +655,14 @@ public final class GetAdvancedClustersResult {
             return this;
         }
         @CustomType.Setter
+        public Builder useAwsTimeBasedSnapshotCopyForFastInitialSync(Boolean useAwsTimeBasedSnapshotCopyForFastInitialSync) {
+            if (useAwsTimeBasedSnapshotCopyForFastInitialSync == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "useAwsTimeBasedSnapshotCopyForFastInitialSync");
+            }
+            this.useAwsTimeBasedSnapshotCopyForFastInitialSync = useAwsTimeBasedSnapshotCopyForFastInitialSync;
+            return this;
+        }
+        @CustomType.Setter
         public Builder useEffectiveFields(@Nullable Boolean useEffectiveFields) {
 
             this.useEffectiveFields = useEffectiveFields;
@@ -682,6 +704,7 @@ public final class GetAdvancedClustersResult {
             _resultValue.stateName = stateName;
             _resultValue.tags = tags;
             _resultValue.terminationProtectionEnabled = terminationProtectionEnabled;
+            _resultValue.useAwsTimeBasedSnapshotCopyForFastInitialSync = useAwsTimeBasedSnapshotCopyForFastInitialSync;
             _resultValue.useEffectiveFields = useEffectiveFields;
             _resultValue.versionReleaseSystem = versionReleaseSystem;
             return _resultValue;

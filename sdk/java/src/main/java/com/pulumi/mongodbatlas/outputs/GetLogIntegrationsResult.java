@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetLogIntegrationsResultOtelSuppliedHeader;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -12,12 +13,27 @@ import java.util.Objects;
 @CustomType
 public final class GetLogIntegrationsResult {
     /**
-     * @return Human-readable label that identifies the S3 bucket name for storing log files.
+     * @return Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+     * 
+     */
+    private String apiKey;
+    /**
+     * @return Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      * 
      */
     private String bucketName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     * @return Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+     * 
+     */
+    private String hecToken;
+    /**
+     * @return Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+     * 
+     */
+    private String hecUrl;
+    /**
+     * @return Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
      * 
      */
     private String iamRoleId;
@@ -27,36 +43,87 @@ public final class GetLogIntegrationsResult {
      */
     private String integrationId;
     /**
-     * @return AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     * @return Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      * 
      */
     private String kmsKey;
     /**
-     * @return Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * @return Array of log types exported by this integration.
      * 
      */
     private List<String> logTypes;
     /**
-     * @return S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     * @return Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+     * 
+     */
+    private String otelEndpoint;
+    /**
+     * @return Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+     * 
+     */
+    private List<GetLogIntegrationsResultOtelSuppliedHeader> otelSuppliedHeaders;
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
      * 
      */
     private String prefixPath;
     /**
-     * @return Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * @return Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+     * 
+     */
+    private String region;
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+     * 
+     */
+    private String roleId;
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+     * 
+     */
+    private String storageAccountName;
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+     * 
+     */
+    private String storageContainerName;
+    /**
+     * @return Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     private String type;
 
     private GetLogIntegrationsResult() {}
     /**
-     * @return Human-readable label that identifies the S3 bucket name for storing log files.
+     * @return Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+     * 
+     */
+    public String apiKey() {
+        return this.apiKey;
+    }
+    /**
+     * @return Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      * 
      */
     public String bucketName() {
         return this.bucketName;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+     * @return Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+     * 
+     */
+    public String hecToken() {
+        return this.hecToken;
+    }
+    /**
+     * @return Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+     * 
+     */
+    public String hecUrl() {
+        return this.hecUrl;
+    }
+    /**
+     * @return Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
      * 
      */
     public String iamRoleId() {
@@ -70,28 +137,70 @@ public final class GetLogIntegrationsResult {
         return this.integrationId;
     }
     /**
-     * @return AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+     * @return Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      * 
      */
     public String kmsKey() {
         return this.kmsKey;
     }
     /**
-     * @return Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+     * @return Array of log types exported by this integration.
      * 
      */
     public List<String> logTypes() {
         return this.logTypes;
     }
     /**
-     * @return S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+     * @return Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+     * 
+     */
+    public String otelEndpoint() {
+        return this.otelEndpoint;
+    }
+    /**
+     * @return Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+     * 
+     */
+    public List<GetLogIntegrationsResultOtelSuppliedHeader> otelSuppliedHeaders() {
+        return this.otelSuppliedHeaders;
+    }
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
      * 
      */
     public String prefixPath() {
         return this.prefixPath;
     }
     /**
-     * @return Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+     * @return Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+     * 
+     */
+    public String region() {
+        return this.region;
+    }
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+     * 
+     */
+    public String roleId() {
+        return this.roleId;
+    }
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+     * 
+     */
+    public String storageAccountName() {
+        return this.storageAccountName;
+    }
+    /**
+     * @return Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+     * 
+     */
+    public String storageContainerName() {
+        return this.storageContainerName;
+    }
+    /**
+     * @return Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      * 
      */
     public String type() {
@@ -107,31 +216,73 @@ public final class GetLogIntegrationsResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String apiKey;
         private String bucketName;
+        private String hecToken;
+        private String hecUrl;
         private String iamRoleId;
         private String integrationId;
         private String kmsKey;
         private List<String> logTypes;
+        private String otelEndpoint;
+        private List<GetLogIntegrationsResultOtelSuppliedHeader> otelSuppliedHeaders;
         private String prefixPath;
+        private String region;
+        private String roleId;
+        private String storageAccountName;
+        private String storageContainerName;
         private String type;
         public Builder() {}
         public Builder(GetLogIntegrationsResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.apiKey = defaults.apiKey;
     	      this.bucketName = defaults.bucketName;
+    	      this.hecToken = defaults.hecToken;
+    	      this.hecUrl = defaults.hecUrl;
     	      this.iamRoleId = defaults.iamRoleId;
     	      this.integrationId = defaults.integrationId;
     	      this.kmsKey = defaults.kmsKey;
     	      this.logTypes = defaults.logTypes;
+    	      this.otelEndpoint = defaults.otelEndpoint;
+    	      this.otelSuppliedHeaders = defaults.otelSuppliedHeaders;
     	      this.prefixPath = defaults.prefixPath;
+    	      this.region = defaults.region;
+    	      this.roleId = defaults.roleId;
+    	      this.storageAccountName = defaults.storageAccountName;
+    	      this.storageContainerName = defaults.storageContainerName;
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
+        public Builder apiKey(String apiKey) {
+            if (apiKey == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "apiKey");
+            }
+            this.apiKey = apiKey;
+            return this;
+        }
         @CustomType.Setter
         public Builder bucketName(String bucketName) {
             if (bucketName == null) {
               throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "bucketName");
             }
             this.bucketName = bucketName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder hecToken(String hecToken) {
+            if (hecToken == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "hecToken");
+            }
+            this.hecToken = hecToken;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder hecUrl(String hecUrl) {
+            if (hecUrl == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "hecUrl");
+            }
+            this.hecUrl = hecUrl;
             return this;
         }
         @CustomType.Setter
@@ -170,11 +321,62 @@ public final class GetLogIntegrationsResult {
             return logTypes(List.of(logTypes));
         }
         @CustomType.Setter
+        public Builder otelEndpoint(String otelEndpoint) {
+            if (otelEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "otelEndpoint");
+            }
+            this.otelEndpoint = otelEndpoint;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder otelSuppliedHeaders(List<GetLogIntegrationsResultOtelSuppliedHeader> otelSuppliedHeaders) {
+            if (otelSuppliedHeaders == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "otelSuppliedHeaders");
+            }
+            this.otelSuppliedHeaders = otelSuppliedHeaders;
+            return this;
+        }
+        public Builder otelSuppliedHeaders(GetLogIntegrationsResultOtelSuppliedHeader... otelSuppliedHeaders) {
+            return otelSuppliedHeaders(List.of(otelSuppliedHeaders));
+        }
+        @CustomType.Setter
         public Builder prefixPath(String prefixPath) {
             if (prefixPath == null) {
               throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "prefixPath");
             }
             this.prefixPath = prefixPath;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder region(String region) {
+            if (region == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "region");
+            }
+            this.region = region;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder roleId(String roleId) {
+            if (roleId == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "roleId");
+            }
+            this.roleId = roleId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder storageAccountName(String storageAccountName) {
+            if (storageAccountName == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "storageAccountName");
+            }
+            this.storageAccountName = storageAccountName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder storageContainerName(String storageContainerName) {
+            if (storageContainerName == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "storageContainerName");
+            }
+            this.storageContainerName = storageContainerName;
             return this;
         }
         @CustomType.Setter
@@ -187,12 +389,21 @@ public final class GetLogIntegrationsResult {
         }
         public GetLogIntegrationsResult build() {
             final var _resultValue = new GetLogIntegrationsResult();
+            _resultValue.apiKey = apiKey;
             _resultValue.bucketName = bucketName;
+            _resultValue.hecToken = hecToken;
+            _resultValue.hecUrl = hecUrl;
             _resultValue.iamRoleId = iamRoleId;
             _resultValue.integrationId = integrationId;
             _resultValue.kmsKey = kmsKey;
             _resultValue.logTypes = logTypes;
+            _resultValue.otelEndpoint = otelEndpoint;
+            _resultValue.otelSuppliedHeaders = otelSuppliedHeaders;
             _resultValue.prefixPath = prefixPath;
+            _resultValue.region = region;
+            _resultValue.roleId = roleId;
+            _resultValue.storageAccountName = storageAccountName;
+            _resultValue.storageContainerName = storageContainerName;
             _resultValue.type = type;
             return _resultValue;
         }

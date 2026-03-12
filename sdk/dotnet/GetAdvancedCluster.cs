@@ -12,18 +12,9 @@ namespace Pulumi.Mongodbatlas
     public static class GetAdvancedCluster
     {
         /// <summary>
-        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-        /// 
+        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-        /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -244,18 +235,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-        /// 
+        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-        /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -476,18 +458,9 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetAdvancedClusterResult>("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args ?? new GetAdvancedClusterInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
-        /// 
+        /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
         /// 
         /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
-        /// 
-        /// &gt; **IMPORTANT:**
-        /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-        /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-        /// 
-        /// &gt; **NOTE:** This data source also includes Flex clusters.
         /// 
         /// ## Example Usage
         /// 
@@ -834,11 +807,11 @@ namespace Pulumi.Mongodbatlas
         public readonly bool PitEnabled;
         public readonly string ProjectId;
         /// <summary>
-        /// (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+        /// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         /// </summary>
         public readonly bool RedactClientLogData;
         /// <summary>
-        /// (Optional) Replica set scaling mode for your cluster.
+        /// Replica set scaling mode for your cluster.
         /// </summary>
         public readonly string ReplicaSetScalingStrategy;
         /// <summary>
@@ -861,6 +834,10 @@ namespace Pulumi.Mongodbatlas
         /// Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         /// </summary>
         public readonly bool TerminationProtectionEnabled;
+        /// <summary>
+        /// Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+        /// </summary>
+        public readonly bool UseAwsTimeBasedSnapshotCopyForFastInitialSync;
         public readonly bool? UseEffectiveFields;
         /// <summary>
         /// Release cadence that Atlas uses for this cluster.
@@ -923,6 +900,8 @@ namespace Pulumi.Mongodbatlas
 
             bool terminationProtectionEnabled,
 
+            bool useAwsTimeBasedSnapshotCopyForFastInitialSync,
+
             bool? useEffectiveFields,
 
             string versionReleaseSystem)
@@ -954,6 +933,7 @@ namespace Pulumi.Mongodbatlas
             StateName = stateName;
             Tags = tags;
             TerminationProtectionEnabled = terminationProtectionEnabled;
+            UseAwsTimeBasedSnapshotCopyForFastInitialSync = useAwsTimeBasedSnapshotCopyForFastInitialSync;
             UseEffectiveFields = useEffectiveFields;
             VersionReleaseSystem = versionReleaseSystem;
         }

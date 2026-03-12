@@ -14,11 +14,23 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetLogIntegrationsResultResult
     {
         /// <summary>
-        /// Human-readable label that identifies the S3 bucket name for storing log files.
+        /// Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
+        /// </summary>
+        public readonly string ApiKey;
+        /// <summary>
+        /// Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
         /// </summary>
         public readonly string BucketName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the AWS IAM role that MongoDB Cloud uses to access your S3 bucket.
+        /// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
+        /// </summary>
+        public readonly string HecToken;
+        /// <summary>
+        /// Applies to type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
+        /// </summary>
+        public readonly string HecUrl;
+        /// <summary>
+        /// Applies to type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         /// </summary>
         public readonly string IamRoleId;
         /// <summary>
@@ -26,25 +38,55 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string IntegrationId;
         /// <summary>
-        /// AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
+        /// Applies to type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         /// </summary>
         public readonly string KmsKey;
         /// <summary>
-        /// Array of log types to export to S3. Valid values: MONGOD, MONGOS, MONGOD*AUDIT, MONGOS*AUDIT.
+        /// Array of log types exported by this integration.
         /// </summary>
         public readonly ImmutableArray<string> LogTypes;
         /// <summary>
-        /// S3 directory path prefix where the log files will be stored. MongoDB Cloud will add further sub-directories based on the log type.
+        /// Applies to type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL.
+        /// </summary>
+        public readonly string OtelEndpoint;
+        /// <summary>
+        /// Applies to type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetLogIntegrationsResultOtelSuppliedHeaderResult> OtelSuppliedHeaders;
+        /// <summary>
+        /// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         /// </summary>
         public readonly string PrefixPath;
         /// <summary>
-        /// Human-readable label that identifies the service to which you want to integrate with MongoDB Cloud. The value must match the log integration type.
+        /// Applies to type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
+        /// </summary>
+        public readonly string Region;
+        /// <summary>
+        /// Applies to type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
+        /// </summary>
+        public readonly string RoleId;
+        /// <summary>
+        /// Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
+        /// </summary>
+        public readonly string StorageAccountName;
+        /// <summary>
+        /// Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
+        /// </summary>
+        public readonly string StorageContainerName;
+        /// <summary>
+        /// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
         private GetLogIntegrationsResultResult(
+            string apiKey,
+
             string bucketName,
+
+            string hecToken,
+
+            string hecUrl,
 
             string iamRoleId,
 
@@ -54,16 +96,37 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<string> logTypes,
 
+            string otelEndpoint,
+
+            ImmutableArray<Outputs.GetLogIntegrationsResultOtelSuppliedHeaderResult> otelSuppliedHeaders,
+
             string prefixPath,
+
+            string region,
+
+            string roleId,
+
+            string storageAccountName,
+
+            string storageContainerName,
 
             string type)
         {
+            ApiKey = apiKey;
             BucketName = bucketName;
+            HecToken = hecToken;
+            HecUrl = hecUrl;
             IamRoleId = iamRoleId;
             IntegrationId = integrationId;
             KmsKey = kmsKey;
             LogTypes = logTypes;
+            OtelEndpoint = otelEndpoint;
+            OtelSuppliedHeaders = otelSuppliedHeaders;
             PrefixPath = prefixPath;
+            Region = region;
+            RoleId = roleId;
+            StorageAccountName = storageAccountName;
+            StorageContainerName = storageContainerName;
             Type = type;
         }
     }

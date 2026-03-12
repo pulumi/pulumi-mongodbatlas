@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetEncryptionAtRestGoogleCloudKmsConfigResult
     {
         /// <summary>
-        /// Flag that indicates whether someone enabled encryption at rest for the specified  project. To disable encryption at rest using customer key management and remove the configuration details, pass only this parameter with a value of `False`.
+        /// Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `False` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>

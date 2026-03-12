@@ -7,17 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+ * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
- *
- * > **IMPORTANT:**
- * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
- * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
- * > **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
- *
- * > **NOTE:** This data source also includes Flex clusters.
  *
  * ## Example Usage
  *
@@ -255,11 +247,11 @@ export interface GetAdvancedClusterResult {
     readonly pitEnabled: boolean;
     readonly projectId: string;
     /**
-     * (Optional) Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
+     * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
      */
     readonly redactClientLogData: boolean;
     /**
-     * (Optional) Replica set scaling mode for your cluster.
+     * Replica set scaling mode for your cluster.
      */
     readonly replicaSetScalingStrategy: string;
     /**
@@ -282,6 +274,10 @@ export interface GetAdvancedClusterResult {
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
     readonly terminationProtectionEnabled: boolean;
+    /**
+     * Flag that indicates whether time-based snapshot copies will be used instead of slower standard snapshot copies during fast Atlas cross-region initial syncs. This flag is only relevant for clusters containing AWS nodes.
+     */
+    readonly useAwsTimeBasedSnapshotCopyForFastInitialSync: boolean;
     readonly useEffectiveFields?: boolean;
     /**
      * Release cadence that Atlas uses for this cluster.
@@ -289,17 +285,9 @@ export interface GetAdvancedClusterResult {
     readonly versionReleaseSystem: string;
 }
 /**
- * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster. The data source requires your Project ID.
+ * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
  *
  * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
- *
- * > **IMPORTANT:**
- * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
- * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
- *
- * > **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
- *
- * > **NOTE:** This data source also includes Flex clusters.
  *
  * ## Example Usage
  *

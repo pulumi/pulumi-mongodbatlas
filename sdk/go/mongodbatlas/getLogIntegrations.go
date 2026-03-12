@@ -11,82 +11,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `getLogIntegrations` returns all log integrations in a project. Log integrations allow you to continually export `mongod`, `mongos`, and audit logs to an AWS S3 bucket with 1-minute log export intervals.
+// `getLogIntegrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
 //
 // To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
 //
 // ## Example Usage
 //
-// ### S
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := mongodbatlas.NewProject(ctx, "project", &mongodbatlas.ProjectArgs{
-//				Name:  pulumi.Any(atlasProjectName),
-//				OrgId: pulumi.Any(atlasOrgId),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Set up cloud provider access in Atlas using the created IAM role
-//			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
-//				ProjectId:    project.ID(),
-//				ProviderName: pulumi.String("AWS"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			authRole, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
-//				ProjectId: project.ID(),
-//				RoleId:    setupOnly.RoleId,
-//				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
-//					IamAssumedRoleArn: pulumi.Any(atlasRole.Arn),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			// Set up log integration with authorized IAM role
-//			exampleLogIntegration, err := mongodbatlas.NewLogIntegration(ctx, "example", &mongodbatlas.LogIntegrationArgs{
-//				ProjectId:  project.ID(),
-//				BucketName: pulumi.Any(logBucket.Bucket),
-//				IamRoleId:  authRole.RoleId,
-//				PrefixPath: pulumi.String("atlas-logs"),
-//				Type:       pulumi.String("S3_LOG_EXPORT"),
-//				LogTypes: pulumi.StringArray{
-//					pulumi.String("MONGOD_AUDIT"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			example := mongodbatlas.LookupLogIntegrationOutput(ctx, mongodbatlas.GetLogIntegrationOutputArgs{
-//				ProjectId:     exampleLogIntegration.ProjectId,
-//				IntegrationId: exampleLogIntegration.IntegrationId,
-//			}, nil)
-//			exampleGetLogIntegrations := mongodbatlas.LookupLogIntegrationsOutput(ctx, mongodbatlas.GetLogIntegrationsOutputArgs{
-//				ProjectId: exampleLogIntegration.ProjectId,
-//			}, nil)
-//			ctx.Export("logIntegrationBucketName", example.ApplyT(func(example mongodbatlas.GetLogIntegrationResult) (*string, error) {
-//				return &example.BucketName, nil
-//			}).(pulumi.StringPtrOutput))
-//			ctx.Export("logIntegrationsResults", exampleGetLogIntegrations.ApplyT(func(exampleGetLogIntegrations mongodbatlas.GetLogIntegrationsResult) ([]mongodbatlas.GetLogIntegrationsResult, error) {
-//				return []mongodbatlas.GetLogIntegrationsResult(exampleGetLogIntegrations.Results), nil
-//			}).([]mongodbatlas.GetLogIntegrationsResultOutput))
-//			return nil
-//		})
-//	}
-//
-// ```
+// ### Further Examples
+// - Log Integration Examples
 func LookupLogIntegrations(ctx *pulumi.Context, args *LookupLogIntegrationsArgs, opts ...pulumi.InvokeOption) (*LookupLogIntegrationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLogIntegrationsResult
@@ -99,7 +31,7 @@ func LookupLogIntegrations(ctx *pulumi.Context, args *LookupLogIntegrationsArgs,
 
 // A collection of arguments for invoking getLogIntegrations.
 type LookupLogIntegrationsArgs struct {
-	// Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+	// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 	IntegrationType *string `pulumi:"integrationType"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
@@ -109,7 +41,7 @@ type LookupLogIntegrationsArgs struct {
 type LookupLogIntegrationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+	// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 	IntegrationType *string `pulumi:"integrationType"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId string `pulumi:"projectId"`
@@ -128,7 +60,7 @@ func LookupLogIntegrationsOutput(ctx *pulumi.Context, args LookupLogIntegrations
 
 // A collection of arguments for invoking getLogIntegrations.
 type LookupLogIntegrationsOutputArgs struct {
-	// Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+	// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 	IntegrationType pulumi.StringPtrInput `pulumi:"integrationType"`
 	// Unique 24-hexadecimal digit string that identifies your project.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -158,7 +90,7 @@ func (o LookupLogIntegrationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Optional filter by integration type (e.g., 'S3*LOG*EXPORT').
+// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 func (o LookupLogIntegrationsResultOutput) IntegrationType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupLogIntegrationsResult) *string { return v.IntegrationType }).(pulumi.StringPtrOutput)
 }
