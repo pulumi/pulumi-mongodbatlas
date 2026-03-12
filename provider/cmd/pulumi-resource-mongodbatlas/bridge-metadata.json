@@ -619,6 +619,9 @@
                 "fields": {
                     "log_types": {
                         "maxItemsOne": false
+                    },
+                    "otel_supplied_headers": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2298,6 +2301,9 @@
                 "fields": {
                     "log_types": {
                         "maxItemsOne": false
+                    },
+                    "otel_supplied_headers": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2310,6 +2316,9 @@
                         "elem": {
                             "fields": {
                                 "log_types": {
+                                    "maxItemsOne": false
+                                },
+                                "otel_supplied_headers": {
                                     "maxItemsOne": false
                                 }
                             }
@@ -2555,6 +2564,31 @@
                 "fields": {
                     "results": {
                         "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_privatelink_endpoints": {
+                "current": "mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "endpoint_group_names": {
+                                    "maxItemsOne": false
+                                },
+                                "interface_endpoints": {
+                                    "maxItemsOne": false
+                                },
+                                "private_endpoints": {
+                                    "maxItemsOne": false
+                                },
+                                "service_attachment_names": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -3372,6 +3406,7 @@
             "mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService": 0,
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive": 0,
             "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives": 0,
+            "mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints": 1,
             "mongodbatlas:index/getProject:getProject": 1,
             "mongodbatlas:index/getProjectApiKey:getProjectApiKey": 0,
             "mongodbatlas:index/getProjectApiKeys:getProjectApiKeys": 0,
