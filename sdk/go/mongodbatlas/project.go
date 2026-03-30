@@ -36,7 +36,7 @@ import (
 //			}
 //			_, err = mongodbatlas.NewProject(ctx, "test", &mongodbatlas.ProjectArgs{
 //				Name:           pulumi.String("project-name"),
-//				OrgId:          pulumi.String(test.OrgId),
+//				OrgId:          pulumi.String(pulumi.String(test.OrgId)),
 //				ProjectOwnerId: pulumi.String("<OWNER_ACCOUNT_ID>"),
 //				Limits: mongodbatlas.ProjectLimitArray{
 //					&mongodbatlas.ProjectLimitArgs{

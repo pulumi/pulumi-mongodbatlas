@@ -66,7 +66,7 @@ import (
 //				username := _args[1].(*string)
 //				return mongodbatlas.GetX509AuthenticationDatabaseUserResult(interface{}(mongodbatlas.LookupX509AuthenticationDatabaseUser(ctx, &mongodbatlas.LookupX509AuthenticationDatabaseUserArgs{
 //					ProjectId: projectId,
-//					Username:  pulumi.StringRef(pulumi.StringRef(username)),
+//					Username:  pulumi.StringRef(pulumi.StringRef(pulumi.String(username))),
 //				}, nil))), nil
 //			}).(mongodbatlas.GetX509AuthenticationDatabaseUserResultOutput)
 //			return nil

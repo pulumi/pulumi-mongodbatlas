@@ -333,7 +333,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ctx.Export("standard", cluster_test.ConnectionStrings[0].Standard)
+//			ctx.Export("standard", pulumi.Any(cluster_test.ConnectionStrings[0].Standard))
 //			return nil
 //		})
 //	}
@@ -351,7 +351,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ctx.Export("standardSrv", cluster_test.ConnectionStrings[0].StandardSrv)
+//			ctx.Export("standardSrv", pulumi.Any(cluster_test.ConnectionStrings[0].StandardSrv))
 //			return nil
 //		})
 //	}
@@ -369,7 +369,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ctx.Export("private", cluster_test.ConnectionStrings[0].Private)
+//			ctx.Export("private", pulumi.Any(cluster_test.ConnectionStrings[0].Private))
 //			return nil
 //		})
 //	}
@@ -387,7 +387,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ctx.Export("privateSrv", cluster_test.ConnectionStrings[0].PrivateSrv)
+//			ctx.Export("privateSrv", pulumi.Any(cluster_test.ConnectionStrings[0].PrivateSrv))
 //			return nil
 //		})
 //	}
