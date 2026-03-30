@@ -117,7 +117,7 @@ import (
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("sampleProcessorName"),
-//				Pipeline:      pulumi.String(json0),
+//				Pipeline:      pulumi.String(pulumi.String(json0)),
 //				State:         pulumi.String("STARTED"),
 //				Tier:          pulumi.String("SP30"),
 //			})
@@ -145,7 +145,7 @@ import (
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("clusterProcessorName"),
-//				Pipeline:      pulumi.String(json1),
+//				Pipeline:      pulumi.String(pulumi.String(json1)),
 //				State:         pulumi.String("CREATED"),
 //			})
 //			if err != nil {
@@ -177,7 +177,7 @@ import (
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("kafkaProcessorName"),
-//				Pipeline:      pulumi.String(json2),
+//				Pipeline:      pulumi.String(pulumi.String(json2)),
 //				State:         pulumi.String("CREATED"),
 //				Options: &mongodbatlas.StreamProcessorOptionsArgs{
 //					Dlq: &mongodbatlas.StreamProcessorOptionsDlqArgs{

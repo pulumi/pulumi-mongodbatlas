@@ -83,7 +83,7 @@ import (
 // splat0 = append(splat0, val0.ZoneId[0])
 // }
 // return splat0, nil
-// }).(pulumi.[]interface{}Output)),
+// }).(pulumi._[]interface{}Output)),
 // ShouldCopyOplogs: pulumi.Bool(false),
 // },
 // },
