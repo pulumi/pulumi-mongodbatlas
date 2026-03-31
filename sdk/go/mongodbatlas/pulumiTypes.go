@@ -30,7 +30,7 @@ type AdvancedClusterAdvancedConfiguration struct {
 	MinimumEnabledTlsProtocol *string `pulumi:"minimumEnabledTlsProtocol"`
 	// Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
 	NoTableScan *bool `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+	// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
 	OplogMinRetentionHours *float64 `pulumi:"oplogMinRetentionHours"`
 	// Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
 	OplogSizeMb *int `pulumi:"oplogSizeMb"`
@@ -72,7 +72,7 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	MinimumEnabledTlsProtocol pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
 	// Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
 	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+	// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
 	OplogMinRetentionHours pulumi.Float64PtrInput `pulumi:"oplogMinRetentionHours"`
 	// Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
 	OplogSizeMb pulumi.IntPtrInput `pulumi:"oplogSizeMb"`
@@ -205,7 +205,7 @@ func (o AdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolPtr
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.NoTableScan }).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
 func (o AdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *float64 { return v.OplogMinRetentionHours }).(pulumi.Float64PtrOutput)
 }
@@ -339,7 +339,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *float64 {
 		if v == nil {
@@ -1595,7 +1595,10 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling struct {
 	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
 }
 
@@ -1621,7 +1624,10 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs struct {
 	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
 }
 
@@ -1730,7 +1736,10 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) Co
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool { return v.DiskGbEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -1801,7 +1810,10 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling) *bool {
 		if v == nil {
@@ -2061,7 +2073,10 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
 }
 
@@ -2097,7 +2112,10 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
-	// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
 }
 
@@ -2210,7 +2228,10 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeScal
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.ComputeScaleDownEnabled }).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.DiskGbEnabled }).(pulumi.BoolPtrOutput)
 }
@@ -2291,7 +2312,10 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeS
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool {
 		if v == nil {
@@ -22246,7 +22270,7 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+	// Minimum retention window for cluster's oplog expressed in hours.
 	OplogMinRetentionHours float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb int `pulumi:"oplogSizeMb"`
@@ -22290,7 +22314,7 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+	// Minimum retention window for cluster's oplog expressed in hours.
 	OplogMinRetentionHours pulumi.Float64Input `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
@@ -22374,7 +22398,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.Bool
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) bool { return v.NoTableScan }).(pulumi.BoolOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+// Minimum retention window for cluster's oplog expressed in hours.
 func (o GetAdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64Output {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) float64 { return v.OplogMinRetentionHours }).(pulumi.Float64Output)
 }
@@ -24393,7 +24417,7 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	MinimumEnabledTlsProtocol string `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan bool `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+	// Minimum retention window for cluster's oplog expressed in hours.
 	OplogMinRetentionHours float64 `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb int `pulumi:"oplogSizeMb"`
@@ -24437,7 +24461,7 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	MinimumEnabledTlsProtocol pulumi.StringInput `pulumi:"minimumEnabledTlsProtocol"`
 	// When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
 	NoTableScan pulumi.BoolInput `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+	// Minimum retention window for cluster's oplog expressed in hours.
 	OplogMinRetentionHours pulumi.Float64Input `pulumi:"oplogMinRetentionHours"`
 	// The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
 	OplogSizeMb pulumi.IntInput `pulumi:"oplogSizeMb"`
@@ -24525,7 +24549,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) NoTableScan() pulu
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) bool { return v.NoTableScan }).(pulumi.BoolOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+// Minimum retention window for cluster's oplog expressed in hours.
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64Output {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) float64 { return v.OplogMinRetentionHours }).(pulumi.Float64Output)
 }

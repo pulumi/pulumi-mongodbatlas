@@ -140,14 +140,14 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
     }
 
     /**
-     * Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
      * 
      */
     @Import(name="oplogMinRetentionHours")
     private @Nullable Output<Double> oplogMinRetentionHours;
 
     /**
-     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
      * 
      */
     public Optional<Output<Double>> oplogMinRetentionHours() {
@@ -455,7 +455,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+         * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
          * 
          * @return builder
          * 
@@ -466,7 +466,7 @@ public final class AdvancedClusterAdvancedConfigurationArgs extends com.pulumi.r
         }
 
         /**
-         * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+         * @param oplogMinRetentionHours Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
          * 
          * @return builder
          * 

@@ -48,7 +48,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool NoTableScan;
         /// <summary>
-        /// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        /// Minimum retention window for cluster's oplog expressed in hours.
         /// </summary>
         public readonly double OplogMinRetentionHours;
         /// <summary>
