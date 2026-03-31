@@ -1136,15 +1136,13 @@ class AdvancedCluster(pulumi.CustomResource):
         """
         `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters.
 
-        We recommend all new MongoDB Atlas Terraform users start with the `AdvancedCluster` resource instead of the `Cluster` resource. Key differences include support for [Multi-Cloud Clusters](https://www.mongodb.com/blog/post/introducing-multicloud-clusters-on-mongodb-atlas), Asymmetric Sharding, and [Independent Scaling of Analytics Node Tiers](https://www.mongodb.com/blog/post/introducing-ability-independently-scale-atlas-analytics-node-tiers). To migrate from an existing `Cluster` resource, see our Migration Guide.
+        We recommend all MongoDB Atlas Terraform users start with the `Official MongoDB Atlas Cluster Module`. This module simplifies cluster deployment and implements MongoDB Atlas best practices by default.
 
         > **IMPORTANT:** If you are upgrading to our Terraform Provider v2.0.0 or later from v1.x.x, you must update your existing `AdvancedCluster` resource configuration according to this guide.
 
-        > **IMPORTANT:** Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-
         > **NOTE:** This resource supports creating Flex clusters, upgrading M0 clusters to Flex, and upgrading Flex clusters to Dedicated. When creating a Flex cluster, you must set the `replication_specs[#].region_configs[#].priority` value to 7.
 
-        > **NOTE:** When you modify cluster configurations, your pulumi preview output might include `(known after apply)` markers for attributes you didin't modify. This is expected behavior. For more information, see the "known after apply" verbosity section below.
+        > **NOTE:** When you modify cluster configurations, your pulumi preview output might include `(known after apply)` markers for attributes you didn't modify. This is expected behavior. For more information, see the "known after apply" verbosity section below.
 
         > **NOTE:** This resource creates a network container for each provider/region combination specified in the advanced cluster configuration. Each network container can be referenced via its computed `replication_specs[#]container_id` attribute.
 
@@ -1643,6 +1641,8 @@ class AdvancedCluster(pulumi.CustomResource):
 
         1. Set `compute_enabled = false` and `disk_gb_enabled = false` in the `auto_scaling` block, update `instance_size`, `disk_size_gb`, or `disk_iops` to your desired values, and apply.
         2. Re-enable auto-scaling by setting `compute_enabled` and/or `disk_gb_enabled` back to `true` and apply.
+
+        > **NOTE:** If `advanced_configuration.oplog_min_retention_hours` is non-zero on the server, set it to `0` and apply before step 1 disables `disk_gb_enabled`. Otherwise the API can return `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400). See the `disk_gb_enabled` argument description.
 
         This workflow allows you to set specific baseline values from which auto-scaling will resume dynamic adjustments based on workload.
 
@@ -1747,15 +1747,13 @@ class AdvancedCluster(pulumi.CustomResource):
         """
         `AdvancedCluster` provides an Advanced Cluster resource. The resource lets you create, edit and delete advanced clusters.
 
-        We recommend all new MongoDB Atlas Terraform users start with the `AdvancedCluster` resource instead of the `Cluster` resource. Key differences include support for [Multi-Cloud Clusters](https://www.mongodb.com/blog/post/introducing-multicloud-clusters-on-mongodb-atlas), Asymmetric Sharding, and [Independent Scaling of Analytics Node Tiers](https://www.mongodb.com/blog/post/introducing-ability-independently-scale-atlas-analytics-node-tiers). To migrate from an existing `Cluster` resource, see our Migration Guide.
+        We recommend all MongoDB Atlas Terraform users start with the `Official MongoDB Atlas Cluster Module`. This module simplifies cluster deployment and implements MongoDB Atlas best practices by default.
 
         > **IMPORTANT:** If you are upgrading to our Terraform Provider v2.0.0 or later from v1.x.x, you must update your existing `AdvancedCluster` resource configuration according to this guide.
 
-        > **IMPORTANT:** Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
-
         > **NOTE:** This resource supports creating Flex clusters, upgrading M0 clusters to Flex, and upgrading Flex clusters to Dedicated. When creating a Flex cluster, you must set the `replication_specs[#].region_configs[#].priority` value to 7.
 
-        > **NOTE:** When you modify cluster configurations, your pulumi preview output might include `(known after apply)` markers for attributes you didin't modify. This is expected behavior. For more information, see the "known after apply" verbosity section below.
+        > **NOTE:** When you modify cluster configurations, your pulumi preview output might include `(known after apply)` markers for attributes you didn't modify. This is expected behavior. For more information, see the "known after apply" verbosity section below.
 
         > **NOTE:** This resource creates a network container for each provider/region combination specified in the advanced cluster configuration. Each network container can be referenced via its computed `replication_specs[#]container_id` attribute.
 
@@ -2254,6 +2252,8 @@ class AdvancedCluster(pulumi.CustomResource):
 
         1. Set `compute_enabled = false` and `disk_gb_enabled = false` in the `auto_scaling` block, update `instance_size`, `disk_size_gb`, or `disk_iops` to your desired values, and apply.
         2. Re-enable auto-scaling by setting `compute_enabled` and/or `disk_gb_enabled` back to `true` and apply.
+
+        > **NOTE:** If `advanced_configuration.oplog_min_retention_hours` is non-zero on the server, set it to `0` and apply before step 1 disables `disk_gb_enabled`. Otherwise the API can return `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400). See the `disk_gb_enabled` argument description.
 
         This workflow allows you to set specific baseline values from which auto-scaling will resume dynamic adjustments based on workload.
 

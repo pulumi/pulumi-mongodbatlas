@@ -540,7 +540,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param _builtins.bool javascript_enabled: Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
         :param _builtins.str minimum_enabled_tls_protocol: Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
         :param _builtins.bool no_table_scan: Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
-        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
         :param _builtins.int oplog_size_mb: Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
         :param _builtins.int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
         :param _builtins.int sample_size_bi_connector: Number of documents per database to sample when gathering schema information.
@@ -644,7 +644,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="oplogMinRetentionHours")
     def oplog_min_retention_hours(self) -> Optional[_builtins.float]:
         """
-        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 
@@ -1346,7 +1346,10 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
                **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `use_effective_fields = true`, you can read scaled values using `effective_analytics_specs` in the data source. When not using `use_effective_fields`, you may need lifecycle ignore customizations for `analytics_specs` fields similar to the example shown in the auto_scaling section.
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
-        :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+               - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+               - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1397,7 +1400,10 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
     @pulumi.getter(name="diskGbEnabled")
     def disk_gb_enabled(self) -> Optional[_builtins.bool]:
         """
-        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+        - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+        - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
         return pulumi.get(self, "disk_gb_enabled")
 
@@ -1552,7 +1558,10 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
                **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
-        :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+               - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+               - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1613,7 +1622,10 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
     @pulumi.getter(name="diskGbEnabled")
     def disk_gb_enabled(self) -> Optional[_builtins.bool]:
         """
-        Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+        Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+        - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+        - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
         return pulumi.get(self, "disk_gb_enabled")
 
@@ -9914,7 +9926,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
                - TLS1_2
                - TLS1_3
         :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours.
         :param _builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param _builtins.int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param _builtins.int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -10006,7 +10018,7 @@ class GetAdvancedClusterAdvancedConfigurationResult(dict):
     @pulumi.getter(name="oplogMinRetentionHours")
     def oplog_min_retention_hours(self) -> _builtins.float:
         """
-        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        Minimum retention window for cluster's oplog expressed in hours.
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 
@@ -11369,7 +11381,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
                - TLS1_2
                - TLS1_3
         :param _builtins.bool no_table_scan: When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
-        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours.
         :param _builtins.int oplog_size_mb: The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         :param _builtins.int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         :param _builtins.int sample_size_bi_connector: Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
@@ -11461,7 +11473,7 @@ class GetAdvancedClustersResultAdvancedConfigurationResult(dict):
     @pulumi.getter(name="oplogMinRetentionHours")
     def oplog_min_retention_hours(self) -> _builtins.float:
         """
-        Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        Minimum retention window for cluster's oplog expressed in hours.
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 

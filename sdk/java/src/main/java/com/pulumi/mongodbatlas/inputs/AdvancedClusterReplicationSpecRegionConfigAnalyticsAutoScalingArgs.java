@@ -81,14 +81,20 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
     }
 
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+     * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+     * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      * 
      */
     @Import(name="diskGbEnabled")
     private @Nullable Output<Boolean> diskGbEnabled;
 
     /**
-     * @return Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+     * @return Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+     * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      * 
      */
     public Optional<Output<Boolean>> diskGbEnabled() {
@@ -212,7 +218,10 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
         }
 
         /**
-         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+         * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+         * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+         * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
          * 
          * @return builder
          * 
@@ -223,7 +232,10 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalin
         }
 
         /**
-         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+         * @param diskGbEnabled Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+         * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+         * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+         * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
          * 
          * @return builder
          * 

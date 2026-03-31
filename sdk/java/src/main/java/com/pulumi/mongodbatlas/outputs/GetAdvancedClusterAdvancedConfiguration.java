@@ -57,7 +57,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
      */
     private Boolean noTableScan;
     /**
-     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours.
      * 
      */
     private Double oplogMinRetentionHours;
@@ -147,7 +147,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
         return this.noTableScan;
     }
     /**
-     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours.
      * 
      */
     public Double oplogMinRetentionHours() {

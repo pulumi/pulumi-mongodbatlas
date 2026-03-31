@@ -39,7 +39,7 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     noTableScan?: pulumi.Input<boolean>;
     /**
-     * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+     * Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
      */
     oplogMinRetentionHours?: pulumi.Input<number>;
     /**
@@ -254,7 +254,10 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
      */
     computeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+     * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+     * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
     diskGbEnabled?: pulumi.Input<boolean>;
 }
@@ -316,7 +319,10 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
      */
     computeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
-     * Flag that indicates whether this cluster enables disk auto-scaling. This parameter defaults to false.
+     * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
+     * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
     diskGbEnabled?: pulumi.Input<boolean>;
 }

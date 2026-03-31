@@ -73,7 +73,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<bool>? NoTableScan { get; set; }
 
         /// <summary>
-        /// Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
+        /// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `Null` will retain the last applied value rather than reverting to the default value.
         /// </summary>
         [Input("oplogMinRetentionHours")]
         public Input<double>? OplogMinRetentionHours { get; set; }

@@ -96,10 +96,9 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Access List entries for Project Service Accounts can be imported using the `projectId`, `clientId` and `cidrBlock` or `ipAddress`, e.g.
- * 
+ * Import the Project Service Account Access List Entry resource by using the Project ID, Client ID, and CIDR block or IP address in the format `PROJECT_ID/CLIENT_ID/CIDR_BLOCK` or `PROJECT_ID/CLIENT_ID/IP_ADDRESS`, e.g.
  * ```sh
- * $ pulumi import mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry test 5d0f1f74cf09a29120e123cd-mdb_sa_id_1234567890abcdef12345678-10.242.88.0/21
+ * $ pulumi import mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry test 6117ac2fe2a3d04ed27a987v/mdb_sa_id_1234567890abcdef12345678/10.242.88.0/21
  * ```
  * 
  * For more information, see [Add Access List Entries for One Project Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupserviceaccountaccesslist) in the MongoDB Atlas API documentation.
