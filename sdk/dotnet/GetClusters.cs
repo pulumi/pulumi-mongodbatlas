@@ -21,8 +21,6 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -81,8 +79,6 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `ContainerId` for each region utilized by the cluster. For retrieving the `ContainerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -143,8 +139,6 @@ namespace Pulumi.Mongodbatlas
         /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
         /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -199,7 +193,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetClustersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get the clusters.
+        /// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -213,7 +207,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetClustersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get the clusters.
+        /// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

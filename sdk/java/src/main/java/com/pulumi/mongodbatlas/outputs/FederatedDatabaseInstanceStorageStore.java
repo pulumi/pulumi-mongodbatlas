@@ -28,7 +28,7 @@ public final class FederatedDatabaseInstanceStorageStore {
     private @Nullable String name;
     private @Nullable String prefix;
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     private @Nullable String projectId;
@@ -71,7 +71,7 @@ public final class FederatedDatabaseInstanceStorageStore {
         return Optional.ofNullable(this.prefix);
     }
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<String> projectId() {

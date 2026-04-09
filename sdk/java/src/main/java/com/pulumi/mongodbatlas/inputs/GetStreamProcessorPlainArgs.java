@@ -16,6 +16,8 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
     public static final GetStreamProcessorPlainArgs Empty = new GetStreamProcessorPlainArgs();
 
     /**
+     * Label that identifies the stream processing workspace.
+     * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
      * 
@@ -25,6 +27,8 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
     private @Nullable String instanceName;
 
     /**
+     * @return Label that identifies the stream processing workspace.
+     * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
      * 
@@ -50,23 +54,31 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
 
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
     @Import(name="workspaceName")
     private @Nullable String workspaceName;
 
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
     public Optional<String> workspaceName() {
         return Optional.ofNullable(this.workspaceName);
     }
@@ -99,6 +111,8 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
         }
 
         /**
+         * @param instanceName Label that identifies the stream processing workspace.
+         * 
          * @return builder
          * 
          * @deprecated
@@ -123,7 +137,7 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -133,6 +147,12 @@ public final class GetStreamProcessorPlainArgs extends com.pulumi.resources.Invo
             return this;
         }
 
+        /**
+         * @param workspaceName Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder workspaceName(@Nullable String workspaceName) {
             $.workspaceName = workspaceName;
             return this;

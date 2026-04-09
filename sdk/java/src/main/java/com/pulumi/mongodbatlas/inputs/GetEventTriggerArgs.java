@@ -32,14 +32,14 @@ public final class GetEventTriggerArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The unique ID for the project to create the trigger.
+     * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create the trigger.
+     * @return The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -111,7 +111,7 @@ public final class GetEventTriggerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId The unique ID for the project to create the trigger.
+         * @param projectId The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -122,7 +122,7 @@ public final class GetEventTriggerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId The unique ID for the project to create the trigger.
+         * @param projectId The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

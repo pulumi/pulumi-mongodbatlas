@@ -283,7 +283,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the trigger.
+        /// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -461,7 +461,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the trigger.
+        /// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -604,7 +604,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the trigger.
+        /// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

@@ -32,14 +32,14 @@ public final class CustomDnsConfigurationClusterAwsState extends com.pulumi.reso
     }
 
     /**
-     * Required 	Unique identifier for the project.
+     * Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Required 	Unique identifier for the project.
+     * @return Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -93,7 +93,7 @@ public final class CustomDnsConfigurationClusterAwsState extends com.pulumi.reso
         }
 
         /**
-         * @param projectId Required 	Unique identifier for the project.
+         * @param projectId Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -104,7 +104,7 @@ public final class CustomDnsConfigurationClusterAwsState extends com.pulumi.reso
         }
 
         /**
-         * @param projectId Required 	Unique identifier for the project.
+         * @param projectId Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

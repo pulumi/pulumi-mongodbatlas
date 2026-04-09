@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  */
 export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexesResult> {
@@ -40,7 +38,7 @@ export interface GetSearchIndexesArgs {
      */
     database: string;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -75,8 +73,6 @@ export interface GetSearchIndexesResult {
 /**
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  */
 export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchIndexesResult> {
@@ -106,7 +102,7 @@ export interface GetSearchIndexesOutputArgs {
      */
     database: pulumi.Input<string>;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

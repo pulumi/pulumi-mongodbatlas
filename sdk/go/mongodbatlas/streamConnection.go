@@ -137,7 +137,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-kafka-oauthbearer", &mongodbatlas.StreamConnectionArgs{
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example_kafka_oauthbearer", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  pulumi.Any(example.WorkspaceName),
 //				ConnectionName: pulumi.String("KafkaOAuthbearerConnection"),
@@ -215,6 +215,45 @@ import (
 //
 // ```
 //
+// ### Example Azure Blob Storage Connection
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "test", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				WorkspaceName:  pulumi.String("NewWorkspace"),
+//				ConnectionName: pulumi.String("AzureBlobStorageConnection"),
+//				Type:           pulumi.String("AzureBlobStorage"),
+//				Azure: &mongodbatlas.StreamConnectionAzureArgs{
+//					ServicePrincipalId: pulumi.String("<AZURE_SERVICE_PRINCIPAL_ID>"),
+//					StorageAccountName: pulumi.String("<AZURE_STORAGE_ACCOUNT_NAME>"),
+//					Region:             pulumi.String("<AZURE_REGION>"),
+//				},
+//				Networking: &mongodbatlas.StreamConnectionNetworkingArgs{
+//					Access: &mongodbatlas.StreamConnectionNetworkingAccessArgs{
+//						Type: pulumi.String("PUBLIC"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example AWSLambda Connection
 //
 // ```go
@@ -247,6 +286,56 @@ import (
 //
 // ```
 //
+// ### Example GCPPubSub Connection
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			gcpSetup, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "gcp_setup", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ProviderName: pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gcpAuth, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "gcp_auth", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				RoleId:    gcpSetup.RoleId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewStreamConnection(ctx, "example_gcp_pubsub", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				WorkspaceName:  pulumi.Any(example.WorkspaceName),
+//				ConnectionName: pulumi.String("GCPPubSubConnection"),
+//				Type:           pulumi.String("GCPPubSub"),
+//				Gcp: &mongodbatlas.StreamConnectionGcpArgs{
+//					ServiceAccountId: gcpSetup.GcpConfigs.ApplyT(func(gcpConfigs []mongodbatlas.CloudProviderAccessSetupGcpConfig) (*string, error) {
+//						return &gcpConfigs[0].ServiceAccountForAtlas, nil
+//					}).(pulumi.StringPtrOutput),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				gcpAuth,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example Https Connection
 //
 // ```go
@@ -261,7 +350,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-https", &mongodbatlas.StreamConnectionArgs{
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example_https", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  pulumi.Any(example.WorkspaceName),
 //				ConnectionName: pulumi.String("https_connection_tf_new"),
@@ -295,7 +384,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-schema-registry", &mongodbatlas.StreamConnectionArgs{
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example_schema_registry", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:              pulumi.Any(projectId),
 //				WorkspaceName:          pulumi.Any(example.WorkspaceName),
 //				ConnectionName:         pulumi.String("SchemaRegistryConnection"),
@@ -333,7 +422,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.NewStreamConnection(ctx, "example-schema-registry-sasl", &mongodbatlas.StreamConnectionArgs{
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example_schema_registry_sasl", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:              pulumi.Any(projectId),
 //				WorkspaceName:          pulumi.Any(example.WorkspaceName),
 //				ConnectionName:         pulumi.String("SchemaRegistryConnectionSASL"),
@@ -464,6 +553,7 @@ type StreamConnection struct {
 
 	Authentication   StreamConnectionAuthenticationPtrOutput `pulumi:"authentication"`
 	Aws              StreamConnectionAwsPtrOutput            `pulumi:"aws"`
+	Azure            StreamConnectionAzurePtrOutput          `pulumi:"azure"`
 	BootstrapServers pulumi.StringPtrOutput                  `pulumi:"bootstrapServers"`
 	ClusterName      pulumi.StringPtrOutput                  `pulumi:"clusterName"`
 	ClusterProjectId pulumi.StringPtrOutput                  `pulumi:"clusterProjectId"`
@@ -471,20 +561,21 @@ type StreamConnection struct {
 	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringOutput                      `pulumi:"connectionName"`
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrOutput `pulumi:"dbRoleToExecute"`
+	Gcp             StreamConnectionGcpPtrOutput             `pulumi:"gcp"`
 	Headers         pulumi.StringMapOutput                   `pulumi:"headers"`
 	// Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrOutput           `pulumi:"instanceName"`
 	Networking   StreamConnectionNetworkingOutput `pulumi:"networking"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId                    pulumi.StringOutput                                   `pulumi:"projectId"`
 	SchemaRegistryAuthentication StreamConnectionSchemaRegistryAuthenticationPtrOutput `pulumi:"schemaRegistryAuthentication"`
 	SchemaRegistryProvider       pulumi.StringPtrOutput                                `pulumi:"schemaRegistryProvider"`
 	SchemaRegistryUrls           pulumi.StringArrayOutput                              `pulumi:"schemaRegistryUrls"`
 	Security                     StreamConnectionSecurityPtrOutput                     `pulumi:"security"`
 	Timeouts                     StreamConnectionTimeoutsPtrOutput                     `pulumi:"timeouts"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringOutput    `pulumi:"type"`
 	Url  pulumi.StringPtrOutput `pulumi:"url"`
 	// Label that identifies the stream processing workspace.
@@ -532,6 +623,7 @@ func GetStreamConnection(ctx *pulumi.Context,
 type streamConnectionState struct {
 	Authentication   *StreamConnectionAuthentication `pulumi:"authentication"`
 	Aws              *StreamConnectionAws            `pulumi:"aws"`
+	Azure            *StreamConnectionAzure          `pulumi:"azure"`
 	BootstrapServers *string                         `pulumi:"bootstrapServers"`
 	ClusterName      *string                         `pulumi:"clusterName"`
 	ClusterProjectId *string                         `pulumi:"clusterProjectId"`
@@ -539,20 +631,21 @@ type streamConnectionState struct {
 	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  *string                          `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	Gcp             *StreamConnectionGcp             `pulumi:"gcp"`
 	Headers         map[string]string                `pulumi:"headers"`
 	// Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string                     `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId                    *string                                       `pulumi:"projectId"`
 	SchemaRegistryAuthentication *StreamConnectionSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
 	SchemaRegistryProvider       *string                                       `pulumi:"schemaRegistryProvider"`
 	SchemaRegistryUrls           []string                                      `pulumi:"schemaRegistryUrls"`
 	Security                     *StreamConnectionSecurity                     `pulumi:"security"`
 	Timeouts                     *StreamConnectionTimeouts                     `pulumi:"timeouts"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	Type *string `pulumi:"type"`
 	Url  *string `pulumi:"url"`
 	// Label that identifies the stream processing workspace.
@@ -562,6 +655,7 @@ type streamConnectionState struct {
 type StreamConnectionState struct {
 	Authentication   StreamConnectionAuthenticationPtrInput
 	Aws              StreamConnectionAwsPtrInput
+	Azure            StreamConnectionAzurePtrInput
 	BootstrapServers pulumi.StringPtrInput
 	ClusterName      pulumi.StringPtrInput
 	ClusterProjectId pulumi.StringPtrInput
@@ -569,20 +663,21 @@ type StreamConnectionState struct {
 	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringPtrInput
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
+	Gcp             StreamConnectionGcpPtrInput
 	Headers         pulumi.StringMapInput
 	// Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput
 	Networking   StreamConnectionNetworkingPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId                    pulumi.StringPtrInput
 	SchemaRegistryAuthentication StreamConnectionSchemaRegistryAuthenticationPtrInput
 	SchemaRegistryProvider       pulumi.StringPtrInput
 	SchemaRegistryUrls           pulumi.StringArrayInput
 	Security                     StreamConnectionSecurityPtrInput
 	Timeouts                     StreamConnectionTimeoutsPtrInput
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringPtrInput
 	Url  pulumi.StringPtrInput
 	// Label that identifies the stream processing workspace.
@@ -596,6 +691,7 @@ func (StreamConnectionState) ElementType() reflect.Type {
 type streamConnectionArgs struct {
 	Authentication   *StreamConnectionAuthentication `pulumi:"authentication"`
 	Aws              *StreamConnectionAws            `pulumi:"aws"`
+	Azure            *StreamConnectionAzure          `pulumi:"azure"`
 	BootstrapServers *string                         `pulumi:"bootstrapServers"`
 	ClusterName      *string                         `pulumi:"clusterName"`
 	ClusterProjectId *string                         `pulumi:"clusterProjectId"`
@@ -603,20 +699,21 @@ type streamConnectionArgs struct {
 	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  string                           `pulumi:"connectionName"`
 	DbRoleToExecute *StreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	Gcp             *StreamConnectionGcp             `pulumi:"gcp"`
 	Headers         map[string]string                `pulumi:"headers"`
 	// Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string                     `pulumi:"instanceName"`
 	Networking   *StreamConnectionNetworking `pulumi:"networking"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId                    string                                        `pulumi:"projectId"`
 	SchemaRegistryAuthentication *StreamConnectionSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
 	SchemaRegistryProvider       *string                                       `pulumi:"schemaRegistryProvider"`
 	SchemaRegistryUrls           []string                                      `pulumi:"schemaRegistryUrls"`
 	Security                     *StreamConnectionSecurity                     `pulumi:"security"`
 	Timeouts                     *StreamConnectionTimeouts                     `pulumi:"timeouts"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	Type string  `pulumi:"type"`
 	Url  *string `pulumi:"url"`
 	// Label that identifies the stream processing workspace.
@@ -627,6 +724,7 @@ type streamConnectionArgs struct {
 type StreamConnectionArgs struct {
 	Authentication   StreamConnectionAuthenticationPtrInput
 	Aws              StreamConnectionAwsPtrInput
+	Azure            StreamConnectionAzurePtrInput
 	BootstrapServers pulumi.StringPtrInput
 	ClusterName      pulumi.StringPtrInput
 	ClusterProjectId pulumi.StringPtrInput
@@ -634,20 +732,21 @@ type StreamConnectionArgs struct {
 	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
 	ConnectionName  pulumi.StringInput
 	DbRoleToExecute StreamConnectionDbRoleToExecutePtrInput
+	Gcp             StreamConnectionGcpPtrInput
 	Headers         pulumi.StringMapInput
 	// Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput
 	Networking   StreamConnectionNetworkingPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId                    pulumi.StringInput
 	SchemaRegistryAuthentication StreamConnectionSchemaRegistryAuthenticationPtrInput
 	SchemaRegistryProvider       pulumi.StringPtrInput
 	SchemaRegistryUrls           pulumi.StringArrayInput
 	Security                     StreamConnectionSecurityPtrInput
 	Timeouts                     StreamConnectionTimeoutsPtrInput
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringInput
 	Url  pulumi.StringPtrInput
 	// Label that identifies the stream processing workspace.
@@ -749,6 +848,10 @@ func (o StreamConnectionOutput) Aws() StreamConnectionAwsPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionAwsPtrOutput { return v.Aws }).(StreamConnectionAwsPtrOutput)
 }
 
+func (o StreamConnectionOutput) Azure() StreamConnectionAzurePtrOutput {
+	return o.ApplyT(func(v *StreamConnection) StreamConnectionAzurePtrOutput { return v.Azure }).(StreamConnectionAzurePtrOutput)
+}
+
 func (o StreamConnectionOutput) BootstrapServers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringPtrOutput { return v.BootstrapServers }).(pulumi.StringPtrOutput)
 }
@@ -774,6 +877,10 @@ func (o StreamConnectionOutput) DbRoleToExecute() StreamConnectionDbRoleToExecut
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionDbRoleToExecutePtrOutput { return v.DbRoleToExecute }).(StreamConnectionDbRoleToExecutePtrOutput)
 }
 
+func (o StreamConnectionOutput) Gcp() StreamConnectionGcpPtrOutput {
+	return o.ApplyT(func(v *StreamConnection) StreamConnectionGcpPtrOutput { return v.Gcp }).(StreamConnectionGcpPtrOutput)
+}
+
 func (o StreamConnectionOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringMapOutput { return v.Headers }).(pulumi.StringMapOutput)
 }
@@ -789,7 +896,7 @@ func (o StreamConnectionOutput) Networking() StreamConnectionNetworkingOutput {
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionNetworkingOutput { return v.Networking }).(StreamConnectionNetworkingOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o StreamConnectionOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -816,7 +923,7 @@ func (o StreamConnectionOutput) Timeouts() StreamConnectionTimeoutsPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionTimeoutsPtrOutput { return v.Timeouts }).(StreamConnectionTimeoutsPtrOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 func (o StreamConnectionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

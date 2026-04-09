@@ -41,14 +41,12 @@ public final class GetStreamProcessorsResult {
      */
     private String processorName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
     /**
      * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-     * 
-     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     private String state;
@@ -63,7 +61,7 @@ public final class GetStreamProcessorsResult {
      */
     private String tier;
     /**
-     * @return Label that identifies the stream processing workspace.
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
      * 
      */
     private String workspaceName;
@@ -109,7 +107,7 @@ public final class GetStreamProcessorsResult {
         return this.processorName;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -117,8 +115,6 @@ public final class GetStreamProcessorsResult {
     }
     /**
      * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-     * 
-     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
      * 
      */
     public String state() {
@@ -139,7 +135,7 @@ public final class GetStreamProcessorsResult {
         return this.tier;
     }
     /**
-     * @return Label that identifies the stream processing workspace.
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
      * 
      */
     public String workspaceName() {

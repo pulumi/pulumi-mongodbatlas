@@ -273,8 +273,6 @@ def get_project(name: Optional[_builtins.str] = None,
     """
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### Using project_id attribute to query
@@ -312,7 +310,7 @@ def get_project(name: Optional[_builtins.str] = None,
     :param _builtins.str name: The unique ID for the project.
            
            > **IMPORTANT:** Either `project_id` or `name` must be configurated.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -346,8 +344,6 @@ def get_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     """
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### Using project_id attribute to query
@@ -385,7 +381,7 @@ def get_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     :param _builtins.str name: The unique ID for the project.
            
            > **IMPORTANT:** Either `project_id` or `name` must be configurated.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['name'] = name

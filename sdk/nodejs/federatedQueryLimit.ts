@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ### S
@@ -93,7 +91,7 @@ export class FederatedQueryLimit extends pulumi.CustomResource {
      */
     declare public readonly overrunPolicy: pulumi.Output<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -188,7 +186,7 @@ export interface FederatedQueryLimitState {
      */
     overrunPolicy?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -225,7 +223,7 @@ export interface FederatedQueryLimitArgs {
      */
     overrunPolicy: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

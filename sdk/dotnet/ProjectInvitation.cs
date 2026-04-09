@@ -18,8 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-    /// 
     /// &gt; **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
     /// * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
     /// * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
@@ -114,7 +112,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> InviterUsername { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        /// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -178,7 +176,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectInvitationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        /// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -234,7 +232,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? InviterUsername { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        /// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

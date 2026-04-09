@@ -83,8 +83,6 @@ def get_clusters(project_id: Optional[_builtins.str] = None,
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -112,7 +110,7 @@ def get_clusters(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get the clusters.
+    :param _builtins.str project_id: The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -135,8 +133,6 @@ def get_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] = None
     <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -164,7 +160,7 @@ def get_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] = None
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get the clusters.
+    :param _builtins.str project_id: The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

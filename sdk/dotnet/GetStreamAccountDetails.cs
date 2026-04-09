@@ -124,11 +124,14 @@ namespace Pulumi.Mongodbatlas
         public string CloudProvider { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `Aws`.
+        /// </summary>
         [Input("regionName", required: true)]
         public string RegionName { get; set; } = null!;
 
@@ -147,11 +150,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string> CloudProvider { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `Aws`.
+        /// </summary>
         [Input("regionName", required: true)]
         public Input<string> RegionName { get; set; } = null!;
 
@@ -165,8 +171,17 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetStreamAccountDetailsResult
     {
+        /// <summary>
+        /// The AWS Account ID.
+        /// </summary>
         public readonly string AwsAccountId;
+        /// <summary>
+        /// The Azure Subscription ID.
+        /// </summary>
         public readonly string AzureSubscriptionId;
+        /// <summary>
+        /// The AWS VPC or Azure Virtual Network CIDR Block.
+        /// </summary>
         public readonly string CidrBlock;
         /// <summary>
         /// One of `Aws` or `Azure`.
@@ -177,11 +192,20 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `Aws`.
+        /// </summary>
         public readonly string RegionName;
+        /// <summary>
+        /// The name of the Azure Virtual Network.
+        /// </summary>
         public readonly string VirtualNetworkName;
+        /// <summary>
+        /// The AWS VPC ID.
+        /// </summary>
         public readonly string VpcId;
 
         [OutputConstructor]

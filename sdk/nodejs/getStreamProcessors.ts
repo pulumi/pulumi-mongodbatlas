@@ -160,13 +160,18 @@ export function getStreamProcessors(args: GetStreamProcessorsArgs, opts?: pulumi
  */
 export interface GetStreamProcessorsArgs {
     /**
+     * Label that identifies the stream processing workspace.
+     *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName?: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
     workspaceName?: string;
 }
 
@@ -179,14 +184,22 @@ export interface GetStreamProcessorsResult {
      */
     readonly id: string;
     /**
+     * Label that identifies the stream processing workspace.
+     *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     readonly instanceName?: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * Returns all Stream Processors within the specified stream instance.
+     */
     readonly results: outputs.GetStreamProcessorsResult[];
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
     readonly workspaceName?: string;
 }
 /**
@@ -343,12 +356,17 @@ export function getStreamProcessorsOutput(args: GetStreamProcessorsOutputArgs, o
  */
 export interface GetStreamProcessorsOutputArgs {
     /**
+     * Label that identifies the stream processing workspace.
+     *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
     workspaceName?: pulumi.Input<string>;
 }

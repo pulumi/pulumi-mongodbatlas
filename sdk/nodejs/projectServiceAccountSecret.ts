@@ -99,7 +99,7 @@ export class ProjectServiceAccountSecret extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly maskedSecretValue: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -187,7 +187,7 @@ export interface ProjectServiceAccountSecretState {
      */
     maskedSecretValue?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -213,7 +213,7 @@ export interface ProjectServiceAccountSecretArgs {
      */
     clientId: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

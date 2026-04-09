@@ -597,6 +597,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamProcessorArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
         [Input("instanceName")]
         public string? InstanceName { get; set; }
 
@@ -607,11 +610,14 @@ namespace Pulumi.Mongodbatlas
         public string ProcessorName { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
         [Input("workspaceName")]
         public string? WorkspaceName { get; set; }
 
@@ -623,6 +629,9 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamProcessorInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
 
@@ -633,11 +642,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProcessorName { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
         [Input("workspaceName")]
         public Input<string>? WorkspaceName { get; set; }
 
@@ -651,21 +663,39 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetStreamProcessorResult
     {
+        /// <summary>
+        /// Unique 24-hexadecimal character string that identifies the stream processor.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
         public readonly string? InstanceName;
+        /// <summary>
+        /// Optional configuration for the stream processor.
+        /// </summary>
         public readonly Outputs.GetStreamProcessorOptionsResult Options;
+        /// <summary>
+        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        /// </summary>
         public readonly string Pipeline;
         /// <summary>
         /// Label that identifies the stream processor.
         /// </summary>
         public readonly string ProcessorName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+        /// </summary>
         public readonly string State;
         public readonly string Stats;
         public readonly string Tier;
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
         public readonly string? WorkspaceName;
 
         [OutputConstructor]

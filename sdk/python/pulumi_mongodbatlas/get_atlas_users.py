@@ -128,8 +128,6 @@ def get_atlas_users(items_per_page: Optional[_builtins.int] = None,
 
     > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `Organization`, `Project`, or `Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### Using org_id attribute to query Organization Atlas Users
@@ -166,7 +164,7 @@ def get_atlas_users(items_per_page: Optional[_builtins.int] = None,
            > **IMPORTANT:** Either `org_id`, `project_id`, or `team_id` with `org_id` must be configurated.
     :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
     :param _builtins.str team_id: Unique 24-hexadecimal digit string that identifies the team whose users you want to return.
     """
     __args__ = dict()
@@ -198,8 +196,6 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[_built
 
     > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `Organization`, `Project`, or `Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `get_atlas_user` and `get_atlas_users`.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### Using org_id attribute to query Organization Atlas Users
@@ -236,7 +232,7 @@ def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[_built
            > **IMPORTANT:** Either `org_id`, `project_id`, or `team_id` with `org_id` must be configurated.
     :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `team_id` attributes is defined.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
     :param _builtins.str team_id: Unique 24-hexadecimal digit string that identifies the team whose users you want to return.
     """
     __args__ = dict()

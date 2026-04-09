@@ -22,8 +22,6 @@ import * as utilities from "./utilities";
  *
  * > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryptionAtRestProvider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
  *
  * ## Enabling Encryption at Rest for existing Atlas cluster
@@ -206,7 +204,7 @@ export class EncryptionAtRest extends pulumi.CustomResource {
      */
     declare public readonly googleCloudKmsConfig: pulumi.Output<outputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
 
@@ -265,7 +263,7 @@ export interface EncryptionAtRestState {
      */
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
 }
@@ -291,7 +289,7 @@ export interface EncryptionAtRestArgs {
      */
     googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

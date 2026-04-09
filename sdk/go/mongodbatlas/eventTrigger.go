@@ -241,7 +241,7 @@ type EventTrigger struct {
 	FunctionName pulumi.StringOutput `pulumi:"functionName"`
 	// The name of the trigger.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The unique ID for the project to create the trigger.
+	// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The unique ID of the trigger.
 	TriggerId pulumi.StringOutput `pulumi:"triggerId"`
@@ -327,7 +327,7 @@ type eventTriggerState struct {
 	FunctionName *string `pulumi:"functionName"`
 	// The name of the trigger.
 	Name *string `pulumi:"name"`
-	// The unique ID for the project to create the trigger.
+	// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// The unique ID of the trigger.
 	TriggerId *string `pulumi:"triggerId"`
@@ -375,7 +375,7 @@ type EventTriggerState struct {
 	FunctionName pulumi.StringPtrInput
 	// The name of the trigger.
 	Name pulumi.StringPtrInput
-	// The unique ID for the project to create the trigger.
+	// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// The unique ID of the trigger.
 	TriggerId pulumi.StringPtrInput
@@ -424,7 +424,7 @@ type eventTriggerArgs struct {
 	FunctionId *string `pulumi:"functionId"`
 	// The name of the trigger.
 	Name *string `pulumi:"name"`
-	// The unique ID for the project to create the trigger.
+	// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
 	Type string `pulumi:"type"`
@@ -468,7 +468,7 @@ type EventTriggerArgs struct {
 	FunctionId pulumi.StringPtrInput
 	// The name of the trigger.
 	Name pulumi.StringPtrInput
-	// The unique ID for the project to create the trigger.
+	// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
 	Type pulumi.StringInput
@@ -654,7 +654,7 @@ func (o EventTriggerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to create the trigger.
+// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 func (o EventTriggerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

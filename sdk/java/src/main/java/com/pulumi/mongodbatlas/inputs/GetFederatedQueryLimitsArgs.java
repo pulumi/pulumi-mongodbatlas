@@ -15,14 +15,14 @@ public final class GetFederatedQueryLimitsArgs extends com.pulumi.resources.Invo
     public static final GetFederatedQueryLimitsArgs Empty = new GetFederatedQueryLimitsArgs();
 
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -70,7 +70,7 @@ public final class GetFederatedQueryLimitsArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param projectId The unique ID for the project to create a Federated Database Instance.
+         * @param projectId The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetFederatedQueryLimitsArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param projectId The unique ID for the project to create a Federated Database Instance.
+         * @param projectId The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

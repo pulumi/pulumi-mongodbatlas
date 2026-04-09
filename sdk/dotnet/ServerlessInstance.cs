@@ -99,7 +99,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the organization or project you want to create the serverless instance within.
+        /// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -213,7 +213,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the organization or project you want to create the serverless instance within.
+        /// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -325,7 +325,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the organization or project you want to create the serverless instance within.
+        /// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

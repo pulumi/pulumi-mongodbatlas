@@ -264,14 +264,14 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The unique ID for the MongoDB Atlas project.
+     * The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique ID for the MongoDB Atlas project.
+     * @return The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -777,7 +777,7 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param projectId The unique ID for the MongoDB Atlas project.
+         * @param projectId The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -788,7 +788,7 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param projectId The unique ID for the MongoDB Atlas project.
+         * @param projectId The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

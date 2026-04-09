@@ -13,8 +13,6 @@ import (
 
 // `getNetworkPeerings` describes all Network Peering Connections.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ### Basic Example (AWS).
@@ -63,7 +61,7 @@ func LookupNetworkPeerings(ctx *pulumi.Context, args *LookupNetworkPeeringsArgs,
 
 // A collection of arguments for invoking getNetworkPeerings.
 type LookupNetworkPeeringsArgs struct {
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -87,7 +85,7 @@ func LookupNetworkPeeringsOutput(ctx *pulumi.Context, args LookupNetworkPeerings
 
 // A collection of arguments for invoking getNetworkPeerings.
 type LookupNetworkPeeringsOutputArgs struct {
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

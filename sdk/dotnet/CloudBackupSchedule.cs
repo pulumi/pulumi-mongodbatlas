@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
     /// 
-    /// &gt; **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
     /// &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
     /// 
     /// &gt; **NOTE:** If you need to remove the `mongodbatlas.CloudBackupSchedule`, read this guide.
@@ -400,7 +398,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CloudBackupSchedulePolicyItemYearly>> PolicyItemYearlies { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -564,7 +562,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -708,7 +706,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

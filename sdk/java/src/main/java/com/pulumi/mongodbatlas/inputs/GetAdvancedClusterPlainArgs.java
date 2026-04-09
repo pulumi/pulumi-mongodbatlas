@@ -32,14 +32,14 @@ public final class GetAdvancedClusterPlainArgs extends com.pulumi.resources.Invo
     }
 
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project to create the cluster.
+     * @return The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -99,7 +99,7 @@ public final class GetAdvancedClusterPlainArgs extends com.pulumi.resources.Invo
         }
 
         /**
-         * @param projectId The unique ID for the project to create the cluster.
+         * @param projectId The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

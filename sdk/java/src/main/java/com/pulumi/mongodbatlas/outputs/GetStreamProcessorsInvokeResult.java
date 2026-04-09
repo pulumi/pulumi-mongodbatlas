@@ -20,6 +20,8 @@ public final class GetStreamProcessorsInvokeResult {
      */
     private String id;
     /**
+     * @return Label that identifies the stream processing workspace.
+     * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
      * 
@@ -27,11 +29,19 @@ public final class GetStreamProcessorsInvokeResult {
     @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private @Nullable String instanceName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return Returns all Stream Processors within the specified stream instance.
+     * 
+     */
     private List<GetStreamProcessorsResult> results;
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
     private @Nullable String workspaceName;
 
     private GetStreamProcessorsInvokeResult() {}
@@ -43,6 +53,8 @@ public final class GetStreamProcessorsInvokeResult {
         return this.id;
     }
     /**
+     * @return Label that identifies the stream processing workspace.
+     * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
      * 
@@ -52,15 +64,23 @@ public final class GetStreamProcessorsInvokeResult {
         return Optional.ofNullable(this.instanceName);
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return Returns all Stream Processors within the specified stream instance.
+     * 
+     */
     public List<GetStreamProcessorsResult> results() {
         return this.results;
     }
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
     public Optional<String> workspaceName() {
         return Optional.ofNullable(this.workspaceName);
     }

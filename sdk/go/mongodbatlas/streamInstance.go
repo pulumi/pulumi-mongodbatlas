@@ -76,7 +76,7 @@ type StreamInstance struct {
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig StreamInstanceStreamConfigOutput `pulumi:"streamConfig"`
@@ -127,7 +127,7 @@ type streamInstanceState struct {
 	Hostnames []string `pulumi:"hostnames"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName *string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig *StreamInstanceStreamConfig `pulumi:"streamConfig"`
@@ -140,7 +140,7 @@ type StreamInstanceState struct {
 	Hostnames pulumi.StringArrayInput
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig StreamInstanceStreamConfigPtrInput
@@ -155,7 +155,7 @@ type streamInstanceArgs struct {
 	DataProcessRegion StreamInstanceDataProcessRegion `pulumi:"dataProcessRegion"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig *StreamInstanceStreamConfig `pulumi:"streamConfig"`
@@ -167,7 +167,7 @@ type StreamInstanceArgs struct {
 	DataProcessRegion StreamInstanceDataProcessRegionInput
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig StreamInstanceStreamConfigPtrInput
@@ -275,7 +275,7 @@ func (o StreamInstanceOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamInstance) pulumi.StringOutput { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o StreamInstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

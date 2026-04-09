@@ -88,21 +88,26 @@ func LookupPushBasedLogExport(ctx *pulumi.Context, args *LookupPushBasedLogExpor
 
 // A collection of arguments for invoking getPushBasedLogExport.
 type LookupPushBasedLogExportArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getPushBasedLogExport.
 type LookupPushBasedLogExportResult struct {
+	// The name of the bucket to which the agent sends the logs to.
 	BucketName string `pulumi:"bucketName"`
+	// Date and time that this feature was enabled on.
 	CreateDate string `pulumi:"createDate"`
-	IamRoleId  string `pulumi:"iamRoleId"`
+	// ID of the AWS IAM role that is used to write to the S3 bucket.
+	IamRoleId string `pulumi:"iamRoleId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 	PrefixPath string `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	State     string `pulumi:"state"`
+	// Describes whether or not the feature is enabled and what status it is in.
+	State string `pulumi:"state"`
 }
 
 func LookupPushBasedLogExportOutput(ctx *pulumi.Context, args LookupPushBasedLogExportOutputArgs, opts ...pulumi.InvokeOption) LookupPushBasedLogExportResultOutput {
@@ -116,7 +121,7 @@ func LookupPushBasedLogExportOutput(ctx *pulumi.Context, args LookupPushBasedLog
 
 // A collection of arguments for invoking getPushBasedLogExport.
 type LookupPushBasedLogExportOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -139,14 +144,17 @@ func (o LookupPushBasedLogExportResultOutput) ToLookupPushBasedLogExportResultOu
 	return o
 }
 
+// The name of the bucket to which the agent sends the logs to.
 func (o LookupPushBasedLogExportResultOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
+// Date and time that this feature was enabled on.
 func (o LookupPushBasedLogExportResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.CreateDate }).(pulumi.StringOutput)
 }
 
+// ID of the AWS IAM role that is used to write to the S3 bucket.
 func (o LookupPushBasedLogExportResultOutput) IamRoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.IamRoleId }).(pulumi.StringOutput)
 }
@@ -156,15 +164,17 @@ func (o LookupPushBasedLogExportResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 func (o LookupPushBasedLogExportResultOutput) PrefixPath() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.PrefixPath }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupPushBasedLogExportResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Describes whether or not the feature is enabled and what status it is in.
 func (o LookupPushBasedLogExportResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.State }).(pulumi.StringOutput)
 }

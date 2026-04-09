@@ -13,8 +13,6 @@ import (
 
 // `FederatedDatabaseInstance` provides a Federated Database Instance data source.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 //
 // ## Example Usage
@@ -132,7 +130,7 @@ type LookupFederatedDatabaseInstanceArgs struct {
 	CloudProviderConfigs []GetFederatedDatabaseInstanceCloudProviderConfig `pulumi:"cloudProviderConfigs"`
 	// Name of the Atlas Federated Database Instance.
 	Name string `pulumi:"name"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -209,7 +207,7 @@ type LookupFederatedDatabaseInstanceOutputArgs struct {
 	CloudProviderConfigs GetFederatedDatabaseInstanceCloudProviderConfigArrayInput `pulumi:"cloudProviderConfigs"`
 	// Name of the Atlas Federated Database Instance.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

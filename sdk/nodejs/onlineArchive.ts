@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * > **IMPORTANT:** The collection must exists before performing an online archive.
  *
  * > **IMPORTANT:** There are fields that are immutable after creation, i.e if `dateField` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
@@ -191,7 +189,7 @@ export class OnlineArchive extends pulumi.CustomResource {
      */
     declare public readonly paused: pulumi.Output<boolean>;
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -322,7 +320,7 @@ export interface OnlineArchiveState {
      */
     paused?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -384,7 +382,7 @@ export interface OnlineArchiveArgs {
      */
     paused?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      */
     projectId: pulumi.Input<string>;
     /**

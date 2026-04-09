@@ -235,8 +235,6 @@ def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
     For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### Basic
@@ -252,7 +250,7 @@ def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
     :param _builtins.bool auto_indexing: (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
     :param _builtins.bool continuous_backup_enabled: (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param _builtins.str name: Human-readable label that identifies your serverless instance.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
     :param _builtins.str state_name: Stage of deployment of this serverless instance when the resource made its request.
     """
     __args__ = dict()
@@ -296,8 +294,6 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
     For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### Basic
@@ -313,7 +309,7 @@ def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional
     :param _builtins.bool auto_indexing: (Deprecated) Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/).
     :param _builtins.bool continuous_backup_enabled: (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
     :param _builtins.str name: Human-readable label that identifies your serverless instance.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
     :param _builtins.str state_name: Stage of deployment of this serverless instance when the resource made its request.
     """
     __args__ = dict()

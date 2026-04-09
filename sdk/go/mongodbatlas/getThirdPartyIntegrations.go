@@ -14,8 +14,6 @@ import (
 // `getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
 // applied across the project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -67,7 +65,7 @@ func LookupThirdPartyIntegrations(ctx *pulumi.Context, args *LookupThirdPartyInt
 
 // A collection of arguments for invoking getThirdPartyIntegrations.
 type LookupThirdPartyIntegrationsArgs struct {
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -75,7 +73,7 @@ type LookupThirdPartyIntegrationsArgs struct {
 type LookupThirdPartyIntegrationsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// ID of the Atlas project the Third-Party Service Integration belongs to.
+	// ID of the Atlas project the Third-Party Service Integration belongs to, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Third-Party service integration.
 	Results []GetThirdPartyIntegrationsResult `pulumi:"results"`
@@ -92,7 +90,7 @@ func LookupThirdPartyIntegrationsOutput(ctx *pulumi.Context, args LookupThirdPar
 
 // A collection of arguments for invoking getThirdPartyIntegrations.
 type LookupThirdPartyIntegrationsOutputArgs struct {
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -120,7 +118,7 @@ func (o LookupThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// ID of the Atlas project the Third-Party Service Integration belongs to.
+// ID of the Atlas project the Third-Party Service Integration belongs to, also known as `groupId` in the official documentation.
 func (o LookupThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

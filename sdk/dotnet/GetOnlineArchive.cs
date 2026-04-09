@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -88,8 +86,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -161,8 +157,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.OnlineArchive` describes an Online Archive
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// 
         /// ## Example Usage
@@ -250,7 +244,7 @@ namespace Pulumi.Mongodbatlas
         public string ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -276,7 +270,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

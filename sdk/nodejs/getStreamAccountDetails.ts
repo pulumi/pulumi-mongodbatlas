@@ -43,9 +43,12 @@ export interface GetStreamAccountDetailsArgs {
      */
     cloudProvider: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+     */
     regionName: string;
 }
 
@@ -53,8 +56,17 @@ export interface GetStreamAccountDetailsArgs {
  * A collection of values returned by getStreamAccountDetails.
  */
 export interface GetStreamAccountDetailsResult {
+    /**
+     * The AWS Account ID.
+     */
     readonly awsAccountId: string;
+    /**
+     * The Azure Subscription ID.
+     */
     readonly azureSubscriptionId: string;
+    /**
+     * The AWS VPC or Azure Virtual Network CIDR Block.
+     */
     readonly cidrBlock: string;
     /**
      * One of `aws` or `azure`.
@@ -65,11 +77,20 @@ export interface GetStreamAccountDetailsResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+     */
     readonly regionName: string;
+    /**
+     * The name of the Azure Virtual Network.
+     */
     readonly virtualNetworkName: string;
+    /**
+     * The AWS VPC ID.
+     */
     readonly vpcId: string;
 }
 /**
@@ -111,8 +132,11 @@ export interface GetStreamAccountDetailsOutputArgs {
      */
     cloudProvider: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+     */
     regionName: pulumi.Input<string>;
 }

@@ -13,8 +13,6 @@ import (
 
 // `getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // Refer to the following for a full example on using this dataSource as a tool to import all resources:
@@ -38,7 +36,7 @@ type LookupAlertConfigurationsArgs struct {
 	ListOptions []GetAlertConfigurationsListOption `pulumi:"listOptions"`
 	// List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
 	OutputTypes []string `pulumi:"outputTypes"`
-	// The unique ID for the project to get the alert configurations.
+	// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -47,7 +45,7 @@ type LookupAlertConfigurationsResult struct {
 	Id          string                             `pulumi:"id"`
 	ListOptions []GetAlertConfigurationsListOption `pulumi:"listOptions"`
 	OutputTypes []string                           `pulumi:"outputTypes"`
-	// The ID of the project where the alert configuration exists
+	// The ID of the project where the alert configuration exists, also known as `groupId` in the official documentation
 	ProjectId string `pulumi:"projectId"`
 	// A list of alert configurations for the project_id, constrained by the `listOptions`.
 	Results []GetAlertConfigurationsResult `pulumi:"results"`
@@ -73,7 +71,7 @@ type LookupAlertConfigurationsOutputArgs struct {
 	ListOptions GetAlertConfigurationsListOptionArrayInput `pulumi:"listOptions"`
 	// List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
 	OutputTypes pulumi.StringArrayInput `pulumi:"outputTypes"`
-	// The unique ID for the project to get the alert configurations.
+	// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -108,7 +106,7 @@ func (o LookupAlertConfigurationsResultOutput) OutputTypes() pulumi.StringArrayO
 	return o.ApplyT(func(v LookupAlertConfigurationsResult) []string { return v.OutputTypes }).(pulumi.StringArrayOutput)
 }
 
-// The ID of the project where the alert configuration exists
+// The ID of the project where the alert configuration exists, also known as `groupId` in the official documentation
 func (o LookupAlertConfigurationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

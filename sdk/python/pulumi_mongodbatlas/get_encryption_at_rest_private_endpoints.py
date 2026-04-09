@@ -61,7 +61,7 @@ class GetEncryptionAtRestPrivateEndpointsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -122,7 +122,7 @@ def get_encryption_at_rest_private_endpoints(cloud_provider: Optional[_builtins.
 
 
     :param _builtins.str cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider
@@ -171,7 +171,7 @@ def get_encryption_at_rest_private_endpoints_output(cloud_provider: Optional[pul
 
 
     :param _builtins.str cloud_provider: Label that identifies the cloud provider for the Encryption At Rest private endpoint.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider

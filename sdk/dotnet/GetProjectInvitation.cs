@@ -16,8 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -57,8 +55,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -97,8 +93,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
         /// 
         /// &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -145,7 +139,7 @@ namespace Pulumi.Mongodbatlas
         public string InvitationId { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+        /// Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -171,7 +165,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> InvitationId { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+        /// Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

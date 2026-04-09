@@ -132,8 +132,6 @@ def get_cluster_outage_simulation(cluster_name: Optional[_builtins.str] = None,
 
     Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -148,7 +146,7 @@ def get_cluster_outage_simulation(cluster_name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str cluster_name: Name of the Atlas Cluster that is undergoing outage simulation.
-    :param _builtins.str project_id: The unique ID for the project that contains the cluster that is undergoing outage simulation.
+    :param _builtins.str project_id: The unique ID for the project that contains the cluster that is undergoing outage simulation, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -174,8 +172,6 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[_bu
 
     Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -190,7 +186,7 @@ def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[_bu
 
 
     :param _builtins.str cluster_name: Name of the Atlas Cluster that is undergoing outage simulation.
-    :param _builtins.str project_id: The unique ID for the project that contains the cluster that is undergoing outage simulation.
+    :param _builtins.str project_id: The unique ID for the project that contains the cluster that is undergoing outage simulation, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

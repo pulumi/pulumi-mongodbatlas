@@ -72,14 +72,14 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
     }
 
     /**
-     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * @return The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -219,7 +219,7 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
         }
 
         /**
-         * @param projectId The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
          * 
          * @return builder
          * 
@@ -230,7 +230,7 @@ public final class CloudProviderAccessAuthorizationState extends com.pulumi.reso
         }
 
         /**
-         * @param projectId The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
          * 
          * @return builder
          * 

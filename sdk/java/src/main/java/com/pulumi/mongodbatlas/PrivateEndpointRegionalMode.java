@@ -19,8 +19,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
  * &gt; **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
  * 
  * ## Import
@@ -57,14 +55,14 @@ public class PrivateEndpointRegionalMode extends com.pulumi.resources.CustomReso
         return this.enabled;
     }
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

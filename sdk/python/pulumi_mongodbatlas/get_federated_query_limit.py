@@ -145,8 +145,6 @@ def get_federated_query_limit(limit_name: Optional[_builtins.str] = None,
     """
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -164,7 +162,7 @@ def get_federated_query_limit(limit_name: Optional[_builtins.str] = None,
            * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
            * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
            * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
-    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     :param _builtins.str tenant_name: Name of the Atlas Federated Database Instance.
     """
     __args__ = dict()
@@ -192,8 +190,6 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[_builtins
     """
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -211,7 +207,7 @@ def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[_builtins
            * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
            * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
            * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
-    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     :param _builtins.str tenant_name: Name of the Atlas Federated Database Instance.
     """
     __args__ = dict()

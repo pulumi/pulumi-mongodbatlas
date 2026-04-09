@@ -77,14 +77,14 @@ public final class ProjectInvitationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+     * @return Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -236,7 +236,7 @@ public final class ProjectInvitationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -247,7 +247,7 @@ public final class ProjectInvitationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

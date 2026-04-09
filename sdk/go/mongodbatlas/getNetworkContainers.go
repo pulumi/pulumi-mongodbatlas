@@ -13,8 +13,6 @@ import (
 
 // `getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ### Basic Example.
@@ -65,7 +63,7 @@ func LookupNetworkContainers(ctx *pulumi.Context, args *LookupNetworkContainersA
 
 // A collection of arguments for invoking getNetworkContainers.
 type LookupNetworkContainersArgs struct {
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
 	ProviderName string `pulumi:"providerName"`
@@ -93,7 +91,7 @@ func LookupNetworkContainersOutput(ctx *pulumi.Context, args LookupNetworkContai
 
 // A collection of arguments for invoking getNetworkContainers.
 type LookupNetworkContainersOutputArgs struct {
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`

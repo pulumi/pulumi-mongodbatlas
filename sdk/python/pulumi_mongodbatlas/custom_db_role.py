@@ -28,7 +28,7 @@ class CustomDbRoleArgs:
         """
         The set of arguments for constructing a CustomDbRole resource.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -49,7 +49,7 @@ class CustomDbRoleArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project.
+        The unique ID for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -105,7 +105,7 @@ class _CustomDbRoleState:
         """
         Input properties used for looking up and filtering CustomDbRole resources.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -146,7 +146,7 @@ class _CustomDbRoleState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project.
+        The unique ID for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -189,8 +189,6 @@ class CustomDbRole(pulumi.CustomResource):
         `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 
         > **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project's clusters support, and that are compatible with each MongoDB version used by your project's clusters. For example, if your project has MongoDB 4.2 clusters, you can't create custom roles that use actions introduced in MongoDB 4.4.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
@@ -295,7 +293,7 @@ class CustomDbRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -315,8 +313,6 @@ class CustomDbRole(pulumi.CustomResource):
         `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
 
         > **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project's clusters support, and that are compatible with each MongoDB version used by your project's clusters. For example, if your project has MongoDB 4.2 clusters, you can't create custom roles that use actions introduced in MongoDB 4.4.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
@@ -476,7 +472,7 @@ class CustomDbRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] role_name: Name of the custom role.
                
                > **IMPORTANT** The specified role name can only contain letters, digits, underscores, and dashes. Additionally, you cannot specify a role name which meets any of the following criteria:
@@ -510,7 +506,7 @@ class CustomDbRole(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project.
+        The unique ID for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

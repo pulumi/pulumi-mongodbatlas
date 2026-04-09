@@ -45,9 +45,12 @@ export interface GetFlexRestoreJobArgs {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the restore job.
+     */
     restoreJobId: string;
 }
 
@@ -55,7 +58,13 @@ export interface GetFlexRestoreJobArgs {
  * A collection of values returned by getFlexRestoreJob.
  */
 export interface GetFlexRestoreJobResult {
+    /**
+     * Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+     */
     readonly deliveryType: string;
+    /**
+     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly expirationDate: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -66,17 +75,44 @@ export interface GetFlexRestoreJobResult {
      */
     readonly name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly restoreFinishedDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the restore job.
+     */
     readonly restoreJobId: string;
+    /**
+     * Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly restoreScheduledDate: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly snapshotFinishedDate: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
     readonly snapshotId: string;
+    /**
+     * Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+     */
     readonly snapshotUrl: string;
+    /**
+     * Phase of the restore workflow for this job at the time this resource made this request.
+     */
     readonly status: string;
+    /**
+     * Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+     */
     readonly targetDeploymentItemName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+     */
     readonly targetProjectId: string;
 }
 /**
@@ -120,8 +156,11 @@ export interface GetFlexRestoreJobOutputArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the restore job.
+     */
     restoreJobId: pulumi.Input<string>;
 }

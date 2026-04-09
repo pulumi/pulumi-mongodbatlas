@@ -14,9 +14,35 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshots = new Mongodbatlas.Index.CloudBackupSnapshots("test", new()
+        ///     {
+        ///         ProjectId = "5d0f1f73cf09a29120e173cf",
+        ///         ClusterName = "MyClusterTest",
+        ///         Description = "SomeDescription",
+        ///         RetentionInDays = 1,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSnapshots.ProjectId,
+        ///         ClusterName = testCloudBackupSnapshots.ClusterName,
+        ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCloudBackupSnapshotsResult> InvokeAsync(GetCloudBackupSnapshotsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsArgs(), options.WithDefaults());
@@ -24,9 +50,35 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshots = new Mongodbatlas.Index.CloudBackupSnapshots("test", new()
+        ///     {
+        ///         ProjectId = "5d0f1f73cf09a29120e173cf",
+        ///         ClusterName = "MyClusterTest",
+        ///         Description = "SomeDescription",
+        ///         RetentionInDays = 1,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSnapshots.ProjectId,
+        ///         ClusterName = testCloudBackupSnapshots.ClusterName,
+        ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCloudBackupSnapshotsResult> Invoke(GetCloudBackupSnapshotsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsInvokeArgs(), options.WithDefaults());
@@ -34,9 +86,35 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var testCloudBackupSnapshots = new Mongodbatlas.Index.CloudBackupSnapshots("test", new()
+        ///     {
+        ///         ProjectId = "5d0f1f73cf09a29120e173cf",
+        ///         ClusterName = "MyClusterTest",
+        ///         Description = "SomeDescription",
+        ///         RetentionInDays = 1,
+        ///     });
+        /// 
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
+        ///     {
+        ///         ProjectId = testCloudBackupSnapshots.ProjectId,
+        ///         ClusterName = testCloudBackupSnapshots.ClusterName,
+        ///         PageNum = 1,
+        ///         ItemsPerPage = 5,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCloudBackupSnapshotsResult> Invoke(GetCloudBackupSnapshotsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCloudBackupSnapshotsResult>("mongodbatlas:index/getCloudBackupSnapshots:getCloudBackupSnapshots", args ?? new GetCloudBackupSnapshotsInvokeArgs(), options.WithDefaults());
@@ -63,6 +141,9 @@ namespace Pulumi.Mongodbatlas
         [Input("pageNum")]
         public int? PageNum { get; set; }
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
+        /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
@@ -92,6 +173,9 @@ namespace Pulumi.Mongodbatlas
         [Input("pageNum")]
         public Input<int>? PageNum { get; set; }
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
+        /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 

@@ -59,7 +59,7 @@ func LookupLogIntegration(ctx *pulumi.Context, args *LookupLogIntegrationArgs, o
 type LookupLogIntegrationArgs struct {
 	// Unique identifier of the log integration configuration.
 	IntegrationId string `pulumi:"integrationId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -80,7 +80,7 @@ type LookupLogIntegrationResult struct {
 	OtelEndpoint        string                                `pulumi:"otelEndpoint"`
 	OtelSuppliedHeaders []GetLogIntegrationOtelSuppliedHeader `pulumi:"otelSuppliedHeaders"`
 	PrefixPath          string                                `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId            string `pulumi:"projectId"`
 	Region               string `pulumi:"region"`
 	RoleId               string `pulumi:"roleId"`
@@ -103,7 +103,7 @@ func LookupLogIntegrationOutput(ctx *pulumi.Context, args LookupLogIntegrationOu
 type LookupLogIntegrationOutputArgs struct {
 	// Unique identifier of the log integration configuration.
 	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -177,7 +177,7 @@ func (o LookupLogIntegrationResultOutput) PrefixPath() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.PrefixPath }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupLogIntegrationResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

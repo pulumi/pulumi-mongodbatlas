@@ -13,8 +13,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -131,7 +129,7 @@ export function getBackupCompliancePolicy(args: GetBackupCompliancePolicyArgs, o
  */
 export interface GetBackupCompliancePolicyArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -216,8 +214,6 @@ export interface GetBackupCompliancePolicyResult {
  * > **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
  * > **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -335,7 +331,7 @@ export function getBackupCompliancePolicyOutput(args: GetBackupCompliancePolicyO
  */
 export interface GetBackupCompliancePolicyOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

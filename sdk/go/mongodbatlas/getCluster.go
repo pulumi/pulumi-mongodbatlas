@@ -22,8 +22,6 @@ import (
 //
 // > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -86,7 +84,7 @@ func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.
 type LookupClusterArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name string `pulumi:"name"`
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -201,7 +199,7 @@ func LookupClusterOutput(ctx *pulumi.Context, args LookupClusterOutputArgs, opts
 type LookupClusterOutputArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

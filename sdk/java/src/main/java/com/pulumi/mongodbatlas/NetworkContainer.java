@@ -25,8 +25,6 @@ import javax.annotation.Nullable;
  * &lt;br&gt; &amp;#8226;  GCP -  One container per project.
  * &lt;br&gt; &amp;#8226;  AWS and Azure - One container per cloud provider region.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
  * ## Example Usage
  * 
  * ### Example with AWS
@@ -240,14 +238,14 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
         return this.networkName;
     }
     /**
-     * Unique identifier for the Atlas project for this Network Peering Container.
+     * Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the Atlas project for this Network Peering Container.
+     * @return Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

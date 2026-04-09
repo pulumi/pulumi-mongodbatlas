@@ -61,7 +61,7 @@ export function getPushBasedLogExport(args: GetPushBasedLogExportArgs, opts?: pu
  */
 export interface GetPushBasedLogExportArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -70,18 +70,33 @@ export interface GetPushBasedLogExportArgs {
  * A collection of values returned by getPushBasedLogExport.
  */
 export interface GetPushBasedLogExportResult {
+    /**
+     * The name of the bucket to which the agent sends the logs to.
+     */
     readonly bucketName: string;
+    /**
+     * Date and time that this feature was enabled on.
+     */
     readonly createDate: string;
+    /**
+     * ID of the AWS IAM role that is used to write to the S3 bucket.
+     */
     readonly iamRoleId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
+     */
     readonly prefixPath: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * Describes whether or not the feature is enabled and what status it is in.
+     */
     readonly state: string;
 }
 /**
@@ -141,7 +156,7 @@ export function getPushBasedLogExportOutput(args: GetPushBasedLogExportOutputArg
  */
 export interface GetPushBasedLogExportOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

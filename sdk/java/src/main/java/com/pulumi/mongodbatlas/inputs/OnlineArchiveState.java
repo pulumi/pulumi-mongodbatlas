@@ -188,14 +188,14 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique ID for the project
+     * @return The unique ID for the project, also known as `groupId` in the official documentation
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -527,7 +527,7 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param projectId The unique ID for the project
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 
@@ -538,7 +538,7 @@ public final class OnlineArchiveState extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param projectId The unique ID for the project
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 

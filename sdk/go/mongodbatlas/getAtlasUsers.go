@@ -15,8 +15,6 @@ import (
 //
 // > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `Organization`, `Project`, or `Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `getAtlasUser` and `getAtlasUsers`.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ### Using orgId attribute to query Organization Atlas Users
@@ -117,7 +115,7 @@ type LookupAtlasUsersArgs struct {
 	OrgId *string `pulumi:"orgId"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+	// Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Unique 24-hexadecimal digit string that identifies the team whose users you want to return.
 	TeamId *string `pulumi:"teamId"`
@@ -157,7 +155,7 @@ type LookupAtlasUsersOutputArgs struct {
 	OrgId pulumi.StringPtrInput `pulumi:"orgId"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+	// Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// Unique 24-hexadecimal digit string that identifies the team whose users you want to return.
 	TeamId pulumi.StringPtrInput `pulumi:"teamId"`

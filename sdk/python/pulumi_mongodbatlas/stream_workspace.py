@@ -29,7 +29,7 @@ class StreamWorkspaceArgs:
         The set of arguments for constructing a StreamWorkspace resource.
 
         :param pulumi.Input['StreamWorkspaceDataProcessRegionArgs'] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         :param pulumi.Input['StreamWorkspaceStreamConfigArgs'] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
         """
@@ -55,7 +55,7 @@ class StreamWorkspaceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -101,7 +101,7 @@ class _StreamWorkspaceState:
 
         :param pulumi.Input['StreamWorkspaceDataProcessRegionArgs'] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: List that contains the hostnames assigned to the stream workspace.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input['StreamWorkspaceStreamConfigArgs'] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
@@ -144,7 +144,7 @@ class _StreamWorkspaceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -240,7 +240,7 @@ class StreamWorkspace(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
@@ -362,7 +362,7 @@ class StreamWorkspace(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: List that contains the hostnames assigned to the stream workspace.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
@@ -397,7 +397,7 @@ class StreamWorkspace(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

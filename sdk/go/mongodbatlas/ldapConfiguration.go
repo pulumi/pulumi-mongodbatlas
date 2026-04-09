@@ -126,7 +126,7 @@ type LdapConfiguration struct {
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port pulumi.IntPtrOutput `pulumi:"port"`
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
 	// * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
@@ -203,7 +203,7 @@ type ldapConfigurationState struct {
 	Hostname *string `pulumi:"hostname"`
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port *int `pulumi:"port"`
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
 	// * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
@@ -229,7 +229,7 @@ type LdapConfigurationState struct {
 	Hostname pulumi.StringPtrInput
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port pulumi.IntPtrInput
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
 	// * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
@@ -259,7 +259,7 @@ type ldapConfigurationArgs struct {
 	Hostname string `pulumi:"hostname"`
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port *int `pulumi:"port"`
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
 	// * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
@@ -286,7 +286,7 @@ type LdapConfigurationArgs struct {
 	Hostname pulumi.StringInput
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port pulumi.IntPtrInput
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
 	// * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
@@ -422,7 +422,7 @@ func (o LdapConfigurationOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LdapConfiguration) pulumi.IntPtrOutput { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The unique ID for the project to configure LDAP.
+// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 func (o LdapConfigurationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LdapConfiguration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

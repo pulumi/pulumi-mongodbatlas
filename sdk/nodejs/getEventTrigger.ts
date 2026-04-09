@@ -28,7 +28,7 @@ export interface GetEventTriggerArgs {
      */
     appId: string;
     /**
-     * The unique ID for the project to create the trigger.
+     * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -141,7 +141,7 @@ export interface GetEventTriggerOutputArgs {
      */
     appId: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the trigger.
+     * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

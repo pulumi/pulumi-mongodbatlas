@@ -17,30 +17,46 @@ public final class GetCloudUserProjectAssignmentArgs extends com.pulumi.resource
     public static final GetCloudUserProjectAssignmentArgs Empty = new GetCloudUserProjectAssignmentArgs();
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
     @Import(name="userId")
     private @Nullable Output<String> userId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
     public Optional<Output<String>> userId() {
         return Optional.ofNullable(this.userId);
     }
 
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     * 
+     */
     @Import(name="username")
     private @Nullable Output<String> username;
 
+    /**
+     * @return Email address that represents the username of the MongoDB Cloud user.
+     * 
+     */
     public Optional<Output<String>> username() {
         return Optional.ofNullable(this.username);
     }
@@ -72,7 +88,7 @@ public final class GetCloudUserProjectAssignmentArgs extends com.pulumi.resource
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -83,7 +99,7 @@ public final class GetCloudUserProjectAssignmentArgs extends com.pulumi.resource
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -92,20 +108,44 @@ public final class GetCloudUserProjectAssignmentArgs extends com.pulumi.resource
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param userId Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userId(@Nullable Output<String> userId) {
             $.userId = userId;
             return this;
         }
 
+        /**
+         * @param userId Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userId(String userId) {
             return userId(Output.of(userId));
         }
 
+        /**
+         * @param username Email address that represents the username of the MongoDB Cloud user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(@Nullable Output<String> username) {
             $.username = username;
             return this;
         }
 
+        /**
+         * @param username Email address that represents the username of the MongoDB Cloud user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(String username) {
             return username(Output.of(username));
         }

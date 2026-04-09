@@ -13,8 +13,6 @@ import (
 
 // `getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 func LookupSearchIndexes(ctx *pulumi.Context, args *LookupSearchIndexesArgs, opts ...pulumi.InvokeOption) (*LookupSearchIndexesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
@@ -34,7 +32,7 @@ type LookupSearchIndexesArgs struct {
 	CollectionName string `pulumi:"collectionName"`
 	// (Required) Name of the database the collection is in.
 	Database string `pulumi:"database"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -71,7 +69,7 @@ type LookupSearchIndexesOutputArgs struct {
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
 	// (Required) Name of the database the collection is in.
 	Database pulumi.StringInput `pulumi:"database"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

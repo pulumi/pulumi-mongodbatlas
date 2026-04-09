@@ -148,8 +148,6 @@ def get_maintenance_window(project_id: Optional[_builtins.str] = None,
     """
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
     ## Examples Usage
@@ -177,7 +175,7 @@ def get_maintenance_window(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique identifier of the project for the Maintenance Window.
+    :param _builtins.str project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -199,8 +197,6 @@ def get_maintenance_window_output(project_id: Optional[pulumi.Input[_builtins.st
     """
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
     ## Examples Usage
@@ -228,7 +224,7 @@ def get_maintenance_window_output(project_id: Optional[pulumi.Input[_builtins.st
     ```
 
 
-    :param _builtins.str project_id: The unique identifier of the project for the Maintenance Window.
+    :param _builtins.str project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

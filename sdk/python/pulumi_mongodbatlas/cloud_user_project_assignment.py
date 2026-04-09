@@ -25,7 +25,7 @@ class CloudUserProjectAssignmentArgs:
         """
         The set of arguments for constructing a CloudUserProjectAssignment resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: One or more project-level roles to assign the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] username: Email address that represents the username of the MongoDB Cloud user.
         """
@@ -37,7 +37,7 @@ class CloudUserProjectAssignmentArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -100,7 +100,7 @@ class _CloudUserProjectAssignmentState:
         :param pulumi.Input[_builtins.str] last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: One or more project-level roles to assign the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] user_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] username: Email address that represents the username of the MongoDB Cloud user.
@@ -258,7 +258,7 @@ class _CloudUserProjectAssignmentState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -364,7 +364,7 @@ class CloudUserProjectAssignment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: One or more project-level roles to assign the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] username: Email address that represents the username of the MongoDB Cloud user.
         """
@@ -511,7 +511,7 @@ class CloudUserProjectAssignment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: One or more project-level roles to assign the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] user_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] username: Email address that represents the username of the MongoDB Cloud user.
@@ -620,7 +620,7 @@ class CloudUserProjectAssignment(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

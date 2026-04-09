@@ -72,7 +72,7 @@ public final class GetSearchIndexesResult {
      */
     private Integer numPartitions;
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -188,7 +188,7 @@ public final class GetSearchIndexesResult {
         return this.numPartitions;
     }
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

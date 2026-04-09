@@ -20,8 +20,6 @@ import (
 // <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
 // <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -81,7 +79,7 @@ func LookupClusters(ctx *pulumi.Context, args *LookupClustersArgs, opts ...pulum
 
 // A collection of arguments for invoking getClusters.
 type LookupClustersArgs struct {
-	// The unique ID for the project to get the clusters.
+	// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -105,7 +103,7 @@ func LookupClustersOutput(ctx *pulumi.Context, args LookupClustersOutputArgs, op
 
 // A collection of arguments for invoking getClusters.
 type LookupClustersOutputArgs struct {
-	// The unique ID for the project to get the clusters.
+	// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

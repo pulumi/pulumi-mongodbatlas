@@ -61,13 +61,16 @@ class GetFlexRestoreJobsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetFlexRestoreJobsResultResult']:
+        """
+        List of documents that MongoDB Cloud returns for this request.
+        """
         return pulumi.get(self, "results")
 
 
@@ -107,7 +110,7 @@ def get_flex_restore_jobs(name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -144,7 +147,7 @@ def get_flex_restore_jobs_output(name: Optional[pulumi.Input[_builtins.str]] = N
 
 
     :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['name'] = name

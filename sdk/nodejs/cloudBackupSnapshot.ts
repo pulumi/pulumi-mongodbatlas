@@ -10,8 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
  * On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
  * ## Example Usage
@@ -132,7 +130,7 @@ export class CloudBackupSnapshot extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly mongodVersion: pulumi.Output<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -278,7 +276,7 @@ export interface CloudBackupSnapshotState {
      */
     mongodVersion?: pulumi.Input<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -332,7 +330,7 @@ export interface CloudBackupSnapshotArgs {
      */
     description: pulumi.Input<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

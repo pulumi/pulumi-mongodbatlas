@@ -56,9 +56,7 @@ class AdvancedClusterArgs:
                - `REPLICASET` Replica set
                - `SHARDED`	Sharded cluster
                - `GEOSHARDED` Global Cluster
-        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster. 
-               
-               > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
         :param pulumi.Input[_builtins.str] accept_data_risks_and_force_replica_set_reconfig: If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         :param pulumi.Input['AdvancedClusterAdvancedConfigurationArgs'] advanced_configuration: Additional settings for an Atlas cluster.
@@ -174,9 +172,7 @@ class AdvancedClusterArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique ID for the project to create the cluster. 
-
-        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+        Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -577,9 +573,7 @@ class _AdvancedClusterState:
                }`
         :param pulumi.Input['AdvancedClusterPinnedFcvArgs'] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster. 
-               
-               > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecArgs']]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
@@ -932,9 +926,7 @@ class _AdvancedClusterState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique ID for the project to create the cluster. 
-
-        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+        Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -1577,6 +1569,13 @@ class AdvancedCluster(pulumi.CustomResource):
 
         ### Further Examples
 
+        **Target Examples (Recommended Starting Points):**
+        - Free Tier (M0)
+        - Simple M10 Replica Set
+        - M10 High-Availability Replica Set (2-2-1)
+        - Simple M30 Single-Shard Cluster
+        - M30 Multi-Shard Cluster (2 Shards)
+
         **Cluster Types:**
         - Replicaset
         - Symmetric Sharded Cluster
@@ -1718,9 +1717,7 @@ class AdvancedCluster(pulumi.CustomResource):
                }`
         :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster. 
-               
-               > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
@@ -2188,6 +2185,13 @@ class AdvancedCluster(pulumi.CustomResource):
 
         ### Further Examples
 
+        **Target Examples (Recommended Starting Points):**
+        - Free Tier (M0)
+        - Simple M10 Replica Set
+        - M10 High-Availability Replica Set (2-2-1)
+        - Simple M30 Single-Shard Cluster
+        - M30 Multi-Shard Cluster (2 Shards)
+
         **Cluster Types:**
         - Replicaset
         - Symmetric Sharded Cluster
@@ -2472,9 +2476,7 @@ class AdvancedCluster(pulumi.CustomResource):
                }`
         :param pulumi.Input[Union['AdvancedClusterPinnedFcvArgs', 'AdvancedClusterPinnedFcvArgsDict']] pinned_fcv: Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         :param pulumi.Input[_builtins.bool] pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster. 
-               
-               > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
         :param pulumi.Input[_builtins.str] replica_set_scaling_strategy: Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
         :param pulumi.Input[Sequence[pulumi.Input[Union['AdvancedClusterReplicationSpecArgs', 'AdvancedClusterReplicationSpecArgsDict']]]] replication_specs: List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replication_specs` configuration for all shards within the same zone must be the same, with the exception of `instance_size` and `disk_iops` that can scale independently. Note that independent `disk_iops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
@@ -2719,9 +2721,7 @@ class AdvancedCluster(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique ID for the project to create the cluster. 
-
-        > **NOTE:** Groups and projects are synonymous terms. You might find group_id in the official documentation.
+        Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

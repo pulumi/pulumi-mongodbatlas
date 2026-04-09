@@ -41,7 +41,7 @@ class OnlineArchiveArgs:
         :param pulumi.Input[_builtins.str] coll_name: Name of the collection.
         :param pulumi.Input['OnlineArchiveCriteriaArgs'] criteria: Criteria to use for archiving data. See criteria.
         :param pulumi.Input[_builtins.str] db_name: Name of the database that contains the collection.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] collection_type: Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         :param pulumi.Input['OnlineArchiveDataExpirationRuleArgs'] data_expiration_rule: Rule for specifying when data should be deleted from the archive. See data expiration rule.
         :param pulumi.Input['OnlineArchiveDataProcessRegionArgs'] data_process_region: Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
@@ -125,7 +125,7 @@ class OnlineArchiveArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project
+        The unique ID for the project, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -262,7 +262,7 @@ class _OnlineArchiveState:
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[_builtins.bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input['OnlineArchiveScheduleArgs'] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[_builtins.str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         :param pulumi.Input[_builtins.bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
@@ -434,7 +434,7 @@ class _OnlineArchiveState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project
+        The unique ID for the project, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -501,8 +501,6 @@ class OnlineArchive(pulumi.CustomResource):
                  __props__=None):
         """
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **IMPORTANT:** The collection must exists before performing an online archive.
 
@@ -621,7 +619,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[_builtins.bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[_builtins.bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
         """
@@ -633,8 +631,6 @@ class OnlineArchive(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **IMPORTANT:** The collection must exists before performing an online archive.
 
@@ -846,7 +842,7 @@ class OnlineArchive(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]] partition_fields: Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         :param pulumi.Input[_builtins.bool] paused: State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']] schedule: Regular frequency and duration when archiving process occurs. See schedule.
         :param pulumi.Input[_builtins.str] state: Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         :param pulumi.Input[_builtins.bool] sync_creation: Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
@@ -964,7 +960,7 @@ class OnlineArchive(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project
+        The unique ID for the project, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 

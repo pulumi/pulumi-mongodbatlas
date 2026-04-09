@@ -65,19 +65,21 @@ func LookupMongodbEmployeeAccessGrant(ctx *pulumi.Context, args *LookupMongodbEm
 type LookupMongodbEmployeeAccessGrantArgs struct {
 	// Human-readable label that identifies this cluster.
 	ClusterName string `pulumi:"clusterName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getMongodbEmployeeAccessGrant.
 type LookupMongodbEmployeeAccessGrantResult struct {
 	// Human-readable label that identifies this cluster.
-	ClusterName    string `pulumi:"clusterName"`
+	ClusterName string `pulumi:"clusterName"`
+	// Expiration date for the employee access grant.
 	ExpirationTime string `pulumi:"expirationTime"`
-	GrantType      string `pulumi:"grantType"`
+	// Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
+	GrantType string `pulumi:"grantType"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -94,7 +96,7 @@ func LookupMongodbEmployeeAccessGrantOutput(ctx *pulumi.Context, args LookupMong
 type LookupMongodbEmployeeAccessGrantOutputArgs struct {
 	// Human-readable label that identifies this cluster.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -122,10 +124,12 @@ func (o LookupMongodbEmployeeAccessGrantResultOutput) ClusterName() pulumi.Strin
 	return o.ApplyT(func(v LookupMongodbEmployeeAccessGrantResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }
 
+// Expiration date for the employee access grant.
 func (o LookupMongodbEmployeeAccessGrantResultOutput) ExpirationTime() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongodbEmployeeAccessGrantResult) string { return v.ExpirationTime }).(pulumi.StringOutput)
 }
 
+// Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
 func (o LookupMongodbEmployeeAccessGrantResultOutput) GrantType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongodbEmployeeAccessGrantResult) string { return v.GrantType }).(pulumi.StringOutput)
 }
@@ -135,7 +139,7 @@ func (o LookupMongodbEmployeeAccessGrantResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongodbEmployeeAccessGrantResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupMongodbEmployeeAccessGrantResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongodbEmployeeAccessGrantResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

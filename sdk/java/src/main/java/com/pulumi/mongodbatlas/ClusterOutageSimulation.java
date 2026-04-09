@@ -26,8 +26,6 @@ import javax.annotation.Nullable;
  * 
  * **IMPORTANT:** Test Outage on Majority of Electable Nodes will leave the Atlas cluster without a majority quorum. There will be no primary so write operations will not succeed, and reads will succeed only when configured with a suitable [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/). To recover the majority quorum, you will have the option to manually reconfigure your cluster by adding new nodes to existing regions or adding new regions at the risk of losing recent writes, or end the simulation.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
  * &gt; **IMPORTANT:** This resource cannot be updated.
  * **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
  * 
@@ -132,14 +130,14 @@ public class ClusterOutageSimulation extends com.pulumi.resources.CustomResource
         return this.outageFilters;
     }
     /**
-     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+     * @return The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

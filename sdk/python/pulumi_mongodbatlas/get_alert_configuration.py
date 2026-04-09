@@ -187,8 +187,6 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
     """
     `AlertConfiguration` describes an Alert Configuration.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -260,7 +258,7 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
     :param _builtins.str alert_configuration_id: Unique identifier for the alert configuration.
     :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']] outputs: List of formatted output requested for this alert configuration
            * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
-    :param _builtins.str project_id: The ID of the project where the alert configuration will create.
+    :param _builtins.str project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['alertConfigurationId'] = alert_configuration_id
@@ -290,8 +288,6 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
     """
     `AlertConfiguration` describes an Alert Configuration.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -363,7 +359,7 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
     :param _builtins.str alert_configuration_id: Unique identifier for the alert configuration.
     :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']] outputs: List of formatted output requested for this alert configuration
            * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
-    :param _builtins.str project_id: The ID of the project where the alert configuration will create.
+    :param _builtins.str project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['alertConfigurationId'] = alert_configuration_id

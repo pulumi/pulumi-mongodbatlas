@@ -221,29 +221,39 @@ func LookupStreamProcessor(ctx *pulumi.Context, args *LookupStreamProcessorArgs,
 
 // A collection of arguments for invoking getStreamProcessor.
 type LookupStreamProcessorArgs struct {
+	// Label that identifies the stream processing workspace.
+	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
 	// Label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId     string  `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 // A collection of values returned by getStreamProcessor.
 type LookupStreamProcessorResult struct {
+	// Unique 24-hexadecimal character string that identifies the stream processor.
 	Id string `pulumi:"id"`
+	// Label that identifies the stream processing workspace.
+	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
-	InstanceName *string                   `pulumi:"instanceName"`
-	Options      GetStreamProcessorOptions `pulumi:"options"`
-	Pipeline     string                    `pulumi:"pipeline"`
+	InstanceName *string `pulumi:"instanceName"`
+	// Optional configuration for the stream processor.
+	Options GetStreamProcessorOptions `pulumi:"options"`
+	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	Pipeline string `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId     string  `pulumi:"projectId"`
-	State         string  `pulumi:"state"`
-	Stats         string  `pulumi:"stats"`
-	Tier          string  `pulumi:"tier"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+	State string `pulumi:"state"`
+	Stats string `pulumi:"stats"`
+	Tier  string `pulumi:"tier"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
@@ -258,12 +268,15 @@ func LookupStreamProcessorOutput(ctx *pulumi.Context, args LookupStreamProcessor
 
 // A collection of arguments for invoking getStreamProcessor.
 type LookupStreamProcessorOutputArgs struct {
+	// Label that identifies the stream processing workspace.
+	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringInput `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId     pulumi.StringInput    `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName pulumi.StringPtrInput `pulumi:"workspaceName"`
 }
 
@@ -286,19 +299,24 @@ func (o LookupStreamProcessorResultOutput) ToLookupStreamProcessorResultOutputWi
 	return o
 }
 
+// Unique 24-hexadecimal character string that identifies the stream processor.
 func (o LookupStreamProcessorResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Label that identifies the stream processing workspace.
+//
 // Deprecated: This parameter is deprecated. Please transition to workspace_name.
 func (o LookupStreamProcessorResultOutput) InstanceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
+// Optional configuration for the stream processor.
 func (o LookupStreamProcessorResultOutput) Options() GetStreamProcessorOptionsOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) GetStreamProcessorOptions { return v.Options }).(GetStreamProcessorOptionsOutput)
 }
 
+// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
 func (o LookupStreamProcessorResultOutput) Pipeline() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.Pipeline }).(pulumi.StringOutput)
 }
@@ -308,11 +326,12 @@ func (o LookupStreamProcessorResultOutput) ProcessorName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.ProcessorName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupStreamProcessorResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 func (o LookupStreamProcessorResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -325,6 +344,7 @@ func (o LookupStreamProcessorResultOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.Tier }).(pulumi.StringOutput)
 }
 
+// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 func (o LookupStreamProcessorResultOutput) WorkspaceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) *string { return v.WorkspaceName }).(pulumi.StringPtrOutput)
 }

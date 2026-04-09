@@ -145,7 +145,7 @@ namespace Pulumi.Mongodbatlas
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -165,7 +165,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -189,9 +189,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// List of documents that MongoDB Cloud returns for this request.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetFlexRestoreJobsResultResult> Results;
 
         [OutputConstructor]

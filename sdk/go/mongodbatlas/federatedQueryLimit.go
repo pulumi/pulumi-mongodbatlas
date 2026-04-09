@@ -14,8 +14,6 @@ import (
 
 // `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ### S
@@ -80,7 +78,7 @@ type FederatedQueryLimit struct {
 	MaximumLimit pulumi.IntPtrOutput `pulumi:"maximumLimit"`
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy pulumi.StringOutput `pulumi:"overrunPolicy"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Name of the Atlas Federated Database Instance.
 	TenantName pulumi.StringOutput `pulumi:"tenantName"`
@@ -149,7 +147,7 @@ type federatedQueryLimitState struct {
 	MaximumLimit *int    `pulumi:"maximumLimit"`
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy *string `pulumi:"overrunPolicy"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the Atlas Federated Database Instance.
 	TenantName *string `pulumi:"tenantName"`
@@ -174,7 +172,7 @@ type FederatedQueryLimitState struct {
 	MaximumLimit pulumi.IntPtrInput
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy pulumi.StringPtrInput
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Name of the Atlas Federated Database Instance.
 	TenantName pulumi.StringPtrInput
@@ -200,7 +198,7 @@ type federatedQueryLimitArgs struct {
 	MaximumLimit *int   `pulumi:"maximumLimit"`
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy string `pulumi:"overrunPolicy"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the Atlas Federated Database Instance.
 	TenantName string `pulumi:"tenantName"`
@@ -223,7 +221,7 @@ type FederatedQueryLimitArgs struct {
 	MaximumLimit pulumi.IntPtrInput
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy pulumi.StringInput
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Name of the Atlas Federated Database Instance.
 	TenantName pulumi.StringInput
@@ -352,7 +350,7 @@ func (o FederatedQueryLimitOutput) OverrunPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedQueryLimit) pulumi.StringOutput { return v.OverrunPolicy }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to create a Federated Database Instance.
+// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 func (o FederatedQueryLimitOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedQueryLimit) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

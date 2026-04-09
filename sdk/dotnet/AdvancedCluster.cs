@@ -685,6 +685,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ### Further Examples
     /// 
+    /// **Target Examples (Recommended Starting Points):**
+    /// - Free Tier (M0)
+    /// - Simple M10 Replica Set
+    /// - M10 High-Availability Replica Set (2-2-1)
+    /// - Simple M30 Single-Shard Cluster
+    /// - M30 Multi-Shard Cluster (2 Shards)
+    /// 
     /// **Cluster Types:**
     /// - Replicaset
     /// - Symmetric Sharded Cluster
@@ -932,9 +939,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> PitEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Unique ID for the project to create the cluster. 
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
+        /// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -1182,9 +1187,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? PitEnabled { get; set; }
 
         /// <summary>
-        /// Unique ID for the project to create the cluster. 
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
+        /// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -1423,9 +1426,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? PitEnabled { get; set; }
 
         /// <summary>
-        /// Unique ID for the project to create the cluster. 
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
+        /// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

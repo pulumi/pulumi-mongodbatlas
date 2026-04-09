@@ -31,8 +31,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
  * &gt; **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`containerId` attribute on the cluster.
  * 
  * &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
@@ -964,14 +962,14 @@ public class Cluster extends com.pulumi.resources.CustomResource {
         return this.pitEnabled;
     }
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create the cluster.
+     * @return The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

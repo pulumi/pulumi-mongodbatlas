@@ -153,7 +153,7 @@ type EncryptionAtRestPrivateEndpoint struct {
 	ErrorMessage pulumi.StringOutput `pulumi:"errorMessage"`
 	// Connection name of the Azure Private Endpoint.
 	PrivateEndpointConnectionName pulumi.StringOutput `pulumi:"privateEndpointConnectionName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName pulumi.StringOutput `pulumi:"regionName"`
@@ -209,7 +209,7 @@ type encryptionAtRestPrivateEndpointState struct {
 	ErrorMessage *string `pulumi:"errorMessage"`
 	// Connection name of the Azure Private Endpoint.
 	PrivateEndpointConnectionName *string `pulumi:"privateEndpointConnectionName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName *string `pulumi:"regionName"`
@@ -227,7 +227,7 @@ type EncryptionAtRestPrivateEndpointState struct {
 	ErrorMessage pulumi.StringPtrInput
 	// Connection name of the Azure Private Endpoint.
 	PrivateEndpointConnectionName pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName pulumi.StringPtrInput
@@ -245,7 +245,7 @@ type encryptionAtRestPrivateEndpointArgs struct {
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName string                                   `pulumi:"regionName"`
@@ -258,7 +258,7 @@ type EncryptionAtRestPrivateEndpointArgs struct {
 	CloudProvider pulumi.StringInput
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName pulumi.StringInput
@@ -372,7 +372,7 @@ func (o EncryptionAtRestPrivateEndpointOutput) PrivateEndpointConnectionName() p
 	return o.ApplyT(func(v *EncryptionAtRestPrivateEndpoint) pulumi.StringOutput { return v.PrivateEndpointConnectionName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o EncryptionAtRestPrivateEndpointOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EncryptionAtRestPrivateEndpoint) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

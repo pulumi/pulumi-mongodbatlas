@@ -26,7 +26,7 @@ class ServiceAccountProjectAssignmentArgs:
         The set of arguments for constructing a ServiceAccountProjectAssignment resource.
 
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The Project permissions for the Service Account in the specified Project.
         """
         pulumi.set(__self__, "client_id", client_id)
@@ -49,7 +49,7 @@ class ServiceAccountProjectAssignmentArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -80,7 +80,7 @@ class _ServiceAccountProjectAssignmentState:
         Input properties used for looking up and filtering ServiceAccountProjectAssignment resources.
 
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The Project permissions for the Service Account in the specified Project.
         """
         if client_id is not None:
@@ -106,7 +106,7 @@ class _ServiceAccountProjectAssignmentState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -181,7 +181,7 @@ class ServiceAccountProjectAssignment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The Project permissions for the Service Account in the specified Project.
         """
         ...
@@ -288,7 +288,7 @@ class ServiceAccountProjectAssignment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: The Project permissions for the Service Account in the specified Project.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -312,7 +312,7 @@ class ServiceAccountProjectAssignment(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

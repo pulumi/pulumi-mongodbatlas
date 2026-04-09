@@ -30,7 +30,7 @@ class ProjectIpAccessListArgs:
         """
         The set of arguments for constructing a ProjectIpAccessList resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
@@ -52,7 +52,7 @@ class ProjectIpAccessListArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -134,7 +134,7 @@ class _ProjectIpAccessListState:
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
         :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         if aws_security_group is not None:
             pulumi.set(__self__, "aws_security_group", aws_security_group)
@@ -201,7 +201,7 @@ class _ProjectIpAccessListState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -234,8 +234,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  __props__=None):
         """
         `ProjectIpAccessList` provides an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
 
@@ -312,7 +310,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
         :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         ...
     @overload
@@ -322,8 +320,6 @@ class ProjectIpAccessList(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `ProjectIpAccessList` provides an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **IMPORTANT:** When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
 
@@ -459,7 +455,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
         :param pulumi.Input[_builtins.str] comment: Remark that explains the purpose or scope of this IP access list entry.
         :param pulumi.Input[_builtins.str] ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -509,7 +505,7 @@ class ProjectIpAccessList(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

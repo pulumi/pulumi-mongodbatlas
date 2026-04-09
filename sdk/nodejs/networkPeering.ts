@@ -20,8 +20,6 @@ import * as utilities from "./utilities";
  *
  * > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ### Container & Peering Connection
@@ -275,7 +273,7 @@ export class NetworkPeering extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly peerId: pulumi.Output<string>;
     /**
-     * The unique ID for the MongoDB Atlas project.
+     * The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -460,7 +458,7 @@ export interface NetworkPeeringState {
      */
     peerId?: pulumi.Input<string>;
     /**
-     * The unique ID for the MongoDB Atlas project.
+     * The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -545,7 +543,7 @@ export interface NetworkPeeringArgs {
      */
     networkName?: pulumi.Input<string>;
     /**
-     * The unique ID for the MongoDB Atlas project.
+     * The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

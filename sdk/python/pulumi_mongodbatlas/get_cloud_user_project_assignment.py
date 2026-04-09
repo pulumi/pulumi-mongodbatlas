@@ -76,16 +76,25 @@ class GetCloudUserProjectAssignmentResult:
     @_builtins.property
     @pulumi.getter
     def country(self) -> _builtins.str:
+        """
+        Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        """
         return pulumi.get(self, "country")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "created_at")
 
     @_builtins.property
     @pulumi.getter(name="firstName")
     def first_name(self) -> _builtins.str:
+        """
+        First or given name that belongs to the MongoDB Cloud user.
+        """
         return pulumi.get(self, "first_name")
 
     @_builtins.property
@@ -99,59 +108,89 @@ class GetCloudUserProjectAssignmentResult:
     @_builtins.property
     @pulumi.getter(name="invitationCreatedAt")
     def invitation_created_at(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
         return pulumi.get(self, "invitation_created_at")
 
     @_builtins.property
     @pulumi.getter(name="invitationExpiresAt")
     def invitation_expires_at(self) -> _builtins.str:
+        """
+        Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        """
         return pulumi.get(self, "invitation_expires_at")
 
     @_builtins.property
     @pulumi.getter(name="inviterUsername")
     def inviter_username(self) -> _builtins.str:
+        """
+        Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        """
         return pulumi.get(self, "inviter_username")
 
     @_builtins.property
     @pulumi.getter(name="lastAuth")
     def last_auth(self) -> _builtins.str:
+        """
+        Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "last_auth")
 
     @_builtins.property
     @pulumi.getter(name="lastName")
     def last_name(self) -> _builtins.str:
+        """
+        Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        """
         return pulumi.get(self, "last_name")
 
     @_builtins.property
     @pulumi.getter(name="mobileNumber")
     def mobile_number(self) -> _builtins.str:
+        """
+        Mobile phone number that belongs to the MongoDB Cloud user.
+        """
         return pulumi.get(self, "mobile_number")
 
     @_builtins.property
     @pulumi.getter(name="orgMembershipStatus")
     def org_membership_status(self) -> _builtins.str:
+        """
+        String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        """
         return pulumi.get(self, "org_membership_status")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
     def roles(self) -> Sequence[_builtins.str]:
+        """
+        One or more project-level roles to assign the MongoDB Cloud user.
+        """
         return pulumi.get(self, "roles")
 
     @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> Optional[_builtins.str]:
+        """
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        """
         return pulumi.get(self, "user_id")
 
     @_builtins.property
     @pulumi.getter
     def username(self) -> Optional[_builtins.str]:
+        """
+        Email address that represents the username of the MongoDB Cloud user.
+        """
         return pulumi.get(self, "username")
 
 
@@ -211,7 +250,9 @@ def get_cloud_user_project_assignment(project_id: Optional[_builtins.str] = None
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str user_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+    :param _builtins.str username: Email address that represents the username of the MongoDB Cloud user.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -269,7 +310,9 @@ def get_cloud_user_project_assignment_output(project_id: Optional[pulumi.Input[_
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str user_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+    :param _builtins.str username: Email address that represents the username of the MongoDB Cloud user.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

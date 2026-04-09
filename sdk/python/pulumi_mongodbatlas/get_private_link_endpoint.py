@@ -221,8 +221,6 @@ def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
     """
     `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
-    > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `group_id`.
-
     > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
 
     ## Example Usage
@@ -247,7 +245,7 @@ def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str private_link_id: Unique identifier of the private endpoint that you want to retrieve.
-    :param _builtins.str project_id: Unique identifier for the project.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
     :param _builtins.str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
     """
     __args__ = dict()
@@ -280,8 +278,6 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_bui
     """
     `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
 
-    > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `group_id`.
-
     > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
 
     ## Example Usage
@@ -306,7 +302,7 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_bui
 
 
     :param _builtins.str private_link_id: Unique identifier of the private endpoint that you want to retrieve.
-    :param _builtins.str project_id: Unique identifier for the project.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
     :param _builtins.str provider_name: Cloud provider for which you want to retrieve a private endpoint service. Atlas accepts `AWS`, `AZURE`, or `GCP`.
     """
     __args__ = dict()

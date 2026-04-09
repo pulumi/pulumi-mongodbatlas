@@ -34,13 +34,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ProcessorName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
-        /// 
-        /// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+        /// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
         /// </summary>
         public readonly string State;
         /// <summary>
@@ -52,7 +50,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Tier;
         /// <summary>
-        /// Label that identifies the stream processing workspace.
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
         /// </summary>
         public readonly string WorkspaceName;
 

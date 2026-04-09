@@ -21,8 +21,6 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
  * ## Example Usage
  * 
  * ### S With MongoDB Atlas Cluster As Storage Database
@@ -361,14 +359,14 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
         return this.name;
     }
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

@@ -10,8 +10,6 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
  * applied across the project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -46,7 +44,7 @@ export function getThirdPartyIntegrations(args: GetThirdPartyIntegrationsArgs, o
  */
 export interface GetThirdPartyIntegrationsArgs {
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId: string;
 }
@@ -60,7 +58,7 @@ export interface GetThirdPartyIntegrationsResult {
      */
     readonly id: string;
     /**
-     * ID of the Atlas project the Third-Party Service Integration belongs to.
+     * ID of the Atlas project the Third-Party Service Integration belongs to, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     /**
@@ -71,8 +69,6 @@ export interface GetThirdPartyIntegrationsResult {
 /**
  * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
  * applied across the project.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -108,7 +104,7 @@ export function getThirdPartyIntegrationsOutput(args: GetThirdPartyIntegrationsO
  */
 export interface GetThirdPartyIntegrationsOutputArgs {
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId: pulumi.Input<string>;
 }

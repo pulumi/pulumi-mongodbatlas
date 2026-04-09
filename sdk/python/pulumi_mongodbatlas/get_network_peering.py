@@ -304,8 +304,6 @@ def get_network_peering(peering_id: Optional[_builtins.str] = None,
     """
     `NetworkPeering` describes a Network Peering Connection.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example (AWS).
@@ -328,7 +326,7 @@ def get_network_peering(peering_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str peering_id: Atlas assigned unique ID for the peering connection.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['peeringId'] = peering_id
@@ -366,8 +364,6 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[_builtins.str]]
     """
     `NetworkPeering` describes a Network Peering Connection.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example (AWS).
@@ -390,7 +386,7 @@ def get_network_peering_output(peering_id: Optional[pulumi.Input[_builtins.str]]
 
 
     :param _builtins.str peering_id: Atlas assigned unique ID for the peering connection.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['peeringId'] = peering_id

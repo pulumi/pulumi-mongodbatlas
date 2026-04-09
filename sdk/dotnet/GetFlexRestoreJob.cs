@@ -145,11 +145,14 @@ namespace Pulumi.Mongodbatlas
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the restore job.
+        /// </summary>
         [Input("restoreJobId", required: true)]
         public string RestoreJobId { get; set; } = null!;
 
@@ -168,11 +171,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the restore job.
+        /// </summary>
         [Input("restoreJobId", required: true)]
         public Input<string> RestoreJobId { get; set; } = null!;
 
@@ -186,7 +192,13 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetFlexRestoreJobResult
     {
+        /// <summary>
+        /// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        /// </summary>
         public readonly string DeliveryType;
+        /// <summary>
+        /// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string ExpirationDate;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -197,17 +209,44 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string RestoreFinishedDate;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the restore job.
+        /// </summary>
         public readonly string RestoreJobId;
+        /// <summary>
+        /// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string RestoreScheduledDate;
+        /// <summary>
+        /// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string SnapshotFinishedDate;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        /// </summary>
         public readonly string SnapshotId;
+        /// <summary>
+        /// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        /// </summary>
         public readonly string SnapshotUrl;
+        /// <summary>
+        /// Phase of the restore workflow for this job at the time this resource made this request.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        /// </summary>
         public readonly string TargetDeploymentItemName;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        /// </summary>
         public readonly string TargetProjectId;
 
         [OutputConstructor]

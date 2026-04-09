@@ -30,14 +30,14 @@ public final class GetNetworkContainerArgs extends com.pulumi.resources.InvokeAr
     }
 
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project.
+     * @return The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -91,7 +91,7 @@ public final class GetNetworkContainerArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param projectId The unique ID for the project.
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class GetNetworkContainerArgs extends com.pulumi.resources.InvokeAr
         }
 
         /**
-         * @param projectId The unique ID for the project.
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

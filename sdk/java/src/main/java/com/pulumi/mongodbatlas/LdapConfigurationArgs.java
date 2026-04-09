@@ -141,14 +141,14 @@ public final class LdapConfigurationArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to configure LDAP.
+     * @return The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -378,7 +378,7 @@ public final class LdapConfigurationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId The unique ID for the project to configure LDAP.
+         * @param projectId The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -389,7 +389,7 @@ public final class LdapConfigurationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId The unique ID for the project to configure LDAP.
+         * @param projectId The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

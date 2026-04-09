@@ -29,14 +29,14 @@ public final class GetPrivateLinkEndpointPlainArgs extends com.pulumi.resources.
     }
 
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -96,7 +96,7 @@ public final class GetPrivateLinkEndpointPlainArgs extends com.pulumi.resources.
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

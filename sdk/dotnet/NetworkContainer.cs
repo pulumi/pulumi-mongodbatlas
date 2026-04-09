@@ -18,8 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// &lt;br&gt; &amp;#8226;  GCP -  One container per project.
     /// &lt;br&gt; &amp;#8226;  AWS and Azure - One container per cloud provider region.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-    /// 
     /// ## Example Usage
     /// 
     /// ### Example with AWS
@@ -143,7 +141,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> NetworkName { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the Atlas project for this Network Peering Container.
+        /// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -250,7 +248,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> AtlasCidrBlock { get; set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the Atlas project for this Network Peering Container.
+        /// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -331,7 +329,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? NetworkName { get; set; }
 
         /// <summary>
-        /// Unique identifier for the Atlas project for this Network Peering Container.
+        /// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

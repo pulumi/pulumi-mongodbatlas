@@ -142,7 +142,9 @@ __all__ = [
     'ServiceAccountSecret',
     'StreamConnectionAuthentication',
     'StreamConnectionAws',
+    'StreamConnectionAzure',
     'StreamConnectionDbRoleToExecute',
+    'StreamConnectionGcp',
     'StreamConnectionNetworking',
     'StreamConnectionNetworkingAccess',
     'StreamConnectionSchemaRegistryAuthentication',
@@ -435,7 +437,9 @@ __all__ = [
     'GetSharedTierSnapshotsResultResult',
     'GetStreamConnectionAuthenticationResult',
     'GetStreamConnectionAwsResult',
+    'GetStreamConnectionAzureResult',
     'GetStreamConnectionDbRoleToExecuteResult',
+    'GetStreamConnectionGcpResult',
     'GetStreamConnectionNetworkingResult',
     'GetStreamConnectionNetworkingAccessResult',
     'GetStreamConnectionSchemaRegistryAuthenticationResult',
@@ -443,7 +447,9 @@ __all__ = [
     'GetStreamConnectionsResultResult',
     'GetStreamConnectionsResultAuthenticationResult',
     'GetStreamConnectionsResultAwsResult',
+    'GetStreamConnectionsResultAzureResult',
     'GetStreamConnectionsResultDbRoleToExecuteResult',
+    'GetStreamConnectionsResultGcpResult',
     'GetStreamConnectionsResultNetworkingResult',
     'GetStreamConnectionsResultNetworkingAccessResult',
     'GetStreamConnectionsResultSchemaRegistryAuthenticationResult',
@@ -540,7 +546,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
         :param _builtins.bool javascript_enabled: Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
         :param _builtins.str minimum_enabled_tls_protocol: Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
         :param _builtins.bool no_table_scan: Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
-        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+        :param _builtins.float oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
         :param _builtins.int oplog_size_mb: Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
         :param _builtins.int sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
         :param _builtins.int sample_size_bi_connector: Number of documents per database to sample when gathering schema information.
@@ -644,7 +650,7 @@ class AdvancedClusterAdvancedConfiguration(dict):
     @pulumi.getter(name="oplogMinRetentionHours")
     def oplog_min_retention_hours(self) -> Optional[_builtins.float]:
         """
-        Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+        Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 
@@ -1347,7 +1353,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
                - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
                - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -1401,7 +1407,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling(dict):
     def disk_gb_enabled(self) -> Optional[_builtins.bool]:
         """
         Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
         - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
         - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -1559,7 +1565,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
                - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
                - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -1623,7 +1629,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
     def disk_gb_enabled(self) -> Optional[_builtins.bool]:
         """
         Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
         - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
         - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -6767,7 +6773,7 @@ class FederatedDatabaseInstanceStorageStore(dict):
                  urls: Optional[Sequence[_builtins.str]] = None):
         """
         :param _builtins.str name: Name of the Atlas Federated Database Instance.
-        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         if additional_storage_classes is not None:
             pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
@@ -6852,7 +6858,7 @@ class FederatedDatabaseInstanceStorageStore(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[_builtins.str]:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -8249,7 +8255,7 @@ class ProjectApiKeyProjectAssignment(dict):
                  project_id: _builtins.str,
                  role_names: Sequence[_builtins.str]):
         """
-        :param _builtins.str project_id: Project ID to assign to Access Key
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param Sequence[_builtins.str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -8259,7 +8265,7 @@ class ProjectApiKeyProjectAssignment(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Project ID to assign to Access Key
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -9250,13 +9256,73 @@ class StreamConnectionAws(dict):
 
 
 @pulumi.output_type
+class StreamConnectionAzure(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "servicePrincipalId":
+            suggest = "service_principal_id"
+        elif key == "storageAccountName":
+            suggest = "storage_account_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionAzure. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionAzure.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionAzure.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 service_principal_id: _builtins.str,
+                 storage_account_name: _builtins.str,
+                 region: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str service_principal_id: UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        :param _builtins.str storage_account_name: Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+        :param _builtins.str region: Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+        """
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "storage_account_name", storage_account_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> _builtins.str:
+        """
+        UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> _builtins.str:
+        """
+        Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[_builtins.str]:
+        """
+        Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class StreamConnectionDbRoleToExecute(dict):
     def __init__(__self__, *,
                  role: _builtins.str,
                  type: _builtins.str):
         """
         :param _builtins.str role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
-        :param _builtins.str type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param _builtins.str type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -9273,9 +9339,44 @@ class StreamConnectionDbRoleToExecute(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class StreamConnectionGcp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serviceAccountId":
+            suggest = "service_account_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionGcp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionGcp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionGcp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 service_account_id: _builtins.str):
+        """
+        :param _builtins.str service_account_id: Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> _builtins.str:
+        """
+        Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        return pulumi.get(self, "service_account_id")
 
 
 @pulumi.output_type
@@ -11077,7 +11178,7 @@ class GetAdvancedClustersResultResult(dict):
         :param _builtins.bool paused: Flag that indicates whether the cluster is paused or not.
         :param 'GetAdvancedClustersResultPinnedFcvArgs' pinned_fcv: The pinned Feature Compatibility Version (FCV) with its associated expiration date. See below.
         :param _builtins.bool pit_enabled: Flag that indicates if the cluster uses Continuous Cloud Backup.
-        :param _builtins.str project_id: The unique ID for the project to get the clusters.
+        :param _builtins.str project_id: The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
         :param _builtins.bool redact_client_log_data: Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
         :param _builtins.str replica_set_scaling_strategy: Replica set scaling mode for your cluster.
         :param Sequence['GetAdvancedClustersResultReplicationSpecArgs'] replication_specs: List of settings that configure your cluster regions. This array has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. See below
@@ -11268,7 +11369,7 @@ class GetAdvancedClustersResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to get the clusters.
+        The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -13057,7 +13158,7 @@ class GetAlertConfigurationsResultResult(dict):
         :param Sequence['GetAlertConfigurationsResultMatcherArgs'] matchers: Rules to apply when matching an object against this alert configuration. See matchers.
         :param Sequence['GetAlertConfigurationsResultMetricThresholdConfigArgs'] metric_threshold_configs: The threshold that causes an alert to be triggered. Required if `event_type_name` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
         :param Sequence['GetAlertConfigurationsResultOutputArgs'] outputs: Requested output string format for the alert configuration
-        :param _builtins.str project_id: The unique ID for the project to get the alert configurations.
+        :param _builtins.str project_id: The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
         :param _builtins.str severity_override: Severity of the event.
         :param Sequence['GetAlertConfigurationsResultThresholdConfigArgs'] threshold_configs: Threshold that triggers an alert. Required if `event_type_name` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
         :param _builtins.str updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
@@ -13146,7 +13247,7 @@ class GetAlertConfigurationsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to get the alert configurations.
+        The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -13709,7 +13810,7 @@ class GetApiKeyProjectAssignmentsResultResult(dict):
                  roles: Sequence[_builtins.str]):
         """
         :param _builtins.str api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param Sequence[_builtins.str] roles: Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
         """
         pulumi.set(__self__, "api_key_id", api_key_id)
@@ -13728,7 +13829,7 @@ class GetApiKeyProjectAssignmentsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -18059,7 +18160,7 @@ class GetDatabaseUsersResultResult(dict):
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
-        :param _builtins.str project_id: The unique ID for the project to get all database users.
+        :param _builtins.str project_id: The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
         :param Sequence['GetDatabaseUsersResultRoleArgs'] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param Sequence['GetDatabaseUsersResultScopeArgs'] scopes: Array of clusters and Atlas Data Federation that this user has access to.
         :param _builtins.str username: Username for authenticating to MongoDB.
@@ -18139,7 +18240,7 @@ class GetDatabaseUsersResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to get all database users.
+        The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -18581,7 +18682,7 @@ class GetEncryptionAtRestPrivateEndpointsResultResult(dict):
         :param _builtins.str error_message: Error message for failures associated with the Encryption At Rest private endpoint.
         :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
         :param _builtins.str private_endpoint_connection_name: Connection name of the Azure Private Endpoint.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param _builtins.str region_name: Cloud provider region in which the Encryption At Rest private endpoint is located.
         :param _builtins.str status: State of the Encryption At Rest private endpoint.
         """
@@ -18629,7 +18730,7 @@ class GetEncryptionAtRestPrivateEndpointsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -19305,7 +19406,7 @@ class GetFederatedDatabaseInstanceStorageStoreResult(dict):
                  urls: Sequence[_builtins.str]):
         """
         :param _builtins.str name: Name of the Atlas Federated Database Instance.
-        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param _builtins.str region: Name of the region to which the Federated Instance routes client connections for data processing.
         """
         pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
@@ -19376,7 +19477,7 @@ class GetFederatedDatabaseInstanceStorageStoreResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -19485,7 +19586,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                  storage_stores: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreResult']):
         """
         :param Sequence[_builtins.str] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
-        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param _builtins.str state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
                * `DELETED` - The Federated Database Instance was deleted.
@@ -19567,7 +19668,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -19976,7 +20077,7 @@ class GetFederatedDatabaseInstancesResultStorageStoreResult(dict):
                  region: _builtins.str,
                  urls: Sequence[_builtins.str]):
         """
-        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param _builtins.str region: Name of the region to which the Federated Instance routes client connections for data processing.
         """
         pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
@@ -20044,7 +20145,7 @@ class GetFederatedDatabaseInstancesResultStorageStoreResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -20151,7 +20252,7 @@ class GetFederatedQueryLimitsResultResult(dict):
         :param _builtins.int default_limit: Default value of the limit.
                * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
                * `maximumLimit` - Maximum value of the limit.
-        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+        :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param _builtins.str tenant_name: Name of the Atlas Federated Database Instance.
         """
         pulumi.set(__self__, "current_usage", current_usage)
@@ -20206,7 +20307,7 @@ class GetFederatedQueryLimitsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -21897,7 +21998,7 @@ class GetFlexRestoreJobsResultResult(dict):
         :param _builtins.str delivery_type: Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
         :param _builtins.str expiration_date: Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param _builtins.str restore_finished_date: Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param _builtins.str restore_job_id: Unique 24-hexadecimal digit string that identifies the restore job.
         :param _builtins.str restore_scheduled_date: Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -21950,7 +22051,7 @@ class GetFlexRestoreJobsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -22044,7 +22145,7 @@ class GetFlexSnapshotsResultResult(dict):
         :param _builtins.str finish_time: Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param _builtins.str mongo_db_version: MongoDB host version that the snapshot runs.
         :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param _builtins.str scheduled_time: Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param _builtins.str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
         :param _builtins.str start_time: Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -22096,7 +22197,7 @@ class GetFlexSnapshotsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -23082,7 +23183,7 @@ class GetOnlineArchivesResultResult(dict):
                # Attributes Reference
                
                In addition to all arguments above, the following attributes are exported:
-        :param _builtins.str project_id: The unique ID for the project.
+        :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
         """
         pulumi.set(__self__, "archive_id", archive_id)
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -23159,7 +23260,7 @@ class GetOnlineArchivesResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project.
+        The unique ID for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -24175,7 +24276,7 @@ class GetProjectApiKeyProjectAssignmentResult(dict):
                  project_id: _builtins.str,
                  role_names: Sequence[_builtins.str]):
         """
-        :param _builtins.str project_id: The unique ID for the project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param Sequence[_builtins.str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -24185,7 +24286,7 @@ class GetProjectApiKeyProjectAssignmentResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -24255,7 +24356,7 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
                  project_id: _builtins.str,
                  role_names: Sequence[_builtins.str]):
         """
-        :param _builtins.str project_id: The unique ID for the project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param Sequence[_builtins.str] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -24265,7 +24366,7 @@ class GetProjectApiKeysResultProjectAssignmentResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -24974,7 +25075,7 @@ class GetProjectsResultResult(dict):
         :param Mapping[str, _builtins.str] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/)
         :param Sequence['GetProjectsResultTeamArgs'] teams: **(DEPRECATED)** Returns all teams to which the authenticated user has access in the project. See Teams.
         :param Sequence['GetProjectsResultUserArgs'] users: Returns list of all pending and active MongoDB Cloud users associated with the specified project.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
         """
         pulumi.set(__self__, "cluster_count", cluster_count)
         pulumi.set(__self__, "created", created)
@@ -25146,7 +25247,7 @@ class GetProjectsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+        Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -26049,7 +26150,7 @@ class GetSearchIndexesResultResult(dict):
         :param _builtins.str mappings_fields: Object containing one or more field specifications.
         :param _builtins.str name: Type set name.
         :param _builtins.int num_partitions: Number of index partitions.
-        :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         :param _builtins.str search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         :param _builtins.str status: Current status of the index.
         :param _builtins.str stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
@@ -26176,7 +26277,7 @@ class GetSearchIndexesResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -26368,7 +26469,7 @@ class GetServerlessInstancesResultResult(dict):
         :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the serverless instance.
         :param _builtins.str mongo_db_version: Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
         :param _builtins.str name: (Required) Human-readable label that identifies your serverless instance.
-        :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         :param _builtins.str provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param _builtins.str provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param _builtins.str provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
@@ -26462,7 +26563,7 @@ class GetServerlessInstancesResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -26663,7 +26764,7 @@ class GetServiceAccountProjectAssignmentsResultResult(dict):
     def __init__(__self__, *,
                  project_id: _builtins.str):
         """
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         pulumi.set(__self__, "project_id", project_id)
 
@@ -26671,7 +26772,7 @@ class GetServiceAccountProjectAssignmentsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -27134,6 +27235,46 @@ class GetStreamConnectionAwsResult(dict):
 
 
 @pulumi.output_type
+class GetStreamConnectionAzureResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 service_principal_id: _builtins.str,
+                 storage_account_name: _builtins.str):
+        """
+        :param _builtins.str region: Optional. Azure region where the storage account is deployed, specified as a valid Azure region name (for example, `eastus`, `westeurope`). Must match the region configured for the target Azure Storage account.
+        :param _builtins.str service_principal_id: UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        :param _builtins.str storage_account_name: Name of the Azure Storage account.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "storage_account_name", storage_account_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Optional. Azure region where the storage account is deployed, specified as a valid Azure region name (for example, `eastus`, `westeurope`). Must match the region configured for the target Azure Storage account.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> _builtins.str:
+        """
+        UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> _builtins.str:
+        """
+        Name of the Azure Storage account.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+
+@pulumi.output_type
 class GetStreamConnectionDbRoleToExecuteResult(dict):
     def __init__(__self__, *,
                  role: _builtins.str,
@@ -27164,6 +27305,24 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
         * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionGcpResult(dict):
+    def __init__(__self__, *,
+                 service_account_id: _builtins.str):
+        """
+        :param _builtins.str service_account_id: Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> _builtins.str:
+        """
+        Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        return pulumi.get(self, "service_account_id")
 
 
 @pulumi.output_type
@@ -27295,12 +27454,14 @@ class GetStreamConnectionsResultResult(dict):
     def __init__(__self__, *,
                  authentication: 'outputs.GetStreamConnectionsResultAuthenticationResult',
                  aws: 'outputs.GetStreamConnectionsResultAwsResult',
+                 azure: 'outputs.GetStreamConnectionsResultAzureResult',
                  bootstrap_servers: _builtins.str,
                  cluster_name: _builtins.str,
                  cluster_project_id: _builtins.str,
                  config: Mapping[str, _builtins.str],
                  connection_name: _builtins.str,
                  db_role_to_execute: 'outputs.GetStreamConnectionsResultDbRoleToExecuteResult',
+                 gcp: 'outputs.GetStreamConnectionsResultGcpResult',
                  headers: Mapping[str, _builtins.str],
                  id: _builtins.str,
                  instance_name: _builtins.str,
@@ -27316,15 +27477,17 @@ class GetStreamConnectionsResultResult(dict):
         """
         :param 'GetStreamConnectionsResultAuthenticationArgs' authentication: User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
         :param 'GetStreamConnectionsResultAwsArgs' aws: The configuration for AWS Lambda connection. See AWS
+        :param 'GetStreamConnectionsResultAzureArgs' azure: The configuration for Azure Blob Storage connection. See Azure.
         :param _builtins.str bootstrap_servers: Comma separated list of server addresses.
         :param _builtins.str cluster_name: Name of the cluster configured for this connection.
         :param Mapping[str, _builtins.str] config: A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
         :param _builtins.str connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param 'GetStreamConnectionsResultDbRoleToExecuteArgs' db_role_to_execute: The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+        :param 'GetStreamConnectionsResultGcpArgs' gcp: The configuration for GCP Pub/Sub connection. See GCP
         :param Mapping[str, _builtins.str] headers: A map of key-value pairs for optional headers.
         :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
-        :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param 'GetStreamConnectionsResultNetworkingArgs' networking: Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param 'GetStreamConnectionsResultSchemaRegistryAuthenticationArgs' schema_registry_authentication: Authentication configuration for Schema Registry. See Schema Registry Authentication.
         :param _builtins.str schema_registry_provider: The Schema Registry provider. Must be set to `CONFLUENT`.
         :param Sequence[_builtins.str] schema_registry_urls: List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
@@ -27339,12 +27502,14 @@ class GetStreamConnectionsResultResult(dict):
         """
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "aws", aws)
+        pulumi.set(__self__, "azure", azure)
         pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "cluster_project_id", cluster_project_id)
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "connection_name", connection_name)
         pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        pulumi.set(__self__, "gcp", gcp)
         pulumi.set(__self__, "headers", headers)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_name", instance_name)
@@ -27373,6 +27538,14 @@ class GetStreamConnectionsResultResult(dict):
         The configuration for AWS Lambda connection. See AWS
         """
         return pulumi.get(self, "aws")
+
+    @_builtins.property
+    @pulumi.getter
+    def azure(self) -> 'outputs.GetStreamConnectionsResultAzureResult':
+        """
+        The configuration for Azure Blob Storage connection. See Azure.
+        """
+        return pulumi.get(self, "azure")
 
     @_builtins.property
     @pulumi.getter(name="bootstrapServers")
@@ -27421,6 +27594,14 @@ class GetStreamConnectionsResultResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def gcp(self) -> 'outputs.GetStreamConnectionsResultGcpResult':
+        """
+        The configuration for GCP Pub/Sub connection. See GCP
+        """
+        return pulumi.get(self, "gcp")
+
+    @_builtins.property
+    @pulumi.getter
     def headers(self) -> Mapping[str, _builtins.str]:
         """
         A map of key-value pairs for optional headers.
@@ -27445,7 +27626,7 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter
     def networking(self) -> 'outputs.GetStreamConnectionsResultNetworkingResult':
         """
-        Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+        Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
         """
         return pulumi.get(self, "networking")
 
@@ -27453,7 +27634,7 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -27643,6 +27824,46 @@ class GetStreamConnectionsResultAwsResult(dict):
 
 
 @pulumi.output_type
+class GetStreamConnectionsResultAzureResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 service_principal_id: _builtins.str,
+                 storage_account_name: _builtins.str):
+        """
+        :param _builtins.str region: Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+        :param _builtins.str service_principal_id: Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        :param _builtins.str storage_account_name: Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "storage_account_name", storage_account_name)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> _builtins.str:
+        """
+        Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> _builtins.str:
+        """
+        Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+
+@pulumi.output_type
 class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
     def __init__(__self__, *,
                  role: _builtins.str,
@@ -27673,6 +27894,24 @@ class GetStreamConnectionsResultDbRoleToExecuteResult(dict):
         * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionsResultGcpResult(dict):
+    def __init__(__self__, *,
+                 service_account_id: _builtins.str):
+        """
+        :param _builtins.str service_account_id: Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> _builtins.str:
+        """
+        Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        return pulumi.get(self, "service_account_id")
 
 
 @pulumi.output_type
@@ -27866,7 +28105,7 @@ class GetStreamInstancesResultResult(dict):
         :param 'GetStreamInstancesResultDataProcessRegionArgs' data_process_region: Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param Sequence[_builtins.str] hostnames: List that contains the hostnames assigned to the stream instance.
         :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param 'GetStreamInstancesResultStreamConfigArgs' stream_config: Defines the configuration options for an Atlas Stream Processing Instance. See stream config
         """
         pulumi.set(__self__, "data_process_region", data_process_region)
@@ -27909,7 +28148,7 @@ class GetStreamInstancesResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -28006,7 +28245,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         :param _builtins.str id: The ID of the Private Link connection.
         :param _builtins.str interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
         :param _builtins.str interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param _builtins.str provider_account_id: Account ID from the cloud provider.
         :param _builtins.str provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param _builtins.str region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
@@ -28101,7 +28340,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -28245,13 +28484,11 @@ class GetStreamProcessorsResultResult(dict):
         :param 'GetStreamProcessorsResultOptionsArgs' options: Optional configuration for the stream processor.
         :param _builtins.str pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         :param _builtins.str processor_name: Label that identifies the stream processor.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-        :param _builtins.str state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
-               
-               **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param _builtins.str state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
         :param _builtins.str stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         :param _builtins.str tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
-        :param _builtins.str workspace_name: Label that identifies the stream processing workspace.
+        :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_name", instance_name)
@@ -28309,7 +28546,7 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -28317,9 +28554,7 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter
     def state(self) -> _builtins.str:
         """
-        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
-
-        **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+        The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
         """
         return pulumi.get(self, "state")
 
@@ -28343,7 +28578,7 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter(name="workspaceName")
     def workspace_name(self) -> _builtins.str:
         """
-        Label that identifies the stream processing workspace.
+        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
         return pulumi.get(self, "workspace_name")
 
@@ -28472,7 +28707,7 @@ class GetStreamWorkspacesResultResult(dict):
         """
         :param 'GetStreamWorkspacesResultDataProcessRegionArgs' data_process_region: Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         :param Sequence[_builtins.str] hostnames: List that contains the hostnames assigned to the stream workspace.
-        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param 'GetStreamWorkspacesResultStreamConfigArgs' stream_config: Defines the configuration options for an Atlas Stream Processing Instance. See stream config
         :param _builtins.str workspace_name: Label that identifies the stream workspace.
         """
@@ -28508,7 +28743,7 @@ class GetStreamWorkspacesResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -28811,7 +29046,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param _builtins.str id: Unique identifier of the integration.
         :param _builtins.str microsoft_teams_webhook_url: Your Microsoft Teams incoming webhook URL.
                * `PROMETHEUS`
-        :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
+        :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         :param _builtins.str region: Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
                * `VICTOR_OPS`
         :param _builtins.str routing_key: An optional field for your Routing Key.
@@ -28826,7 +29061,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
         :param _builtins.str service_discovery: Indicates which service discovery method is used, either file or http.
         :param _builtins.str service_key: Your Service Key.
                * `DATADOG`
-        :param _builtins.str type: Thirt-Party service integration type.
+        :param _builtins.str type: Third-Party service integration type.
         :param _builtins.str url: Your webhook URL.
         :param _builtins.str user_name: Your Prometheus username.
         """
@@ -28898,7 +29133,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique ID for the project to get all Third-Party service integrations
+        The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -28988,7 +29223,7 @@ class GetThirdPartyIntegrationsResultResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Thirt-Party service integration type.
+        Third-Party service integration type.
         """
         return pulumi.get(self, "type")
 

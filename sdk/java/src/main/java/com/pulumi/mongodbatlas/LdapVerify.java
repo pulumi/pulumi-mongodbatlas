@@ -200,14 +200,14 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
         return this.port;
     }
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to configure LDAP.
+     * @return The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -295,6 +295,9 @@ public class LdapVerify extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "bindPassword"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

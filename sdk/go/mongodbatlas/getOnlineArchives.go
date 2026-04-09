@@ -13,8 +13,6 @@ import (
 
 // `OnlineArchive` Describes the list of all the online archives for a cluster
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -101,7 +99,7 @@ type LookupOnlineArchivesArgs struct {
 	//
 	// In addition to all arguments above, the following attributes are exported:
 	ClusterName string `pulumi:"clusterName"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -132,7 +130,7 @@ type LookupOnlineArchivesOutputArgs struct {
 	//
 	// In addition to all arguments above, the following attributes are exported:
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

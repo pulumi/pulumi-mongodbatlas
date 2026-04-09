@@ -83,7 +83,7 @@ func LookupProjectServiceAccountSecret(ctx *pulumi.Context, args *LookupProjectS
 type LookupProjectServiceAccountSecretArgs struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Unique 24-hexadecimal digit string that identifies the secret.
 	SecretId string `pulumi:"secretId"`
@@ -103,7 +103,7 @@ type LookupProjectServiceAccountSecretResult struct {
 	LastUsedAt string `pulumi:"lastUsedAt"`
 	// The masked Service Account secret.
 	MaskedSecretValue string `pulumi:"maskedSecretValue"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Unique 24-hexadecimal digit string that identifies the secret.
 	SecretId string `pulumi:"secretId"`
@@ -122,7 +122,7 @@ func LookupProjectServiceAccountSecretOutput(ctx *pulumi.Context, args LookupPro
 type LookupProjectServiceAccountSecretOutputArgs struct {
 	// The Client ID of the Service Account.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Unique 24-hexadecimal digit string that identifies the secret.
 	SecretId pulumi.StringInput `pulumi:"secretId"`
@@ -177,7 +177,7 @@ func (o LookupProjectServiceAccountSecretResultOutput) MaskedSecretValue() pulum
 	return o.ApplyT(func(v LookupProjectServiceAccountSecretResult) string { return v.MaskedSecretValue }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupProjectServiceAccountSecretResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountSecretResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

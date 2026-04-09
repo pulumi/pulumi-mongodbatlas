@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### Using orgId attribute to query Organization Atlas Users
@@ -80,7 +78,7 @@ export interface GetAtlasUsersArgs {
      */
     pageNum?: number;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+     * Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
      */
     projectId?: string;
     /**
@@ -115,8 +113,6 @@ export interface GetAtlasUsersResult {
  * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
  *
  * > **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -185,7 +181,7 @@ export interface GetAtlasUsersOutputArgs {
      */
     pageNum?: pulumi.Input<number>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+     * Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**

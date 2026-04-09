@@ -40,7 +40,7 @@ class CloudBackupScheduleArgs:
         The set of arguments for constructing a CloudBackupSchedule resource.
 
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -104,7 +104,7 @@ class CloudBackupScheduleArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -311,7 +311,7 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemMonthlyArgs']]] policy_item_monthlies: Monthly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemWeeklyArgs']]] policy_item_weeklies: Weekly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSchedulePolicyItemYearlyArgs']]] policy_item_yearlies: Yearly policy item. See below
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
@@ -507,7 +507,7 @@ class _CloudBackupScheduleState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -602,8 +602,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  __props__=None):
         """
         `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
-
-        > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
@@ -825,7 +823,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Monthly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Weekly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict']]]] policy_item_yearlies: Yearly policy item. See below
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
@@ -842,8 +840,6 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
-
-        > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
@@ -1162,7 +1158,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemMonthlyArgs', 'CloudBackupSchedulePolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Monthly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemWeeklyArgs', 'CloudBackupSchedulePolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Weekly policy item. See below
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSchedulePolicyItemYearlyArgs', 'CloudBackupSchedulePolicyItemYearlyArgsDict']]]] policy_item_yearlies: Yearly policy item. See below
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
@@ -1297,7 +1293,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

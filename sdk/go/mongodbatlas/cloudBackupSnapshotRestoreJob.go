@@ -24,8 +24,6 @@ import (
 // > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
 // `CloudBackupSnapshotRestoreJob` resource, you won't be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn't support this. The provider will remove the Terraform resource from the state file but won't destroy the MongoDB Atlas resource.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ### Example automated delivery type
@@ -278,7 +276,7 @@ type CloudBackupSnapshotRestoreJob struct {
 	Failed pulumi.BoolOutput `pulumi:"failed"`
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt pulumi.StringOutput `pulumi:"finishedAt"`
-	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
@@ -362,7 +360,7 @@ type cloudBackupSnapshotRestoreJobState struct {
 	Failed *bool `pulumi:"failed"`
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt *string `pulumi:"finishedAt"`
-	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
 	SnapshotId *string `pulumi:"snapshotId"`
@@ -411,7 +409,7 @@ type CloudBackupSnapshotRestoreJobState struct {
 	Failed pulumi.BoolPtrInput
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt pulumi.StringPtrInput
-	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
 	SnapshotId pulumi.StringPtrInput
@@ -452,7 +450,7 @@ type cloudBackupSnapshotRestoreJobArgs struct {
 	// * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
 	// * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
 	DeliveryTypeConfig *CloudBackupSnapshotRestoreJobDeliveryTypeConfig `pulumi:"deliveryTypeConfig"`
-	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
 	SnapshotId *string `pulumi:"snapshotId"`
@@ -472,7 +470,7 @@ type CloudBackupSnapshotRestoreJobArgs struct {
 	// * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
 	// * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
 	DeliveryTypeConfig CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrInput
-	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+	// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
 	SnapshotId pulumi.StringPtrInput
@@ -615,7 +613,7 @@ func (o CloudBackupSnapshotRestoreJobOutput) FinishedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.FinishedAt }).(pulumi.StringOutput)
 }
 
-// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
 func (o CloudBackupSnapshotRestoreJobOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotRestoreJob) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

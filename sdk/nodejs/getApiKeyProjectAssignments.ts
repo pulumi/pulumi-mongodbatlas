@@ -71,7 +71,7 @@ export function getApiKeyProjectAssignments(args: GetApiKeyProjectAssignmentsArg
  */
 export interface GetApiKeyProjectAssignmentsArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -85,9 +85,12 @@ export interface GetApiKeyProjectAssignmentsResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * List of documents that MongoDB Cloud returns for this request.
+     */
     readonly results: outputs.GetApiKeyProjectAssignmentsResult[];
 }
 /**
@@ -155,7 +158,7 @@ export function getApiKeyProjectAssignmentsOutput(args: GetApiKeyProjectAssignme
  */
 export interface GetApiKeyProjectAssignmentsOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

@@ -43,7 +43,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string OidcAuthType;
         /// <summary>
-        /// The unique ID for the project to get all database users.
+        /// The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

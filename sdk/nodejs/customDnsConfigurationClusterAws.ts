@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
  *
  * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -66,7 +64,7 @@ export class CustomDnsConfigurationClusterAws extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean>;
     /**
-     * Required 	Unique identifier for the project.
+     * Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
 
@@ -110,7 +108,7 @@ export interface CustomDnsConfigurationClusterAwsState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Required 	Unique identifier for the project.
+     * Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
 }
@@ -124,7 +122,7 @@ export interface CustomDnsConfigurationClusterAwsArgs {
      */
     enabled: pulumi.Input<boolean>;
     /**
-     * Required 	Unique identifier for the project.
+     * Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

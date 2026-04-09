@@ -44,7 +44,7 @@ export interface GetLogIntegrationArgs {
      */
     integrationId: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -75,7 +75,7 @@ export interface GetLogIntegrationResult {
     readonly otelSuppliedHeaders: outputs.GetLogIntegrationOtelSuppliedHeader[];
     readonly prefixPath: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     readonly region: string;
@@ -125,7 +125,7 @@ export interface GetLogIntegrationOutputArgs {
      */
     integrationId: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

@@ -18,7 +18,7 @@ public final class GetProjectIpAccessListsInvokeResult {
      */
     private String id;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -37,7 +37,7 @@ public final class GetProjectIpAccessListsInvokeResult {
         return this.id;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

@@ -25,7 +25,7 @@ class CustomDnsConfigurationClusterAwsArgs:
         The set of arguments for constructing a CustomDnsConfigurationClusterAws resource.
 
         :param pulumi.Input[_builtins.bool] enabled: Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "project_id", project_id)
@@ -46,7 +46,7 @@ class CustomDnsConfigurationClusterAwsArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Required 	Unique identifier for the project.
+        Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -64,7 +64,7 @@ class _CustomDnsConfigurationClusterAwsState:
         Input properties used for looking up and filtering CustomDnsConfigurationClusterAws resources.
 
         :param pulumi.Input[_builtins.bool] enabled: Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -87,7 +87,7 @@ class _CustomDnsConfigurationClusterAwsState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Required 	Unique identifier for the project.
+        Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -109,8 +109,6 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
         `CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
@@ -137,7 +135,7 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enabled: Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         ...
     @overload
@@ -149,8 +147,6 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
         `CustomDnsConfigurationClusterAws` provides a Custom DNS Configuration for Atlas Clusters on AWS resource. This represents a Custom DNS Configuration for Atlas Clusters on AWS that can be updated in an Atlas project.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
@@ -226,7 +222,7 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] enabled: Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
-        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -248,7 +244,7 @@ class CustomDnsConfigurationClusterAws(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Required 	Unique identifier for the project.
+        Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

@@ -18,8 +18,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// **IMPORTANT:** Test Outage on Majority of Electable Nodes will leave the Atlas cluster without a majority quorum. There will be no primary so write operations will not succeed, and reads will succeed only when configured with a suitable [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/). To recover the majority quorum, you will have the option to manually reconfigure your cluster by adding new nodes to existing regions or adding new regions at the risk of losing recent writes, or end the simulation.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-    /// 
     /// &gt; **IMPORTANT:** This resource cannot be updated.
     /// **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
     /// 
@@ -88,7 +86,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.ClusterOutageSimulationOutageFilter>> OutageFilters { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        /// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -188,7 +186,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        /// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -226,7 +224,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        /// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

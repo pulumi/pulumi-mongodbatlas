@@ -13,8 +13,6 @@ import (
 
 // `getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
-//
 // > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
 //
 // ## Example Usage
@@ -65,7 +63,7 @@ func LookupPrivatelinkEndpoints(ctx *pulumi.Context, args *LookupPrivatelinkEndp
 
 // A collection of arguments for invoking getPrivatelinkEndpoints.
 type LookupPrivatelinkEndpointsArgs struct {
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider for which you want to retrieve private endpoint services. Atlas accepts `AWS`, `AZURE`, or `GCP`.
 	ProviderName string `pulumi:"providerName"`
@@ -92,7 +90,7 @@ func LookupPrivatelinkEndpointsOutput(ctx *pulumi.Context, args LookupPrivatelin
 
 // A collection of arguments for invoking getPrivatelinkEndpoints.
 type LookupPrivatelinkEndpointsOutputArgs struct {
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Cloud provider for which you want to retrieve private endpoint services. Atlas accepts `AWS`, `AZURE`, or `GCP`.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`

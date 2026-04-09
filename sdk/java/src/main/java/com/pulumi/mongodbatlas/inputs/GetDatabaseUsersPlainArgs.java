@@ -14,14 +14,14 @@ public final class GetDatabaseUsersPlainArgs extends com.pulumi.resources.Invoke
     public static final GetDatabaseUsersPlainArgs Empty = new GetDatabaseUsersPlainArgs();
 
     /**
-     * The unique ID for the project to get all database users.
+     * The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project to get all database users.
+     * @return The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -53,7 +53,7 @@ public final class GetDatabaseUsersPlainArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param projectId The unique ID for the project to get all database users.
+         * @param projectId The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

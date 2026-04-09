@@ -50,7 +50,7 @@ class GetThirdPartyIntegrationsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        ID of the Atlas project the Third-Party Service Integration belongs to.
+        ID of the Atlas project the Third-Party Service Integration belongs to, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -80,8 +80,6 @@ def get_third_party_integrations(project_id: Optional[_builtins.str] = None,
     `get_third_party_integrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
     applied across the project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -101,7 +99,7 @@ def get_third_party_integrations(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
+    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -118,8 +116,6 @@ def get_third_party_integrations_output(project_id: Optional[pulumi.Input[_built
     `get_third_party_integrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
     applied across the project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -139,7 +135,7 @@ def get_third_party_integrations_output(project_id: Optional[pulumi.Input[_built
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
+    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
     """
     __args__ = dict()
     __args__['projectId'] = project_id

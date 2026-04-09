@@ -81,7 +81,7 @@ type ServerlessInstance struct {
 	MongoDbVersion pulumi.StringOutput `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the serverless instance.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The ID of the organization or project you want to create the serverless instance within.
+	// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName pulumi.StringOutput `pulumi:"providerSettingsBackingProviderName"`
@@ -158,7 +158,7 @@ type serverlessInstanceState struct {
 	MongoDbVersion *string `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the serverless instance.
 	Name *string `pulumi:"name"`
-	// The ID of the organization or project you want to create the serverless instance within.
+	// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName *string `pulumi:"providerSettingsBackingProviderName"`
@@ -194,7 +194,7 @@ type ServerlessInstanceState struct {
 	MongoDbVersion pulumi.StringPtrInput
 	// Human-readable label that identifies the serverless instance.
 	Name pulumi.StringPtrInput
-	// The ID of the organization or project you want to create the serverless instance within.
+	// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName pulumi.StringPtrInput
@@ -226,7 +226,7 @@ type serverlessInstanceArgs struct {
 	Links                   []ServerlessInstanceLink `pulumi:"links"`
 	// Human-readable label that identifies the serverless instance.
 	Name *string `pulumi:"name"`
-	// The ID of the organization or project you want to create the serverless instance within.
+	// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName string `pulumi:"providerSettingsBackingProviderName"`
@@ -255,7 +255,7 @@ type ServerlessInstanceArgs struct {
 	Links                   ServerlessInstanceLinkArrayInput
 	// Human-readable label that identifies the serverless instance.
 	Name pulumi.StringPtrInput
-	// The ID of the organization or project you want to create the serverless instance within.
+	// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName pulumi.StringInput
@@ -401,7 +401,7 @@ func (o ServerlessInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The ID of the organization or project you want to create the serverless instance within.
+// The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
 func (o ServerlessInstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

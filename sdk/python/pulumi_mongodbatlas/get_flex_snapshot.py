@@ -61,11 +61,17 @@ class GetFlexSnapshotResult:
     @_builtins.property
     @pulumi.getter
     def expiration(self) -> _builtins.str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "expiration")
 
     @_builtins.property
     @pulumi.getter(name="finishTime")
     def finish_time(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "finish_time")
 
     @_builtins.property
@@ -79,6 +85,9 @@ class GetFlexSnapshotResult:
     @_builtins.property
     @pulumi.getter(name="mongoDbVersion")
     def mongo_db_version(self) -> _builtins.str:
+        """
+        MongoDB host version that the snapshot runs.
+        """
         return pulumi.get(self, "mongo_db_version")
 
     @_builtins.property
@@ -93,28 +102,40 @@ class GetFlexSnapshotResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="scheduledTime")
     def scheduled_time(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "scheduled_time")
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @_builtins.property
     @pulumi.getter(name="startTime")
     def start_time(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "start_time")
 
     @_builtins.property
     @pulumi.getter
     def status(self) -> _builtins.str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
         return pulumi.get(self, "status")
 
 
@@ -161,7 +182,8 @@ def get_flex_snapshot(name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -206,7 +228,8 @@ def get_flex_snapshot_output(name: Optional[pulumi.Input[_builtins.str]] = None,
 
 
     :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot to restore.
     """
     __args__ = dict()
     __args__['name'] = name

@@ -205,7 +205,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPushBasedLogExportArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -219,7 +219,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPushBasedLogExportInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -234,18 +234,33 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetPushBasedLogExportResult
     {
+        /// <summary>
+        /// The name of the bucket to which the agent sends the logs to.
+        /// </summary>
         public readonly string BucketName;
+        /// <summary>
+        /// Date and time that this feature was enabled on.
+        /// </summary>
         public readonly string CreateDate;
+        /// <summary>
+        /// ID of the AWS IAM role that is used to write to the S3 bucket.
+        /// </summary>
         public readonly string IamRoleId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
+        /// </summary>
         public readonly string PrefixPath;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Describes whether or not the feature is enabled and what status it is in.
+        /// </summary>
         public readonly string State;
 
         [OutputConstructor]

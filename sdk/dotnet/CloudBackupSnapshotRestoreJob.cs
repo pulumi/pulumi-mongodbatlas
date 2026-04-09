@@ -22,8 +22,6 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **Important:** If you specify `deliveryType` : `Automated` or `deliveryType` : `pointInTime` in your
     /// `mongodbatlas.CloudBackupSnapshotRestoreJob` resource, you won't be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn't support this. The provider will remove the Terraform resource from the state file but won't destroy the MongoDB Atlas resource.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
     /// ## Example Usage
     /// 
     /// ### Example automated delivery type
@@ -288,7 +286,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> FinishedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        /// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -392,7 +390,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs>? DeliveryTypeConfig { get; set; }
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        /// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -474,7 +472,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? FinishedAt { get; set; }
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        /// The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

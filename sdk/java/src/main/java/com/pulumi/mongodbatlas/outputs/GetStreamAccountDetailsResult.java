@@ -10,8 +10,20 @@ import java.util.Objects;
 
 @CustomType
 public final class GetStreamAccountDetailsResult {
+    /**
+     * @return The AWS Account ID.
+     * 
+     */
     private String awsAccountId;
+    /**
+     * @return The Azure Subscription ID.
+     * 
+     */
     private String azureSubscriptionId;
+    /**
+     * @return The AWS VPC or Azure Virtual Network CIDR Block.
+     * 
+     */
     private String cidrBlock;
     /**
      * @return One of `aws` or `azure`.
@@ -24,21 +36,45 @@ public final class GetStreamAccountDetailsResult {
      */
     private String id;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+     * 
+     */
     private String regionName;
+    /**
+     * @return The name of the Azure Virtual Network.
+     * 
+     */
     private String virtualNetworkName;
+    /**
+     * @return The AWS VPC ID.
+     * 
+     */
     private String vpcId;
 
     private GetStreamAccountDetailsResult() {}
+    /**
+     * @return The AWS Account ID.
+     * 
+     */
     public String awsAccountId() {
         return this.awsAccountId;
     }
+    /**
+     * @return The Azure Subscription ID.
+     * 
+     */
     public String azureSubscriptionId() {
         return this.azureSubscriptionId;
     }
+    /**
+     * @return The AWS VPC or Azure Virtual Network CIDR Block.
+     * 
+     */
     public String cidrBlock() {
         return this.cidrBlock;
     }
@@ -57,18 +93,30 @@ public final class GetStreamAccountDetailsResult {
         return this.id;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+     * 
+     */
     public String regionName() {
         return this.regionName;
     }
+    /**
+     * @return The name of the Azure Virtual Network.
+     * 
+     */
     public String virtualNetworkName() {
         return this.virtualNetworkName;
     }
+    /**
+     * @return The AWS VPC ID.
+     * 
+     */
     public String vpcId() {
         return this.vpcId;
     }

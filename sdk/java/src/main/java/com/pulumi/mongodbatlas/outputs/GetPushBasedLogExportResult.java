@@ -10,29 +10,61 @@ import java.util.Objects;
 
 @CustomType
 public final class GetPushBasedLogExportResult {
+    /**
+     * @return The name of the bucket to which the agent sends the logs to.
+     * 
+     */
     private String bucketName;
+    /**
+     * @return Date and time that this feature was enabled on.
+     * 
+     */
     private String createDate;
+    /**
+     * @return ID of the AWS IAM role that is used to write to the S3 bucket.
+     * 
+     */
     private String iamRoleId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
+     * 
+     */
     private String prefixPath;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return Describes whether or not the feature is enabled and what status it is in.
+     * 
+     */
     private String state;
 
     private GetPushBasedLogExportResult() {}
+    /**
+     * @return The name of the bucket to which the agent sends the logs to.
+     * 
+     */
     public String bucketName() {
         return this.bucketName;
     }
+    /**
+     * @return Date and time that this feature was enabled on.
+     * 
+     */
     public String createDate() {
         return this.createDate;
     }
+    /**
+     * @return ID of the AWS IAM role that is used to write to the S3 bucket.
+     * 
+     */
     public String iamRoleId() {
         return this.iamRoleId;
     }
@@ -43,16 +75,24 @@ public final class GetPushBasedLogExportResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
+     * 
+     */
     public String prefixPath() {
         return this.prefixPath;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return Describes whether or not the feature is enabled and what status it is in.
+     * 
+     */
     public String state() {
         return this.state;
     }

@@ -14,8 +14,6 @@ import (
 
 // `FederatedDatabaseInstance` provides a Federated Database Instance resource.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ### S With MongoDB Atlas Cluster As Storage Database
@@ -275,7 +273,7 @@ type FederatedDatabaseInstance struct {
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -374,7 +372,7 @@ type federatedDatabaseInstanceState struct {
 	Hostnames []string `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
 	Name *string `pulumi:"name"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -441,7 +439,7 @@ type FederatedDatabaseInstanceState struct {
 	Hostnames pulumi.StringArrayInput
 	// Name of the Atlas Federated Database Instance.
 	Name pulumi.StringPtrInput
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Current state of the Federated Database Instance:
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -510,7 +508,7 @@ type federatedDatabaseInstanceArgs struct {
 	DataProcessRegion *FederatedDatabaseInstanceDataProcessRegion `pulumi:"dataProcessRegion"`
 	// Name of the Atlas Federated Database Instance.
 	Name *string `pulumi:"name"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -572,7 +570,7 @@ type FederatedDatabaseInstanceArgs struct {
 	DataProcessRegion FederatedDatabaseInstanceDataProcessRegionPtrInput
 	// Name of the Atlas Federated Database Instance.
 	Name pulumi.StringPtrInput
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -737,7 +735,7 @@ func (o FederatedDatabaseInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to create a Federated Database Instance.
+// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 func (o FederatedDatabaseInstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

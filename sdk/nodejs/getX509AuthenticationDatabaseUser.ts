@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ### S
@@ -88,7 +86,7 @@ export function getX509AuthenticationDatabaseUser(args: GetX509AuthenticationDat
  */
 export interface GetX509AuthenticationDatabaseUserArgs {
     /**
-     * Identifier for the Atlas project associated with the X.509 configuration.
+     * Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -115,8 +113,6 @@ export interface GetX509AuthenticationDatabaseUserResult {
 }
 /**
  * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
@@ -195,7 +191,7 @@ export function getX509AuthenticationDatabaseUserOutput(args: GetX509Authenticat
  */
 export interface GetX509AuthenticationDatabaseUserOutputArgs {
     /**
-     * Identifier for the Atlas project associated with the X.509 configuration.
+     * Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

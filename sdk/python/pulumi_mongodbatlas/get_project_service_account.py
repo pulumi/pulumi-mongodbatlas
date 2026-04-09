@@ -97,7 +97,7 @@ class GetProjectServiceAccountResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -146,7 +146,7 @@ def get_project_service_account(client_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str client_id: The Client ID of the Service Account.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clientId'] = client_id
@@ -175,7 +175,7 @@ def get_project_service_account_output(client_id: Optional[pulumi.Input[_builtin
 
 
     :param _builtins.str client_id: The Client ID of the Service Account.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clientId'] = client_id

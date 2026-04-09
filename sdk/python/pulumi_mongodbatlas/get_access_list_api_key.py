@@ -143,8 +143,6 @@ def get_access_list_api_key(api_key_id: Optional[_builtins.str] = None,
     """
     `AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     > **IMPORTANT:**
     When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
 
@@ -193,8 +191,6 @@ def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.s
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessListApiKeyResult]:
     """
     `AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     > **IMPORTANT:**
     When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.

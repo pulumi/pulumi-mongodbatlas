@@ -30,7 +30,7 @@ func LookupFlexSnapshots(ctx *pulumi.Context, args *LookupFlexSnapshotsArgs, opt
 type LookupFlexSnapshotsArgs struct {
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -40,9 +40,10 @@ type LookupFlexSnapshotsResult struct {
 	Id string `pulumi:"id"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string                   `pulumi:"projectId"`
-	Results   []GetFlexSnapshotsResult `pulumi:"results"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// List of documents that MongoDB Cloud returns for this request.
+	Results []GetFlexSnapshotsResult `pulumi:"results"`
 }
 
 func LookupFlexSnapshotsOutput(ctx *pulumi.Context, args LookupFlexSnapshotsOutputArgs, opts ...pulumi.InvokeOption) LookupFlexSnapshotsResultOutput {
@@ -58,7 +59,7 @@ func LookupFlexSnapshotsOutput(ctx *pulumi.Context, args LookupFlexSnapshotsOutp
 type LookupFlexSnapshotsOutputArgs struct {
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -91,11 +92,12 @@ func (o LookupFlexSnapshotsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFlexSnapshotsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupFlexSnapshotsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFlexSnapshotsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// List of documents that MongoDB Cloud returns for this request.
 func (o LookupFlexSnapshotsResultOutput) Results() GetFlexSnapshotsResultArrayOutput {
 	return o.ApplyT(func(v LookupFlexSnapshotsResult) []GetFlexSnapshotsResult { return v.Results }).(GetFlexSnapshotsResultArrayOutput)
 }

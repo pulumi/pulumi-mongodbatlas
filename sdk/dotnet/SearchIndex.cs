@@ -280,7 +280,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int?> NumPartitions { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the organization or project you want to create the search index within.
+        /// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -461,7 +461,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? NumPartitions { get; set; }
 
         /// <summary>
-        /// The ID of the organization or project you want to create the search index within.
+        /// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -616,7 +616,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? NumPartitions { get; set; }
 
         /// <summary>
-        /// The ID of the organization or project you want to create the search index within.
+        /// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

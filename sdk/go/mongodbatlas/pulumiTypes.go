@@ -30,7 +30,7 @@ type AdvancedClusterAdvancedConfiguration struct {
 	MinimumEnabledTlsProtocol *string `pulumi:"minimumEnabledTlsProtocol"`
 	// Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
 	NoTableScan *bool `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+	// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
 	OplogMinRetentionHours *float64 `pulumi:"oplogMinRetentionHours"`
 	// Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
 	OplogSizeMb *int `pulumi:"oplogSizeMb"`
@@ -72,7 +72,7 @@ type AdvancedClusterAdvancedConfigurationArgs struct {
 	MinimumEnabledTlsProtocol pulumi.StringPtrInput `pulumi:"minimumEnabledTlsProtocol"`
 	// Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
 	NoTableScan pulumi.BoolPtrInput `pulumi:"noTableScan"`
-	// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+	// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
 	OplogMinRetentionHours pulumi.Float64PtrInput `pulumi:"oplogMinRetentionHours"`
 	// Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
 	OplogSizeMb pulumi.IntPtrInput `pulumi:"oplogSizeMb"`
@@ -205,7 +205,7 @@ func (o AdvancedClusterAdvancedConfigurationOutput) NoTableScan() pulumi.BoolPtr
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *bool { return v.NoTableScan }).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
 func (o AdvancedClusterAdvancedConfigurationOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AdvancedClusterAdvancedConfiguration) *float64 { return v.OplogMinRetentionHours }).(pulumi.Float64PtrOutput)
 }
@@ -339,7 +339,7 @@ func (o AdvancedClusterAdvancedConfigurationPtrOutput) NoTableScan() pulumi.Bool
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
 func (o AdvancedClusterAdvancedConfigurationPtrOutput) OplogMinRetentionHours() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterAdvancedConfiguration) *float64 {
 		if v == nil {
@@ -1596,7 +1596,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling struct {
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
@@ -1625,7 +1625,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs struct {
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
@@ -1737,7 +1737,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) Co
 }
 
 // Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 // - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 // - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
@@ -1811,7 +1811,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 }
 
 // Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 // - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 // - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
@@ -2074,7 +2074,7 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled *bool `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
@@ -2113,7 +2113,7 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	// Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
 	ComputeScaleDownEnabled pulumi.BoolPtrInput `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+	// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
@@ -2229,7 +2229,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeScal
 }
 
 // Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 // - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 // - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
@@ -2313,7 +2313,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeS
 }
 
 // Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+// - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
 // - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 // - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
@@ -13279,7 +13279,7 @@ type FederatedDatabaseInstanceStorageStore struct {
 	// Name of the Atlas Federated Database Instance.
 	Name   *string `pulumi:"name"`
 	Prefix *string `pulumi:"prefix"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId      *string                                              `pulumi:"projectId"`
 	Provider       *string                                              `pulumi:"provider"`
 	Public         *string                                              `pulumi:"public"`
@@ -13310,7 +13310,7 @@ type FederatedDatabaseInstanceStorageStoreArgs struct {
 	// Name of the Atlas Federated Database Instance.
 	Name   pulumi.StringPtrInput `pulumi:"name"`
 	Prefix pulumi.StringPtrInput `pulumi:"prefix"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId      pulumi.StringPtrInput                                       `pulumi:"projectId"`
 	Provider       pulumi.StringPtrInput                                       `pulumi:"provider"`
 	Public         pulumi.StringPtrInput                                       `pulumi:"public"`
@@ -13407,7 +13407,7 @@ func (o FederatedDatabaseInstanceStorageStoreOutput) Prefix() pulumi.StringPtrOu
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.Prefix }).(pulumi.StringPtrOutput)
 }
 
-// The unique ID for the project to create a Federated Database Instance.
+// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 func (o FederatedDatabaseInstanceStorageStoreOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceStorageStore) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
@@ -16936,7 +16936,7 @@ func (o PrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type ProjectApiKeyProjectAssignment struct {
-	// Project ID to assign to Access Key
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames []string `pulumi:"roleNames"`
@@ -16954,7 +16954,7 @@ type ProjectApiKeyProjectAssignmentInput interface {
 }
 
 type ProjectApiKeyProjectAssignmentArgs struct {
-	// Project ID to assign to Access Key
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
@@ -17011,7 +17011,7 @@ func (o ProjectApiKeyProjectAssignmentOutput) ToProjectApiKeyProjectAssignmentOu
 	return o
 }
 
-// Project ID to assign to Access Key
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o ProjectApiKeyProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v ProjectApiKeyProjectAssignment) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -19959,10 +19959,185 @@ func (o StreamConnectionAwsPtrOutput) RoleArn() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type StreamConnectionAzure struct {
+	// Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+	Region *string `pulumi:"region"`
+	// UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	// Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+	StorageAccountName string `pulumi:"storageAccountName"`
+}
+
+// StreamConnectionAzureInput is an input type that accepts StreamConnectionAzureArgs and StreamConnectionAzureOutput values.
+// You can construct a concrete instance of `StreamConnectionAzureInput` via:
+//
+//	StreamConnectionAzureArgs{...}
+type StreamConnectionAzureInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAzureOutput() StreamConnectionAzureOutput
+	ToStreamConnectionAzureOutputWithContext(context.Context) StreamConnectionAzureOutput
+}
+
+type StreamConnectionAzureArgs struct {
+	// Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	// Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+	StorageAccountName pulumi.StringInput `pulumi:"storageAccountName"`
+}
+
+func (StreamConnectionAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAzure)(nil)).Elem()
+}
+
+func (i StreamConnectionAzureArgs) ToStreamConnectionAzureOutput() StreamConnectionAzureOutput {
+	return i.ToStreamConnectionAzureOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAzureArgs) ToStreamConnectionAzureOutputWithContext(ctx context.Context) StreamConnectionAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAzureOutput)
+}
+
+func (i StreamConnectionAzureArgs) ToStreamConnectionAzurePtrOutput() StreamConnectionAzurePtrOutput {
+	return i.ToStreamConnectionAzurePtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAzureArgs) ToStreamConnectionAzurePtrOutputWithContext(ctx context.Context) StreamConnectionAzurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAzureOutput).ToStreamConnectionAzurePtrOutputWithContext(ctx)
+}
+
+// StreamConnectionAzurePtrInput is an input type that accepts StreamConnectionAzureArgs, StreamConnectionAzurePtr and StreamConnectionAzurePtrOutput values.
+// You can construct a concrete instance of `StreamConnectionAzurePtrInput` via:
+//
+//	        StreamConnectionAzureArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionAzurePtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAzurePtrOutput() StreamConnectionAzurePtrOutput
+	ToStreamConnectionAzurePtrOutputWithContext(context.Context) StreamConnectionAzurePtrOutput
+}
+
+type streamConnectionAzurePtrType StreamConnectionAzureArgs
+
+func StreamConnectionAzurePtr(v *StreamConnectionAzureArgs) StreamConnectionAzurePtrInput {
+	return (*streamConnectionAzurePtrType)(v)
+}
+
+func (*streamConnectionAzurePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAzure)(nil)).Elem()
+}
+
+func (i *streamConnectionAzurePtrType) ToStreamConnectionAzurePtrOutput() StreamConnectionAzurePtrOutput {
+	return i.ToStreamConnectionAzurePtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionAzurePtrType) ToStreamConnectionAzurePtrOutputWithContext(ctx context.Context) StreamConnectionAzurePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAzurePtrOutput)
+}
+
+type StreamConnectionAzureOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAzure)(nil)).Elem()
+}
+
+func (o StreamConnectionAzureOutput) ToStreamConnectionAzureOutput() StreamConnectionAzureOutput {
+	return o
+}
+
+func (o StreamConnectionAzureOutput) ToStreamConnectionAzureOutputWithContext(ctx context.Context) StreamConnectionAzureOutput {
+	return o
+}
+
+func (o StreamConnectionAzureOutput) ToStreamConnectionAzurePtrOutput() StreamConnectionAzurePtrOutput {
+	return o.ToStreamConnectionAzurePtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionAzureOutput) ToStreamConnectionAzurePtrOutputWithContext(ctx context.Context) StreamConnectionAzurePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionAzure) *StreamConnectionAzure {
+		return &v
+	}).(StreamConnectionAzurePtrOutput)
+}
+
+// Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+func (o StreamConnectionAzureOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAzure) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+func (o StreamConnectionAzureOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionAzure) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+// Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+func (o StreamConnectionAzureOutput) StorageAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionAzure) string { return v.StorageAccountName }).(pulumi.StringOutput)
+}
+
+type StreamConnectionAzurePtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAzurePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAzure)(nil)).Elem()
+}
+
+func (o StreamConnectionAzurePtrOutput) ToStreamConnectionAzurePtrOutput() StreamConnectionAzurePtrOutput {
+	return o
+}
+
+func (o StreamConnectionAzurePtrOutput) ToStreamConnectionAzurePtrOutputWithContext(ctx context.Context) StreamConnectionAzurePtrOutput {
+	return o
+}
+
+func (o StreamConnectionAzurePtrOutput) Elem() StreamConnectionAzureOutput {
+	return o.ApplyT(func(v *StreamConnectionAzure) StreamConnectionAzure {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionAzure
+		return ret
+	}).(StreamConnectionAzureOutput)
+}
+
+// Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+func (o StreamConnectionAzurePtrOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(pulumi.StringPtrOutput)
+}
+
+// UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+func (o StreamConnectionAzurePtrOutput) ServicePrincipalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ServicePrincipalId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+func (o StreamConnectionAzurePtrOutput) StorageAccountName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAzure) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.StorageAccountName
+	}).(pulumi.StringPtrOutput)
+}
+
 type StreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role string `pulumi:"role"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	Type string `pulumi:"type"`
 }
 
@@ -19980,7 +20155,7 @@ type StreamConnectionDbRoleToExecuteInput interface {
 type StreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -20066,7 +20241,7 @@ func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -20105,13 +20280,150 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
 func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
 		if v == nil {
 			return nil
 		}
 		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+}
+
+// StreamConnectionGcpInput is an input type that accepts StreamConnectionGcpArgs and StreamConnectionGcpOutput values.
+// You can construct a concrete instance of `StreamConnectionGcpInput` via:
+//
+//	StreamConnectionGcpArgs{...}
+type StreamConnectionGcpInput interface {
+	pulumi.Input
+
+	ToStreamConnectionGcpOutput() StreamConnectionGcpOutput
+	ToStreamConnectionGcpOutputWithContext(context.Context) StreamConnectionGcpOutput
+}
+
+type StreamConnectionGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
+}
+
+func (StreamConnectionGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionGcp)(nil)).Elem()
+}
+
+func (i StreamConnectionGcpArgs) ToStreamConnectionGcpOutput() StreamConnectionGcpOutput {
+	return i.ToStreamConnectionGcpOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionGcpArgs) ToStreamConnectionGcpOutputWithContext(ctx context.Context) StreamConnectionGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionGcpOutput)
+}
+
+func (i StreamConnectionGcpArgs) ToStreamConnectionGcpPtrOutput() StreamConnectionGcpPtrOutput {
+	return i.ToStreamConnectionGcpPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionGcpArgs) ToStreamConnectionGcpPtrOutputWithContext(ctx context.Context) StreamConnectionGcpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionGcpOutput).ToStreamConnectionGcpPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionGcpPtrInput is an input type that accepts StreamConnectionGcpArgs, StreamConnectionGcpPtr and StreamConnectionGcpPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionGcpPtrInput` via:
+//
+//	        StreamConnectionGcpArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionGcpPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionGcpPtrOutput() StreamConnectionGcpPtrOutput
+	ToStreamConnectionGcpPtrOutputWithContext(context.Context) StreamConnectionGcpPtrOutput
+}
+
+type streamConnectionGcpPtrType StreamConnectionGcpArgs
+
+func StreamConnectionGcpPtr(v *StreamConnectionGcpArgs) StreamConnectionGcpPtrInput {
+	return (*streamConnectionGcpPtrType)(v)
+}
+
+func (*streamConnectionGcpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionGcp)(nil)).Elem()
+}
+
+func (i *streamConnectionGcpPtrType) ToStreamConnectionGcpPtrOutput() StreamConnectionGcpPtrOutput {
+	return i.ToStreamConnectionGcpPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionGcpPtrType) ToStreamConnectionGcpPtrOutputWithContext(ctx context.Context) StreamConnectionGcpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionGcpPtrOutput)
+}
+
+type StreamConnectionGcpOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionGcp)(nil)).Elem()
+}
+
+func (o StreamConnectionGcpOutput) ToStreamConnectionGcpOutput() StreamConnectionGcpOutput {
+	return o
+}
+
+func (o StreamConnectionGcpOutput) ToStreamConnectionGcpOutputWithContext(ctx context.Context) StreamConnectionGcpOutput {
+	return o
+}
+
+func (o StreamConnectionGcpOutput) ToStreamConnectionGcpPtrOutput() StreamConnectionGcpPtrOutput {
+	return o.ToStreamConnectionGcpPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionGcpOutput) ToStreamConnectionGcpPtrOutputWithContext(ctx context.Context) StreamConnectionGcpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionGcp) *StreamConnectionGcp {
+		return &v
+	}).(StreamConnectionGcpPtrOutput)
+}
+
+// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+func (o StreamConnectionGcpOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionGcp) string { return v.ServiceAccountId }).(pulumi.StringOutput)
+}
+
+type StreamConnectionGcpPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionGcpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionGcp)(nil)).Elem()
+}
+
+func (o StreamConnectionGcpPtrOutput) ToStreamConnectionGcpPtrOutput() StreamConnectionGcpPtrOutput {
+	return o
+}
+
+func (o StreamConnectionGcpPtrOutput) ToStreamConnectionGcpPtrOutputWithContext(ctx context.Context) StreamConnectionGcpPtrOutput {
+	return o
+}
+
+func (o StreamConnectionGcpPtrOutput) Elem() StreamConnectionGcpOutput {
+	return o.ApplyT(func(v *StreamConnectionGcp) StreamConnectionGcp {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionGcp
+		return ret
+	}).(StreamConnectionGcpOutput)
+}
+
+// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+func (o StreamConnectionGcpPtrOutput) ServiceAccountId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionGcp) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ServiceAccountId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -24078,7 +24390,7 @@ type GetAdvancedClustersResult struct {
 	PinnedFcv GetAdvancedClustersResultPinnedFcv `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled bool `pulumi:"pitEnabled"`
-	// The unique ID for the project to get the clusters.
+	// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData bool `pulumi:"redactClientLogData"`
@@ -24150,7 +24462,7 @@ type GetAdvancedClustersResultArgs struct {
 	PinnedFcv GetAdvancedClustersResultPinnedFcvInput `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolInput `pulumi:"pitEnabled"`
-	// The unique ID for the project to get the clusters.
+	// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information.
 	RedactClientLogData pulumi.BoolInput `pulumi:"redactClientLogData"`
@@ -24321,7 +24633,7 @@ func (o GetAdvancedClustersResultOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) bool { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// The unique ID for the project to get the clusters.
+// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
 func (o GetAdvancedClustersResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -27231,7 +27543,7 @@ type GetAlertConfigurationsResult struct {
 	Notifications          []GetAlertConfigurationsResultNotification          `pulumi:"notifications"`
 	// Requested output string format for the alert configuration
 	Outputs []GetAlertConfigurationsResultOutputType `pulumi:"outputs"`
-	// The unique ID for the project to get the alert configurations.
+	// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Severity of the event.
 	SeverityOverride string `pulumi:"severityOverride"`
@@ -27269,7 +27581,7 @@ type GetAlertConfigurationsResultArgs struct {
 	Notifications          GetAlertConfigurationsResultNotificationArrayInput          `pulumi:"notifications"`
 	// Requested output string format for the alert configuration
 	Outputs GetAlertConfigurationsResultOutputTypeArrayInput `pulumi:"outputs"`
-	// The unique ID for the project to get the alert configurations.
+	// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Severity of the event.
 	SeverityOverride pulumi.StringInput `pulumi:"severityOverride"`
@@ -27377,7 +27689,7 @@ func (o GetAlertConfigurationsResultOutput) Outputs() GetAlertConfigurationsResu
 	return o.ApplyT(func(v GetAlertConfigurationsResult) []GetAlertConfigurationsResultOutputType { return v.Outputs }).(GetAlertConfigurationsResultOutputTypeArrayOutput)
 }
 
-// The unique ID for the project to get the alert configurations.
+// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
 func (o GetAlertConfigurationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -28312,7 +28624,7 @@ func (o GetAlertConfigurationsResultThresholdConfigArrayOutput) Index(i pulumi.I
 type GetApiKeyProjectAssignmentsResult struct {
 	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 	Roles []string `pulumi:"roles"`
@@ -28332,7 +28644,7 @@ type GetApiKeyProjectAssignmentsResultInput interface {
 type GetApiKeyProjectAssignmentsResultArgs struct {
 	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
@@ -28394,7 +28706,7 @@ func (o GetApiKeyProjectAssignmentsResultOutput) ApiKeyId() pulumi.StringOutput 
 	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetApiKeyProjectAssignmentsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetApiKeyProjectAssignmentsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -38193,7 +38505,7 @@ type GetDatabaseUsersResult struct {
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType string `pulumi:"oidcAuthType"`
-	// The unique ID for the project to get all database users.
+	// The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles []GetDatabaseUsersResultRole `pulumi:"roles"`
@@ -38234,7 +38546,7 @@ type GetDatabaseUsersResultArgs struct {
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringInput `pulumi:"oidcAuthType"`
-	// The unique ID for the project to get all database users.
+	// The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles GetDatabaseUsersResultRoleArrayInput `pulumi:"roles"`
@@ -38335,7 +38647,7 @@ func (o GetDatabaseUsersResultOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.OidcAuthType }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to get all database users.
+// The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
 func (o GetDatabaseUsersResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -39067,7 +39379,7 @@ type GetEncryptionAtRestPrivateEndpointsResult struct {
 	Id string `pulumi:"id"`
 	// Connection name of the Azure Private Endpoint.
 	PrivateEndpointConnectionName string `pulumi:"privateEndpointConnectionName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName string `pulumi:"regionName"`
@@ -39095,7 +39407,7 @@ type GetEncryptionAtRestPrivateEndpointsResultArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// Connection name of the Azure Private Endpoint.
 	PrivateEndpointConnectionName pulumi.StringInput `pulumi:"privateEndpointConnectionName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
@@ -39174,7 +39486,7 @@ func (o GetEncryptionAtRestPrivateEndpointsResultOutput) PrivateEndpointConnecti
 	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.PrivateEndpointConnectionName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetEncryptionAtRestPrivateEndpointsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEncryptionAtRestPrivateEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -40844,7 +41156,7 @@ type GetFederatedDatabaseInstanceStorageStore struct {
 	// Name of the Atlas Federated Database Instance.
 	Name   string `pulumi:"name"`
 	Prefix string `pulumi:"prefix"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId       string                                                   `pulumi:"projectId"`
 	Provider        string                                                   `pulumi:"provider"`
 	Public          string                                                   `pulumi:"public"`
@@ -40876,7 +41188,7 @@ type GetFederatedDatabaseInstanceStorageStoreArgs struct {
 	// Name of the Atlas Federated Database Instance.
 	Name   pulumi.StringInput `pulumi:"name"`
 	Prefix pulumi.StringInput `pulumi:"prefix"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId       pulumi.StringInput                                               `pulumi:"projectId"`
 	Provider        pulumi.StringInput                                               `pulumi:"provider"`
 	Public          pulumi.StringInput                                               `pulumi:"public"`
@@ -40974,7 +41286,7 @@ func (o GetFederatedDatabaseInstanceStorageStoreOutput) Prefix() pulumi.StringOu
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to create a Federated Database Instance.
+// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 func (o GetFederatedDatabaseInstanceStorageStoreOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceStorageStore) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -41335,7 +41647,7 @@ type GetFederatedDatabaseInstancesResult struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames []string `pulumi:"hostnames"`
 	Name      string   `pulumi:"name"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -41403,7 +41715,7 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
 	Name      pulumi.StringInput      `pulumi:"name"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -41526,7 +41838,7 @@ func (o GetFederatedDatabaseInstancesResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to create a Federated Database Instance.
+// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 func (o GetFederatedDatabaseInstancesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -42589,7 +42901,7 @@ type GetFederatedDatabaseInstancesResultStorageStore struct {
 	IncludeTags              bool     `pulumi:"includeTags"`
 	Name                     string   `pulumi:"name"`
 	Prefix                   string   `pulumi:"prefix"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId       string                                                          `pulumi:"projectId"`
 	Provider        string                                                          `pulumi:"provider"`
 	Public          string                                                          `pulumi:"public"`
@@ -42620,7 +42932,7 @@ type GetFederatedDatabaseInstancesResultStorageStoreArgs struct {
 	IncludeTags              pulumi.BoolInput        `pulumi:"includeTags"`
 	Name                     pulumi.StringInput      `pulumi:"name"`
 	Prefix                   pulumi.StringInput      `pulumi:"prefix"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId       pulumi.StringInput                                                      `pulumi:"projectId"`
 	Provider        pulumi.StringInput                                                      `pulumi:"provider"`
 	Public          pulumi.StringInput                                                      `pulumi:"public"`
@@ -42717,7 +43029,7 @@ func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) Prefix() pulumi.S
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to create a Federated Database Instance.
+// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 func (o GetFederatedDatabaseInstancesResultStorageStoreOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultStorageStore) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -43082,7 +43394,7 @@ type GetFederatedQueryLimitsResult struct {
 	LimitName        string `pulumi:"limitName"`
 	MaximumLimit     int    `pulumi:"maximumLimit"`
 	OverrunPolicy    string `pulumi:"overrunPolicy"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the Atlas Federated Database Instance.
 	TenantName string `pulumi:"tenantName"`
@@ -43111,7 +43423,7 @@ type GetFederatedQueryLimitsResultArgs struct {
 	LimitName        pulumi.StringInput `pulumi:"limitName"`
 	MaximumLimit     pulumi.IntInput    `pulumi:"maximumLimit"`
 	OverrunPolicy    pulumi.StringInput `pulumi:"overrunPolicy"`
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Name of the Atlas Federated Database Instance.
 	TenantName pulumi.StringInput `pulumi:"tenantName"`
@@ -43197,7 +43509,7 @@ func (o GetFederatedQueryLimitsResultOutput) OverrunPolicy() pulumi.StringOutput
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) string { return v.OverrunPolicy }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to create a Federated Database Instance.
+// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 func (o GetFederatedQueryLimitsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -46855,7 +47167,7 @@ type GetFlexRestoreJobsResult struct {
 	ExpirationDate string `pulumi:"expirationDate"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	RestoreFinishedDate string `pulumi:"restoreFinishedDate"`
@@ -46895,7 +47207,7 @@ type GetFlexRestoreJobsResultArgs struct {
 	ExpirationDate pulumi.StringInput `pulumi:"expirationDate"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	RestoreFinishedDate pulumi.StringInput `pulumi:"restoreFinishedDate"`
@@ -46983,7 +47295,7 @@ func (o GetFlexRestoreJobsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetFlexRestoreJobsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -47062,7 +47374,7 @@ type GetFlexSnapshotsResult struct {
 	MongoDbVersion string `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ScheduledTime string `pulumi:"scheduledTime"`
@@ -47094,7 +47406,7 @@ type GetFlexSnapshotsResultArgs struct {
 	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ScheduledTime pulumi.StringInput `pulumi:"scheduledTime"`
@@ -47177,7 +47489,7 @@ func (o GetFlexSnapshotsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetFlexSnapshotsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -49247,7 +49559,7 @@ type GetOnlineArchivesResult struct {
 	DbName              string                                      `pulumi:"dbName"`
 	PartitionFields     []GetOnlineArchivesResultPartitionField     `pulumi:"partitionFields"`
 	Paused              bool                                        `pulumi:"paused"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string                            `pulumi:"projectId"`
 	Schedules []GetOnlineArchivesResultSchedule `pulumi:"schedules"`
 	State     string                            `pulumi:"state"`
@@ -49280,7 +49592,7 @@ type GetOnlineArchivesResultArgs struct {
 	DbName              pulumi.StringInput                                  `pulumi:"dbName"`
 	PartitionFields     GetOnlineArchivesResultPartitionFieldArrayInput     `pulumi:"partitionFields"`
 	Paused              pulumi.BoolInput                                    `pulumi:"paused"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput                        `pulumi:"projectId"`
 	Schedules GetOnlineArchivesResultScheduleArrayInput `pulumi:"schedules"`
 	State     pulumi.StringInput                        `pulumi:"state"`
@@ -49386,7 +49698,7 @@ func (o GetOnlineArchivesResultOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOnlineArchivesResult) bool { return v.Paused }).(pulumi.BoolOutput)
 }
 
-// The unique ID for the project.
+// The unique ID for the project, also known as `groupId` in the official documentation.
 func (o GetOnlineArchivesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOnlineArchivesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -51678,7 +51990,7 @@ func (o GetPrivatelinkEndpointsResultArrayOutput) Index(i pulumi.IntInput) GetPr
 }
 
 type GetProjectApiKeyProjectAssignment struct {
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames []string `pulumi:"roleNames"`
@@ -51696,7 +52008,7 @@ type GetProjectApiKeyProjectAssignmentInput interface {
 }
 
 type GetProjectApiKeyProjectAssignmentArgs struct {
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
@@ -51753,7 +52065,7 @@ func (o GetProjectApiKeyProjectAssignmentOutput) ToGetProjectApiKeyProjectAssign
 	return o
 }
 
-// The unique ID for the project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetProjectApiKeyProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectApiKeyProjectAssignment) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -51910,7 +52222,7 @@ func (o GetProjectApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetProjectA
 }
 
 type GetProjectApiKeysResultProjectAssignment struct {
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames []string `pulumi:"roleNames"`
@@ -51928,7 +52240,7 @@ type GetProjectApiKeysResultProjectAssignmentInput interface {
 }
 
 type GetProjectApiKeysResultProjectAssignmentArgs struct {
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
 	RoleNames pulumi.StringArrayInput `pulumi:"roleNames"`
@@ -51985,7 +52297,7 @@ func (o GetProjectApiKeysResultProjectAssignmentOutput) ToGetProjectApiKeysResul
 	return o
 }
 
-// The unique ID for the project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetProjectApiKeysResultProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectApiKeysResultProjectAssignment) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -53414,7 +53726,7 @@ type GetProjectsResult struct {
 	Name   *string                  `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId string `pulumi:"orgId"`
-	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions string `pulumi:"regionUsageRestrictions"`
@@ -53471,7 +53783,7 @@ type GetProjectsResultArgs struct {
 	Name   pulumi.StringPtrInput            `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
-	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// If GOV_REGIONS_ONLY the project can be used for government regions only, otherwise defaults to standard regions. For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions pulumi.StringInput `pulumi:"regionUsageRestrictions"`
@@ -53609,7 +53921,7 @@ func (o GetProjectsResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
 func (o GetProjectsResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetProjectsResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
@@ -55703,7 +56015,7 @@ type GetSearchIndexesResult struct {
 	Name string `pulumi:"name"`
 	// Number of index partitions.
 	NumPartitions int `pulumi:"numPartitions"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer string `pulumi:"searchAnalyzer"`
@@ -55756,7 +56068,7 @@ type GetSearchIndexesResultArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Number of index partitions.
 	NumPartitions pulumi.IntInput `pulumi:"numPartitions"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer pulumi.StringInput `pulumi:"searchAnalyzer"`
@@ -55884,7 +56196,7 @@ func (o GetSearchIndexesResultOutput) NumPartitions() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) int { return v.NumPartitions }).(pulumi.IntOutput)
 }
 
-// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 func (o GetSearchIndexesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -56385,7 +56697,7 @@ type GetServerlessInstancesResult struct {
 	MongoDbVersion string `pulumi:"mongoDbVersion"`
 	// (Required) Human-readable label that identifies your serverless instance.
 	Name string `pulumi:"name"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName string `pulumi:"providerSettingsBackingProviderName"`
@@ -56432,7 +56744,7 @@ type GetServerlessInstancesResultArgs struct {
 	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
 	// (Required) Human-readable label that identifies your serverless instance.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName pulumi.StringInput `pulumi:"providerSettingsBackingProviderName"`
@@ -56545,7 +56857,7 @@ func (o GetServerlessInstancesResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 func (o GetServerlessInstancesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -56967,7 +57279,7 @@ func (o GetServiceAccountAccessListEntriesResultArrayOutput) Index(i pulumi.IntI
 }
 
 type GetServiceAccountProjectAssignmentsResult struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -56983,7 +57295,7 @@ type GetServiceAccountProjectAssignmentsResultInput interface {
 }
 
 type GetServiceAccountProjectAssignmentsResultArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -57038,7 +57350,7 @@ func (o GetServiceAccountProjectAssignmentsResultOutput) ToGetServiceAccountProj
 	return o
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetServiceAccountProjectAssignmentsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServiceAccountProjectAssignmentsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -57931,6 +58243,76 @@ func (o GetStreamConnectionAwsOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionAws) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+type GetStreamConnectionAzure struct {
+	// Optional. Azure region where the storage account is deployed, specified as a valid Azure region name (for example, `eastus`, `westeurope`). Must match the region configured for the target Azure Storage account.
+	Region string `pulumi:"region"`
+	// UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	// Name of the Azure Storage account.
+	StorageAccountName string `pulumi:"storageAccountName"`
+}
+
+// GetStreamConnectionAzureInput is an input type that accepts GetStreamConnectionAzureArgs and GetStreamConnectionAzureOutput values.
+// You can construct a concrete instance of `GetStreamConnectionAzureInput` via:
+//
+//	GetStreamConnectionAzureArgs{...}
+type GetStreamConnectionAzureInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionAzureOutput() GetStreamConnectionAzureOutput
+	ToGetStreamConnectionAzureOutputWithContext(context.Context) GetStreamConnectionAzureOutput
+}
+
+type GetStreamConnectionAzureArgs struct {
+	// Optional. Azure region where the storage account is deployed, specified as a valid Azure region name (for example, `eastus`, `westeurope`). Must match the region configured for the target Azure Storage account.
+	Region pulumi.StringInput `pulumi:"region"`
+	// UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	// Name of the Azure Storage account.
+	StorageAccountName pulumi.StringInput `pulumi:"storageAccountName"`
+}
+
+func (GetStreamConnectionAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAzure)(nil)).Elem()
+}
+
+func (i GetStreamConnectionAzureArgs) ToGetStreamConnectionAzureOutput() GetStreamConnectionAzureOutput {
+	return i.ToGetStreamConnectionAzureOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionAzureArgs) ToGetStreamConnectionAzureOutputWithContext(ctx context.Context) GetStreamConnectionAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionAzureOutput)
+}
+
+type GetStreamConnectionAzureOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAzure)(nil)).Elem()
+}
+
+func (o GetStreamConnectionAzureOutput) ToGetStreamConnectionAzureOutput() GetStreamConnectionAzureOutput {
+	return o
+}
+
+func (o GetStreamConnectionAzureOutput) ToGetStreamConnectionAzureOutputWithContext(ctx context.Context) GetStreamConnectionAzureOutput {
+	return o
+}
+
+// Optional. Azure region where the storage account is deployed, specified as a valid Azure region name (for example, `eastus`, `westeurope`). Must match the region configured for the target Azure Storage account.
+func (o GetStreamConnectionAzureOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAzure) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+func (o GetStreamConnectionAzureOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAzure) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+// Name of the Azure Storage account.
+func (o GetStreamConnectionAzureOutput) StorageAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAzure) string { return v.StorageAccountName }).(pulumi.StringOutput)
+}
+
 type GetStreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
@@ -57996,6 +58378,58 @@ func (o GetStreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 // * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o GetStreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+}
+
+// GetStreamConnectionGcpInput is an input type that accepts GetStreamConnectionGcpArgs and GetStreamConnectionGcpOutput values.
+// You can construct a concrete instance of `GetStreamConnectionGcpInput` via:
+//
+//	GetStreamConnectionGcpArgs{...}
+type GetStreamConnectionGcpInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput
+	ToGetStreamConnectionGcpOutputWithContext(context.Context) GetStreamConnectionGcpOutput
+}
+
+type GetStreamConnectionGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
+}
+
+func (GetStreamConnectionGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionGcp)(nil)).Elem()
+}
+
+func (i GetStreamConnectionGcpArgs) ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput {
+	return i.ToGetStreamConnectionGcpOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionGcpArgs) ToGetStreamConnectionGcpOutputWithContext(ctx context.Context) GetStreamConnectionGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionGcpOutput)
+}
+
+type GetStreamConnectionGcpOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionGcp)(nil)).Elem()
+}
+
+func (o GetStreamConnectionGcpOutput) ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput {
+	return o
+}
+
+func (o GetStreamConnectionGcpOutput) ToGetStreamConnectionGcpOutputWithContext(ctx context.Context) GetStreamConnectionGcpOutput {
+	return o
+}
+
+// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+func (o GetStreamConnectionGcpOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionGcp) string { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionNetworking struct {
@@ -58259,6 +58693,8 @@ type GetStreamConnectionsResult struct {
 	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
 	// The configuration for AWS Lambda connection. See AWS
 	Aws GetStreamConnectionsResultAws `pulumi:"aws"`
+	// The configuration for Azure Blob Storage connection. See Azure.
+	Azure GetStreamConnectionsResultAzure `pulumi:"azure"`
 	// Comma separated list of server addresses.
 	BootstrapServers string `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
@@ -58270,6 +58706,8 @@ type GetStreamConnectionsResult struct {
 	ConnectionName string `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	// The configuration for GCP Pub/Sub connection. See GCP
+	Gcp GetStreamConnectionsResultGcp `pulumi:"gcp"`
 	// A map of key-value pairs for optional headers.
 	Headers map[string]string `pulumi:"headers"`
 	Id      string            `pulumi:"id"`
@@ -58277,9 +58715,9 @@ type GetStreamConnectionsResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName string `pulumi:"instanceName"`
-	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+	// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
 	Networking GetStreamConnectionsResultNetworking `pulumi:"networking"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
 	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
@@ -58317,6 +58755,8 @@ type GetStreamConnectionsResultArgs struct {
 	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
 	// The configuration for AWS Lambda connection. See AWS
 	Aws GetStreamConnectionsResultAwsInput `pulumi:"aws"`
+	// The configuration for Azure Blob Storage connection. See Azure.
+	Azure GetStreamConnectionsResultAzureInput `pulumi:"azure"`
 	// Comma separated list of server addresses.
 	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
@@ -58328,6 +58768,8 @@ type GetStreamConnectionsResultArgs struct {
 	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
+	// The configuration for GCP Pub/Sub connection. See GCP
+	Gcp GetStreamConnectionsResultGcpInput `pulumi:"gcp"`
 	// A map of key-value pairs for optional headers.
 	Headers pulumi.StringMapInput `pulumi:"headers"`
 	Id      pulumi.StringInput    `pulumi:"id"`
@@ -58335,9 +58777,9 @@ type GetStreamConnectionsResultArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+	// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
 	Networking GetStreamConnectionsResultNetworkingInput `pulumi:"networking"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
 	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthenticationInput `pulumi:"schemaRegistryAuthentication"`
@@ -58420,6 +58862,11 @@ func (o GetStreamConnectionsResultOutput) Aws() GetStreamConnectionsResultAwsOut
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAws { return v.Aws }).(GetStreamConnectionsResultAwsOutput)
 }
 
+// The configuration for Azure Blob Storage connection. See Azure.
+func (o GetStreamConnectionsResultOutput) Azure() GetStreamConnectionsResultAzureOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAzure { return v.Azure }).(GetStreamConnectionsResultAzureOutput)
+}
+
 // Comma separated list of server addresses.
 func (o GetStreamConnectionsResultOutput) BootstrapServers() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.BootstrapServers }).(pulumi.StringOutput)
@@ -58449,6 +58896,11 @@ func (o GetStreamConnectionsResultOutput) DbRoleToExecute() GetStreamConnections
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionsResultDbRoleToExecuteOutput)
 }
 
+// The configuration for GCP Pub/Sub connection. See GCP
+func (o GetStreamConnectionsResultOutput) Gcp() GetStreamConnectionsResultGcpOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultGcp { return v.Gcp }).(GetStreamConnectionsResultGcpOutput)
+}
+
 // A map of key-value pairs for optional headers.
 func (o GetStreamConnectionsResultOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
@@ -58465,12 +58917,12 @@ func (o GetStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
 func (o GetStreamConnectionsResultOutput) Networking() GetStreamConnectionsResultNetworkingOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultNetworking { return v.Networking }).(GetStreamConnectionsResultNetworkingOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -58712,6 +59164,76 @@ func (o GetStreamConnectionsResultAwsOutput) RoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultAws) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
+type GetStreamConnectionsResultAzure struct {
+	// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+	Region string `pulumi:"region"`
+	// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+	StorageAccountName string `pulumi:"storageAccountName"`
+}
+
+// GetStreamConnectionsResultAzureInput is an input type that accepts GetStreamConnectionsResultAzureArgs and GetStreamConnectionsResultAzureOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAzureInput` via:
+//
+//	GetStreamConnectionsResultAzureArgs{...}
+type GetStreamConnectionsResultAzureInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput
+	ToGetStreamConnectionsResultAzureOutputWithContext(context.Context) GetStreamConnectionsResultAzureOutput
+}
+
+type GetStreamConnectionsResultAzureArgs struct {
+	// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+	Region pulumi.StringInput `pulumi:"region"`
+	// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+	StorageAccountName pulumi.StringInput `pulumi:"storageAccountName"`
+}
+
+func (GetStreamConnectionsResultAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAzure)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAzureArgs) ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput {
+	return i.ToGetStreamConnectionsResultAzureOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAzureArgs) ToGetStreamConnectionsResultAzureOutputWithContext(ctx context.Context) GetStreamConnectionsResultAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAzureOutput)
+}
+
+type GetStreamConnectionsResultAzureOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAzure)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAzureOutput) ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAzureOutput) ToGetStreamConnectionsResultAzureOutputWithContext(ctx context.Context) GetStreamConnectionsResultAzureOutput {
+	return o
+}
+
+// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+func (o GetStreamConnectionsResultAzureOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+func (o GetStreamConnectionsResultAzureOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+func (o GetStreamConnectionsResultAzureOutput) StorageAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.StorageAccountName }).(pulumi.StringOutput)
+}
+
 type GetStreamConnectionsResultDbRoleToExecute struct {
 	// The name of the role to use. Can be a built in role or a custom role.
 	Role string `pulumi:"role"`
@@ -58777,6 +59299,58 @@ func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOut
 // * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
 func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+}
+
+// GetStreamConnectionsResultGcpInput is an input type that accepts GetStreamConnectionsResultGcpArgs and GetStreamConnectionsResultGcpOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultGcpInput` via:
+//
+//	GetStreamConnectionsResultGcpArgs{...}
+type GetStreamConnectionsResultGcpInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput
+	ToGetStreamConnectionsResultGcpOutputWithContext(context.Context) GetStreamConnectionsResultGcpOutput
+}
+
+type GetStreamConnectionsResultGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
+}
+
+func (GetStreamConnectionsResultGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultGcp)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultGcpArgs) ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput {
+	return i.ToGetStreamConnectionsResultGcpOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultGcpArgs) ToGetStreamConnectionsResultGcpOutputWithContext(ctx context.Context) GetStreamConnectionsResultGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultGcpOutput)
+}
+
+type GetStreamConnectionsResultGcpOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultGcp)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultGcpOutput) ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultGcpOutput) ToGetStreamConnectionsResultGcpOutputWithContext(ctx context.Context) GetStreamConnectionsResultGcpOutput {
+	return o
+}
+
+// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+func (o GetStreamConnectionsResultGcpOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultGcp) string { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionsResultNetworking struct {
@@ -59164,7 +59738,7 @@ type GetStreamInstancesResult struct {
 	Id        string   `pulumi:"id"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig GetStreamInstancesResultStreamConfig `pulumi:"streamConfig"`
@@ -59189,7 +59763,7 @@ type GetStreamInstancesResultArgs struct {
 	Id        pulumi.StringInput      `pulumi:"id"`
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig GetStreamInstancesResultStreamConfigInput `pulumi:"streamConfig"`
@@ -59265,7 +59839,7 @@ func (o GetStreamInstancesResultOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetStreamInstancesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -59433,7 +60007,7 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
 	// Name of interface endpoint that is created from the specified service endpoint ID.
 	InterfaceEndpointName string `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId string `pulumi:"providerAccountId"`
@@ -59487,7 +60061,7 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	InterfaceEndpointId pulumi.StringInput `pulumi:"interfaceEndpointId"`
 	// Name of interface endpoint that is created from the specified service endpoint ID.
 	InterfaceEndpointName pulumi.StringInput `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId pulumi.StringInput `pulumi:"providerAccountId"`
@@ -59601,7 +60175,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointName() pulum
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -59802,17 +60376,15 @@ type GetStreamProcessorsResult struct {
 	Pipeline string `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	//
-	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats string `pulumi:"stats"`
 	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
 	Tier string `pulumi:"tier"`
-	// Label that identifies the stream processing workspace.
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName string `pulumi:"workspaceName"`
 }
 
@@ -59840,17 +60412,15 @@ type GetStreamProcessorsResultArgs struct {
 	Pipeline pulumi.StringInput `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringInput `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	//
-	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringInput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats pulumi.StringInput `pulumi:"stats"`
 	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
 	Tier pulumi.StringInput `pulumi:"tier"`
-	// Label that identifies the stream processing workspace.
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`
 }
 
@@ -59932,14 +60502,12 @@ func (o GetStreamProcessorsResultOutput) ProcessorName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProcessorName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetStreamProcessorsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-//
-// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 func (o GetStreamProcessorsResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.State }).(pulumi.StringOutput)
 }
@@ -59954,7 +60522,7 @@ func (o GetStreamProcessorsResultOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Tier }).(pulumi.StringOutput)
 }
 
-// Label that identifies the stream processing workspace.
+// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 func (o GetStreamProcessorsResultOutput) WorkspaceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.WorkspaceName }).(pulumi.StringOutput)
 }
@@ -60226,7 +60794,7 @@ type GetStreamWorkspacesResult struct {
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames []string `pulumi:"hostnames"`
 	Id        string   `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig GetStreamWorkspacesResultStreamConfig `pulumi:"streamConfig"`
@@ -60251,7 +60819,7 @@ type GetStreamWorkspacesResultArgs struct {
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
 	Id        pulumi.StringInput      `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig GetStreamWorkspacesResultStreamConfigInput `pulumi:"streamConfig"`
@@ -60326,7 +60894,7 @@ func (o GetStreamWorkspacesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamWorkspacesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetStreamWorkspacesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamWorkspacesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -60906,7 +61474,7 @@ type GetThirdPartyIntegrationsResult struct {
 	// Your Microsoft Teams incoming webhook URL.
 	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId string `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
@@ -60932,7 +61500,7 @@ type GetThirdPartyIntegrationsResult struct {
 	// * `DATADOG`
 	ServiceKey string `pulumi:"serviceKey"`
 	TeamName   string `pulumi:"teamName"`
-	// Thirt-Party service integration type.
+	// Third-Party service integration type.
 	Type string `pulumi:"type"`
 	// Your webhook URL.
 	Url string `pulumi:"url"`
@@ -60963,7 +61531,7 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Your Microsoft Teams incoming webhook URL.
 	// * `PROMETHEUS`
 	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
 	// * `VICTOR_OPS`
@@ -60989,7 +61557,7 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// * `DATADOG`
 	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
 	TeamName   pulumi.StringInput `pulumi:"teamName"`
-	// Thirt-Party service integration type.
+	// Third-Party service integration type.
 	Type pulumi.StringInput `pulumi:"type"`
 	// Your webhook URL.
 	Url pulumi.StringInput `pulumi:"url"`
@@ -61077,7 +61645,7 @@ func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to get all Third-Party service integrations
+// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -61136,7 +61704,7 @@ func (o GetThirdPartyIntegrationsResultOutput) TeamName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.TeamName }).(pulumi.StringOutput)
 }
 
-// Thirt-Party service integration type.
+// Third-Party service integration type.
 func (o GetThirdPartyIntegrationsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -61544,8 +62112,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationPtrInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAwsInput)(nil)).Elem(), StreamConnectionAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAwsPtrInput)(nil)).Elem(), StreamConnectionAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAzureInput)(nil)).Elem(), StreamConnectionAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAzurePtrInput)(nil)).Elem(), StreamConnectionAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecuteInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecutePtrInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionGcpInput)(nil)).Elem(), StreamConnectionGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionGcpPtrInput)(nil)).Elem(), StreamConnectionGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingInput)(nil)).Elem(), StreamConnectionNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingPtrInput)(nil)).Elem(), StreamConnectionNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingAccessInput)(nil)).Elem(), StreamConnectionNetworkingAccessArgs{})
@@ -62081,7 +62653,9 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultArrayInput)(nil)).Elem(), GetSharedTierSnapshotsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAuthenticationInput)(nil)).Elem(), GetStreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAwsInput)(nil)).Elem(), GetStreamConnectionAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAzureInput)(nil)).Elem(), GetStreamConnectionAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionGcpInput)(nil)).Elem(), GetStreamConnectionGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingInput)(nil)).Elem(), GetStreamConnectionNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionSchemaRegistryAuthenticationArgs{})
@@ -62090,7 +62664,9 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAwsInput)(nil)).Elem(), GetStreamConnectionsResultAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAzureInput)(nil)).Elem(), GetStreamConnectionsResultAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultGcpInput)(nil)).Elem(), GetStreamConnectionsResultGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultSchemaRegistryAuthenticationArgs{})
@@ -62379,8 +62955,12 @@ func init() {
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAwsOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAwsPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAzureOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAzurePtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecutePtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionGcpOutput{})
+	pulumi.RegisterOutputType(StreamConnectionGcpPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionNetworkingOutput{})
 	pulumi.RegisterOutputType(StreamConnectionNetworkingPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionNetworkingAccessOutput{})
@@ -62916,7 +63496,9 @@ func init() {
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAwsOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionAzureOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionGcpOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionSchemaRegistryAuthenticationOutput{})
@@ -62925,7 +63507,9 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAwsOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAzureOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultGcpOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingAccessOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput{})

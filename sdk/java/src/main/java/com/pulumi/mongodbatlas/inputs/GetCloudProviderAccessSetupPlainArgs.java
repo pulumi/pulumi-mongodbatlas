@@ -33,14 +33,14 @@ public final class GetCloudProviderAccessSetupPlainArgs extends com.pulumi.resou
     }
 
     /**
-     * The unique ID for the project to get all Cloud Provider Access
+     * The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project to get all Cloud Provider Access
+     * @return The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
      * 
      */
     public String projectId() {
@@ -126,7 +126,7 @@ public final class GetCloudProviderAccessSetupPlainArgs extends com.pulumi.resou
         }
 
         /**
-         * @param projectId The unique ID for the project to get all Cloud Provider Access
+         * @param projectId The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 

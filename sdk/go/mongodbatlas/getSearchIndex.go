@@ -13,8 +13,6 @@ import (
 
 // `SearchIndex` describes a single search indexes. This represents a single search index that have been created.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -58,7 +56,7 @@ type LookupSearchIndexArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId string `pulumi:"indexId"`
-	// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -119,7 +117,7 @@ type LookupSearchIndexOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// The unique identifier of the Atlas Search index. Use the `getSearchIndexes`datasource to find the IDs of all Atlas Search indexes.
 	IndexId pulumi.StringInput `pulumi:"indexId"`
-	// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+	// The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

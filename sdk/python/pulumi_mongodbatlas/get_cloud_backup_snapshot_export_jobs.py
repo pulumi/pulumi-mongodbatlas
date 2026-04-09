@@ -77,7 +77,7 @@ class GetCloudBackupSnapshotExportJobsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -119,8 +119,6 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[_builtins.str] 
     """
     `get_cloud_backup_snapshot_export_jobs` datasource allows you to retrieve all the buckets for the specified project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -149,7 +147,7 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[_builtins.str] 
     :param _builtins.str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
-    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
+    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -175,8 +173,6 @@ def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.I
     """
     `get_cloud_backup_snapshot_export_jobs` datasource allows you to retrieve all the buckets for the specified project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -205,7 +201,7 @@ def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.I
     :param _builtins.str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
-    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
+    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

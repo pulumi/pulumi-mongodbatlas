@@ -16,8 +16,6 @@ import (
 //
 // When enabled, the Backup Compliance Policy will be applied as the minimum backup policy to all clusters in a project and will protect all existing snapshots. This will prevent any user, regardless of role, from modifying or deleting existing snapshots prior to expiration. Changes made to existing backup policies will only apply to future snapshots.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
-//
 // > **IMPORTANT NOTE:** Once a Backup Compliance Policy is enabled, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB Support. However, if the Backup Compliance Policy is approved for disablement by MongoDB Support, the resource can be removed and the delete operation will successfully disable the Backup Compliance Policy. With Backup Compliance Policy enabled, some resources defined in Terraform will no longer be modifiable. See the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 //
 // > **NOTE:** With Backup Compliance Policy enabled, cluster backups are retained after a cluster is deleted and backups can be used normally until retention expiration. When the Backup Compliance Policy is not enabled, Atlas deletes the cluster's associated backup snapshots when a cluster is terminated. By default, a Backup Compliance Policy is not enabled. For more details see [Back Up, Restore, and Archive Data](https://www.mongodb.com/docs/atlas/backup-restore-cluster/).
@@ -204,7 +202,7 @@ type BackupCompliancePolicy struct {
 	PolicyItemWeeklies BackupCompliancePolicyPolicyItemWeeklyArrayOutput `pulumi:"policyItemWeeklies"`
 	// Scheduled policy using a yearly frequency type, see block fields.
 	PolicyItemYearlies BackupCompliancePolicyPolicyItemYearlyArrayOutput `pulumi:"policyItemYearlies"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays pulumi.IntOutput `pulumi:"restoreWindowDays"`
@@ -282,7 +280,7 @@ type backupCompliancePolicyState struct {
 	PolicyItemWeeklies []BackupCompliancePolicyPolicyItemWeekly `pulumi:"policyItemWeeklies"`
 	// Scheduled policy using a yearly frequency type, see block fields.
 	PolicyItemYearlies []BackupCompliancePolicyPolicyItemYearly `pulumi:"policyItemYearlies"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
@@ -319,7 +317,7 @@ type BackupCompliancePolicyState struct {
 	PolicyItemWeeklies BackupCompliancePolicyPolicyItemWeeklyArrayInput
 	// Scheduled policy using a yearly frequency type, see block fields.
 	PolicyItemYearlies BackupCompliancePolicyPolicyItemYearlyArrayInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays pulumi.IntPtrInput
@@ -360,7 +358,7 @@ type backupCompliancePolicyArgs struct {
 	PolicyItemWeeklies []BackupCompliancePolicyPolicyItemWeekly `pulumi:"policyItemWeeklies"`
 	// Scheduled policy using a yearly frequency type, see block fields.
 	PolicyItemYearlies []BackupCompliancePolicyPolicyItemYearly `pulumi:"policyItemYearlies"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
@@ -392,7 +390,7 @@ type BackupCompliancePolicyArgs struct {
 	PolicyItemWeeklies BackupCompliancePolicyPolicyItemWeeklyArrayInput
 	// Scheduled policy using a yearly frequency type, see block fields.
 	PolicyItemYearlies BackupCompliancePolicyPolicyItemYearlyArrayInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
 	RestoreWindowDays pulumi.IntPtrInput
@@ -557,7 +555,7 @@ func (o BackupCompliancePolicyOutput) PolicyItemYearlies() BackupCompliancePolic
 	}).(BackupCompliancePolicyPolicyItemYearlyArrayOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o BackupCompliancePolicyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackupCompliancePolicy) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

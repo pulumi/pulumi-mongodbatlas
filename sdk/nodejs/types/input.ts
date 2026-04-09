@@ -39,7 +39,7 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     noTableScan?: pulumi.Input<boolean>;
     /**
-     * Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+     * Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
      */
     oplogMinRetentionHours?: pulumi.Input<number>;
     /**
@@ -255,7 +255,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
     computeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
      * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
      * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
@@ -320,7 +320,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
     computeScaleDownEnabled?: pulumi.Input<boolean>;
     /**
      * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
      * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
      * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
@@ -1607,7 +1607,7 @@ export interface FederatedDatabaseInstanceStorageStore {
     name?: pulumi.Input<string>;
     prefix?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     provider?: pulumi.Input<string>;
@@ -2199,7 +2199,7 @@ export interface PrivateLinkEndpointServiceEndpoint {
 
 export interface ProjectApiKeyProjectAssignment {
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**
@@ -2485,15 +2485,37 @@ export interface StreamConnectionAws {
     roleArn: pulumi.Input<string>;
 }
 
+export interface StreamConnectionAzure {
+    /**
+     * Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+     */
+    servicePrincipalId: pulumi.Input<string>;
+    /**
+     * Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+     */
+    storageAccountName: pulumi.Input<string>;
+}
+
 export interface StreamConnectionDbRoleToExecute {
     /**
      * The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
      */
     role: pulumi.Input<string>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      */
     type: pulumi.Input<string>;
+}
+
+export interface StreamConnectionGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+     */
+    serviceAccountId: pulumi.Input<string>;
 }
 
 export interface StreamConnectionNetworking {

@@ -20,8 +20,6 @@ import (
 // <br> &#8226;  GCP -  One container per project.
 // <br> &#8226;  AWS and Azure - One container per cloud provider region.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ### Example with AWS
@@ -146,7 +144,7 @@ type NetworkContainer struct {
 	GcpProjectId pulumi.StringOutput `pulumi:"gcpProjectId"`
 	// Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	NetworkName pulumi.StringOutput `pulumi:"networkName"`
-	// Unique identifier for the Atlas project for this Network Peering Container.
+	// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
 	ProviderName pulumi.StringPtrOutput `pulumi:"providerName"`
@@ -217,7 +215,7 @@ type networkContainerState struct {
 	GcpProjectId *string `pulumi:"gcpProjectId"`
 	// Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	NetworkName *string `pulumi:"networkName"`
-	// Unique identifier for the Atlas project for this Network Peering Container.
+	// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
 	ProviderName *string `pulumi:"providerName"`
@@ -253,7 +251,7 @@ type NetworkContainerState struct {
 	GcpProjectId pulumi.StringPtrInput
 	// Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	NetworkName pulumi.StringPtrInput
-	// Unique identifier for the Atlas project for this Network Peering Container.
+	// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
 	ProviderName pulumi.StringPtrInput
@@ -285,7 +283,7 @@ type networkContainerArgs struct {
 	//
 	// **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
 	AtlasCidrBlock string `pulumi:"atlasCidrBlock"`
-	// Unique identifier for the Atlas project for this Network Peering Container.
+	// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
 	ProviderName *string `pulumi:"providerName"`
@@ -308,7 +306,7 @@ type NetworkContainerArgs struct {
 	//
 	// **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
 	AtlasCidrBlock pulumi.StringInput
-	// Unique identifier for the Atlas project for this Network Peering Container.
+	// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
 	ProviderName pulumi.StringPtrInput
@@ -439,7 +437,7 @@ func (o NetworkContainerOutput) NetworkName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.NetworkName }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the Atlas project for this Network Peering Container.
+// Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
 func (o NetworkContainerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

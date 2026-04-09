@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -49,8 +47,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Auditing` describes a Auditing.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -83,8 +79,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.Auditing` describes a Auditing.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// 
         /// ## Example Usage
@@ -121,7 +115,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetAuditingArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -135,7 +129,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetAuditingInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

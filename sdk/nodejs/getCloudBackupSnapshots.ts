@@ -9,9 +9,25 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshots = new mongodbatlas.index.CloudBackupSnapshots("test", {
+ *     projectId: "5d0f1f73cf09a29120e173cf",
+ *     clusterName: "MyClusterTest",
+ *     description: "SomeDescription",
+ *     retentionInDays: 1,
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshots({
+ *     projectId: testCloudBackupSnapshots.projectId,
+ *     clusterName: testCloudBackupSnapshots.clusterName,
+ *     pageNum: 1,
+ *     itemsPerPage: 5,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshots(args: GetCloudBackupSnapshotsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -39,6 +55,9 @@ export interface GetCloudBackupSnapshotsArgs {
      * The page to return. Defaults to `1`.
      */
     pageNum?: number;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
+     */
     projectId: string;
 }
 
@@ -64,9 +83,25 @@ export interface GetCloudBackupSnapshotsResult {
 /**
  * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const testCloudBackupSnapshots = new mongodbatlas.index.CloudBackupSnapshots("test", {
+ *     projectId: "5d0f1f73cf09a29120e173cf",
+ *     clusterName: "MyClusterTest",
+ *     description: "SomeDescription",
+ *     retentionInDays: 1,
+ * });
+ * const test = mongodbatlas.getCloudBackupSnapshots({
+ *     projectId: testCloudBackupSnapshots.projectId,
+ *     clusterName: testCloudBackupSnapshots.clusterName,
+ *     pageNum: 1,
+ *     itemsPerPage: 5,
+ * });
+ * ```
  */
 export function getCloudBackupSnapshotsOutput(args: GetCloudBackupSnapshotsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudBackupSnapshotsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -94,5 +129,8 @@ export interface GetCloudBackupSnapshotsOutputArgs {
      * The page to return. Defaults to `1`.
      */
     pageNum?: pulumi.Input<number>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
+     */
     projectId: pulumi.Input<string>;
 }

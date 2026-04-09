@@ -62,7 +62,7 @@ export interface GetStreamConnectionArgs {
      */
     instanceName?: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -83,6 +83,10 @@ export interface GetStreamConnectionResult {
      * The configuration for AWS Lambda connection. See AWS
      */
     readonly aws: outputs.GetStreamConnectionAws;
+    /**
+     * The configuration for Azure Blob Storage connection. See Azure.
+     */
+    readonly azure: outputs.GetStreamConnectionAzure;
     /**
      * Comma separated list of server addresses.
      */
@@ -105,6 +109,10 @@ export interface GetStreamConnectionResult {
      */
     readonly dbRoleToExecute: outputs.GetStreamConnectionDbRoleToExecute;
     /**
+     * The configuration for GCP Pub/Sub connection. See GCP
+     */
+    readonly gcp: outputs.GetStreamConnectionGcp;
+    /**
      * A map of key-value pairs for optional headers.
      */
     readonly headers: {[key: string]: string};
@@ -114,7 +122,7 @@ export interface GetStreamConnectionResult {
      */
     readonly instanceName?: string;
     /**
-     * Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
      */
     readonly networking: outputs.GetStreamConnectionNetworking;
     readonly projectId: string;
@@ -202,7 +210,7 @@ export interface GetStreamConnectionOutputArgs {
      */
     instanceName?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

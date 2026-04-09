@@ -207,8 +207,6 @@ def get_network_container(container_id: Optional[_builtins.str] = None,
 
     > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example.
@@ -228,7 +226,7 @@ def get_network_container(container_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str container_id: The Network Peering Container ID.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['containerId'] = container_id
@@ -259,8 +257,6 @@ def get_network_container_output(container_id: Optional[pulumi.Input[_builtins.s
 
     > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example.
@@ -280,7 +276,7 @@ def get_network_container_output(container_id: Optional[pulumi.Input[_builtins.s
 
 
     :param _builtins.str container_id: The Network Peering Container ID.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['containerId'] = container_id

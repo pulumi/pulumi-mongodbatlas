@@ -41,7 +41,7 @@ class BackupCompliancePolicyArgs:
         :param pulumi.Input[_builtins.str] authorized_email: Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[_builtins.str] authorized_user_first_name: First name of the user who authorized to update the Backup Compliance Policy settings.
         :param pulumi.Input[_builtins.str] authorized_user_last_name: Last name of the user who authorized to update the Backup Compliance Policy settings.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] copy_protection_enabled: Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         :param pulumi.Input[_builtins.bool] encryption_at_rest_enabled: Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         :param pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs'] on_demand_policy_item: Specifications for on-demand policy.
@@ -118,7 +118,7 @@ class BackupCompliancePolicyArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -282,7 +282,7 @@ class _BackupCompliancePolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]] policy_item_monthlies: Scheduled policy using a monthly frequency type, see block fields.
         :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]] policy_item_weeklies: Scheduled policy using a weekly frequency type, see block fields.
         :param pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]] policy_item_yearlies: Scheduled policy using a yearly frequency type, see block fields.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         :param pulumi.Input[_builtins.str] state: Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
         :param pulumi.Input[_builtins.str] updated_date: ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
@@ -471,7 +471,7 @@ class _BackupCompliancePolicyState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -553,8 +553,6 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         `BackupCompliancePolicy` provides a resource that enables you to set up a Backup Compliance Policy resource. [Backup Compliance Policy ](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy) prevents any user, regardless of role, from modifying or deleting specific cluster settings, backups, and backup configurations. When enabled, the Backup Compliance Policy will be applied as the minimum policy for all clusters and backups in the project. It can only be disabled by contacting MongoDB support. This feature is only supported for cluster tiers M10+.
 
         When enabled, the Backup Compliance Policy will be applied as the minimum backup policy to all clusters in a project and will protect all existing snapshots. This will prevent any user, regardless of role, from modifying or deleting existing snapshots prior to expiration. Changes made to existing backup policies will only apply to future snapshots.
-
-        > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
 
         > **IMPORTANT NOTE:** Once a Backup Compliance Policy is enabled, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB Support. However, if the Backup Compliance Policy is approved for disablement by MongoDB Support, the resource can be removed and the delete operation will successfully disable the Backup Compliance Policy. With Backup Compliance Policy enabled, some resources defined in Terraform will no longer be modifiable. See the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
@@ -687,7 +685,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Scheduled policy using a monthly frequency type, see block fields.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Scheduled policy using a weekly frequency type, see block fields.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]] policy_item_yearlies: Scheduled policy using a yearly frequency type, see block fields.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         """
         ...
@@ -700,8 +698,6 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         `BackupCompliancePolicy` provides a resource that enables you to set up a Backup Compliance Policy resource. [Backup Compliance Policy ](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy) prevents any user, regardless of role, from modifying or deleting specific cluster settings, backups, and backup configurations. When enabled, the Backup Compliance Policy will be applied as the minimum policy for all clusters and backups in the project. It can only be disabled by contacting MongoDB support. This feature is only supported for cluster tiers M10+.
 
         When enabled, the Backup Compliance Policy will be applied as the minimum backup policy to all clusters in a project and will protect all existing snapshots. This will prevent any user, regardless of role, from modifying or deleting existing snapshots prior to expiration. Changes made to existing backup policies will only apply to future snapshots.
-
-        > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
 
         > **IMPORTANT NOTE:** Once a Backup Compliance Policy is enabled, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB Support. However, if the Backup Compliance Policy is approved for disablement by MongoDB Support, the resource can be removed and the delete operation will successfully disable the Backup Compliance Policy. With Backup Compliance Policy enabled, some resources defined in Terraform will no longer be modifiable. See the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
@@ -929,7 +925,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]] policy_item_monthlies: Scheduled policy using a monthly frequency type, see block fields.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]] policy_item_weeklies: Scheduled policy using a weekly frequency type, see block fields.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]] policy_item_yearlies: Scheduled policy using a yearly frequency type, see block fields.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         :param pulumi.Input[_builtins.str] state: Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
         :param pulumi.Input[_builtins.str] updated_date: ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
@@ -1058,7 +1054,7 @@ class BackupCompliancePolicy(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

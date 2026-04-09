@@ -13,8 +13,6 @@ import (
 
 // `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -79,7 +77,7 @@ type LookupCloudBackupSnapshotExportJobArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Unique identifier of the export job to retrieve.
 	ExportJobId string `pulumi:"exportJobId"`
-	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -130,7 +128,7 @@ type LookupCloudBackupSnapshotExportJobOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// Unique identifier of the export job to retrieve.
 	ExportJobId pulumi.StringInput `pulumi:"exportJobId"`
-	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

@@ -143,8 +143,6 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[_builtins
     """
     `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -162,7 +160,7 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[_builtins
 
 
     :param _builtins.str export_bucket_id: Unique identifier of the snapshot export bucket.
-    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
+    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['exportBucketId'] = export_bucket_id
@@ -186,8 +184,6 @@ def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pu
     """
     `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -205,7 +201,7 @@ def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pu
 
 
     :param _builtins.str export_bucket_id: Unique identifier of the snapshot export bucket.
-    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
+    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['exportBucketId'] = export_bucket_id

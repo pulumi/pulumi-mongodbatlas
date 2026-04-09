@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string OrgId;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>

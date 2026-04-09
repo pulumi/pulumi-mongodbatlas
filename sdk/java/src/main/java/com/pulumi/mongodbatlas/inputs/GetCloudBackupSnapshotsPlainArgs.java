@@ -61,9 +61,17 @@ public final class GetCloudBackupSnapshotsPlainArgs extends com.pulumi.resources
         return Optional.ofNullable(this.pageNum);
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
+     * 
+     */
     @Import(name="projectId", required=true)
     private String projectId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
+     * 
+     */
     public String projectId() {
         return this.projectId;
     }
@@ -128,6 +136,12 @@ public final class GetCloudBackupSnapshotsPlainArgs extends com.pulumi.resources
             return this;
         }
 
+        /**
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
+         * 
+         * @return builder
+         * 
+         */
         public Builder projectId(String projectId) {
             $.projectId = projectId;
             return this;

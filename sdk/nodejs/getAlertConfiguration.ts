@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -107,7 +105,7 @@ export interface GetAlertConfigurationArgs {
      */
     outputs?: inputs.GetAlertConfigurationOutput[];
     /**
-     * The ID of the project where the alert configuration will create.
+     * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -156,8 +154,6 @@ export interface GetAlertConfigurationResult {
 }
 /**
  * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
  *
@@ -255,7 +251,7 @@ export interface GetAlertConfigurationOutputArgs {
      */
     outputs?: pulumi.Input<pulumi.Input<inputs.GetAlertConfigurationOutputArgs>[]>;
     /**
-     * The ID of the project where the alert configuration will create.
+     * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

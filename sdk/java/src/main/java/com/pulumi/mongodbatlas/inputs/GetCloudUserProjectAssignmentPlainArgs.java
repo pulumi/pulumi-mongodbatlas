@@ -16,30 +16,46 @@ public final class GetCloudUserProjectAssignmentPlainArgs extends com.pulumi.res
     public static final GetCloudUserProjectAssignmentPlainArgs Empty = new GetCloudUserProjectAssignmentPlainArgs();
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
     @Import(name="userId")
     private @Nullable String userId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
     public Optional<String> userId() {
         return Optional.ofNullable(this.userId);
     }
 
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     * 
+     */
     @Import(name="username")
     private @Nullable String username;
 
+    /**
+     * @return Email address that represents the username of the MongoDB Cloud user.
+     * 
+     */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }
@@ -71,7 +87,7 @@ public final class GetCloudUserProjectAssignmentPlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -81,11 +97,23 @@ public final class GetCloudUserProjectAssignmentPlainArgs extends com.pulumi.res
             return this;
         }
 
+        /**
+         * @param userId Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder userId(@Nullable String userId) {
             $.userId = userId;
             return this;
         }
 
+        /**
+         * @param username Email address that represents the username of the MongoDB Cloud user.
+         * 
+         * @return builder
+         * 
+         */
         public Builder username(@Nullable String username) {
             $.username = username;
             return this;

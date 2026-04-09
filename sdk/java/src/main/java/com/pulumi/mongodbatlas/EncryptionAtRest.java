@@ -34,8 +34,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * &gt; **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryptionAtRestProvider` to `&#34;NONE&#34;` in all existing clusters in the project that use custom key management or delete said clusters.
  * 
  * ## Enabling Encryption at Rest for existing Atlas cluster
@@ -325,14 +323,14 @@ public class EncryptionAtRest extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.googleCloudKmsConfig);
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

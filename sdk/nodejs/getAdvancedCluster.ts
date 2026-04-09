@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -165,7 +163,7 @@ export interface GetAdvancedClusterArgs {
      */
     name: string;
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -286,8 +284,6 @@ export interface GetAdvancedClusterResult {
 }
 /**
  * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
  *
  * ## Example Usage
  *
@@ -443,7 +439,7 @@ export interface GetAdvancedClusterOutputArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

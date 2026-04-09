@@ -13,8 +13,6 @@ import (
 
 // `CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -62,7 +60,7 @@ func LookupCloudBackupSnapshot(ctx *pulumi.Context, args *LookupCloudBackupSnaps
 type LookupCloudBackupSnapshotArgs struct {
 	// The name of the Atlas cluster that contains the snapshot you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The unique identifier of the snapshot you want to retrieve.
 	SnapshotId string `pulumi:"snapshotId"`
@@ -116,7 +114,7 @@ func LookupCloudBackupSnapshotOutput(ctx *pulumi.Context, args LookupCloudBackup
 type LookupCloudBackupSnapshotOutputArgs struct {
 	// The name of the Atlas cluster that contains the snapshot you want to retrieve.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The unique identifier of the snapshot you want to retrieve.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`

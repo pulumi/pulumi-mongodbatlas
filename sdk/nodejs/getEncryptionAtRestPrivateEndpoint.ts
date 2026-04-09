@@ -63,7 +63,7 @@ export interface GetEncryptionAtRestPrivateEndpointArgs {
      */
     id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -89,7 +89,7 @@ export interface GetEncryptionAtRestPrivateEndpointResult {
      */
     readonly privateEndpointConnectionName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     /**
@@ -160,7 +160,7 @@ export interface GetEncryptionAtRestPrivateEndpointOutputArgs {
      */
     id: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

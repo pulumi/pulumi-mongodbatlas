@@ -73,11 +73,17 @@ class GetFlexRestoreJobResult:
     @_builtins.property
     @pulumi.getter(name="deliveryType")
     def delivery_type(self) -> _builtins.str:
+        """
+        Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+        """
         return pulumi.get(self, "delivery_type")
 
     @_builtins.property
     @pulumi.getter(name="expirationDate")
     def expiration_date(self) -> _builtins.str:
+        """
+        Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "expiration_date")
 
     @_builtins.property
@@ -100,53 +106,80 @@ class GetFlexRestoreJobResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="restoreFinishedDate")
     def restore_finished_date(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "restore_finished_date")
 
     @_builtins.property
     @pulumi.getter(name="restoreJobId")
     def restore_job_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the restore job.
+        """
         return pulumi.get(self, "restore_job_id")
 
     @_builtins.property
     @pulumi.getter(name="restoreScheduledDate")
     def restore_scheduled_date(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "restore_scheduled_date")
 
     @_builtins.property
     @pulumi.getter(name="snapshotFinishedDate")
     def snapshot_finished_date(self) -> _builtins.str:
+        """
+        Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "snapshot_finished_date")
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @_builtins.property
     @pulumi.getter(name="snapshotUrl")
     def snapshot_url(self) -> _builtins.str:
+        """
+        Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+        """
         return pulumi.get(self, "snapshot_url")
 
     @_builtins.property
     @pulumi.getter
     def status(self) -> _builtins.str:
+        """
+        Phase of the restore workflow for this job at the time this resource made this request.
+        """
         return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter(name="targetDeploymentItemName")
     def target_deployment_item_name(self) -> _builtins.str:
+        """
+        Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+        """
         return pulumi.get(self, "target_deployment_item_name")
 
     @_builtins.property
     @pulumi.getter(name="targetProjectId")
     def target_project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+        """
         return pulumi.get(self, "target_project_id")
 
 
@@ -197,7 +230,8 @@ def get_flex_restore_job(name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str restore_job_id: Unique 24-hexadecimal digit string that identifies the restore job.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -246,7 +280,8 @@ def get_flex_restore_job_output(name: Optional[pulumi.Input[_builtins.str]] = No
 
 
     :param _builtins.str name: Human-readable label that identifies the flex cluster whose snapshot you want to restore.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str restore_job_id: Unique 24-hexadecimal digit string that identifies the restore job.
     """
     __args__ = dict()
     __args__['name'] = name

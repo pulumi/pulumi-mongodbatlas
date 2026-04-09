@@ -36,7 +36,7 @@ class NetworkContainerArgs:
                **Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.
                
                **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
@@ -76,7 +76,7 @@ class NetworkContainerArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique identifier for the Atlas project for this Network Peering Container.
+        Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -164,7 +164,7 @@ class _NetworkContainerState:
         :param pulumi.Input[_builtins.str] container_id: The Network Peering Container ID.
         :param pulumi.Input[_builtins.str] gcp_project_id: Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[_builtins.str] network_name: Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[_builtins.bool] provisioned: Indicates whether the project has Network Peering connections deployed in the container.
         :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
@@ -271,7 +271,7 @@ class _NetworkContainerState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier for the Atlas project for this Network Peering Container.
+        Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -386,8 +386,6 @@ class NetworkContainer(pulumi.CustomResource):
         <br> &#8226;  GCP -  One container per project.
         <br> &#8226;  AWS and Azure - One container per cloud provider region.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
         ## Example Usage
 
         ### Example with AWS
@@ -456,7 +454,7 @@ class NetworkContainer(pulumi.CustomResource):
                **Atlas locks this value** if an M10+ cluster or a Network Peering connection already exists. To modify the CIDR block, ensure there are no M10+ clusters in the project and no other Network Peering connections in the project.
                
                **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
@@ -476,8 +474,6 @@ class NetworkContainer(pulumi.CustomResource):
         The following is the maximum number of Network Peering containers per cloud provider:
         <br> &#8226;  GCP -  One container per project.
         <br> &#8226;  AWS and Azure - One container per cloud provider region.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
         ## Example Usage
 
@@ -626,7 +622,7 @@ class NetworkContainer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] container_id: The Network Peering Container ID.
         :param pulumi.Input[_builtins.str] gcp_project_id: Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[_builtins.str] network_name: Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[_builtins.bool] provisioned: Indicates whether the project has Network Peering connections deployed in the container.
         :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
@@ -705,7 +701,7 @@ class NetworkContainer(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique identifier for the Atlas project for this Network Peering Container.
+        Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

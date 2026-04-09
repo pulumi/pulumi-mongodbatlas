@@ -14,14 +14,14 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
     public static final GetClustersPlainArgs Empty = new GetClustersPlainArgs();
 
     /**
-     * The unique ID for the project to get the clusters.
+     * The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project to get the clusters.
+     * @return The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -53,7 +53,7 @@ public final class GetClustersPlainArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param projectId The unique ID for the project to get the clusters.
+         * @param projectId The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

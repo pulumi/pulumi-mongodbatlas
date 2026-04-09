@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -40,7 +38,7 @@ export function getThirdPartyIntegration(args: GetThirdPartyIntegrationArgs, opt
  */
 export interface GetThirdPartyIntegrationArgs {
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId: string;
     /**
@@ -135,8 +133,6 @@ export interface GetThirdPartyIntegrationResult {
 /**
  * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -168,7 +164,7 @@ export function getThirdPartyIntegrationOutput(args: GetThirdPartyIntegrationOut
  */
 export interface GetThirdPartyIntegrationOutputArgs {
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId: pulumi.Input<string>;
     /**

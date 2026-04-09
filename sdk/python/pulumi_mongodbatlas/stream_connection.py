@@ -26,11 +26,13 @@ class StreamConnectionArgs:
                  type: pulumi.Input[_builtins.str],
                  authentication: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']] = None,
                  aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
+                 azure: Optional[pulumi.Input['StreamConnectionAzureArgs']] = None,
                  bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
+                 gcp: Optional[pulumi.Input['StreamConnectionGcpArgs']] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
@@ -45,8 +47,8 @@ class StreamConnectionArgs:
         The set of arguments for constructing a StreamConnection resource.
 
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
@@ -57,6 +59,8 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "authentication", authentication)
         if aws is not None:
             pulumi.set(__self__, "aws", aws)
+        if azure is not None:
+            pulumi.set(__self__, "azure", azure)
         if bootstrap_servers is not None:
             pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         if cluster_name is not None:
@@ -67,6 +71,8 @@ class StreamConnectionArgs:
             pulumi.set(__self__, "config", config)
         if db_role_to_execute is not None:
             pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        if gcp is not None:
+            pulumi.set(__self__, "gcp", gcp)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if instance_name is not None:
@@ -107,7 +113,7 @@ class StreamConnectionArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -119,7 +125,7 @@ class StreamConnectionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 
@@ -144,6 +150,15 @@ class StreamConnectionArgs:
     @aws.setter
     def aws(self, value: Optional[pulumi.Input['StreamConnectionAwsArgs']]):
         pulumi.set(self, "aws", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def azure(self) -> Optional[pulumi.Input['StreamConnectionAzureArgs']]:
+        return pulumi.get(self, "azure")
+
+    @azure.setter
+    def azure(self, value: Optional[pulumi.Input['StreamConnectionAzureArgs']]):
+        pulumi.set(self, "azure", value)
 
     @_builtins.property
     @pulumi.getter(name="bootstrapServers")
@@ -189,6 +204,15 @@ class StreamConnectionArgs:
     @db_role_to_execute.setter
     def db_role_to_execute(self, value: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']]):
         pulumi.set(self, "db_role_to_execute", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def gcp(self) -> Optional[pulumi.Input['StreamConnectionGcpArgs']]:
+        return pulumi.get(self, "gcp")
+
+    @gcp.setter
+    def gcp(self, value: Optional[pulumi.Input['StreamConnectionGcpArgs']]):
+        pulumi.set(self, "gcp", value)
 
     @_builtins.property
     @pulumi.getter
@@ -293,12 +317,14 @@ class _StreamConnectionState:
     def __init__(__self__, *,
                  authentication: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']] = None,
                  aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
+                 azure: Optional[pulumi.Input['StreamConnectionAzureArgs']] = None,
                  bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  connection_name: Optional[pulumi.Input[_builtins.str]] = None,
                  db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
+                 gcp: Optional[pulumi.Input['StreamConnectionGcpArgs']] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
@@ -316,14 +342,16 @@ class _StreamConnectionState:
 
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
         if aws is not None:
             pulumi.set(__self__, "aws", aws)
+        if azure is not None:
+            pulumi.set(__self__, "azure", azure)
         if bootstrap_servers is not None:
             pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
         if cluster_name is not None:
@@ -336,6 +364,8 @@ class _StreamConnectionState:
             pulumi.set(__self__, "connection_name", connection_name)
         if db_role_to_execute is not None:
             pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        if gcp is not None:
+            pulumi.set(__self__, "gcp", gcp)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if instance_name is not None:
@@ -381,6 +411,15 @@ class _StreamConnectionState:
     @aws.setter
     def aws(self, value: Optional[pulumi.Input['StreamConnectionAwsArgs']]):
         pulumi.set(self, "aws", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def azure(self) -> Optional[pulumi.Input['StreamConnectionAzureArgs']]:
+        return pulumi.get(self, "azure")
+
+    @azure.setter
+    def azure(self, value: Optional[pulumi.Input['StreamConnectionAzureArgs']]):
+        pulumi.set(self, "azure", value)
 
     @_builtins.property
     @pulumi.getter(name="bootstrapServers")
@@ -441,6 +480,15 @@ class _StreamConnectionState:
 
     @_builtins.property
     @pulumi.getter
+    def gcp(self) -> Optional[pulumi.Input['StreamConnectionGcpArgs']]:
+        return pulumi.get(self, "gcp")
+
+    @gcp.setter
+    def gcp(self, value: Optional[pulumi.Input['StreamConnectionGcpArgs']]):
+        pulumi.set(self, "gcp", value)
+
+    @_builtins.property
+    @pulumi.getter
     def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "headers")
 
@@ -474,7 +522,7 @@ class _StreamConnectionState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -531,7 +579,7 @@ class _StreamConnectionState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 
@@ -569,12 +617,14 @@ class StreamConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
                  aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
+                 azure: Optional[pulumi.Input[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  connection_name: Optional[pulumi.Input[_builtins.str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+                 gcp: Optional[pulumi.Input[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
@@ -658,7 +708,7 @@ class StreamConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_kafka_oauthbearer = mongodbatlas.StreamConnection("example-kafka-oauthbearer",
+        example_kafka_oauthbearer = mongodbatlas.StreamConnection("example_kafka_oauthbearer",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="KafkaOAuthbearerConnection",
@@ -712,6 +762,29 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Azure Blob Storage Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            workspace_name="NewWorkspace",
+            connection_name="AzureBlobStorageConnection",
+            type="AzureBlobStorage",
+            azure={
+                "service_principal_id": "<AZURE_SERVICE_PRINCIPAL_ID>",
+                "storage_account_name": "<AZURE_STORAGE_ACCOUNT_NAME>",
+                "region": "<AZURE_REGION>",
+            },
+            networking={
+                "access": {
+                    "type": "PUBLIC",
+                },
+            })
+        ```
+
         ### Example AWSLambda Connection
 
         ```python
@@ -728,13 +801,36 @@ class StreamConnection(pulumi.CustomResource):
             })
         ```
 
+        ### Example GCPPubSub Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        gcp_setup = mongodbatlas.CloudProviderAccessSetup("gcp_setup",
+            project_id=project_id,
+            provider_name="GCP")
+        gcp_auth = mongodbatlas.CloudProviderAccessAuthorization("gcp_auth",
+            project_id=project_id,
+            role_id=gcp_setup.role_id)
+        example_gcp_pubsub = mongodbatlas.StreamConnection("example_gcp_pubsub",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="GCPPubSubConnection",
+            type="GCPPubSub",
+            gcp={
+                "service_account_id": gcp_setup.gcp_configs[0].service_account_for_atlas,
+            },
+            opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
+        ```
+
         ### Example Https Connection
 
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_https = mongodbatlas.StreamConnection("example-https",
+        example_https = mongodbatlas.StreamConnection("example_https",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="https_connection_tf_new",
@@ -752,7 +848,7 @@ class StreamConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_schema_registry = mongodbatlas.StreamConnection("example-schema-registry",
+        example_schema_registry = mongodbatlas.StreamConnection("example_schema_registry",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnection",
@@ -772,7 +868,7 @@ class StreamConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_schema_registry_sasl = mongodbatlas.StreamConnection("example-schema-registry-sasl",
+        example_schema_registry_sasl = mongodbatlas.StreamConnection("example_schema_registry_sasl",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnectionSASL",
@@ -855,8 +951,8 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         ...
@@ -935,7 +1031,7 @@ class StreamConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_kafka_oauthbearer = mongodbatlas.StreamConnection("example-kafka-oauthbearer",
+        example_kafka_oauthbearer = mongodbatlas.StreamConnection("example_kafka_oauthbearer",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="KafkaOAuthbearerConnection",
@@ -989,6 +1085,29 @@ class StreamConnection(pulumi.CustomResource):
             bootstrap_servers="localhost:9091,localhost:9092")
         ```
 
+        ### Example Azure Blob Storage Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.StreamConnection("test",
+            project_id=project_id,
+            workspace_name="NewWorkspace",
+            connection_name="AzureBlobStorageConnection",
+            type="AzureBlobStorage",
+            azure={
+                "service_principal_id": "<AZURE_SERVICE_PRINCIPAL_ID>",
+                "storage_account_name": "<AZURE_STORAGE_ACCOUNT_NAME>",
+                "region": "<AZURE_REGION>",
+            },
+            networking={
+                "access": {
+                    "type": "PUBLIC",
+                },
+            })
+        ```
+
         ### Example AWSLambda Connection
 
         ```python
@@ -1005,13 +1124,36 @@ class StreamConnection(pulumi.CustomResource):
             })
         ```
 
+        ### Example GCPPubSub Connection
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        gcp_setup = mongodbatlas.CloudProviderAccessSetup("gcp_setup",
+            project_id=project_id,
+            provider_name="GCP")
+        gcp_auth = mongodbatlas.CloudProviderAccessAuthorization("gcp_auth",
+            project_id=project_id,
+            role_id=gcp_setup.role_id)
+        example_gcp_pubsub = mongodbatlas.StreamConnection("example_gcp_pubsub",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="GCPPubSubConnection",
+            type="GCPPubSub",
+            gcp={
+                "service_account_id": gcp_setup.gcp_configs[0].service_account_for_atlas,
+            },
+            opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
+        ```
+
         ### Example Https Connection
 
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_https = mongodbatlas.StreamConnection("example-https",
+        example_https = mongodbatlas.StreamConnection("example_https",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="https_connection_tf_new",
@@ -1029,7 +1171,7 @@ class StreamConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_schema_registry = mongodbatlas.StreamConnection("example-schema-registry",
+        example_schema_registry = mongodbatlas.StreamConnection("example_schema_registry",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnection",
@@ -1049,7 +1191,7 @@ class StreamConnection(pulumi.CustomResource):
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        example_schema_registry_sasl = mongodbatlas.StreamConnection("example-schema-registry-sasl",
+        example_schema_registry_sasl = mongodbatlas.StreamConnection("example_schema_registry_sasl",
             project_id=project_id,
             workspace_name=example["workspaceName"],
             connection_name="SchemaRegistryConnectionSASL",
@@ -1145,12 +1287,14 @@ class StreamConnection(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
                  aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
+                 azure: Optional[pulumi.Input[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
                  bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
                  cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  connection_name: Optional[pulumi.Input[_builtins.str]] = None,
                  db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+                 gcp: Optional[pulumi.Input[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
                  headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
@@ -1174,6 +1318,7 @@ class StreamConnection(pulumi.CustomResource):
 
             __props__.__dict__["authentication"] = authentication
             __props__.__dict__["aws"] = aws
+            __props__.__dict__["azure"] = azure
             __props__.__dict__["bootstrap_servers"] = bootstrap_servers
             __props__.__dict__["cluster_name"] = cluster_name
             __props__.__dict__["cluster_project_id"] = cluster_project_id
@@ -1182,6 +1327,7 @@ class StreamConnection(pulumi.CustomResource):
                 raise TypeError("Missing required property 'connection_name'")
             __props__.__dict__["connection_name"] = connection_name
             __props__.__dict__["db_role_to_execute"] = db_role_to_execute
+            __props__.__dict__["gcp"] = gcp
             __props__.__dict__["headers"] = headers
             __props__.__dict__["instance_name"] = instance_name
             __props__.__dict__["networking"] = networking
@@ -1210,12 +1356,14 @@ class StreamConnection(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
             aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
+            azure: Optional[pulumi.Input[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
             bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
             cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
             cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
             config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             connection_name: Optional[pulumi.Input[_builtins.str]] = None,
             db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+            gcp: Optional[pulumi.Input[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
             headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             instance_name: Optional[pulumi.Input[_builtins.str]] = None,
             networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
@@ -1237,8 +1385,8 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1247,12 +1395,14 @@ class StreamConnection(pulumi.CustomResource):
 
         __props__.__dict__["authentication"] = authentication
         __props__.__dict__["aws"] = aws
+        __props__.__dict__["azure"] = azure
         __props__.__dict__["bootstrap_servers"] = bootstrap_servers
         __props__.__dict__["cluster_name"] = cluster_name
         __props__.__dict__["cluster_project_id"] = cluster_project_id
         __props__.__dict__["config"] = config
         __props__.__dict__["connection_name"] = connection_name
         __props__.__dict__["db_role_to_execute"] = db_role_to_execute
+        __props__.__dict__["gcp"] = gcp
         __props__.__dict__["headers"] = headers
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["networking"] = networking
@@ -1276,6 +1426,11 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def aws(self) -> pulumi.Output[Optional['outputs.StreamConnectionAws']]:
         return pulumi.get(self, "aws")
+
+    @_builtins.property
+    @pulumi.getter
+    def azure(self) -> pulumi.Output[Optional['outputs.StreamConnectionAzure']]:
+        return pulumi.get(self, "azure")
 
     @_builtins.property
     @pulumi.getter(name="bootstrapServers")
@@ -1312,6 +1467,11 @@ class StreamConnection(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    def gcp(self) -> pulumi.Output[Optional['outputs.StreamConnectionGcp']]:
+        return pulumi.get(self, "gcp")
+
+    @_builtins.property
+    @pulumi.getter
     def headers(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         return pulumi.get(self, "headers")
 
@@ -1333,7 +1493,7 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -1366,7 +1526,7 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 

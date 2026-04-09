@@ -13,8 +13,6 @@ import (
 
 // `AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -244,7 +242,7 @@ func LookupAdvancedCluster(ctx *pulumi.Context, args *LookupAdvancedClusterArgs,
 type LookupAdvancedClusterArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name string `pulumi:"name"`
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
 	UseEffectiveFields *bool `pulumi:"useEffectiveFields"`
@@ -322,7 +320,7 @@ func LookupAdvancedClusterOutput(ctx *pulumi.Context, args LookupAdvancedCluster
 type LookupAdvancedClusterOutputArgs struct {
 	// Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
 	Name pulumi.StringInput `pulumi:"name"`
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
 	UseEffectiveFields pulumi.BoolPtrInput `pulumi:"useEffectiveFields"`

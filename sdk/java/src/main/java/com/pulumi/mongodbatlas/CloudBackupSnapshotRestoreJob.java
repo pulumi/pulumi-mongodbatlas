@@ -30,8 +30,6 @@ import javax.annotation.Nullable;
  * &gt; **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
  * `mongodbatlas.CloudBackupSnapshotRestoreJob` resource, you won&#39;t be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn&#39;t support this. The provider will remove the Terraform resource from the state file but won&#39;t destroy the MongoDB Atlas resource.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * ## Example Usage
  * 
  * ### Example automated delivery type
@@ -395,14 +393,14 @@ public class CloudBackupSnapshotRestoreJob extends com.pulumi.resources.CustomRe
         return this.finishedAt;
     }
     /**
-     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+     * @return The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

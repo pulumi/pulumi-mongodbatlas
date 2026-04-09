@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * > **NOTE:** To prevent errors during resource destruction, ensure that no `mongodbatlas.CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `mongodbatlas.CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `mongodbatlas.CloudBackupSnapshotExportBucket` resource.
  *
  * ## Example Usage
@@ -101,7 +99,7 @@ export class CloudBackupSnapshotExportBucket extends pulumi.CustomResource {
      */
     declare public readonly iamRoleId: pulumi.Output<string | undefined>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -186,7 +184,7 @@ export interface CloudBackupSnapshotExportBucketState {
      */
     iamRoleId?: pulumi.Input<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -222,7 +220,7 @@ export interface CloudBackupSnapshotExportBucketArgs {
      */
     iamRoleId?: pulumi.Input<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

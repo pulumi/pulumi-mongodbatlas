@@ -58,16 +58,25 @@ class GetStreamAccountDetailsResult:
     @_builtins.property
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> _builtins.str:
+        """
+        The AWS Account ID.
+        """
         return pulumi.get(self, "aws_account_id")
 
     @_builtins.property
     @pulumi.getter(name="azureSubscriptionId")
     def azure_subscription_id(self) -> _builtins.str:
+        """
+        The Azure Subscription ID.
+        """
         return pulumi.get(self, "azure_subscription_id")
 
     @_builtins.property
     @pulumi.getter(name="cidrBlock")
     def cidr_block(self) -> _builtins.str:
+        """
+        The AWS VPC or Azure Virtual Network CIDR Block.
+        """
         return pulumi.get(self, "cidr_block")
 
     @_builtins.property
@@ -90,23 +99,32 @@ class GetStreamAccountDetailsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="regionName")
     def region_name(self) -> _builtins.str:
+        """
+        The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+        """
         return pulumi.get(self, "region_name")
 
     @_builtins.property
     @pulumi.getter(name="virtualNetworkName")
     def virtual_network_name(self) -> _builtins.str:
+        """
+        The name of the Azure Virtual Network.
+        """
         return pulumi.get(self, "virtual_network_name")
 
     @_builtins.property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> _builtins.str:
+        """
+        The AWS VPC ID.
+        """
         return pulumi.get(self, "vpc_id")
 
 
@@ -152,7 +170,8 @@ def get_stream_account_details(cloud_provider: Optional[_builtins.str] = None,
 
 
     :param _builtins.str cloud_provider: One of `aws` or `azure`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str region_name: The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider
@@ -196,7 +215,8 @@ def get_stream_account_details_output(cloud_provider: Optional[pulumi.Input[_bui
 
 
     :param _builtins.str cloud_provider: One of `aws` or `azure`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str region_name: The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
     """
     __args__ = dict()
     __args__['cloudProvider'] = cloud_provider

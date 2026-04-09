@@ -32,7 +32,7 @@ public final class GetStreamConnectionsInvokeResult {
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -78,7 +78,7 @@ public final class GetStreamConnectionsInvokeResult {
         return Optional.ofNullable(this.pageNum);
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

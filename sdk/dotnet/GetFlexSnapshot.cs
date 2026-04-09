@@ -145,11 +145,14 @@ namespace Pulumi.Mongodbatlas
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        /// </summary>
         [Input("snapshotId", required: true)]
         public string SnapshotId { get; set; } = null!;
 
@@ -168,11 +171,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        /// </summary>
         [Input("snapshotId", required: true)]
         public Input<string> SnapshotId { get; set; } = null!;
 
@@ -186,24 +192,45 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetFlexSnapshotResult
     {
+        /// <summary>
+        /// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string Expiration;
+        /// <summary>
+        /// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string FinishTime;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// MongoDB host version that the snapshot runs.
+        /// </summary>
         public readonly string MongoDbVersion;
         /// <summary>
         /// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string ScheduledTime;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+        /// </summary>
         public readonly string SnapshotId;
+        /// <summary>
+        /// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string StartTime;
+        /// <summary>
+        /// Phase of the restore workflow for this job at the time this resource made this request.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

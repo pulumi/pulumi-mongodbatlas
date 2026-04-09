@@ -29,23 +29,31 @@ public final class GetFlexRestoreJobPlainArgs extends com.pulumi.resources.Invok
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the restore job.
+     * 
+     */
     @Import(name="restoreJobId", required=true)
     private String restoreJobId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the restore job.
+     * 
+     */
     public String restoreJobId() {
         return this.restoreJobId;
     }
@@ -88,7 +96,7 @@ public final class GetFlexRestoreJobPlainArgs extends com.pulumi.resources.Invok
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -98,6 +106,12 @@ public final class GetFlexRestoreJobPlainArgs extends com.pulumi.resources.Invok
             return this;
         }
 
+        /**
+         * @param restoreJobId Unique 24-hexadecimal digit string that identifies the restore job.
+         * 
+         * @return builder
+         * 
+         */
         public Builder restoreJobId(String restoreJobId) {
             $.restoreJobId = restoreJobId;
             return this;

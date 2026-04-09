@@ -30,26 +30,34 @@ func GetFlexSnapshot(ctx *pulumi.Context, args *GetFlexSnapshotArgs, opts ...pul
 type GetFlexSnapshotArgs struct {
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId  string `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
 	SnapshotId string `pulumi:"snapshotId"`
 }
 
 // A collection of values returned by getFlexSnapshot.
 type GetFlexSnapshotResult struct {
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	Expiration string `pulumi:"expiration"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	FinishTime string `pulumi:"finishTime"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// MongoDB host version that the snapshot runs.
 	MongoDbVersion string `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId     string `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ScheduledTime string `pulumi:"scheduledTime"`
-	SnapshotId    string `pulumi:"snapshotId"`
-	StartTime     string `pulumi:"startTime"`
-	Status        string `pulumi:"status"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	StartTime string `pulumi:"startTime"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status string `pulumi:"status"`
 }
 
 func GetFlexSnapshotOutput(ctx *pulumi.Context, args GetFlexSnapshotOutputArgs, opts ...pulumi.InvokeOption) GetFlexSnapshotResultOutput {
@@ -65,8 +73,9 @@ func GetFlexSnapshotOutput(ctx *pulumi.Context, args GetFlexSnapshotOutputArgs, 
 type GetFlexSnapshotOutputArgs struct {
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId  pulumi.StringInput `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 }
 
@@ -89,10 +98,12 @@ func (o GetFlexSnapshotResultOutput) ToGetFlexSnapshotResultOutputWithContext(ct
 	return o
 }
 
+// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexSnapshotResultOutput) Expiration() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.Expiration }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexSnapshotResultOutput) FinishTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.FinishTime }).(pulumi.StringOutput)
 }
@@ -102,6 +113,7 @@ func (o GetFlexSnapshotResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// MongoDB host version that the snapshot runs.
 func (o GetFlexSnapshotResultOutput) MongoDbVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.MongoDbVersion }).(pulumi.StringOutput)
 }
@@ -111,23 +123,27 @@ func (o GetFlexSnapshotResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetFlexSnapshotResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexSnapshotResultOutput) ScheduledTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.ScheduledTime }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
 func (o GetFlexSnapshotResultOutput) SnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexSnapshotResultOutput) StartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.StartTime }).(pulumi.StringOutput)
 }
 
+// Phase of the restore workflow for this job at the time this resource made this request.
 func (o GetFlexSnapshotResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.Status }).(pulumi.StringOutput)
 }

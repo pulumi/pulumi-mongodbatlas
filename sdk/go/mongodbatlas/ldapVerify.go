@@ -103,7 +103,7 @@ type LdapVerify struct {
 	Links LdapVerifyLinkArrayOutput `pulumi:"links"`
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port pulumi.IntOutput `pulumi:"port"`
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
 	RequestId pulumi.StringOutput `pulumi:"requestId"`
@@ -135,6 +135,13 @@ func NewLdapVerify(ctx *pulumi.Context,
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
+	if args.BindPassword != nil {
+		args.BindPassword = pulumi.ToSecret(args.BindPassword).(pulumi.StringInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"bindPassword",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LdapVerify
 	err := ctx.RegisterResource("mongodbatlas:index/ldapVerify:LdapVerify", name, args, &resource, opts...)
@@ -172,7 +179,7 @@ type ldapVerifyState struct {
 	Links []LdapVerifyLink `pulumi:"links"`
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port *int `pulumi:"port"`
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
 	RequestId *string `pulumi:"requestId"`
@@ -197,7 +204,7 @@ type LdapVerifyState struct {
 	Links LdapVerifyLinkArrayInput
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port pulumi.IntPtrInput
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
 	RequestId pulumi.StringPtrInput
@@ -224,7 +231,7 @@ type ldapVerifyArgs struct {
 	Hostname string `pulumi:"hostname"`
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port int `pulumi:"port"`
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -242,7 +249,7 @@ type LdapVerifyArgs struct {
 	Hostname pulumi.StringInput
 	// The port to which the LDAP server listens for client connections. Default: `636`
 	Port pulumi.IntInput
-	// The unique ID for the project to configure LDAP.
+	// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 }
 
@@ -368,7 +375,7 @@ func (o LdapVerifyOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *LdapVerify) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
-// The unique ID for the project to configure LDAP.
+// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
 func (o LdapVerifyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LdapVerify) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

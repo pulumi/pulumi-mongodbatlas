@@ -40,7 +40,7 @@ type ProjectServiceAccount struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// A list of project-level roles for the Service Account.
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
@@ -97,7 +97,7 @@ type projectServiceAccountState struct {
 	Description *string `pulumi:"description"`
 	// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
 	Name *string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// A list of project-level roles for the Service Account.
 	Roles []string `pulumi:"roles"`
@@ -116,7 +116,7 @@ type ProjectServiceAccountState struct {
 	Description pulumi.StringPtrInput
 	// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
 	Name pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// A list of project-level roles for the Service Account.
 	Roles pulumi.StringArrayInput
@@ -135,7 +135,7 @@ type projectServiceAccountArgs struct {
 	Description string `pulumi:"description"`
 	// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
 	Name *string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list of project-level roles for the Service Account.
 	Roles []string `pulumi:"roles"`
@@ -149,7 +149,7 @@ type ProjectServiceAccountArgs struct {
 	Description pulumi.StringInput
 	// Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
 	Name pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// A list of project-level roles for the Service Account.
 	Roles pulumi.StringArrayInput
@@ -264,7 +264,7 @@ func (o ProjectServiceAccountOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectServiceAccount) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o ProjectServiceAccountOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectServiceAccount) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

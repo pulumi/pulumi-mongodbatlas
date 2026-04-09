@@ -47,14 +47,14 @@ public final class GetCloudBackupSnapshotExportBucketsPlainArgs extends com.pulu
     }
 
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique identifier of the project for the Atlas cluster.
+     * @return The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -110,7 +110,7 @@ public final class GetCloudBackupSnapshotExportBucketsPlainArgs extends com.pulu
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Atlas cluster.
+         * @param projectId The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

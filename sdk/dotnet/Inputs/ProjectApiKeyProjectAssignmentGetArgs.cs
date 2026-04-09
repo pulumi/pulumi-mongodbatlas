@@ -13,7 +13,7 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class ProjectApiKeyProjectAssignmentGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Project ID to assign to Access Key
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

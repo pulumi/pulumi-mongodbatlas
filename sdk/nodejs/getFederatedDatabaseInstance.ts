@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
@@ -80,7 +78,7 @@ export interface GetFederatedDatabaseInstanceArgs {
      */
     name: string;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -158,8 +156,6 @@ export interface GetFederatedDatabaseInstanceResult {
 /**
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
  *
  * ## Example Usage
@@ -229,7 +225,7 @@ export interface GetFederatedDatabaseInstanceOutputArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

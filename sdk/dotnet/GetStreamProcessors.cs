@@ -597,15 +597,21 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamProcessorsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
         [Input("instanceName")]
         public string? InstanceName { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
         [Input("workspaceName")]
         public string? WorkspaceName { get; set; }
 
@@ -617,15 +623,21 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetStreamProcessorsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
         [Input("workspaceName")]
         public Input<string>? WorkspaceName { get; set; }
 
@@ -643,12 +655,21 @@ namespace Pulumi.Mongodbatlas
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Label that identifies the stream processing workspace.
+        /// </summary>
         public readonly string? InstanceName;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Returns all Stream Processors within the specified stream instance.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetStreamProcessorsResultResult> Results;
+        /// <summary>
+        /// Label that identifies the stream processing workspace. Conflicts with `InstanceName`.
+        /// </summary>
         public readonly string? WorkspaceName;
 
         [OutputConstructor]

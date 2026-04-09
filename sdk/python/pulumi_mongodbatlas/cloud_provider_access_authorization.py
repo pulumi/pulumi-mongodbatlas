@@ -28,7 +28,7 @@ class CloudProviderAccessAuthorizationArgs:
         """
         The set of arguments for constructing a CloudProviderAccessAuthorization resource.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
                
                Conditional
@@ -44,7 +44,7 @@ class CloudProviderAccessAuthorizationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -100,7 +100,7 @@ class _CloudProviderAccessAuthorizationState:
 
         :param pulumi.Input[_builtins.str] authorized_date: Date on which this role was authorized.
         :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessAuthorizationFeatureUsageArgs']]] feature_usages: Atlas features this AWS IAM role is linked to.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
                
                Conditional
@@ -175,7 +175,7 @@ class _CloudProviderAccessAuthorizationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         """
         return pulumi.get(self, "project_id")
 
@@ -295,7 +295,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
                
                Conditional
@@ -455,7 +455,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authorized_date: Date on which this role was authorized.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict']]]] feature_usages: Atlas features this AWS IAM role is linked to.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
                
                Conditional
@@ -508,7 +508,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         """
         return pulumi.get(self, "project_id")
 

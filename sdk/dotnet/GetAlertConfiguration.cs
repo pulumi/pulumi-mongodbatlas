@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -151,8 +149,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -287,8 +283,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// 
         /// ## Example Usage
@@ -446,7 +440,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The ID of the project where the alert configuration will create.
+        /// The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -479,7 +473,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The ID of the project where the alert configuration will create.
+        /// The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

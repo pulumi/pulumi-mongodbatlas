@@ -168,7 +168,7 @@ namespace Pulumi.Mongodbatlas
         public string? InstanceName { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -232,6 +232,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetStreamConnectionAwsResult Aws;
         /// <summary>
+        /// The configuration for Azure Blob Storage connection. See Azure.
+        /// </summary>
+        public readonly Outputs.GetStreamConnectionAzureResult Azure;
+        /// <summary>
         /// Comma separated list of server addresses.
         /// </summary>
         public readonly string BootstrapServers;
@@ -253,13 +257,17 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetStreamConnectionDbRoleToExecuteResult DbRoleToExecute;
         /// <summary>
+        /// The configuration for GCP Pub/Sub connection. See GCP
+        /// </summary>
+        public readonly Outputs.GetStreamConnectionGcpResult Gcp;
+        /// <summary>
         /// A map of key-value pairs for optional headers.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Headers;
         public readonly string Id;
         public readonly string? InstanceName;
         /// <summary>
-        /// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+        /// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
         /// </summary>
         public readonly Outputs.GetStreamConnectionNetworkingResult Networking;
         public readonly string ProjectId;
@@ -297,6 +305,8 @@ namespace Pulumi.Mongodbatlas
 
             Outputs.GetStreamConnectionAwsResult aws,
 
+            Outputs.GetStreamConnectionAzureResult azure,
+
             string bootstrapServers,
 
             string clusterName,
@@ -308,6 +318,8 @@ namespace Pulumi.Mongodbatlas
             string connectionName,
 
             Outputs.GetStreamConnectionDbRoleToExecuteResult dbRoleToExecute,
+
+            Outputs.GetStreamConnectionGcpResult gcp,
 
             ImmutableDictionary<string, string> headers,
 
@@ -335,12 +347,14 @@ namespace Pulumi.Mongodbatlas
         {
             Authentication = authentication;
             Aws = aws;
+            Azure = azure;
             BootstrapServers = bootstrapServers;
             ClusterName = clusterName;
             ClusterProjectId = clusterProjectId;
             Config = config;
             ConnectionName = connectionName;
             DbRoleToExecute = dbRoleToExecute;
+            Gcp = gcp;
             Headers = headers;
             Id = id;
             InstanceName = instanceName;

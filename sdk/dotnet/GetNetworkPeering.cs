@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic Example (AWS).
@@ -54,8 +52,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic Example (AWS).
@@ -93,8 +89,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -142,7 +136,7 @@ namespace Pulumi.Mongodbatlas
         public string PeeringId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -162,7 +156,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> PeeringId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -237,8 +235,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -459,8 +455,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You might find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -691,7 +685,7 @@ namespace Pulumi.Mongodbatlas
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the cluster.
+        /// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -717,7 +711,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the cluster.
+        /// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

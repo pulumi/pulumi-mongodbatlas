@@ -60,7 +60,7 @@ type LookupStreamWorkspacesArgs struct {
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -70,7 +70,7 @@ type LookupStreamWorkspacesResult struct {
 	Id           string `pulumi:"id"`
 	ItemsPerPage *int   `pulumi:"itemsPerPage"`
 	PageNum      *int   `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each element contains a Stream Workspace.
 	Results []GetStreamWorkspacesResult `pulumi:"results"`
@@ -93,7 +93,7 @@ type LookupStreamWorkspacesOutputArgs struct {
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -129,7 +129,7 @@ func (o LookupStreamWorkspacesResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupStreamWorkspacesResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupStreamWorkspacesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamWorkspacesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

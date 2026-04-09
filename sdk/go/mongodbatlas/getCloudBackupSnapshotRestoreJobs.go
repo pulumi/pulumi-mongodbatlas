@@ -13,8 +13,6 @@ import (
 
 // `getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -86,7 +84,7 @@ type LookupCloudBackupSnapshotRestoreJobsArgs struct {
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -121,7 +119,7 @@ type LookupCloudBackupSnapshotRestoreJobsOutputArgs struct {
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

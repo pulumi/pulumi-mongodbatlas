@@ -38,7 +38,7 @@ class DatabaseUserArgs:
 
         :param pulumi.Input[_builtins.str] auth_database_name: Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
                Accepted values include:
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[_builtins.str] aws_iam_type: If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
@@ -98,7 +98,7 @@ class DatabaseUserArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project to create the database user.
+        The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -267,7 +267,7 @@ class _DatabaseUserState:
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[_builtins.str] password: User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
@@ -395,7 +395,7 @@ class _DatabaseUserState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to create the database user.
+        The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -475,8 +475,6 @@ class DatabaseUser(pulumi.CustomResource):
         `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
 
         Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
 
@@ -623,7 +621,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[_builtins.str] password: User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
@@ -641,8 +639,6 @@ class DatabaseUser(pulumi.CustomResource):
         `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
 
         Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
 
@@ -874,7 +870,7 @@ class DatabaseUser(pulumi.CustomResource):
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
         :param pulumi.Input[_builtins.str] password: User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
@@ -967,7 +963,7 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project to create the database user.
+        The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

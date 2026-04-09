@@ -14,14 +14,14 @@ public final class GetMaintenanceWindowPlainArgs extends com.pulumi.resources.In
     public static final GetMaintenanceWindowPlainArgs Empty = new GetMaintenanceWindowPlainArgs();
 
     /**
-     * The unique identifier of the project for the Maintenance Window.
+     * The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique identifier of the project for the Maintenance Window.
+     * @return The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -53,7 +53,7 @@ public final class GetMaintenanceWindowPlainArgs extends com.pulumi.resources.In
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Maintenance Window.
+         * @param projectId The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

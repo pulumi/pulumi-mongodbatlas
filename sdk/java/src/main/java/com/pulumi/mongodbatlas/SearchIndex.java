@@ -424,14 +424,14 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.numPartitions);
     }
     /**
-     * The ID of the organization or project you want to create the search index within.
+     * The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The ID of the organization or project you want to create the search index within.
+     * @return The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

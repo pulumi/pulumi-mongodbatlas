@@ -28,7 +28,7 @@ public final class GetFederatedQueryLimitsResult {
     private Integer maximumLimit;
     private String overrunPolicy;
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -69,7 +69,7 @@ public final class GetFederatedQueryLimitsResult {
         return this.overrunPolicy;
     }
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

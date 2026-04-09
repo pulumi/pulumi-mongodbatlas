@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -269,7 +267,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.AlertConfigurationNotification>> Notifications { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the project where the alert configuration will create.
+        /// The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -372,7 +370,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The ID of the project where the alert configuration will create.
+        /// The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -443,7 +441,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The ID of the project where the alert configuration will create.
+        /// The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

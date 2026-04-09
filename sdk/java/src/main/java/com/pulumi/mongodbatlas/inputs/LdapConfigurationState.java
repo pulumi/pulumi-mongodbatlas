@@ -140,14 +140,14 @@ public final class LdapConfigurationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to configure LDAP.
+     * @return The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -377,7 +377,7 @@ public final class LdapConfigurationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param projectId The unique ID for the project to configure LDAP.
+         * @param projectId The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -388,7 +388,7 @@ public final class LdapConfigurationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param projectId The unique ID for the project to configure LDAP.
+         * @param projectId The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

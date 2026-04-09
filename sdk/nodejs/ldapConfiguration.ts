@@ -126,7 +126,7 @@ export class LdapConfiguration extends pulumi.CustomResource {
      */
     declare public readonly port: pulumi.Output<number | undefined>;
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -232,7 +232,7 @@ export interface LdapConfigurationState {
      */
     port?: pulumi.Input<number>;
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -281,7 +281,7 @@ export interface LdapConfigurationArgs {
      */
     port?: pulumi.Input<number>;
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

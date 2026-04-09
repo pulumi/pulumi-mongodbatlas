@@ -31,7 +31,7 @@ class StreamPrivatelinkEndpointArgs:
         """
         The set of arguments for constructing a StreamPrivatelinkEndpoint resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param pulumi.Input[_builtins.str] vendor: Vendor that manages the endpoint. The following are the vendor values per provider:
                
@@ -71,7 +71,7 @@ class StreamPrivatelinkEndpointArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -216,7 +216,7 @@ class _StreamPrivatelinkEndpointState:
         :param pulumi.Input[_builtins.str] error_message: Error message if the connection is in a failed state.
         :param pulumi.Input[_builtins.str] interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
         :param pulumi.Input[_builtins.str] interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_account_id: Account ID from the cloud provider.
         :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
@@ -340,7 +340,7 @@ class _StreamPrivatelinkEndpointState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -595,7 +595,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
                
                	* AZURE provider with EVENTHUB or CONFLUENT vendor.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_attachment_uris: List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
@@ -839,7 +839,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] error_message: Error message if the connection is in a failed state.
         :param pulumi.Input[_builtins.str] interface_endpoint_id: Interface endpoint ID that is created from the specified service endpoint ID.
         :param pulumi.Input[_builtins.str] interface_endpoint_name: Name of interface endpoint that is created from the specified service endpoint ID.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_account_id: Account ID from the cloud provider.
         :param pulumi.Input[_builtins.str] provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param pulumi.Input[_builtins.str] region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
@@ -930,7 +930,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

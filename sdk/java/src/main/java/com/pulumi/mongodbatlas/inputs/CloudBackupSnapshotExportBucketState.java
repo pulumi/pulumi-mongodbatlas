@@ -76,14 +76,14 @@ public final class CloudBackupSnapshotExportBucketState extends com.pulumi.resou
     }
 
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique identifier of the project for the Atlas cluster.
+     * @return The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -259,7 +259,7 @@ public final class CloudBackupSnapshotExportBucketState extends com.pulumi.resou
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Atlas cluster.
+         * @param projectId The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -270,7 +270,7 @@ public final class CloudBackupSnapshotExportBucketState extends com.pulumi.resou
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Atlas cluster.
+         * @param projectId The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

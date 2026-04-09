@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -91,8 +89,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -167,8 +163,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.LdapVerify` describes a LDAP Verify.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// 
         /// ## Example Usage
@@ -247,7 +241,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetLdapVerifyArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier for the Atlas project associated with the verification request.
+        /// Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -267,7 +261,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetLdapVerifyInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier for the Atlas project associated with the verification request.
+        /// Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -83,7 +81,7 @@ export function getDatabaseUsers(args: GetDatabaseUsersArgs, opts?: pulumi.Invok
  */
 export interface GetDatabaseUsersArgs {
     /**
-     * The unique ID for the project to get all database users.
+     * The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -97,7 +95,7 @@ export interface GetDatabaseUsersResult {
      */
     readonly id: string;
     /**
-     * ID of the Atlas project the user belongs to.
+     * ID of the Atlas project the user belongs to, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     /**
@@ -109,8 +107,6 @@ export interface GetDatabaseUsersResult {
  * `mongodbatlas.getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
  *
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -182,7 +178,7 @@ export function getDatabaseUsersOutput(args: GetDatabaseUsersOutputArgs, opts?: 
  */
 export interface GetDatabaseUsersOutputArgs {
     /**
-     * The unique ID for the project to get all database users.
+     * The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

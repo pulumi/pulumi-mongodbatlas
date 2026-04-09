@@ -30,7 +30,7 @@ class ClusterOutageSimulationArgs:
 
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]] outage_filters: List of settings that specify the type of cluster outage simulation.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -67,7 +67,7 @@ class ClusterOutageSimulationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -104,7 +104,7 @@ class _ClusterOutageSimulationState:
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterOutageSimulationOutageFilterArgs']]] outage_filters: List of settings that specify the type of cluster outage simulation.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] simulation_id: Unique 24-hexadecimal character string that identifies the outage simulation.
         :param pulumi.Input[_builtins.str] start_request_date: Date and time when MongoDB Cloud started the regional outage simulation.
         :param pulumi.Input[_builtins.str] state: Current phase of the outage simulation:
@@ -170,7 +170,7 @@ class _ClusterOutageSimulationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -241,8 +241,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
 
         **IMPORTANT:** Test Outage on Majority of Electable Nodes will leave the Atlas cluster without a majority quorum. There will be no primary so write operations will not succeed, and reads will succeed only when configured with a suitable [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/). To recover the majority quorum, you will have the option to manually reconfigure your cluster by adding new nodes to existing regions or adding new regions at the risk of losing recent writes, or end the simulation.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
         > **IMPORTANT:** This resource cannot be updated.
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 
@@ -284,7 +282,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         """
         ...
     @overload
@@ -300,8 +298,6 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining.
 
         **IMPORTANT:** Test Outage on Majority of Electable Nodes will leave the Atlas cluster without a majority quorum. There will be no primary so write operations will not succeed, and reads will succeed only when configured with a suitable [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/). To recover the majority quorum, you will have the option to manually reconfigure your cluster by adding new nodes to existing regions or adding new regions at the risk of losing recent writes, or end the simulation.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **IMPORTANT:** This resource cannot be updated.
         **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
@@ -407,7 +403,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] simulation_id: Unique 24-hexadecimal character string that identifies the outage simulation.
         :param pulumi.Input[_builtins.str] start_request_date: Date and time when MongoDB Cloud started the regional outage simulation.
         :param pulumi.Input[_builtins.str] state: Current phase of the outage simulation:
@@ -459,7 +455,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+        The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

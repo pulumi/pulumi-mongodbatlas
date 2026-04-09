@@ -12,7 +12,9 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionState;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionAuthentication;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionAws;
+import com.pulumi.mongodbatlas.outputs.StreamConnectionAzure;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionDbRoleToExecute;
+import com.pulumi.mongodbatlas.outputs.StreamConnectionGcp;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionNetworking;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionSchemaRegistryAuthentication;
 import com.pulumi.mongodbatlas.outputs.StreamConnectionSecurity;
@@ -184,7 +186,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example_kafka_oauthbearer = new StreamConnection("example-kafka-oauthbearer", StreamConnectionArgs.builder()
+ *         var exampleKafkaOauthbearer = new StreamConnection("exampleKafkaOauthbearer", StreamConnectionArgs.builder()
  *             .projectId(projectId)
  *             .workspaceName(example.workspaceName())
  *             .connectionName("KafkaOAuthbearerConnection")
@@ -264,6 +266,55 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example Azure Blob Storage Connection
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionAzureArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingAccessArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new StreamConnection("test", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName("NewWorkspace")
+ *             .connectionName("AzureBlobStorageConnection")
+ *             .type("AzureBlobStorage")
+ *             .azure(StreamConnectionAzureArgs.builder()
+ *                 .servicePrincipalId("<AZURE_SERVICE_PRINCIPAL_ID>")
+ *                 .storageAccountName("<AZURE_STORAGE_ACCOUNT_NAME>")
+ *                 .region("<AZURE_REGION>")
+ *                 .build())
+ *             .networking(StreamConnectionNetworkingArgs.builder()
+ *                 .access(StreamConnectionNetworkingAccessArgs.builder()
+ *                     .type("PUBLIC")
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Example AWSLambda Connection
  * 
  * <pre>
@@ -304,6 +355,63 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example GCPPubSub Connection
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionGcpArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpSetup = new CloudProviderAccessSetup("gcpSetup", CloudProviderAccessSetupArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("GCP")
+ *             .build());
+ * 
+ *         var gcpAuth = new CloudProviderAccessAuthorization("gcpAuth", CloudProviderAccessAuthorizationArgs.builder()
+ *             .projectId(projectId)
+ *             .roleId(gcpSetup.roleId())
+ *             .build());
+ * 
+ *         var exampleGcpPubsub = new StreamConnection("exampleGcpPubsub", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.workspaceName())
+ *             .connectionName("GCPPubSubConnection")
+ *             .type("GCPPubSub")
+ *             .gcp(StreamConnectionGcpArgs.builder()
+ *                 .serviceAccountId(gcpSetup.gcpConfigs().applyValue(_gcpConfigs -> _gcpConfigs[0].serviceAccountForAtlas()))
+ *                 .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(gcpAuth)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Example Https Connection
  * 
  * <pre>
@@ -328,7 +436,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example_https = new StreamConnection("example-https", StreamConnectionArgs.builder()
+ *         var exampleHttps = new StreamConnection("exampleHttps", StreamConnectionArgs.builder()
  *             .projectId(projectId)
  *             .workspaceName(example.workspaceName())
  *             .connectionName("https_connection_tf_new")
@@ -370,7 +478,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example_schema_registry = new StreamConnection("example-schema-registry", StreamConnectionArgs.builder()
+ *         var exampleSchemaRegistry = new StreamConnection("exampleSchemaRegistry", StreamConnectionArgs.builder()
  *             .projectId(projectId)
  *             .workspaceName(example.workspaceName())
  *             .connectionName("SchemaRegistryConnection")
@@ -414,7 +522,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var example_schema_registry_sasl = new StreamConnection("example-schema-registry-sasl", StreamConnectionArgs.builder()
+ *         var exampleSchemaRegistrySasl = new StreamConnection("exampleSchemaRegistrySasl", StreamConnectionArgs.builder()
  *             .projectId(projectId)
  *             .workspaceName(example.workspaceName())
  *             .connectionName("SchemaRegistryConnectionSASL")
@@ -552,6 +660,12 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     public Output<Optional<StreamConnectionAws>> aws() {
         return Codegen.optional(this.aws);
     }
+    @Export(name="azure", refs={StreamConnectionAzure.class}, tree="[0]")
+    private Output</* @Nullable */ StreamConnectionAzure> azure;
+
+    public Output<Optional<StreamConnectionAzure>> azure() {
+        return Codegen.optional(this.azure);
+    }
     @Export(name="bootstrapServers", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> bootstrapServers;
 
@@ -596,6 +710,12 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
     public Output<Optional<StreamConnectionDbRoleToExecute>> dbRoleToExecute() {
         return Codegen.optional(this.dbRoleToExecute);
     }
+    @Export(name="gcp", refs={StreamConnectionGcp.class}, tree="[0]")
+    private Output</* @Nullable */ StreamConnectionGcp> gcp;
+
+    public Output<Optional<StreamConnectionGcp>> gcp() {
+        return Codegen.optional(this.gcp);
+    }
     @Export(name="headers", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> headers;
 
@@ -627,14 +747,14 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return this.networking;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -671,14 +791,14 @@ public class StreamConnection extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.timeouts);
     }
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * @return Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      */
     public Output<String> type() {

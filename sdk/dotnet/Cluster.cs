@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-    /// 
     /// &gt; **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`ContainerId` attribute on the cluster.
     /// 
     /// &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `IsExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
@@ -593,7 +591,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> PitEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the cluster.
+        /// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -958,7 +956,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? PitEnabled { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the cluster.
+        /// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -1318,7 +1316,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? PitEnabled { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create the cluster.
+        /// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

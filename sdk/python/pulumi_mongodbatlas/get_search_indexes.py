@@ -124,15 +124,13 @@ def get_search_indexes(cluster_name: Optional[_builtins.str] = None,
     """
     `get_search_indexes` describes all search indexes. This represents search indexes that have been created.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
 
     :param _builtins.str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
     :param _builtins.str collection_name: Name of the collection with one or more Atlas Search indexes.
     :param _builtins.str database: (Required) Name of the database the collection is in.
-    :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+    :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -158,15 +156,13 @@ def get_search_indexes_output(cluster_name: Optional[pulumi.Input[_builtins.str]
     """
     `get_search_indexes` describes all search indexes. This represents search indexes that have been created.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
 
     :param _builtins.str cluster_name: Name of the cluster containing the collection with one or more Atlas Search indexes.
     :param _builtins.str collection_name: Name of the collection with one or more Atlas Search indexes.
     :param _builtins.str database: (Required) Name of the database the collection is in.
-    :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+    :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

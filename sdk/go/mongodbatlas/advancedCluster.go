@@ -699,6 +699,13 @@ import (
 //
 // ### Further Examples
 //
+// **Target Examples (Recommended Starting Points):**
+// - Free Tier (M0)
+// - Simple M10 Replica Set
+// - M10 High-Availability Replica Set (2-2-1)
+// - Simple M30 Single-Shard Cluster
+// - M30 Multi-Shard Cluster (2 Shards)
+//
 // **Cluster Types:**
 // - Replicaset
 // - Symmetric Sharded Cluster
@@ -866,9 +873,7 @@ type AdvancedCluster struct {
 	PinnedFcv AdvancedClusterPinnedFcvPtrOutput `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolOutput `pulumi:"pitEnabled"`
-	// Unique ID for the project to create the cluster.
-	//
-	// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+	// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
 	RedactClientLogData pulumi.BoolOutput `pulumi:"redactClientLogData"`
@@ -1003,9 +1008,7 @@ type advancedClusterState struct {
 	PinnedFcv *AdvancedClusterPinnedFcv `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled *bool `pulumi:"pitEnabled"`
-	// Unique ID for the project to create the cluster.
-	//
-	// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+	// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
 	RedactClientLogData *bool `pulumi:"redactClientLogData"`
@@ -1102,9 +1105,7 @@ type AdvancedClusterState struct {
 	PinnedFcv AdvancedClusterPinnedFcvPtrInput
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolPtrInput
-	// Unique ID for the project to create the cluster.
-	//
-	// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+	// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
 	RedactClientLogData pulumi.BoolPtrInput
@@ -1195,9 +1196,7 @@ type advancedClusterArgs struct {
 	PinnedFcv *AdvancedClusterPinnedFcv `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled *bool `pulumi:"pitEnabled"`
-	// Unique ID for the project to create the cluster.
-	//
-	// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+	// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
 	RedactClientLogData *bool `pulumi:"redactClientLogData"`
@@ -1276,9 +1275,7 @@ type AdvancedClusterArgs struct {
 	PinnedFcv AdvancedClusterPinnedFcvPtrInput
 	// Flag that indicates if the cluster uses Continuous Cloud Backup.
 	PitEnabled pulumi.BoolPtrInput
-	// Unique ID for the project to create the cluster.
-	//
-	// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+	// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated.
 	RedactClientLogData pulumi.BoolPtrInput
@@ -1512,9 +1509,7 @@ func (o AdvancedClusterOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.BoolOutput { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// Unique ID for the project to create the cluster.
-//
-// > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+// Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 func (o AdvancedClusterOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

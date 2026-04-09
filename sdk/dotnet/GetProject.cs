@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Using ProjectId attribute to query
@@ -88,8 +86,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Using ProjectId attribute to query
@@ -161,8 +157,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -246,7 +240,7 @@ namespace Pulumi.Mongodbatlas
         public string? Name { get; set; }
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -268,7 +262,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

@@ -29,7 +29,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
         The set of arguments for constructing a PrivatelinkEndpointServiceDataFederationOnlineArchive resource.
 
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
@@ -61,7 +61,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -134,7 +134,7 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the resource type associated with this private endpoint.
@@ -194,7 +194,7 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -255,8 +255,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         """
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
         > **NOTE:** Updates are limited to the `comment` argument.
 
         ## Example Usage
@@ -305,7 +303,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         """
@@ -317,8 +315,6 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** Updates are limited to the `comment` argument.
 
@@ -433,7 +429,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the resource type associated with this private endpoint.
@@ -479,7 +475,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

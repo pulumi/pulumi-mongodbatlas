@@ -29,14 +29,14 @@ public final class GetProjectApiKeyPlainArgs extends com.pulumi.resources.Invoke
     }
 
     /**
-     * The unique ID for the project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -80,7 +80,7 @@ public final class GetProjectApiKeyPlainArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param projectId The unique ID for the project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

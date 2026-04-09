@@ -13,8 +13,6 @@ import (
 
 // `NetworkPeering` describes a Network Peering Connection.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ### Basic Example (AWS).
@@ -66,7 +64,7 @@ func LookupNetworkPeering(ctx *pulumi.Context, args *LookupNetworkPeeringArgs, o
 type LookupNetworkPeeringArgs struct {
 	// Atlas assigned unique ID for the peering connection.
 	PeeringId string `pulumi:"peeringId"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -128,7 +126,7 @@ func LookupNetworkPeeringOutput(ctx *pulumi.Context, args LookupNetworkPeeringOu
 type LookupNetworkPeeringOutputArgs struct {
 	// Atlas assigned unique ID for the peering connection.
 	PeeringId pulumi.StringInput `pulumi:"peeringId"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string> Role { get; set; } = null!;
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

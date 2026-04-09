@@ -30,7 +30,7 @@ func LookupProjectServiceAccount(ctx *pulumi.Context, args *LookupProjectService
 type LookupProjectServiceAccountArgs struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -46,7 +46,7 @@ type LookupProjectServiceAccountResult struct {
 	Id string `pulumi:"id"`
 	// Human-readable name for the Service Account.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list of Project roles associated with the Service Account.
 	Roles []string `pulumi:"roles"`
@@ -67,7 +67,7 @@ func LookupProjectServiceAccountOutput(ctx *pulumi.Context, args LookupProjectSe
 type LookupProjectServiceAccountOutputArgs struct {
 	// The Client ID of the Service Account.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -115,7 +115,7 @@ func (o LookupProjectServiceAccountResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupProjectServiceAccountResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

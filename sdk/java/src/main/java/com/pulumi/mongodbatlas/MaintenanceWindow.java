@@ -22,8 +22,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **NOTE:** Only a single maintenance window resource can be defined per project.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * &gt; **NOTE:** Maintenance window times use the project&#39;s configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
  * 
  * ## Maintenance Window Considerations:
@@ -251,14 +249,14 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.numberOfDeferrals;
     }
     /**
-     * The unique identifier of the project for the Maintenance Window.
+     * The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique identifier of the project for the Maintenance Window.
+     * @return The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

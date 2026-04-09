@@ -13,8 +13,6 @@ import (
 
 // `getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -71,7 +69,7 @@ func LookupCustomDbRoles(ctx *pulumi.Context, args *LookupCustomDbRolesArgs, opt
 
 // A collection of arguments for invoking getCustomDbRoles.
 type LookupCustomDbRolesArgs struct {
-	// The unique ID for the project to get all custom db roles.
+	// The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -95,7 +93,7 @@ func LookupCustomDbRolesOutput(ctx *pulumi.Context, args LookupCustomDbRolesOutp
 
 // A collection of arguments for invoking getCustomDbRoles.
 type LookupCustomDbRolesOutputArgs struct {
-	// The unique ID for the project to get all custom db roles.
+	// The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

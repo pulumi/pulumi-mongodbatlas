@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * When enabled, the Backup Compliance Policy will be applied as the minimum backup policy to all clusters in a project and will protect all existing snapshots. This will prevent any user, regardless of role, from modifying or deleting existing snapshots prior to expiration. Changes made to existing backup policies will only apply to future snapshots.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
- *
  * > **IMPORTANT NOTE:** Once a Backup Compliance Policy is enabled, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB Support. However, if the Backup Compliance Policy is approved for disablement by MongoDB Support, the resource can be removed and the delete operation will successfully disable the Backup Compliance Policy. With Backup Compliance Policy enabled, some resources defined in Terraform will no longer be modifiable. See the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
  * > **NOTE:** With Backup Compliance Policy enabled, cluster backups are retained after a cluster is deleted and backups can be used normally until retention expiration. When the Backup Compliance Policy is not enabled, Atlas deletes the cluster's associated backup snapshots when a cluster is terminated. By default, a Backup Compliance Policy is not enabled. For more details see [Back Up, Restore, and Archive Data](https://www.mongodb.com/docs/atlas/backup-restore-cluster/).
@@ -213,7 +211,7 @@ export class BackupCompliancePolicy extends pulumi.CustomResource {
      */
     declare public readonly policyItemYearlies: pulumi.Output<outputs.BackupCompliancePolicyPolicyItemYearly[] | undefined>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -353,7 +351,7 @@ export interface BackupCompliancePolicyState {
      */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -427,7 +425,7 @@ export interface BackupCompliancePolicyArgs {
      */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

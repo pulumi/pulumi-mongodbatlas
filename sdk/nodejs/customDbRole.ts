@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `mongodbatlas.CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project's clusters support, and that are compatible with each MongoDB version used by your project's clusters. For example, if your project has MongoDB 4.2 clusters, you can't create custom roles that use actions introduced in MongoDB 4.4.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -148,7 +146,7 @@ export class CustomDbRole extends pulumi.CustomResource {
     declare public readonly actions: pulumi.Output<outputs.CustomDbRoleAction[] | undefined>;
     declare public readonly inheritedRoles: pulumi.Output<outputs.CustomDbRoleInheritedRole[] | undefined>;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -205,7 +203,7 @@ export interface CustomDbRoleState {
     actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
     inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -228,7 +226,7 @@ export interface CustomDbRoleArgs {
     actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
     inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

@@ -14,14 +14,14 @@ public final class GetNetworkContainersPlainArgs extends com.pulumi.resources.In
     public static final GetNetworkContainersPlainArgs Empty = new GetNetworkContainersPlainArgs();
 
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project.
+     * @return The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -69,7 +69,7 @@ public final class GetNetworkContainersPlainArgs extends com.pulumi.resources.In
         }
 
         /**
-         * @param projectId The unique ID for the project.
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -79,7 +79,7 @@ class GetStreamConnectionsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -147,7 +147,7 @@ def get_stream_connections(instance_name: Optional[_builtins.str] = None,
     :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
     :param _builtins.int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
            
            > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
@@ -193,7 +193,7 @@ def get_stream_connections_output(instance_name: Optional[pulumi.Input[Optional[
     :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
     :param _builtins.int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
            
            > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.

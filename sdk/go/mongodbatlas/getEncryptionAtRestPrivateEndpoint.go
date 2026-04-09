@@ -92,7 +92,7 @@ type LookupEncryptionAtRestPrivateEndpointArgs struct {
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -106,7 +106,7 @@ type LookupEncryptionAtRestPrivateEndpointResult struct {
 	Id string `pulumi:"id"`
 	// Connection name of the Azure Private Endpoint.
 	PrivateEndpointConnectionName string `pulumi:"privateEndpointConnectionName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider region in which the Encryption At Rest private endpoint is located.
 	RegionName string `pulumi:"regionName"`
@@ -129,7 +129,7 @@ type LookupEncryptionAtRestPrivateEndpointOutputArgs struct {
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Unique 24-hexadecimal digit string that identifies the Private Endpoint Service.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -172,7 +172,7 @@ func (o LookupEncryptionAtRestPrivateEndpointResultOutput) PrivateEndpointConnec
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointResult) string { return v.PrivateEndpointConnectionName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupEncryptionAtRestPrivateEndpointResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

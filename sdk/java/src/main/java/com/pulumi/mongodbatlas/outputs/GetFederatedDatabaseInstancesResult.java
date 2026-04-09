@@ -24,7 +24,7 @@ public final class GetFederatedDatabaseInstancesResult {
     private List<String> hostnames;
     private String name;
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -103,7 +103,7 @@ public final class GetFederatedDatabaseInstancesResult {
         return this.name;
     }
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

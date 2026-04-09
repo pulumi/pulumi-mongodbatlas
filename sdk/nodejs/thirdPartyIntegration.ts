@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  *
  * > **IMPORTANT** Each project can only have one configuration per integration `type`.
@@ -76,7 +74,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     declare public readonly microsoftTeamsWebhookUrl: pulumi.Output<string>;
     declare public readonly password: pulumi.Output<string>;
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     declare public readonly projectId: pulumi.Output<string>;
     declare public readonly region: pulumi.Output<string>;
@@ -183,7 +181,7 @@ export interface ThirdPartyIntegrationState {
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
@@ -224,7 +222,7 @@ export interface ThirdPartyIntegrationArgs {
     microsoftTeamsWebhookUrl?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId: pulumi.Input<string>;
     region?: pulumi.Input<string>;

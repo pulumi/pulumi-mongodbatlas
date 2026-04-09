@@ -35,7 +35,7 @@ class ServerlessInstanceArgs:
         """
         The set of arguments for constructing a ServerlessInstance resource.
 
-        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
@@ -75,7 +75,7 @@ class ServerlessInstanceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The ID of the organization or project you want to create the serverless instance within.
+        The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -231,7 +231,7 @@ class _ServerlessInstanceState:
         :param pulumi.Input[_builtins.str] create_date: Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
         :param pulumi.Input[_builtins.str] mongo_db_version: Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
         :param pulumi.Input[_builtins.str] name: Human-readable label that identifies the serverless instance.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
@@ -375,7 +375,7 @@ class _ServerlessInstanceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the organization or project you want to create the serverless instance within.
+        The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -513,7 +513,7 @@ class ServerlessInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] auto_indexing: Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         :param pulumi.Input[_builtins.bool] continuous_backup_enabled: Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         :param pulumi.Input[_builtins.str] name: Human-readable label that identifies the serverless instance.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
@@ -658,7 +658,7 @@ class ServerlessInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] create_date: Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
         :param pulumi.Input[_builtins.str] mongo_db_version: Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
         :param pulumi.Input[_builtins.str] name: Human-readable label that identifies the serverless instance.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_settings_backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_provider_name: Cloud service provider that applies to the provisioned the serverless instance.
         :param pulumi.Input[_builtins.str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
@@ -754,7 +754,7 @@ class ServerlessInstance(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The ID of the organization or project you want to create the serverless instance within.
+        The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

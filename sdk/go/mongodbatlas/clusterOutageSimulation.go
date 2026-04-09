@@ -20,8 +20,6 @@ import (
 //
 // **IMPORTANT:** Test Outage on Majority of Electable Nodes will leave the Atlas cluster without a majority quorum. There will be no primary so write operations will not succeed, and reads will succeed only when configured with a suitable [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/). To recover the majority quorum, you will have the option to manually reconfigure your cluster by adding new nodes to existing regions or adding new regions at the risk of losing recent writes, or end the simulation.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **IMPORTANT:** This resource cannot be updated.
 // **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
 //
@@ -81,7 +79,7 @@ type ClusterOutageSimulation struct {
 	DeleteOnCreateTimeout pulumi.BoolPtrOutput `pulumi:"deleteOnCreateTimeout"`
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayOutput `pulumi:"outageFilters"`
-	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Unique 24-hexadecimal character string that identifies the outage simulation.
 	SimulationId pulumi.StringOutput `pulumi:"simulationId"`
@@ -142,7 +140,7 @@ type clusterOutageSimulationState struct {
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters []ClusterOutageSimulationOutageFilter `pulumi:"outageFilters"`
-	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Unique 24-hexadecimal character string that identifies the outage simulation.
 	SimulationId *string `pulumi:"simulationId"`
@@ -165,7 +163,7 @@ type ClusterOutageSimulationState struct {
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayInput
-	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Unique 24-hexadecimal character string that identifies the outage simulation.
 	SimulationId pulumi.StringPtrInput
@@ -192,7 +190,7 @@ type clusterOutageSimulationArgs struct {
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters []ClusterOutageSimulationOutageFilter `pulumi:"outageFilters"`
-	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -204,7 +202,7 @@ type ClusterOutageSimulationArgs struct {
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// List of settings that specify the type of cluster outage simulation.
 	OutageFilters ClusterOutageSimulationOutageFilterArrayInput
-	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+	// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 }
 
@@ -312,7 +310,7 @@ func (o ClusterOutageSimulationOutput) OutageFilters() ClusterOutageSimulationOu
 	}).(ClusterOutageSimulationOutageFilterArrayOutput)
 }
 
-// The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+// The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
 func (o ClusterOutageSimulationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ClusterOutageSimulation) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

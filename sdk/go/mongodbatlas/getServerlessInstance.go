@@ -17,8 +17,6 @@ import (
 // > **NOTE:**  Serverless instances do not support some Atlas features at this time.
 // For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ### Basic
@@ -69,7 +67,7 @@ type LookupServerlessInstanceArgs struct {
 	Links                   []GetServerlessInstanceLink `pulumi:"links"`
 	// Human-readable label that identifies your serverless instance.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+	// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName *string `pulumi:"stateName"`
@@ -133,7 +131,7 @@ type LookupServerlessInstanceOutputArgs struct {
 	Links                   GetServerlessInstanceLinkArrayInput `pulumi:"links"`
 	// Human-readable label that identifies your serverless instance.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+	// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringPtrInput `pulumi:"stateName"`

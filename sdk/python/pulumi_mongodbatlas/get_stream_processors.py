@@ -56,24 +56,33 @@ class GetStreamProcessorsResult:
     @pulumi.getter(name="instanceName")
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
     def instance_name(self) -> Optional[_builtins.str]:
+        """
+        Label that identifies the stream processing workspace.
+        """
         return pulumi.get(self, "instance_name")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
     def results(self) -> Sequence['outputs.GetStreamProcessorsResultResult']:
+        """
+        Returns all Stream Processors within the specified stream instance.
+        """
         return pulumi.get(self, "results")
 
     @_builtins.property
     @pulumi.getter(name="workspaceName")
     def workspace_name(self) -> Optional[_builtins.str]:
+        """
+        Label that identifies the stream processing workspace. Conflicts with `instance_name`.
+        """
         return pulumi.get(self, "workspace_name")
 
 
@@ -229,7 +238,9 @@ def get_stream_processors(instance_name: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str instance_name: Label that identifies the stream processing workspace.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name
@@ -383,7 +394,9 @@ def get_stream_processors_output(instance_name: Optional[pulumi.Input[Optional[_
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str instance_name: Label that identifies the stream processing workspace.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name

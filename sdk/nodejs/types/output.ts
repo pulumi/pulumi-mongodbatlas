@@ -39,7 +39,7 @@ export interface AdvancedClusterAdvancedConfiguration {
      */
     noTableScan: boolean;
     /**
-     * Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+     * Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
      */
     oplogMinRetentionHours: number;
     /**
@@ -255,7 +255,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
     computeScaleDownEnabled: boolean;
     /**
      * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
      * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
      * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
@@ -320,7 +320,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
     computeScaleDownEnabled: boolean;
     /**
      * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+     * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
      * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
      * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
@@ -1607,7 +1607,7 @@ export interface FederatedDatabaseInstanceStorageStore {
     name: string;
     prefix: string;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
     provider: string;
@@ -2251,7 +2251,7 @@ export interface GetAdvancedClustersResult {
      */
     pitEnabled: boolean;
     /**
-     * The unique ID for the project to get the clusters.
+     * The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -2956,7 +2956,7 @@ export interface GetAlertConfigurationsResult {
      */
     outputs: outputs.GetAlertConfigurationsResultOutput[];
     /**
-     * The unique ID for the project to get the alert configurations.
+     * The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -3179,7 +3179,7 @@ export interface GetApiKeyProjectAssignmentsResult {
      */
     apiKeyId: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -4716,7 +4716,7 @@ export interface GetDatabaseUsersResult {
      */
     oidcAuthType: string;
     /**
-     * The unique ID for the project to get all database users.
+     * The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -4898,7 +4898,7 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
      */
     privateEndpointConnectionName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -5125,7 +5125,7 @@ export interface GetFederatedDatabaseInstanceStorageStore {
     name: string;
     prefix: string;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
     provider: string;
@@ -5165,7 +5165,7 @@ export interface GetFederatedDatabaseInstancesResult {
     hostnames: string[];
     name: string;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -5321,7 +5321,7 @@ export interface GetFederatedDatabaseInstancesResultStorageStore {
     name: string;
     prefix: string;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
     provider: string;
@@ -5365,7 +5365,7 @@ export interface GetFederatedQueryLimitsResult {
     maximumLimit: number;
     overrunPolicy: string;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -5993,7 +5993,7 @@ export interface GetFlexRestoreJobsResult {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -6052,7 +6052,7 @@ export interface GetFlexSnapshotsResult {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -6404,7 +6404,7 @@ export interface GetOnlineArchivesResult {
     partitionFields: outputs.GetOnlineArchivesResultPartitionField[];
     paused: boolean;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     schedules: outputs.GetOnlineArchivesResultSchedule[];
@@ -6745,7 +6745,7 @@ export interface GetPrivatelinkEndpointsResult {
 
 export interface GetProjectApiKeyProjectAssignment {
     /**
-     * The unique ID for the project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -6770,7 +6770,7 @@ export interface GetProjectApiKeysResult {
 
 export interface GetProjectApiKeysResultProjectAssignment {
     /**
-     * The unique ID for the project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -7069,7 +7069,7 @@ export interface GetProjectsResult {
      */
     orgId: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
      */
     projectId?: string;
     /**
@@ -7444,7 +7444,7 @@ export interface GetSearchIndexesResult {
      */
     numPartitions: number;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -7545,7 +7545,7 @@ export interface GetServerlessInstancesResult {
      */
     name: string;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -7627,7 +7627,7 @@ export interface GetServiceAccountAccessListEntriesResult {
 
 export interface GetServiceAccountProjectAssignmentsResult {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -7775,6 +7775,21 @@ export interface GetStreamConnectionAws {
     roleArn: string;
 }
 
+export interface GetStreamConnectionAzure {
+    /**
+     * Optional. Azure region where the storage account is deployed, specified as a valid Azure region name (for example, `eastus`, `westeurope`). Must match the region configured for the target Azure Storage account.
+     */
+    region: string;
+    /**
+     * UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+     */
+    servicePrincipalId: string;
+    /**
+     * Name of the Azure Storage account.
+     */
+    storageAccountName: string;
+}
+
 export interface GetStreamConnectionDbRoleToExecute {
     /**
      * The name of the role to use. Can be a built in role or a custom role.
@@ -7786,6 +7801,13 @@ export interface GetStreamConnectionDbRoleToExecute {
      * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     type: string;
+}
+
+export interface GetStreamConnectionGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+     */
+    serviceAccountId: string;
 }
 
 export interface GetStreamConnectionNetworking {
@@ -7846,6 +7868,10 @@ export interface GetStreamConnectionsResult {
      */
     aws: outputs.GetStreamConnectionsResultAws;
     /**
+     * The configuration for Azure Blob Storage connection. See Azure.
+     */
+    azure: outputs.GetStreamConnectionsResultAzure;
+    /**
      * Comma separated list of server addresses.
      */
     bootstrapServers: string;
@@ -7867,6 +7893,10 @@ export interface GetStreamConnectionsResult {
      */
     dbRoleToExecute: outputs.GetStreamConnectionsResultDbRoleToExecute;
     /**
+     * The configuration for GCP Pub/Sub connection. See GCP
+     */
+    gcp: outputs.GetStreamConnectionsResultGcp;
+    /**
      * A map of key-value pairs for optional headers.
      */
     headers: {[key: string]: string};
@@ -7878,11 +7908,11 @@ export interface GetStreamConnectionsResult {
      */
     instanceName: string;
     /**
-     * Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
      */
     networking: outputs.GetStreamConnectionsResultNetworking;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -7965,6 +7995,21 @@ export interface GetStreamConnectionsResultAws {
     roleArn: string;
 }
 
+export interface GetStreamConnectionsResultAzure {
+    /**
+     * Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+     */
+    region: string;
+    /**
+     * Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+     */
+    servicePrincipalId: string;
+    /**
+     * Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+     */
+    storageAccountName: string;
+}
+
 export interface GetStreamConnectionsResultDbRoleToExecute {
     /**
      * The name of the role to use. Can be a built in role or a custom role.
@@ -7976,6 +8021,13 @@ export interface GetStreamConnectionsResultDbRoleToExecute {
      * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
     type: string;
+}
+
+export interface GetStreamConnectionsResultGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+     */
+    serviceAccountId: string;
 }
 
 export interface GetStreamConnectionsResultNetworking {
@@ -8060,7 +8112,7 @@ export interface GetStreamInstancesResult {
      */
     instanceName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -8122,7 +8174,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     interfaceEndpointName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -8207,13 +8259,11 @@ export interface GetStreamProcessorsResult {
      */
     processorName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
-     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state. 
-     *
-     * **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
+     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
      */
     state: string;
     /**
@@ -8225,7 +8275,7 @@ export interface GetStreamProcessorsResult {
      */
     tier: string;
     /**
-     * Label that identifies the stream processing workspace.
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
      */
     workspaceName: string;
 }
@@ -8282,7 +8332,7 @@ export interface GetStreamWorkspacesResult {
     hostnames: string[];
     id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -8404,7 +8454,7 @@ export interface GetThirdPartyIntegrationsResult {
      */
     microsoftTeamsWebhookUrl: string;
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId: string;
     /**
@@ -8450,7 +8500,7 @@ export interface GetThirdPartyIntegrationsResult {
     serviceKey: string;
     teamName: string;
     /**
-     * Thirt-Party service integration type.
+     * Third-Party service integration type.
      */
     type: string;
     /**
@@ -8708,7 +8758,7 @@ export interface PrivateLinkEndpointServiceEndpoint {
 
 export interface ProjectApiKeyProjectAssignment {
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -8987,15 +9037,37 @@ export interface StreamConnectionAws {
     roleArn: string;
 }
 
+export interface StreamConnectionAzure {
+    /**
+     * Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+     */
+    region: string;
+    /**
+     * UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+     */
+    servicePrincipalId: string;
+    /**
+     * Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+     */
+    storageAccountName: string;
+}
+
 export interface StreamConnectionDbRoleToExecute {
     /**
      * The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
      */
     role: string;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      */
     type: string;
+}
+
+export interface StreamConnectionGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+     */
+    serviceAccountId: string;
 }
 
 export interface StreamConnectionNetworking {

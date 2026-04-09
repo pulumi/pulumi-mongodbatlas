@@ -19,7 +19,7 @@ public final class GetAlertConfigurationsInvokeResult {
     private @Nullable List<GetAlertConfigurationsListOption> listOptions;
     private @Nullable List<String> outputTypes;
     /**
-     * @return The ID of the project where the alert configuration exists
+     * @return The ID of the project where the alert configuration exists, also known as `groupId` in the official documentation
      * 
      */
     private String projectId;
@@ -45,7 +45,7 @@ public final class GetAlertConfigurationsInvokeResult {
         return this.outputTypes == null ? List.of() : this.outputTypes;
     }
     /**
-     * @return The ID of the project where the alert configuration exists
+     * @return The ID of the project where the alert configuration exists, also known as `groupId` in the official documentation
      * 
      */
     public String projectId() {

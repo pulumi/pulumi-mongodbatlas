@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### With AWS
@@ -86,7 +84,7 @@ export interface GetCloudProviderAccessSetupArgs {
      */
     azureConfigs?: inputs.GetCloudProviderAccessSetupAzureConfig[];
     /**
-     * The unique ID for the project to get all Cloud Provider Access
+     * The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
      */
     projectId: string;
     /**
@@ -134,8 +132,6 @@ export interface GetCloudProviderAccessSetupResult {
 }
 /**
  * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -212,7 +208,7 @@ export interface GetCloudProviderAccessSetupOutputArgs {
      */
     azureConfigs?: pulumi.Input<pulumi.Input<inputs.GetCloudProviderAccessSetupAzureConfigArgs>[]>;
     /**
-     * The unique ID for the project to get all Cloud Provider Access
+     * The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
      */
     projectId: pulumi.Input<string>;
     /**

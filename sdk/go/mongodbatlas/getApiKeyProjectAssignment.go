@@ -30,7 +30,7 @@ func LookupApiKeyProjectAssignment(ctx *pulumi.Context, args *LookupApiKeyProjec
 type LookupApiKeyProjectAssignmentArgs struct {
 	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -40,9 +40,10 @@ type LookupApiKeyProjectAssignmentResult struct {
 	ApiKeyId string `pulumi:"apiKeyId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string   `pulumi:"projectId"`
-	Roles     []string `pulumi:"roles"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+	Roles []string `pulumi:"roles"`
 }
 
 func LookupApiKeyProjectAssignmentOutput(ctx *pulumi.Context, args LookupApiKeyProjectAssignmentOutputArgs, opts ...pulumi.InvokeOption) LookupApiKeyProjectAssignmentResultOutput {
@@ -58,7 +59,7 @@ func LookupApiKeyProjectAssignmentOutput(ctx *pulumi.Context, args LookupApiKeyP
 type LookupApiKeyProjectAssignmentOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -91,11 +92,12 @@ func (o LookupApiKeyProjectAssignmentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiKeyProjectAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupApiKeyProjectAssignmentResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiKeyProjectAssignmentResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
 func (o LookupApiKeyProjectAssignmentResultOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupApiKeyProjectAssignmentResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }

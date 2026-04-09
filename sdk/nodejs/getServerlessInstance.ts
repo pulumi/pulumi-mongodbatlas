@@ -13,8 +13,6 @@ import * as utilities from "./utilities";
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### Basic
@@ -62,7 +60,7 @@ export interface GetServerlessInstanceArgs {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+     * Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -139,8 +137,6 @@ export interface GetServerlessInstanceResult {
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
  * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### Basic
@@ -188,7 +184,7 @@ export interface GetServerlessInstanceOutputArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+     * Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

@@ -27,13 +27,16 @@ class GetStreamConnectionResult:
     """
     A collection of values returned by getStreamConnection.
     """
-    def __init__(__self__, authentication=None, aws=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, schema_registry_authentication=None, schema_registry_provider=None, schema_registry_urls=None, security=None, type=None, url=None, workspace_name=None):
+    def __init__(__self__, authentication=None, aws=None, azure=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, gcp=None, headers=None, id=None, instance_name=None, networking=None, project_id=None, schema_registry_authentication=None, schema_registry_provider=None, schema_registry_urls=None, security=None, type=None, url=None, workspace_name=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
         if aws and not isinstance(aws, dict):
             raise TypeError("Expected argument 'aws' to be a dict")
         pulumi.set(__self__, "aws", aws)
+        if azure and not isinstance(azure, dict):
+            raise TypeError("Expected argument 'azure' to be a dict")
+        pulumi.set(__self__, "azure", azure)
         if bootstrap_servers and not isinstance(bootstrap_servers, str):
             raise TypeError("Expected argument 'bootstrap_servers' to be a str")
         pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
@@ -52,6 +55,9 @@ class GetStreamConnectionResult:
         if db_role_to_execute and not isinstance(db_role_to_execute, dict):
             raise TypeError("Expected argument 'db_role_to_execute' to be a dict")
         pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        if gcp and not isinstance(gcp, dict):
+            raise TypeError("Expected argument 'gcp' to be a dict")
+        pulumi.set(__self__, "gcp", gcp)
         if headers and not isinstance(headers, dict):
             raise TypeError("Expected argument 'headers' to be a dict")
         pulumi.set(__self__, "headers", headers)
@@ -106,6 +112,14 @@ class GetStreamConnectionResult:
         return pulumi.get(self, "aws")
 
     @_builtins.property
+    @pulumi.getter
+    def azure(self) -> 'outputs.GetStreamConnectionAzureResult':
+        """
+        The configuration for Azure Blob Storage connection. See Azure.
+        """
+        return pulumi.get(self, "azure")
+
+    @_builtins.property
     @pulumi.getter(name="bootstrapServers")
     def bootstrap_servers(self) -> _builtins.str:
         """
@@ -152,6 +166,14 @@ class GetStreamConnectionResult:
 
     @_builtins.property
     @pulumi.getter
+    def gcp(self) -> 'outputs.GetStreamConnectionGcpResult':
+        """
+        The configuration for GCP Pub/Sub connection. See GCP
+        """
+        return pulumi.get(self, "gcp")
+
+    @_builtins.property
+    @pulumi.getter
     def headers(self) -> Mapping[str, _builtins.str]:
         """
         A map of key-value pairs for optional headers.
@@ -173,7 +195,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def networking(self) -> 'outputs.GetStreamConnectionNetworkingResult':
         """
-        Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+        Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
         """
         return pulumi.get(self, "networking")
 
@@ -246,12 +268,14 @@ class AwaitableGetStreamConnectionResult(GetStreamConnectionResult):
         return GetStreamConnectionResult(
             authentication=self.authentication,
             aws=self.aws,
+            azure=self.azure,
             bootstrap_servers=self.bootstrap_servers,
             cluster_name=self.cluster_name,
             cluster_project_id=self.cluster_project_id,
             config=self.config,
             connection_name=self.connection_name,
             db_role_to_execute=self.db_role_to_execute,
+            gcp=self.gcp,
             headers=self.headers,
             id=self.id,
             instance_name=self.instance_name,
@@ -301,7 +325,7 @@ def get_stream_connection(connection_name: Optional[_builtins.str] = None,
            
            > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
     :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
     """
     __args__ = dict()
@@ -315,12 +339,14 @@ def get_stream_connection(connection_name: Optional[_builtins.str] = None,
     return AwaitableGetStreamConnectionResult(
         authentication=pulumi.get(__ret__, 'authentication'),
         aws=pulumi.get(__ret__, 'aws'),
+        azure=pulumi.get(__ret__, 'azure'),
         bootstrap_servers=pulumi.get(__ret__, 'bootstrap_servers'),
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
         cluster_project_id=pulumi.get(__ret__, 'cluster_project_id'),
         config=pulumi.get(__ret__, 'config'),
         connection_name=pulumi.get(__ret__, 'connection_name'),
         db_role_to_execute=pulumi.get(__ret__, 'db_role_to_execute'),
+        gcp=pulumi.get(__ret__, 'gcp'),
         headers=pulumi.get(__ret__, 'headers'),
         id=pulumi.get(__ret__, 'id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
@@ -368,7 +394,7 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[_builtin
            
            > **NOTE:** Either `workspace_name` or `instance_name` must be provided, but not both. These fields are functionally identical and `workspace_name` is an alias for `instance_name`. `workspace_name` should be used instead of `instance_name`.
     :param _builtins.str instance_name: Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspace_name`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
     """
     __args__ = dict()
@@ -381,12 +407,14 @@ def get_stream_connection_output(connection_name: Optional[pulumi.Input[_builtin
     return __ret__.apply(lambda __response__: GetStreamConnectionResult(
         authentication=pulumi.get(__response__, 'authentication'),
         aws=pulumi.get(__response__, 'aws'),
+        azure=pulumi.get(__response__, 'azure'),
         bootstrap_servers=pulumi.get(__response__, 'bootstrap_servers'),
         cluster_name=pulumi.get(__response__, 'cluster_name'),
         cluster_project_id=pulumi.get(__response__, 'cluster_project_id'),
         config=pulumi.get(__response__, 'config'),
         connection_name=pulumi.get(__response__, 'connection_name'),
         db_role_to_execute=pulumi.get(__response__, 'db_role_to_execute'),
+        gcp=pulumi.get(__response__, 'gcp'),
         headers=pulumi.get(__response__, 'headers'),
         id=pulumi.get(__response__, 'id'),
         instance_name=pulumi.get(__response__, 'instance_name'),

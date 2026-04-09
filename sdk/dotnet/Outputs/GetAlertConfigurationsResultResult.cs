@@ -44,7 +44,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultOutputResult> Outputs;
         /// <summary>
-        /// The unique ID for the project to get the alert configurations.
+        /// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

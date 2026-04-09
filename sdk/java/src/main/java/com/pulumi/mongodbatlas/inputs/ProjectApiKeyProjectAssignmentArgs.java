@@ -16,14 +16,14 @@ public final class ProjectApiKeyProjectAssignmentArgs extends com.pulumi.resourc
     public static final ProjectApiKeyProjectAssignmentArgs Empty = new ProjectApiKeyProjectAssignmentArgs();
 
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Project ID to assign to Access Key
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -71,7 +71,7 @@ public final class ProjectApiKeyProjectAssignmentArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param projectId Project ID to assign to Access Key
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -82,7 +82,7 @@ public final class ProjectApiKeyProjectAssignmentArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param projectId Project ID to assign to Access Key
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

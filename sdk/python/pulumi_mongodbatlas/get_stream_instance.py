@@ -137,7 +137,7 @@ def get_stream_instance(instance_name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name
@@ -188,7 +188,7 @@ def get_stream_instance_output(instance_name: Optional[pulumi.Input[_builtins.st
 
 
     :param _builtins.str instance_name: Human-readable label that identifies the stream instance.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['instanceName'] = instance_name

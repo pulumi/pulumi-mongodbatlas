@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -66,7 +64,7 @@ export interface GetCloudBackupSnapshotExportJobsArgs {
      */
     pageNum?: number;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -83,7 +81,7 @@ export interface GetCloudBackupSnapshotExportJobsResult {
     readonly itemsPerPage?: number;
     readonly pageNum?: number;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     /**
@@ -95,8 +93,6 @@ export interface GetCloudBackupSnapshotExportJobsResult {
 }
 /**
  * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -153,7 +149,7 @@ export interface GetCloudBackupSnapshotExportJobsOutputArgs {
      */
     pageNum?: pulumi.Input<number>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

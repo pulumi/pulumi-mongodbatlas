@@ -15,14 +15,14 @@ public final class GetLdapVerifyArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetLdapVerifyArgs Empty = new GetLdapVerifyArgs();
 
     /**
-     * Unique identifier for the Atlas project associated with the verification request.
+     * Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the Atlas project associated with the verification request.
+     * @return Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -70,7 +70,7 @@ public final class GetLdapVerifyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId Unique identifier for the Atlas project associated with the verification request.
+         * @param projectId Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class GetLdapVerifyArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId Unique identifier for the Atlas project associated with the verification request.
+         * @param projectId Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

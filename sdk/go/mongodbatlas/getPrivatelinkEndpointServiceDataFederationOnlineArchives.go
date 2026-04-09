@@ -13,8 +13,6 @@ import (
 
 // `getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -67,7 +65,7 @@ func LookupPrivatelinkEndpointServiceDataFederationOnlineArchives(ctx *pulumi.Co
 
 // A collection of arguments for invoking getPrivatelinkEndpointServiceDataFederationOnlineArchives.
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -91,7 +89,7 @@ func LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesOutput(ctx *pul
 
 // A collection of arguments for invoking getPrivatelinkEndpointServiceDataFederationOnlineArchives.
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

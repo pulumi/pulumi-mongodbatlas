@@ -309,7 +309,7 @@ type LogIntegration struct {
 	OtelSuppliedHeaders LogIntegrationOtelSuppliedHeaderArrayOutput `pulumi:"otelSuppliedHeaders"`
 	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath pulumi.StringPtrOutput `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -399,7 +399,7 @@ type logIntegrationState struct {
 	OtelSuppliedHeaders []LogIntegrationOtelSuppliedHeader `pulumi:"otelSuppliedHeaders"`
 	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath *string `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
 	Region *string `pulumi:"region"`
@@ -436,7 +436,7 @@ type LogIntegrationState struct {
 	OtelSuppliedHeaders LogIntegrationOtelSuppliedHeaderArrayInput
 	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
 	Region pulumi.StringPtrInput
@@ -475,7 +475,7 @@ type logIntegrationArgs struct {
 	OtelSuppliedHeaders []LogIntegrationOtelSuppliedHeader `pulumi:"otelSuppliedHeaders"`
 	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath *string `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
 	Region *string `pulumi:"region"`
@@ -511,7 +511,7 @@ type LogIntegrationArgs struct {
 	OtelSuppliedHeaders LogIntegrationOtelSuppliedHeaderArrayInput
 	// Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
 	PrefixPath pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
 	Region pulumi.StringPtrInput
@@ -667,7 +667,7 @@ func (o LogIntegrationOutput) PrefixPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringPtrOutput { return v.PrefixPath }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LogIntegrationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

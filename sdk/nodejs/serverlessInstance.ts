@@ -102,7 +102,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The ID of the organization or project you want to create the serverless instance within.
+     * The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -231,7 +231,7 @@ export interface ServerlessInstanceState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the organization or project you want to create the serverless instance within.
+     * The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -282,7 +282,7 @@ export interface ServerlessInstanceArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The ID of the organization or project you want to create the serverless instance within.
+     * The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

@@ -13,8 +13,6 @@ import (
 
 // `LdapVerify` describes a LDAP Verify.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -93,7 +91,7 @@ func LookupLdapVerify(ctx *pulumi.Context, args *LookupLdapVerifyArgs, opts ...p
 
 // A collection of arguments for invoking getLdapVerify.
 type LookupLdapVerifyArgs struct {
-	// Unique identifier for the Atlas project associated with the verification request.
+	// Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Unique identifier of a request to verify an LDAP configuration.
 	RequestId string `pulumi:"requestId"`
@@ -131,7 +129,7 @@ func LookupLdapVerifyOutput(ctx *pulumi.Context, args LookupLdapVerifyOutputArgs
 
 // A collection of arguments for invoking getLdapVerify.
 type LookupLdapVerifyOutputArgs struct {
-	// Unique identifier for the Atlas project associated with the verification request.
+	// Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Unique identifier of a request to verify an LDAP configuration.
 	RequestId pulumi.StringInput `pulumi:"requestId"`

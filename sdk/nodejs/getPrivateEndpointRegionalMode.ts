@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -38,7 +36,7 @@ export interface GetPrivateEndpointRegionalModeArgs {
      */
     enabled?: boolean;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -56,8 +54,6 @@ export interface GetPrivateEndpointRegionalModeResult {
 }
 /**
  * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
@@ -88,7 +84,7 @@ export interface GetPrivateEndpointRegionalModeOutputArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

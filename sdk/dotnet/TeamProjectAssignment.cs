@@ -60,7 +60,7 @@ namespace Pulumi.Mongodbatlas
     public partial class TeamProjectAssignment : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class TeamProjectAssignmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class TeamProjectAssignmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

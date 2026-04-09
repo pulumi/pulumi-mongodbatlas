@@ -95,14 +95,14 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The unique identifier of the project for the Maintenance Window.
+     * The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique identifier of the project for the Maintenance Window.
+     * @return The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -260,7 +260,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Maintenance Window.
+         * @param projectId The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -271,7 +271,7 @@ public final class MaintenanceWindowArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Maintenance Window.
+         * @param projectId The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

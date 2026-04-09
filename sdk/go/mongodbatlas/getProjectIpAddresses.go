@@ -52,7 +52,7 @@ func LookupProjectIpAddresses(ctx *pulumi.Context, args *LookupProjectIpAddresse
 
 // A collection of arguments for invoking getProjectIpAddresses.
 type LookupProjectIpAddressesArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -60,7 +60,7 @@ type LookupProjectIpAddressesArgs struct {
 type LookupProjectIpAddressesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of IP addresses in a project categorized by services.
 	Services GetProjectIpAddressesServices `pulumi:"services"`
@@ -77,7 +77,7 @@ func LookupProjectIpAddressesOutput(ctx *pulumi.Context, args LookupProjectIpAdd
 
 // A collection of arguments for invoking getProjectIpAddresses.
 type LookupProjectIpAddressesOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -105,7 +105,7 @@ func (o LookupProjectIpAddressesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAddressesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupProjectIpAddressesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAddressesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

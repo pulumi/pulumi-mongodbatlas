@@ -15,8 +15,6 @@ import (
 //
 // > **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ### Basic Example.
@@ -65,7 +63,7 @@ func LookupNetworkContainer(ctx *pulumi.Context, args *LookupNetworkContainerArg
 type LookupNetworkContainerArgs struct {
 	// The Network Peering Container ID.
 	ContainerId string `pulumi:"containerId"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -112,7 +110,7 @@ func LookupNetworkContainerOutput(ctx *pulumi.Context, args LookupNetworkContain
 type LookupNetworkContainerOutputArgs struct {
 	// The Network Peering Container ID.
 	ContainerId pulumi.StringInput `pulumi:"containerId"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

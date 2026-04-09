@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *
- * > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
- *
  * > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
  *
  * ## Example Usage
@@ -52,7 +50,7 @@ export interface GetPrivateLinkEndpointArgs {
      */
     privateLinkId: string;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -126,8 +124,6 @@ export interface GetPrivateLinkEndpointResult {
 /**
  * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
  *
- * > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
- *
  * > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
  *
  * ## Example Usage
@@ -171,7 +167,7 @@ export interface GetPrivateLinkEndpointOutputArgs {
      */
     privateLinkId: pulumi.Input<string>;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

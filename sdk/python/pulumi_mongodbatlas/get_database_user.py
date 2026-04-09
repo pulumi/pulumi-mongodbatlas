@@ -182,8 +182,6 @@ def get_database_user(auth_database_name: Optional[_builtins.str] = None,
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -242,7 +240,7 @@ def get_database_user(auth_database_name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str auth_database_name: The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
-    :param _builtins.str project_id: The unique ID for the project to create the database user.
+    :param _builtins.str project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
     :param _builtins.str username: Username for authenticating to MongoDB.
     """
     __args__ = dict()
@@ -274,8 +272,6 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[_builtins
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -334,7 +330,7 @@ def get_database_user_output(auth_database_name: Optional[pulumi.Input[_builtins
 
 
     :param _builtins.str auth_database_name: The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
-    :param _builtins.str project_id: The unique ID for the project to create the database user.
+    :param _builtins.str project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
     :param _builtins.str username: Username for authenticating to MongoDB.
     """
     __args__ = dict()

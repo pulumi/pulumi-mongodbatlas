@@ -88,7 +88,7 @@ class GetProjectApiKeyResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Project ID to assign to Access Key
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -147,7 +147,7 @@ def get_project_api_key(api_key_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str api_key_id: Unique identifier for this Project API key.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['apiKeyId'] = api_key_id
@@ -194,7 +194,7 @@ def get_project_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.str]]
 
 
     :param _builtins.str api_key_id: Unique identifier for this Project API key.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['apiKeyId'] = api_key_id

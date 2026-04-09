@@ -17,14 +17,14 @@ public final class GetX509AuthenticationDatabaseUserArgs extends com.pulumi.reso
     public static final GetX509AuthenticationDatabaseUserArgs Empty = new GetX509AuthenticationDatabaseUserArgs();
 
     /**
-     * Identifier for the Atlas project associated with the X.509 configuration.
+     * Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Identifier for the Atlas project associated with the X.509 configuration.
+     * @return Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -72,7 +72,7 @@ public final class GetX509AuthenticationDatabaseUserArgs extends com.pulumi.reso
         }
 
         /**
-         * @param projectId Identifier for the Atlas project associated with the X.509 configuration.
+         * @param projectId Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -83,7 +83,7 @@ public final class GetX509AuthenticationDatabaseUserArgs extends com.pulumi.reso
         }
 
         /**
-         * @param projectId Identifier for the Atlas project associated with the X.509 configuration.
+         * @param projectId Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

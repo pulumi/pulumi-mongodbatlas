@@ -25,7 +25,7 @@ class ProjectInvitationArgs:
         """
         The set of arguments for constructing a ProjectInvitation resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[_builtins.str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
@@ -37,7 +37,7 @@ class ProjectInvitationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -87,7 +87,7 @@ class _ProjectInvitationState:
         :param pulumi.Input[_builtins.str] expires_at: Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
         :param pulumi.Input[_builtins.str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
         :param pulumi.Input[_builtins.str] inviter_username: Atlas user who invited `username` to the project.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[_builtins.str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
@@ -158,7 +158,7 @@ class _ProjectInvitationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -210,8 +210,6 @@ class ProjectInvitation(pulumi.CustomResource):
 
         The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-
         > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
         * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
         * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
@@ -261,7 +259,7 @@ class ProjectInvitation(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[_builtins.str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
@@ -279,8 +277,6 @@ class ProjectInvitation(pulumi.CustomResource):
         Each invitation for an Atlas user includes roles that Atlas grants the user when they accept the invitation.
 
         The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
 
         > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
         * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
@@ -397,7 +393,7 @@ class ProjectInvitation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] expires_at: Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
         :param pulumi.Input[_builtins.str] invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
         :param pulumi.Input[_builtins.str] inviter_username: Atlas user who invited `username` to the project.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
         :param pulumi.Input[_builtins.str] username: Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
         """
@@ -450,7 +446,7 @@ class ProjectInvitation(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+        Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

@@ -40,7 +40,7 @@ export function getStreamWorkspace(args: GetStreamWorkspaceArgs, opts?: pulumi.I
  */
 export interface GetStreamWorkspaceArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -103,7 +103,7 @@ export function getStreamWorkspaceOutput(args: GetStreamWorkspaceOutputArgs, opt
  */
 export interface GetStreamWorkspaceOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

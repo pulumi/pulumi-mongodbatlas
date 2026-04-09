@@ -23,7 +23,7 @@ public final class GetProjectApiKeysInvokeResult {
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
     /**
-     * @return Project ID to assign to Access Key
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -48,7 +48,7 @@ public final class GetProjectApiKeysInvokeResult {
         return Optional.ofNullable(this.pageNum);
     }
     /**
-     * @return Project ID to assign to Access Key
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

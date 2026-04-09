@@ -28,7 +28,7 @@ class CloudProviderAccessSetupArgs:
         """
         The set of arguments for constructing a CloudProviderAccessSetup resource.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
         :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupAzureConfigArgs']]] azure_configs: azure related configurations
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
@@ -44,7 +44,7 @@ class CloudProviderAccessSetupArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project
+        The unique ID for the project, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -110,7 +110,7 @@ class _CloudProviderAccessSetupState:
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input['CloudProviderAccessSetupGcpConfigArgs']]] gcp_configs: gcp related configuration
         :param pulumi.Input[_builtins.str] last_updated_date: Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
         :param pulumi.Input[_builtins.str] role_id: Unique ID of this role.
         """
@@ -209,7 +209,7 @@ class _CloudProviderAccessSetupState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project
+        The unique ID for the project, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -269,8 +269,6 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
 
         `CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
         ## Example Usage
 
         ### With AWS
@@ -329,7 +327,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]] azure_configs: azure related configurations
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
         """
         ...
@@ -353,8 +351,6 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         This is the first resource in the two-resource path as described above.
 
         `CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         ## Example Usage
 
@@ -483,7 +479,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict']]]] gcp_configs: gcp related configuration
         :param pulumi.Input[_builtins.str] last_updated_date: Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
         :param pulumi.Input[_builtins.str] role_id: Unique ID of this role.
         """
@@ -554,7 +550,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project
+        The unique ID for the project, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 

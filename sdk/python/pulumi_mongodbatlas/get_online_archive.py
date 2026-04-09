@@ -174,8 +174,6 @@ def get_online_archive(archive_id: Optional[_builtins.str] = None,
     """
     `OnlineArchive` describes an Online Archive
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -234,7 +232,7 @@ def get_online_archive(archive_id: Optional[_builtins.str] = None,
 
     :param _builtins.str archive_id: ID of the online archive.
     :param _builtins.str cluster_name: Name of the cluster that contains the collection.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['archiveId'] = archive_id
@@ -265,8 +263,6 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[_builtins.str]] 
     """
     `OnlineArchive` describes an Online Archive
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -325,7 +321,7 @@ def get_online_archive_output(archive_id: Optional[pulumi.Input[_builtins.str]] 
 
     :param _builtins.str archive_id: ID of the online archive.
     :param _builtins.str cluster_name: Name of the cluster that contains the collection.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['archiveId'] = archive_id

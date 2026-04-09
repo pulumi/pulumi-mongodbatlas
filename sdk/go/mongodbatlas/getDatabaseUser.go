@@ -15,8 +15,6 @@ import (
 //
 // Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -124,7 +122,7 @@ func LookupDatabaseUser(ctx *pulumi.Context, args *LookupDatabaseUserArgs, opts 
 type LookupDatabaseUserArgs struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
 	AuthDatabaseName string `pulumi:"authDatabaseName"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Username for authenticating to MongoDB.
 	Username string `pulumi:"username"`
@@ -170,7 +168,7 @@ func LookupDatabaseUserOutput(ctx *pulumi.Context, args LookupDatabaseUserOutput
 type LookupDatabaseUserOutputArgs struct {
 	// The user’s authentication database. A user must provide both a username and authentication database to log into MongoDB. In Atlas deployments of MongoDB, the authentication database is almost always the admin database, for X509 it is $external.
 	AuthDatabaseName pulumi.StringInput `pulumi:"authDatabaseName"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Username for authenticating to MongoDB.
 	Username pulumi.StringInput `pulumi:"username"`

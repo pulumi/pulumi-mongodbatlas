@@ -54,11 +54,17 @@ class GetMongodbEmployeeAccessGrantResult:
     @_builtins.property
     @pulumi.getter(name="expirationTime")
     def expiration_time(self) -> _builtins.str:
+        """
+        Expiration date for the employee access grant.
+        """
         return pulumi.get(self, "expiration_time")
 
     @_builtins.property
     @pulumi.getter(name="grantType")
     def grant_type(self) -> _builtins.str:
+        """
+        Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
+        """
         return pulumi.get(self, "grant_type")
 
     @_builtins.property
@@ -73,7 +79,7 @@ class GetMongodbEmployeeAccessGrantResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -117,7 +123,7 @@ def get_mongodb_employee_access_grant(cluster_name: Optional[_builtins.str] = No
 
 
     :param _builtins.str cluster_name: Human-readable label that identifies this cluster.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -157,7 +163,7 @@ def get_mongodb_employee_access_grant_output(cluster_name: Optional[pulumi.Input
 
 
     :param _builtins.str cluster_name: Human-readable label that identifies this cluster.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

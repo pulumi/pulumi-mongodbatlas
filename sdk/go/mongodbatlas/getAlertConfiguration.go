@@ -13,8 +13,6 @@ import (
 
 // `AlertConfiguration` describes an Alert Configuration.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -144,7 +142,7 @@ type LookupAlertConfigurationArgs struct {
 	// List of formatted output requested for this alert configuration
 	// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
 	Outputs []GetAlertConfigurationOutput `pulumi:"outputs"`
-	// The ID of the project where the alert configuration will create.
+	// The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -189,7 +187,7 @@ type LookupAlertConfigurationOutputArgs struct {
 	// List of formatted output requested for this alert configuration
 	// * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
 	Outputs GetAlertConfigurationOutputArrayInput `pulumi:"outputs"`
-	// The ID of the project where the alert configuration will create.
+	// The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

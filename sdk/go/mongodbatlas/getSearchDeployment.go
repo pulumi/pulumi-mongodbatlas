@@ -100,7 +100,7 @@ func LookupSearchDeployment(ctx *pulumi.Context, args *LookupSearchDeploymentArg
 type LookupSearchDeploymentArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName string `pulumi:"clusterName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -112,7 +112,7 @@ type LookupSearchDeploymentResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Unique 24-hexadecimal digit string that identifies the search deployment.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
 	Specs []GetSearchDeploymentSpec `pulumi:"specs"`
@@ -133,7 +133,7 @@ func LookupSearchDeploymentOutput(ctx *pulumi.Context, args LookupSearchDeployme
 type LookupSearchDeploymentOutputArgs struct {
 	// Label that identifies the cluster to return the search nodes for.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -171,7 +171,7 @@ func (o LookupSearchDeploymentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchDeploymentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupSearchDeploymentResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSearchDeploymentResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

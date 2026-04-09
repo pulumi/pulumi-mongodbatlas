@@ -16,8 +16,6 @@ import (
 //
 // > **NOTE:** Only a single maintenance window resource can be defined per project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 //
 // ## Maintenance Window Considerations:
@@ -149,7 +147,7 @@ type MaintenanceWindow struct {
 	HourOfDay pulumi.IntOutput `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntOutput `pulumi:"numberOfDeferrals"`
-	// The unique identifier of the project for the Maintenance Window.
+	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrOutput `pulumi:"protectedHours"`
@@ -210,7 +208,7 @@ type maintenanceWindowState struct {
 	HourOfDay *int `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals *int `pulumi:"numberOfDeferrals"`
-	// The unique identifier of the project for the Maintenance Window.
+	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
@@ -233,7 +231,7 @@ type MaintenanceWindowState struct {
 	HourOfDay pulumi.IntPtrInput
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntPtrInput
-	// The unique identifier of the project for the Maintenance Window.
+	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
@@ -258,7 +256,7 @@ type maintenanceWindowArgs struct {
 	Defer *bool `pulumi:"defer"`
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 	HourOfDay int `pulumi:"hourOfDay"`
-	// The unique identifier of the project for the Maintenance Window.
+	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
@@ -276,7 +274,7 @@ type MaintenanceWindowArgs struct {
 	Defer pulumi.BoolPtrInput
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 	HourOfDay pulumi.IntInput
-	// The unique identifier of the project for the Maintenance Window.
+	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
@@ -399,7 +397,7 @@ func (o MaintenanceWindowOutput) NumberOfDeferrals() pulumi.IntOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.NumberOfDeferrals }).(pulumi.IntOutput)
 }
 
-// The unique identifier of the project for the Maintenance Window.
+// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 func (o MaintenanceWindowOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

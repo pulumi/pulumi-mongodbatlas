@@ -13,8 +13,6 @@ import (
 
 // `CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -79,7 +77,7 @@ func LookupCloudBackupSnapshotRestoreJob(ctx *pulumi.Context, args *LookupCloudB
 type LookupCloudBackupSnapshotRestoreJobArgs struct {
 	// The name of the Atlas cluster for which you want to retrieve the restore job.
 	ClusterName string `pulumi:"clusterName"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The unique identifier of the restore job to retrieve.
 	SnapshotRestoreJobId string `pulumi:"snapshotRestoreJobId"`
@@ -135,7 +133,7 @@ func LookupCloudBackupSnapshotRestoreJobOutput(ctx *pulumi.Context, args LookupC
 type LookupCloudBackupSnapshotRestoreJobOutputArgs struct {
 	// The name of the Atlas cluster for which you want to retrieve the restore job.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The unique identifier of the restore job to retrieve.
 	SnapshotRestoreJobId pulumi.StringInput `pulumi:"snapshotRestoreJobId"`
