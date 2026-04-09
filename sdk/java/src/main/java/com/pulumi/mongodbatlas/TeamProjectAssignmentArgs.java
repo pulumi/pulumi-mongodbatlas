@@ -16,14 +16,14 @@ public final class TeamProjectAssignmentArgs extends com.pulumi.resources.Resour
     public static final TeamProjectAssignmentArgs Empty = new TeamProjectAssignmentArgs();
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -87,7 +87,7 @@ public final class TeamProjectAssignmentArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class TeamProjectAssignmentArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

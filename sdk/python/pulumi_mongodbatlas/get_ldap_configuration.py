@@ -172,8 +172,6 @@ def get_ldap_configuration(project_id: Optional[_builtins.str] = None,
     """
     `LdapConfiguration` describes a LDAP Configuration.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -194,7 +192,7 @@ def get_ldap_configuration(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+    :param _builtins.str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -218,8 +216,6 @@ def get_ldap_configuration_output(project_id: Optional[pulumi.Input[_builtins.st
     """
     `LdapConfiguration` describes a LDAP Configuration.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -240,7 +236,7 @@ def get_ldap_configuration_output(project_id: Optional[pulumi.Input[_builtins.st
     ```
 
 
-    :param _builtins.str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+    :param _builtins.str project_id: Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

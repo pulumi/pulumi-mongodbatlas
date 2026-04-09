@@ -19,8 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
         /// 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -54,8 +52,6 @@ namespace Pulumi.Mongodbatlas
         /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
         /// 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -88,8 +84,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead. 
         /// 
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -127,7 +121,7 @@ namespace Pulumi.Mongodbatlas
         public string ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project that contains the cluster that is undergoing outage simulation.
+        /// The unique ID for the project that contains the cluster that is undergoing outage simulation, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -147,7 +141,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project that contains the cluster that is undergoing outage simulation.
+        /// The unique ID for the project that contains the cluster that is undergoing outage simulation, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

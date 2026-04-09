@@ -15,8 +15,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
         /// 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -68,8 +66,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
         /// 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -120,8 +116,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
         /// 
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -187,7 +181,7 @@ namespace Pulumi.Mongodbatlas
         public string ExportJobId { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+        /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -213,7 +207,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ExportJobId { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+        /// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -16,8 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -56,8 +54,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -95,8 +91,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
         /// 
         /// &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
         /// 
         /// 
         /// ## Example Usage
@@ -142,7 +136,7 @@ namespace Pulumi.Mongodbatlas
         public string ContainerId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -162,7 +156,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ContainerId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

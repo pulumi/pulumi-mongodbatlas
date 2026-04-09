@@ -13,8 +13,6 @@ import (
 
 // `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -70,7 +68,7 @@ func LookupPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx *pulumi.Con
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
 	EndpointId string `pulumi:"endpointId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -105,7 +103,7 @@ func LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(ctx *pulu
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs struct {
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

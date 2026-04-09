@@ -16,8 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `Users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Using OrgId attribute to query Organization Atlas Users
@@ -83,8 +81,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `Users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Using OrgId attribute to query Organization Atlas Users
@@ -149,8 +145,6 @@ namespace Pulumi.Mongodbatlas
         /// `AtlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
         /// 
         /// &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `Users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -237,7 +231,7 @@ namespace Pulumi.Mongodbatlas
         public int? PageNum { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+        /// Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -277,7 +271,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? PageNum { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+        /// Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

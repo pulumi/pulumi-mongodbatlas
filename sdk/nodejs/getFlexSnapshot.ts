@@ -45,9 +45,12 @@ export interface GetFlexSnapshotArgs {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
     snapshotId: string;
 }
 
@@ -55,24 +58,45 @@ export interface GetFlexSnapshotArgs {
  * A collection of values returned by getFlexSnapshot.
  */
 export interface GetFlexSnapshotResult {
+    /**
+     * Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly expiration: string;
+    /**
+     * Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly finishTime: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * MongoDB host version that the snapshot runs.
+     */
     readonly mongoDbVersion: string;
     /**
      * Human-readable label that identifies the flex cluster whose snapshot you want to restore.
      */
     readonly name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly scheduledTime: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
     readonly snapshotId: string;
+    /**
+     * Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
     readonly startTime: string;
+    /**
+     * Phase of the restore workflow for this job at the time this resource made this request.
+     */
     readonly status: string;
 }
 /**
@@ -116,8 +140,11 @@ export interface GetFlexSnapshotOutputArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     */
     snapshotId: pulumi.Input<string>;
 }

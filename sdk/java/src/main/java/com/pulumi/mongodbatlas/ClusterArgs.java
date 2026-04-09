@@ -418,14 +418,14 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create the cluster.
+     * @return The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -1275,7 +1275,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The unique ID for the project to create the cluster.
+         * @param projectId The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -1286,7 +1286,7 @@ public final class ClusterArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The unique ID for the project to create the cluster.
+         * @param projectId The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

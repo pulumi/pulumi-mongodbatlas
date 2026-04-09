@@ -23,8 +23,6 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * ## Example Usage
  * 
  * <pre>
@@ -356,14 +354,14 @@ public class AlertConfiguration extends com.pulumi.resources.CustomResource {
         return this.notifications;
     }
     /**
-     * The ID of the project where the alert configuration will create.
+     * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The ID of the project where the alert configuration will create.
+     * @return The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

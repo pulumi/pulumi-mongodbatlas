@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly ImmutableArray<Outputs.GetOnlineArchivesResultPartitionFieldResult> PartitionFields;
         public readonly bool Paused;
         /// <summary>
-        /// The unique ID for the project.
+        /// The unique ID for the project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         public readonly ImmutableArray<Outputs.GetOnlineArchivesResultScheduleResult> Schedules;

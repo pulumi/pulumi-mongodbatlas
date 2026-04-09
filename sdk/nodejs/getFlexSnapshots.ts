@@ -46,7 +46,7 @@ export interface GetFlexSnapshotsArgs {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -64,9 +64,12 @@ export interface GetFlexSnapshotsResult {
      */
     readonly name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * List of documents that MongoDB Cloud returns for this request.
+     */
     readonly results: outputs.GetFlexSnapshotsResult[];
 }
 /**
@@ -109,7 +112,7 @@ export interface GetFlexSnapshotsOutputArgs {
      */
     name: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

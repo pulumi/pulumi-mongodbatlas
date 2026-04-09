@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -61,8 +59,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -107,8 +103,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -157,7 +151,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCustomDbRolesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all custom db roles.
+        /// The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -171,7 +165,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCustomDbRolesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all custom db roles.
+        /// The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

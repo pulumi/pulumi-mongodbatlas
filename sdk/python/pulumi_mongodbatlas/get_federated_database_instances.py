@@ -76,8 +76,6 @@ def get_federated_database_instances(project_id: Optional[_builtins.str] = None,
     """
     `get_federated_database_instances` provides a Federated Database Instance data source.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 
     ## Example Usage
@@ -85,7 +83,7 @@ def get_federated_database_instances(project_id: Optional[_builtins.str] = None,
     ### S
 
 
-    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -101,8 +99,6 @@ def get_federated_database_instances_output(project_id: Optional[pulumi.Input[_b
     """
     `get_federated_database_instances` provides a Federated Database Instance data source.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 
     ## Example Usage
@@ -110,7 +106,7 @@ def get_federated_database_instances_output(project_id: Optional[pulumi.Input[_b
     ### S
 
 
-    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

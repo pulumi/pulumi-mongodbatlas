@@ -13,8 +13,6 @@ import (
 
 // `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ### S
@@ -133,7 +131,7 @@ func LookupX509AuthenticationDatabaseUser(ctx *pulumi.Context, args *LookupX509A
 
 // A collection of arguments for invoking getX509AuthenticationDatabaseUser.
 type LookupX509AuthenticationDatabaseUserArgs struct {
-	// Identifier for the Atlas project associated with the X.509 configuration.
+	// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Username of the database user to create a certificate for.
 	Username *string `pulumi:"username"`
@@ -161,7 +159,7 @@ func LookupX509AuthenticationDatabaseUserOutput(ctx *pulumi.Context, args Lookup
 
 // A collection of arguments for invoking getX509AuthenticationDatabaseUser.
 type LookupX509AuthenticationDatabaseUserOutputArgs struct {
-	// Identifier for the Atlas project associated with the X.509 configuration.
+	// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Username of the database user to create a certificate for.
 	Username pulumi.StringPtrInput `pulumi:"username"`

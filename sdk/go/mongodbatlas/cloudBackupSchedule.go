@@ -14,8 +14,6 @@ import (
 
 // `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
 //
-// > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 //
 // > **NOTE:** If you need to remove the `CloudBackupSchedule`, read this guide.
@@ -358,7 +356,7 @@ type CloudBackupSchedule struct {
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayOutput `pulumi:"policyItemWeeklies"`
 	// Yearly policy item. See below
 	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayOutput `pulumi:"policyItemYearlies"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
 	ReferenceHourOfDay pulumi.IntOutput `pulumi:"referenceHourOfDay"`
@@ -436,7 +434,7 @@ type cloudBackupScheduleState struct {
 	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
 	// Yearly policy item. See below
 	PolicyItemYearlies []CloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
 	ReferenceHourOfDay *int `pulumi:"referenceHourOfDay"`
@@ -479,7 +477,7 @@ type CloudBackupScheduleState struct {
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
 	// Yearly policy item. See below
 	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayInput
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
 	ReferenceHourOfDay pulumi.IntPtrInput
@@ -520,7 +518,7 @@ type cloudBackupScheduleArgs struct {
 	PolicyItemWeeklies []CloudBackupSchedulePolicyItemWeekly `pulumi:"policyItemWeeklies"`
 	// Yearly policy item. See below
 	PolicyItemYearlies []CloudBackupSchedulePolicyItemYearly `pulumi:"policyItemYearlies"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
 	ReferenceHourOfDay *int `pulumi:"referenceHourOfDay"`
@@ -558,7 +556,7 @@ type CloudBackupScheduleArgs struct {
 	PolicyItemWeeklies CloudBackupSchedulePolicyItemWeeklyArrayInput
 	// Yearly policy item. See below
 	PolicyItemYearlies CloudBackupSchedulePolicyItemYearlyArrayInput
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
 	ReferenceHourOfDay pulumi.IntPtrInput
@@ -729,7 +727,7 @@ func (o CloudBackupScheduleOutput) PolicyItemYearlies() CloudBackupSchedulePolic
 	}).(CloudBackupSchedulePolicyItemYearlyArrayOutput)
 }
 
-// The unique identifier of the project for the Atlas cluster.
+// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 func (o CloudBackupScheduleOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

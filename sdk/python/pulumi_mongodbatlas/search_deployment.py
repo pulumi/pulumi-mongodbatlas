@@ -31,7 +31,7 @@ class SearchDeploymentArgs:
         The set of arguments for constructing a SearchDeployment resource.
 
         :param pulumi.Input[_builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
@@ -62,7 +62,7 @@ class SearchDeploymentArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -133,7 +133,7 @@ class _SearchDeploymentState:
         :param pulumi.Input[_builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         :param pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[_builtins.str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
@@ -195,7 +195,7 @@ class _SearchDeploymentState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -324,7 +324,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
@@ -464,7 +464,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: Label that identifies the cluster to return the search nodes for.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[_builtins.str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
@@ -511,7 +511,7 @@ class SearchDeployment(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

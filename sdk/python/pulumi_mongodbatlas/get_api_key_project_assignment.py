@@ -60,13 +60,16 @@ class GetApiKeyProjectAssignmentResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
     def roles(self) -> Sequence[_builtins.str]:
+        """
+        Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
+        """
         return pulumi.get(self, "roles")
 
 
@@ -130,7 +133,7 @@ def get_api_key_project_assignment(api_key_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['apiKeyId'] = api_key_id
@@ -191,7 +194,7 @@ def get_api_key_project_assignment_output(api_key_id: Optional[pulumi.Input[_bui
 
 
     :param _builtins.str api_key_id: Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['apiKeyId'] = api_key_id

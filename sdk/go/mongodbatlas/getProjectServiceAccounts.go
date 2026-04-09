@@ -28,7 +28,7 @@ func LookupProjectServiceAccounts(ctx *pulumi.Context, args *LookupProjectServic
 
 // A collection of arguments for invoking getProjectServiceAccounts.
 type LookupProjectServiceAccountsArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -36,7 +36,7 @@ type LookupProjectServiceAccountsArgs struct {
 type LookupProjectServiceAccountsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
 	Results []GetProjectServiceAccountsResult `pulumi:"results"`
@@ -53,7 +53,7 @@ func LookupProjectServiceAccountsOutput(ctx *pulumi.Context, args LookupProjectS
 
 // A collection of arguments for invoking getProjectServiceAccounts.
 type LookupProjectServiceAccountsOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -81,7 +81,7 @@ func (o LookupProjectServiceAccountsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupProjectServiceAccountsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

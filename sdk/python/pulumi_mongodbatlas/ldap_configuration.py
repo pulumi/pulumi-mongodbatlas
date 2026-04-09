@@ -38,7 +38,7 @@ class LdapConfigurationArgs:
         :param pulumi.Input[_builtins.str] bind_password: The password used to authenticate the `bind_username`.
         :param pulumi.Input[_builtins.str] bind_username: The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] authorization_enabled: Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
         :param pulumi.Input[_builtins.str] authz_query_template: An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         :param pulumi.Input[_builtins.str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
@@ -116,7 +116,7 @@ class LdapConfigurationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project to configure LDAP.
+        The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -212,7 +212,7 @@ class _LdapConfigurationState:
         :param pulumi.Input[_builtins.str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]] user_to_dn_mappings: Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
                * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
                * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
@@ -339,7 +339,7 @@ class _LdapConfigurationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to configure LDAP.
+        The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -446,7 +446,7 @@ class LdapConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]] user_to_dn_mappings: Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
                * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
                * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
@@ -605,7 +605,7 @@ class LdapConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]] user_to_dn_mappings: Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
                * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
                * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
@@ -695,7 +695,7 @@ class LdapConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project to configure LDAP.
+        The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

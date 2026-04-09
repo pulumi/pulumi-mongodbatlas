@@ -15,8 +15,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
         /// applied across the project. 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -57,8 +55,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
         /// applied across the project. 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -98,8 +94,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
         /// applied across the project. 
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -142,7 +136,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -156,7 +150,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -176,7 +170,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// ID of the Atlas project the Third-Party Service Integration belongs to.
+        /// ID of the Atlas project the Third-Party Service Integration belongs to, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

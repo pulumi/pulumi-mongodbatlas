@@ -88,14 +88,14 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+     * Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+     * @return Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -239,7 +239,7 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -250,7 +250,7 @@ public final class GetServerlessInstanceArgs extends com.pulumi.resources.Invoke
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

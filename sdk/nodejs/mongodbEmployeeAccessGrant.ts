@@ -79,7 +79,7 @@ export class MongodbEmployeeAccessGrant extends pulumi.CustomResource {
      */
     declare public readonly grantType: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
 
@@ -141,7 +141,7 @@ export interface MongodbEmployeeAccessGrantState {
      */
     grantType?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
 }
@@ -163,7 +163,7 @@ export interface MongodbEmployeeAccessGrantArgs {
      */
     grantType: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

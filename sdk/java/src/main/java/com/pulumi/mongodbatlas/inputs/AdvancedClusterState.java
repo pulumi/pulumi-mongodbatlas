@@ -357,18 +357,14 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Unique ID for the project to create the cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Unique ID for the project to create the cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * @return Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -1088,9 +1084,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique ID for the project to create the cluster.
-         * 
-         * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+         * @param projectId Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -1101,9 +1095,7 @@ public final class AdvancedClusterState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique ID for the project to create the cluster.
-         * 
-         * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+         * @param projectId Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -91,7 +91,7 @@ class GetEncryptionAtRestResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -123,8 +123,6 @@ def get_encryption_at_rest(project_id: Optional[_builtins.str] = None,
 
     > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -214,7 +212,7 @@ def get_encryption_at_rest(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -241,8 +239,6 @@ def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[_builtins.st
 
     > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -332,7 +328,7 @@ def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[_builtins.st
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

@@ -121,7 +121,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> PrivateLinkServiceResourceId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the project, also known as `GroupId` in the official documentation.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -220,7 +220,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? PortMappingEnabled { get; set; }
 
         /// <summary>
-        /// Unique identifier for the project, also known as `GroupId` in the official documentation.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -325,7 +325,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? PrivateLinkServiceResourceId { get; set; }
 
         /// <summary>
-        /// Unique identifier for the project, also known as `GroupId` in the official documentation.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

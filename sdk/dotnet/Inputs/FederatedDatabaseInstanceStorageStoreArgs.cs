@@ -48,7 +48,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Prefix { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create a Federated Database Instance.
+        /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

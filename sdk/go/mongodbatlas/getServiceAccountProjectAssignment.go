@@ -86,7 +86,7 @@ func LookupServiceAccountProjectAssignment(ctx *pulumi.Context, args *LookupServ
 type LookupServiceAccountProjectAssignmentArgs struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -96,7 +96,7 @@ type LookupServiceAccountProjectAssignmentResult struct {
 	ClientId string `pulumi:"clientId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list of Project roles associated with the Service Account.
 	Roles []string `pulumi:"roles"`
@@ -115,7 +115,7 @@ func LookupServiceAccountProjectAssignmentOutput(ctx *pulumi.Context, args Looku
 type LookupServiceAccountProjectAssignmentOutputArgs struct {
 	// The Client ID of the Service Account.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -148,7 +148,7 @@ func (o LookupServiceAccountProjectAssignmentResultOutput) Id() pulumi.StringOut
 	return o.ApplyT(func(v LookupServiceAccountProjectAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupServiceAccountProjectAssignmentResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceAccountProjectAssignmentResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

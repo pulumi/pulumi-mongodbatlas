@@ -13,8 +13,6 @@ import (
 
 // `getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -68,7 +66,7 @@ func LookupProjectIpAccessLists(ctx *pulumi.Context, args *LookupProjectIpAccess
 
 // A collection of arguments for invoking getProjectIpAccessLists.
 type LookupProjectIpAccessListsArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -76,7 +74,7 @@ type LookupProjectIpAccessListsArgs struct {
 type LookupProjectIpAccessListsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
 	Results []GetProjectIpAccessListsResult `pulumi:"results"`
@@ -93,7 +91,7 @@ func LookupProjectIpAccessListsOutput(ctx *pulumi.Context, args LookupProjectIpA
 
 // A collection of arguments for invoking getProjectIpAccessLists.
 type LookupProjectIpAccessListsOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -121,7 +119,7 @@ func (o LookupProjectIpAccessListsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupProjectIpAccessListsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectIpAccessListsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -35,7 +35,7 @@ class LdapVerifyArgs:
         :param pulumi.Input[_builtins.str] bind_username: The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] authz_query_template: An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         :param pulumi.Input[_builtins.str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         """
@@ -101,7 +101,7 @@ class LdapVerifyArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project to configure LDAP.
+        The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -158,7 +158,7 @@ class _LdapVerifyState:
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         :param pulumi.Input[Sequence[pulumi.Input['LdapVerifyLinkArgs']]] links: One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] request_id: The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
         :param pulumi.Input[_builtins.str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         :param pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
@@ -274,7 +274,7 @@ class _LdapVerifyState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to configure LDAP.
+        The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -389,7 +389,7 @@ class LdapVerify(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         ...
     @overload
@@ -479,7 +479,7 @@ class LdapVerify(pulumi.CustomResource):
             __props__.__dict__["authz_query_template"] = authz_query_template
             if bind_password is None and not opts.urn:
                 raise TypeError("Missing required property 'bind_password'")
-            __props__.__dict__["bind_password"] = bind_password
+            __props__.__dict__["bind_password"] = None if bind_password is None else pulumi.Output.secret(bind_password)
             if bind_username is None and not opts.urn:
                 raise TypeError("Missing required property 'bind_username'")
             __props__.__dict__["bind_username"] = bind_username
@@ -497,6 +497,8 @@ class LdapVerify(pulumi.CustomResource):
             __props__.__dict__["request_id"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["validations"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["bindPassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(LdapVerify, __self__).__init__(
             'mongodbatlas:index/ldapVerify:LdapVerify',
             resource_name,
@@ -532,7 +534,7 @@ class LdapVerify(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict']]]] links: One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] request_id: The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
         :param pulumi.Input[_builtins.str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
@@ -614,7 +616,7 @@ class LdapVerify(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project to configure LDAP.
+        The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

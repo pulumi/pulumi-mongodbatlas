@@ -29,7 +29,7 @@ class MongodbEmployeeAccessGrantArgs:
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies this cluster.
         :param pulumi.Input[_builtins.str] expiration_time: Expiration date for the employee access grant.
         :param pulumi.Input[_builtins.str] grant_type: Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "expiration_time", expiration_time)
@@ -76,7 +76,7 @@ class MongodbEmployeeAccessGrantArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -98,7 +98,7 @@ class _MongodbEmployeeAccessGrantState:
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies this cluster.
         :param pulumi.Input[_builtins.str] expiration_time: Expiration date for the employee access grant.
         :param pulumi.Input[_builtins.str] grant_type: Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
@@ -149,7 +149,7 @@ class _MongodbEmployeeAccessGrantState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -206,7 +206,7 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies this cluster.
         :param pulumi.Input[_builtins.str] expiration_time: Expiration date for the employee access grant.
         :param pulumi.Input[_builtins.str] grant_type: Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         ...
     @overload
@@ -310,7 +310,7 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies this cluster.
         :param pulumi.Input[_builtins.str] expiration_time: Expiration date for the employee access grant.
         :param pulumi.Input[_builtins.str] grant_type: Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -350,7 +350,7 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

@@ -13,8 +13,6 @@ import * as utilities from "./utilities";
  * <br> &#8226;  GCP -  One container per project.
  * <br> &#8226;  AWS and Azure - One container per cloud provider region.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ### Example with AWS
@@ -131,7 +129,7 @@ export class NetworkContainer extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly networkName: pulumi.Output<string>;
     /**
-     * Unique identifier for the Atlas project for this Network Peering Container.
+     * Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -248,7 +246,7 @@ export interface NetworkContainerState {
      */
     networkName?: pulumi.Input<string>;
     /**
-     * Unique identifier for the Atlas project for this Network Peering Container.
+     * Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -297,7 +295,7 @@ export interface NetworkContainerArgs {
      */
     atlasCidrBlock: pulumi.Input<string>;
     /**
-     * Unique identifier for the Atlas project for this Network Peering Container.
+     * Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

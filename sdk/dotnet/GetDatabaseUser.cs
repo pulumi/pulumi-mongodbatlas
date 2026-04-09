@@ -16,8 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -116,8 +114,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -215,8 +211,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -322,7 +316,7 @@ namespace Pulumi.Mongodbatlas
         public string AuthDatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -348,7 +342,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> AuthDatabaseName { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

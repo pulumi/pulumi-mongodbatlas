@@ -26,7 +26,7 @@ public final class GetFlexRestoreJobsResult {
      */
     private String name;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -99,7 +99,7 @@ public final class GetFlexRestoreJobsResult {
         return this.name;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

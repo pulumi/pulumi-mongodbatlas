@@ -30,14 +30,14 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs 
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -91,7 +91,7 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs 
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -102,7 +102,7 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs 
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -89,8 +89,6 @@ def get_network_containers(project_id: Optional[_builtins.str] = None,
     """
     `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example.
@@ -112,7 +110,7 @@ def get_network_containers(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     :param _builtins.str provider_name: Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
     """
     __args__ = dict()
@@ -132,8 +130,6 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[_builtins.st
     """
     `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example.
@@ -155,7 +151,7 @@ def get_network_containers_output(project_id: Optional[pulumi.Input[_builtins.st
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     :param _builtins.str provider_name: Cloud provider for this Network peering container. Accepted values are AWS, GCP, and Azure.
     """
     __args__ = dict()

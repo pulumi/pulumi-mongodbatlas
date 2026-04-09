@@ -29,14 +29,14 @@ public final class GetMongodbEmployeeAccessGrantPlainArgs extends com.pulumi.res
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -80,7 +80,7 @@ public final class GetMongodbEmployeeAccessGrantPlainArgs extends com.pulumi.res
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

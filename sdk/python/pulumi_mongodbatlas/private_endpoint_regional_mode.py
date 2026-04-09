@@ -24,7 +24,7 @@ class PrivateEndpointRegionalModeArgs:
         """
         The set of arguments for constructing a PrivateEndpointRegionalMode resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether the regionalized private endpoint setting is enabled for the project.   Set this value to true to create more than one private endpoint in a cloud provider region to connect to multi-region and global Atlas sharded clusters. You can enable this setting only if your Atlas project contains no replica sets. You can't disable this setting if you have:
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
@@ -38,7 +38,7 @@ class PrivateEndpointRegionalModeArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique identifier for the project.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -74,7 +74,7 @@ class _PrivateEndpointRegionalModeState:
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
                You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
@@ -100,7 +100,7 @@ class _PrivateEndpointRegionalModeState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier for the project.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -123,8 +123,6 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
         > **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
 
         ## Import
@@ -144,7 +142,7 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
                You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         ...
     @overload
@@ -156,8 +154,6 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
         `PrivateEndpointRegionalMode` provides a Private Endpoint Regional Mode resource. This represents a regionalized private endpoint setting for a Project. Enable it to allow region specific private endpoints.
 
         > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
 
@@ -225,7 +221,7 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
                * More than one private endpoint in more than one region, or
                * More than one private endpoint in one region and one private endpoint in one or more regions.
                You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -250,7 +246,7 @@ class PrivateEndpointRegionalMode(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique identifier for the project.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

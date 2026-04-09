@@ -13,15 +13,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetStreamProcessorResult {
+    /**
+     * @return Unique 24-hexadecimal character string that identifies the stream processor.
+     * 
+     */
     private String id;
     /**
+     * @return Label that identifies the stream processing workspace.
+     * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
      * 
      */
     @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private @Nullable String instanceName;
+    /**
+     * @return Optional configuration for the stream processor.
+     * 
+     */
     private GetStreamProcessorOptions options;
+    /**
+     * @return Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * 
+     */
     private String pipeline;
     /**
      * @return Label that identifies the stream processor.
@@ -29,20 +43,34 @@ public final class GetStreamProcessorResult {
      */
     private String processorName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+     * 
+     */
     private String state;
     private String stats;
     private String tier;
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
     private @Nullable String workspaceName;
 
     private GetStreamProcessorResult() {}
+    /**
+     * @return Unique 24-hexadecimal character string that identifies the stream processor.
+     * 
+     */
     public String id() {
         return this.id;
     }
     /**
+     * @return Label that identifies the stream processing workspace.
+     * 
      * @deprecated
      * This parameter is deprecated. Please transition to workspace_name.
      * 
@@ -51,9 +79,17 @@ public final class GetStreamProcessorResult {
     public Optional<String> instanceName() {
         return Optional.ofNullable(this.instanceName);
     }
+    /**
+     * @return Optional configuration for the stream processor.
+     * 
+     */
     public GetStreamProcessorOptions options() {
         return this.options;
     }
+    /**
+     * @return Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * 
+     */
     public String pipeline() {
         return this.pipeline;
     }
@@ -65,12 +101,16 @@ public final class GetStreamProcessorResult {
         return this.processorName;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return The state of the stream processor. Commonly occurring states are &#39;CREATED&#39;, &#39;STARTED&#39;, &#39;STOPPED&#39; and &#39;FAILED&#39;. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+     * 
+     */
     public String state() {
         return this.state;
     }
@@ -80,6 +120,10 @@ public final class GetStreamProcessorResult {
     public String tier() {
         return this.tier;
     }
+    /**
+     * @return Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     * 
+     */
     public Optional<String> workspaceName() {
         return Optional.ofNullable(this.workspaceName);
     }

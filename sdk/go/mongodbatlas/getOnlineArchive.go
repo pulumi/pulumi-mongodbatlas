@@ -13,8 +13,6 @@ import (
 
 // `OnlineArchive` describes an Online Archive
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -102,7 +100,7 @@ type LookupOnlineArchiveArgs struct {
 	ArchiveId string `pulumi:"archiveId"`
 	// Name of the cluster that contains the collection.
 	ClusterName string `pulumi:"clusterName"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -140,7 +138,7 @@ type LookupOnlineArchiveOutputArgs struct {
 	ArchiveId pulumi.StringInput `pulumi:"archiveId"`
 	// Name of the cluster that contains the collection.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

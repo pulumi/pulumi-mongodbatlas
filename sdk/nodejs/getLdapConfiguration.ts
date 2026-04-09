@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -46,7 +44,7 @@ export function getLdapConfiguration(args: GetLdapConfigurationArgs, opts?: pulu
  */
 export interface GetLdapConfigurationArgs {
     /**
-     * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+     * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -100,8 +98,6 @@ export interface GetLdapConfigurationResult {
 /**
  * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -137,7 +133,7 @@ export function getLdapConfigurationOutput(args: GetLdapConfigurationOutputArgs,
  */
 export interface GetLdapConfigurationOutputArgs {
     /**
-     * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+     * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

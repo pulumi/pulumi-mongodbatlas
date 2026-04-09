@@ -88,7 +88,7 @@ type LookupStreamConnectionArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName *string `pulumi:"workspaceName"`
@@ -100,6 +100,8 @@ type LookupStreamConnectionResult struct {
 	Authentication GetStreamConnectionAuthentication `pulumi:"authentication"`
 	// The configuration for AWS Lambda connection. See AWS
 	Aws GetStreamConnectionAws `pulumi:"aws"`
+	// The configuration for Azure Blob Storage connection. See Azure.
+	Azure GetStreamConnectionAzure `pulumi:"azure"`
 	// Comma separated list of server addresses.
 	BootstrapServers string `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
@@ -111,12 +113,14 @@ type LookupStreamConnectionResult struct {
 	ConnectionName string            `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	// The configuration for GCP Pub/Sub connection. See GCP
+	Gcp GetStreamConnectionGcp `pulumi:"gcp"`
 	// A map of key-value pairs for optional headers.
 	Headers map[string]string `pulumi:"headers"`
 	Id      string            `pulumi:"id"`
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+	// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
 	Networking GetStreamConnectionNetworking `pulumi:"networking"`
 	ProjectId  string                        `pulumi:"projectId"`
 	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
@@ -155,7 +159,7 @@ type LookupStreamConnectionOutputArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName pulumi.StringPtrInput `pulumi:"workspaceName"`
@@ -190,6 +194,11 @@ func (o LookupStreamConnectionResultOutput) Aws() GetStreamConnectionAwsOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAws { return v.Aws }).(GetStreamConnectionAwsOutput)
 }
 
+// The configuration for Azure Blob Storage connection. See Azure.
+func (o LookupStreamConnectionResultOutput) Azure() GetStreamConnectionAzureOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAzure { return v.Azure }).(GetStreamConnectionAzureOutput)
+}
+
 // Comma separated list of server addresses.
 func (o LookupStreamConnectionResultOutput) BootstrapServers() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) string { return v.BootstrapServers }).(pulumi.StringOutput)
@@ -219,6 +228,11 @@ func (o LookupStreamConnectionResultOutput) DbRoleToExecute() GetStreamConnectio
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionDbRoleToExecuteOutput)
 }
 
+// The configuration for GCP Pub/Sub connection. See GCP
+func (o LookupStreamConnectionResultOutput) Gcp() GetStreamConnectionGcpOutput {
+	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionGcp { return v.Gcp }).(GetStreamConnectionGcpOutput)
+}
+
 // A map of key-value pairs for optional headers.
 func (o LookupStreamConnectionResultOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
@@ -233,7 +247,7 @@ func (o LookupStreamConnectionResultOutput) InstanceName() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupStreamConnectionResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
-// Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
 func (o LookupStreamConnectionResultOutput) Networking() GetStreamConnectionNetworkingOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionNetworking { return v.Networking }).(GetStreamConnectionNetworkingOutput)
 }

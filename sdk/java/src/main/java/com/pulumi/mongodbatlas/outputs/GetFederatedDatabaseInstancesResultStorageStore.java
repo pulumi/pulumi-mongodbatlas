@@ -23,7 +23,7 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
     private String name;
     private String prefix;
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -66,7 +66,7 @@ public final class GetFederatedDatabaseInstancesResultStorageStore {
         return this.prefix;
     }
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

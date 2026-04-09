@@ -13,8 +13,6 @@ import (
 
 // `LdapConfiguration` describes a LDAP Configuration.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -67,7 +65,7 @@ func LookupLdapConfiguration(ctx *pulumi.Context, args *LookupLdapConfigurationA
 
 // A collection of arguments for invoking getLdapConfiguration.
 type LookupLdapConfigurationArgs struct {
-	// Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+	// Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -107,7 +105,7 @@ func LookupLdapConfigurationOutput(ctx *pulumi.Context, args LookupLdapConfigura
 
 // A collection of arguments for invoking getLdapConfiguration.
 type LookupLdapConfigurationOutputArgs struct {
-	// Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+	// Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

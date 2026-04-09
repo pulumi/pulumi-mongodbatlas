@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -210,7 +208,7 @@ export class AlertConfiguration extends pulumi.CustomResource {
     declare public readonly metricThresholdConfig: pulumi.Output<outputs.AlertConfigurationMetricThresholdConfig | undefined>;
     declare public readonly notifications: pulumi.Output<outputs.AlertConfigurationNotification[]>;
     /**
-     * The ID of the project where the alert configuration will create.
+     * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -304,7 +302,7 @@ export interface AlertConfigurationState {
     metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
     notifications?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
-     * The ID of the project where the alert configuration will create.
+     * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -339,7 +337,7 @@ export interface AlertConfigurationArgs {
     metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
     notifications: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
-     * The ID of the project where the alert configuration will create.
+     * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

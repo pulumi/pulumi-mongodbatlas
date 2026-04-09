@@ -277,7 +277,7 @@ type StreamPrivatelinkEndpoint struct {
 	InterfaceEndpointId pulumi.StringOutput `pulumi:"interfaceEndpointId"`
 	// Name of interface endpoint that is created from the specified service endpoint ID.
 	InterfaceEndpointName pulumi.StringOutput `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId pulumi.StringOutput `pulumi:"providerAccountId"`
@@ -356,7 +356,7 @@ type streamPrivatelinkEndpointState struct {
 	InterfaceEndpointId *string `pulumi:"interfaceEndpointId"`
 	// Name of interface endpoint that is created from the specified service endpoint ID.
 	InterfaceEndpointName *string `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Account ID from the cloud provider.
 	ProviderAccountId *string `pulumi:"providerAccountId"`
@@ -397,7 +397,7 @@ type StreamPrivatelinkEndpointState struct {
 	InterfaceEndpointId pulumi.StringPtrInput
 	// Name of interface endpoint that is created from the specified service endpoint ID.
 	InterfaceEndpointName pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Account ID from the cloud provider.
 	ProviderAccountId pulumi.StringPtrInput
@@ -436,7 +436,7 @@ type streamPrivatelinkEndpointArgs struct {
 	DnsDomain *string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 	ProviderName string `pulumi:"providerName"`
@@ -468,7 +468,7 @@ type StreamPrivatelinkEndpointArgs struct {
 	DnsDomain pulumi.StringPtrInput
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains pulumi.StringArrayInput
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
 	ProviderName pulumi.StringInput
@@ -609,7 +609,7 @@ func (o StreamPrivatelinkEndpointOutput) InterfaceEndpointName() pulumi.StringOu
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.InterfaceEndpointName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.<br>**NOTE**: Groups and projects are synonymous terms. Your group id is the same as your project id. For existing groups, your group or project id remains the same. The resource and corresponding endpoints use the term groups.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o StreamPrivatelinkEndpointOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -247,7 +247,7 @@ type SearchIndex struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
 	NumPartitions pulumi.IntPtrOutput `pulumi:"numPartitions"`
-	// The ID of the organization or project you want to create the search index within.
+	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer pulumi.StringPtrOutput `pulumi:"searchAnalyzer"`
@@ -331,7 +331,7 @@ type searchIndexState struct {
 	Name *string `pulumi:"name"`
 	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
 	NumPartitions *int `pulumi:"numPartitions"`
-	// The ID of the organization or project you want to create the search index within.
+	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
@@ -374,7 +374,7 @@ type SearchIndexState struct {
 	Name pulumi.StringPtrInput
 	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
 	NumPartitions pulumi.IntPtrInput
-	// The ID of the organization or project you want to create the search index within.
+	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer pulumi.StringPtrInput
@@ -419,7 +419,7 @@ type searchIndexArgs struct {
 	Name *string `pulumi:"name"`
 	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
 	NumPartitions *int `pulumi:"numPartitions"`
-	// The ID of the organization or project you want to create the search index within.
+	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
@@ -459,7 +459,7 @@ type SearchIndexArgs struct {
 	Name pulumi.StringPtrInput
 	// Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
 	NumPartitions pulumi.IntPtrInput
-	// The ID of the organization or project you want to create the search index within.
+	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer pulumi.StringPtrInput
@@ -622,7 +622,7 @@ func (o SearchIndexOutput) NumPartitions() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.IntPtrOutput { return v.NumPartitions }).(pulumi.IntPtrOutput)
 }
 
-// The ID of the organization or project you want to create the search index within.
+// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 func (o SearchIndexOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

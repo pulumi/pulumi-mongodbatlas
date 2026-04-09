@@ -65,14 +65,14 @@ public final class GetAtlasUsersPlainArgs extends com.pulumi.resources.InvokeArg
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+     * Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+     * @return Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<String> projectId() {
@@ -158,7 +158,7 @@ public final class GetAtlasUsersPlainArgs extends com.pulumi.resources.InvokeArg
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project whose users you want to return.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -52,7 +52,7 @@ export interface GetProjectApiKeyArgs {
      */
     apiKeyId: string;
     /**
-     * The unique ID for the project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -76,7 +76,7 @@ export interface GetProjectApiKeyResult {
     readonly privateKey: string;
     readonly projectAssignments: outputs.GetProjectApiKeyProjectAssignment[];
     /**
-     * Project ID to assign to Access Key
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     /**
@@ -130,7 +130,7 @@ export interface GetProjectApiKeyOutputArgs {
      */
     apiKeyId: pulumi.Input<string>;
     /**
-     * The unique ID for the project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

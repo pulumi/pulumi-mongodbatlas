@@ -79,14 +79,14 @@ public final class X509AuthenticationDatabaseUserState extends com.pulumi.resour
     }
 
     /**
-     * Identifier for the Atlas project associated with the X.509 configuration.
+     * Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Identifier for the Atlas project associated with the X.509 configuration.
+     * @return Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -232,7 +232,7 @@ public final class X509AuthenticationDatabaseUserState extends com.pulumi.resour
         }
 
         /**
-         * @param projectId Identifier for the Atlas project associated with the X.509 configuration.
+         * @param projectId Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -243,7 +243,7 @@ public final class X509AuthenticationDatabaseUserState extends com.pulumi.resour
         }
 
         /**
-         * @param projectId Identifier for the Atlas project associated with the X.509 configuration.
+         * @param projectId Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

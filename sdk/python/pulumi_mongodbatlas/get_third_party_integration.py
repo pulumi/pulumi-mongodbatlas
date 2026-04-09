@@ -274,8 +274,6 @@ def get_third_party_integration(project_id: Optional[_builtins.str] = None,
     """
     `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -292,7 +290,7 @@ def get_third_party_integration(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
+    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
     :param _builtins.str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG
@@ -335,8 +333,6 @@ def get_third_party_integration_output(project_id: Optional[pulumi.Input[_builti
     """
     `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -353,7 +349,7 @@ def get_third_party_integration_output(project_id: Optional[pulumi.Input[_builti
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations
+    :param _builtins.str project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
     :param _builtins.str type: Third-Party service integration type
            * PAGER_DUTY
            * DATADOG

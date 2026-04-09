@@ -47,14 +47,14 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Unique identifier for the Atlas project for this Network Peering Container.
+     * Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the Atlas project for this Network Peering Container.
+     * @return Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -186,7 +186,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique identifier for the Atlas project for this Network Peering Container.
+         * @param projectId Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -197,7 +197,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param projectId Unique identifier for the Atlas project for this Network Peering Container.
+         * @param projectId Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

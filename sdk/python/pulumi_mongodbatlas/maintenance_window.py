@@ -33,7 +33,7 @@ class MaintenanceWindowArgs:
 
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
@@ -79,7 +79,7 @@ class MaintenanceWindowArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique identifier of the project for the Maintenance Window.
+        The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -158,7 +158,7 @@ class _MaintenanceWindowState:
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input['MaintenanceWindowProtectedHoursArgs'] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         :param pulumi.Input[_builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
@@ -260,7 +260,7 @@ class _MaintenanceWindowState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique identifier of the project for the Maintenance Window.
+        The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -323,8 +323,6 @@ class MaintenanceWindow(pulumi.CustomResource):
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
 
         > **NOTE:** Only a single maintenance window resource can be defined per project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
@@ -403,7 +401,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         """
         ...
@@ -416,8 +414,6 @@ class MaintenanceWindow(pulumi.CustomResource):
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
 
         > **NOTE:** Only a single maintenance window resource can be defined per project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 
@@ -569,7 +565,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         :param pulumi.Input[_builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
@@ -642,7 +638,7 @@ class MaintenanceWindow(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique identifier of the project for the Maintenance Window.
+        The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

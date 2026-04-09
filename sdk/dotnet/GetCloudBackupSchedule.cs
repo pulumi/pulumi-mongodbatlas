@@ -16,8 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -107,8 +105,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -197,8 +193,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster. 
         /// 
         /// &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -295,7 +289,7 @@ namespace Pulumi.Mongodbatlas
         public string ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -315,7 +309,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ClusterName { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -161,6 +161,8 @@ export function getStreamProcessor(args: GetStreamProcessorArgs, opts?: pulumi.I
  */
 export interface GetStreamProcessorArgs {
     /**
+     * Label that identifies the stream processing workspace.
+     *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName?: string;
@@ -169,9 +171,12 @@ export interface GetStreamProcessorArgs {
      */
     processorName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
     workspaceName?: string;
 }
 
@@ -179,24 +184,41 @@ export interface GetStreamProcessorArgs {
  * A collection of values returned by getStreamProcessor.
  */
 export interface GetStreamProcessorResult {
+    /**
+     * Unique 24-hexadecimal character string that identifies the stream processor.
+     */
     readonly id: string;
     /**
+     * Label that identifies the stream processing workspace.
+     *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     readonly instanceName?: string;
+    /**
+     * Optional configuration for the stream processor.
+     */
     readonly options: outputs.GetStreamProcessorOptions;
+    /**
+     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     */
     readonly pipeline: string;
     /**
      * Label that identifies the stream processor.
      */
     readonly processorName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+     */
     readonly state: string;
     readonly stats: string;
     readonly tier: string;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
     readonly workspaceName?: string;
 }
 /**
@@ -354,6 +376,8 @@ export function getStreamProcessorOutput(args: GetStreamProcessorOutputArgs, opt
  */
 export interface GetStreamProcessorOutputArgs {
     /**
+     * Label that identifies the stream processing workspace.
+     *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
     instanceName?: pulumi.Input<string>;
@@ -362,8 +386,11 @@ export interface GetStreamProcessorOutputArgs {
      */
     processorName: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+     */
     workspaceName?: pulumi.Input<string>;
 }

@@ -399,8 +399,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
      * 
@@ -455,8 +453,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
@@ -513,8 +509,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
      * 
@@ -569,8 +563,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
@@ -627,8 +619,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
      * 
@@ -684,8 +674,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
      * 
@@ -739,8 +727,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
@@ -796,8 +782,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
      * 
@@ -851,8 +835,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
@@ -908,8 +890,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAccessListApiKeys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **IMPORTANT:**
      * When you remove an entry from the access list, existing connections from the removed address(es) may remain open for a variable amount of time. How much time passes before Atlas closes the connection depends on several factors, including how the connection was established, the particular behavior of the application or driver using the address, and the connection protocol (e.g., TCP or UDP). This is particularly important to consider when changing an existing IP address or CIDR block as they cannot be updated via the Provider, hence a change will force the destruction and recreation of entries.
      * 
@@ -963,8 +943,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -1212,8 +1190,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1459,8 +1435,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -1708,8 +1682,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -1955,8 +1927,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -2204,8 +2174,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2386,8 +2354,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -2570,8 +2536,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -2752,8 +2716,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -2936,8 +2898,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAdvancedClusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -3119,8 +3079,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -3256,8 +3214,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -3395,8 +3351,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -3532,8 +3486,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -3671,8 +3623,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -3809,8 +3759,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
@@ -3822,8 +3770,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -3837,8 +3783,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
@@ -3851,8 +3795,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
@@ -3864,8 +3806,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -4056,8 +3996,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args) {
         return getApiKeys(args, InvokeOptions.Empty);
@@ -4066,8 +4004,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getApiKeys` describe all API Keys. This represents API Keys that have been created.
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      */
     public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args) {
@@ -4078,8 +4014,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
@@ -4089,8 +4023,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      */
     public static Output<GetApiKeysInvokeResult> getApiKeys(GetApiKeysArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getApiKeys:getApiKeys", TypeShape.of(GetApiKeysInvokeResult.class), args, Utilities.withVersion(options));
@@ -4099,8 +4031,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getApiKeys` describe all API Keys. This represents API Keys that have been created.
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      */
     public static CompletableFuture<GetApiKeysInvokeResult> getApiKeysPlain(GetApiKeysPlainArgs args, InvokeOptions options) {
@@ -4650,8 +4580,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using orgId attribute to query Organization Atlas Users
@@ -4762,8 +4690,6 @@ public final class MongodbatlasFunctions {
      * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -4876,8 +4802,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using orgId attribute to query Organization Atlas Users
@@ -4988,8 +4912,6 @@ public final class MongodbatlasFunctions {
      * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -5102,8 +5024,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using orgId attribute to query Organization Atlas Users
@@ -5214,8 +5134,6 @@ public final class MongodbatlasFunctions {
      * `atlasUsers` provides Atlas Users associated with a specified Organization, Project, or Team.
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -5328,8 +5246,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Replace it with the `users` attribute on `mongodbatlas.Organization`, `mongodbatlas.Project`, or `mongodbatlas.Team` data sources, depending on scope. See the Migration Guide: Migrate off deprecated `mongodbatlas.getAtlasUser` and `mongodbatlas.getAtlasUsers`.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using orgId attribute to query Organization Atlas Users
@@ -5439,8 +5355,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Auditing` describes a Auditing.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5489,8 +5403,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Auditing` describes a Auditing.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -5541,8 +5453,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Auditing` describes a Auditing.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5592,8 +5502,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Auditing` describes a Auditing.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -5642,8 +5550,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Auditing` describes a Auditing.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -5697,8 +5603,6 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -5860,8 +5764,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6021,8 +5923,6 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT NOTE:** Once you enable a Backup Compliance Policy, no user, regardless of role, can disable the Backup Compliance Policy via Terraform, or any other method, without contacting MongoDB support. This means that, once enabled, some resources defined in Terraform can not be modified. To learn more, see the full list of [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -6184,8 +6084,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6346,8 +6244,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6506,8 +6402,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6601,8 +6495,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -6698,8 +6590,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6793,8 +6683,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -6890,8 +6778,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -6984,8 +6870,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7036,8 +6920,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7090,8 +6972,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7142,8 +7022,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7196,8 +7074,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7249,8 +7125,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7300,8 +7174,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7353,8 +7225,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7404,8 +7274,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7457,8 +7325,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7509,8 +7375,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7559,8 +7423,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7611,8 +7473,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7661,8 +7521,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7713,8 +7571,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7763,8 +7619,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7831,8 +7685,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -7897,8 +7749,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -7965,8 +7815,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -8031,8 +7879,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -8099,8 +7945,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -8164,8 +8008,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -8231,8 +8073,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -8296,8 +8136,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -8363,8 +8201,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotExportJobs` datasource allows you to retrieve all the buckets for the specified project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -8428,8 +8264,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -8497,8 +8331,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -8564,8 +8396,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -8633,8 +8463,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -8701,8 +8529,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -8768,8 +8594,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -8843,8 +8667,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -8916,8 +8738,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -8991,8 +8811,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -9064,8 +8882,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -9139,9 +8955,50 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
+     *             .projectId("5d0f1f73cf09a29120e173cf")
+     *             .clusterName("MyClusterTest")
+     *             .description("SomeDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
+     *             .projectId(testCloudBackupSnapshots.projectId())
+     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args) {
@@ -9150,9 +9007,50 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
+     *             .projectId("5d0f1f73cf09a29120e173cf")
+     *             .clusterName("MyClusterTest")
+     *             .description("SomeDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
+     *             .projectId(testCloudBackupSnapshots.projectId())
+     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshotsPlain(GetCloudBackupSnapshotsPlainArgs args) {
@@ -9161,9 +9059,50 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
+     *             .projectId("5d0f1f73cf09a29120e173cf")
+     *             .clusterName("MyClusterTest")
+     *             .description("SomeDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
+     *             .projectId(testCloudBackupSnapshots.projectId())
+     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args, InvokeOptions options) {
@@ -9172,9 +9111,50 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
+     *             .projectId("5d0f1f73cf09a29120e173cf")
+     *             .clusterName("MyClusterTest")
+     *             .description("SomeDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
+     *             .projectId(testCloudBackupSnapshots.projectId())
+     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs args, InvokeOutputOptions options) {
@@ -9183,9 +9163,50 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshots;
+     * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var testCloudBackupSnapshots = new CloudBackupSnapshots("testCloudBackupSnapshots", CloudBackupSnapshotsArgs.builder()
+     *             .projectId("5d0f1f73cf09a29120e173cf")
+     *             .clusterName("MyClusterTest")
+     *             .description("SomeDescription")
+     *             .retentionInDays(1)
+     *             .build());
+     * 
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
+     *             .projectId(testCloudBackupSnapshots.projectId())
+     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetCloudBackupSnapshotsInvokeResult> getCloudBackupSnapshotsPlain(GetCloudBackupSnapshotsPlainArgs args, InvokeOptions options) {
@@ -9193,8 +9214,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -9335,8 +9354,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### With AWS
@@ -9475,8 +9492,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -9617,8 +9632,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### With AWS
@@ -9757,8 +9770,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10843,8 +10854,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -10916,8 +10925,6 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -10991,8 +10998,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -11064,8 +11069,6 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11139,8 +11142,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -11208,8 +11209,6 @@ public final class MongodbatlasFunctions {
      * 
      * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -11256,8 +11255,6 @@ public final class MongodbatlasFunctions {
      * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
      * 
      * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11306,8 +11303,6 @@ public final class MongodbatlasFunctions {
      * 
      * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -11355,8 +11350,6 @@ public final class MongodbatlasFunctions {
      * 
      * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -11403,8 +11396,6 @@ public final class MongodbatlasFunctions {
      * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
      * 
      * Test Outage on Majority of Electable Nodes - Select at least one more than half of your electable nodes and keep at least one electable node remaining. This operation not supported via Terraform Provider. Use the Atlas UI instead.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11455,8 +11446,6 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11527,8 +11516,6 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -11597,8 +11584,6 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -11669,8 +11654,6 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -11739,8 +11722,6 @@ public final class MongodbatlasFunctions {
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
      * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -12077,8 +12058,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12142,8 +12121,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -12209,8 +12186,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12274,8 +12249,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -12341,8 +12314,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CustomDbRole` describes a Custom DB Role. This represents a custom db role.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12407,8 +12378,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12467,8 +12436,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -12529,8 +12496,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12589,8 +12554,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -12651,8 +12614,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12712,8 +12673,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12760,8 +12719,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -12810,8 +12767,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12859,8 +12814,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -12907,8 +12860,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -12958,8 +12909,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -13083,8 +13032,6 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -13206,8 +13153,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -13331,8 +13276,6 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -13454,8 +13397,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -13579,8 +13520,6 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -13698,8 +13637,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -13819,8 +13756,6 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -13939,8 +13874,6 @@ public final class MongodbatlasFunctions {
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -14058,8 +13991,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
      * 
      * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -14184,8 +14115,6 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
      * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -14391,8 +14320,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -14596,8 +14523,6 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
      * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -14803,8 +14728,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -15008,8 +14931,6 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
      * &gt; **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -16117,8 +16038,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
@@ -16241,8 +16160,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -16367,8 +16284,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
@@ -16491,8 +16406,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -16617,8 +16530,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
@@ -16742,8 +16653,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
@@ -16756,8 +16665,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -16772,8 +16679,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
@@ -16786,8 +16691,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
@@ -16802,8 +16705,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getFederatedDatabaseInstances` provides a Federated Database Instance data source.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
      * 
      * ## Example Usage
@@ -16816,8 +16717,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -16861,8 +16760,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -16904,8 +16801,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -16949,8 +16844,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -16993,8 +16886,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -17036,8 +16927,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -17082,8 +16971,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -17126,8 +17013,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -17172,8 +17057,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -17216,8 +17099,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -19377,8 +19258,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -19496,8 +19375,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -19617,8 +19494,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -19736,8 +19611,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -19857,8 +19730,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -19977,8 +19848,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -20036,8 +19905,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -20097,8 +19964,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -20156,8 +20021,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -20217,8 +20080,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.LdapConfiguration` describes a LDAP Configuration.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -20276,8 +20137,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.LdapVerify` describes a LDAP Verify.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -20361,8 +20220,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.LdapVerify` describes a LDAP Verify.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -20444,8 +20301,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.LdapVerify` describes a LDAP Verify.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -20529,8 +20384,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.LdapVerify` describes a LDAP Verify.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -20612,8 +20465,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.LdapVerify` describes a LDAP Verify.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21002,8 +20853,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **NOTE:** Maintenance window times use the project&#39;s configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
      * 
      * ## Examples Usage
@@ -21092,8 +20941,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * &gt; **NOTE:** Maintenance window times use the project&#39;s configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
      * 
@@ -21184,8 +21031,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **NOTE:** Maintenance window times use the project&#39;s configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
      * 
      * ## Examples Usage
@@ -21275,8 +21120,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * &gt; **NOTE:** Maintenance window times use the project&#39;s configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
      * 
      * ## Examples Usage
@@ -21365,8 +21208,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * &gt; **NOTE:** Maintenance window times use the project&#39;s configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
      * 
@@ -21724,8 +21565,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example.
@@ -21779,8 +21618,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
      * 
      * &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21836,8 +21673,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example.
@@ -21891,8 +21726,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.
      * 
      * &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -21948,8 +21781,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:** This resource creates one Network Peering container into which Atlas can deploy Network Peering connections. An Atlas project can have a maximum of one container for each cloud provider. You must have either the Project Owner or Organization Owner role to successfully call this endpoint.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example.
@@ -22001,8 +21832,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22060,8 +21889,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example.
@@ -22117,8 +21944,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22176,8 +22001,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example.
@@ -22233,8 +22056,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22292,8 +22113,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example (AWS).
@@ -22348,8 +22167,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22406,8 +22223,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example (AWS).
@@ -22462,8 +22277,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22520,8 +22333,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.NetworkPeering` describes a Network Peering Connection.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example (AWS).
@@ -22577,8 +22388,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example (AWS).
@@ -22632,8 +22441,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22689,8 +22496,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example (AWS).
@@ -22744,8 +22549,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22801,8 +22604,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic Example (AWS).
@@ -22856,8 +22657,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.OnlineArchive` describes an Online Archive
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -22945,8 +22744,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.OnlineArchive` describes an Online Archive
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -23032,8 +22829,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.OnlineArchive` describes an Online Archive
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -23121,8 +22916,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.OnlineArchive` describes an Online Archive
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -23208,8 +23001,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.OnlineArchive` describes an Online Archive
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -23297,8 +23088,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -23381,8 +23170,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -23467,8 +23254,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -23552,8 +23337,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -23636,8 +23419,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -24259,8 +24040,6 @@ public final class MongodbatlasFunctions {
     /**
      * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -24303,8 +24082,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -24349,8 +24126,6 @@ public final class MongodbatlasFunctions {
     /**
      * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -24393,8 +24168,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -24439,8 +24212,6 @@ public final class MongodbatlasFunctions {
     /**
      * `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -24483,8 +24254,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
@@ -24543,8 +24312,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
-     * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
@@ -24601,8 +24368,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
@@ -24661,8 +24426,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
-     * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
@@ -24719,8 +24482,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
@@ -24779,8 +24540,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -24829,8 +24588,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -24881,8 +24638,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -24931,8 +24686,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -24983,8 +24736,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -25033,8 +24784,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -25095,8 +24844,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -25155,8 +24902,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -25217,8 +24962,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -25277,8 +25020,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -25339,8 +25080,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -25398,8 +25137,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -25459,8 +25196,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -25518,8 +25253,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -25579,8 +25312,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getPrivatelinkEndpointServiceDataFederationOnlineArchives` describes Private Endpoint Service resources for Data Federation and Online Archive.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -25639,8 +25370,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
-     * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
@@ -25696,8 +25425,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
@@ -25755,8 +25482,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
-     * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
@@ -25812,8 +25537,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
      * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
@@ -25871,8 +25594,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
-     * 
      * &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
      * 
      * ## Example Usage
@@ -25928,8 +25649,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -26030,8 +25749,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using projectId attribute to query
@@ -26130,8 +25847,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -26232,8 +25947,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using projectId attribute to query
@@ -26332,8 +26045,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -26434,8 +26145,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using projectId attribute to query
@@ -26534,8 +26243,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -26935,8 +26642,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -26982,8 +26687,6 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.getProjectApiKeys` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -27031,8 +26734,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -27078,8 +26779,6 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT NOTE** The use of `mongodbatlas.getProjectApiKeys` data source is no longer the recommended approach. For new configurations, we recommend using the `mongodbatlas.ApiKey` resource and the `mongodbatlas.ApiKeyProjectAssignment` resource to assign the API Keys to projects. This approach is more flexible and aligns with best practices. For existing configurations, the migration to the new pattern is **not required**. If you want to migrate, see the Migration Guide for step-by-step instructions on migrating from `mongodbatlas.ProjectApiKey` to the new pattern.
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -27127,8 +26826,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -27172,8 +26869,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -27228,8 +26923,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -27282,8 +26975,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.ProjectInvitation` describes an invitation to a user to join an Atlas project.
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -27338,8 +27029,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -27393,8 +27082,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -27445,8 +27132,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -27604,8 +27289,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using CIDR Block
@@ -27761,8 +27444,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -27920,8 +27601,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Using CIDR Block
@@ -28077,8 +27756,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -28236,8 +27913,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -28291,8 +27966,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -28348,8 +28021,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -28404,8 +28075,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -28459,8 +28128,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -30026,8 +29693,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -30082,8 +29747,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -30140,8 +29803,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -30196,8 +29857,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -30254,8 +29913,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -30311,8 +29968,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -30367,8 +30022,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31603,8 +31256,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -31646,8 +31297,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31691,8 +31340,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -31734,8 +31381,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31779,8 +31424,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.SearchIndex` describes a single search indexes. This represents a single search index that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -31823,8 +31466,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      */
@@ -31833,8 +31474,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31845,8 +31484,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      */
@@ -31856,8 +31493,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      */
@@ -31866,8 +31501,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31881,8 +31514,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -31930,8 +31561,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic
@@ -31977,8 +31606,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -32026,8 +31653,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### Basic
@@ -32073,8 +31698,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -32123,8 +31746,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -32169,8 +31790,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -32217,8 +31836,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -32264,8 +31881,6 @@ public final class MongodbatlasFunctions {
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -32310,8 +31925,6 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
      * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -40623,8 +40236,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -40719,8 +40330,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -40817,8 +40426,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -40914,8 +40521,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -41010,8 +40615,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -41373,8 +40976,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -41424,8 +41025,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -41477,8 +41076,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -41528,8 +41125,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -41581,8 +41176,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -41633,8 +41226,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -41692,8 +41283,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -41749,8 +41338,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -41808,8 +41395,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -41866,8 +41451,6 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getThirdPartyIntegrations` describes all Third-Party Integration Settings. This represents two Third-Party services `PAGER_DUTY` and `DATADOG`
      * applied across the project.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-     * 
      * ## Example Usage
      * 
      * <pre>
@@ -41922,8 +41505,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -42056,8 +41637,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -42188,8 +41767,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 
@@ -42322,8 +41899,6 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
      * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-     * 
      * ## Example Usage
      * 
      * ### S
@@ -42454,8 +42029,6 @@ public final class MongodbatlasFunctions {
     }
     /**
      * `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
      * 
      * ## Example Usage
      * 

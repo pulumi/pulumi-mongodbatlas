@@ -67,7 +67,7 @@ class GetAlertConfigurationsResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        The ID of the project where the alert configuration exists
+        The ID of the project where the alert configuration exists, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -109,8 +109,6 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
     """
     `get_alert_configurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -139,7 +137,7 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
            * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
            * `list_options.include_count` - Whether to include total count of results in the response (default false)
     :param Sequence[_builtins.str] output_types: List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
-    :param _builtins.str project_id: The unique ID for the project to get the alert configurations.
+    :param _builtins.str project_id: The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['listOptions'] = list_options
@@ -162,8 +160,6 @@ def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional
     """
     `get_alert_configurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -192,7 +188,7 @@ def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional
            * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
            * `list_options.include_count` - Whether to include total count of results in the response (default false)
     :param Sequence[_builtins.str] output_types: List of requested string formatted output to be included on each individual result. Options are `resource_hcl` and `resource_import`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
-    :param _builtins.str project_id: The unique ID for the project to get the alert configurations.
+    :param _builtins.str project_id: The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['listOptions'] = list_options

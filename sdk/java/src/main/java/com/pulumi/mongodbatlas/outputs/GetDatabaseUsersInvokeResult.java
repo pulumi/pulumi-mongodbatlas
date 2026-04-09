@@ -18,7 +18,7 @@ public final class GetDatabaseUsersInvokeResult {
      */
     private String id;
     /**
-     * @return ID of the Atlas project the user belongs to.
+     * @return ID of the Atlas project the user belongs to, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -37,7 +37,7 @@ public final class GetDatabaseUsersInvokeResult {
         return this.id;
     }
     /**
-     * @return ID of the Atlas project the user belongs to.
+     * @return ID of the Atlas project the user belongs to, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

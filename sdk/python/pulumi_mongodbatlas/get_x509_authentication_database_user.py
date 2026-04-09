@@ -95,8 +95,6 @@ def get_x509_authentication_database_user(project_id: Optional[_builtins.str] = 
     """
     `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -158,7 +156,7 @@ def get_x509_authentication_database_user(project_id: Optional[_builtins.str] = 
     ```
 
 
-    :param _builtins.str project_id: Identifier for the Atlas project associated with the X.509 configuration.
+    :param _builtins.str project_id: Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
     :param _builtins.str username: Username of the database user to create a certificate for.
     """
     __args__ = dict()
@@ -179,8 +177,6 @@ def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Inp
     """
     `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -242,7 +238,7 @@ def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Inp
     ```
 
 
-    :param _builtins.str project_id: Identifier for the Atlas project associated with the X.509 configuration.
+    :param _builtins.str project_id: Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
     :param _builtins.str username: Username of the database user to create a certificate for.
     """
     __args__ = dict()

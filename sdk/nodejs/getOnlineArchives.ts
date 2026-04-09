@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -86,7 +84,7 @@ export interface GetOnlineArchivesArgs {
      */
     clusterName: string;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -106,8 +104,6 @@ export interface GetOnlineArchivesResult {
 }
 /**
  * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
@@ -184,7 +180,7 @@ export interface GetOnlineArchivesOutputArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

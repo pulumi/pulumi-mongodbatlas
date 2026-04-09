@@ -13,8 +13,6 @@ import (
 
 // `getCloudBackupSnapshotExportBuckets` datasource allows you to retrieve all the buckets for the specified project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -65,7 +63,7 @@ type LookupCloudBackupSnapshotExportBucketsArgs struct {
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -75,7 +73,7 @@ type LookupCloudBackupSnapshotExportBucketsResult struct {
 	Id           string `pulumi:"id"`
 	ItemsPerPage *int   `pulumi:"itemsPerPage"`
 	PageNum      *int   `pulumi:"pageNum"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
 	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
@@ -98,7 +96,7 @@ type LookupCloudBackupSnapshotExportBucketsOutputArgs struct {
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -134,7 +132,7 @@ func (o LookupCloudBackupSnapshotExportBucketsResultOutput) PageNum() pulumi.Int
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketsResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
-// The unique identifier of the project for the Atlas cluster.
+// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 func (o LookupCloudBackupSnapshotExportBucketsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -19,8 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -50,8 +48,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// 
         /// ## Example Usage
@@ -83,8 +79,6 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -112,7 +106,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetServerlessInstancesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -126,7 +120,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetServerlessInstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

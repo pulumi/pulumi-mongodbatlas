@@ -61,19 +61,22 @@ func LookupTeamProjectAssignment(ctx *pulumi.Context, args *LookupTeamProjectAss
 
 // A collection of arguments for invoking getTeamProjectAssignment.
 type LookupTeamProjectAssignmentArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	TeamId    string `pulumi:"teamId"`
+	// Unique 24-hexadecimal character string that identifies the team.
+	TeamId string `pulumi:"teamId"`
 }
 
 // A collection of values returned by getTeamProjectAssignment.
 type LookupTeamProjectAssignmentResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string   `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// One or more project-level roles assigned to the team.
 	RoleNames []string `pulumi:"roleNames"`
-	TeamId    string   `pulumi:"teamId"`
+	// Unique 24-hexadecimal character string that identifies the team.
+	TeamId string `pulumi:"teamId"`
 }
 
 func LookupTeamProjectAssignmentOutput(ctx *pulumi.Context, args LookupTeamProjectAssignmentOutputArgs, opts ...pulumi.InvokeOption) LookupTeamProjectAssignmentResultOutput {
@@ -87,9 +90,10 @@ func LookupTeamProjectAssignmentOutput(ctx *pulumi.Context, args LookupTeamProje
 
 // A collection of arguments for invoking getTeamProjectAssignment.
 type LookupTeamProjectAssignmentOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	TeamId    pulumi.StringInput `pulumi:"teamId"`
+	// Unique 24-hexadecimal character string that identifies the team.
+	TeamId pulumi.StringInput `pulumi:"teamId"`
 }
 
 func (LookupTeamProjectAssignmentOutputArgs) ElementType() reflect.Type {
@@ -116,15 +120,17 @@ func (o LookupTeamProjectAssignmentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamProjectAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupTeamProjectAssignmentResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamProjectAssignmentResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// One or more project-level roles assigned to the team.
 func (o LookupTeamProjectAssignmentResultOutput) RoleNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupTeamProjectAssignmentResult) []string { return v.RoleNames }).(pulumi.StringArrayOutput)
 }
 
+// Unique 24-hexadecimal character string that identifies the team.
 func (o LookupTeamProjectAssignmentResultOutput) TeamId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTeamProjectAssignmentResult) string { return v.TeamId }).(pulumi.StringOutput)
 }

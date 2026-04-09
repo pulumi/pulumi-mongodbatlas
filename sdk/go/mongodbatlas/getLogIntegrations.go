@@ -33,7 +33,7 @@ func LookupLogIntegrations(ctx *pulumi.Context, args *LookupLogIntegrationsArgs,
 type LookupLogIntegrationsArgs struct {
 	// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 	IntegrationType *string `pulumi:"integrationType"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -43,7 +43,7 @@ type LookupLogIntegrationsResult struct {
 	Id string `pulumi:"id"`
 	// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 	IntegrationType *string `pulumi:"integrationType"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
 	Results []GetLogIntegrationsResult `pulumi:"results"`
@@ -62,7 +62,7 @@ func LookupLogIntegrationsOutput(ctx *pulumi.Context, args LookupLogIntegrations
 type LookupLogIntegrationsOutputArgs struct {
 	// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 	IntegrationType pulumi.StringPtrInput `pulumi:"integrationType"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -95,7 +95,7 @@ func (o LookupLogIntegrationsResultOutput) IntegrationType() pulumi.StringPtrOut
 	return o.ApplyT(func(v LookupLogIntegrationsResult) *string { return v.IntegrationType }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupLogIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

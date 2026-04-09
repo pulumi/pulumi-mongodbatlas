@@ -591,8 +591,6 @@ def get_cluster(name: Optional[_builtins.str] = None,
 
     > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -622,7 +620,7 @@ def get_cluster(name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-    :param _builtins.str project_id: The unique ID for the project to create the cluster.
+    :param _builtins.str project_id: The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -691,8 +689,6 @@ def get_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = None,
 
     > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -722,7 +718,7 @@ def get_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = None,
 
 
     :param _builtins.str name: Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed.
-    :param _builtins.str project_id: The unique ID for the project to create the cluster.
+    :param _builtins.str project_id: The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['name'] = name

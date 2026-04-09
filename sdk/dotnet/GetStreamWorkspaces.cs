@@ -118,7 +118,7 @@ namespace Pulumi.Mongodbatlas
         public int? PageNum { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? PageNum { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumi.Mongodbatlas
         public readonly int? ItemsPerPage;
         public readonly int? PageNum;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

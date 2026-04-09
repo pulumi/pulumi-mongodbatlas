@@ -41,7 +41,7 @@ class ThirdPartyIntegrationArgs:
         """
         The set of arguments for constructing a ThirdPartyIntegration resource.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
@@ -95,7 +95,7 @@ class ThirdPartyIntegrationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project to get all Third-Party service integrations
+        The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -304,7 +304,7 @@ class _ThirdPartyIntegrationState:
         """
         Input properties used for looking up and filtering ThirdPartyIntegration resources.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
@@ -405,7 +405,7 @@ class _ThirdPartyIntegrationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to get all Third-Party service integrations
+        The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
@@ -573,8 +573,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         """
         `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
         > **IMPORTANT** Each project can only have one configuration per integration `type`.
@@ -610,7 +608,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
@@ -631,8 +629,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 
@@ -771,7 +767,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
                * PAGER_DUTY
                * DATADOG
@@ -838,7 +834,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project to get all Third-Party service integrations
+        The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 

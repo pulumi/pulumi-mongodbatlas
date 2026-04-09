@@ -31,7 +31,7 @@ class CloudBackupSnapshotArgs:
 
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
@@ -70,7 +70,7 @@ class CloudBackupSnapshotArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -136,7 +136,7 @@ class _CloudBackupSnapshotState:
         :param pulumi.Input[_builtins.str] master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]] members: Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
         :param pulumi.Input[_builtins.str] mongod_version: Version of the MongoDB server.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         :param pulumi.Input[_builtins.int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         :param pulumi.Input[_builtins.str] snapshot_id: Unique identifier of the snapshot.
@@ -295,7 +295,7 @@ class _CloudBackupSnapshotState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -416,8 +416,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
         ## Example Usage
@@ -476,7 +474,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshots you want to retrieve.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         """
         ...
@@ -488,8 +486,6 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         """
         `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
         On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
@@ -643,7 +639,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict']]]] members: Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
         :param pulumi.Input[_builtins.str] mongod_version: Version of the MongoDB server.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.
         :param pulumi.Input[_builtins.int] retention_in_days: The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         :param pulumi.Input[_builtins.str] snapshot_id: Unique identifier of the snapshot.
@@ -753,7 +749,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

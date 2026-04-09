@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ### S
@@ -38,7 +36,7 @@ export function getFederatedQueryLimits(args: GetFederatedQueryLimitsArgs, opts?
  */
 export interface GetFederatedQueryLimitsArgs {
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -64,8 +62,6 @@ export interface GetFederatedQueryLimitsResult {
 }
 /**
  * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
@@ -94,7 +90,7 @@ export function getFederatedQueryLimitsOutput(args: GetFederatedQueryLimitsOutpu
  */
 export interface GetFederatedQueryLimitsOutputArgs {
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -44,7 +42,7 @@ export interface GetCloudBackupSnapshotExportBucketArgs {
      */
     exportBucketId: string;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -86,8 +84,6 @@ export interface GetCloudBackupSnapshotExportBucketResult {
 /**
  * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -123,7 +119,7 @@ export interface GetCloudBackupSnapshotExportBucketOutputArgs {
      */
     exportBucketId: pulumi.Input<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

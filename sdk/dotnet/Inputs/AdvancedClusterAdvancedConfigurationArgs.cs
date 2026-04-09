@@ -73,7 +73,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<bool>? NoTableScan { get; set; }
 
         /// <summary>
-        /// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `Null` will retain the last applied value rather than reverting to the default value.
+        /// Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `Null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
         /// </summary>
         [Input("oplogMinRetentionHours")]
         public Input<double>? OplogMinRetentionHours { get; set; }

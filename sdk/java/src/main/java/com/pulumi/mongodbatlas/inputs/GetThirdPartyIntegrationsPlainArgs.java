@@ -14,14 +14,14 @@ public final class GetThirdPartyIntegrationsPlainArgs extends com.pulumi.resourc
     public static final GetThirdPartyIntegrationsPlainArgs Empty = new GetThirdPartyIntegrationsPlainArgs();
 
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project to get all Third-Party service integrations
+     * @return The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     public String projectId() {
@@ -53,7 +53,7 @@ public final class GetThirdPartyIntegrationsPlainArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param projectId The unique ID for the project to get all Third-Party service integrations
+         * @param projectId The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 

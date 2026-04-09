@@ -52,18 +52,24 @@ class GetTeamProjectAssignmentResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter(name="roleNames")
     def role_names(self) -> Sequence[_builtins.str]:
+        """
+        One or more project-level roles assigned to the team.
+        """
         return pulumi.get(self, "role_names")
 
     @_builtins.property
     @pulumi.getter(name="teamId")
     def team_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal character string that identifies the team.
+        """
         return pulumi.get(self, "team_id")
 
 
@@ -105,7 +111,8 @@ def get_team_project_assignment(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str team_id: Unique 24-hexadecimal character string that identifies the team.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -144,7 +151,8 @@ def get_team_project_assignment_output(project_id: Optional[pulumi.Input[_builti
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+    :param _builtins.str team_id: Unique 24-hexadecimal character string that identifies the team.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

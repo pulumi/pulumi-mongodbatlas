@@ -90,7 +90,7 @@ class GetProjectIpAccessListResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -117,8 +117,6 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
     """
     `ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### Using CIDR Block
@@ -178,7 +176,7 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
     :param _builtins.str aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
     :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
     :param _builtins.str ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['awsSecurityGroup'] = aws_security_group
@@ -203,8 +201,6 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     """
     `ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ### Using CIDR Block
@@ -264,7 +260,7 @@ def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[
     :param _builtins.str aws_security_group: Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidr_block` and `ip_address`.
     :param _builtins.str cidr_block: Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ip_address` and `aws_security_group`.
     :param _builtins.str ip_address: Single IP address to be added to the access list. Mutually exclusive with `cidr_block` and `aws_security_group`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['awsSecurityGroup'] = aws_security_group

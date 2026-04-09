@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
- *
  * > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
  *
  * ## Example Usage
@@ -48,7 +46,7 @@ export function getPrivatelinkEndpoints(args: GetPrivatelinkEndpointsArgs, opts?
  */
 export interface GetPrivatelinkEndpointsArgs {
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -74,8 +72,6 @@ export interface GetPrivatelinkEndpointsResult {
 }
 /**
  * `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
- *
- * > **NOTE:** Groups and projects are synonymous terms. The official documentation uses `groupId`.
  *
  * > **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
  *
@@ -114,7 +110,7 @@ export function getPrivatelinkEndpointsOutput(args: GetPrivatelinkEndpointsOutpu
  */
 export interface GetPrivatelinkEndpointsOutputArgs {
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

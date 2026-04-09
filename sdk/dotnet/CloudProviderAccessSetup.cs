@@ -25,8 +25,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// `mongodbatlas.CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
     /// ## Example Usage
     /// 
     /// ### With AWS
@@ -148,7 +146,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> LastUpdatedDate { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project
+        /// The unique ID for the project, also known as `groupId` in the official documentation
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -230,7 +228,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
-        /// The unique ID for the project
+        /// The unique ID for the project, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -304,7 +302,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? LastUpdatedDate { get; set; }
 
         /// <summary>
-        /// The unique ID for the project
+        /// The unique ID for the project, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

@@ -479,14 +479,14 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The unique ID for the project to create the trigger.
+     * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create the trigger.
+     * @return The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

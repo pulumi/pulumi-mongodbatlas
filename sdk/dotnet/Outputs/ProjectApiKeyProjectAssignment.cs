@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class ProjectApiKeyProjectAssignment
     {
         /// <summary>
-        /// Project ID to assign to Access Key
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

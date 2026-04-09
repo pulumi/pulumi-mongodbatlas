@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -49,8 +47,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -83,8 +79,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -121,7 +115,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -148,7 +142,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetThirdPartyIntegrationInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -31,7 +31,7 @@ public final class GetEncryptionAtRestPrivateEndpointsResult {
      */
     private String privateEndpointConnectionName;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -76,7 +76,7 @@ public final class GetEncryptionAtRestPrivateEndpointsResult {
         return this.privateEndpointConnectionName;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

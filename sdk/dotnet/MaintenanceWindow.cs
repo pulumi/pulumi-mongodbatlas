@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **NOTE:** Only a single maintenance window resource can be defined per project.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
     /// &gt; **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
     /// 
     /// ## Maintenance Window Considerations:
@@ -150,7 +148,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> NumberOfDeferrals { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Maintenance Window.
+        /// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -250,7 +248,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int> HourOfDay { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Maintenance Window.
+        /// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -306,7 +304,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? NumberOfDeferrals { get; set; }
 
         /// <summary>
-        /// The unique identifier of the project for the Maintenance Window.
+        /// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

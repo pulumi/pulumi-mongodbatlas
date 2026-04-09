@@ -27,7 +27,7 @@ class PrivateLinkEndpointArgs:
         """
         The set of arguments for constructing a PrivateLinkEndpoint resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
@@ -46,7 +46,7 @@ class PrivateLinkEndpointArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique identifier for the project, also known as `group_id` in the official documentation.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -136,7 +136,7 @@ class _PrivateLinkEndpointState:
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the private endpoint connection.
         :param pulumi.Input[_builtins.str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
         :param pulumi.Input[_builtins.str] private_link_service_resource_id: Resource ID of the Azure Private Link Service.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
@@ -305,7 +305,7 @@ class _PrivateLinkEndpointState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier for the project, also known as `group_id` in the official documentation.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -436,7 +436,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.bool] port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
@@ -582,7 +582,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the private endpoint connection.
         :param pulumi.Input[_builtins.str] private_link_service_name: Name of the Azure Private Link Service that Atlas manages.
         :param pulumi.Input[_builtins.str] private_link_service_resource_id: Resource ID of the Azure Private Link Service.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
@@ -700,7 +700,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique identifier for the project, also known as `group_id` in the official documentation.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

@@ -13,8 +13,6 @@ import (
 
 // `getFederatedDatabaseInstances` provides a Federated Database Instance data source.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
 //
 // ## Example Usage
@@ -32,7 +30,7 @@ func LookupFederatedDatabaseInstances(ctx *pulumi.Context, args *LookupFederated
 
 // A collection of arguments for invoking getFederatedDatabaseInstances.
 type LookupFederatedDatabaseInstancesArgs struct {
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -56,7 +54,7 @@ func LookupFederatedDatabaseInstancesOutput(ctx *pulumi.Context, args LookupFede
 
 // A collection of arguments for invoking getFederatedDatabaseInstances.
 type LookupFederatedDatabaseInstancesOutputArgs struct {
-	// The unique ID for the project to create a Federated Database Instance.
+	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

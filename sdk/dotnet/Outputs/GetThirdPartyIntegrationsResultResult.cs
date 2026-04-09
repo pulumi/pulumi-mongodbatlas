@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string MicrosoftTeamsWebhookUrl;
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
@@ -79,7 +79,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string ServiceKey;
         public readonly string TeamName;
         /// <summary>
-        /// Thirt-Party service integration type.
+        /// Third-Party service integration type.
         /// </summary>
         public readonly string Type;
         /// <summary>

@@ -26,7 +26,7 @@ class ProjectServiceAccountSecretInitArgs:
         The set of arguments for constructing a ProjectServiceAccountSecret resource.
 
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
         """
         pulumi.set(__self__, "client_id", client_id)
@@ -50,7 +50,7 @@ class ProjectServiceAccountSecretInitArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -91,7 +91,7 @@ class _ProjectServiceAccountSecretState:
         :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] masked_secret_value: The masked Service Account secret.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] secret: The secret for the Service Account. It will be returned only the first time after creation.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
         :param pulumi.Input[_builtins.str] secret_id: Unique 24-hexadecimal digit string that identifies the secret.
@@ -179,7 +179,7 @@ class _ProjectServiceAccountSecretState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -284,7 +284,7 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: The Client ID of the Service Account.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
         """
         ...
@@ -413,7 +413,7 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] masked_secret_value: The masked Service Account secret.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] secret: The secret for the Service Account. It will be returned only the first time after creation.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
         :param pulumi.Input[_builtins.str] secret_id: Unique 24-hexadecimal digit string that identifies the secret.
@@ -477,7 +477,7 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

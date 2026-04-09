@@ -30,14 +30,14 @@ public final class GetProjectInvitationArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+     * @return Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -107,7 +107,7 @@ public final class GetProjectInvitationArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -118,7 +118,7 @@ public final class GetProjectInvitationArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

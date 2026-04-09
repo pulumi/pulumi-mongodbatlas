@@ -130,11 +130,14 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetTeamProjectAssignmentArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal character string that identifies the team.
+        /// </summary>
         [Input("teamId", required: true)]
         public string TeamId { get; set; } = null!;
 
@@ -147,11 +150,14 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetTeamProjectAssignmentInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal character string that identifies the team.
+        /// </summary>
         [Input("teamId", required: true)]
         public Input<string> TeamId { get; set; } = null!;
 
@@ -170,10 +176,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// One or more project-level roles assigned to the team.
+        /// </summary>
         public readonly ImmutableArray<string> RoleNames;
+        /// <summary>
+        /// Unique 24-hexadecimal character string that identifies the team.
+        /// </summary>
         public readonly string TeamId;
 
         [OutputConstructor]

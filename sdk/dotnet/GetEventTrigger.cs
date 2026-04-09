@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
         public string AppId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the trigger.
+        /// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> AppId { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the trigger.
+        /// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

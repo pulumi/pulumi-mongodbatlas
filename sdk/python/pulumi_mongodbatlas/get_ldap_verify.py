@@ -149,8 +149,6 @@ def get_ldap_verify(project_id: Optional[_builtins.str] = None,
     """
     `LdapVerify` describes a LDAP Verify.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -188,7 +186,7 @@ def get_ldap_verify(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: Unique identifier for the Atlas project associated with the verification request.
+    :param _builtins.str project_id: Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
     :param _builtins.str request_id: Unique identifier of a request to verify an LDAP configuration.
     """
     __args__ = dict()
@@ -213,8 +211,6 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[_builtins.str]] = N
     """
     `LdapVerify` describes a LDAP Verify.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -252,7 +248,7 @@ def get_ldap_verify_output(project_id: Optional[pulumi.Input[_builtins.str]] = N
     ```
 
 
-    :param _builtins.str project_id: Unique identifier for the Atlas project associated with the verification request.
+    :param _builtins.str project_id: Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
     :param _builtins.str request_id: Unique identifier of a request to verify an LDAP configuration.
     """
     __args__ = dict()

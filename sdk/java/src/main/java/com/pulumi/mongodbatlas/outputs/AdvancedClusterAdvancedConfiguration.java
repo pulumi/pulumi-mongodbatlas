@@ -56,7 +56,7 @@ public final class AdvancedClusterAdvancedConfiguration {
      */
     private @Nullable Boolean noTableScan;
     /**
-     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
      * 
      */
     private @Nullable Double oplogMinRetentionHours;
@@ -144,7 +144,7 @@ public final class AdvancedClusterAdvancedConfiguration {
         return Optional.ofNullable(this.noTableScan);
     }
     /**
-     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+     * @return Minimum retention window for cluster&#39;s oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
      * 
      */
     public Optional<Double> oplogMinRetentionHours() {

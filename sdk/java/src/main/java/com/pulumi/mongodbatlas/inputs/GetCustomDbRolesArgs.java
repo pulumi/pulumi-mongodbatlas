@@ -15,14 +15,14 @@ public final class GetCustomDbRolesArgs extends com.pulumi.resources.InvokeArgs 
     public static final GetCustomDbRolesArgs Empty = new GetCustomDbRolesArgs();
 
     /**
-     * The unique ID for the project to get all custom db roles.
+     * The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to get all custom db roles.
+     * @return The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -54,7 +54,7 @@ public final class GetCustomDbRolesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param projectId The unique ID for the project to get all custom db roles.
+         * @param projectId The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class GetCustomDbRolesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param projectId The unique ID for the project to get all custom db roles.
+         * @param projectId The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
     /// &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
     /// 
     /// &gt; **IMPORTANT** Each project can only have one configuration per integration `Type`.
@@ -73,7 +71,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -230,7 +228,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -383,7 +381,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to get all Third-Party service integrations
+        /// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

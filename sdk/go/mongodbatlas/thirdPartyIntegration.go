@@ -14,8 +14,6 @@ import (
 
 // `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // > **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
 //
 // > **IMPORTANT** Each project can only have one configuration per integration `type`.
@@ -71,7 +69,7 @@ type ThirdPartyIntegration struct {
 	Enabled                  pulumi.BoolOutput   `pulumi:"enabled"`
 	MicrosoftTeamsWebhookUrl pulumi.StringOutput `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 pulumi.StringOutput `pulumi:"password"`
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId                    pulumi.StringOutput    `pulumi:"projectId"`
 	Region                       pulumi.StringOutput    `pulumi:"region"`
 	RoutingKey                   pulumi.StringOutput    `pulumi:"routingKey"`
@@ -174,7 +172,7 @@ type thirdPartyIntegrationState struct {
 	Enabled                  *bool   `pulumi:"enabled"`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 *string `pulumi:"password"`
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId                    *string `pulumi:"projectId"`
 	Region                       *string `pulumi:"region"`
 	RoutingKey                   *string `pulumi:"routingKey"`
@@ -207,7 +205,7 @@ type ThirdPartyIntegrationState struct {
 	Enabled                  pulumi.BoolPtrInput
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	Password                 pulumi.StringPtrInput
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId                    pulumi.StringPtrInput
 	Region                       pulumi.StringPtrInput
 	RoutingKey                   pulumi.StringPtrInput
@@ -244,7 +242,7 @@ type thirdPartyIntegrationArgs struct {
 	Enabled                  *bool   `pulumi:"enabled"`
 	MicrosoftTeamsWebhookUrl *string `pulumi:"microsoftTeamsWebhookUrl"`
 	Password                 *string `pulumi:"password"`
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId                    string  `pulumi:"projectId"`
 	Region                       *string `pulumi:"region"`
 	RoutingKey                   *string `pulumi:"routingKey"`
@@ -278,7 +276,7 @@ type ThirdPartyIntegrationArgs struct {
 	Enabled                  pulumi.BoolPtrInput
 	MicrosoftTeamsWebhookUrl pulumi.StringPtrInput
 	Password                 pulumi.StringPtrInput
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId                    pulumi.StringInput
 	Region                       pulumi.StringPtrInput
 	RoutingKey                   pulumi.StringPtrInput
@@ -412,7 +410,7 @@ func (o ThirdPartyIntegrationOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project to get all Third-Party service integrations
+// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 func (o ThirdPartyIntegrationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

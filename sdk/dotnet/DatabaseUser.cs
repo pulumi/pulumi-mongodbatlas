@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-    /// 
     /// &gt; **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
     /// 
     /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
@@ -265,7 +263,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -409,7 +407,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -522,7 +520,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to create the database user.
+        /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

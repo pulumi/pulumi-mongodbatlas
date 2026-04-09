@@ -17,11 +17,19 @@ public final class GetTeamProjectAssignmentResult {
      */
     private String id;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return One or more project-level roles assigned to the team.
+     * 
+     */
     private List<String> roleNames;
+    /**
+     * @return Unique 24-hexadecimal character string that identifies the team.
+     * 
+     */
     private String teamId;
 
     private GetTeamProjectAssignmentResult() {}
@@ -33,15 +41,23 @@ public final class GetTeamProjectAssignmentResult {
         return this.id;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return One or more project-level roles assigned to the team.
+     * 
+     */
     public List<String> roleNames() {
         return this.roleNames;
     }
+    /**
+     * @return Unique 24-hexadecimal character string that identifies the team.
+     * 
+     */
     public String teamId() {
         return this.teamId;
     }

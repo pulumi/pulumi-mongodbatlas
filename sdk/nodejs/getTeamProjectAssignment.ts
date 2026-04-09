@@ -42,9 +42,12 @@ export function getTeamProjectAssignment(args: GetTeamProjectAssignmentArgs, opt
  */
 export interface GetTeamProjectAssignmentArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * Unique 24-hexadecimal character string that identifies the team.
+     */
     teamId: string;
 }
 
@@ -57,10 +60,16 @@ export interface GetTeamProjectAssignmentResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * One or more project-level roles assigned to the team.
+     */
     readonly roleNames: string[];
+    /**
+     * Unique 24-hexadecimal character string that identifies the team.
+     */
     readonly teamId: string;
 }
 /**
@@ -101,8 +110,11 @@ export function getTeamProjectAssignmentOutput(args: GetTeamProjectAssignmentOut
  */
 export interface GetTeamProjectAssignmentOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal character string that identifies the team.
+     */
     teamId: pulumi.Input<string>;
 }

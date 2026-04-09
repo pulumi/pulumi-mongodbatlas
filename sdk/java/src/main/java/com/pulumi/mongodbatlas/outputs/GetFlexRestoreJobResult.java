@@ -10,7 +10,15 @@ import java.util.Objects;
 
 @CustomType
 public final class GetFlexRestoreJobResult {
+    /**
+     * @return Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+     * 
+     */
     private String deliveryType;
+    /**
+     * @return Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String expirationDate;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -23,24 +31,68 @@ public final class GetFlexRestoreJobResult {
      */
     private String name;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String restoreFinishedDate;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the restore job.
+     * 
+     */
     private String restoreJobId;
+    /**
+     * @return Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String restoreScheduledDate;
+    /**
+     * @return Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String snapshotFinishedDate;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     private String snapshotId;
+    /**
+     * @return Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `&#34;deliveryType&#34; : &#34;DOWNLOAD&#34;`.
+     * 
+     */
     private String snapshotUrl;
+    /**
+     * @return Phase of the restore workflow for this job at the time this resource made this request.
+     * 
+     */
     private String status;
+    /**
+     * @return Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+     * 
+     */
     private String targetDeploymentItemName;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+     * 
+     */
     private String targetProjectId;
 
     private GetFlexRestoreJobResult() {}
+    /**
+     * @return Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+     * 
+     */
     public String deliveryType() {
         return this.deliveryType;
     }
+    /**
+     * @return Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String expirationDate() {
         return this.expirationDate;
     }
@@ -59,36 +111,72 @@ public final class GetFlexRestoreJobResult {
         return this.name;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String restoreFinishedDate() {
         return this.restoreFinishedDate;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the restore job.
+     * 
+     */
     public String restoreJobId() {
         return this.restoreJobId;
     }
+    /**
+     * @return Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String restoreScheduledDate() {
         return this.restoreScheduledDate;
     }
+    /**
+     * @return Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String snapshotFinishedDate() {
         return this.snapshotFinishedDate;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     public String snapshotId() {
         return this.snapshotId;
     }
+    /**
+     * @return Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `&#34;deliveryType&#34; : &#34;DOWNLOAD&#34;`.
+     * 
+     */
     public String snapshotUrl() {
         return this.snapshotUrl;
     }
+    /**
+     * @return Phase of the restore workflow for this job at the time this resource made this request.
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
+     * 
+     */
     public String targetDeploymentItemName() {
         return this.targetDeploymentItemName;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+     * 
+     */
     public String targetProjectId() {
         return this.targetProjectId;
     }

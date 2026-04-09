@@ -30,23 +30,31 @@ public final class GetFlexSnapshotArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     @Import(name="snapshotId", required=true)
     private Output<String> snapshotId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     public Output<String> snapshotId() {
         return this.snapshotId;
     }
@@ -99,7 +107,7 @@ public final class GetFlexSnapshotArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -110,7 +118,7 @@ public final class GetFlexSnapshotArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -119,11 +127,23 @@ public final class GetFlexSnapshotArgs extends com.pulumi.resources.InvokeArgs {
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param snapshotId Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotId(Output<String> snapshotId) {
             $.snapshotId = snapshotId;
             return this;
         }
 
+        /**
+         * @param snapshotId Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotId(String snapshotId) {
             return snapshotId(Output.of(snapshotId));
         }

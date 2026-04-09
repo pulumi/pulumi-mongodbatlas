@@ -13,8 +13,6 @@ import (
 
 // `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -61,7 +59,7 @@ func LookupCloudBackupSnapshotExportBucket(ctx *pulumi.Context, args *LookupClou
 type LookupCloudBackupSnapshotExportBucketArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -99,7 +97,7 @@ func LookupCloudBackupSnapshotExportBucketOutput(ctx *pulumi.Context, args Looku
 type LookupCloudBackupSnapshotExportBucketOutputArgs struct {
 	// Unique identifier of the snapshot export bucket.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

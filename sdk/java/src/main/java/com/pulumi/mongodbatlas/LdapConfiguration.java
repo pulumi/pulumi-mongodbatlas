@@ -244,14 +244,14 @@ public class LdapConfiguration extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.port);
     }
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to configure LDAP.
+     * @return The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

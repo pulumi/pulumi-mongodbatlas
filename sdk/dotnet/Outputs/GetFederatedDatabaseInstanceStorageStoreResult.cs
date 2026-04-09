@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string Name;
         public readonly string Prefix;
         /// <summary>
-        /// The unique ID for the project to create a Federated Database Instance.
+        /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         public readonly string Provider;

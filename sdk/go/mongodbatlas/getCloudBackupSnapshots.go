@@ -13,9 +13,43 @@ import (
 
 // `getCloudBackupSnapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			testCloudBackupSnapshots, err := mongodbatlas.NewCloudBackupSnapshots(ctx, "test", &mongodbatlas.CloudBackupSnapshotsArgs{
+//				ProjectId:       "5d0f1f73cf09a29120e173cf",
+//				ClusterName:     "MyClusterTest",
+//				Description:     "SomeDescription",
+//				RetentionInDays: 1,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.LookupCloudBackupSnapshots(ctx, &mongodbatlas.LookupCloudBackupSnapshotsArgs{
+//				ProjectId:    testCloudBackupSnapshots.ProjectId,
+//				ClusterName:  testCloudBackupSnapshots.ClusterName,
+//				PageNum:      pulumi.IntRef(1),
+//				ItemsPerPage: pulumi.IntRef(5),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCloudBackupSnapshots(ctx *pulumi.Context, args *LookupCloudBackupSnapshotsArgs, opts ...pulumi.InvokeOption) (*LookupCloudBackupSnapshotsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCloudBackupSnapshotsResult
@@ -33,7 +67,8 @@ type LookupCloudBackupSnapshotsArgs struct {
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
-	PageNum   *int   `pulumi:"pageNum"`
+	PageNum *int `pulumi:"pageNum"`
+	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -67,7 +102,8 @@ type LookupCloudBackupSnapshotsOutputArgs struct {
 	// Number of items to return per page, up to a maximum of 500. Defaults to `100`.
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
-	PageNum   pulumi.IntPtrInput `pulumi:"pageNum"`
+	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
+	// Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

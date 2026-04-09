@@ -15,7 +15,15 @@ public final class GetMongodbEmployeeAccessGrantResult {
      * 
      */
     private String clusterName;
+    /**
+     * @return Expiration date for the employee access grant.
+     * 
+     */
     private String expirationTime;
+    /**
+     * @return Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
+     * 
+     */
     private String grantType;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -23,7 +31,7 @@ public final class GetMongodbEmployeeAccessGrantResult {
      */
     private String id;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -36,9 +44,17 @@ public final class GetMongodbEmployeeAccessGrantResult {
     public String clusterName() {
         return this.clusterName;
     }
+    /**
+     * @return Expiration date for the employee access grant.
+     * 
+     */
     public String expirationTime() {
         return this.expirationTime;
     }
+    /**
+     * @return Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
+     * 
+     */
     public String grantType() {
         return this.grantType;
     }
@@ -50,7 +66,7 @@ public final class GetMongodbEmployeeAccessGrantResult {
         return this.id;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

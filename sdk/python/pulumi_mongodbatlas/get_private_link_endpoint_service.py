@@ -267,8 +267,6 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[_builtins.st
     """
     `PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -290,7 +288,7 @@ def get_private_link_endpoint_service(endpoint_service_id: Optional[_builtins.st
 
     :param _builtins.str endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
     :param _builtins.str private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
-    :param _builtins.str project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
     :param _builtins.str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
     """
     __args__ = dict()
@@ -328,8 +326,6 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
     """
     `PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -351,7 +347,7 @@ def get_private_link_endpoint_service_output(endpoint_service_id: Optional[pulum
 
     :param _builtins.str endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
     :param _builtins.str private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
-    :param _builtins.str project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
     :param _builtins.str provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
     """
     __args__ = dict()

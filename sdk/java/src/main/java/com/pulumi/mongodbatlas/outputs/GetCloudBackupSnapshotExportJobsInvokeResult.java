@@ -24,7 +24,7 @@ public final class GetCloudBackupSnapshotExportJobsInvokeResult {
     private @Nullable Integer itemsPerPage;
     private @Nullable Integer pageNum;
     /**
-     * @return The unique identifier of the project for the Atlas cluster.
+     * @return The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -54,7 +54,7 @@ public final class GetCloudBackupSnapshotExportJobsInvokeResult {
         return Optional.ofNullable(this.pageNum);
     }
     /**
-     * @return The unique identifier of the project for the Atlas cluster.
+     * @return The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

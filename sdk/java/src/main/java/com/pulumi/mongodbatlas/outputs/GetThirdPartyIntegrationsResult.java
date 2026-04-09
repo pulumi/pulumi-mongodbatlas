@@ -35,7 +35,7 @@ public final class GetThirdPartyIntegrationsResult {
      */
     private String microsoftTeamsWebhookUrl;
     /**
-     * @return The unique ID for the project to get all Third-Party service integrations
+     * @return The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     private String projectId;
@@ -91,7 +91,7 @@ public final class GetThirdPartyIntegrationsResult {
     private String serviceKey;
     private String teamName;
     /**
-     * @return Thirt-Party service integration type.
+     * @return Third-Party service integration type.
      * 
      */
     private String type;
@@ -143,7 +143,7 @@ public final class GetThirdPartyIntegrationsResult {
         return this.microsoftTeamsWebhookUrl;
     }
     /**
-     * @return The unique ID for the project to get all Third-Party service integrations
+     * @return The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     public String projectId() {
@@ -221,7 +221,7 @@ public final class GetThirdPartyIntegrationsResult {
         return this.teamName;
     }
     /**
-     * @return Thirt-Party service integration type.
+     * @return Third-Party service integration type.
      * 
      */
     public String type() {

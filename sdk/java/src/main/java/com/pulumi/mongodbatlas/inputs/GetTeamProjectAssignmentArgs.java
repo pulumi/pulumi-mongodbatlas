@@ -15,23 +15,31 @@ public final class GetTeamProjectAssignmentArgs extends com.pulumi.resources.Inv
     public static final GetTeamProjectAssignmentArgs Empty = new GetTeamProjectAssignmentArgs();
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
 
+    /**
+     * Unique 24-hexadecimal character string that identifies the team.
+     * 
+     */
     @Import(name="teamId", required=true)
     private Output<String> teamId;
 
+    /**
+     * @return Unique 24-hexadecimal character string that identifies the team.
+     * 
+     */
     public Output<String> teamId() {
         return this.teamId;
     }
@@ -62,7 +70,7 @@ public final class GetTeamProjectAssignmentArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -73,7 +81,7 @@ public final class GetTeamProjectAssignmentArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -82,11 +90,23 @@ public final class GetTeamProjectAssignmentArgs extends com.pulumi.resources.Inv
             return projectId(Output.of(projectId));
         }
 
+        /**
+         * @param teamId Unique 24-hexadecimal character string that identifies the team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(Output<String> teamId) {
             $.teamId = teamId;
             return this;
         }
 
+        /**
+         * @param teamId Unique 24-hexadecimal character string that identifies the team.
+         * 
+         * @return builder
+         * 
+         */
         public Builder teamId(String teamId) {
             return teamId(Output.of(teamId));
         }

@@ -13,8 +13,6 @@ import (
 
 // `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -59,7 +57,7 @@ func LookupThirdPartyIntegration(ctx *pulumi.Context, args *LookupThirdPartyInte
 
 // A collection of arguments for invoking getThirdPartyIntegration.
 type LookupThirdPartyIntegrationArgs struct {
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId string `pulumi:"projectId"`
 	// Third-Party service integration type
 	// * PAGER_DUTY
@@ -128,7 +126,7 @@ func LookupThirdPartyIntegrationOutput(ctx *pulumi.Context, args LookupThirdPart
 
 // A collection of arguments for invoking getThirdPartyIntegration.
 type LookupThirdPartyIntegrationOutputArgs struct {
-	// The unique ID for the project to get all Third-Party service integrations
+	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Third-Party service integration type
 	// * PAGER_DUTY

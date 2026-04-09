@@ -34,7 +34,7 @@ class PrivateLinkEndpointServiceArgs:
 
         :param pulumi.Input[_builtins.str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpoint_service_id` and `private_endpoint_ip_address` instead.
@@ -82,7 +82,7 @@ class PrivateLinkEndpointServiceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique identifier for the project, also known as `group_id` in the official documentation.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -209,7 +209,7 @@ class _PrivateLinkEndpointServiceState:
         :param pulumi.Input[_builtins.str] private_endpoint_ip_address: Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
         :param pulumi.Input[_builtins.str] private_endpoint_resource_id: Unique identifier of the private endpoint.
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         if aws_connection_status is not None:
@@ -473,7 +473,7 @@ class _PrivateLinkEndpointServiceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique identifier for the project, also known as `group_id` in the official documentation.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -714,7 +714,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
         :param pulumi.Input[_builtins.str] private_endpoint_ip_address: Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         ...
@@ -1048,7 +1048,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] private_endpoint_ip_address: Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
         :param pulumi.Input[_builtins.str] private_endpoint_resource_id: Unique identifier of the private endpoint.
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
-        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `group_id` in the official documentation.
+        :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1230,7 +1230,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique identifier for the project, also known as `group_id` in the official documentation.
+        Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

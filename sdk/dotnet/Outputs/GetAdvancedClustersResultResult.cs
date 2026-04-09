@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool PitEnabled;
         /// <summary>
-        /// The unique ID for the project to get the clusters.
+        /// The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

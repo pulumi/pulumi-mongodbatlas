@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ### Basic Example.
@@ -44,7 +42,7 @@ export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulu
  */
 export interface GetNetworkContainersArgs {
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -73,8 +71,6 @@ export interface GetNetworkContainersResult {
 }
 /**
  * `mongodbatlas.getNetworkContainers` describes all Network Peering Containers. The data source requires your Project ID.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
  *
@@ -109,7 +105,7 @@ export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs,
  */
 export interface GetNetworkContainersOutputArgs {
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

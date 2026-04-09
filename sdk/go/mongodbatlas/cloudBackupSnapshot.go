@@ -15,8 +15,6 @@ import (
 // `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
 // On-demand snapshots happen immediately, unlike scheduled snapshots which occur at regular intervals. If there is already an on-demand snapshot with a status of queued or inProgress, you must wait until Atlas has completed the on-demand snapshot before taking another.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete a backup snapshot or decrease the retention time for a snapshot after it's taken.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 //
 // ## Example Usage
@@ -117,7 +115,7 @@ type CloudBackupSnapshot struct {
 	Members CloudBackupSnapshotMemberArrayOutput `pulumi:"members"`
 	// Version of the MongoDB server.
 	MongodVersion pulumi.StringOutput `pulumi:"mongodVersion"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Label given to a shard or config server from which Atlas took this snapshot.
 	ReplicaSetName pulumi.StringOutput `pulumi:"replicaSetName"`
@@ -197,7 +195,7 @@ type cloudBackupSnapshotState struct {
 	Members []CloudBackupSnapshotMember `pulumi:"members"`
 	// Version of the MongoDB server.
 	MongodVersion *string `pulumi:"mongodVersion"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Label given to a shard or config server from which Atlas took this snapshot.
 	ReplicaSetName *string `pulumi:"replicaSetName"`
@@ -236,7 +234,7 @@ type CloudBackupSnapshotState struct {
 	Members CloudBackupSnapshotMemberArrayInput
 	// Version of the MongoDB server.
 	MongodVersion pulumi.StringPtrInput
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Label given to a shard or config server from which Atlas took this snapshot.
 	ReplicaSetName pulumi.StringPtrInput
@@ -267,7 +265,7 @@ type cloudBackupSnapshotArgs struct {
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Description of the on-demand snapshot.
 	Description string `pulumi:"description"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
 	RetentionInDays int `pulumi:"retentionInDays"`
@@ -281,7 +279,7 @@ type CloudBackupSnapshotArgs struct {
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Description of the on-demand snapshot.
 	Description pulumi.StringInput
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
 	RetentionInDays pulumi.IntInput
@@ -419,7 +417,7 @@ func (o CloudBackupSnapshotOutput) MongodVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshot) pulumi.StringOutput { return v.MongodVersion }).(pulumi.StringOutput)
 }
 
-// The unique identifier of the project for the Atlas cluster.
+// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 func (o CloudBackupSnapshotOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshot) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
  *
  * > **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
- *
  * ## Example Usage
  *
  * ### S
@@ -48,7 +46,7 @@ export interface GetProjectInvitationArgs {
      */
     invitationId: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -90,8 +88,6 @@ export interface GetProjectInvitationResult {
  *
  * > **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
- *
  * ## Example Usage
  *
  * ### S
@@ -129,7 +125,7 @@ export interface GetProjectInvitationOutputArgs {
      */
     invitationId: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

@@ -29,7 +29,7 @@ class EncryptionAtRestArgs:
         """
         The set of arguments for constructing a EncryptionAtRest resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input['EncryptionAtRestAwsKmsConfigArgs'] aws_kms_config: Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         :param pulumi.Input[_builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
@@ -49,7 +49,7 @@ class EncryptionAtRestArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -121,7 +121,7 @@ class _EncryptionAtRestState:
         :param pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs'] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         :param pulumi.Input[_builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         :param pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs'] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         if aws_kms_config is not None:
             pulumi.set(__self__, "aws_kms_config", aws_kms_config)
@@ -186,7 +186,7 @@ class _EncryptionAtRestState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -222,8 +222,6 @@ class EncryptionAtRest(pulumi.CustomResource):
         > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
 
         > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryption_at_rest_provider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
 
@@ -356,7 +354,7 @@ class EncryptionAtRest(pulumi.CustomResource):
         :param pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         :param pulumi.Input[_builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         :param pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         ...
     @overload
@@ -379,8 +377,6 @@ class EncryptionAtRest(pulumi.CustomResource):
         > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
 
         > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryption_at_rest_provider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
 
@@ -569,7 +565,7 @@ class EncryptionAtRest(pulumi.CustomResource):
         :param pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']] azure_key_vault_config: Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         :param pulumi.Input[_builtins.bool] enabled_for_search_nodes: Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         :param pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']] google_cloud_kms_config: Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -618,7 +614,7 @@ class EncryptionAtRest(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

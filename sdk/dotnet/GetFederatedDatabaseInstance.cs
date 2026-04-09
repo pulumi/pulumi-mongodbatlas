@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
         /// ## Example Usage
@@ -110,8 +108,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
         /// ## Example Usage
@@ -205,8 +201,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance data source.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// &gt; **IMPORTANT:** All arguments including the password will be stored in the raw state as plain text. Read more about sensitive data in state.
         /// 
@@ -318,7 +312,7 @@ namespace Pulumi.Mongodbatlas
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create a Federated Database Instance.
+        /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -346,7 +340,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create a Federated Database Instance.
+        /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

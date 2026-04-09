@@ -20,8 +20,6 @@ import (
 //
 // The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-//
 // > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
 // * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
 // * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
@@ -112,7 +110,7 @@ type ProjectInvitation struct {
 	InvitationId pulumi.StringOutput `pulumi:"invitationId"`
 	// Atlas user who invited `username` to the project.
 	InviterUsername pulumi.StringOutput `pulumi:"inviterUsername"`
-	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
@@ -167,7 +165,7 @@ type projectInvitationState struct {
 	InvitationId *string `pulumi:"invitationId"`
 	// Atlas user who invited `username` to the project.
 	InviterUsername *string `pulumi:"inviterUsername"`
-	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles []string `pulumi:"roles"`
@@ -184,7 +182,7 @@ type ProjectInvitationState struct {
 	InvitationId pulumi.StringPtrInput
 	// Atlas user who invited `username` to the project.
 	InviterUsername pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles pulumi.StringArrayInput
@@ -197,7 +195,7 @@ func (ProjectInvitationState) ElementType() reflect.Type {
 }
 
 type projectInvitationArgs struct {
-	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles []string `pulumi:"roles"`
@@ -207,7 +205,7 @@ type projectInvitationArgs struct {
 
 // The set of arguments for constructing a ProjectInvitation resource.
 type ProjectInvitationArgs struct {
-	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+	// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
 	Roles pulumi.StringArrayInput
@@ -322,7 +320,7 @@ func (o ProjectInvitationOutput) InviterUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.InviterUsername }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+// Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
 func (o ProjectInvitationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectInvitation) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

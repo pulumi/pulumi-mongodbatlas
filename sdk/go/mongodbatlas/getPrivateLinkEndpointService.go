@@ -13,8 +13,6 @@ import (
 
 // `PrivateLinkEndpointService` describes a Private Endpoint Link. This represents a Private Endpoint Link Connection that wants to retrieve details in an Atlas project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go

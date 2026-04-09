@@ -187,14 +187,14 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the organization or project you want to create the search index within.
+     * The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The ID of the organization or project you want to create the search index within.
+     * @return The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -564,7 +564,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The ID of the organization or project you want to create the search index within.
+         * @param projectId The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -575,7 +575,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectId The ID of the organization or project you want to create the search index within.
+         * @param projectId The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

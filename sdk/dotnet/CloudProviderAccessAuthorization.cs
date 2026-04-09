@@ -156,7 +156,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.CloudProviderAccessAuthorizationGcp>> Gcps { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -222,7 +222,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.CloudProviderAccessAuthorizationAzureArgs>? Azure { get; set; }
 
         /// <summary>
-        /// The unique ID for the project. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -276,7 +276,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+        /// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `ProjectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

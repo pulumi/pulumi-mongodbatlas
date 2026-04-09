@@ -15,8 +15,6 @@ import (
 //
 // > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -113,7 +111,7 @@ func LookupCloudBackupSchedule(ctx *pulumi.Context, args *LookupCloudBackupSched
 type LookupCloudBackupScheduleArgs struct {
 	// The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -170,7 +168,7 @@ func LookupCloudBackupScheduleOutput(ctx *pulumi.Context, args LookupCloudBackup
 type LookupCloudBackupScheduleOutputArgs struct {
 	// The name of the Atlas cluster that contains the snapshots backup policy you want to retrieve.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

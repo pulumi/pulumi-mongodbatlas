@@ -16,8 +16,6 @@ import (
 //
 // Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
 //
 // > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
@@ -249,7 +247,7 @@ type DatabaseUser struct {
 	OidcAuthType pulumi.StringOutput `pulumi:"oidcAuthType"`
 	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  DatabaseUserRoleArrayOutput  `pulumi:"roles"`
@@ -335,7 +333,7 @@ type databaseUserState struct {
 	OidcAuthType *string `pulumi:"oidcAuthType"`
 	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
 	Password *string `pulumi:"password"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  []DatabaseUserRole  `pulumi:"roles"`
@@ -373,7 +371,7 @@ type DatabaseUserState struct {
 	OidcAuthType pulumi.StringPtrInput
 	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
 	Password pulumi.StringPtrInput
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  DatabaseUserRoleArrayInput
@@ -415,7 +413,7 @@ type databaseUserArgs struct {
 	OidcAuthType *string `pulumi:"oidcAuthType"`
 	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
 	Password *string `pulumi:"password"`
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  []DatabaseUserRole  `pulumi:"roles"`
@@ -454,7 +452,7 @@ type DatabaseUserArgs struct {
 	OidcAuthType pulumi.StringPtrInput
 	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
 	Password pulumi.StringPtrInput
-	// The unique ID for the project to create the database user.
+	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
 	Roles  DatabaseUserRoleArrayInput
@@ -599,7 +597,7 @@ func (o DatabaseUserOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
-// The unique ID for the project to create the database user.
+// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 func (o DatabaseUserOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

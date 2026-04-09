@@ -13,8 +13,6 @@ import * as utilities from "./utilities";
  *
  * The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the roles which can be assigned to a user.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
- *
  * > **IMPORTANT:** This resource is only for managing invitations, not for managing the Atlas User being invited. Possible provider behavior depending on the invitee's action:
  * * If the user has not yet accepted the invitation, the provider leaves the invitation as is.
  * * If the user has accepted the invitation and is now a project member, the provider will remove the invitation from the Terraform state.  The invitation must then be removed from the Terraform resource configuration.
@@ -108,7 +106,7 @@ export class ProjectInvitation extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly inviterUsername: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -185,7 +183,7 @@ export interface ProjectInvitationState {
      */
     inviterUsername?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -203,7 +201,7 @@ export interface ProjectInvitationState {
  */
 export interface ProjectInvitationArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

@@ -40,7 +40,7 @@ class NetworkPeeringArgs:
         The set of arguments for constructing a NetworkPeering resource.
 
         :param pulumi.Input[_builtins.str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
         :param pulumi.Input[_builtins.str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
@@ -110,7 +110,7 @@ class NetworkPeeringArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the MongoDB Atlas project.
+        The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -352,7 +352,7 @@ class _NetworkPeeringState:
                
                **AZURE ONLY:**
         :param pulumi.Input[_builtins.str] peer_id: Unique identifier of the Atlas network peer.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         :param pulumi.Input[_builtins.str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[_builtins.str] route_table_cidr_block: AWS VPC CIDR block or subnet.
@@ -620,7 +620,7 @@ class _NetworkPeeringState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the MongoDB Atlas project.
+        The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -754,8 +754,6 @@ class NetworkPeering(pulumi.CustomResource):
         For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
 
         > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
         ## Example Usage
 
@@ -918,7 +916,7 @@ class NetworkPeering(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] network_name: Name of the network peer to which Atlas connects.
                
                **AZURE ONLY:**
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         :param pulumi.Input[_builtins.str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[_builtins.str] route_table_cidr_block: AWS VPC CIDR block or subnet.
@@ -948,8 +946,6 @@ class NetworkPeering(pulumi.CustomResource):
         For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
 
         > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
 
         ## Example Usage
 
@@ -1229,7 +1225,7 @@ class NetworkPeering(pulumi.CustomResource):
                
                **AZURE ONLY:**
         :param pulumi.Input[_builtins.str] peer_id: Unique identifier of the Atlas network peer.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
         :param pulumi.Input[_builtins.str] resource_group_name: Name of your Azure resource group.
         :param pulumi.Input[_builtins.str] route_table_cidr_block: AWS VPC CIDR block or subnet.
@@ -1409,7 +1405,7 @@ class NetworkPeering(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the MongoDB Atlas project.
+        The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

@@ -133,8 +133,6 @@ def get_privatelink_endpoint_service_data_federation_online_archive(endpoint_id:
     """
     `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -157,7 +155,7 @@ def get_privatelink_endpoint_service_data_federation_online_archive(endpoint_id:
 
 
     :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['endpointId'] = endpoint_id
@@ -180,8 +178,6 @@ def get_privatelink_endpoint_service_data_federation_online_archive_output(endpo
     """
     `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -204,7 +200,7 @@ def get_privatelink_endpoint_service_data_federation_online_archive_output(endpo
 
 
     :param _builtins.str endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['endpointId'] = endpoint_id

@@ -56,7 +56,7 @@ public final class GetServerlessInstancesResult {
      */
     private String name;
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -152,7 +152,7 @@ public final class GetServerlessInstancesResult {
         return this.name;
     }
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

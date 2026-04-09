@@ -116,14 +116,28 @@ def get_cloud_backup_snapshots(cluster_name: Optional[_builtins.str] = None,
     """
     `get_cloud_backup_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshots = mongodbatlas.index.CloudBackupSnapshots("test",
+        project_id=5d0f1f73cf09a29120e173cf,
+        cluster_name=MyClusterTest,
+        description=SomeDescription,
+        retention_in_days=1)
+    test = mongodbatlas.get_cloud_backup_snapshots(project_id=test_cloud_backup_snapshots["projectId"],
+        cluster_name=test_cloud_backup_snapshots["clusterName"],
+        page_num=1,
+        items_per_page=5)
+    ```
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -149,14 +163,28 @@ def get_cloud_backup_snapshots_output(cluster_name: Optional[pulumi.Input[_built
     """
     `get_cloud_backup_snapshots` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test_cloud_backup_snapshots = mongodbatlas.index.CloudBackupSnapshots("test",
+        project_id=5d0f1f73cf09a29120e173cf,
+        cluster_name=MyClusterTest,
+        description=SomeDescription,
+        retention_in_days=1)
+    test = mongodbatlas.get_cloud_backup_snapshots(project_id=test_cloud_backup_snapshots["projectId"],
+        cluster_name=test_cloud_backup_snapshots["clusterName"],
+        page_num=1,
+        items_per_page=5)
+    ```
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

@@ -17,8 +17,6 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * &gt; **NOTE:** To prevent errors during resource destruction, ensure that no `mongodbatlas.CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `mongodbatlas.CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `mongodbatlas.CloudBackupSnapshotExportBucket` resource.
  * 
  * ## Example Usage
@@ -170,14 +168,14 @@ public class CloudBackupSnapshotExportBucket extends com.pulumi.resources.Custom
         return Codegen.optional(this.iamRoleId);
     }
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique identifier of the project for the Atlas cluster.
+     * @return The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

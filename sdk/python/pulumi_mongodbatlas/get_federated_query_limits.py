@@ -86,8 +86,6 @@ def get_federated_query_limits(project_id: Optional[_builtins.str] = None,
     """
     `get_federated_query_limits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -101,7 +99,7 @@ def get_federated_query_limits(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     :param _builtins.str tenant_name: Name of the Atlas Federated Database Instance.
     """
     __args__ = dict()
@@ -121,8 +119,6 @@ def get_federated_query_limits_output(project_id: Optional[pulumi.Input[_builtin
     """
     `get_federated_query_limits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -136,7 +132,7 @@ def get_federated_query_limits_output(project_id: Optional[pulumi.Input[_builtin
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance.
+    :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     :param _builtins.str tenant_name: Name of the Atlas Federated Database Instance.
     """
     __args__ = dict()

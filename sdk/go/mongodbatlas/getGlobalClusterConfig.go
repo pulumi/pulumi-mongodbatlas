@@ -13,8 +13,6 @@ import (
 
 // `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -141,7 +139,7 @@ type LookupGlobalClusterConfigArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GetGlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -172,7 +170,7 @@ type LookupGlobalClusterConfigOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GetGlobalClusterConfigManagedNamespaceArrayInput `pulumi:"managedNamespaces"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ### Basic Example (AWS).
@@ -45,7 +43,7 @@ export function getNetworkPeerings(args: GetNetworkPeeringsArgs, opts?: pulumi.I
  */
 export interface GetNetworkPeeringsArgs {
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -66,8 +64,6 @@ export interface GetNetworkPeeringsResult {
 }
 /**
  * `mongodbatlas.getNetworkPeerings` describes all Network Peering Connections.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
  *
@@ -103,7 +99,7 @@ export function getNetworkPeeringsOutput(args: GetNetworkPeeringsOutputArgs, opt
  */
 export interface GetNetworkPeeringsOutputArgs {
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

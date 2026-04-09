@@ -29,23 +29,31 @@ public final class GetFlexSnapshotPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
 
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     @Import(name="snapshotId", required=true)
     private String snapshotId;
 
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     public String snapshotId() {
         return this.snapshotId;
     }
@@ -88,7 +96,7 @@ public final class GetFlexSnapshotPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -98,6 +106,12 @@ public final class GetFlexSnapshotPlainArgs extends com.pulumi.resources.InvokeA
             return this;
         }
 
+        /**
+         * @param snapshotId Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+         * 
+         * @return builder
+         * 
+         */
         public Builder snapshotId(String snapshotId) {
             $.snapshotId = snapshotId;
             return this;

@@ -11,14 +11,14 @@ import java.util.Objects;
 @CustomType
 public final class GetServiceAccountProjectAssignmentsResult {
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
 
     private GetServiceAccountProjectAssignmentsResult() {}
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

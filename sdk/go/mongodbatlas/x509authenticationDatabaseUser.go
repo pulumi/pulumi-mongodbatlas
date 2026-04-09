@@ -19,8 +19,6 @@ import (
 // | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
 // | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **NOTE:** Before provider version 1.14.0, Self-managed X.509 Authentication was disabled for the project when this resource was deleted. Starting from that version onward, it will not be disabled, allowing other users to continue using X.509 within the same project.
 //
 // ## Example Usage
@@ -168,7 +166,7 @@ type X509AuthenticationDatabaseUser struct {
 	CustomerX509Cas pulumi.StringPtrOutput `pulumi:"customerX509Cas"`
 	// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
 	MonthsUntilExpiration pulumi.IntPtrOutput `pulumi:"monthsUntilExpiration"`
-	// Identifier for the Atlas project associated with the X.509 configuration.
+	// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Username of the database user to create a certificate for.
 	Username pulumi.StringPtrOutput `pulumi:"username"`
@@ -223,7 +221,7 @@ type x509authenticationDatabaseUserState struct {
 	CustomerX509Cas *string `pulumi:"customerX509Cas"`
 	// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
 	MonthsUntilExpiration *int `pulumi:"monthsUntilExpiration"`
-	// Identifier for the Atlas project associated with the X.509 configuration.
+	// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Username of the database user to create a certificate for.
 	Username *string `pulumi:"username"`
@@ -238,7 +236,7 @@ type X509AuthenticationDatabaseUserState struct {
 	CustomerX509Cas pulumi.StringPtrInput
 	// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
 	MonthsUntilExpiration pulumi.IntPtrInput
-	// Identifier for the Atlas project associated with the X.509 configuration.
+	// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Username of the database user to create a certificate for.
 	Username pulumi.StringPtrInput
@@ -253,7 +251,7 @@ type x509authenticationDatabaseUserArgs struct {
 	CustomerX509Cas *string `pulumi:"customerX509Cas"`
 	// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
 	MonthsUntilExpiration *int `pulumi:"monthsUntilExpiration"`
-	// Identifier for the Atlas project associated with the X.509 configuration.
+	// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Username of the database user to create a certificate for.
 	Username *string `pulumi:"username"`
@@ -265,7 +263,7 @@ type X509AuthenticationDatabaseUserArgs struct {
 	CustomerX509Cas pulumi.StringPtrInput
 	// A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
 	MonthsUntilExpiration pulumi.IntPtrInput
-	// Identifier for the Atlas project associated with the X.509 configuration.
+	// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Username of the database user to create a certificate for.
 	Username pulumi.StringPtrInput
@@ -380,7 +378,7 @@ func (o X509AuthenticationDatabaseUserOutput) MonthsUntilExpiration() pulumi.Int
 	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) pulumi.IntPtrOutput { return v.MonthsUntilExpiration }).(pulumi.IntPtrOutput)
 }
 
-// Identifier for the Atlas project associated with the X.509 configuration.
+// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
 func (o X509AuthenticationDatabaseUserOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *X509AuthenticationDatabaseUser) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -88,7 +88,7 @@ func LookupEncryptionAtRestPrivateEndpoints(ctx *pulumi.Context, args *LookupEnc
 type LookupEncryptionAtRestPrivateEndpointsArgs struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -98,7 +98,7 @@ type LookupEncryptionAtRestPrivateEndpointsResult struct {
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of documents that MongoDB Cloud returns for this request.
 	Results []GetEncryptionAtRestPrivateEndpointsResult `pulumi:"results"`
@@ -117,7 +117,7 @@ func LookupEncryptionAtRestPrivateEndpointsOutput(ctx *pulumi.Context, args Look
 type LookupEncryptionAtRestPrivateEndpointsOutputArgs struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -150,7 +150,7 @@ func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) Id() pulumi.StringOu
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
  *
- * > **NOTE** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
  * > **NOTE:** If you need to remove the `mongodbatlas.CloudBackupSchedule`, read this guide.
@@ -304,7 +302,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      */
     declare public readonly policyItemYearlies: pulumi.Output<outputs.CloudBackupSchedulePolicyItemYearly[] | undefined>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -448,7 +446,7 @@ export interface CloudBackupScheduleState {
      */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -518,7 +516,7 @@ export interface CloudBackupScheduleArgs {
      */
     policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

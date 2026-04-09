@@ -13,8 +13,6 @@ import (
 
 // `Project` describes a MongoDB Atlas Project. This represents a project that has been created.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ### Using projectId attribute to query
@@ -106,7 +104,7 @@ type LookupProjectArgs struct {
 	//
 	// > **IMPORTANT:** Either `projectId` or `name` must be configurated.
 	Name *string `pulumi:"name"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 }
 
@@ -173,7 +171,7 @@ type LookupProjectOutputArgs struct {
 	//
 	// > **IMPORTANT:** Either `projectId` or `name` must be configurated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 }
 

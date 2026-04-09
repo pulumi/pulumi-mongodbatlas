@@ -97,7 +97,7 @@ type StreamWorkspace struct {
 	DataProcessRegion StreamWorkspaceDataProcessRegionOutput `pulumi:"dataProcessRegion"`
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig StreamWorkspaceStreamConfigOutput `pulumi:"streamConfig"`
@@ -148,7 +148,7 @@ type streamWorkspaceState struct {
 	DataProcessRegion *StreamWorkspaceDataProcessRegion `pulumi:"dataProcessRegion"`
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames []string `pulumi:"hostnames"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig *StreamWorkspaceStreamConfig `pulumi:"streamConfig"`
@@ -161,7 +161,7 @@ type StreamWorkspaceState struct {
 	DataProcessRegion StreamWorkspaceDataProcessRegionPtrInput
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames pulumi.StringArrayInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig StreamWorkspaceStreamConfigPtrInput
@@ -176,7 +176,7 @@ func (StreamWorkspaceState) ElementType() reflect.Type {
 type streamWorkspaceArgs struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamWorkspaceDataProcessRegion `pulumi:"dataProcessRegion"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig *StreamWorkspaceStreamConfig `pulumi:"streamConfig"`
@@ -188,7 +188,7 @@ type streamWorkspaceArgs struct {
 type StreamWorkspaceArgs struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamWorkspaceDataProcessRegionInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Configuration options for an Atlas Stream Processing Instance. See stream config
 	StreamConfig StreamWorkspaceStreamConfigPtrInput
@@ -293,7 +293,7 @@ func (o StreamWorkspaceOutput) Hostnames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *StreamWorkspace) pulumi.StringArrayOutput { return v.Hostnames }).(pulumi.StringArrayOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o StreamWorkspaceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamWorkspace) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

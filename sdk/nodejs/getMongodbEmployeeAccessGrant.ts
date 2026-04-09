@@ -45,7 +45,7 @@ export interface GetMongodbEmployeeAccessGrantArgs {
      */
     clusterName: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -58,14 +58,20 @@ export interface GetMongodbEmployeeAccessGrantResult {
      * Human-readable label that identifies this cluster.
      */
     readonly clusterName: string;
+    /**
+     * Expiration date for the employee access grant.
+     */
     readonly expirationTime: string;
+    /**
+     * Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
+     */
     readonly grantType: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
 }
@@ -110,7 +116,7 @@ export interface GetMongodbEmployeeAccessGrantOutputArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

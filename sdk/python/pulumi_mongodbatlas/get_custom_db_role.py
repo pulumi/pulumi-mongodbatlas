@@ -97,8 +97,6 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
     """
     `CustomDbRole` describes a Custom DB Role. This represents a custom db role.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -129,7 +127,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     :param _builtins.str role_name: Name of the custom role.
     """
     __args__ = dict()
@@ -152,8 +150,6 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
     """
     `CustomDbRole` describes a Custom DB Role. This represents a custom db role.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -184,7 +180,7 @@ def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Se
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     :param _builtins.str role_name: Name of the custom role.
     """
     __args__ = dict()

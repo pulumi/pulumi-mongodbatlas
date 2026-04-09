@@ -133,8 +133,6 @@ def get_project_invitation(invitation_id: Optional[_builtins.str] = None,
 
     > **DEPRECATION:** This data source is deprecated. Use `CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -153,7 +151,7 @@ def get_project_invitation(invitation_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
     :param _builtins.str username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
     """
     __args__ = dict()
@@ -181,8 +179,6 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[_builtins
 
     > **DEPRECATION:** This data source is deprecated. Use `CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-
     ## Example Usage
 
     ### S
@@ -201,7 +197,7 @@ def get_project_invitation_output(invitation_id: Optional[pulumi.Input[_builtins
 
 
     :param _builtins.str invitation_id: Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
     :param _builtins.str username: Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
     """
     __args__ = dict()

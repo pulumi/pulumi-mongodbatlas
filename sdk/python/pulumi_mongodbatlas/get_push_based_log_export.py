@@ -52,16 +52,25 @@ class GetPushBasedLogExportResult:
     @_builtins.property
     @pulumi.getter(name="bucketName")
     def bucket_name(self) -> _builtins.str:
+        """
+        The name of the bucket to which the agent sends the logs to.
+        """
         return pulumi.get(self, "bucket_name")
 
     @_builtins.property
     @pulumi.getter(name="createDate")
     def create_date(self) -> _builtins.str:
+        """
+        Date and time that this feature was enabled on.
+        """
         return pulumi.get(self, "create_date")
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")
     def iam_role_id(self) -> _builtins.str:
+        """
+        ID of the AWS IAM role that is used to write to the S3 bucket.
+        """
         return pulumi.get(self, "iam_role_id")
 
     @_builtins.property
@@ -75,19 +84,25 @@ class GetPushBasedLogExportResult:
     @_builtins.property
     @pulumi.getter(name="prefixPath")
     def prefix_path(self) -> _builtins.str:
+        """
+        S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
+        """
         return pulumi.get(self, "prefix_path")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
     def state(self) -> _builtins.str:
+        """
+        Describes whether or not the feature is enabled and what status it is in.
+        """
         return pulumi.get(self, "state")
 
 
@@ -144,7 +159,7 @@ def get_push_based_log_export(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -197,7 +212,7 @@ def get_push_based_log_export_output(project_id: Optional[pulumi.Input[_builtins
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

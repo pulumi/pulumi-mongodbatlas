@@ -240,11 +240,9 @@ type StreamProcessor struct {
 	Pipeline pulumi.StringOutput `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringOutput `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	//
-	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats pulumi.StringOutput `pulumi:"stats"`
@@ -306,11 +304,9 @@ type streamProcessorState struct {
 	Pipeline *string `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName *string `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	//
-	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State *string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats *string `pulumi:"stats"`
@@ -334,11 +330,9 @@ type StreamProcessorState struct {
 	Pipeline pulumi.StringPtrInput
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	//
-	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringPtrInput
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats pulumi.StringPtrInput
@@ -366,11 +360,9 @@ type streamProcessorArgs struct {
 	Pipeline string `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	//
-	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State *string `pulumi:"state"`
 	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
 	Tier     *string                  `pulumi:"tier"`
@@ -393,11 +385,9 @@ type StreamProcessorArgs struct {
 	Pipeline pulumi.StringInput
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringInput
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	//
-	// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 	State pulumi.StringPtrInput
 	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
 	Tier     pulumi.StringPtrInput
@@ -520,14 +510,12 @@ func (o StreamProcessorOutput) ProcessorName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.ProcessorName }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o StreamProcessorOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-//
-// **NOTE** When a Stream Processor is updated without specifying the state, it is stopped and then restored to previous state upon update completion.
 func (o StreamProcessorOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

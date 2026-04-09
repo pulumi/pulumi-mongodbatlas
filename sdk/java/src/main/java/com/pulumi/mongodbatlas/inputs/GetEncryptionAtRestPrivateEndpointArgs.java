@@ -45,14 +45,14 @@ public final class GetEncryptionAtRestPrivateEndpointArgs extends com.pulumi.res
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -128,7 +128,7 @@ public final class GetEncryptionAtRestPrivateEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -139,7 +139,7 @@ public final class GetEncryptionAtRestPrivateEndpointArgs extends com.pulumi.res
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -19,8 +19,6 @@ import * as utilities from "./utilities";
  * > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
  * `mongodbatlas.CloudBackupSnapshotRestoreJob` resource, you won't be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn't support this. The provider will remove the Terraform resource from the state file but won't destroy the MongoDB Atlas resource.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### Example automated delivery type
@@ -230,7 +228,7 @@ export class CloudBackupSnapshotRestoreJob extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly finishedAt: pulumi.Output<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -356,7 +354,7 @@ export interface CloudBackupSnapshotRestoreJobState {
      */
     finishedAt?: pulumi.Input<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -408,7 +406,7 @@ export interface CloudBackupSnapshotRestoreJobArgs {
      */
     deliveryTypeConfig?: pulumi.Input<inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig>;
     /**
-     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

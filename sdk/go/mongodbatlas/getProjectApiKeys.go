@@ -17,8 +17,6 @@ import (
 //
 // > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -62,7 +60,7 @@ type LookupProjectApiKeysArgs struct {
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -72,7 +70,7 @@ type LookupProjectApiKeysResult struct {
 	Id           string `pulumi:"id"`
 	ItemsPerPage *int   `pulumi:"itemsPerPage"`
 	PageNum      *int   `pulumi:"pageNum"`
-	// Project ID to assign to Access Key
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each element represents a API Key assigned to the project.
 	Results []GetProjectApiKeysResult `pulumi:"results"`
@@ -93,7 +91,7 @@ type LookupProjectApiKeysOutputArgs struct {
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// The page to return. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -129,7 +127,7 @@ func (o LookupProjectApiKeysResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupProjectApiKeysResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
-// Project ID to assign to Access Key
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupProjectApiKeysResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectApiKeysResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

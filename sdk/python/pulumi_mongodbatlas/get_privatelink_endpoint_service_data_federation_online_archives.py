@@ -76,8 +76,6 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
     """
     `get_privatelink_endpoint_service_data_federation_online_archives` describes Private Endpoint Service resources for Data Federation and Online Archive.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -98,7 +96,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives(project_id:
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -114,8 +112,6 @@ def get_privatelink_endpoint_service_data_federation_online_archives_output(proj
     """
     `get_privatelink_endpoint_service_data_federation_online_archives` describes Private Endpoint Service resources for Data Federation and Online Archive.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -136,7 +132,7 @@ def get_privatelink_endpoint_service_data_federation_online_archives_output(proj
     ```
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

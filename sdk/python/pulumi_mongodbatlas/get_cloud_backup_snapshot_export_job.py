@@ -201,8 +201,6 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[_builtins.str] =
     """
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -231,7 +229,7 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[_builtins.str] =
 
     :param _builtins.str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
     :param _builtins.str export_job_id: Unique identifier of the export job to retrieve.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -262,8 +260,6 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
     """
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -292,7 +288,7 @@ def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.In
 
     :param _builtins.str cluster_name: Name of the Atlas cluster whose export job you want to retrieve.
     :param _builtins.str export_job_id: Unique identifier of the export job to retrieve.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

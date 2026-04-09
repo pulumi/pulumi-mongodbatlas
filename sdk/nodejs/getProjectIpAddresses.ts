@@ -34,7 +34,7 @@ export function getProjectIpAddresses(args: GetProjectIpAddressesArgs, opts?: pu
  */
 export interface GetProjectIpAddressesArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -48,7 +48,7 @@ export interface GetProjectIpAddressesResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     /**
@@ -84,7 +84,7 @@ export function getProjectIpAddressesOutput(args: GetProjectIpAddressesOutputArg
  */
 export interface GetProjectIpAddressesOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

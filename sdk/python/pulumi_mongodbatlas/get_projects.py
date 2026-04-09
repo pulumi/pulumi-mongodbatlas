@@ -90,8 +90,6 @@ def get_projects(items_per_page: Optional[_builtins.int] = None,
     """
     `get_projects` describes all Projects. This represents projects that have been created.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -131,8 +129,6 @@ def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[_builtins
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
     """
     `get_projects` describes all Projects. This represents projects that have been created.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
     ## Example Usage
 

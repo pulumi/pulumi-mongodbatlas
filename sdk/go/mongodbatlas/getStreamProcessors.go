@@ -221,10 +221,13 @@ func LookupStreamProcessors(ctx *pulumi.Context, args *LookupStreamProcessorsArg
 
 // A collection of arguments for invoking getStreamProcessors.
 type LookupStreamProcessorsArgs struct {
+	// Label that identifies the stream processing workspace.
+	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId     string  `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
@@ -232,12 +235,16 @@ type LookupStreamProcessorsArgs struct {
 type LookupStreamProcessorsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Label that identifies the stream processing workspace.
+	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId     string                      `pulumi:"projectId"`
-	Results       []GetStreamProcessorsResult `pulumi:"results"`
-	WorkspaceName *string                     `pulumi:"workspaceName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Returns all Stream Processors within the specified stream instance.
+	Results []GetStreamProcessorsResult `pulumi:"results"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName *string `pulumi:"workspaceName"`
 }
 
 func LookupStreamProcessorsOutput(ctx *pulumi.Context, args LookupStreamProcessorsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamProcessorsResultOutput {
@@ -251,10 +258,13 @@ func LookupStreamProcessorsOutput(ctx *pulumi.Context, args LookupStreamProcesso
 
 // A collection of arguments for invoking getStreamProcessors.
 type LookupStreamProcessorsOutputArgs struct {
+	// Label that identifies the stream processing workspace.
+	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId     pulumi.StringInput    `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName pulumi.StringPtrInput `pulumi:"workspaceName"`
 }
 
@@ -282,20 +292,24 @@ func (o LookupStreamProcessorsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Label that identifies the stream processing workspace.
+//
 // Deprecated: This parameter is deprecated. Please transition to workspace_name.
 func (o LookupStreamProcessorsResultOutput) InstanceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStreamProcessorsResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupStreamProcessorsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamProcessorsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Returns all Stream Processors within the specified stream instance.
 func (o LookupStreamProcessorsResultOutput) Results() GetStreamProcessorsResultArrayOutput {
 	return o.ApplyT(func(v LookupStreamProcessorsResult) []GetStreamProcessorsResult { return v.Results }).(GetStreamProcessorsResultArrayOutput)
 }
 
+// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 func (o LookupStreamProcessorsResultOutput) WorkspaceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupStreamProcessorsResult) *string { return v.WorkspaceName }).(pulumi.StringPtrOutput)
 }

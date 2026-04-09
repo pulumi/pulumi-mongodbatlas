@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-    /// 
     /// &gt; **NOTE:** To prevent errors during resource destruction, ensure that no `mongodbatlas.CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `mongodbatlas.CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `mongodbatlas.CloudBackupSnapshotExportBucket` resource.
     /// 
     /// ## Example Usage
@@ -103,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> IamRoleId { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -191,7 +189,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? IamRoleId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -247,7 +245,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? IamRoleId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

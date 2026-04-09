@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -44,7 +42,7 @@ export function getProjectIpAccessLists(args: GetProjectIpAccessListsArgs, opts?
  */
 export interface GetProjectIpAccessListsArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -58,7 +56,7 @@ export interface GetProjectIpAccessListsResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
     /**
@@ -68,8 +66,6 @@ export interface GetProjectIpAccessListsResult {
 }
 /**
  * `mongodbatlas.getProjectIpAccessLists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -104,7 +100,7 @@ export function getProjectIpAccessListsOutput(args: GetProjectIpAccessListsOutpu
  */
 export interface GetProjectIpAccessListsOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

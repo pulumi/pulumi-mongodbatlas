@@ -95,7 +95,7 @@ public final class GetProjectsResult {
      */
     private String orgId;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
      * 
      */
     private @Nullable String projectId;
@@ -228,7 +228,7 @@ public final class GetProjectsResult {
         return this.orgId;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project.
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud project, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<String> projectId() {

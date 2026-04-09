@@ -30,30 +30,42 @@ func GetFlexRestoreJob(ctx *pulumi.Context, args *GetFlexRestoreJobArgs, opts ..
 type GetFlexRestoreJobArgs struct {
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId    string `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies the restore job.
 	RestoreJobId string `pulumi:"restoreJobId"`
 }
 
 // A collection of values returned by getFlexRestoreJob.
 type GetFlexRestoreJobResult struct {
-	DeliveryType   string `pulumi:"deliveryType"`
+	// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
+	DeliveryType string `pulumi:"deliveryType"`
+	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ExpirationDate string `pulumi:"expirationDate"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId                string `pulumi:"projectId"`
-	RestoreFinishedDate      string `pulumi:"restoreFinishedDate"`
-	RestoreJobId             string `pulumi:"restoreJobId"`
-	RestoreScheduledDate     string `pulumi:"restoreScheduledDate"`
-	SnapshotFinishedDate     string `pulumi:"snapshotFinishedDate"`
-	SnapshotId               string `pulumi:"snapshotId"`
-	SnapshotUrl              string `pulumi:"snapshotUrl"`
-	Status                   string `pulumi:"status"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreFinishedDate string `pulumi:"restoreFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the restore job.
+	RestoreJobId string `pulumi:"restoreJobId"`
+	// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	RestoreScheduledDate string `pulumi:"restoreScheduledDate"`
+	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	SnapshotFinishedDate string `pulumi:"snapshotFinishedDate"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
+	SnapshotUrl string `pulumi:"snapshotUrl"`
+	// Phase of the restore workflow for this job at the time this resource made this request.
+	Status string `pulumi:"status"`
+	// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
 	TargetDeploymentItemName string `pulumi:"targetDeploymentItemName"`
-	TargetProjectId          string `pulumi:"targetProjectId"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
+	TargetProjectId string `pulumi:"targetProjectId"`
 }
 
 func GetFlexRestoreJobOutput(ctx *pulumi.Context, args GetFlexRestoreJobOutputArgs, opts ...pulumi.InvokeOption) GetFlexRestoreJobResultOutput {
@@ -69,8 +81,9 @@ func GetFlexRestoreJobOutput(ctx *pulumi.Context, args GetFlexRestoreJobOutputAr
 type GetFlexRestoreJobOutputArgs struct {
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId    pulumi.StringInput `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies the restore job.
 	RestoreJobId pulumi.StringInput `pulumi:"restoreJobId"`
 }
 
@@ -93,10 +106,12 @@ func (o GetFlexRestoreJobResultOutput) ToGetFlexRestoreJobResultOutputWithContex
 	return o
 }
 
+// Means by which this resource returns the snapshot to the requesting MongoDB Cloud user.
 func (o GetFlexRestoreJobResultOutput) DeliveryType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.DeliveryType }).(pulumi.StringOutput)
 }
 
+// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexRestoreJobResultOutput) ExpirationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.ExpirationDate }).(pulumi.StringOutput)
 }
@@ -111,43 +126,52 @@ func (o GetFlexRestoreJobResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetFlexRestoreJobResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud completed writing this snapshot. MongoDB Cloud changes the status of the restore job to `CLOSED`. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexRestoreJobResultOutput) RestoreFinishedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.RestoreFinishedDate }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the restore job.
 func (o GetFlexRestoreJobResultOutput) RestoreJobId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.RestoreJobId }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud will restore this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexRestoreJobResultOutput) RestoreScheduledDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.RestoreScheduledDate }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexRestoreJobResultOutput) SnapshotFinishedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.SnapshotFinishedDate }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the snapshot to restore.
 func (o GetFlexRestoreJobResultOutput) SnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.SnapshotId }).(pulumi.StringOutput)
 }
 
+// Internet address from which you can download the compressed snapshot files. The resource returns this parameter when  `"deliveryType" : "DOWNLOAD"`.
 func (o GetFlexRestoreJobResultOutput) SnapshotUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.SnapshotUrl }).(pulumi.StringOutput)
 }
 
+// Phase of the restore workflow for this job at the time this resource made this request.
 func (o GetFlexRestoreJobResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Human-readable label that identifies the instance or cluster on the target project to which you want to restore the snapshot. You can restore the snapshot to another flex cluster or dedicated cluster tier.
 func (o GetFlexRestoreJobResultOutput) TargetDeploymentItemName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.TargetDeploymentItemName }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the project that contains the instance or cluster to which you want to restore the snapshot.
 func (o GetFlexRestoreJobResultOutput) TargetProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
 }

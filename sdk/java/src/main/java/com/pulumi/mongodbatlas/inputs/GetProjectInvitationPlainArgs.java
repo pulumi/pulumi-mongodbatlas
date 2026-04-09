@@ -29,14 +29,14 @@ public final class GetProjectInvitationPlainArgs extends com.pulumi.resources.In
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+     * Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+     * @return Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -96,7 +96,7 @@ public final class GetProjectInvitationPlainArgs extends com.pulumi.resources.In
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

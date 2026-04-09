@@ -55,7 +55,7 @@ public final class GetAlertConfigurationsResult {
      */
     private List<GetAlertConfigurationsResultOutput> outputs;
     /**
-     * @return The unique ID for the project to get the alert configurations.
+     * @return The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -132,7 +132,7 @@ public final class GetAlertConfigurationsResult {
         return this.outputs;
     }
     /**
-     * @return The unique ID for the project to get the alert configurations.
+     * @return The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

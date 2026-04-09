@@ -240,8 +240,6 @@ def get_cloud_backup_snapshot(cluster_name: Optional[_builtins.str] = None,
     """
     `CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -260,7 +258,7 @@ def get_cloud_backup_snapshot(cluster_name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
-    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
+    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
     :param _builtins.str snapshot_id: The unique identifier of the snapshot you want to retrieve.
     """
     __args__ = dict()
@@ -295,8 +293,6 @@ def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[_builti
     """
     `CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -315,7 +311,7 @@ def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[_builti
 
 
     :param _builtins.str cluster_name: The name of the Atlas cluster that contains the snapshot you want to retrieve.
-    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster.
+    :param _builtins.str project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
     :param _builtins.str snapshot_id: The unique identifier of the snapshot you want to retrieve.
     """
     __args__ = dict()

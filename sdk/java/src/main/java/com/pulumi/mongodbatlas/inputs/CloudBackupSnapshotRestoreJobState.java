@@ -155,14 +155,14 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
     }
 
     /**
-     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+     * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+     * @return The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -472,7 +472,7 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+         * @param projectId The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -483,7 +483,7 @@ public final class CloudBackupSnapshotRestoreJobState extends com.pulumi.resourc
         }
 
         /**
-         * @param projectId The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+         * @param projectId The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

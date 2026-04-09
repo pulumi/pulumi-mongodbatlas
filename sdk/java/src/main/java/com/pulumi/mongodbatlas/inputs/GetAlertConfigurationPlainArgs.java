@@ -50,14 +50,14 @@ public final class GetAlertConfigurationPlainArgs extends com.pulumi.resources.I
     }
 
     /**
-     * The ID of the project where the alert configuration will create.
+     * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The ID of the project where the alert configuration will create.
+     * @return The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -125,7 +125,7 @@ public final class GetAlertConfigurationPlainArgs extends com.pulumi.resources.I
         }
 
         /**
-         * @param projectId The ID of the project where the alert configuration will create.
+         * @param projectId The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -13,8 +13,6 @@ import (
 
 // `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
 //
 // ## Examples Usage
@@ -88,7 +86,7 @@ func LookupMaintenanceWindow(ctx *pulumi.Context, args *LookupMaintenanceWindowA
 
 // A collection of arguments for invoking getMaintenanceWindow.
 type LookupMaintenanceWindowArgs struct {
-	// The unique identifier of the project for the Maintenance Window.
+	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -124,7 +122,7 @@ func LookupMaintenanceWindowOutput(ctx *pulumi.Context, args LookupMaintenanceWi
 
 // A collection of arguments for invoking getMaintenanceWindow.
 type LookupMaintenanceWindowOutputArgs struct {
-	// The unique identifier of the project for the Maintenance Window.
+	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

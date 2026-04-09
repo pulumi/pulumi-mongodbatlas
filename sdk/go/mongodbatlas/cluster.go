@@ -16,8 +16,6 @@ import (
 //
 // > **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `AdvancedCluster`. For more details, see our migration guide.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`containerId` attribute on the cluster.
 //
 // > **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the Project resource.
@@ -526,7 +524,7 @@ type Cluster struct {
 	PinnedFcv ClusterPinnedFcvPtrOutput `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolOutput `pulumi:"pitEnabled"`
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringOutput `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
@@ -736,7 +734,7 @@ type clusterState struct {
 	PinnedFcv *ClusterPinnedFcv `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled *bool `pulumi:"pitEnabled"`
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
 	ProviderAutoScalingComputeMaxInstanceSize *string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
@@ -908,7 +906,7 @@ type ClusterState struct {
 	PinnedFcv ClusterPinnedFcvPtrInput
 	// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolPtrInput
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringPtrInput
@@ -1070,7 +1068,7 @@ type clusterArgs struct {
 	PinnedFcv *ClusterPinnedFcv `pulumi:"pinnedFcv"`
 	// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled *bool `pulumi:"pitEnabled"`
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
 	ProviderAutoScalingComputeMaxInstanceSize *string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
@@ -1216,7 +1214,7 @@ type ClusterArgs struct {
 	PinnedFcv ClusterPinnedFcvPtrInput
 	// Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
 	PitEnabled pulumi.BoolPtrInput
-	// The unique ID for the project to create the cluster.
+	// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringPtrInput
@@ -1539,7 +1537,7 @@ func (o ClusterOutput) PitEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.PitEnabled }).(pulumi.BoolOutput)
 }
 
-// The unique ID for the project to create the cluster.
+// The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
 func (o ClusterOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

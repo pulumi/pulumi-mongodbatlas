@@ -59,7 +59,7 @@ type LookupStreamConnectionsArgs struct {
 	ItemsPerPage *int `pulumi:"itemsPerPage"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum *int `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	//
@@ -75,7 +75,7 @@ type LookupStreamConnectionsResult struct {
 	InstanceName *string `pulumi:"instanceName"`
 	ItemsPerPage *int    `pulumi:"itemsPerPage"`
 	PageNum      *int    `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list where each element contains a stream connection.
 	Results []GetStreamConnectionsResult `pulumi:"results"`
@@ -104,7 +104,7 @@ type LookupStreamConnectionsOutputArgs struct {
 	ItemsPerPage pulumi.IntPtrInput `pulumi:"itemsPerPage"`
 	// Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
 	PageNum pulumi.IntPtrInput `pulumi:"pageNum"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	//
@@ -149,7 +149,7 @@ func (o LookupStreamConnectionsResultOutput) PageNum() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v LookupStreamConnectionsResult) *int { return v.PageNum }).(pulumi.IntPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

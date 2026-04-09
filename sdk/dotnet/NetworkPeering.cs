@@ -25,8 +25,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the ProjectIpWhitelist resource.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-    /// 
     /// ## Example Usage
     /// 
     /// ### Container &amp; Peering Connection
@@ -352,7 +350,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> PeerId { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the MongoDB Atlas project.
+        /// The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -515,7 +513,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? NetworkName { get; set; }
 
         /// <summary>
-        /// The unique ID for the MongoDB Atlas project.
+        /// The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -661,7 +659,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? PeerId { get; set; }
 
         /// <summary>
-        /// The unique ID for the MongoDB Atlas project.
+        /// The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

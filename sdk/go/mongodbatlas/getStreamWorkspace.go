@@ -57,7 +57,7 @@ func LookupStreamWorkspace(ctx *pulumi.Context, args *LookupStreamWorkspaceArgs,
 
 // A collection of arguments for invoking getStreamWorkspace.
 type LookupStreamWorkspaceArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Label that identifies the stream workspace.
 	WorkspaceName string `pulumi:"workspaceName"`
@@ -87,7 +87,7 @@ func LookupStreamWorkspaceOutput(ctx *pulumi.Context, args LookupStreamWorkspace
 
 // A collection of arguments for invoking getStreamWorkspace.
 type LookupStreamWorkspaceOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Label that identifies the stream workspace.
 	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`

@@ -21,8 +21,6 @@ import (
 //
 // > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ### S
@@ -198,7 +196,7 @@ func LookupEncryptionAtRest(ctx *pulumi.Context, args *LookupEncryptionAtRestArg
 
 // A collection of arguments for invoking getEncryptionAtRest.
 type LookupEncryptionAtRestArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -214,7 +212,7 @@ type LookupEncryptionAtRestResult struct {
 	GoogleCloudKmsConfig GetEncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
 	// The ID of this resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -229,7 +227,7 @@ func LookupEncryptionAtRestOutput(ctx *pulumi.Context, args LookupEncryptionAtRe
 
 // A collection of arguments for invoking getEncryptionAtRest.
 type LookupEncryptionAtRestOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -281,7 +279,7 @@ func (o LookupEncryptionAtRestResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupEncryptionAtRestResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

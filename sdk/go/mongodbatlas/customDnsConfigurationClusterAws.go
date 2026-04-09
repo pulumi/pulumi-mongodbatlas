@@ -16,8 +16,6 @@ import (
 //
 // > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -59,7 +57,7 @@ type CustomDnsConfigurationClusterAws struct {
 
 	// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// Required 	Unique identifier for the project.
+	// Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
 
@@ -101,14 +99,14 @@ func GetCustomDnsConfigurationClusterAws(ctx *pulumi.Context,
 type customDnsConfigurationClusterAwsState struct {
 	// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
 	Enabled *bool `pulumi:"enabled"`
-	// Required 	Unique identifier for the project.
+	// Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 }
 
 type CustomDnsConfigurationClusterAwsState struct {
 	// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
 	Enabled pulumi.BoolPtrInput
-	// Required 	Unique identifier for the project.
+	// Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 }
 
@@ -119,7 +117,7 @@ func (CustomDnsConfigurationClusterAwsState) ElementType() reflect.Type {
 type customDnsConfigurationClusterAwsArgs struct {
 	// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
 	Enabled bool `pulumi:"enabled"`
-	// Required 	Unique identifier for the project.
+	// Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -127,7 +125,7 @@ type customDnsConfigurationClusterAwsArgs struct {
 type CustomDnsConfigurationClusterAwsArgs struct {
 	// Indicates whether the project's clusters deployed to AWS use custom DNS. If `true`, the `Get All Clusters` and `Get One Cluster` endpoints return the `connectionStrings.private` and `connectionStrings.privateSrv` fields for clusters deployed to AWS .
 	Enabled pulumi.BoolInput
-	// Required 	Unique identifier for the project.
+	// Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 }
 
@@ -223,7 +221,7 @@ func (o CustomDnsConfigurationClusterAwsOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CustomDnsConfigurationClusterAws) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Required 	Unique identifier for the project.
+// Required 	Unique identifier for the project, also known as `groupId` in the official documentation.
 func (o CustomDnsConfigurationClusterAwsOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomDnsConfigurationClusterAws) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

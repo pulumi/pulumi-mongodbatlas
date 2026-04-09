@@ -25,8 +25,6 @@ import javax.annotation.Nullable;
  * | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
  * | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- * 
  * &gt; **NOTE:** Before provider version 1.14.0, Self-managed X.509 Authentication was disabled for the project when this resource was deleted. Starting from that version onward, it will not be disabled, allowing other users to continue using X.509 within the same project.
  * 
  * ## Example Usage
@@ -233,14 +231,14 @@ public class X509AuthenticationDatabaseUser extends com.pulumi.resources.CustomR
         return Codegen.optional(this.monthsUntilExpiration);
     }
     /**
-     * Identifier for the Atlas project associated with the X.509 configuration.
+     * Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Identifier for the Atlas project associated with the X.509 configuration.
+     * @return Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

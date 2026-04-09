@@ -14,8 +14,6 @@ import (
 
 // `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **IMPORTANT:** The collection must exists before performing an online archive.
 //
 // > **IMPORTANT:** There are fields that are immutable after creation, i.e if `dateField` value does not exist in the collection, the online archive state will be pending forever, and this field cannot be updated, that means a destroy is required, known error `ONLINE_ARCHIVE_CANNOT_MODIFY_FIELD`
@@ -194,7 +192,7 @@ type OnlineArchive struct {
 	PartitionFields OnlineArchivePartitionFieldArrayOutput `pulumi:"partitionFields"`
 	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused pulumi.BoolOutput `pulumi:"paused"`
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule OnlineArchiveSchedulePtrOutput `pulumi:"schedule"`
@@ -271,7 +269,7 @@ type onlineArchiveState struct {
 	PartitionFields []OnlineArchivePartitionField `pulumi:"partitionFields"`
 	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused *bool `pulumi:"paused"`
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId *string `pulumi:"projectId"`
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule *OnlineArchiveSchedule `pulumi:"schedule"`
@@ -304,7 +302,7 @@ type OnlineArchiveState struct {
 	PartitionFields OnlineArchivePartitionFieldArrayInput
 	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused pulumi.BoolPtrInput
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringPtrInput
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule OnlineArchiveSchedulePtrInput
@@ -339,7 +337,7 @@ type onlineArchiveArgs struct {
 	PartitionFields []OnlineArchivePartitionField `pulumi:"partitionFields"`
 	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused *bool `pulumi:"paused"`
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId string `pulumi:"projectId"`
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule *OnlineArchiveSchedule `pulumi:"schedule"`
@@ -369,7 +367,7 @@ type OnlineArchiveArgs struct {
 	PartitionFields OnlineArchivePartitionFieldArrayInput
 	// State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
 	Paused pulumi.BoolPtrInput
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringInput
 	// Regular frequency and duration when archiving process occurs. See schedule.
 	Schedule OnlineArchiveSchedulePtrInput
@@ -519,7 +517,7 @@ func (o OnlineArchiveOutput) Paused() pulumi.BoolOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.BoolOutput { return v.Paused }).(pulumi.BoolOutput)
 }
 
-// The unique ID for the project
+// The unique ID for the project, also known as `groupId` in the official documentation
 func (o OnlineArchiveOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OnlineArchive) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

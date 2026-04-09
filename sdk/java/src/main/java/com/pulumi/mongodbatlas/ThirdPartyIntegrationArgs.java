@@ -53,14 +53,14 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to get all Third-Party service integrations
+     * @return The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     public Output<String> projectId() {
@@ -272,7 +272,7 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param projectId The unique ID for the project to get all Third-Party service integrations
+         * @param projectId The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 
@@ -283,7 +283,7 @@ public final class ThirdPartyIntegrationArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param projectId The unique ID for the project to get all Third-Party service integrations
+         * @param projectId The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 

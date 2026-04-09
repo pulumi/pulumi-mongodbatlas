@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
  *
  * > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * > **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
  *
  * ## Import
@@ -59,7 +57,7 @@ export class PrivateEndpointRegionalMode extends pulumi.CustomResource {
      */
     declare public readonly enabled: pulumi.Output<boolean>;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
 
@@ -103,7 +101,7 @@ export interface PrivateEndpointRegionalModeState {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
 }
@@ -120,7 +118,7 @@ export interface PrivateEndpointRegionalModeArgs {
      */
     enabled?: pulumi.Input<boolean>;
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

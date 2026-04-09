@@ -110,7 +110,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example_kafka_oauthbearer = new Mongodbatlas.StreamConnection("example-kafka-oauthbearer", new()
+    ///     var exampleKafkaOauthbearer = new Mongodbatlas.StreamConnection("example_kafka_oauthbearer", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -184,6 +184,40 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example Azure Blob Storage Connection
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = "NewWorkspace",
+    ///         ConnectionName = "AzureBlobStorageConnection",
+    ///         Type = "AzureBlobStorage",
+    ///         Azure = new Mongodbatlas.Inputs.StreamConnectionAzureArgs
+    ///         {
+    ///             ServicePrincipalId = "&lt;AZURE_SERVICE_PRINCIPAL_ID&gt;",
+    ///             StorageAccountName = "&lt;AZURE_STORAGE_ACCOUNT_NAME&gt;",
+    ///             Region = "&lt;AZURE_REGION&gt;",
+    ///         },
+    ///         Networking = new Mongodbatlas.Inputs.StreamConnectionNetworkingArgs
+    ///         {
+    ///             Access = new Mongodbatlas.Inputs.StreamConnectionNetworkingAccessArgs
+    ///             {
+    ///                 Type = "PUBLIC",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example AWSLambda Connection
     /// 
     /// ```csharp
@@ -209,6 +243,49 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example GCPPubSub Connection
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpSetup = new Mongodbatlas.CloudProviderAccessSetup("gcp_setup", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "GCP",
+    ///     });
+    /// 
+    ///     var gcpAuth = new Mongodbatlas.CloudProviderAccessAuthorization("gcp_auth", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         RoleId = gcpSetup.RoleId,
+    ///     });
+    /// 
+    ///     var exampleGcpPubsub = new Mongodbatlas.StreamConnection("example_gcp_pubsub", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.WorkspaceName,
+    ///         ConnectionName = "GCPPubSubConnection",
+    ///         Type = "GCPPubSub",
+    ///         Gcp = new Mongodbatlas.Inputs.StreamConnectionGcpArgs
+    ///         {
+    ///             ServiceAccountId = gcpSetup.GcpConfigs.Apply(gcpConfigs =&gt; gcpConfigs[0].ServiceAccountForAtlas),
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             gcpAuth,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example Https Connection
     /// 
     /// ```csharp
@@ -219,7 +296,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example_https = new Mongodbatlas.StreamConnection("example-https", new()
+    ///     var exampleHttps = new Mongodbatlas.StreamConnection("example_https", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -246,7 +323,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example_schema_registry = new Mongodbatlas.StreamConnection("example-schema-registry", new()
+    ///     var exampleSchemaRegistry = new Mongodbatlas.StreamConnection("example_schema_registry", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -278,7 +355,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example_schema_registry_sasl = new Mongodbatlas.StreamConnection("example-schema-registry-sasl", new()
+    ///     var exampleSchemaRegistrySasl = new Mongodbatlas.StreamConnection("example_schema_registry_sasl", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -397,6 +474,9 @@ namespace Pulumi.Mongodbatlas
         [Output("aws")]
         public Output<Outputs.StreamConnectionAws?> Aws { get; private set; } = null!;
 
+        [Output("azure")]
+        public Output<Outputs.StreamConnectionAzure?> Azure { get; private set; } = null!;
+
         [Output("bootstrapServers")]
         public Output<string?> BootstrapServers { get; private set; } = null!;
 
@@ -418,6 +498,9 @@ namespace Pulumi.Mongodbatlas
         [Output("dbRoleToExecute")]
         public Output<Outputs.StreamConnectionDbRoleToExecute?> DbRoleToExecute { get; private set; } = null!;
 
+        [Output("gcp")]
+        public Output<Outputs.StreamConnectionGcp?> Gcp { get; private set; } = null!;
+
         [Output("headers")]
         public Output<ImmutableDictionary<string, string>?> Headers { get; private set; } = null!;
 
@@ -431,7 +514,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamConnectionNetworking> Networking { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -452,7 +535,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamConnectionTimeouts?> Timeouts { get; private set; } = null!;
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -518,6 +601,9 @@ namespace Pulumi.Mongodbatlas
         [Input("aws")]
         public Input<Inputs.StreamConnectionAwsArgs>? Aws { get; set; }
 
+        [Input("azure")]
+        public Input<Inputs.StreamConnectionAzureArgs>? Azure { get; set; }
+
         [Input("bootstrapServers")]
         public Input<string>? BootstrapServers { get; set; }
 
@@ -544,6 +630,9 @@ namespace Pulumi.Mongodbatlas
         [Input("dbRoleToExecute")]
         public Input<Inputs.StreamConnectionDbRoleToExecuteArgs>? DbRoleToExecute { get; set; }
 
+        [Input("gcp")]
+        public Input<Inputs.StreamConnectionGcpArgs>? Gcp { get; set; }
+
         [Input("headers")]
         private InputMap<string>? _headers;
         public InputMap<string> Headers
@@ -562,7 +651,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionNetworkingArgs>? Networking { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -588,7 +677,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionTimeoutsArgs>? Timeouts { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -616,6 +705,9 @@ namespace Pulumi.Mongodbatlas
         [Input("aws")]
         public Input<Inputs.StreamConnectionAwsGetArgs>? Aws { get; set; }
 
+        [Input("azure")]
+        public Input<Inputs.StreamConnectionAzureGetArgs>? Azure { get; set; }
+
         [Input("bootstrapServers")]
         public Input<string>? BootstrapServers { get; set; }
 
@@ -642,6 +734,9 @@ namespace Pulumi.Mongodbatlas
         [Input("dbRoleToExecute")]
         public Input<Inputs.StreamConnectionDbRoleToExecuteGetArgs>? DbRoleToExecute { get; set; }
 
+        [Input("gcp")]
+        public Input<Inputs.StreamConnectionGcpGetArgs>? Gcp { get; set; }
+
         [Input("headers")]
         private InputMap<string>? _headers;
         public InputMap<string> Headers
@@ -660,7 +755,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionNetworkingGetArgs>? Networking { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -686,7 +781,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionTimeoutsGetArgs>? Timeouts { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

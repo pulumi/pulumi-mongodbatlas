@@ -95,7 +95,7 @@ type ProjectServiceAccountSecret struct {
 	LastUsedAt pulumi.StringOutput `pulumi:"lastUsedAt"`
 	// The masked Service Account secret.
 	MaskedSecretValue pulumi.StringOutput `pulumi:"maskedSecretValue"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The secret for the Service Account. It will be returned only the first time after creation.
 	Secret pulumi.StringOutput `pulumi:"secret"`
@@ -155,7 +155,7 @@ type projectServiceAccountSecretState struct {
 	LastUsedAt *string `pulumi:"lastUsedAt"`
 	// The masked Service Account secret.
 	MaskedSecretValue *string `pulumi:"maskedSecretValue"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// The secret for the Service Account. It will be returned only the first time after creation.
 	Secret *string `pulumi:"secret"`
@@ -176,7 +176,7 @@ type ProjectServiceAccountSecretState struct {
 	LastUsedAt pulumi.StringPtrInput
 	// The masked Service Account secret.
 	MaskedSecretValue pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// The secret for the Service Account. It will be returned only the first time after creation.
 	Secret pulumi.StringPtrInput
@@ -193,7 +193,7 @@ func (ProjectServiceAccountSecretState) ElementType() reflect.Type {
 type projectServiceAccountSecretArgs struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
 	SecretExpiresAfterHours *int `pulumi:"secretExpiresAfterHours"`
@@ -203,7 +203,7 @@ type projectServiceAccountSecretArgs struct {
 type ProjectServiceAccountSecretArgs struct {
 	// The Client ID of the Service Account.
 	ClientId pulumi.StringInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
 	SecretExpiresAfterHours pulumi.IntPtrInput
@@ -321,7 +321,7 @@ func (o ProjectServiceAccountSecretOutput) MaskedSecretValue() pulumi.StringOutp
 	return o.ApplyT(func(v *ProjectServiceAccountSecret) pulumi.StringOutput { return v.MaskedSecretValue }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o ProjectServiceAccountSecretOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ProjectServiceAccountSecret) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

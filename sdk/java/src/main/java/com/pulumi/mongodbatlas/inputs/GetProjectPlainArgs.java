@@ -34,14 +34,14 @@ public final class GetProjectPlainArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable String projectId;
 
     /**
-     * @return The unique ID for the project.
+     * @return The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<String> projectId() {
@@ -87,7 +87,7 @@ public final class GetProjectPlainArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param projectId The unique ID for the project.
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

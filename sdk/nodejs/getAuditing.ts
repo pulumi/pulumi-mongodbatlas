@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.Auditing` describes a Auditing.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -38,7 +36,7 @@ export function getAuditing(args: GetAuditingArgs, opts?: pulumi.InvokeOptions):
  */
 export interface GetAuditingArgs {
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -72,8 +70,6 @@ export interface GetAuditingResult {
 /**
  * `mongodbatlas.Auditing` describes a Auditing.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -103,7 +99,7 @@ export function getAuditingOutput(args: GetAuditingOutputArgs, opts?: pulumi.Inv
  */
 export interface GetAuditingOutputArgs {
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

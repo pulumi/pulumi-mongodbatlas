@@ -17,8 +17,6 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * &gt; **NOTE:** Updates are limited to the `comment` argument.
  * 
  * ## Example Usage
@@ -137,14 +135,14 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
         return this.endpointId;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

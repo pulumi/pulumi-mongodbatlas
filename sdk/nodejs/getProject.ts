@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ### Using projectId attribute to query
@@ -70,7 +68,7 @@ export interface GetProjectArgs {
      */
     name?: string;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId?: string;
 }
@@ -163,8 +161,6 @@ export interface GetProjectResult {
 /**
  * `mongodbatlas.Project` describes a MongoDB Atlas Project. This represents a project that has been created.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ### Using projectId attribute to query
@@ -224,7 +220,7 @@ export interface GetProjectOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
 }

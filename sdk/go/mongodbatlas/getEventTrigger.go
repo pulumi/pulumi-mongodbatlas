@@ -27,7 +27,7 @@ type LookupEventTriggerArgs struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
 	AppId string `pulumi:"appId"`
-	// The unique ID for the project to create the trigger.
+	// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The unique ID of the trigger.
 	TriggerId string `pulumi:"triggerId"`
@@ -92,7 +92,7 @@ type LookupEventTriggerOutputArgs struct {
 	// The ObjectID of your application.
 	// * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
 	AppId pulumi.StringInput `pulumi:"appId"`
-	// The unique ID for the project to create the trigger.
+	// The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The unique ID of the trigger.
 	TriggerId pulumi.StringInput `pulumi:"triggerId"`

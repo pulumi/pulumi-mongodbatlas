@@ -36,7 +36,7 @@ public final class GetOnlineArchivesResult {
     private List<GetOnlineArchivesResultPartitionField> partitionFields;
     private Boolean paused;
     /**
-     * @return The unique ID for the project.
+     * @return The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -83,7 +83,7 @@ public final class GetOnlineArchivesResult {
         return this.paused;
     }
     /**
-     * @return The unique ID for the project.
+     * @return The unique ID for the project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

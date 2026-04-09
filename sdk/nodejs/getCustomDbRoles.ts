@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -50,7 +48,7 @@ export function getCustomDbRoles(args: GetCustomDbRolesArgs, opts?: pulumi.Invok
  */
 export interface GetCustomDbRolesArgs {
     /**
-     * The unique ID for the project to get all custom db roles.
+     * The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -71,8 +69,6 @@ export interface GetCustomDbRolesResult {
 }
 /**
  * `mongodbatlas.getCustomDbRoles` describes all Custom DB Roles. This represents a custom db roles.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -113,7 +109,7 @@ export function getCustomDbRolesOutput(args: GetCustomDbRolesOutputArgs, opts?: 
  */
 export interface GetCustomDbRolesOutputArgs {
     /**
-     * The unique ID for the project to get all custom db roles.
+     * The unique ID for the project to get all custom db roles, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

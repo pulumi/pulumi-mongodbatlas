@@ -16,8 +16,6 @@ import (
 //
 // > **IMPORTANT**  You define custom roles at the project level for all clusters in the project. The `CustomDbRole` resource supports a subset of MongoDB privilege actions. For a complete list of [privilege actions](https://docs.mongodb.com/manual/reference/privilege-actions/) available for this resource, see [Custom Role actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions/). Custom roles must include actions that all project's clusters support, and that are compatible with each MongoDB version used by your project's clusters. For example, if your project has MongoDB 4.2 clusters, you can't create custom roles that use actions introduced in MongoDB 4.4.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -180,7 +178,7 @@ type CustomDbRole struct {
 
 	Actions        CustomDbRoleActionArrayOutput        `pulumi:"actions"`
 	InheritedRoles CustomDbRoleInheritedRoleArrayOutput `pulumi:"inheritedRoles"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Name of the custom role.
 	//
@@ -231,7 +229,7 @@ func GetCustomDbRole(ctx *pulumi.Context,
 type customDbRoleState struct {
 	Actions        []CustomDbRoleAction        `pulumi:"actions"`
 	InheritedRoles []CustomDbRoleInheritedRole `pulumi:"inheritedRoles"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Name of the custom role.
 	//
@@ -247,7 +245,7 @@ type customDbRoleState struct {
 type CustomDbRoleState struct {
 	Actions        CustomDbRoleActionArrayInput
 	InheritedRoles CustomDbRoleInheritedRoleArrayInput
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Name of the custom role.
 	//
@@ -267,7 +265,7 @@ func (CustomDbRoleState) ElementType() reflect.Type {
 type customDbRoleArgs struct {
 	Actions        []CustomDbRoleAction        `pulumi:"actions"`
 	InheritedRoles []CustomDbRoleInheritedRole `pulumi:"inheritedRoles"`
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the custom role.
 	//
@@ -284,7 +282,7 @@ type customDbRoleArgs struct {
 type CustomDbRoleArgs struct {
 	Actions        CustomDbRoleActionArrayInput
 	InheritedRoles CustomDbRoleInheritedRoleArrayInput
-	// The unique ID for the project.
+	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Name of the custom role.
 	//
@@ -392,7 +390,7 @@ func (o CustomDbRoleOutput) InheritedRoles() CustomDbRoleInheritedRoleArrayOutpu
 	return o.ApplyT(func(v *CustomDbRole) CustomDbRoleInheritedRoleArrayOutput { return v.InheritedRoles }).(CustomDbRoleInheritedRoleArrayOutput)
 }
 
-// The unique ID for the project.
+// The unique ID for the project, also known as `groupId` in the official documentation.
 func (o CustomDbRoleOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CustomDbRole) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

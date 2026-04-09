@@ -15,8 +15,6 @@ import * as utilities from "./utilities";
  *
  * **IMPORTANT:** Test Outage on Majority of Electable Nodes will leave the Atlas cluster without a majority quorum. There will be no primary so write operations will not succeed, and reads will succeed only when configured with a suitable [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/). To recover the majority quorum, you will have the option to manually reconfigure your cluster by adding new nodes to existing regions or adding new regions at the risk of losing recent writes, or end the simulation.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * > **IMPORTANT:** This resource cannot be updated.
  * **IMPORTANT:** An existing Cluster Outage Simulation cannot be imported as this resource does not support import operation.
  *
@@ -94,7 +92,7 @@ export class ClusterOutageSimulation extends pulumi.CustomResource {
      */
     declare public readonly outageFilters: pulumi.Output<outputs.ClusterOutageSimulationOutageFilter[]>;
     /**
-     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -177,7 +175,7 @@ export interface ClusterOutageSimulationState {
      */
     outageFilters?: pulumi.Input<pulumi.Input<inputs.ClusterOutageSimulationOutageFilter>[]>;
     /**
-     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -217,7 +215,7 @@ export interface ClusterOutageSimulationArgs {
      */
     outageFilters: pulumi.Input<pulumi.Input<inputs.ClusterOutageSimulationOutageFilter>[]>;
     /**
-     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

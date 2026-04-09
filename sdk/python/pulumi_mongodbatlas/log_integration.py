@@ -41,7 +41,7 @@ class LogIntegrationArgs:
         The set of arguments for constructing a LogIntegration resource.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types exported by this integration.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         :param pulumi.Input[_builtins.str] api_key: Required for type: DATADOG_LOG_EXPORT. API key for authentication.
         :param pulumi.Input[_builtins.str] bucket_name: Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
@@ -103,7 +103,7 @@ class LogIntegrationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -314,7 +314,7 @@ class _LogIntegrationState:
         :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
         :param pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
         :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
         :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
         :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
@@ -492,7 +492,7 @@ class _LogIntegrationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -737,7 +737,7 @@ class LogIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
         :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
         :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
         :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
@@ -1001,7 +1001,7 @@ class LogIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
         :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
         :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
         :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
@@ -1123,7 +1123,7 @@ class LogIntegration(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

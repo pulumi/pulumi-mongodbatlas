@@ -51,10 +51,16 @@ export function getCloudUserProjectAssignment(args: GetCloudUserProjectAssignmen
  */
 export interface GetCloudUserProjectAssignmentArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     */
     userId?: string;
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
     username?: string;
 }
 
@@ -62,26 +68,65 @@ export interface GetCloudUserProjectAssignmentArgs {
  * A collection of values returned by getCloudUserProjectAssignment.
  */
 export interface GetCloudUserProjectAssignmentResult {
+    /**
+     * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+     */
     readonly country: string;
+    /**
+     * Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     */
     readonly createdAt: string;
+    /**
+     * First or given name that belongs to the MongoDB Cloud user.
+     */
     readonly firstName: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
     readonly invitationCreatedAt: string;
+    /**
+     * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
     readonly invitationExpiresAt: string;
+    /**
+     * Username of the MongoDB Cloud user who sent the invitation to join the organization.
+     */
     readonly inviterUsername: string;
+    /**
+     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     */
     readonly lastAuth: string;
+    /**
+     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     */
     readonly lastName: string;
+    /**
+     * Mobile phone number that belongs to the MongoDB Cloud user.
+     */
     readonly mobileNumber: string;
+    /**
+     * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
     readonly orgMembershipStatus: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
+    /**
+     * One or more project-level roles to assign the MongoDB Cloud user.
+     */
     readonly roles: string[];
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     */
     readonly userId?: string;
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
     readonly username?: string;
 }
 /**
@@ -131,9 +176,15 @@ export function getCloudUserProjectAssignmentOutput(args: GetCloudUserProjectAss
  */
 export interface GetCloudUserProjectAssignmentOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     */
     userId?: pulumi.Input<string>;
+    /**
+     * Email address that represents the username of the MongoDB Cloud user.
+     */
     username?: pulumi.Input<string>;
 }

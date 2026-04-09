@@ -59,25 +59,32 @@ func GetStreamAccountDetails(ctx *pulumi.Context, args *GetStreamAccountDetailsA
 type GetStreamAccountDetailsArgs struct {
 	// One of `aws` or `azure`.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId  string `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
 	RegionName string `pulumi:"regionName"`
 }
 
 // A collection of values returned by getStreamAccountDetails.
 type GetStreamAccountDetailsResult struct {
-	AwsAccountId        string `pulumi:"awsAccountId"`
+	// The AWS Account ID.
+	AwsAccountId string `pulumi:"awsAccountId"`
+	// The Azure Subscription ID.
 	AzureSubscriptionId string `pulumi:"azureSubscriptionId"`
-	CidrBlock           string `pulumi:"cidrBlock"`
+	// The AWS VPC or Azure Virtual Network CIDR Block.
+	CidrBlock string `pulumi:"cidrBlock"`
 	// One of `aws` or `azure`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId          string `pulumi:"projectId"`
-	RegionName         string `pulumi:"regionName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+	RegionName string `pulumi:"regionName"`
+	// The name of the Azure Virtual Network.
 	VirtualNetworkName string `pulumi:"virtualNetworkName"`
-	VpcId              string `pulumi:"vpcId"`
+	// The AWS VPC ID.
+	VpcId string `pulumi:"vpcId"`
 }
 
 func GetStreamAccountDetailsOutput(ctx *pulumi.Context, args GetStreamAccountDetailsOutputArgs, opts ...pulumi.InvokeOption) GetStreamAccountDetailsResultOutput {
@@ -93,8 +100,9 @@ func GetStreamAccountDetailsOutput(ctx *pulumi.Context, args GetStreamAccountDet
 type GetStreamAccountDetailsOutputArgs struct {
 	// One of `aws` or `azure`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId  pulumi.StringInput `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -117,14 +125,17 @@ func (o GetStreamAccountDetailsResultOutput) ToGetStreamAccountDetailsResultOutp
 	return o
 }
 
+// The AWS Account ID.
 func (o GetStreamAccountDetailsResultOutput) AwsAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.AwsAccountId }).(pulumi.StringOutput)
 }
 
+// The Azure Subscription ID.
 func (o GetStreamAccountDetailsResultOutput) AzureSubscriptionId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.AzureSubscriptionId }).(pulumi.StringOutput)
 }
 
+// The AWS VPC or Azure Virtual Network CIDR Block.
 func (o GetStreamAccountDetailsResultOutput) CidrBlock() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.CidrBlock }).(pulumi.StringOutput)
 }
@@ -139,19 +150,22 @@ func (o GetStreamAccountDetailsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetStreamAccountDetailsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
 func (o GetStreamAccountDetailsResultOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.RegionName }).(pulumi.StringOutput)
 }
 
+// The name of the Azure Virtual Network.
 func (o GetStreamAccountDetailsResultOutput) VirtualNetworkName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.VirtualNetworkName }).(pulumi.StringOutput)
 }
 
+// The AWS VPC ID.
 func (o GetStreamAccountDetailsResultOutput) VpcId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.VpcId }).(pulumi.StringOutput)
 }

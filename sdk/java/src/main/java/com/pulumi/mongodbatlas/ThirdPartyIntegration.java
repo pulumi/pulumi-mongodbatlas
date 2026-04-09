@@ -19,8 +19,6 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * &gt; **NOTE:** Slack integrations now use the OAuth2 verification method and must be initially configured, or updated from a legacy integration, through the Atlas third-party service integrations page. Legacy tokens will soon no longer be supported.[Read more about slack setup](https://docs.atlas.mongodb.com/tutorial/third-party-service-integrations/)
  * 
  * &gt; **IMPORTANT** Each project can only have one configuration per integration `type`.
@@ -110,14 +108,14 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
         return this.password;
     }
     /**
-     * The unique ID for the project to get all Third-Party service integrations
+     * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to get all Third-Party service integrations
+     * @return The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      * 
      */
     public Output<String> projectId() {

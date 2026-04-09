@@ -15,8 +15,6 @@ import (
 //
 // > **DEPRECATION:** This data source is deprecated. Use `CloudUserProjectAssignment` to read project user assignments. See the Project Invitation to Cloud User Project Assignment Migration Guide.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find GROUP-ID in the official documentation.
-//
 // ## Example Usage
 //
 // ### S
@@ -66,7 +64,7 @@ func LookupProjectInvitation(ctx *pulumi.Context, args *LookupProjectInvitationA
 type LookupProjectInvitationArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
 	InvitationId string `pulumi:"invitationId"`
-	// Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+	// Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
 	Username string `pulumi:"username"`
@@ -102,7 +100,7 @@ func LookupProjectInvitationOutput(ctx *pulumi.Context, args LookupProjectInvita
 type LookupProjectInvitationOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
 	InvitationId pulumi.StringInput `pulumi:"invitationId"`
-	// Unique 24-hexadecimal digit string that identifies the project to which you invited the user.
+	// Unique 24-hexadecimal digit string that identifies the project to which you invited the user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
 	Username pulumi.StringInput `pulumi:"username"`

@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetProjectIpAddressesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -117,7 +117,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetProjectIpAddressesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -137,7 +137,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

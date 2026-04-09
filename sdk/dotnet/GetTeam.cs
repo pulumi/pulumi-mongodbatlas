@@ -14,7 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -82,7 +81,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -150,7 +148,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `GroupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 

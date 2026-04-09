@@ -26,7 +26,7 @@ class AuditingArgs:
         """
         The set of arguments for constructing a Auditing resource.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         :param pulumi.Input[_builtins.bool] audit_authorization_success: Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         :param pulumi.Input[_builtins.str] audit_filter: JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         :param pulumi.Input[_builtins.bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
@@ -45,7 +45,7 @@ class AuditingArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
+        The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
         return pulumi.get(self, "project_id")
 
@@ -112,7 +112,7 @@ class _AuditingState:
         :param pulumi.Input[_builtins.bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
                
                > **NOTE:** Auditing created by API Keys must belong to an existing organization.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
         if audit_authorization_success is not None:
             pulumi.set(__self__, "audit_authorization_success", audit_authorization_success)
@@ -182,7 +182,7 @@ class _AuditingState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
+        The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
         return pulumi.get(self, "project_id")
 
@@ -236,7 +236,7 @@ class Auditing(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
                
                > **NOTE:** Auditing created by API Keys must belong to an existing organization.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
         ...
     @overload
@@ -337,7 +337,7 @@ class Auditing(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
                
                > **NOTE:** Auditing created by API Keys must belong to an existing organization.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -391,7 +391,7 @@ class Auditing(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project to configure auditing. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
+        The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
         return pulumi.get(self, "project_id")
 

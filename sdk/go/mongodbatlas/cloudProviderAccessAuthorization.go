@@ -165,7 +165,7 @@ type CloudProviderAccessAuthorization struct {
 	// Atlas features this AWS IAM role is linked to.
 	FeatureUsages CloudProviderAccessAuthorizationFeatureUsageArrayOutput `pulumi:"featureUsages"`
 	Gcps          CloudProviderAccessAuthorizationGcpArrayOutput          `pulumi:"gcps"`
-	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	//
@@ -216,7 +216,7 @@ type cloudProviderAccessAuthorizationState struct {
 	// Atlas features this AWS IAM role is linked to.
 	FeatureUsages []CloudProviderAccessAuthorizationFeatureUsage `pulumi:"featureUsages"`
 	Gcps          []CloudProviderAccessAuthorizationGcp          `pulumi:"gcps"`
-	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	ProjectId *string `pulumi:"projectId"`
 	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	//
@@ -232,7 +232,7 @@ type CloudProviderAccessAuthorizationState struct {
 	// Atlas features this AWS IAM role is linked to.
 	FeatureUsages CloudProviderAccessAuthorizationFeatureUsageArrayInput
 	Gcps          CloudProviderAccessAuthorizationGcpArrayInput
-	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	ProjectId pulumi.StringPtrInput
 	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	//
@@ -247,7 +247,7 @@ func (CloudProviderAccessAuthorizationState) ElementType() reflect.Type {
 type cloudProviderAccessAuthorizationArgs struct {
 	Aws   *CloudProviderAccessAuthorizationAws   `pulumi:"aws"`
 	Azure *CloudProviderAccessAuthorizationAzure `pulumi:"azure"`
-	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	ProjectId string `pulumi:"projectId"`
 	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	//
@@ -259,7 +259,7 @@ type cloudProviderAccessAuthorizationArgs struct {
 type CloudProviderAccessAuthorizationArgs struct {
 	Aws   CloudProviderAccessAuthorizationAwsPtrInput
 	Azure CloudProviderAccessAuthorizationAzurePtrInput
-	// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+	// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	ProjectId pulumi.StringInput
 	// The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 	//
@@ -382,7 +382,7 @@ func (o CloudProviderAccessAuthorizationOutput) Gcps() CloudProviderAccessAuthor
 	}).(CloudProviderAccessAuthorizationGcpArrayOutput)
 }
 
-// The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+// The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
 func (o CloudProviderAccessAuthorizationOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorization) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

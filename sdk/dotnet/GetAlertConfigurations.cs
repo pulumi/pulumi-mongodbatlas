@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -76,8 +74,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -137,8 +133,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getAlertConfigurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -229,7 +223,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to get the alert configurations.
+        /// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -270,7 +264,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The unique ID for the project to get the alert configurations.
+        /// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -289,7 +283,7 @@ namespace Pulumi.Mongodbatlas
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsListOptionResult> ListOptions;
         public readonly ImmutableArray<string> OutputTypes;
         /// <summary>
-        /// The ID of the project where the alert configuration exists
+        /// The ID of the project where the alert configuration exists, also known as `groupId` in the official documentation
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

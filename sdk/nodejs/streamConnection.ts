@@ -79,7 +79,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example_kafka_oauthbearer = new mongodbatlas.StreamConnection("example-kafka-oauthbearer", {
+ * const exampleKafkaOauthbearer = new mongodbatlas.StreamConnection("example_kafka_oauthbearer", {
  *     projectId: projectId,
  *     workspaceName: example.workspaceName,
  *     connectionName: "KafkaOAuthbearerConnection",
@@ -135,6 +135,30 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Azure Blob Storage Connection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.StreamConnection("test", {
+ *     projectId: projectId,
+ *     workspaceName: "NewWorkspace",
+ *     connectionName: "AzureBlobStorageConnection",
+ *     type: "AzureBlobStorage",
+ *     azure: {
+ *         servicePrincipalId: "<AZURE_SERVICE_PRINCIPAL_ID>",
+ *         storageAccountName: "<AZURE_STORAGE_ACCOUNT_NAME>",
+ *         region: "<AZURE_REGION>",
+ *     },
+ *     networking: {
+ *         access: {
+ *             type: "PUBLIC",
+ *         },
+ *     },
+ * });
+ * ```
+ *
  * ### Example AWSLambda Connection
  *
  * ```typescript
@@ -152,13 +176,40 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example GCPPubSub Connection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const gcpSetup = new mongodbatlas.CloudProviderAccessSetup("gcp_setup", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ * });
+ * const gcpAuth = new mongodbatlas.CloudProviderAccessAuthorization("gcp_auth", {
+ *     projectId: projectId,
+ *     roleId: gcpSetup.roleId,
+ * });
+ * const exampleGcpPubsub = new mongodbatlas.StreamConnection("example_gcp_pubsub", {
+ *     projectId: projectId,
+ *     workspaceName: example.workspaceName,
+ *     connectionName: "GCPPubSubConnection",
+ *     type: "GCPPubSub",
+ *     gcp: {
+ *         serviceAccountId: gcpSetup.gcpConfigs.apply(gcpConfigs => gcpConfigs[0].serviceAccountForAtlas),
+ *     },
+ * }, {
+ *     dependsOn: [gcpAuth],
+ * });
+ * ```
+ *
  * ### Example Https Connection
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example_https = new mongodbatlas.StreamConnection("example-https", {
+ * const exampleHttps = new mongodbatlas.StreamConnection("example_https", {
  *     projectId: projectId,
  *     workspaceName: example.workspaceName,
  *     connectionName: "https_connection_tf_new",
@@ -177,7 +228,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example_schema_registry = new mongodbatlas.StreamConnection("example-schema-registry", {
+ * const exampleSchemaRegistry = new mongodbatlas.StreamConnection("example_schema_registry", {
  *     projectId: projectId,
  *     workspaceName: example.workspaceName,
  *     connectionName: "SchemaRegistryConnection",
@@ -198,7 +249,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * const example_schema_registry_sasl = new mongodbatlas.StreamConnection("example-schema-registry-sasl", {
+ * const exampleSchemaRegistrySasl = new mongodbatlas.StreamConnection("example_schema_registry_sasl", {
  *     projectId: projectId,
  *     workspaceName: example.workspaceName,
  *     connectionName: "SchemaRegistryConnectionSASL",
@@ -310,6 +361,7 @@ export class StreamConnection extends pulumi.CustomResource {
 
     declare public readonly authentication: pulumi.Output<outputs.StreamConnectionAuthentication | undefined>;
     declare public readonly aws: pulumi.Output<outputs.StreamConnectionAws | undefined>;
+    declare public readonly azure: pulumi.Output<outputs.StreamConnectionAzure | undefined>;
     declare public readonly bootstrapServers: pulumi.Output<string | undefined>;
     declare public readonly clusterName: pulumi.Output<string | undefined>;
     declare public readonly clusterProjectId: pulumi.Output<string | undefined>;
@@ -319,6 +371,7 @@ export class StreamConnection extends pulumi.CustomResource {
      */
     declare public readonly connectionName: pulumi.Output<string>;
     declare public readonly dbRoleToExecute: pulumi.Output<outputs.StreamConnectionDbRoleToExecute | undefined>;
+    declare public readonly gcp: pulumi.Output<outputs.StreamConnectionGcp | undefined>;
     declare public readonly headers: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
@@ -328,7 +381,7 @@ export class StreamConnection extends pulumi.CustomResource {
     declare public readonly instanceName: pulumi.Output<string | undefined>;
     declare public readonly networking: pulumi.Output<outputs.StreamConnectionNetworking>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     declare public readonly schemaRegistryAuthentication: pulumi.Output<outputs.StreamConnectionSchemaRegistryAuthentication | undefined>;
@@ -337,7 +390,7 @@ export class StreamConnection extends pulumi.CustomResource {
     declare public readonly security: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
     declare public readonly timeouts: pulumi.Output<outputs.StreamConnectionTimeouts | undefined>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      */
     declare public readonly type: pulumi.Output<string>;
     declare public readonly url: pulumi.Output<string | undefined>;
@@ -361,12 +414,14 @@ export class StreamConnection extends pulumi.CustomResource {
             const state = argsOrState as StreamConnectionState | undefined;
             resourceInputs["authentication"] = state?.authentication;
             resourceInputs["aws"] = state?.aws;
+            resourceInputs["azure"] = state?.azure;
             resourceInputs["bootstrapServers"] = state?.bootstrapServers;
             resourceInputs["clusterName"] = state?.clusterName;
             resourceInputs["clusterProjectId"] = state?.clusterProjectId;
             resourceInputs["config"] = state?.config;
             resourceInputs["connectionName"] = state?.connectionName;
             resourceInputs["dbRoleToExecute"] = state?.dbRoleToExecute;
+            resourceInputs["gcp"] = state?.gcp;
             resourceInputs["headers"] = state?.headers;
             resourceInputs["instanceName"] = state?.instanceName;
             resourceInputs["networking"] = state?.networking;
@@ -392,12 +447,14 @@ export class StreamConnection extends pulumi.CustomResource {
             }
             resourceInputs["authentication"] = args?.authentication;
             resourceInputs["aws"] = args?.aws;
+            resourceInputs["azure"] = args?.azure;
             resourceInputs["bootstrapServers"] = args?.bootstrapServers;
             resourceInputs["clusterName"] = args?.clusterName;
             resourceInputs["clusterProjectId"] = args?.clusterProjectId;
             resourceInputs["config"] = args?.config;
             resourceInputs["connectionName"] = args?.connectionName;
             resourceInputs["dbRoleToExecute"] = args?.dbRoleToExecute;
+            resourceInputs["gcp"] = args?.gcp;
             resourceInputs["headers"] = args?.headers;
             resourceInputs["instanceName"] = args?.instanceName;
             resourceInputs["networking"] = args?.networking;
@@ -422,6 +479,7 @@ export class StreamConnection extends pulumi.CustomResource {
 export interface StreamConnectionState {
     authentication?: pulumi.Input<inputs.StreamConnectionAuthentication>;
     aws?: pulumi.Input<inputs.StreamConnectionAws>;
+    azure?: pulumi.Input<inputs.StreamConnectionAzure>;
     bootstrapServers?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
     clusterProjectId?: pulumi.Input<string>;
@@ -431,6 +489,7 @@ export interface StreamConnectionState {
      */
     connectionName?: pulumi.Input<string>;
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
+    gcp?: pulumi.Input<inputs.StreamConnectionGcp>;
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
@@ -440,7 +499,7 @@ export interface StreamConnectionState {
     instanceName?: pulumi.Input<string>;
     networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication>;
@@ -449,7 +508,7 @@ export interface StreamConnectionState {
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      */
     type?: pulumi.Input<string>;
     url?: pulumi.Input<string>;
@@ -465,6 +524,7 @@ export interface StreamConnectionState {
 export interface StreamConnectionArgs {
     authentication?: pulumi.Input<inputs.StreamConnectionAuthentication>;
     aws?: pulumi.Input<inputs.StreamConnectionAws>;
+    azure?: pulumi.Input<inputs.StreamConnectionAzure>;
     bootstrapServers?: pulumi.Input<string>;
     clusterName?: pulumi.Input<string>;
     clusterProjectId?: pulumi.Input<string>;
@@ -474,6 +534,7 @@ export interface StreamConnectionArgs {
      */
     connectionName: pulumi.Input<string>;
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
+    gcp?: pulumi.Input<inputs.StreamConnectionGcp>;
     headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
@@ -483,7 +544,7 @@ export interface StreamConnectionArgs {
     instanceName?: pulumi.Input<string>;
     networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication>;
@@ -492,7 +553,7 @@ export interface StreamConnectionArgs {
     security?: pulumi.Input<inputs.StreamConnectionSecurity>;
     timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts>;
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      */
     type: pulumi.Input<string>;
     url?: pulumi.Input<string>;

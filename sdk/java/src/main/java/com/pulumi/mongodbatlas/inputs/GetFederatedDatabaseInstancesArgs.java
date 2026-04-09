@@ -15,14 +15,14 @@ public final class GetFederatedDatabaseInstancesArgs extends com.pulumi.resource
     public static final GetFederatedDatabaseInstancesArgs Empty = new GetFederatedDatabaseInstancesArgs();
 
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -54,7 +54,7 @@ public final class GetFederatedDatabaseInstancesArgs extends com.pulumi.resource
         }
 
         /**
-         * @param projectId The unique ID for the project to create a Federated Database Instance.
+         * @param projectId The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class GetFederatedDatabaseInstancesArgs extends com.pulumi.resource
         }
 
         /**
-         * @param projectId The unique ID for the project to create a Federated Database Instance.
+         * @param projectId The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -12,7 +12,7 @@ import java.util.Objects;
 @CustomType
 public final class GetProjectApiKeysResultProjectAssignment {
     /**
-     * @return The unique ID for the project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -24,7 +24,7 @@ public final class GetProjectApiKeysResultProjectAssignment {
 
     private GetProjectApiKeysResultProjectAssignment() {}
     /**
-     * @return The unique ID for the project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

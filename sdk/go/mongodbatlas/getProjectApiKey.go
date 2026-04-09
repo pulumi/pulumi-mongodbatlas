@@ -74,7 +74,7 @@ func LookupProjectApiKey(ctx *pulumi.Context, args *LookupProjectApiKeyArgs, opt
 type LookupProjectApiKeyArgs struct {
 	// Unique identifier for this Project API key.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -88,7 +88,7 @@ type LookupProjectApiKeyResult struct {
 	// Private key for this Organization API key.
 	PrivateKey         string                              `pulumi:"privateKey"`
 	ProjectAssignments []GetProjectApiKeyProjectAssignment `pulumi:"projectAssignments"`
-	// Project ID to assign to Access Key
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Public key for this Organization API key.
 	PublicKey string `pulumi:"publicKey"`
@@ -107,7 +107,7 @@ func LookupProjectApiKeyOutput(ctx *pulumi.Context, args LookupProjectApiKeyOutp
 type LookupProjectApiKeyOutputArgs struct {
 	// Unique identifier for this Project API key.
 	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
-	// The unique ID for the project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 
@@ -153,7 +153,7 @@ func (o LookupProjectApiKeyResultOutput) ProjectAssignments() GetProjectApiKeyPr
 	return o.ApplyT(func(v LookupProjectApiKeyResult) []GetProjectApiKeyProjectAssignment { return v.ProjectAssignments }).(GetProjectApiKeyProjectAssignmentArrayOutput)
 }
 
-// Project ID to assign to Access Key
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupProjectApiKeyResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectApiKeyResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }

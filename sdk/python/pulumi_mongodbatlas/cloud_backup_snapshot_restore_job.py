@@ -29,7 +29,7 @@ class CloudBackupSnapshotRestoreJobArgs:
         The set of arguments for constructing a CloudBackupSnapshotRestoreJob resource.
 
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         :param pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs'] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
@@ -64,7 +64,7 @@ class CloudBackupSnapshotRestoreJobArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -139,7 +139,7 @@ class _CloudBackupSnapshotRestoreJobState:
         :param pulumi.Input[_builtins.str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
         :param pulumi.Input[_builtins.bool] failed: Indicates whether the restore job failed.
         :param pulumi.Input[_builtins.str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[_builtins.str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[_builtins.str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
@@ -291,7 +291,7 @@ class _CloudBackupSnapshotRestoreJobState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -373,8 +373,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
 
         > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
         `CloudBackupSnapshotRestoreJob` resource, you won't be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn't support this. The provider will remove the Terraform resource from the state file but won't destroy the MongoDB Atlas resource.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         ## Example Usage
 
@@ -519,7 +517,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                * `delivery_type_config.oplog_ts` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot. This is the first part of an Oplog timestamp.
                * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplog_ts`.
                * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         """
         ...
@@ -540,8 +538,6 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
 
         > **Important:** If you specify `deliveryType` : `automated` or `deliveryType` : `pointInTime` in your
         `CloudBackupSnapshotRestoreJob` resource, you won't be able to delete the snapshot resource in MongoDB Atlas as the Atlas Admin API doesn't support this. The provider will remove the Terraform resource from the state file but won't destroy the MongoDB Atlas resource.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         ## Example Usage
 
@@ -763,7 +759,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] expires_at: UTC ISO 8601 formatted point in time when the restore job expires.
         :param pulumi.Input[_builtins.bool] failed: Indicates whether the restore job failed.
         :param pulumi.Input[_builtins.str] finished_at: UTC ISO 8601 formatted point in time when the restore job completed.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] snapshot_id: Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         :param pulumi.Input[_builtins.str] snapshot_restore_job_id: The unique identifier of the restore job.
         :param pulumi.Input[_builtins.str] timestamp: Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
@@ -876,7 +872,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore.
+        The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

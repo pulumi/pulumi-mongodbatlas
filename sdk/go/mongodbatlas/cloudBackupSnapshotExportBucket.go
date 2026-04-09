@@ -14,8 +14,6 @@ import (
 
 // `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // > **NOTE:** To prevent errors during resource destruction, ensure that no `CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `CloudBackupSnapshotExportBucket` resource.
 //
 // ## Example Usage
@@ -103,7 +101,7 @@ type CloudBackupSnapshotExportBucket struct {
 	ExportBucketId pulumi.StringOutput `pulumi:"exportBucketId"`
 	// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
 	IamRoleId pulumi.StringPtrOutput `pulumi:"iamRoleId"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
 	RoleId pulumi.StringPtrOutput `pulumi:"roleId"`
@@ -162,7 +160,7 @@ type cloudBackupSnapshotExportBucketState struct {
 	ExportBucketId *string `pulumi:"exportBucketId"`
 	// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
 	IamRoleId *string `pulumi:"iamRoleId"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
 	RoleId *string `pulumi:"roleId"`
@@ -183,7 +181,7 @@ type CloudBackupSnapshotExportBucketState struct {
 	ExportBucketId pulumi.StringPtrInput
 	// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
 	IamRoleId pulumi.StringPtrInput
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
 	RoleId pulumi.StringPtrInput
@@ -206,7 +204,7 @@ type cloudBackupSnapshotExportBucketArgs struct {
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
 	IamRoleId *string `pulumi:"iamRoleId"`
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
 	RoleId *string `pulumi:"roleId"`
@@ -226,7 +224,7 @@ type CloudBackupSnapshotExportBucketArgs struct {
 	CloudProvider pulumi.StringInput
 	// Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
 	IamRoleId pulumi.StringPtrInput
-	// The unique identifier of the project for the Atlas cluster.
+	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
 	RoleId pulumi.StringPtrInput
@@ -345,7 +343,7 @@ func (o CloudBackupSnapshotExportBucketOutput) IamRoleId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringPtrOutput { return v.IamRoleId }).(pulumi.StringPtrOutput)
 }
 
-// The unique identifier of the project for the Atlas cluster.
+// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 func (o CloudBackupSnapshotExportBucketOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSnapshotExportBucket) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

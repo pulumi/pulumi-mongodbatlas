@@ -45,14 +45,14 @@ public final class GetCloudBackupSnapshotExportJobArgs extends com.pulumi.resour
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+     * @return Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -128,7 +128,7 @@ public final class GetCloudBackupSnapshotExportJobArgs extends com.pulumi.resour
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -139,7 +139,7 @@ public final class GetCloudBackupSnapshotExportJobArgs extends com.pulumi.resour
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve.
+         * @param projectId Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -27,8 +27,6 @@ import (
 //
 // `CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ### With AWS
@@ -146,7 +144,7 @@ type CloudProviderAccessSetup struct {
 	GcpConfigs CloudProviderAccessSetupGcpConfigArrayOutput `pulumi:"gcpConfigs"`
 	// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	LastUpdatedDate pulumi.StringOutput `pulumi:"lastUpdatedDate"`
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
@@ -202,7 +200,7 @@ type cloudProviderAccessSetupState struct {
 	GcpConfigs []CloudProviderAccessSetupGcpConfig `pulumi:"gcpConfigs"`
 	// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	LastUpdatedDate *string `pulumi:"lastUpdatedDate"`
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId *string `pulumi:"projectId"`
 	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
 	ProviderName *string `pulumi:"providerName"`
@@ -223,7 +221,7 @@ type CloudProviderAccessSetupState struct {
 	GcpConfigs CloudProviderAccessSetupGcpConfigArrayInput
 	// Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	LastUpdatedDate pulumi.StringPtrInput
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringPtrInput
 	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
 	ProviderName pulumi.StringPtrInput
@@ -240,7 +238,7 @@ type cloudProviderAccessSetupArgs struct {
 	AzureConfigs []CloudProviderAccessSetupAzureConfig `pulumi:"azureConfigs"`
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId string `pulumi:"projectId"`
 	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
 	ProviderName string `pulumi:"providerName"`
@@ -252,7 +250,7 @@ type CloudProviderAccessSetupArgs struct {
 	AzureConfigs CloudProviderAccessSetupAzureConfigArrayInput
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
-	// The unique ID for the project
+	// The unique ID for the project, also known as `groupId` in the official documentation
 	ProjectId pulumi.StringInput
 	// The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
 	ProviderName pulumi.StringInput
@@ -377,7 +375,7 @@ func (o CloudProviderAccessSetupOutput) LastUpdatedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.LastUpdatedDate }).(pulumi.StringOutput)
 }
 
-// The unique ID for the project
+// The unique ID for the project, also known as `groupId` in the official documentation
 func (o CloudProviderAccessSetupOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudProviderAccessSetup) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

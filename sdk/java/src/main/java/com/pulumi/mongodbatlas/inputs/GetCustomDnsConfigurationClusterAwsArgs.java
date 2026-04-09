@@ -15,14 +15,14 @@ public final class GetCustomDnsConfigurationClusterAwsArgs extends com.pulumi.re
     public static final GetCustomDnsConfigurationClusterAwsArgs Empty = new GetCustomDnsConfigurationClusterAwsArgs();
 
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the project.
+     * @return Unique identifier for the project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -54,7 +54,7 @@ public final class GetCustomDnsConfigurationClusterAwsArgs extends com.pulumi.re
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class GetCustomDnsConfigurationClusterAwsArgs extends com.pulumi.re
         }
 
         /**
-         * @param projectId Unique identifier for the project.
+         * @param projectId Unique identifier for the project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

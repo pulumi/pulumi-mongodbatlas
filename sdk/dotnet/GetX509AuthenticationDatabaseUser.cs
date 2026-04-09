@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -114,8 +112,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### S
@@ -213,8 +209,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -316,7 +310,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetX509AuthenticationDatabaseUserArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Identifier for the Atlas project associated with the X.509 configuration.
+        /// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -336,7 +330,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetX509AuthenticationDatabaseUserInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Identifier for the Atlas project associated with the X.509 configuration.
+        /// Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -41,7 +41,7 @@ public final class GetProjectServiceAccountSecretResult {
      */
     private String maskedSecretValue;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -95,7 +95,7 @@ public final class GetProjectServiceAccountSecretResult {
         return this.maskedSecretValue;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * First create a snapshot of the desired cluster. Then request that snapshot be restored in an automated fashion to the designated cluster and project.
@@ -70,7 +68,7 @@ export interface GetCloudBackupSnapshotRestoreJobsArgs {
      */
     pageNum?: number;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -96,8 +94,6 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
 }
 /**
  * `mongodbatlas.getCloudBackupSnapshotRestoreJobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -158,7 +154,7 @@ export interface GetCloudBackupSnapshotRestoreJobsOutputArgs {
      */
     pageNum?: pulumi.Input<number>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

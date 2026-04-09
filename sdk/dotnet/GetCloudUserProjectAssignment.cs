@@ -160,14 +160,20 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCloudUserProjectAssignmentArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        /// </summary>
         [Input("userId")]
         public string? UserId { get; set; }
 
+        /// <summary>
+        /// Email address that represents the username of the MongoDB Cloud user.
+        /// </summary>
         [Input("username")]
         public string? Username { get; set; }
 
@@ -180,14 +186,20 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCloudUserProjectAssignmentInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
 
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
+        /// <summary>
+        /// Email address that represents the username of the MongoDB Cloud user.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
@@ -201,26 +213,65 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetCloudUserProjectAssignmentResult
     {
+        /// <summary>
+        /// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+        /// </summary>
         public readonly string Country;
+        /// <summary>
+        /// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// First or given name that belongs to the MongoDB Cloud user.
+        /// </summary>
         public readonly string FirstName;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        /// </summary>
         public readonly string InvitationCreatedAt;
+        /// <summary>
+        /// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        /// </summary>
         public readonly string InvitationExpiresAt;
+        /// <summary>
+        /// Username of the MongoDB Cloud user who sent the invitation to join the organization.
+        /// </summary>
         public readonly string InviterUsername;
+        /// <summary>
+        /// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string LastAuth;
+        /// <summary>
+        /// Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        /// </summary>
         public readonly string LastName;
+        /// <summary>
+        /// Mobile phone number that belongs to the MongoDB Cloud user.
+        /// </summary>
         public readonly string MobileNumber;
+        /// <summary>
+        /// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        /// </summary>
         public readonly string OrgMembershipStatus;
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// One or more project-level roles to assign the MongoDB Cloud user.
+        /// </summary>
         public readonly ImmutableArray<string> Roles;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        /// </summary>
         public readonly string? UserId;
+        /// <summary>
+        /// Email address that represents the username of the MongoDB Cloud user.
+        /// </summary>
         public readonly string? Username;
 
         [OutputConstructor]

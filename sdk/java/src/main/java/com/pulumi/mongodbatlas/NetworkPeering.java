@@ -31,8 +31,6 @@ import javax.annotation.Nullable;
  * 
  * &gt; **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- * 
  * ## Example Usage
  * 
  * ### Container &amp; Peering Connection
@@ -514,14 +512,14 @@ public class NetworkPeering extends com.pulumi.resources.CustomResource {
         return this.peerId;
     }
     /**
-     * The unique ID for the MongoDB Atlas project.
+     * The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the MongoDB Atlas project.
+     * @return The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

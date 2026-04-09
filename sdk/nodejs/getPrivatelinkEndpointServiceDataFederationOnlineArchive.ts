@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -50,7 +48,7 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs {
      */
     endpointId: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -88,8 +86,6 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
 }
 /**
  * `mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -132,7 +128,7 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputA
      */
     endpointId: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

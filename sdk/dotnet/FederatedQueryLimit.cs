@@ -12,8 +12,6 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-    /// 
     /// ## Example Usage
     /// 
     /// ### S
@@ -92,7 +90,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> OverrunPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create a Federated Database Instance.
+        /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -183,7 +181,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> OverrunPolicy { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to create a Federated Database Instance.
+        /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -245,7 +243,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? OverrunPolicy { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to create a Federated Database Instance.
+        /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

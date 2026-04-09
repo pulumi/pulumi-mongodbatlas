@@ -86,8 +86,6 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
     """
     `get_advanced_clusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -235,7 +233,7 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get the clusters.
+    :param _builtins.str project_id: The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
     :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
     """
     __args__ = dict()
@@ -255,8 +253,6 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
     """
     `get_advanced_clusters` describes all Advanced Clusters, including Flex clusters, for a project_id.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -404,7 +400,7 @@ def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project to get the clusters.
+    :param _builtins.str project_id: The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
     :param _builtins.bool use_effective_fields: Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electable_specs`, `read_only_specs`, `analytics_specs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effective_electable_specs`, `effective_read_only_specs`, `effective_analytics_specs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
     """
     __args__ = dict()

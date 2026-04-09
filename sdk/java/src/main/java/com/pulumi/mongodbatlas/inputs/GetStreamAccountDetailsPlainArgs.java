@@ -29,23 +29,31 @@ public final class GetStreamAccountDetailsPlainArgs extends com.pulumi.resources
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
 
+    /**
+     * The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+     * 
+     */
     @Import(name="regionName", required=true)
     private String regionName;
 
+    /**
+     * @return The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+     * 
+     */
     public String regionName() {
         return this.regionName;
     }
@@ -88,7 +96,7 @@ public final class GetStreamAccountDetailsPlainArgs extends com.pulumi.resources
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -98,6 +106,12 @@ public final class GetStreamAccountDetailsPlainArgs extends com.pulumi.resources
             return this;
         }
 
+        /**
+         * @param regionName The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder regionName(String regionName) {
             $.regionName = regionName;
             return this;

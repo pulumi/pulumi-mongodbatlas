@@ -29,14 +29,14 @@ public final class GetDatabaseUserPlainArgs extends com.pulumi.resources.InvokeA
     }
 
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private String projectId;
 
     /**
-     * @return The unique ID for the project to create the database user.
+     * @return The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -96,7 +96,7 @@ public final class GetDatabaseUserPlainArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param projectId The unique ID for the project to create the database user.
+         * @param projectId The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

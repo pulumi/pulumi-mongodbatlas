@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `GroupId`.
-        /// 
         /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
         /// 
         /// ## Example Usage
@@ -55,8 +53,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `GroupId`.
-        /// 
         /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
         /// 
         /// ## Example Usage
@@ -95,8 +91,6 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// `mongodbatlas.getPrivatelinkEndpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. The official documentation uses `GroupId`.
         /// 
         /// &gt; **IMPORTANT:** Before configuring a private endpoint for a new region in your cluster, review the [Multi-Region Private Endpoints](https://www.mongodb.com/docs/atlas/troubleshoot-private-endpoints/#multi-region-private-endpoints) troubleshooting documentation.
         /// 
@@ -139,7 +133,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivatelinkEndpointsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier for the project.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -159,7 +153,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetPrivatelinkEndpointsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Unique identifier for the project.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

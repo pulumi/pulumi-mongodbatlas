@@ -50,7 +50,7 @@ public final class GetDatabaseUsersResult {
      */
     private String oidcAuthType;
     /**
-     * @return The unique ID for the project to get all database users.
+     * @return The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -126,7 +126,7 @@ public final class GetDatabaseUsersResult {
         return this.oidcAuthType;
     }
     /**
-     * @return The unique ID for the project to get all database users.
+     * @return The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

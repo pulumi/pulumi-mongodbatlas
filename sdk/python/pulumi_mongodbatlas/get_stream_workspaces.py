@@ -67,7 +67,7 @@ class GetStreamWorkspacesResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -127,7 +127,7 @@ def get_stream_workspaces(items_per_page: Optional[_builtins.int] = None,
 
     :param _builtins.int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['itemsPerPage'] = items_per_page
@@ -168,7 +168,7 @@ def get_stream_workspaces_output(items_per_page: Optional[pulumi.Input[Optional[
 
     :param _builtins.int items_per_page: Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
     :param _builtins.int page_num: Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['itemsPerPage'] = items_per_page

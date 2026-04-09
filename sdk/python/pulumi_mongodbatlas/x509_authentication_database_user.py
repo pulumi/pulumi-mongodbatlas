@@ -28,7 +28,7 @@ class X509AuthenticationDatabaseUserArgs:
         """
         The set of arguments for constructing a X509AuthenticationDatabaseUser resource.
 
-        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
+        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
         :param pulumi.Input[_builtins.int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         :param pulumi.Input[_builtins.str] username: Username of the database user to create a certificate for.
@@ -45,7 +45,7 @@ class X509AuthenticationDatabaseUserArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Identifier for the Atlas project associated with the X.509 configuration.
+        Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -106,7 +106,7 @@ class _X509AuthenticationDatabaseUserState:
         :param pulumi.Input[_builtins.str] current_certificate: Contains the last X.509 certificate and private key created for a database user.
         :param pulumi.Input[_builtins.str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
         :param pulumi.Input[_builtins.int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
-        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
+        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] username: Username of the database user to create a certificate for.
         """
         if certificates is not None:
@@ -174,7 +174,7 @@ class _X509AuthenticationDatabaseUserState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Identifier for the Atlas project associated with the X.509 configuration.
+        Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -213,8 +213,6 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         |---|---|
         | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
         | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **NOTE:** Before provider version 1.14.0, Self-managed X.509 Authentication was disabled for the project when this resource was deleted. Starting from that version onward, it will not be disabled, allowing other users to continue using X.509 within the same project.
 
@@ -308,7 +306,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
         :param pulumi.Input[_builtins.int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
-        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
+        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] username: Username of the database user to create a certificate for.
         """
         ...
@@ -324,8 +322,6 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         |---|---|
         | Atlas  | Atlas manages your Certificate Authority and can generate certificates for your MongoDB users. No additional X.509 configuration is required.  |
         | Customer  |  You must provide a Certificate Authority and generate certificates for your MongoDB users. |
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         > **NOTE:** Before provider version 1.14.0, Self-managed X.509 Authentication was disabled for the project when this resource was deleted. Starting from that version onward, it will not be disabled, allowing other users to continue using X.509 within the same project.
 
@@ -480,7 +476,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] current_certificate: Contains the last X.509 certificate and private key created for a database user.
         :param pulumi.Input[_builtins.str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
         :param pulumi.Input[_builtins.int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
-        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration.
+        :param pulumi.Input[_builtins.str] project_id: Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] username: Username of the database user to create a certificate for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -531,7 +527,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Identifier for the Atlas project associated with the X.509 configuration.
+        Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

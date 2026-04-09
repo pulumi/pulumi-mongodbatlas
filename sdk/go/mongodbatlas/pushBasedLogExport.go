@@ -103,7 +103,7 @@ type PushBasedLogExport struct {
 	IamRoleId pulumi.StringOutput `pulumi:"iamRoleId"`
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 	PrefixPath pulumi.StringOutput `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Describes whether or not the feature is enabled and what status it is in.
 	State    pulumi.StringOutput                 `pulumi:"state"`
@@ -159,7 +159,7 @@ type pushBasedLogExportState struct {
 	IamRoleId *string `pulumi:"iamRoleId"`
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 	PrefixPath *string `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Describes whether or not the feature is enabled and what status it is in.
 	State    *string                     `pulumi:"state"`
@@ -177,7 +177,7 @@ type PushBasedLogExportState struct {
 	IamRoleId pulumi.StringPtrInput
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 	PrefixPath pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Describes whether or not the feature is enabled and what status it is in.
 	State    pulumi.StringPtrInput
@@ -197,7 +197,7 @@ type pushBasedLogExportArgs struct {
 	IamRoleId string `pulumi:"iamRoleId"`
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 	PrefixPath *string `pulumi:"prefixPath"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string                      `pulumi:"projectId"`
 	Timeouts  *PushBasedLogExportTimeouts `pulumi:"timeouts"`
 }
@@ -212,7 +212,7 @@ type PushBasedLogExportArgs struct {
 	IamRoleId pulumi.StringInput
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 	PrefixPath pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	Timeouts  PushBasedLogExportTimeoutsPtrInput
 }
@@ -329,7 +329,7 @@ func (o PushBasedLogExportOutput) PrefixPath() pulumi.StringOutput {
 	return o.ApplyT(func(v *PushBasedLogExport) pulumi.StringOutput { return v.PrefixPath }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o PushBasedLogExportOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PushBasedLogExport) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

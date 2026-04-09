@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -85,7 +83,7 @@ export interface GetCloudBackupScheduleArgs {
      */
     clusterName: string;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -168,8 +166,6 @@ export interface GetCloudBackupScheduleResult {
  *
  * > **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -242,7 +238,7 @@ export interface GetCloudBackupScheduleOutputArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * The unique identifier of the project for the Atlas cluster.
+     * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

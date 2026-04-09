@@ -19,8 +19,6 @@ namespace Pulumi.Mongodbatlas
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
         ///  
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic
@@ -52,8 +50,6 @@ namespace Pulumi.Mongodbatlas
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
         ///  
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ### Basic
@@ -84,8 +80,6 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
         /// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
         ///  
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -141,7 +135,7 @@ namespace Pulumi.Mongodbatlas
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+        /// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -187,7 +181,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance.
+        /// Unique 24-hexadecimal digit string that identifies the project that contains your serverless instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

@@ -7,7 +7,9 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;
+import com.pulumi.mongodbatlas.inputs.StreamConnectionAzureArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionDbRoleToExecuteArgs;
+import com.pulumi.mongodbatlas.inputs.StreamConnectionGcpArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionSchemaRegistryAuthenticationArgs;
 import com.pulumi.mongodbatlas.inputs.StreamConnectionSecurityArgs;
@@ -36,6 +38,13 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
 
     public Optional<Output<StreamConnectionAwsArgs>> aws() {
         return Optional.ofNullable(this.aws);
+    }
+
+    @Import(name="azure")
+    private @Nullable Output<StreamConnectionAzureArgs> azure;
+
+    public Optional<Output<StreamConnectionAzureArgs>> azure() {
+        return Optional.ofNullable(this.azure);
     }
 
     @Import(name="bootstrapServers")
@@ -88,6 +97,13 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.dbRoleToExecute);
     }
 
+    @Import(name="gcp")
+    private @Nullable Output<StreamConnectionGcpArgs> gcp;
+
+    public Optional<Output<StreamConnectionGcpArgs>> gcp() {
+        return Optional.ofNullable(this.gcp);
+    }
+
     @Import(name="headers")
     private @Nullable Output<Map<String,String>> headers;
 
@@ -126,14 +142,14 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -176,14 +192,14 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * @return Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -217,12 +233,14 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
     private StreamConnectionState(StreamConnectionState $) {
         this.authentication = $.authentication;
         this.aws = $.aws;
+        this.azure = $.azure;
         this.bootstrapServers = $.bootstrapServers;
         this.clusterName = $.clusterName;
         this.clusterProjectId = $.clusterProjectId;
         this.config = $.config;
         this.connectionName = $.connectionName;
         this.dbRoleToExecute = $.dbRoleToExecute;
+        this.gcp = $.gcp;
         this.headers = $.headers;
         this.instanceName = $.instanceName;
         this.networking = $.networking;
@@ -271,6 +289,15 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
 
         public Builder aws(StreamConnectionAwsArgs aws) {
             return aws(Output.of(aws));
+        }
+
+        public Builder azure(@Nullable Output<StreamConnectionAzureArgs> azure) {
+            $.azure = azure;
+            return this;
+        }
+
+        public Builder azure(StreamConnectionAzureArgs azure) {
+            return azure(Output.of(azure));
         }
 
         public Builder bootstrapServers(@Nullable Output<String> bootstrapServers) {
@@ -339,6 +366,15 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
             return dbRoleToExecute(Output.of(dbRoleToExecute));
         }
 
+        public Builder gcp(@Nullable Output<StreamConnectionGcpArgs> gcp) {
+            $.gcp = gcp;
+            return this;
+        }
+
+        public Builder gcp(StreamConnectionGcpArgs gcp) {
+            return gcp(Output.of(gcp));
+        }
+
         public Builder headers(@Nullable Output<Map<String,String>> headers) {
             $.headers = headers;
             return this;
@@ -387,7 +423,7 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -398,7 +434,7 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId Unique 24-hexadecimal digit string that identifies your project.
+         * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -457,7 +493,7 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+         * @param type Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
          * 
          * @return builder
          * 
@@ -468,7 +504,7 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+         * @param type Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
          * 
          * @return builder
          * 

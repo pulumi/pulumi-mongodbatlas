@@ -93,7 +93,7 @@ func LookupStreamInstance(ctx *pulumi.Context, args *LookupStreamInstanceArgs, o
 type LookupStreamInstanceArgs struct {
 	// Human-readable label that identifies the stream instance.
 	InstanceName string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -123,7 +123,7 @@ func LookupStreamInstanceOutput(ctx *pulumi.Context, args LookupStreamInstanceOu
 type LookupStreamInstanceOutputArgs struct {
 	// Human-readable label that identifies the stream instance.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

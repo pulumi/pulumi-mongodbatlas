@@ -73,31 +73,46 @@ func LookupCloudUserProjectAssignment(ctx *pulumi.Context, args *LookupCloudUser
 
 // A collection of arguments for invoking getCloudUserProjectAssignment.
 type LookupCloudUserProjectAssignmentArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string  `pulumi:"projectId"`
-	UserId    *string `pulumi:"userId"`
-	Username  *string `pulumi:"username"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+	UserId *string `pulumi:"userId"`
+	// Email address that represents the username of the MongoDB Cloud user.
+	Username *string `pulumi:"username"`
 }
 
 // A collection of values returned by getCloudUserProjectAssignment.
 type LookupCloudUserProjectAssignmentResult struct {
-	Country   string `pulumi:"country"`
+	// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
+	Country string `pulumi:"country"`
+	// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
 	CreatedAt string `pulumi:"createdAt"`
+	// First or given name that belongs to the MongoDB Cloud user.
 	FirstName string `pulumi:"firstName"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                  string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	InvitationCreatedAt string `pulumi:"invitationCreatedAt"`
+	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	InvitationExpiresAt string `pulumi:"invitationExpiresAt"`
-	InviterUsername     string `pulumi:"inviterUsername"`
-	LastAuth            string `pulumi:"lastAuth"`
-	LastName            string `pulumi:"lastName"`
-	MobileNumber        string `pulumi:"mobileNumber"`
+	// Username of the MongoDB Cloud user who sent the invitation to join the organization.
+	InviterUsername string `pulumi:"inviterUsername"`
+	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+	LastAuth string `pulumi:"lastAuth"`
+	// Last name, family name, or surname that belongs to the MongoDB Cloud user.
+	LastName string `pulumi:"lastName"`
+	// Mobile phone number that belongs to the MongoDB Cloud user.
+	MobileNumber string `pulumi:"mobileNumber"`
+	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	OrgMembershipStatus string `pulumi:"orgMembershipStatus"`
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId string   `pulumi:"projectId"`
-	Roles     []string `pulumi:"roles"`
-	UserId    *string  `pulumi:"userId"`
-	Username  *string  `pulumi:"username"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// One or more project-level roles to assign the MongoDB Cloud user.
+	Roles []string `pulumi:"roles"`
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+	UserId *string `pulumi:"userId"`
+	// Email address that represents the username of the MongoDB Cloud user.
+	Username *string `pulumi:"username"`
 }
 
 func LookupCloudUserProjectAssignmentOutput(ctx *pulumi.Context, args LookupCloudUserProjectAssignmentOutputArgs, opts ...pulumi.InvokeOption) LookupCloudUserProjectAssignmentResultOutput {
@@ -111,10 +126,12 @@ func LookupCloudUserProjectAssignmentOutput(ctx *pulumi.Context, args LookupClou
 
 // A collection of arguments for invoking getCloudUserProjectAssignment.
 type LookupCloudUserProjectAssignmentOutputArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
-	ProjectId pulumi.StringInput    `pulumi:"projectId"`
-	UserId    pulumi.StringPtrInput `pulumi:"userId"`
-	Username  pulumi.StringPtrInput `pulumi:"username"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+	UserId pulumi.StringPtrInput `pulumi:"userId"`
+	// Email address that represents the username of the MongoDB Cloud user.
+	Username pulumi.StringPtrInput `pulumi:"username"`
 }
 
 func (LookupCloudUserProjectAssignmentOutputArgs) ElementType() reflect.Type {
@@ -136,14 +153,17 @@ func (o LookupCloudUserProjectAssignmentResultOutput) ToLookupCloudUserProjectAs
 	return o
 }
 
+// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
 func (o LookupCloudUserProjectAssignmentResultOutput) Country() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.Country }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
 func (o LookupCloudUserProjectAssignmentResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// First or given name that belongs to the MongoDB Cloud user.
 func (o LookupCloudUserProjectAssignmentResultOutput) FirstName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.FirstName }).(pulumi.StringOutput)
 }
@@ -153,47 +173,57 @@ func (o LookupCloudUserProjectAssignmentResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 func (o LookupCloudUserProjectAssignmentResultOutput) InvitationCreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.InvitationCreatedAt }).(pulumi.StringOutput)
 }
 
+// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 func (o LookupCloudUserProjectAssignmentResultOutput) InvitationExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.InvitationExpiresAt }).(pulumi.StringOutput)
 }
 
+// Username of the MongoDB Cloud user who sent the invitation to join the organization.
 func (o LookupCloudUserProjectAssignmentResultOutput) InviterUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.InviterUsername }).(pulumi.StringOutput)
 }
 
+// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
 func (o LookupCloudUserProjectAssignmentResultOutput) LastAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.LastAuth }).(pulumi.StringOutput)
 }
 
+// Last name, family name, or surname that belongs to the MongoDB Cloud user.
 func (o LookupCloudUserProjectAssignmentResultOutput) LastName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.LastName }).(pulumi.StringOutput)
 }
 
+// Mobile phone number that belongs to the MongoDB Cloud user.
 func (o LookupCloudUserProjectAssignmentResultOutput) MobileNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.MobileNumber }).(pulumi.StringOutput)
 }
 
+// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 func (o LookupCloudUserProjectAssignmentResultOutput) OrgMembershipStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.OrgMembershipStatus }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o LookupCloudUserProjectAssignmentResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// One or more project-level roles to assign the MongoDB Cloud user.
 func (o LookupCloudUserProjectAssignmentResultOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
 func (o LookupCloudUserProjectAssignmentResultOutput) UserId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) *string { return v.UserId }).(pulumi.StringPtrOutput)
 }
 
+// Email address that represents the username of the MongoDB Cloud user.
 func (o LookupCloudUserProjectAssignmentResultOutput) Username() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupCloudUserProjectAssignmentResult) *string { return v.Username }).(pulumi.StringPtrOutput)
 }

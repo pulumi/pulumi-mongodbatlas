@@ -16,8 +16,6 @@ import (
 //
 // > **IMPORTANT:**You must have one of the following roles to successfully handle the resource: <br> - Organization Owner <br> - Project Owner
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // > **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
 //
 // ## Import
@@ -37,7 +35,7 @@ type PrivateEndpointRegionalMode struct {
 	// * More than one private endpoint in one region and one private endpoint in one or more regions.
 	//   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
 	Enabled pulumi.BoolOutput `pulumi:"enabled"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
 
@@ -79,7 +77,7 @@ type privateEndpointRegionalModeState struct {
 	// * More than one private endpoint in one region and one private endpoint in one or more regions.
 	//   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
 	Enabled *bool `pulumi:"enabled"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 }
 
@@ -89,7 +87,7 @@ type PrivateEndpointRegionalModeState struct {
 	// * More than one private endpoint in one region and one private endpoint in one or more regions.
 	//   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
 	Enabled pulumi.BoolPtrInput
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 }
 
@@ -103,7 +101,7 @@ type privateEndpointRegionalModeArgs struct {
 	// * More than one private endpoint in one region and one private endpoint in one or more regions.
 	//   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
 	Enabled *bool `pulumi:"enabled"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -114,7 +112,7 @@ type PrivateEndpointRegionalModeArgs struct {
 	// * More than one private endpoint in one region and one private endpoint in one or more regions.
 	//   You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
 	Enabled pulumi.BoolPtrInput
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 }
 
@@ -213,7 +211,7 @@ func (o PrivateEndpointRegionalModeOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *PrivateEndpointRegionalMode) pulumi.BoolOutput { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Unique identifier for the project.
+// Unique identifier for the project, also known as `groupId` in the official documentation.
 func (o PrivateEndpointRegionalModeOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateEndpointRegionalMode) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -31,7 +31,7 @@ class CloudBackupSnapshotExportBucketArgs:
 
         :param pulumi.Input[_builtins.str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
         :param pulumi.Input[_builtins.str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
         :param pulumi.Input[_builtins.str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[_builtins.str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
@@ -80,7 +80,7 @@ class CloudBackupSnapshotExportBucketArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -156,7 +156,7 @@ class _CloudBackupSnapshotExportBucketState:
         :param pulumi.Input[_builtins.str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the snapshot export bucket.
         :param pulumi.Input[_builtins.str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[_builtins.str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[_builtins.str] tenant_id: This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
@@ -233,7 +233,7 @@ class _CloudBackupSnapshotExportBucketState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -296,8 +296,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         """
         `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
 
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
         > **NOTE:** To prevent errors during resource destruction, ensure that no `CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `CloudBackupSnapshotExportBucket` resource.
 
         ## Example Usage
@@ -349,7 +347,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bucket_name: Name of the bucket that the provided role ID is authorized to access.
         :param pulumi.Input[_builtins.str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[_builtins.str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[_builtins.str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[_builtins.str] tenant_id: This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
@@ -362,8 +360,6 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         > **NOTE:** To prevent errors during resource destruction, ensure that no `CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `CloudBackupSnapshotExportBucket` resource.
 
@@ -485,7 +481,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cloud_provider: Name of the provider of the cloud service where Atlas can access the S3 bucket.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the snapshot export bucket.
         :param pulumi.Input[_builtins.str] iam_role_id: Unique identifier of the role that Atlas can use to access the bucket. Required if `cloud_provider` is set to `AWS`.
-        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster.
+        :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] role_id: Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[_builtins.str] service_url: URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloud_provider` is set to `AZURE`.
         :param pulumi.Input[_builtins.str] tenant_id: This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
@@ -540,7 +536,7 @@ class CloudBackupSnapshotExportBucket(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique identifier of the project for the Atlas cluster.
+        The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

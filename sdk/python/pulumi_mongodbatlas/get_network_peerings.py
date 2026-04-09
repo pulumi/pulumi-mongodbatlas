@@ -76,8 +76,6 @@ def get_network_peerings(project_id: Optional[_builtins.str] = None,
     """
     `get_network_peerings` describes all Network Peering Connections.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example (AWS).
@@ -98,7 +96,7 @@ def get_network_peerings(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -114,8 +112,6 @@ def get_network_peerings_output(project_id: Optional[pulumi.Input[_builtins.str]
     """
     `get_network_peerings` describes all Network Peering Connections.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ### Basic Example (AWS).
@@ -136,7 +132,7 @@ def get_network_peerings_output(project_id: Optional[pulumi.Input[_builtins.str]
     ```
 
 
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

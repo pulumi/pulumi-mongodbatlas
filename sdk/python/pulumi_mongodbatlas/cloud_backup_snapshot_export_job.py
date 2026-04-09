@@ -31,7 +31,7 @@ class CloudBackupSnapshotExportJobArgs:
 
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         """
@@ -70,7 +70,7 @@ class CloudBackupSnapshotExportJobArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -130,7 +130,7 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[_builtins.str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         :param pulumi.Input[_builtins.str] finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
         :param pulumi.Input[_builtins.str] state: Status of the export job. Value can be one of the following:
                * `Queued` - indicates that the export job is queued
@@ -282,7 +282,7 @@ class _CloudBackupSnapshotExportJobState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -334,8 +334,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                  __props__=None):
         """
         `CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         ## Example Usage
 
@@ -425,7 +423,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas cluster whose snapshot you want to export.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
         """
         ...
@@ -436,8 +434,6 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         ## Example Usage
 
@@ -610,7 +606,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] export_job_id: Unique identifier of the export job.
                * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         :param pulumi.Input[_builtins.str] finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
-        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] snapshot_id: Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
         :param pulumi.Input[_builtins.str] state: Status of the export job. Value can be one of the following:
                * `Queued` - indicates that the export job is queued
@@ -714,7 +710,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+        Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

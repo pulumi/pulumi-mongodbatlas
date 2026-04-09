@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.FederatedDatabaseInstance` provides a Federated Database Instance resource.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ### S With MongoDB Atlas Cluster As Storage Database
@@ -229,7 +227,7 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -354,7 +352,7 @@ export interface FederatedDatabaseInstanceState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -436,7 +434,7 @@ export interface FederatedDatabaseInstanceArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

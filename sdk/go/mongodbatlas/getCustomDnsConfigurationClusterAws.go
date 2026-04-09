@@ -13,8 +13,6 @@ import (
 
 // `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -56,7 +54,7 @@ func LookupCustomDnsConfigurationClusterAws(ctx *pulumi.Context, args *LookupCus
 
 // A collection of arguments for invoking getCustomDnsConfigurationClusterAws.
 type LookupCustomDnsConfigurationClusterAwsArgs struct {
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -80,7 +78,7 @@ func LookupCustomDnsConfigurationClusterAwsOutput(ctx *pulumi.Context, args Look
 
 // A collection of arguments for invoking getCustomDnsConfigurationClusterAws.
 type LookupCustomDnsConfigurationClusterAwsOutputArgs struct {
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

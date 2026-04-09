@@ -229,7 +229,7 @@ export class EventTrigger extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The unique ID for the project to create the trigger.
+     * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -393,7 +393,7 @@ export interface EventTriggerState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the trigger.
+     * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -479,7 +479,7 @@ export interface EventTriggerArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the trigger.
+     * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

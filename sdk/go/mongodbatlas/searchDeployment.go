@@ -112,7 +112,7 @@ type SearchDeployment struct {
 	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider pulumi.StringOutput `pulumi:"encryptionAtRestProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate pulumi.BoolPtrOutput `pulumi:"skipWaitOnUpdate"`
@@ -168,7 +168,7 @@ type searchDeploymentState struct {
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider *string `pulumi:"encryptionAtRestProvider"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate *bool `pulumi:"skipWaitOnUpdate"`
@@ -186,7 +186,7 @@ type SearchDeploymentState struct {
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
 	EncryptionAtRestProvider pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate pulumi.BoolPtrInput
@@ -206,7 +206,7 @@ type searchDeploymentArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate *bool `pulumi:"skipWaitOnUpdate"`
@@ -221,7 +221,7 @@ type SearchDeploymentArgs struct {
 	ClusterName pulumi.StringInput
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
 	SkipWaitOnUpdate pulumi.BoolPtrInput
@@ -332,7 +332,7 @@ func (o SearchDeploymentOutput) EncryptionAtRestProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.EncryptionAtRestProvider }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o SearchDeploymentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchDeployment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

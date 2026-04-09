@@ -65,14 +65,14 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+     * The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+     * @return The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -180,7 +180,7 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param projectId The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+         * @param projectId The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -191,7 +191,7 @@ public final class ClusterOutageSimulationArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param projectId The unique ID for the project that contains the cluster that is/will undergoing outage simulation.
+         * @param projectId The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

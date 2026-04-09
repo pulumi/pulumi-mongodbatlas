@@ -10,13 +10,25 @@ import java.util.Objects;
 
 @CustomType
 public final class GetFlexSnapshotResult {
+    /**
+     * @return Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String expiration;
+    /**
+     * @return Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String finishTime;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return MongoDB host version that the snapshot runs.
+     * 
+     */
     private String mongoDbVersion;
     /**
      * @return Human-readable label that identifies the flex cluster whose snapshot you want to restore.
@@ -24,19 +36,43 @@ public final class GetFlexSnapshotResult {
      */
     private String name;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String scheduledTime;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     private String snapshotId;
+    /**
+     * @return Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String startTime;
+    /**
+     * @return Phase of the restore workflow for this job at the time this resource made this request.
+     * 
+     */
     private String status;
 
     private GetFlexSnapshotResult() {}
+    /**
+     * @return Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String expiration() {
         return this.expiration;
     }
+    /**
+     * @return Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String finishTime() {
         return this.finishTime;
     }
@@ -47,6 +83,10 @@ public final class GetFlexSnapshotResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return MongoDB host version that the snapshot runs.
+     * 
+     */
     public String mongoDbVersion() {
         return this.mongoDbVersion;
     }
@@ -58,21 +98,37 @@ public final class GetFlexSnapshotResult {
         return this.name;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the /groups endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return Date and time when MongoDB Cloud will take the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String scheduledTime() {
         return this.scheduledTime;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the snapshot to restore.
+     * 
+     */
     public String snapshotId() {
         return this.snapshotId;
     }
+    /**
+     * @return Date and time when MongoDB Cloud began taking the snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String startTime() {
         return this.startTime;
     }
+    /**
+     * @return Phase of the restore workflow for this job at the time this resource made this request.
+     * 
+     */
     public String status() {
         return this.status;
     }

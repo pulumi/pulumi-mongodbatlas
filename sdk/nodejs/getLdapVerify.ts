@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -66,7 +64,7 @@ export function getLdapVerify(args: GetLdapVerifyArgs, opts?: pulumi.InvokeOptio
  */
 export interface GetLdapVerifyArgs {
     /**
-     * Unique identifier for the Atlas project associated with the verification request.
+     * Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -115,8 +113,6 @@ export interface GetLdapVerifyResult {
 }
 /**
  * `mongodbatlas.LdapVerify` describes a LDAP Verify.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
  *
@@ -173,7 +169,7 @@ export function getLdapVerifyOutput(args: GetLdapVerifyOutputArgs, opts?: pulumi
  */
 export interface GetLdapVerifyOutputArgs {
     /**
-     * Unique identifier for the Atlas project associated with the verification request.
+     * Unique identifier for the Atlas project associated with the verification request, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

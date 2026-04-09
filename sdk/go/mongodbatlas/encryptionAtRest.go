@@ -27,8 +27,6 @@ import (
 //
 // > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // > **IMPORTANT NOTE** To disable encryption at rest with customer key management for a project, set `encryptionAtRestProvider` to `"NONE"` in all existing clusters in the project that use custom key management or delete said clusters.
 //
 // ## Enabling Encryption at Rest for existing Atlas cluster
@@ -242,7 +240,7 @@ type EncryptionAtRest struct {
 	EnabledForSearchNodes pulumi.BoolOutput `pulumi:"enabledForSearchNodes"`
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrOutput `pulumi:"googleCloudKmsConfig"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 }
 
@@ -287,7 +285,7 @@ type encryptionAtRestState struct {
 	EnabledForSearchNodes *bool `pulumi:"enabledForSearchNodes"`
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 }
 
@@ -300,7 +298,7 @@ type EncryptionAtRestState struct {
 	EnabledForSearchNodes pulumi.BoolPtrInput
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 }
 
@@ -317,7 +315,7 @@ type encryptionAtRestArgs struct {
 	EnabledForSearchNodes *bool `pulumi:"enabledForSearchNodes"`
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig *EncryptionAtRestGoogleCloudKmsConfig `pulumi:"googleCloudKmsConfig"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -331,7 +329,7 @@ type EncryptionAtRestArgs struct {
 	EnabledForSearchNodes pulumi.BoolPtrInput
 	// Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
 	GoogleCloudKmsConfig EncryptionAtRestGoogleCloudKmsConfigPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 }
 
@@ -442,7 +440,7 @@ func (o EncryptionAtRestOutput) GoogleCloudKmsConfig() EncryptionAtRestGoogleClo
 	return o.ApplyT(func(v *EncryptionAtRest) EncryptionAtRestGoogleCloudKmsConfigPtrOutput { return v.GoogleCloudKmsConfig }).(EncryptionAtRestGoogleCloudKmsConfigPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o EncryptionAtRestOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EncryptionAtRest) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

@@ -190,14 +190,14 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
         return this.name;
     }
     /**
-     * The ID of the organization or project you want to create the serverless instance within.
+     * The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return The ID of the organization or project you want to create the serverless instance within.
+     * @return The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

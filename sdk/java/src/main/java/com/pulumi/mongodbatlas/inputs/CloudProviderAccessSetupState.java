@@ -111,14 +111,14 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
     }
 
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique ID for the project
+     * @return The unique ID for the project, also known as `groupId` in the official documentation
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -344,7 +344,7 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param projectId The unique ID for the project
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 
@@ -355,7 +355,7 @@ public final class CloudProviderAccessSetupState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param projectId The unique ID for the project
+         * @param projectId The unique ID for the project, also known as `groupId` in the official documentation
          * 
          * @return builder
          * 

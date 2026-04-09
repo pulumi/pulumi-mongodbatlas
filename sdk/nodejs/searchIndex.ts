@@ -241,7 +241,7 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     declare public readonly numPartitions: pulumi.Output<number | undefined>;
     /**
-     * The ID of the organization or project you want to create the search index within.
+     * The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -420,7 +420,7 @@ export interface SearchIndexState {
      */
     numPartitions?: pulumi.Input<number>;
     /**
-     * The ID of the organization or project you want to create the search index within.
+     * The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -523,7 +523,7 @@ export interface SearchIndexArgs {
      */
     numPartitions?: pulumi.Input<number>;
     /**
-     * The ID of the organization or project you want to create the search index within.
+     * The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

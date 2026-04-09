@@ -7,8 +7,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -36,7 +34,7 @@ export function getCustomDnsConfigurationClusterAws(args: GetCustomDnsConfigurat
  */
 export interface GetCustomDnsConfigurationClusterAwsArgs {
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -57,8 +55,6 @@ export interface GetCustomDnsConfigurationClusterAwsResult {
 }
 /**
  * `mongodbatlas.CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
  *
  * ## Example Usage
  *
@@ -87,7 +83,7 @@ export function getCustomDnsConfigurationClusterAwsOutput(args: GetCustomDnsConf
  */
 export interface GetCustomDnsConfigurationClusterAwsOutputArgs {
     /**
-     * Unique identifier for the project.
+     * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

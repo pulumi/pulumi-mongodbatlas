@@ -22,8 +22,6 @@ import * as utilities from "./utilities";
  *
  * `mongodbatlas.CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### With AWS
@@ -133,7 +131,7 @@ export class CloudProviderAccessSetup extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -219,7 +217,7 @@ export interface CloudProviderAccessSetupState {
      */
     lastUpdatedDate?: pulumi.Input<string>;
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -245,7 +243,7 @@ export interface CloudProviderAccessSetupArgs {
      */
     deleteOnCreateTimeout?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project
+     * The unique ID for the project, also known as `groupId` in the official documentation
      */
     projectId: pulumi.Input<string>;
     /**

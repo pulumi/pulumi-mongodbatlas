@@ -45,7 +45,7 @@ class EventTriggerArgs:
 
         :param pulumi.Input[_builtins.str] app_id: The ObjectID of your application.
                * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         :param pulumi.Input[_builtins.str] config_collection: Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         :param pulumi.Input[_builtins.str] config_database: Required for `DATABASE` type. The name of the MongoDB database to watch.
@@ -118,7 +118,7 @@ class EventTriggerArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project to create the trigger.
+        The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -377,7 +377,7 @@ class _EventTriggerState:
         :param pulumi.Input[_builtins.str] function_id: The ID of the function associated with the trigger.
         :param pulumi.Input[_builtins.str] function_name: The name of the function associated with the trigger.
         :param pulumi.Input[_builtins.str] name: The name of the trigger.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] trigger_id: The unique ID of the trigger.
         :param pulumi.Input[_builtins.str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         :param pulumi.Input[_builtins.bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
@@ -644,7 +644,7 @@ class _EventTriggerState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to create the trigger.
+        The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -857,7 +857,7 @@ class EventTrigger(pulumi.CustomResource):
                * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         :param pulumi.Input[_builtins.str] function_id: The ID of the function associated with the trigger.
         :param pulumi.Input[_builtins.str] name: The name of the trigger.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         :param pulumi.Input[_builtins.bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
@@ -1118,7 +1118,7 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] function_id: The ID of the function associated with the trigger.
         :param pulumi.Input[_builtins.str] function_name: The name of the function associated with the trigger.
         :param pulumi.Input[_builtins.str] name: The name of the trigger.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] trigger_id: The unique ID of the trigger.
         :param pulumi.Input[_builtins.str] type: The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         :param pulumi.Input[_builtins.bool] unordered: Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
@@ -1296,7 +1296,7 @@ class EventTrigger(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project to create the trigger.
+        The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

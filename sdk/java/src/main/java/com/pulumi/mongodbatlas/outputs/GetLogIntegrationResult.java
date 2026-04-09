@@ -37,7 +37,7 @@ public final class GetLogIntegrationResult {
     private List<GetLogIntegrationOtelSuppliedHeader> otelSuppliedHeaders;
     private String prefixPath;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -101,7 +101,7 @@ public final class GetLogIntegrationResult {
         return this.prefixPath;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **NOTE:** Only a single maintenance window resource can be defined per project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * > **NOTE:** Maintenance window times use the project's configured timezone. To change the timezone, update the Project Time Zone setting in the Atlas Project Settings.
  *
  * ## Maintenance Window Considerations:
@@ -138,7 +136,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly numberOfDeferrals: pulumi.Output<number>;
     /**
-     * The unique identifier of the project for the Maintenance Window.
+     * The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -233,7 +231,7 @@ export interface MaintenanceWindowState {
      */
     numberOfDeferrals?: pulumi.Input<number>;
     /**
-     * The unique identifier of the project for the Maintenance Window.
+     * The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -275,7 +273,7 @@ export interface MaintenanceWindowArgs {
      */
     hourOfDay: pulumi.Input<number>;
     /**
-     * The unique identifier of the project for the Maintenance Window.
+     * The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

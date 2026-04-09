@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### Export one snapshot
@@ -158,7 +156,7 @@ export class CloudBackupSnapshotExportJob extends pulumi.CustomResource {
     declare public /*out*/ readonly finishedAt: pulumi.Output<string>;
     declare public /*out*/ readonly prefix: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -271,7 +269,7 @@ export interface CloudBackupSnapshotExportJobState {
     finishedAt?: pulumi.Input<string>;
     prefix?: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -306,7 +304,7 @@ export interface CloudBackupSnapshotExportJobArgs {
      */
     exportBucketId: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

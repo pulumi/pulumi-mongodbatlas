@@ -130,7 +130,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to configure LDAP.
+        /// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -176,6 +176,10 @@ namespace Pulumi.Mongodbatlas
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "bindPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -205,11 +209,21 @@ namespace Pulumi.Mongodbatlas
         [Input("authzQueryTemplate")]
         public Input<string>? AuthzQueryTemplate { get; set; }
 
+        [Input("bindPassword", required: true)]
+        private Input<string>? _bindPassword;
+
         /// <summary>
         /// The password used to authenticate the `BindUsername`.
         /// </summary>
-        [Input("bindPassword", required: true)]
-        public Input<string> BindPassword { get; set; } = null!;
+        public Input<string>? BindPassword
+        {
+            get => _bindPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
@@ -236,7 +250,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int> Port { get; set; } = null!;
 
         /// <summary>
-        /// The unique ID for the project to configure LDAP.
+        /// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -255,11 +269,21 @@ namespace Pulumi.Mongodbatlas
         [Input("authzQueryTemplate")]
         public Input<string>? AuthzQueryTemplate { get; set; }
 
+        [Input("bindPassword")]
+        private Input<string>? _bindPassword;
+
         /// <summary>
         /// The password used to authenticate the `BindUsername`.
         /// </summary>
-        [Input("bindPassword")]
-        public Input<string>? BindPassword { get; set; }
+        public Input<string>? BindPassword
+        {
+            get => _bindPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _bindPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
@@ -298,7 +322,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? Port { get; set; }
 
         /// <summary>
-        /// The unique ID for the project to configure LDAP.
+        /// The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

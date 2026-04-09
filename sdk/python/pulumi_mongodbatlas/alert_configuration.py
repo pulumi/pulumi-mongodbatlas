@@ -38,7 +38,7 @@ class AlertConfigurationArgs:
                
                
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] enabled: It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
         :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         """
@@ -86,7 +86,7 @@ class AlertConfigurationArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The ID of the project where the alert configuration will create.
+        The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -172,7 +172,7 @@ class _AlertConfigurationState:
                
                
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         :param pulumi.Input[_builtins.str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
@@ -283,7 +283,7 @@ class _AlertConfigurationState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the project where the alert configuration will create.
+        The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -342,8 +342,6 @@ class AlertConfiguration(pulumi.CustomResource):
                  __props__=None):
         """
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         ## Example Usage
 
@@ -495,7 +493,7 @@ class AlertConfiguration(pulumi.CustomResource):
                
                
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         """
         ...
@@ -506,8 +504,6 @@ class AlertConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
 
         ## Example Usage
 
@@ -736,7 +732,7 @@ class AlertConfiguration(pulumi.CustomResource):
                
                
                > **NOTE:** If `event_type` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metric_threshold_config` field must also be configured.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] severity_override: Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
         :param pulumi.Input[_builtins.str] updated: Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
         """
@@ -813,7 +809,7 @@ class AlertConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The ID of the project where the alert configuration will create.
+        The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

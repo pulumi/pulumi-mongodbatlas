@@ -7,7 +7,9 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultAuthentication;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultAws;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultAzure;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultDbRoleToExecute;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultGcp;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultNetworking;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultSchemaRegistryAuthentication;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsResultSecurity;
@@ -28,6 +30,11 @@ public final class GetStreamConnectionsResult {
      * 
      */
     private GetStreamConnectionsResultAws aws;
+    /**
+     * @return The configuration for Azure Blob Storage connection. See Azure.
+     * 
+     */
+    private GetStreamConnectionsResultAzure azure;
     /**
      * @return Comma separated list of server addresses.
      * 
@@ -55,6 +62,11 @@ public final class GetStreamConnectionsResult {
      */
     private GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute;
     /**
+     * @return The configuration for GCP Pub/Sub connection. See GCP
+     * 
+     */
+    private GetStreamConnectionsResultGcp gcp;
+    /**
      * @return A map of key-value pairs for optional headers.
      * 
      */
@@ -70,12 +82,12 @@ public final class GetStreamConnectionsResult {
     @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private String instanceName;
     /**
-     * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * @return Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
      * 
      */
     private GetStreamConnectionsResultNetworking networking;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -135,6 +147,13 @@ public final class GetStreamConnectionsResult {
         return this.aws;
     }
     /**
+     * @return The configuration for Azure Blob Storage connection. See Azure.
+     * 
+     */
+    public GetStreamConnectionsResultAzure azure() {
+        return this.azure;
+    }
+    /**
      * @return Comma separated list of server addresses.
      * 
      */
@@ -173,6 +192,13 @@ public final class GetStreamConnectionsResult {
         return this.dbRoleToExecute;
     }
     /**
+     * @return The configuration for GCP Pub/Sub connection. See GCP
+     * 
+     */
+    public GetStreamConnectionsResultGcp gcp() {
+        return this.gcp;
+    }
+    /**
      * @return A map of key-value pairs for optional headers.
      * 
      */
@@ -194,14 +220,14 @@ public final class GetStreamConnectionsResult {
         return this.instanceName;
     }
     /**
-     * @return Networking Access Type can either be `PUBLIC` (default) or `VPC`. See networking.
+     * @return Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
      * 
      */
     public GetStreamConnectionsResultNetworking networking() {
         return this.networking;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
@@ -272,12 +298,14 @@ public final class GetStreamConnectionsResult {
     public static final class Builder {
         private GetStreamConnectionsResultAuthentication authentication;
         private GetStreamConnectionsResultAws aws;
+        private GetStreamConnectionsResultAzure azure;
         private String bootstrapServers;
         private String clusterName;
         private String clusterProjectId;
         private Map<String,String> config;
         private String connectionName;
         private GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute;
+        private GetStreamConnectionsResultGcp gcp;
         private Map<String,String> headers;
         private String id;
         private String instanceName;
@@ -295,12 +323,14 @@ public final class GetStreamConnectionsResult {
     	      Objects.requireNonNull(defaults);
     	      this.authentication = defaults.authentication;
     	      this.aws = defaults.aws;
+    	      this.azure = defaults.azure;
     	      this.bootstrapServers = defaults.bootstrapServers;
     	      this.clusterName = defaults.clusterName;
     	      this.clusterProjectId = defaults.clusterProjectId;
     	      this.config = defaults.config;
     	      this.connectionName = defaults.connectionName;
     	      this.dbRoleToExecute = defaults.dbRoleToExecute;
+    	      this.gcp = defaults.gcp;
     	      this.headers = defaults.headers;
     	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
@@ -329,6 +359,14 @@ public final class GetStreamConnectionsResult {
               throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "aws");
             }
             this.aws = aws;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder azure(GetStreamConnectionsResultAzure azure) {
+            if (azure == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "azure");
+            }
+            this.azure = azure;
             return this;
         }
         @CustomType.Setter
@@ -377,6 +415,14 @@ public final class GetStreamConnectionsResult {
               throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "dbRoleToExecute");
             }
             this.dbRoleToExecute = dbRoleToExecute;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder gcp(GetStreamConnectionsResultGcp gcp) {
+            if (gcp == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionsResult", "gcp");
+            }
+            this.gcp = gcp;
             return this;
         }
         @CustomType.Setter
@@ -482,12 +528,14 @@ public final class GetStreamConnectionsResult {
             final var _resultValue = new GetStreamConnectionsResult();
             _resultValue.authentication = authentication;
             _resultValue.aws = aws;
+            _resultValue.azure = azure;
             _resultValue.bootstrapServers = bootstrapServers;
             _resultValue.clusterName = clusterName;
             _resultValue.clusterProjectId = clusterProjectId;
             _resultValue.config = config;
             _resultValue.connectionName = connectionName;
             _resultValue.dbRoleToExecute = dbRoleToExecute;
+            _resultValue.gcp = gcp;
             _resultValue.headers = headers;
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;

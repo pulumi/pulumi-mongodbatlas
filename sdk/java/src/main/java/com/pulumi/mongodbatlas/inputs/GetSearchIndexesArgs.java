@@ -60,14 +60,14 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
     }
 
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -165,7 +165,7 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param projectId Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+         * @param projectId Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -176,7 +176,7 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param projectId Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+         * @param projectId Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

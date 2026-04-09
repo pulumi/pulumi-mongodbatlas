@@ -13,8 +13,6 @@ import (
 
 // `privateEndpointRegionalMode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
-//
 // ## Example Usage
 //
 // ```go
@@ -60,7 +58,7 @@ func LookupPrivateEndpointRegionalMode(ctx *pulumi.Context, args *LookupPrivateE
 type LookupPrivateEndpointRegionalModeArgs struct {
 	// Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.
 	Enabled *bool `pulumi:"enabled"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -85,7 +83,7 @@ func LookupPrivateEndpointRegionalModeOutput(ctx *pulumi.Context, args LookupPri
 type LookupPrivateEndpointRegionalModeOutputArgs struct {
 	// Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Unique identifier for the project.
+	// Unique identifier for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

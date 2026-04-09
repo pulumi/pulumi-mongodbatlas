@@ -14,8 +14,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner
     /// 
-    /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find GroupId in the official documentation.
-    /// 
     /// &gt; **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
     /// 
     /// ## Import
@@ -41,7 +39,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// Unique identifier for the project.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -102,7 +100,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Unique identifier for the project.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -125,7 +123,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// Unique identifier for the project.
+        /// Unique identifier for the project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

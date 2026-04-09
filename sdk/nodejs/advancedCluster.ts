@@ -466,6 +466,13 @@ import * as utilities from "./utilities";
  *
  * ### Further Examples
  *
+ * **Target Examples (Recommended Starting Points):**
+ * - Free Tier (M0)
+ * - Simple M10 Replica Set
+ * - M10 High-Availability Replica Set (2-2-1)
+ * - Simple M30 Single-Shard Cluster
+ * - M30 Multi-Shard Cluster (2 Shards)
+ *
  * **Cluster Types:**
  * - Replicaset
  * - Symmetric Sharded Cluster
@@ -698,9 +705,7 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     declare public readonly pitEnabled: pulumi.Output<boolean>;
     /**
-     * Unique ID for the project to create the cluster. 
-     *
-     * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -961,9 +966,7 @@ export interface AdvancedClusterState {
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
-     * Unique ID for the project to create the cluster. 
-     *
-     * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -1109,9 +1112,7 @@ export interface AdvancedClusterArgs {
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
-     * Unique ID for the project to create the cluster. 
-     *
-     * > **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

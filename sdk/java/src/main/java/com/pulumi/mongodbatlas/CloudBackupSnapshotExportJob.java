@@ -21,8 +21,6 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
  * 
- * &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- * 
  * ## Example Usage
  * 
  * ### Export one snapshot
@@ -287,14 +285,14 @@ public class CloudBackupSnapshotExportJob extends com.pulumi.resources.CustomRes
         return this.prefix;
     }
     /**
-     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+     * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export.
+     * @return Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

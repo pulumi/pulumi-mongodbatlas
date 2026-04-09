@@ -111,7 +111,7 @@ public final class GetAdvancedClustersResult {
      */
     private Boolean pitEnabled;
     /**
-     * @return The unique ID for the project to get the clusters.
+     * @return The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -294,7 +294,7 @@ public final class GetAdvancedClustersResult {
         return this.pitEnabled;
     }
     /**
-     * @return The unique ID for the project to get the clusters.
+     * @return The unique ID for the project to get the clusters, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

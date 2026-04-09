@@ -30,7 +30,7 @@ class FederatedDatabaseInstanceArgs:
         """
         The set of arguments for constructing a FederatedDatabaseInstance resource.
 
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs'] cloud_provider_config: Cloud provider linked to this data federated instance.
                * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
                * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
@@ -99,7 +99,7 @@ class FederatedDatabaseInstanceArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -239,7 +239,7 @@ class _FederatedDatabaseInstanceState:
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
                * `DELETED` - The Federated Database Instance was deleted.
@@ -361,7 +361,7 @@ class _FederatedDatabaseInstanceState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -462,8 +462,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                  __props__=None):
         """
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
@@ -640,7 +638,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
                * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
                * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
@@ -691,8 +689,6 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
-
-        > **NOTE:** Groups and projects are synonymous terms. You may find group_id in the official documentation.
 
         ## Example Usage
 
@@ -933,7 +929,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
                * `DELETED` - The Federated Database Instance was deleted.
@@ -1036,7 +1032,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 

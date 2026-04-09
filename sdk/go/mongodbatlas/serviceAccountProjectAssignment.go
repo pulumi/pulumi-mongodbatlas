@@ -87,7 +87,7 @@ type ServiceAccountProjectAssignment struct {
 
 	// The Client ID of the Service Account.
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Project permissions for the Service Account in the specified Project.
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
@@ -134,7 +134,7 @@ func GetServiceAccountProjectAssignment(ctx *pulumi.Context,
 type serviceAccountProjectAssignmentState struct {
 	// The Client ID of the Service Account.
 	ClientId *string `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// The Project permissions for the Service Account in the specified Project.
 	Roles []string `pulumi:"roles"`
@@ -143,7 +143,7 @@ type serviceAccountProjectAssignmentState struct {
 type ServiceAccountProjectAssignmentState struct {
 	// The Client ID of the Service Account.
 	ClientId pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// The Project permissions for the Service Account in the specified Project.
 	Roles pulumi.StringArrayInput
@@ -156,7 +156,7 @@ func (ServiceAccountProjectAssignmentState) ElementType() reflect.Type {
 type serviceAccountProjectAssignmentArgs struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The Project permissions for the Service Account in the specified Project.
 	Roles []string `pulumi:"roles"`
@@ -166,7 +166,7 @@ type serviceAccountProjectAssignmentArgs struct {
 type ServiceAccountProjectAssignmentArgs struct {
 	// The Client ID of the Service Account.
 	ClientId pulumi.StringInput
-	// Unique 24-hexadecimal digit string that identifies your project.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// The Project permissions for the Service Account in the specified Project.
 	Roles pulumi.StringArrayInput
@@ -264,7 +264,7 @@ func (o ServiceAccountProjectAssignmentOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccountProjectAssignment) pulumi.StringOutput { return v.ClientId }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies your project.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o ServiceAccountProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServiceAccountProjectAssignment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

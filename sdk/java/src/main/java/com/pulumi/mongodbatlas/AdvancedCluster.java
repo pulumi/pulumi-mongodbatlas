@@ -785,6 +785,13 @@ import javax.annotation.Nullable;
  * 
  * ### Further Examples
  * 
+ * **Target Examples (Recommended Starting Points):**
+ * - Free Tier (M0)
+ * - Simple M10 Replica Set
+ * - M10 High-Availability Replica Set (2-2-1)
+ * - Simple M30 Single-Shard Cluster
+ * - M30 Multi-Shard Cluster (2 Shards)
+ * 
  * **Cluster Types:**
  * - Replicaset
  * - Symmetric Sharded Cluster
@@ -1208,18 +1215,14 @@ public class AdvancedCluster extends com.pulumi.resources.CustomResource {
         return this.pitEnabled;
     }
     /**
-     * Unique ID for the project to create the cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Unique ID for the project to create the cluster.
-     * 
-     * &gt; **NOTE:** Groups and projects are synonymous terms. You might find groupId in the official documentation.
+     * @return Unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {

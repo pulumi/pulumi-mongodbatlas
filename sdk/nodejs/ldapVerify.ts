@@ -114,7 +114,7 @@ export class LdapVerify extends pulumi.CustomResource {
      */
     declare public readonly port: pulumi.Output<number>;
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -172,7 +172,7 @@ export class LdapVerify extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["authzQueryTemplate"] = args?.authzQueryTemplate;
-            resourceInputs["bindPassword"] = args?.bindPassword;
+            resourceInputs["bindPassword"] = args?.bindPassword ? pulumi.secret(args.bindPassword) : undefined;
             resourceInputs["bindUsername"] = args?.bindUsername;
             resourceInputs["caCertificate"] = args?.caCertificate;
             resourceInputs["hostname"] = args?.hostname;
@@ -184,6 +184,8 @@ export class LdapVerify extends pulumi.CustomResource {
             resourceInputs["validations"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["bindPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(LdapVerify.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -221,7 +223,7 @@ export interface LdapVerifyState {
      */
     port?: pulumi.Input<number>;
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -267,7 +269,7 @@ export interface LdapVerifyArgs {
      */
     port: pulumi.Input<number>;
     /**
-     * The unique ID for the project to configure LDAP.
+     * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

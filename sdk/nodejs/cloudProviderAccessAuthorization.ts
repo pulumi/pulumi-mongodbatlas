@@ -135,7 +135,7 @@ export class CloudProviderAccessAuthorization extends pulumi.CustomResource {
     declare public /*out*/ readonly featureUsages: pulumi.Output<outputs.CloudProviderAccessAuthorizationFeatureUsage[]>;
     declare public /*out*/ readonly gcps: pulumi.Output<outputs.CloudProviderAccessAuthorizationGcp[]>;
     /**
-     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -202,7 +202,7 @@ export interface CloudProviderAccessAuthorizationState {
     featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
     gcps?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationGcp>[]>;
     /**
-     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -220,7 +220,7 @@ export interface CloudProviderAccessAuthorizationArgs {
     aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
     azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
     /**
-     * The unique ID for the project. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
+     * The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      */
     projectId: pulumi.Input<string>;
     /**

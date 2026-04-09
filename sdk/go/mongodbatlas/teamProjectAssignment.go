@@ -65,7 +65,7 @@ import (
 type TeamProjectAssignment struct {
 	pulumi.CustomResourceState
 
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// One or more project-level roles assigned to the team.
 	RoleNames pulumi.StringArrayOutput `pulumi:"roleNames"`
@@ -112,7 +112,7 @@ func GetTeamProjectAssignment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TeamProjectAssignment resources.
 type teamProjectAssignmentState struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// One or more project-level roles assigned to the team.
 	RoleNames []string `pulumi:"roleNames"`
@@ -121,7 +121,7 @@ type teamProjectAssignmentState struct {
 }
 
 type TeamProjectAssignmentState struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// One or more project-level roles assigned to the team.
 	RoleNames pulumi.StringArrayInput
@@ -134,7 +134,7 @@ func (TeamProjectAssignmentState) ElementType() reflect.Type {
 }
 
 type teamProjectAssignmentArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// One or more project-level roles assigned to the team.
 	RoleNames []string `pulumi:"roleNames"`
@@ -144,7 +144,7 @@ type teamProjectAssignmentArgs struct {
 
 // The set of arguments for constructing a TeamProjectAssignment resource.
 type TeamProjectAssignmentArgs struct {
-	// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// One or more project-level roles assigned to the team.
 	RoleNames pulumi.StringArrayInput
@@ -239,7 +239,7 @@ func (o TeamProjectAssignmentOutput) ToTeamProjectAssignmentOutputWithContext(ct
 	return o
 }
 
-// Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o TeamProjectAssignmentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *TeamProjectAssignment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }

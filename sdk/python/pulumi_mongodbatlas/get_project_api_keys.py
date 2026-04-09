@@ -66,7 +66,7 @@ class GetProjectApiKeysResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Project ID to assign to Access Key
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -103,8 +103,6 @@ def get_project_api_keys(items_per_page: Optional[_builtins.int] = None,
 
     > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -119,7 +117,7 @@ def get_project_api_keys(items_per_page: Optional[_builtins.int] = None,
 
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['itemsPerPage'] = items_per_page
@@ -145,8 +143,6 @@ def get_project_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[_
 
     > **IMPORTANT WARNING:** Managing Atlas Programmatic API Keys (PAKs) with Terraform will expose sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices. You may also want to consider managing your PAKs via a more secure method, such as the [HashiCorp Vault MongoDB Atlas Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/mongodbatlas).
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -161,7 +157,7 @@ def get_project_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[_
 
     :param _builtins.int items_per_page: Number of items to return per page, up to a maximum of 500. Defaults to `100`.
     :param _builtins.int page_num: The page to return. Defaults to `1`.
-    :param _builtins.str project_id: The unique ID for the project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['itemsPerPage'] = items_per_page

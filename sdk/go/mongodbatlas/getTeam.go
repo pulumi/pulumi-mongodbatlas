@@ -13,8 +13,6 @@ import (
 
 // `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 //
-// > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-//
 // ## Example Usage
 //
 // ```go

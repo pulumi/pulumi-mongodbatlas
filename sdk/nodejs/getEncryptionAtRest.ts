@@ -17,8 +17,6 @@ import * as utilities from "./utilities";
  *
  * > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ### S
@@ -131,7 +129,7 @@ export function getEncryptionAtRest(args: GetEncryptionAtRestArgs, opts?: pulumi
  */
 export interface GetEncryptionAtRestArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -161,7 +159,7 @@ export interface GetEncryptionAtRestResult {
      */
     readonly id: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
 }
@@ -175,8 +173,6 @@ export interface GetEncryptionAtRestResult {
  * > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
  *
  * > **IMPORTANT** Atlas limits this feature to dedicated cluster tiers of M10 and greater. For more information see: https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-encryption-at-rest-using-customer-key-management
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *
@@ -290,7 +286,7 @@ export function getEncryptionAtRestOutput(args: GetEncryptionAtRestOutputArgs, o
  */
 export interface GetEncryptionAtRestOutputArgs {
     /**
-     * Unique 24-hexadecimal digit string that identifies your project.
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

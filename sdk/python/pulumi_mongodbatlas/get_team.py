@@ -115,8 +115,6 @@ def get_team(name: Optional[_builtins.str] = None,
     """
     `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -178,8 +176,6 @@ def get_team_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamResult]:
     """
     `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.
-
-    > **NOTE:** Groups and projects are synonymous terms. You may find `group_id` in the official documentation.
 
     ## Example Usage
 

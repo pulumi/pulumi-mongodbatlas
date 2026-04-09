@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int NumPartitions;
         /// <summary>
-        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster.
+        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

@@ -50,7 +50,7 @@ class GetDatabaseUsersResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        ID of the Atlas project the user belongs to.
+        ID of the Atlas project the user belongs to, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -81,8 +81,6 @@ def get_database_users(project_id: Optional[_builtins.str] = None,
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -136,7 +134,7 @@ def get_database_users(project_id: Optional[_builtins.str] = None,
     Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 
-    :param _builtins.str project_id: The unique ID for the project to get all database users.
+    :param _builtins.str project_id: The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -154,8 +152,6 @@ def get_database_users_output(project_id: Optional[pulumi.Input[_builtins.str]] 
 
     Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -209,7 +205,7 @@ def get_database_users_output(project_id: Optional[pulumi.Input[_builtins.str]] 
     Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
 
-    :param _builtins.str project_id: The unique ID for the project to get all database users.
+    :param _builtins.str project_id: The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

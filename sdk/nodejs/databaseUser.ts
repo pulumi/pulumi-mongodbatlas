@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * > **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
  *
  * > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
@@ -207,7 +205,7 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -326,7 +324,7 @@ export interface DatabaseUserState {
      */
     password?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -387,7 +385,7 @@ export interface DatabaseUserArgs {
      */
     password?: pulumi.Input<string>;
     /**
-     * The unique ID for the project to create the database user.
+     * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

@@ -11,8 +11,6 @@ import * as utilities from "./utilities";
  *
  * > **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * > **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`containerId` attribute on the cluster.
  *
  * > **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
@@ -450,7 +448,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public readonly pitEnabled: pulumi.Output<boolean>;
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -842,7 +840,7 @@ export interface ClusterState {
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -1083,7 +1081,7 @@ export interface ClusterArgs {
      */
     pitEnabled?: pulumi.Input<boolean>;
     /**
-     * The unique ID for the project to create the cluster.
+     * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**

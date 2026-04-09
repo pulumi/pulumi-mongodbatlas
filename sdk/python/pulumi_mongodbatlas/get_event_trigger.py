@@ -309,7 +309,7 @@ def get_event_trigger(app_id: Optional[_builtins.str] = None,
 
     :param _builtins.str app_id: The ObjectID of your application.
            * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
-    :param _builtins.str project_id: The unique ID for the project to create the trigger.
+    :param _builtins.str project_id: The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
     :param _builtins.str trigger_id: The unique ID of the trigger.
     """
     __args__ = dict()
@@ -353,7 +353,7 @@ def get_event_trigger_output(app_id: Optional[pulumi.Input[_builtins.str]] = Non
 
     :param _builtins.str app_id: The ObjectID of your application.
            * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
-    :param _builtins.str project_id: The unique ID for the project to create the trigger.
+    :param _builtins.str project_id: The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
     :param _builtins.str trigger_id: The unique ID of the trigger.
     """
     __args__ = dict()

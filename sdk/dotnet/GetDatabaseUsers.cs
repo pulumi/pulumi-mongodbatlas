@@ -16,8 +16,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -111,8 +109,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.getDatabaseUsers` describes all Database Users. This represents a database user which will be applied to all clusters within the project.
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -208,8 +204,6 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -304,7 +298,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetDatabaseUsersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all database users.
+        /// The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -318,7 +312,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetDatabaseUsersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The unique ID for the project to get all database users.
+        /// The unique ID for the project to get all database users, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;
@@ -338,7 +332,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// ID of the Atlas project the user belongs to.
+        /// ID of the Atlas project the user belongs to, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

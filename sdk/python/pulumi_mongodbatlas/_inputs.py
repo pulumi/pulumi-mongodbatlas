@@ -269,8 +269,12 @@ __all__ = [
     'StreamConnectionAuthenticationArgsDict',
     'StreamConnectionAwsArgs',
     'StreamConnectionAwsArgsDict',
+    'StreamConnectionAzureArgs',
+    'StreamConnectionAzureArgsDict',
     'StreamConnectionDbRoleToExecuteArgs',
     'StreamConnectionDbRoleToExecuteArgsDict',
+    'StreamConnectionGcpArgs',
+    'StreamConnectionGcpArgsDict',
     'StreamConnectionNetworkingArgs',
     'StreamConnectionNetworkingArgsDict',
     'StreamConnectionNetworkingAccessArgs',
@@ -352,7 +356,7 @@ class AdvancedClusterAdvancedConfigurationArgsDict(TypedDict):
     """
     oplog_min_retention_hours: NotRequired[pulumi.Input[_builtins.float]]
     """
-    Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+    Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
     """
     oplog_size_mb: NotRequired[pulumi.Input[_builtins.int]]
     """
@@ -401,7 +405,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
         :param pulumi.Input[_builtins.bool] javascript_enabled: Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
         :param pulumi.Input[_builtins.str] minimum_enabled_tls_protocol: Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
         :param pulumi.Input[_builtins.bool] no_table_scan: Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
-        :param pulumi.Input[_builtins.float] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+        :param pulumi.Input[_builtins.float] oplog_min_retention_hours: Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
         :param pulumi.Input[_builtins.int] oplog_size_mb: Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
         :param pulumi.Input[_builtins.int] sample_refresh_interval_bi_connector: Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
         :param pulumi.Input[_builtins.int] sample_size_bi_connector: Number of documents per database to sample when gathering schema information.
@@ -537,7 +541,7 @@ class AdvancedClusterAdvancedConfigurationArgs:
     @pulumi.getter(name="oplogMinRetentionHours")
     def oplog_min_retention_hours(self) -> Optional[pulumi.Input[_builtins.float]]:
         """
-        Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value.
+        Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 
@@ -1381,7 +1385,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict(Typ
     disk_gb_enabled: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-    - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+    - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
     - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
     - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
     """
@@ -1402,7 +1406,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
         :param pulumi.Input[_builtins.str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         :param pulumi.Input[_builtins.bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         :param pulumi.Input[_builtins.bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
                - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
                - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -1472,7 +1476,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
     def disk_gb_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
         - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
         - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -1636,7 +1640,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict(TypedDict):
     disk_gb_enabled: NotRequired[pulumi.Input[_builtins.bool]]
     """
     Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-    - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+    - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
     - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
     - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
     """
@@ -1667,7 +1671,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
         :param pulumi.Input[_builtins.str] compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         :param pulumi.Input[_builtins.bool] compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         :param pulumi.Input[_builtins.bool] disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+               - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
                - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
                - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -1747,7 +1751,7 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     def disk_gb_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
-        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
+        - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
         - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
         - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
@@ -7926,7 +7930,7 @@ class FederatedDatabaseInstanceStorageStoreArgsDict(TypedDict):
     prefix: NotRequired[pulumi.Input[_builtins.str]]
     project_id: NotRequired[pulumi.Input[_builtins.str]]
     """
-    The unique ID for the project to create a Federated Database Instance.
+    The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     """
     provider: NotRequired[pulumi.Input[_builtins.str]]
     public: NotRequired[pulumi.Input[_builtins.str]]
@@ -7954,7 +7958,7 @@ class FederatedDatabaseInstanceStorageStoreArgs:
                  urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
-        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance.
+        :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         if additional_storage_classes is not None:
             pulumi.set(__self__, "additional_storage_classes", additional_storage_classes)
@@ -8075,7 +8079,7 @@ class FederatedDatabaseInstanceStorageStoreArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The unique ID for the project to create a Federated Database Instance.
+        The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -9751,7 +9755,7 @@ class PrivateLinkEndpointServiceEndpointArgs:
 class ProjectApiKeyProjectAssignmentArgsDict(TypedDict):
     project_id: pulumi.Input[_builtins.str]
     """
-    Project ID to assign to Access Key
+    Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     role_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]
     """
@@ -9764,7 +9768,7 @@ class ProjectApiKeyProjectAssignmentArgs:
                  project_id: pulumi.Input[_builtins.str],
                  role_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]):
         """
-        :param pulumi.Input[_builtins.str] project_id: Project ID to assign to Access Key
+        :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Project roles that the Programmatic API key needs to have. Ensure you provide: at least one role and ensure all roles are valid for the Project. You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) describes the valid roles that can be assigned.
         """
         pulumi.set(__self__, "project_id", project_id)
@@ -9774,7 +9778,7 @@ class ProjectApiKeyProjectAssignmentArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Project ID to assign to Access Key
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -11104,6 +11108,73 @@ class StreamConnectionAwsArgs:
         pulumi.set(self, "role_arn", value)
 
 
+class StreamConnectionAzureArgsDict(TypedDict):
+    service_principal_id: pulumi.Input[_builtins.str]
+    """
+    UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+    """
+    storage_account_name: pulumi.Input[_builtins.str]
+    """
+    Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+    """
+    region: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+    """
+
+@pulumi.input_type
+class StreamConnectionAzureArgs:
+    def __init__(__self__, *,
+                 service_principal_id: pulumi.Input[_builtins.str],
+                 storage_account_name: pulumi.Input[_builtins.str],
+                 region: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] service_principal_id: UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        :param pulumi.Input[_builtins.str] storage_account_name: Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+        :param pulumi.Input[_builtins.str] region: Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+        """
+        pulumi.set(__self__, "service_principal_id", service_principal_id)
+        pulumi.set(__self__, "storage_account_name", storage_account_name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePrincipalId")
+    def service_principal_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+        """
+        return pulumi.get(self, "service_principal_id")
+
+    @service_principal_id.setter
+    def service_principal_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "service_principal_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="storageAccountName")
+    def storage_account_name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
+        """
+        return pulumi.get(self, "storage_account_name")
+
+    @storage_account_name.setter
+    def storage_account_name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "storage_account_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "region", value)
+
+
 class StreamConnectionDbRoleToExecuteArgsDict(TypedDict):
     role: pulumi.Input[_builtins.str]
     """
@@ -11111,7 +11182,7 @@ class StreamConnectionDbRoleToExecuteArgsDict(TypedDict):
     """
     type: pulumi.Input[_builtins.str]
     """
-    Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+    Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
     """
 
 @pulumi.input_type
@@ -11121,7 +11192,7 @@ class StreamConnectionDbRoleToExecuteArgs:
                  type: pulumi.Input[_builtins.str]):
         """
         :param pulumi.Input[_builtins.str] role: The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "type", type)
@@ -11142,13 +11213,41 @@ class StreamConnectionDbRoleToExecuteArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `Cluster`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "type", value)
+
+
+class StreamConnectionGcpArgsDict(TypedDict):
+    service_account_id: pulumi.Input[_builtins.str]
+    """
+    Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+    """
+
+@pulumi.input_type
+class StreamConnectionGcpArgs:
+    def __init__(__self__, *,
+                 service_account_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] service_account_id: Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+        """
+        return pulumi.get(self, "service_account_id")
+
+    @service_account_id.setter
+    def service_account_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "service_account_id", value)
 
 
 class StreamConnectionNetworkingArgsDict(TypedDict):

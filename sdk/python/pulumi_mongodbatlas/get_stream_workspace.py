@@ -124,7 +124,7 @@ def get_stream_workspace(project_id: Optional[_builtins.str] = None,
     If you're migrating from the deprecated `StreamInstance` data source, see the Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples.
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     :param _builtins.str workspace_name: Label that identifies the stream workspace.
     """
     __args__ = dict()
@@ -163,7 +163,7 @@ def get_stream_workspace_output(project_id: Optional[pulumi.Input[_builtins.str]
     If you're migrating from the deprecated `StreamInstance` data source, see the Migration Guide: Stream Instance to Stream Workspace for step-by-step instructions and examples.
 
 
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     :param _builtins.str workspace_name: Label that identifies the stream workspace.
     """
     __args__ = dict()

@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -70,8 +68,6 @@ export interface GetProjectsResult {
 }
 /**
  * `mongodbatlas.getProjects` describes all Projects. This represents projects that have been created.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
  *
  * ## Example Usage
  *

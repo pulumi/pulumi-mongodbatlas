@@ -156,7 +156,7 @@ class GetLogIntegrationResult:
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies your project.
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
@@ -239,7 +239,7 @@ def get_log_integration(integration_id: Optional[_builtins.str] = None,
 
 
     :param _builtins.str integration_id: Unique identifier of the log integration configuration.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['integrationId'] = integration_id
@@ -290,7 +290,7 @@ def get_log_integration_output(integration_id: Optional[pulumi.Input[_builtins.s
 
 
     :param _builtins.str integration_id: Unique identifier of the log integration configuration.
-    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project.
+    :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['integrationId'] = integration_id

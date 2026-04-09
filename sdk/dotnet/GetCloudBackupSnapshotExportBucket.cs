@@ -15,8 +15,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
         /// 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -51,8 +49,6 @@ namespace Pulumi.Mongodbatlas
         /// `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
         /// 
         /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -86,8 +82,6 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
         /// 
-        /// 
-        /// &gt; **NOTE:** Groups and projects are synonymous terms. You may find `groupId` in the official documentation.
         /// 
         /// ## Example Usage
         /// 
@@ -130,7 +124,7 @@ namespace Pulumi.Mongodbatlas
         public string ExportBucketId { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public string ProjectId { get; set; } = null!;
@@ -150,7 +144,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ExportBucketId { get; set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the project for the Atlas cluster.
+        /// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
         public Input<string> ProjectId { get; set; } = null!;

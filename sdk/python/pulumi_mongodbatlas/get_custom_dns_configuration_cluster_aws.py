@@ -75,8 +75,6 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[_builtins.str]
     """
     `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -90,7 +88,7 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[_builtins.str]
     ```
 
 
-    :param _builtins.str project_id: Unique identifier for the project.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -106,8 +104,6 @@ def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.
     """
     `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.
 
-    > **NOTE:** Groups and projects are synonymous terms. You may find **group_id** in the official documentation.
-
     ## Example Usage
 
     ```python
@@ -121,7 +117,7 @@ def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.
     ```
 
 
-    :param _builtins.str project_id: Unique identifier for the project.
+    :param _builtins.str project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

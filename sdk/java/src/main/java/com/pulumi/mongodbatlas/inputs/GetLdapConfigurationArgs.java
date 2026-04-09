@@ -15,14 +15,14 @@ public final class GetLdapConfigurationArgs extends com.pulumi.resources.InvokeA
     public static final GetLdapConfigurationArgs Empty = new GetLdapConfigurationArgs();
 
     /**
-     * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+     * Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+     * @return Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -54,7 +54,7 @@ public final class GetLdapConfigurationArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param projectId Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+         * @param projectId Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class GetLdapConfigurationArgs extends com.pulumi.resources.InvokeA
         }
 
         /**
-         * @param projectId Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration.
+         * @param projectId Identifier for the Atlas project associated with the LDAP over TLS/SSL configuration, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

@@ -13,37 +13,101 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetCloudUserProjectAssignmentResult {
+    /**
+     * @return Two-character alphabetical string that identifies the MongoDB Cloud user&#39;s geographic location. This parameter uses the ISO 3166-1a2 code format.
+     * 
+     */
     private String country;
+    /**
+     * @return Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String createdAt;
+    /**
+     * @return First or given name that belongs to the MongoDB Cloud user.
+     * 
+     */
     private String firstName;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
     private String invitationCreatedAt;
+    /**
+     * @return Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
     private String invitationExpiresAt;
+    /**
+     * @return Username of the MongoDB Cloud user who sent the invitation to join the organization.
+     * 
+     */
     private String inviterUsername;
+    /**
+     * @return Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String lastAuth;
+    /**
+     * @return Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     * 
+     */
     private String lastName;
+    /**
+     * @return Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     */
     private String mobileNumber;
+    /**
+     * @return String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     * 
+     */
     private String orgMembershipStatus;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
+    /**
+     * @return One or more project-level roles to assign the MongoDB Cloud user.
+     * 
+     */
     private List<String> roles;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
     private @Nullable String userId;
+    /**
+     * @return Email address that represents the username of the MongoDB Cloud user.
+     * 
+     */
     private @Nullable String username;
 
     private GetCloudUserProjectAssignmentResult() {}
+    /**
+     * @return Two-character alphabetical string that identifies the MongoDB Cloud user&#39;s geographic location. This parameter uses the ISO 3166-1a2 code format.
+     * 
+     */
     public String country() {
         return this.country;
     }
+    /**
+     * @return Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return First or given name that belongs to the MongoDB Cloud user.
+     * 
+     */
     public String firstName() {
         return this.firstName;
     }
@@ -54,40 +118,80 @@ public final class GetCloudUserProjectAssignmentResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
     public String invitationCreatedAt() {
         return this.invitationCreatedAt;
     }
+    /**
+     * @return Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
     public String invitationExpiresAt() {
         return this.invitationExpiresAt;
     }
+    /**
+     * @return Username of the MongoDB Cloud user who sent the invitation to join the organization.
+     * 
+     */
     public String inviterUsername() {
         return this.inviterUsername;
     }
+    /**
+     * @return Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String lastAuth() {
         return this.lastAuth;
     }
+    /**
+     * @return Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     * 
+     */
     public String lastName() {
         return this.lastName;
     }
+    /**
+     * @return Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     */
     public String mobileNumber() {
         return this.mobileNumber;
     }
+    /**
+     * @return String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     * 
+     */
     public String orgMembershipStatus() {
         return this.orgMembershipStatus;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies your project. Use the [/groups](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listprojects) endpoint to retrieve all projects to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
+    /**
+     * @return One or more project-level roles to assign the MongoDB Cloud user.
+     * 
+     */
     public List<String> roles() {
         return this.roles;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
     public Optional<String> userId() {
         return Optional.ofNullable(this.userId);
     }
+    /**
+     * @return Email address that represents the username of the MongoDB Cloud user.
+     * 
+     */
     public Optional<String> username() {
         return Optional.ofNullable(this.username);
     }

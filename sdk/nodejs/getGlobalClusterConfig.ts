@@ -9,8 +9,6 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
  *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -114,7 +112,7 @@ export interface GetGlobalClusterConfigArgs {
      */
     managedNamespaces?: inputs.GetGlobalClusterConfigManagedNamespace[];
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -140,8 +138,6 @@ export interface GetGlobalClusterConfigResult {
 }
 /**
  * `mongodbatlas.GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.
- *
- * > **NOTE:** Groups and projects are synonymous terms. You may find groupId in the official documentation.
  *
  * ## Example Usage
  *
@@ -246,7 +242,7 @@ export interface GetGlobalClusterConfigOutputArgs {
      */
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GetGlobalClusterConfigManagedNamespaceArgs>[]>;
     /**
-     * The unique ID for the project.
+     * The unique ID for the project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

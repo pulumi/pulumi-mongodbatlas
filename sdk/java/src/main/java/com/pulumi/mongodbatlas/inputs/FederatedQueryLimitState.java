@@ -103,14 +103,14 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The unique ID for the project to create a Federated Database Instance.
+     * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return The unique ID for the project to create a Federated Database Instance.
+     * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -294,7 +294,7 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param projectId The unique ID for the project to create a Federated Database Instance.
+         * @param projectId The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -305,7 +305,7 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param projectId The unique ID for the project to create a Federated Database Instance.
+         * @param projectId The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
