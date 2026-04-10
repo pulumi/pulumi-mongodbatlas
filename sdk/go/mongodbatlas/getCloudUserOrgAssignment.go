@@ -46,13 +46,13 @@ import (
 //				return err
 //			}
 //			_ = example.Username.ApplyT(func(username string) (mongodbatlas.GetCloudUserOrgAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserOrgAssignmentResult(interface{}(mongodbatlas.LookupCloudUserOrgAssignment(ctx, &mongodbatlas.LookupCloudUserOrgAssignmentArgs{
+//				return mongodbatlas.GetCloudUserOrgAssignmentResult(interface{}(mongodbatlas.GetCloudUserOrgAssignment(ctx, &mongodbatlas.LookupCloudUserOrgAssignmentArgs{
 //					OrgId:    orgId,
 //					Username: pulumi.StringRef(pulumi.StringRef(username)),
 //				}, nil))), nil
 //			}).(mongodbatlas.GetCloudUserOrgAssignmentResultOutput)
 //			_ = example.UserId.ApplyT(func(userId string) (mongodbatlas.GetCloudUserOrgAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserOrgAssignmentResult(interface{}(mongodbatlas.LookupCloudUserOrgAssignment(ctx, &mongodbatlas.LookupCloudUserOrgAssignmentArgs{
+//				return mongodbatlas.GetCloudUserOrgAssignmentResult(interface{}(mongodbatlas.GetCloudUserOrgAssignment(ctx, &mongodbatlas.LookupCloudUserOrgAssignmentArgs{
 //					OrgId:  orgId,
 //					UserId: pulumi.StringRef(pulumi.StringRef(userId)),
 //				}, nil))), nil

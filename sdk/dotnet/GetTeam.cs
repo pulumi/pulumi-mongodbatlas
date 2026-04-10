@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testTeam = new Mongodbatlas.Team("test", new()
+        ///     var testTeam = new Mongodbatlas.Index.Team("test", new()
         ///     {
         ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
         ///         Name = "myNewTeam",
@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetTeam.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetTeam.Invoke(new()
         ///     {
         ///         OrgId = testTeam.OrgId,
         ///         TeamId = testTeam.TeamId,
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = new Mongodbatlas.Team("test", new()
+        ///     var test = new Mongodbatlas.Index.Team("test", new()
         ///     {
         ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
         ///         Name = "myNewTeam",
@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test2 = Mongodbatlas.GetTeam.Invoke(new()
+        ///     var test2 = Mongodbatlas.Index.GetTeam.Invoke(new()
         ///     {
         ///         OrgId = test.OrgId,
         ///         Name = test.Name,
@@ -92,7 +92,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testTeam = new Mongodbatlas.Team("test", new()
+        ///     var testTeam = new Mongodbatlas.Index.Team("test", new()
         ///     {
         ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
         ///         Name = "myNewTeam",
@@ -104,7 +104,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetTeam.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetTeam.Invoke(new()
         ///     {
         ///         OrgId = testTeam.OrgId,
         ///         TeamId = testTeam.TeamId,
@@ -121,7 +121,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = new Mongodbatlas.Team("test", new()
+        ///     var test = new Mongodbatlas.Index.Team("test", new()
         ///     {
         ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
         ///         Name = "myNewTeam",
@@ -133,7 +133,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test2 = Mongodbatlas.GetTeam.Invoke(new()
+        ///     var test2 = Mongodbatlas.Index.GetTeam.Invoke(new()
         ///     {
         ///         OrgId = test.OrgId,
         ///         Name = test.Name,
@@ -159,7 +159,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testTeam = new Mongodbatlas.Team("test", new()
+        ///     var testTeam = new Mongodbatlas.Index.Team("test", new()
         ///     {
         ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
         ///         Name = "myNewTeam",
@@ -171,7 +171,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetTeam.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetTeam.Invoke(new()
         ///     {
         ///         OrgId = testTeam.OrgId,
         ///         TeamId = testTeam.TeamId,
@@ -188,7 +188,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = new Mongodbatlas.Team("test", new()
+        ///     var test = new Mongodbatlas.Index.Team("test", new()
         ///     {
         ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
         ///         Name = "myNewTeam",
@@ -200,7 +200,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test2 = Mongodbatlas.GetTeam.Invoke(new()
+        ///     var test2 = Mongodbatlas.Index.GetTeam.Invoke(new()
         ///     {
         ///         OrgId = test.OrgId,
         ///         Name = test.Name,

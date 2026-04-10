@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedQueryLimit.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedQueryLimit.Invoke(new()
         ///     {
         ///         ProjectId = "PROJECT_ID",
         ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedQueryLimit.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedQueryLimit.Invoke(new()
         ///     {
         ///         ProjectId = "PROJECT_ID",
         ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",
@@ -76,7 +76,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedQueryLimit.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedQueryLimit.Invoke(new()
         ///     {
         ///         ProjectId = "PROJECT_ID",
         ///         TenantName = "FEDERATED_DATABASE_INSTANCE_NAME",

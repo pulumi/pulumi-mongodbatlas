@@ -45,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupLdapConfigurationOutput(ctx, mongodbatlas.GetLdapConfigurationOutputArgs{
+//			_ = mongodbatlas.GetLdapConfigurationOutput(ctx, mongodbatlas.GetLdapConfigurationOutputArgs{
 //				ProjectId: testLdapConfiguration.ID(),
 //			}, nil)
 //			return nil

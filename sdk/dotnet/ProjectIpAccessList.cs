@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.ProjectIpAccessList("this", new()
+    ///     var @this = new Mongodbatlas.Index.ProjectIpAccessList("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         CidrBlock = "1.2.3.4/32",
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.ProjectIpAccessList("this", new()
+    ///     var @this = new Mongodbatlas.Index.ProjectIpAccessList("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         IpAddress = "2.3.4.5",
@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.NetworkContainer("this", new()
+    ///     var @this = new Mongodbatlas.Index.NetworkContainer("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         AtlasCidrBlock = "192.168.208.0/21",
@@ -73,7 +73,7 @@ namespace Pulumi.Mongodbatlas
     ///         RegionName = "US_EAST_1",
     ///     });
     /// 
-    ///     var thisNetworkPeering = new Mongodbatlas.NetworkPeering("this", new()
+    ///     var thisNetworkPeering = new Mongodbatlas.Index.NetworkPeering("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ContainerId = @this.ContainerId,
@@ -84,7 +84,7 @@ namespace Pulumi.Mongodbatlas
     ///         AwsAccountId = "232589400519",
     ///     });
     /// 
-    ///     var thisProjectIpAccessList = new Mongodbatlas.ProjectIpAccessList("this", new()
+    ///     var thisProjectIpAccessList = new Mongodbatlas.Index.ProjectIpAccessList("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         AwsSecurityGroup = "sg-0026348ec11780bd1",

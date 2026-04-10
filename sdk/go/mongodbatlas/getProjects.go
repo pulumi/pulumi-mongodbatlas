@@ -44,7 +44,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupProjects(ctx, &mongodbatlas.LookupProjectsArgs{
+//			_, err = mongodbatlas.GetProjects(ctx, &mongodbatlas.LookupProjectsArgs{
 //				PageNum:      pulumi.IntRef(1),
 //				ItemsPerPage: pulumi.IntRef(5),
 //			}, nil)

@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+    ///     var user = new Mongodbatlas.Index.DatabaseUser("user", new()
     ///     {
     ///         ProjectId = "64b926dd56206839b1c8bae9",
     ///         Username = "myUsername",
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+    ///     var test = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
     ///     {
     ///         ProjectId = user.ProjectId,
     ///         Username = user.Username,
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+    ///     var test = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         CustomerX509Cas = @"-----BEGIN CERTIFICATE-----
@@ -97,7 +97,7 @@ namespace Pulumi.Mongodbatlas
     /// ",
     ///     });
     /// 
-    ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+    ///     var user = new Mongodbatlas.Index.DatabaseUser("user", new()
     ///     {
     ///         ProjectId = "64b926dd56206839b1c8bae9",
     ///         Username = "myUsername",

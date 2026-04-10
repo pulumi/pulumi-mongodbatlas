@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetProjectIpAddresses.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectIpAddresses.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetProjectIpAddresses.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectIpAddresses.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });
@@ -83,7 +83,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetProjectIpAddresses.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectIpAddresses.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });

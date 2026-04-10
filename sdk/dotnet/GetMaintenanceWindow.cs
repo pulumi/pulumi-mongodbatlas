@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     var testMaintenanceWindow = new Mongodbatlas.Index.MaintenanceWindow("test", new()
         ///     {
         ///         ProjectId = "&lt;your-project-id&gt;",
         ///         DayOfWeek = 3,
@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas
         ///         AutoDeferOnceEnabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetMaintenanceWindow.Invoke(new()
         ///     {
         ///         ProjectId = testMaintenanceWindow.Id,
         ///     });
@@ -51,13 +51,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     var testMaintenanceWindow = new Mongodbatlas.Index.MaintenanceWindow("test", new()
         ///     {
         ///         ProjectId = "&lt;your-project-id&gt;",
         ///         StartAsap = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetMaintenanceWindow.Invoke(new()
         ///     {
         ///         ProjectId = testMaintenanceWindow.Id,
         ///     });
@@ -83,7 +83,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     var testMaintenanceWindow = new Mongodbatlas.Index.MaintenanceWindow("test", new()
         ///     {
         ///         ProjectId = "&lt;your-project-id&gt;",
         ///         DayOfWeek = 3,
@@ -91,7 +91,7 @@ namespace Pulumi.Mongodbatlas
         ///         AutoDeferOnceEnabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetMaintenanceWindow.Invoke(new()
         ///     {
         ///         ProjectId = testMaintenanceWindow.Id,
         ///     });
@@ -108,13 +108,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     var testMaintenanceWindow = new Mongodbatlas.Index.MaintenanceWindow("test", new()
         ///     {
         ///         ProjectId = "&lt;your-project-id&gt;",
         ///         StartAsap = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetMaintenanceWindow.Invoke(new()
         ///     {
         ///         ProjectId = testMaintenanceWindow.Id,
         ///     });
@@ -140,7 +140,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     var testMaintenanceWindow = new Mongodbatlas.Index.MaintenanceWindow("test", new()
         ///     {
         ///         ProjectId = "&lt;your-project-id&gt;",
         ///         DayOfWeek = 3,
@@ -148,7 +148,7 @@ namespace Pulumi.Mongodbatlas
         ///         AutoDeferOnceEnabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetMaintenanceWindow.Invoke(new()
         ///     {
         ///         ProjectId = testMaintenanceWindow.Id,
         ///     });
@@ -165,13 +165,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testMaintenanceWindow = new Mongodbatlas.MaintenanceWindow("test", new()
+        ///     var testMaintenanceWindow = new Mongodbatlas.Index.MaintenanceWindow("test", new()
         ///     {
         ///         ProjectId = "&lt;your-project-id&gt;",
         ///         StartAsap = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetMaintenanceWindow.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetMaintenanceWindow.Invoke(new()
         ///     {
         ///         ProjectId = testMaintenanceWindow.Id,
         ///     });

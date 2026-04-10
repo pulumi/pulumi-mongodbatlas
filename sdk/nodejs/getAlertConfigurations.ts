@@ -24,13 +24,13 @@ import * as utilities from "./utilities";
  *     ],
  * });
  * const alerts = _import.then(_import => _import.results);
- * const outputs = std.index.flatten({
- *     input: alerts.then(alerts => .map(([i, alert]) => (alert.output == null ? [] : alert.output))),
+ * const outputs = std.flatten({
+ *     input: alerts.then(alerts => .map(alert => (alert.output == null ? [] : alert.output))),
  * }).result;
- * const outputValues = std.index.compact({
- *     input: .map(([i, o]) => (o.value)),
+ * const outputValues = std.compact({
+ *     input: .map(o => (o.value)),
  * }).result;
- * export const alertOutput = std.index.join({
+ * export const alertOutput = std.join({
  *     separator: "\n",
  *     input: outputValues,
  * }).result;
@@ -107,13 +107,13 @@ export interface GetAlertConfigurationsResult {
  *     ],
  * });
  * const alerts = _import.then(_import => _import.results);
- * const outputs = std.index.flatten({
- *     input: alerts.then(alerts => .map(([i, alert]) => (alert.output == null ? [] : alert.output))),
+ * const outputs = std.flatten({
+ *     input: alerts.then(alerts => .map(alert => (alert.output == null ? [] : alert.output))),
  * }).result;
- * const outputValues = std.index.compact({
- *     input: .map(([i, o]) => (o.value)),
+ * const outputValues = std.compact({
+ *     input: .map(o => (o.value)),
  * }).result;
- * export const alertOutput = std.index.join({
+ * export const alertOutput = std.join({
  *     separator: "\n",
  *     input: outputValues,
  * }).result;

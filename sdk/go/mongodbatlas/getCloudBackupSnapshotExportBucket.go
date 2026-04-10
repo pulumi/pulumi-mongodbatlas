@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudBackupSnapshotExportBucketOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportBucketOutputArgs{
+//			_ = mongodbatlas.GetCloudBackupSnapshotExportBucketOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportBucketOutputArgs{
 //				ProjectId:      pulumi.String("{PROJECT_ID}"),
 //				ExportBucketId: testCloudBackupSnapshotExportBucket.ExportBucketId,
 //			}, nil)

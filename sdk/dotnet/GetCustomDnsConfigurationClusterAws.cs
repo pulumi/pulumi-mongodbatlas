@@ -25,13 +25,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCustomDnsConfigurationClusterAws = new Mongodbatlas.CustomDnsConfigurationClusterAws("test", new()
+        ///     var testCustomDnsConfigurationClusterAws = new Mongodbatlas.Index.CustomDnsConfigurationClusterAws("test", new()
         ///     {
         ///         ProjectId = "&lt;project-id&gt;",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDnsConfigurationClusterAws.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDnsConfigurationClusterAws.Invoke(new()
         ///     {
         ///         ProjectId = testCustomDnsConfigurationClusterAws.Id,
         ///     });
@@ -56,13 +56,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCustomDnsConfigurationClusterAws = new Mongodbatlas.CustomDnsConfigurationClusterAws("test", new()
+        ///     var testCustomDnsConfigurationClusterAws = new Mongodbatlas.Index.CustomDnsConfigurationClusterAws("test", new()
         ///     {
         ///         ProjectId = "&lt;project-id&gt;",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDnsConfigurationClusterAws.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDnsConfigurationClusterAws.Invoke(new()
         ///     {
         ///         ProjectId = testCustomDnsConfigurationClusterAws.Id,
         ///     });
@@ -87,13 +87,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCustomDnsConfigurationClusterAws = new Mongodbatlas.CustomDnsConfigurationClusterAws("test", new()
+        ///     var testCustomDnsConfigurationClusterAws = new Mongodbatlas.Index.CustomDnsConfigurationClusterAws("test", new()
         ///     {
         ///         ProjectId = "&lt;project-id&gt;",
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDnsConfigurationClusterAws.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDnsConfigurationClusterAws.Invoke(new()
         ///     {
         ///         ProjectId = testCustomDnsConfigurationClusterAws.Id,
         ///     });

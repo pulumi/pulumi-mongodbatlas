@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetOrganization.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetOrganization.Invoke(new()
         ///     {
         ///         OrgId = "&lt;org_id&gt;",
         ///     });
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetOrganization.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetOrganization.Invoke(new()
         ///     {
         ///         OrgId = "&lt;org_id&gt;",
         ///     });
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetOrganization.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetOrganization.Invoke(new()
         ///     {
         ///         OrgId = "&lt;org_id&gt;",
         ///     });

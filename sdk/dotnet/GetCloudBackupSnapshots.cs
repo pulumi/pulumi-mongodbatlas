@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshots.ProjectId,
         ///         ClusterName = testCloudBackupSnapshots.ClusterName,
@@ -69,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshots.ProjectId,
         ///         ClusterName = testCloudBackupSnapshots.ClusterName,
@@ -105,7 +105,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshots.ProjectId,
         ///         ClusterName = testCloudBackupSnapshots.ClusterName,

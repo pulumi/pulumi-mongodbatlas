@@ -25,9 +25,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.Index.GetRolesOrgId.Invoke();
         /// 
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "project-name",
         ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testGetProject = Mongodbatlas.GetProject.Invoke(new()
+        ///     var testGetProject = Mongodbatlas.Index.GetProject.Invoke(new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///     });
@@ -58,7 +58,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "project-name",
         ///         OrgId = "&lt;ORG_ID&gt;",
@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProject.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProject.Invoke(new()
         ///     {
         ///         Name = testProject.Name,
         ///     });
@@ -97,9 +97,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.Index.GetRolesOrgId.Invoke();
         /// 
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "project-name",
         ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testGetProject = Mongodbatlas.GetProject.Invoke(new()
+        ///     var testGetProject = Mongodbatlas.Index.GetProject.Invoke(new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///     });
@@ -130,7 +130,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "project-name",
         ///         OrgId = "&lt;ORG_ID&gt;",
@@ -144,7 +144,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProject.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProject.Invoke(new()
         ///     {
         ///         Name = testProject.Name,
         ///     });
@@ -169,9 +169,9 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.Index.GetRolesOrgId.Invoke();
         /// 
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "project-name",
         ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),
@@ -185,7 +185,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testGetProject = Mongodbatlas.GetProject.Invoke(new()
+        ///     var testGetProject = Mongodbatlas.Index.GetProject.Invoke(new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///     });
@@ -202,7 +202,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "project-name",
         ///         OrgId = "&lt;ORG_ID&gt;",
@@ -216,7 +216,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProject.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProject.Invoke(new()
         ///     {
         ///         Name = testProject.Name,
         ///     });

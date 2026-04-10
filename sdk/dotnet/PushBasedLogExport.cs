@@ -29,20 +29,20 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project_tf = new Mongodbatlas.Project("project-tf", new()
+    ///     var project_tf = new Mongodbatlas.Index.Project("project-tf", new()
     ///     {
     ///         Name = atlasProjectName,
     ///         OrgId = atlasOrgId,
     ///     });
     /// 
     ///     // Set up cloud provider access in Atlas using the created IAM role
-    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
+    ///     var setupOnly = new Mongodbatlas.Index.CloudProviderAccessSetup("setup_only", new()
     ///     {
     ///         ProjectId = project_tf.Id,
     ///         ProviderName = "AWS",
     ///     });
     /// 
-    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
+    ///     var authRole = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth_role", new()
     ///     {
     ///         ProjectId = project_tf.Id,
     ///         RoleId = setupOnly.RoleId,
@@ -53,7 +53,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Set up push-based log export with authorized IAM role
-    ///     var testPushBasedLogExport = new Mongodbatlas.PushBasedLogExport("test", new()
+    ///     var testPushBasedLogExport = new Mongodbatlas.Index.PushBasedLogExport("test", new()
     ///     {
     ///         ProjectId = project_tf.Id,
     ///         BucketName = logBucket.Bucket,
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
     ///         PrefixPath = "push-based-log-test",
     ///     });
     /// 
-    ///     var test = Mongodbatlas.GetPushBasedLogExport.Invoke(new()
+    ///     var test = Mongodbatlas.Index.GetPushBasedLogExport.Invoke(new()
     ///     {
     ///         ProjectId = testPushBasedLogExport.ProjectId,
     ///     });

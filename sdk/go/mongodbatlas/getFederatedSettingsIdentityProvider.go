@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupFederatedSettingsIdentityProviderOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProviderOutputArgs{
+//			_ = mongodbatlas.GetFederatedSettingsIdentityProviderOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProviderOutputArgs{
 //				FederationSettingsId: identityProvider.ID(),
 //				IdentityProviderId:   pulumi.String("0oad4fas87jL5Xnk12971234"),
 //			}, nil)

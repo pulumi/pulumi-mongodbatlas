@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
+    ///     var testRole = new Mongodbatlas.Index.CustomDbRole("test_role", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         RoleName = "myCustomRole",
@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var inheritedRoleOne = new Mongodbatlas.CustomDbRole("inherited_role_one", new()
+    ///     var inheritedRoleOne = new Mongodbatlas.Index.CustomDbRole("inherited_role_one", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         RoleName = "insertRole",
@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var inheritedRoleTwo = new Mongodbatlas.CustomDbRole("inherited_role_two", new()
+    ///     var inheritedRoleTwo = new Mongodbatlas.Index.CustomDbRole("inherited_role_two", new()
     ///     {
     ///         ProjectId = inheritedRoleOne.ProjectId,
     ///         RoleName = "statusServerRole",
@@ -123,7 +123,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
+    ///     var testRole = new Mongodbatlas.Index.CustomDbRole("test_role", new()
     ///     {
     ///         ProjectId = inheritedRoleOne.ProjectId,
     ///         RoleName = "myCustomRole",

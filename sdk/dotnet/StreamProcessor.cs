@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Mongodbatlas.StreamInstance("example", new()
+    ///     var example = new Mongodbatlas.Index.StreamInstance("example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         InstanceName = "InstanceName",
@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var example_sample = new Mongodbatlas.StreamConnection("example-sample", new()
+    ///     var example_sample = new Mongodbatlas.Index.StreamConnection("example-sample", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas
     ///         Type = "Sample",
     ///     });
     /// 
-    ///     var example_cluster = new Mongodbatlas.StreamConnection("example-cluster", new()
+    ///     var example_cluster = new Mongodbatlas.Index.StreamConnection("example-cluster", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
@@ -63,7 +63,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var example_kafka = new Mongodbatlas.StreamConnection("example-kafka", new()
+    ///     var example_kafka = new Mongodbatlas.Index.StreamConnection("example-kafka", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var stream_processor_sample_example = new Mongodbatlas.StreamProcessor("stream-processor-sample-example", new()
+    ///     var stream_processor_sample_example = new Mongodbatlas.Index.StreamProcessor("stream-processor-sample-example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
@@ -118,7 +118,7 @@ namespace Pulumi.Mongodbatlas
     ///         Tier = "SP30",
     ///     });
     /// 
-    ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
+    ///     var stream_processor_cluster_to_kafka_example = new Mongodbatlas.Index.StreamProcessor("stream-processor-cluster-to-kafka-example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
@@ -144,7 +144,7 @@ namespace Pulumi.Mongodbatlas
     ///         State = "CREATED",
     ///     });
     /// 
-    ///     var stream_processor_kafka_to_cluster_example = new Mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", new()
+    ///     var stream_processor_kafka_to_cluster_example = new Mongodbatlas.Index.StreamProcessor("stream-processor-kafka-to-cluster-example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
@@ -185,13 +185,13 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var example_stream_processors = Mongodbatlas.GetStreamProcessors.Invoke(new()
+    ///     var example_stream_processors = Mongodbatlas.Index.GetStreamProcessors.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
     ///     });
     /// 
-    ///     var example_stream_processor = Mongodbatlas.GetStreamProcessor.Invoke(new()
+    ///     var example_stream_processor = Mongodbatlas.Index.GetStreamProcessor.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,

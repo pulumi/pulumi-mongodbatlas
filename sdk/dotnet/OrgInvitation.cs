@@ -35,7 +35,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
+    ///     var test0 = new Mongodbatlas.Index.OrgInvitation("test0", new()
     ///     {
     ///         Username = "test0-acc-username",
     ///         OrgId = "&lt;ORG_ID&gt;",
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test0 = new Mongodbatlas.OrgInvitation("test0", new()
+    ///     var test0 = new Mongodbatlas.Index.OrgInvitation("test0", new()
     ///     {
     ///         Username = "test0-acc-username",
     ///         OrgId = "&lt;ORG_ID&gt;",
@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test1 = new Mongodbatlas.OrgInvitation("test1", new()
+    ///     var test1 = new Mongodbatlas.Index.OrgInvitation("test1", new()
     ///     {
     ///         Username = "test1-acc-username",
     ///         OrgId = "&lt;ORG_ID&gt;",

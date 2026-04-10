@@ -45,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(ctx, mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs{
+//			_ = mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(ctx, mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs{
 //				ProjectId:  atlas_project.ID(),
 //				EndpointId: test.EndpointId,
 //			}, nil)

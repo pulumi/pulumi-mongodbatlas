@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
+    ///     var test = new Mongodbatlas.Index.MaintenanceWindow("test", new()
     ///     {
     ///         ProjectId = "&lt;your-project-id&gt;",
     ///         DayOfWeek = 3,
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
+    ///     var test = new Mongodbatlas.Index.MaintenanceWindow("test", new()
     ///     {
     ///         ProjectId = "&lt;your-project-id&gt;",
     ///         DayOfWeek = 3,
@@ -84,7 +84,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.MaintenanceWindow("test", new()
+    ///     var test = new Mongodbatlas.Index.MaintenanceWindow("test", new()
     ///     {
     ///         ProjectId = "&lt;your-project-id&gt;",
     ///         DayOfWeek = 3,

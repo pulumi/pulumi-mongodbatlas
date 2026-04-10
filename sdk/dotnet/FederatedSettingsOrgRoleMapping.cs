@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
+    ///     var orgGroupRoleMappingImport = new Mongodbatlas.Index.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
     ///     {
     ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
     ///         OrgId = "627a9683e7f7f7ff7fe306f14",

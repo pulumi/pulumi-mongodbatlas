@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
+        ///     var test = new Mongodbatlas.Index.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "&lt;CLUSTER-NAME&gt;",
@@ -109,7 +109,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var configGlobalClusterConfig = new Mongodbatlas.GlobalClusterConfig("config", new()
+        ///     var configGlobalClusterConfig = new Mongodbatlas.Index.GlobalClusterConfig("config", new()
         ///     {
         ///         ProjectId = test.ProjectId,
         ///         ClusterName = test.Name,
@@ -132,7 +132,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var config = Mongodbatlas.GetGlobalClusterConfig.Invoke(new()
+        ///     var config = Mongodbatlas.Index.GetGlobalClusterConfig.Invoke(new()
         ///     {
         ///         ProjectId = configGlobalClusterConfig.ProjectId,
         ///         ClusterName = configGlobalClusterConfig.ClusterName,
@@ -159,7 +159,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
+        ///     var test = new Mongodbatlas.Index.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "&lt;CLUSTER-NAME&gt;",
@@ -242,7 +242,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var configGlobalClusterConfig = new Mongodbatlas.GlobalClusterConfig("config", new()
+        ///     var configGlobalClusterConfig = new Mongodbatlas.Index.GlobalClusterConfig("config", new()
         ///     {
         ///         ProjectId = test.ProjectId,
         ///         ClusterName = test.Name,
@@ -265,7 +265,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var config = Mongodbatlas.GetGlobalClusterConfig.Invoke(new()
+        ///     var config = Mongodbatlas.Index.GetGlobalClusterConfig.Invoke(new()
         ///     {
         ///         ProjectId = configGlobalClusterConfig.ProjectId,
         ///         ClusterName = configGlobalClusterConfig.ClusterName,
@@ -292,7 +292,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = new Mongodbatlas.AdvancedCluster("test", new()
+        ///     var test = new Mongodbatlas.Index.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "&lt;CLUSTER-NAME&gt;",
@@ -375,7 +375,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var configGlobalClusterConfig = new Mongodbatlas.GlobalClusterConfig("config", new()
+        ///     var configGlobalClusterConfig = new Mongodbatlas.Index.GlobalClusterConfig("config", new()
         ///     {
         ///         ProjectId = test.ProjectId,
         ///         ClusterName = test.Name,
@@ -398,7 +398,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var config = Mongodbatlas.GetGlobalClusterConfig.Invoke(new()
+        ///     var config = Mongodbatlas.Index.GetGlobalClusterConfig.Invoke(new()
         ///     {
         ///         ProjectId = configGlobalClusterConfig.ProjectId,
         ///         ClusterName = configGlobalClusterConfig.ClusterName,

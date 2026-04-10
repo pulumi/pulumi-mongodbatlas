@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.Index.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
         ///     {
         ///         FederationSettingsId = federatedSettings.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
@@ -68,7 +68,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new()
+        ///     var roleMapping = Mongodbatlas.Index.GetFederatedSettingsOrgRoleMapping.Invoke(new()
         ///     {
         ///         FederationSettingsId = orgGroupRoleMappingImport.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
@@ -95,7 +95,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.Index.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
         ///     {
         ///         FederationSettingsId = federatedSettings.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
@@ -138,7 +138,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new()
+        ///     var roleMapping = Mongodbatlas.Index.GetFederatedSettingsOrgRoleMapping.Invoke(new()
         ///     {
         ///         FederationSettingsId = orgGroupRoleMappingImport.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
@@ -165,7 +165,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var orgGroupRoleMappingImport = new Mongodbatlas.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
+        ///     var orgGroupRoleMappingImport = new Mongodbatlas.Index.FederatedSettingsOrgRoleMapping("org_group_role_mapping_import", new()
         ///     {
         ///         FederationSettingsId = federatedSettings.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
@@ -208,7 +208,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var roleMapping = Mongodbatlas.GetFederatedSettingsOrgRoleMapping.Invoke(new()
+        ///     var roleMapping = Mongodbatlas.Index.GetFederatedSettingsOrgRoleMapping.Invoke(new()
         ///     {
         ///         FederationSettingsId = orgGroupRoleMappingImport.Id,
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",

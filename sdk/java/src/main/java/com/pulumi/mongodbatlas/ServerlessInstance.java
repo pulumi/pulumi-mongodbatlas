@@ -246,6 +246,20 @@ public class ServerlessInstance extends com.pulumi.resources.CustomResource {
         return this.providerSettingsRegionName;
     }
     /**
+     * Unique 24-hexadecimal digit string that identifies the serverless instance.
+     * 
+     */
+    @Export(name="serverlessInstanceId", refs={String.class}, tree="[0]")
+    private Output<String> serverlessInstanceId;
+
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the serverless instance.
+     * 
+     */
+    public Output<String> serverlessInstanceId() {
+        return this.serverlessInstanceId;
+    }
+    /**
      * Stage of deployment of this serverless instance when the resource made its request.
      * 
      */

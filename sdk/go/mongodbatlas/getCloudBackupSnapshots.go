@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupCloudBackupSnapshots(ctx, &mongodbatlas.LookupCloudBackupSnapshotsArgs{
+//			_, err = mongodbatlas.GetCloudBackupSnapshots(ctx, &mongodbatlas.LookupCloudBackupSnapshotsArgs{
 //				ProjectId:    testCloudBackupSnapshots.ProjectId,
 //				ClusterName:  testCloudBackupSnapshots.ClusterName,
 //				PageNum:      pulumi.IntRef(1),

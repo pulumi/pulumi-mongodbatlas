@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     var single = Mongodbatlas.Index.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = atlasProjectId,
         ///         CloudProvider = "AZURE",
@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     var single = Mongodbatlas.Index.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = atlasProjectId,
         ///         CloudProvider = "AWS",
@@ -91,7 +91,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     var single = Mongodbatlas.Index.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = atlasProjectId,
         ///         CloudProvider = "AZURE",
@@ -114,7 +114,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     var single = Mongodbatlas.Index.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = atlasProjectId,
         ///         CloudProvider = "AWS",
@@ -151,7 +151,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     var single = Mongodbatlas.Index.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = atlasProjectId,
         ///         CloudProvider = "AZURE",
@@ -174,7 +174,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var single = Mongodbatlas.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
+        ///     var single = Mongodbatlas.Index.GetEncryptionAtRestPrivateEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = atlasProjectId,
         ///         CloudProvider = "AWS",

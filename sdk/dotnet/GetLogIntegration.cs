@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetLogIntegration.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetLogIntegration.Invoke(new()
         ///     {
         ///         ProjectId = exampleMongodbatlasLogIntegration.ProjectId,
         ///         IntegrationId = exampleMongodbatlasLogIntegration.IntegrationId,
@@ -60,7 +60,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetLogIntegration.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetLogIntegration.Invoke(new()
         ///     {
         ///         ProjectId = exampleMongodbatlasLogIntegration.ProjectId,
         ///         IntegrationId = exampleMongodbatlasLogIntegration.IntegrationId,
@@ -94,7 +94,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetLogIntegration.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetLogIntegration.Invoke(new()
         ///     {
         ///         ProjectId = exampleMongodbatlasLogIntegration.ProjectId,
         ///         IntegrationId = exampleMongodbatlasLogIntegration.IntegrationId,

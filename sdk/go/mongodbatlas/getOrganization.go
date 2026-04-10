@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupOrganization(ctx, &mongodbatlas.LookupOrganizationArgs{
+//			_, err := mongodbatlas.GetOrganization(ctx, &mongodbatlas.LookupOrganizationArgs{
 //				OrgId: "<org_id>",
 //			}, nil)
 //			if err != nil {

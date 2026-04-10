@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Team("test", new()
+    ///     var test = new Mongodbatlas.Index.Team("test", new()
     ///     {
     ///         OrgId = "&lt;ORGANIZATION-ID&gt;",
     ///         Name = "myNewTeam",

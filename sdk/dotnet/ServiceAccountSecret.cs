@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var thisServiceAccount = new Mongodbatlas.ServiceAccount("this", new()
+    ///     var thisServiceAccount = new Mongodbatlas.Index.ServiceAccount("this", new()
     ///     {
     ///         OrgId = orgId,
     ///         Name = "example-service-account",
@@ -40,14 +40,14 @@ namespace Pulumi.Mongodbatlas
     ///         SecretExpiresAfterHours = 2160,
     ///     });
     /// 
-    ///     var thisServiceAccountSecret = new Mongodbatlas.ServiceAccountSecret("this", new()
+    ///     var thisServiceAccountSecret = new Mongodbatlas.Index.ServiceAccountSecret("this", new()
     ///     {
     ///         OrgId = orgId,
     ///         ClientId = thisServiceAccount.ClientId,
     ///         SecretExpiresAfterHours = 2160,
     ///     });
     /// 
-    ///     var @this = Mongodbatlas.GetServiceAccountSecret.Invoke(new()
+    ///     var @this = Mongodbatlas.Index.GetServiceAccountSecret.Invoke(new()
     ///     {
     ///         OrgId = orgId,
     ///         ClientId = thisServiceAccount.ClientId,

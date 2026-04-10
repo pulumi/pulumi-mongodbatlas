@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+        ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Name = "clusterTest",
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     var testCloudBackupSchedule = new Mongodbatlas.Index.CloudBackupSchedule("test", new()
         ///     {
         ///         ProjectId = myCluster.ProjectId,
         ///         ClusterName = myCluster.Name,
@@ -104,18 +104,18 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSchedule.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSchedule.ProjectId,
         ///         ClusterName = testCloudBackupSchedule.ClusterName,
         ///     });
         /// 
-        ///     var backupPolicy = Mongodbatlas.GetBackupCompliancePolicy.Invoke(new()
+        ///     var backupPolicy = Mongodbatlas.Index.GetBackupCompliancePolicy.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSchedule.Id,
         ///     });
         /// 
-        ///     var backupPolicyBackupCompliancePolicy = new Mongodbatlas.BackupCompliancePolicy("backup_policy", new()
+        ///     var backupPolicyBackupCompliancePolicy = new Mongodbatlas.Index.BackupCompliancePolicy("backup_policy", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         AuthorizedEmail = "user@email.com",
@@ -195,7 +195,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+        ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Name = "clusterTest",
@@ -223,7 +223,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     var testCloudBackupSchedule = new Mongodbatlas.Index.CloudBackupSchedule("test", new()
         ///     {
         ///         ProjectId = myCluster.ProjectId,
         ///         ClusterName = myCluster.Name,
@@ -271,18 +271,18 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSchedule.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSchedule.ProjectId,
         ///         ClusterName = testCloudBackupSchedule.ClusterName,
         ///     });
         /// 
-        ///     var backupPolicy = Mongodbatlas.GetBackupCompliancePolicy.Invoke(new()
+        ///     var backupPolicy = Mongodbatlas.Index.GetBackupCompliancePolicy.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSchedule.Id,
         ///     });
         /// 
-        ///     var backupPolicyBackupCompliancePolicy = new Mongodbatlas.BackupCompliancePolicy("backup_policy", new()
+        ///     var backupPolicyBackupCompliancePolicy = new Mongodbatlas.Index.BackupCompliancePolicy("backup_policy", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         AuthorizedEmail = "user@email.com",
@@ -362,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+        ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Name = "clusterTest",
@@ -390,7 +390,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testCloudBackupSchedule = new Mongodbatlas.CloudBackupSchedule("test", new()
+        ///     var testCloudBackupSchedule = new Mongodbatlas.Index.CloudBackupSchedule("test", new()
         ///     {
         ///         ProjectId = myCluster.ProjectId,
         ///         ClusterName = myCluster.Name,
@@ -438,18 +438,18 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSchedule.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSchedule.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSchedule.ProjectId,
         ///         ClusterName = testCloudBackupSchedule.ClusterName,
         ///     });
         /// 
-        ///     var backupPolicy = Mongodbatlas.GetBackupCompliancePolicy.Invoke(new()
+        ///     var backupPolicy = Mongodbatlas.Index.GetBackupCompliancePolicy.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSchedule.Id,
         ///     });
         /// 
-        ///     var backupPolicyBackupCompliancePolicy = new Mongodbatlas.BackupCompliancePolicy("backup_policy", new()
+        ///     var backupPolicyBackupCompliancePolicy = new Mongodbatlas.Index.BackupCompliancePolicy("backup_policy", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         AuthorizedEmail = "user@email.com",

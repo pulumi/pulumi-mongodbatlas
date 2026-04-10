@@ -38,13 +38,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
+    ///     var setupOnly = new Mongodbatlas.Index.CloudProviderAccessSetup("setup_only", new()
     ///     {
     ///         ProjectId = "64259ee860c43338194b0f8e",
     ///         ProviderName = "AWS",
     ///     });
     /// 
-    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
+    ///     var authRole = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth_role", new()
     ///     {
     ///         ProjectId = setupOnly.ProjectId,
     ///         RoleId = setupOnly.RoleId,
@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
+    ///     var setupOnly = new Mongodbatlas.Index.CloudProviderAccessSetup("setup_only", new()
     ///     {
     ///         ProjectId = "64259ee860c43338194b0f8e",
     ///         ProviderName = "AZURE",
@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
+    ///     var authRole = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth_role", new()
     ///     {
     ///         ProjectId = setupOnly.ProjectId,
     ///         RoleId = setupOnly.RoleId,
@@ -107,13 +107,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
+    ///     var setupOnly = new Mongodbatlas.Index.CloudProviderAccessSetup("setup_only", new()
     ///     {
     ///         ProjectId = "64259ee860c43338194b0f8e",
     ///         ProviderName = "GCP",
     ///     });
     /// 
-    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
+    ///     var authRole = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth_role", new()
     ///     {
     ///         ProjectId = setupOnly.ProjectId,
     ///         RoleId = setupOnly.RoleId,

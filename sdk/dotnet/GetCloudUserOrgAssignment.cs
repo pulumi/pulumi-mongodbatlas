@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.CloudUserOrgAssignment("example", new()
+        ///     var example = new Mongodbatlas.Index.CloudUserOrgAssignment("example", new()
         ///     {
         ///         OrgId = orgId,
         ///         Username = userEmail,
@@ -43,13 +43,13 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var exampleUsername = Mongodbatlas.GetCloudUserOrgAssignment.Invoke(new()
+        ///     var exampleUsername = Mongodbatlas.Index.GetCloudUserOrgAssignment.Invoke(new()
         ///     {
         ///         OrgId = orgId,
         ///         Username = example.Username,
         ///     });
         /// 
-        ///     var exampleUserId = Mongodbatlas.GetCloudUserOrgAssignment.Invoke(new()
+        ///     var exampleUserId = Mongodbatlas.Index.GetCloudUserOrgAssignment.Invoke(new()
         ///     {
         ///         OrgId = orgId,
         ///         UserId = example.UserId,
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.CloudUserOrgAssignment("example", new()
+        ///     var example = new Mongodbatlas.Index.CloudUserOrgAssignment("example", new()
         ///     {
         ///         OrgId = orgId,
         ///         Username = userEmail,
@@ -93,13 +93,13 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var exampleUsername = Mongodbatlas.GetCloudUserOrgAssignment.Invoke(new()
+        ///     var exampleUsername = Mongodbatlas.Index.GetCloudUserOrgAssignment.Invoke(new()
         ///     {
         ///         OrgId = orgId,
         ///         Username = example.Username,
         ///     });
         /// 
-        ///     var exampleUserId = Mongodbatlas.GetCloudUserOrgAssignment.Invoke(new()
+        ///     var exampleUserId = Mongodbatlas.Index.GetCloudUserOrgAssignment.Invoke(new()
         ///     {
         ///         OrgId = orgId,
         ///         UserId = example.UserId,
@@ -130,7 +130,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.CloudUserOrgAssignment("example", new()
+        ///     var example = new Mongodbatlas.Index.CloudUserOrgAssignment("example", new()
         ///     {
         ///         OrgId = orgId,
         ///         Username = userEmail,
@@ -143,13 +143,13 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var exampleUsername = Mongodbatlas.GetCloudUserOrgAssignment.Invoke(new()
+        ///     var exampleUsername = Mongodbatlas.Index.GetCloudUserOrgAssignment.Invoke(new()
         ///     {
         ///         OrgId = orgId,
         ///         Username = example.Username,
         ///     });
         /// 
-        ///     var exampleUserId = Mongodbatlas.GetCloudUserOrgAssignment.Invoke(new()
+        ///     var exampleUserId = Mongodbatlas.Index.GetCloudUserOrgAssignment.Invoke(new()
         ///     {
         ///         OrgId = orgId,
         ///         UserId = example.UserId,

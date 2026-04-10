@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.FederatedQueryLimit("test", new()
+    ///     var test = new Mongodbatlas.Index.FederatedQueryLimit("test", new()
     ///     {
     ///         ProjectId = "64707f06c519c20c3a2b1b03",
     ///         TenantName = "FederatedDatabseInstance0",

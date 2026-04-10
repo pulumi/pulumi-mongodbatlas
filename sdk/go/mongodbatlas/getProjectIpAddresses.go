@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := mongodbatlas.LookupProjectIpAddresses(ctx, &mongodbatlas.LookupProjectIpAddressesArgs{
+//			test, err := mongodbatlas.GetProjectIpAddresses(ctx, &mongodbatlas.LookupProjectIpAddressesArgs{
 //				ProjectId: projectId,
 //			}, nil)
 //			if err != nil {

@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "MyCluster",
@@ -62,7 +62,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
+    ///     var test = new Mongodbatlas.Index.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas
     ///         RetentionInDays = 1,
     ///     });
     /// 
-    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.Index.CloudBackupSnapshotRestoreJob("test", new()
     ///     {
     ///         ProjectId = test.ProjectId,
     ///         ClusterName = test.ClusterName,
@@ -96,7 +96,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "MyCluster",
@@ -124,7 +124,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
+    ///     var test = new Mongodbatlas.Index.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -132,7 +132,7 @@ namespace Pulumi.Mongodbatlas
     ///         RetentionInDays = 1,
     ///     });
     /// 
-    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.Index.CloudBackupSnapshotRestoreJob("test", new()
     ///     {
     ///         ProjectId = test.ProjectId,
     ///         ClusterName = test.ClusterName,
@@ -155,7 +155,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "MyCluster",
@@ -183,7 +183,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
+    ///     var test = new Mongodbatlas.Index.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = clusterTest.ProjectId,
     ///         ClusterName = clusterTest.Name,
@@ -191,11 +191,11 @@ namespace Pulumi.Mongodbatlas
     ///         RetentionInDays = 1,
     ///     });
     /// 
-    ///     var testCloudBackupSnapshotRestoreJob = new List&lt;Mongodbatlas.CloudBackupSnapshotRestoreJob&gt;();
+    ///     var testCloudBackupSnapshotRestoreJob = new List&lt;Mongodbatlas.Index.CloudBackupSnapshotRestoreJob&gt;();
     ///     for (var rangeIndex = 0; rangeIndex &lt; (pointInTimeUtcSeconds == 0 ? 0 : 1); rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
-    ///         testCloudBackupSnapshotRestoreJob.Add(new Mongodbatlas.CloudBackupSnapshotRestoreJob($"test-{range.Value}", new()
+    ///         testCloudBackupSnapshotRestoreJob.Add(new Mongodbatlas.Index.CloudBackupSnapshotRestoreJob($"test-{range.Value}", new()
     ///         {
     ///             ProjectId = test.ProjectId,
     ///             ClusterName = test.ClusterName,

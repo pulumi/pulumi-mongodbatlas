@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var thisProjectServiceAccount = new Mongodbatlas.ProjectServiceAccount("this", new()
+    ///     var thisProjectServiceAccount = new Mongodbatlas.Index.ProjectServiceAccount("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Name = "example-project-service-account",
@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Add IP Access List Entry to Project Service Account using CIDR Block
-    ///     var cidr = new Mongodbatlas.ProjectServiceAccountAccessListEntry("cidr", new()
+    ///     var cidr = new Mongodbatlas.Index.ProjectServiceAccountAccessListEntry("cidr", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ClientId = thisProjectServiceAccount.ClientId,
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Add IP Access List Entry to Project Service Account using IP Address
-    ///     var ip = new Mongodbatlas.ProjectServiceAccountAccessListEntry("ip", new()
+    ///     var ip = new Mongodbatlas.Index.ProjectServiceAccountAccessListEntry("ip", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ClientId = thisProjectServiceAccount.ClientId,
@@ -57,7 +57,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Data source to read a single Access List entry for the Project Service Account
-    ///     var @this = Mongodbatlas.GetProjectServiceAccountAccessListEntry.Invoke(new()
+    ///     var @this = Mongodbatlas.Index.GetProjectServiceAccountAccessListEntry.Invoke(new()
     ///     {
     ///         ProjectId = cidr.ProjectId,
     ///         ClientId = cidr.ClientId,
@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Data source to read all Access List entries for the Project Service Account
-    ///     var thisGetProjectServiceAccountAccessListEntries = Mongodbatlas.GetProjectServiceAccountAccessListEntries.Invoke(new()
+    ///     var thisGetProjectServiceAccountAccessListEntries = Mongodbatlas.Index.GetProjectServiceAccountAccessListEntries.Invoke(new()
     ///     {
     ///         ProjectId = thisProjectServiceAccount.ProjectId,
     ///         ClientId = thisProjectServiceAccount.ClientId,

@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *     cloud: "AWS",
  *     region: awsRegion,
  *     connectionTypes: ["PRIVATELINK"],
- *     zones: std.index.keys({
+ *     zones: std.keys({
  *         input: subnetsToPrivatelink,
  *     }).result,
  *     environment: [{

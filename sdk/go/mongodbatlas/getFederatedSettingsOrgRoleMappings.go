@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			_ = orgGroupRoleMappingImport.ID().ApplyT(func(id string) (mongodbatlas.GetFederatedSettingsOrgRoleMappingsResult, error) {
-//				return mongodbatlas.GetFederatedSettingsOrgRoleMappingsResult(interface{}(mongodbatlas.LookupFederatedSettingsOrgRoleMappings(ctx, &mongodbatlas.LookupFederatedSettingsOrgRoleMappingsArgs{
+//				return mongodbatlas.GetFederatedSettingsOrgRoleMappingsResult(interface{}(mongodbatlas.GetFederatedSettingsOrgRoleMappings(ctx, &mongodbatlas.LookupFederatedSettingsOrgRoleMappingsArgs{
 //					FederationSettingsId: id,
 //					OrgId:                "627a9683e7f7f7ff7fe306f14",
 //					PageNum:              pulumi.IntRef(pulumi.IntRef(int(1))),

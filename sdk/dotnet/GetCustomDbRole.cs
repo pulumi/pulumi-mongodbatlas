@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
+        ///     var testRole = new Mongodbatlas.Index.CustomDbRole("test_role", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         RoleName = "myCustomRole",
@@ -57,7 +57,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDbRole.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDbRole.Invoke(new()
         ///     {
         ///         ProjectId = testRole.ProjectId,
         ///         RoleName = testRole.RoleName,
@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
+        ///     var testRole = new Mongodbatlas.Index.CustomDbRole("test_role", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         RoleName = "myCustomRole",
@@ -115,7 +115,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDbRole.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDbRole.Invoke(new()
         ///     {
         ///         ProjectId = testRole.ProjectId,
         ///         RoleName = testRole.RoleName,
@@ -140,7 +140,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testRole = new Mongodbatlas.CustomDbRole("test_role", new()
+        ///     var testRole = new Mongodbatlas.Index.CustomDbRole("test_role", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         RoleName = "myCustomRole",
@@ -173,7 +173,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDbRole.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDbRole.Invoke(new()
         ///     {
         ///         ProjectId = testRole.ProjectId,
         ///         RoleName = testRole.RoleName,

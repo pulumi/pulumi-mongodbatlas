@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupThirdPartyIntegrationOutput(ctx, mongodbatlas.GetThirdPartyIntegrationOutputArgs{
+//			_ = mongodbatlas.GetThirdPartyIntegrationOutput(ctx, mongodbatlas.GetThirdPartyIntegrationOutputArgs{
 //				ProjectId: testDatadog.ProjectId,
 //				Type:      pulumi.String("DATADOG"),
 //			}, nil)

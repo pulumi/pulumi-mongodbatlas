@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.MongodbEmployeeAccessGrant("example", new()
+        ///     var example = new Mongodbatlas.Index.MongodbEmployeeAccessGrant("example", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ClusterName = clusterName,
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         ///         ExpirationTime = "2025-01-01T12:00:00Z",
         ///     });
         /// 
-        ///     var dsExample = Mongodbatlas.GetMongodbEmployeeAccessGrant.Invoke(new()
+        ///     var dsExample = Mongodbatlas.Index.GetMongodbEmployeeAccessGrant.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         ClusterName = clusterName,
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.MongodbEmployeeAccessGrant("example", new()
+        ///     var example = new Mongodbatlas.Index.MongodbEmployeeAccessGrant("example", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ClusterName = clusterName,
@@ -72,7 +72,7 @@ namespace Pulumi.Mongodbatlas
         ///         ExpirationTime = "2025-01-01T12:00:00Z",
         ///     });
         /// 
-        ///     var dsExample = Mongodbatlas.GetMongodbEmployeeAccessGrant.Invoke(new()
+        ///     var dsExample = Mongodbatlas.Index.GetMongodbEmployeeAccessGrant.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         ClusterName = clusterName,
@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = new Mongodbatlas.MongodbEmployeeAccessGrant("example", new()
+        ///     var example = new Mongodbatlas.Index.MongodbEmployeeAccessGrant("example", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ClusterName = clusterName,
@@ -111,7 +111,7 @@ namespace Pulumi.Mongodbatlas
         ///         ExpirationTime = "2025-01-01T12:00:00Z",
         ///     });
         /// 
-        ///     var dsExample = Mongodbatlas.GetMongodbEmployeeAccessGrant.Invoke(new()
+        ///     var dsExample = Mongodbatlas.Index.GetMongodbEmployeeAccessGrant.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         ClusterName = clusterName,

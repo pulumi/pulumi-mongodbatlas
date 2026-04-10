@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var thisServiceAccount = new Mongodbatlas.ServiceAccount("this", new()
+    ///     var thisServiceAccount = new Mongodbatlas.Index.ServiceAccount("this", new()
     ///     {
     ///         OrgId = orgId,
     ///         Name = "example-service-account",
@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Add IP Access List Entry to Service Account using CIDR Block
-    ///     var cidr = new Mongodbatlas.ServiceAccountAccessListEntry("cidr", new()
+    ///     var cidr = new Mongodbatlas.Index.ServiceAccountAccessListEntry("cidr", new()
     ///     {
     ///         OrgId = orgId,
     ///         ClientId = thisServiceAccount.ClientId,
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Add IP Access List Entry to Service Account using IP Address
-    ///     var ip = new Mongodbatlas.ServiceAccountAccessListEntry("ip", new()
+    ///     var ip = new Mongodbatlas.Index.ServiceAccountAccessListEntry("ip", new()
     ///     {
     ///         OrgId = orgId,
     ///         ClientId = thisServiceAccount.ClientId,
@@ -57,7 +57,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Data source to read a single Access List entry for the Service Account
-    ///     var @this = Mongodbatlas.GetServiceAccountAccessListEntry.Invoke(new()
+    ///     var @this = Mongodbatlas.Index.GetServiceAccountAccessListEntry.Invoke(new()
     ///     {
     ///         OrgId = cidr.OrgId,
     ///         ClientId = cidr.ClientId,
@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Data source to read all Access List entries for the Service Account
-    ///     var thisGetServiceAccountAccessListEntries = Mongodbatlas.GetServiceAccountAccessListEntries.Invoke(new()
+    ///     var thisGetServiceAccountAccessListEntries = Mongodbatlas.Index.GetServiceAccountAccessListEntries.Invoke(new()
     ///     {
     ///         OrgId = thisServiceAccount.OrgId,
     ///         ClientId = thisServiceAccount.ClientId,

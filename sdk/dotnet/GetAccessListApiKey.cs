@@ -31,14 +31,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
+        ///     var testAccessListApiKey = new Mongodbatlas.Index.AccessListApiKey("test", new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///         IpAddress = "2.3.4.5",
         ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAccessListApiKey.Invoke(new()
         ///     {
         ///         OrgId = testAccessListApiKey.OrgId,
         ///         IpAddress = testAccessListApiKey.IpAddress,
@@ -71,14 +71,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
+        ///     var testAccessListApiKey = new Mongodbatlas.Index.AccessListApiKey("test", new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///         IpAddress = "2.3.4.5",
         ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAccessListApiKey.Invoke(new()
         ///     {
         ///         OrgId = testAccessListApiKey.OrgId,
         ///         IpAddress = testAccessListApiKey.IpAddress,
@@ -111,14 +111,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAccessListApiKey = new Mongodbatlas.AccessListApiKey("test", new()
+        ///     var testAccessListApiKey = new Mongodbatlas.Index.AccessListApiKey("test", new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///         IpAddress = "2.3.4.5",
         ///         ApiKeyId = "a29120e123cd",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAccessListApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAccessListApiKey.Invoke(new()
         ///     {
         ///         OrgId = testAccessListApiKey.OrgId,
         ///         IpAddress = testAccessListApiKey.IpAddress,

@@ -267,7 +267,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         atlas_project = mongodbatlas.Project("atlas-project",
             org_id=atlas_org_id,
             name=atlas_project_name)
-        test = aws.index.VpcEndpoint("test",
+        test = aws.VpcEndpoint("test",
             vpc_id=vpc-7fc0a543,
             service_name=<SERVICE-NAME>,
             vpc_endpoint_type=Interface,
@@ -328,7 +328,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         atlas_project = mongodbatlas.Project("atlas-project",
             org_id=atlas_org_id,
             name=atlas_project_name)
-        test = aws.index.VpcEndpoint("test",
+        test = aws.VpcEndpoint("test",
             vpc_id=vpc-7fc0a543,
             service_name=<SERVICE-NAME>,
             vpc_endpoint_type=Interface,

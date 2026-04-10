@@ -53,7 +53,7 @@ import (
 //			this := pulumi.All(thisProjectServiceAccount.ClientId, thisProjectServiceAccountSecret.SecretId).ApplyT(func(_args []interface{}) (mongodbatlas.GetProjectServiceAccountSecretResult, error) {
 //				clientId := _args[0].(string)
 //				secretId := _args[1].(string)
-//				return mongodbatlas.GetProjectServiceAccountSecretResult(interface{}(mongodbatlas.LookupProjectServiceAccountSecret(ctx, &mongodbatlas.LookupProjectServiceAccountSecretArgs{
+//				return mongodbatlas.GetProjectServiceAccountSecretResult(interface{}(mongodbatlas.GetProjectServiceAccountSecret(ctx, &mongodbatlas.LookupProjectServiceAccountSecretArgs{
 //					ProjectId: projectId,
 //					ClientId:  clientId,
 //					SecretId:  secretId,

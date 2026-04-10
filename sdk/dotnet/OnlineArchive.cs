@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.OnlineArchive("test", new()
+    ///     var test = new Mongodbatlas.Index.OnlineArchive("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ClusterName = clusterName,
@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.OnlineArchive("test", new()
+    ///     var test = new Mongodbatlas.Index.OnlineArchive("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ClusterName = clusterName,
@@ -121,7 +121,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.OnlineArchive("test", new()
+    ///     var test = new Mongodbatlas.Index.OnlineArchive("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ClusterName = clusterName,

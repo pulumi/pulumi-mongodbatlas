@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupCloudBackupSnapshotExportBuckets(ctx, &mongodbatlas.LookupCloudBackupSnapshotExportBucketsArgs{
+//			_, err = mongodbatlas.GetCloudBackupSnapshotExportBuckets(ctx, &mongodbatlas.LookupCloudBackupSnapshotExportBucketsArgs{
 //				ProjectId: "{PROJECT_ID}",
 //			}, nil)
 //			if err != nil {

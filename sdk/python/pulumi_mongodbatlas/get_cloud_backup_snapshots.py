@@ -122,7 +122,7 @@ def get_cloud_backup_snapshots(cluster_name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshots = mongodbatlas.index.CloudBackupSnapshots("test",
+    test_cloud_backup_snapshots = mongodbatlas.CloudBackupSnapshots("test",
         project_id=5d0f1f73cf09a29120e173cf,
         cluster_name=MyClusterTest,
         description=SomeDescription,
@@ -169,7 +169,7 @@ def get_cloud_backup_snapshots_output(cluster_name: Optional[pulumi.Input[_built
     import pulumi
     import pulumi_mongodbatlas as mongodbatlas
 
-    test_cloud_backup_snapshots = mongodbatlas.index.CloudBackupSnapshots("test",
+    test_cloud_backup_snapshots = mongodbatlas.CloudBackupSnapshots("test",
         project_id=5d0f1f73cf09a29120e173cf,
         cluster_name=MyClusterTest,
         description=SomeDescription,

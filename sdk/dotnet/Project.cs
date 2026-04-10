@@ -24,9 +24,9 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+    ///     var test = Mongodbatlas.Index.GetRolesOrgId.Invoke();
     /// 
-    ///     var testProject = new Mongodbatlas.Project("test", new()
+    ///     var testProject = new Mongodbatlas.Index.Project("test", new()
     ///     {
     ///         Name = "project-name",
     ///         OrgId = test.Apply(getRolesOrgIdResult =&gt; getRolesOrgIdResult.OrgId),

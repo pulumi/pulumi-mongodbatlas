@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @this = Mongodbatlas.GetPrivateLinkEndpointService.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetPrivateLinkEndpointService.Invoke(new()
         ///     {
         ///         ProjectId = thisMongodbatlasPrivatelinkEndpointService.ProjectId,
         ///         PrivateLinkId = thisMongodbatlasPrivatelinkEndpointService.PrivateLinkId,
@@ -57,7 +57,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @this = Mongodbatlas.GetPrivateLinkEndpointService.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetPrivateLinkEndpointService.Invoke(new()
         ///     {
         ///         ProjectId = thisMongodbatlasPrivatelinkEndpointService.ProjectId,
         ///         PrivateLinkId = thisMongodbatlasPrivatelinkEndpointService.PrivateLinkId,
@@ -90,7 +90,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @this = Mongodbatlas.GetPrivateLinkEndpointService.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetPrivateLinkEndpointService.Invoke(new()
         ///     {
         ///         ProjectId = thisMongodbatlasPrivatelinkEndpointService.ProjectId,
         ///         PrivateLinkId = thisMongodbatlasPrivatelinkEndpointService.PrivateLinkId,

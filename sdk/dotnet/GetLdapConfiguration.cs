@@ -25,13 +25,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "NAME OF THE PROJECT",
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+        ///     var testLdapConfiguration = new Mongodbatlas.Index.LdapConfiguration("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         AuthenticationEnabled = true,
@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
         ///         BindPassword = "PASSWORD",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetLdapConfiguration.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetLdapConfiguration.Invoke(new()
         ///     {
         ///         ProjectId = testLdapConfiguration.Id,
         ///     });
@@ -66,13 +66,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "NAME OF THE PROJECT",
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+        ///     var testLdapConfiguration = new Mongodbatlas.Index.LdapConfiguration("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         AuthenticationEnabled = true,
@@ -82,7 +82,7 @@ namespace Pulumi.Mongodbatlas
         ///         BindPassword = "PASSWORD",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetLdapConfiguration.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetLdapConfiguration.Invoke(new()
         ///     {
         ///         ProjectId = testLdapConfiguration.Id,
         ///     });
@@ -107,13 +107,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "NAME OF THE PROJECT",
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+        ///     var testLdapConfiguration = new Mongodbatlas.Index.LdapConfiguration("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         AuthenticationEnabled = true,
@@ -123,7 +123,7 @@ namespace Pulumi.Mongodbatlas
         ///         BindPassword = "PASSWORD",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetLdapConfiguration.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetLdapConfiguration.Invoke(new()
         ///     {
         ///         ProjectId = testLdapConfiguration.Id,
         ///     });

@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
+    ///     var identityProvider = new Mongodbatlas.Index.FederatedSettingsIdentityProvider("identity_provider", new()
     ///     {
     ///         FederationSettingsId = "627a9687f7f7f7f774de306f14",
     ///         Name = "mongodb_federation_test",
@@ -55,7 +55,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var oidc = new Mongodbatlas.FederatedSettingsIdentityProvider("oidc", new()
+    ///     var oidc = new Mongodbatlas.Index.FederatedSettingsIdentityProvider("oidc", new()
     ///     {
     ///         FederationSettingsId = @this.Id,
     ///         Audience = tokenAudience,

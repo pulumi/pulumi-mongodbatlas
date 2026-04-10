@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as _private from "@pulumi/private";
  *
  * const testEndpointRegionalMode = new _private.index.EndpointRegionalMode("test", {projectId: "<PROJECT-ID>"});
- * const test = _private.index.EndpointRegionalMode({
+ * const test = _private.EndpointRegionalMode({
  *     projectId: testEndpointRegionalMode.projectId,
  * });
  * ```
@@ -62,7 +62,7 @@ export interface GetPrivateEndpointRegionalModeResult {
  * import * as _private from "@pulumi/private";
  *
  * const testEndpointRegionalMode = new _private.index.EndpointRegionalMode("test", {projectId: "<PROJECT-ID>"});
- * const test = _private.index.EndpointRegionalMode({
+ * const test = _private.EndpointRegionalMode({
  *     projectId: testEndpointRegionalMode.projectId,
  * });
  * ```

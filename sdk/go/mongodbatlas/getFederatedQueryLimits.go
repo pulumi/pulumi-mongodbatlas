@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedQueryLimits(ctx, &mongodbatlas.LookupFederatedQueryLimitsArgs{
+//			_, err := mongodbatlas.GetFederatedQueryLimits(ctx, &mongodbatlas.LookupFederatedQueryLimitsArgs{
 //				ProjectId:  "PROJECT_ID",
 //				TenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
 //			}, nil)

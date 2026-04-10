@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
+    ///     var test = new Mongodbatlas.Index.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
+    ///     var test = new Mongodbatlas.Index.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -76,7 +76,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
+    ///     var test = new Mongodbatlas.Index.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         AtlasCidrBlock = "10.8.0.0/21",

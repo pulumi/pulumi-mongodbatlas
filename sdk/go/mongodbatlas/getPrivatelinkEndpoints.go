@@ -37,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupPrivatelinkEndpointsOutput(ctx, mongodbatlas.GetPrivatelinkEndpointsOutputArgs{
+//			_ = mongodbatlas.GetPrivatelinkEndpointsOutput(ctx, mongodbatlas.GetPrivatelinkEndpointsOutputArgs{
 //				ProjectId:    thisPrivateLinkEndpoint.ProjectId,
 //				ProviderName: pulumi.String("AWS"),
 //			}, nil)

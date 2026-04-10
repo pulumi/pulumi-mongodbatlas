@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudBackupSnapshotOutput(ctx, mongodbatlas.GetCloudBackupSnapshotOutputArgs{
+//			_ = mongodbatlas.GetCloudBackupSnapshotOutput(ctx, mongodbatlas.GetCloudBackupSnapshotOutputArgs{
 //				SnapshotId:  pulumi.String("5d1285acd5ec13b6c2d1726a"),
 //				ProjectId:   testCloudBackupSnapshot.ProjectId,
 //				ClusterName: testCloudBackupSnapshot.ClusterName,

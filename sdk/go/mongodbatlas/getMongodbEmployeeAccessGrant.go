@@ -37,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			dsExample, err := mongodbatlas.LookupMongodbEmployeeAccessGrant(ctx, &mongodbatlas.LookupMongodbEmployeeAccessGrantArgs{
+//			dsExample, err := mongodbatlas.GetMongodbEmployeeAccessGrant(ctx, &mongodbatlas.LookupMongodbEmployeeAccessGrantArgs{
 //				ProjectId:   projectId,
 //				ClusterName: clusterName,
 //			}, nil)

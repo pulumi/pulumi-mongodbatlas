@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "MyCluster",
@@ -53,7 +53,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.CloudBackupSnapshot("test", new()
+    ///     var test = new Mongodbatlas.Index.CloudBackupSnapshot("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
     ///         RetentionInDays = 1,
     ///     });
     /// 
-    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+    ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.Index.CloudBackupSnapshotRestoreJob("test", new()
     ///     {
     ///         ProjectId = test.ProjectId,
     ///         ClusterName = test.ClusterName,

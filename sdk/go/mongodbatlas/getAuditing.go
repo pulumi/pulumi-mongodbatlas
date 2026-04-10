@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAuditingOutput(ctx, mongodbatlas.GetAuditingOutputArgs{
+//			_ = mongodbatlas.GetAuditingOutput(ctx, mongodbatlas.GetAuditingOutputArgs{
 //				ProjectId: testAuditing.ID(),
 //			}, nil)
 //			return nil

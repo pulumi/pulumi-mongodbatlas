@@ -45,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupFederatedSettingsOrgConfigs(ctx, &mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{
+//			_, err = mongodbatlas.GetFederatedSettingsOrgConfigs(ctx, &mongodbatlas.LookupFederatedSettingsOrgConfigsArgs{
 //				FederationSettingsId: orgConnectionMongodbatlasFederatedSettingsOrgConfig.FederationSettingsId,
 //			}, nil)
 //			if err != nil {

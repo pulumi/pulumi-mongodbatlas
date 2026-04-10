@@ -84,20 +84,20 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
     import pulumi_mongodbatlas as mongodbatlas
     import pulumi_std as std
 
-    staging = confluent.index.Environment("staging", display_name=Staging)
-    private_link = confluent.index.Network("private_link",
+    staging = confluent.Environment("staging", display_name=Staging)
+    private_link = confluent.Network("private_link",
         display_name=terraform-test-private-link-network-manual,
         cloud=AWS,
         region=aws_region,
         connection_types=[PRIVATELINK],
-        zones=std.index.keys(input=subnets_to_privatelink).result,
+        zones=std.keys(input=subnets_to_privatelink).result,
         environment=[{
             id: staging.id,
         }],
         dns_config=[{
             resolution: PRIVATE,
         }])
-    aws = confluent.index.PrivateLinkAccess("aws",
+    aws = confluent.PrivateLinkAccess("aws",
         display_name=example-private-link-access,
         aws=[{
             account: aws_account_id,
@@ -108,7 +108,7 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
         network=[{
             id: private_link.id,
         }])
-    dedicated = confluent.index.KafkaCluster("dedicated",
+    dedicated = confluent.KafkaCluster("dedicated",
         display_name=example-dedicated-cluster,
         availability=MULTI_ZONE,
         cloud=private_link.cloud,
@@ -144,15 +144,15 @@ def get_stream_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
     import pulumi_mongodbatlas as mongodbatlas
 
     # S3 bucket for stream data
-    stream_bucket = aws.index.S3Bucket("stream_bucket",
+    stream_bucket = aws.S3Bucket("stream_bucket",
         bucket=s3_bucket_name,
         force_destroy=True)
-    stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
+    stream_bucket_versioning = aws.S3BucketVersioning("stream_bucket_versioning",
         bucket=stream_bucket.id,
         versioning_configuration=[{
             status: Enabled,
         }])
-    stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
+    stream_bucket_encryption = aws.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
         bucket=stream_bucket.id,
         rule=[{
             applyServerSideEncryptionByDefault: [{
@@ -217,20 +217,20 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_b
     import pulumi_mongodbatlas as mongodbatlas
     import pulumi_std as std
 
-    staging = confluent.index.Environment("staging", display_name=Staging)
-    private_link = confluent.index.Network("private_link",
+    staging = confluent.Environment("staging", display_name=Staging)
+    private_link = confluent.Network("private_link",
         display_name=terraform-test-private-link-network-manual,
         cloud=AWS,
         region=aws_region,
         connection_types=[PRIVATELINK],
-        zones=std.index.keys(input=subnets_to_privatelink).result,
+        zones=std.keys(input=subnets_to_privatelink).result,
         environment=[{
             id: staging.id,
         }],
         dns_config=[{
             resolution: PRIVATE,
         }])
-    aws = confluent.index.PrivateLinkAccess("aws",
+    aws = confluent.PrivateLinkAccess("aws",
         display_name=example-private-link-access,
         aws=[{
             account: aws_account_id,
@@ -241,7 +241,7 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_b
         network=[{
             id: private_link.id,
         }])
-    dedicated = confluent.index.KafkaCluster("dedicated",
+    dedicated = confluent.KafkaCluster("dedicated",
         display_name=example-dedicated-cluster,
         availability=MULTI_ZONE,
         cloud=private_link.cloud,
@@ -277,15 +277,15 @@ def get_stream_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_b
     import pulumi_mongodbatlas as mongodbatlas
 
     # S3 bucket for stream data
-    stream_bucket = aws.index.S3Bucket("stream_bucket",
+    stream_bucket = aws.S3Bucket("stream_bucket",
         bucket=s3_bucket_name,
         force_destroy=True)
-    stream_bucket_versioning = aws.index.S3BucketVersioning("stream_bucket_versioning",
+    stream_bucket_versioning = aws.S3BucketVersioning("stream_bucket_versioning",
         bucket=stream_bucket.id,
         versioning_configuration=[{
             status: Enabled,
         }])
-    stream_bucket_encryption = aws.index.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
+    stream_bucket_encryption = aws.S3BucketServerSideEncryptionConfiguration("stream_bucket_encryption",
         bucket=stream_bucket.id,
         rule=[{
             applyServerSideEncryptionByDefault: [{

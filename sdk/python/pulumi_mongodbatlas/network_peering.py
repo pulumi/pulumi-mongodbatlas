@@ -784,7 +784,7 @@ class NetworkPeering(pulumi.CustomResource):
             aws_account_id="abc123abc123")
         # the following assumes an AWS provider is configured
         # Accept the peering connection request
-        peer = aws.index.VpcPeeringConnectionAccepter("peer",
+        peer = aws.VpcPeeringConnectionAccepter("peer",
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
         ```
@@ -810,9 +810,9 @@ class NetworkPeering(pulumi.CustomResource):
             gcp_project_id=gc_p__projec_t__id,
             network_name="default")
         # the following assumes a GCP provider is configured
-        default = google.index.compute_network(name="default")
+        default = google.compute_network(name="default")
         # Create the GCP peer
-        peering = google.index.ComputeNetworkPeering("peering",
+        peering = google.ComputeNetworkPeering("peering",
             name=peering-gcp-terraform-test,
             network=default.self_link,
             peer_network=fhttps://www.googleapis.com/compute/v1/projects/{test_network_peering.atlas_gcp_project_id}/global/networks/{test_network_peering.atlas_vpc_name})
@@ -976,7 +976,7 @@ class NetworkPeering(pulumi.CustomResource):
             aws_account_id="abc123abc123")
         # the following assumes an AWS provider is configured
         # Accept the peering connection request
-        peer = aws.index.VpcPeeringConnectionAccepter("peer",
+        peer = aws.VpcPeeringConnectionAccepter("peer",
             vpc_peering_connection_id=test_network_peering.connection_id,
             auto_accept=True)
         ```
@@ -1002,9 +1002,9 @@ class NetworkPeering(pulumi.CustomResource):
             gcp_project_id=gc_p__projec_t__id,
             network_name="default")
         # the following assumes a GCP provider is configured
-        default = google.index.compute_network(name="default")
+        default = google.compute_network(name="default")
         # Create the GCP peer
-        peering = google.index.ComputeNetworkPeering("peering",
+        peering = google.ComputeNetworkPeering("peering",
             name=peering-gcp-terraform-test,
             network=default.self_link,
             peer_network=fhttps://www.googleapis.com/compute/v1/projects/{test_network_peering.atlas_gcp_project_id}/global/networks/{test_network_peering.atlas_vpc_name})

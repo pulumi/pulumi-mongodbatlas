@@ -120,7 +120,7 @@ import (
 //				return err
 //			}
 //			// Read the effective (actual) values after Atlas scales
-//			this := mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//			this := mongodbatlas.GetAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
 //				ProjectId:          thisAdvancedCluster.ProjectId,
 //				Name:               thisAdvancedCluster.Name,
 //				UseEffectiveFields: pulumi.Bool(true),

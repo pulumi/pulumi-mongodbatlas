@@ -61,7 +61,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupClusterOutput(ctx, mongodbatlas.GetClusterOutputArgs{
+//			_ = mongodbatlas.GetClusterOutput(ctx, mongodbatlas.GetClusterOutputArgs{
 //				ProjectId: testCluster.ProjectId,
 //				Name:      testCluster.Name,
 //			}, nil)

@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+        ///     var testNetworkPeering = new Mongodbatlas.Index.NetworkPeering("test", new()
         ///     {
         ///         AccepterRegionName = "us-east-1",
         ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
         ///         AwsAccountId = "abc123abc123",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetNetworkPeering.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetNetworkPeering.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkPeering.ProjectId,
         ///         PeeringId = testNetworkPeering.Id,
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+        ///     var testNetworkPeering = new Mongodbatlas.Index.NetworkPeering("test", new()
         ///     {
         ///         AccepterRegionName = "us-east-1",
         ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
         ///         AwsAccountId = "abc123abc123",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetNetworkPeering.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetNetworkPeering.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkPeering.ProjectId,
         ///         PeeringId = testNetworkPeering.Id,
@@ -102,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
+        ///     var testNetworkPeering = new Mongodbatlas.Index.NetworkPeering("test", new()
         ///     {
         ///         AccepterRegionName = "us-east-1",
         ///         ProjectId = "&lt;YOUR-PROJEC-ID&gt;",
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         ///         AwsAccountId = "abc123abc123",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetNetworkPeering.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetNetworkPeering.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkPeering.ProjectId,
         ///         PeeringId = testNetworkPeering.Id,

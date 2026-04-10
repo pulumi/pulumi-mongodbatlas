@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
+//			_, err := mongodbatlas.GetFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
 //				ProjectId: "<PROJECT_ID>",
 //				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
 //			}, nil)
@@ -58,7 +58,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
+//			_, err := mongodbatlas.GetFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
 //				ProjectId: "<PROJECT_ID>",
 //				Name:      "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
 //				CloudProviderConfigs: []mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfig{
@@ -94,7 +94,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
+//			_, err := mongodbatlas.GetFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
 //				ProjectId: "<PROJECT_ID>",
 //				Name:      "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
 //				CloudProviderConfigs: []mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfig{

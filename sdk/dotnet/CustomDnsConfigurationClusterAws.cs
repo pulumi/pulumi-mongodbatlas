@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.CustomDnsConfigurationClusterAws("test", new()
+    ///     var test = new Mongodbatlas.Index.CustomDnsConfigurationClusterAws("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Enabled = true,

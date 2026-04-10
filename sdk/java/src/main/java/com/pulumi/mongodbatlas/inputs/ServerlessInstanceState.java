@@ -208,6 +208,21 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
     }
 
     /**
+     * Unique 24-hexadecimal digit string that identifies the serverless instance.
+     * 
+     */
+    @Import(name="serverlessInstanceId")
+    private @Nullable Output<String> serverlessInstanceId;
+
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the serverless instance.
+     * 
+     */
+    public Optional<Output<String>> serverlessInstanceId() {
+        return Optional.ofNullable(this.serverlessInstanceId);
+    }
+
+    /**
      * Stage of deployment of this serverless instance when the resource made its request.
      * 
      */
@@ -267,6 +282,7 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
         this.providerSettingsBackingProviderName = $.providerSettingsBackingProviderName;
         this.providerSettingsProviderName = $.providerSettingsProviderName;
         this.providerSettingsRegionName = $.providerSettingsRegionName;
+        this.serverlessInstanceId = $.serverlessInstanceId;
         this.stateName = $.stateName;
         this.tags = $.tags;
         this.terminationProtectionEnabled = $.terminationProtectionEnabled;
@@ -558,6 +574,27 @@ public final class ServerlessInstanceState extends com.pulumi.resources.Resource
          */
         public Builder providerSettingsRegionName(String providerSettingsRegionName) {
             return providerSettingsRegionName(Output.of(providerSettingsRegionName));
+        }
+
+        /**
+         * @param serverlessInstanceId Unique 24-hexadecimal digit string that identifies the serverless instance.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serverlessInstanceId(@Nullable Output<String> serverlessInstanceId) {
+            $.serverlessInstanceId = serverlessInstanceId;
+            return this;
+        }
+
+        /**
+         * @param serverlessInstanceId Unique 24-hexadecimal digit string that identifies the serverless instance.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serverlessInstanceId(String serverlessInstanceId) {
+            return serverlessInstanceId(Output.of(serverlessInstanceId));
         }
 
         /**

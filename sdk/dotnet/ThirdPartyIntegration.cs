@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+    ///     var testDatadog = new Mongodbatlas.Index.ThirdPartyIntegration("test_datadog", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Type = "DATADOG",

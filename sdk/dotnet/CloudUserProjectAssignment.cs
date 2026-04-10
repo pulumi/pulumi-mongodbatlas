@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Mongodbatlas.CloudUserProjectAssignment("example", new()
+    ///     var example = new Mongodbatlas.Index.CloudUserProjectAssignment("example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Username = userEmail,
@@ -44,13 +44,13 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var exampleUsername = Mongodbatlas.GetCloudUserProjectAssignment.Invoke(new()
+    ///     var exampleUsername = Mongodbatlas.Index.GetCloudUserProjectAssignment.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
     ///         Username = example.Username,
     ///     });
     /// 
-    ///     var exampleUserId = Mongodbatlas.GetCloudUserProjectAssignment.Invoke(new()
+    ///     var exampleUserId = Mongodbatlas.Index.GetCloudUserProjectAssignment.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
     ///         UserId = example.UserId,

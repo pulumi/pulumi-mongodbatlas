@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupNetworkPeeringsOutput(ctx, mongodbatlas.GetNetworkPeeringsOutputArgs{
+//			_ = mongodbatlas.GetNetworkPeeringsOutput(ctx, mongodbatlas.GetNetworkPeeringsOutputArgs{
 //				ProjectId: testNetworkPeering.ProjectId,
 //			}, nil)
 //			return nil

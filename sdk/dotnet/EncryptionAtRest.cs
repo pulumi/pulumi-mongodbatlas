@@ -48,13 +48,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var setupOnly = new Mongodbatlas.CloudProviderAccessSetup("setup_only", new()
+    ///     var setupOnly = new Mongodbatlas.Index.CloudProviderAccessSetup("setup_only", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         ProviderName = "AWS",
     ///     });
     /// 
-    ///     var authRole = new Mongodbatlas.CloudProviderAccessAuthorization("auth_role", new()
+    ///     var authRole = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth_role", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         RoleId = setupOnly.RoleId,
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var testEncryptionAtRest = new Mongodbatlas.EncryptionAtRest("test", new()
+    ///     var testEncryptionAtRest = new Mongodbatlas.Index.EncryptionAtRest("test", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         AwsKmsConfig = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsConfigArgs
@@ -77,7 +77,7 @@ namespace Pulumi.Mongodbatlas
     ///         EnabledForSearchNodes = true,
     ///     });
     /// 
-    ///     var cluster = new Mongodbatlas.AdvancedCluster("cluster", new()
+    ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
     ///     {
     ///         ProjectId = testEncryptionAtRest.ProjectId,
     ///         Name = "MyCluster",
@@ -106,7 +106,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = Mongodbatlas.GetEncryptionAtRest.Invoke(new()
+    ///     var test = Mongodbatlas.Index.GetEncryptionAtRest.Invoke(new()
     ///     {
     ///         ProjectId = testEncryptionAtRest.ProjectId,
     ///     });
@@ -129,7 +129,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var testEncryptionAtRest = new Mongodbatlas.EncryptionAtRest("test", new()
+    ///     var testEncryptionAtRest = new Mongodbatlas.Index.EncryptionAtRest("test", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         AzureKeyVaultConfig = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultConfigArgs
@@ -144,7 +144,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = Mongodbatlas.GetEncryptionAtRest.Invoke(new()
+    ///     var test = Mongodbatlas.Index.GetEncryptionAtRest.Invoke(new()
     ///     {
     ///         ProjectId = testEncryptionAtRest.ProjectId,
     ///     });
@@ -174,19 +174,19 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.CloudProviderAccessSetup("this", new()
+    ///     var @this = new Mongodbatlas.Index.CloudProviderAccessSetup("this", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         ProviderName = "GCP",
     ///     });
     /// 
-    ///     var thisCloudProviderAccessAuthorization = new Mongodbatlas.CloudProviderAccessAuthorization("this", new()
+    ///     var thisCloudProviderAccessAuthorization = new Mongodbatlas.Index.CloudProviderAccessAuthorization("this", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         RoleId = @this.RoleId,
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.EncryptionAtRest("test", new()
+    ///     var test = new Mongodbatlas.Index.EncryptionAtRest("test", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         GoogleCloudKmsConfig = new Mongodbatlas.Inputs.EncryptionAtRestGoogleCloudKmsConfigArgs

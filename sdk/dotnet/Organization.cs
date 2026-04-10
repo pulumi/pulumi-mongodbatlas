@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.Organization("this", new()
+    ///     var @this = new Mongodbatlas.Index.Organization("this", new()
     ///     {
     ///         OrgOwnerId = "&lt;ORG_OWNER_ID&gt;",
     ///         Name = "testCreateORG",

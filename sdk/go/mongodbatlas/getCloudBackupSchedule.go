@@ -89,7 +89,7 @@ import (
 // if err != nil {
 // return err
 // }
-// _ = mongodbatlas.LookupCloudBackupScheduleOutput(ctx, mongodbatlas.GetCloudBackupScheduleOutputArgs{
+// _ = mongodbatlas.GetCloudBackupScheduleOutput(ctx, mongodbatlas.GetCloudBackupScheduleOutputArgs{
 // ProjectId: testCloudBackupSchedule.ProjectId,
 // ClusterName: testCloudBackupSchedule.ClusterName,
 // }, nil);

@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.StreamInstance("test", new()
+    ///     var test = new Mongodbatlas.Index.StreamInstance("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         InstanceName = "InstanceName",

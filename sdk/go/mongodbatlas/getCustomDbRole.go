@@ -54,7 +54,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCustomDbRoleOutput(ctx, mongodbatlas.GetCustomDbRoleOutputArgs{
+//			_ = mongodbatlas.GetCustomDbRoleOutput(ctx, mongodbatlas.GetCustomDbRoleOutputArgs{
 //				ProjectId: testRole.ProjectId,
 //				RoleName:  testRole.RoleName,
 //			}, nil)

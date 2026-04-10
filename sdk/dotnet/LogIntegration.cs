@@ -29,13 +29,13 @@ namespace Pulumi.Mongodbatlas
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Set up cloud provider access in Atlas for AWS
-    ///     var setup = new Mongodbatlas.CloudProviderAccessSetup("setup", new()
+    ///     var setup = new Mongodbatlas.Index.CloudProviderAccessSetup("setup", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         ProviderName = "AWS",
     ///     });
     /// 
-    ///     var auth = new Mongodbatlas.CloudProviderAccessAuthorization("auth", new()
+    ///     var auth = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         RoleId = setup.RoleId,
@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var example = new Mongodbatlas.LogIntegration("example", new()
+    ///     var example = new Mongodbatlas.Index.LogIntegration("example", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Type = "S3_LOG_EXPORT",
@@ -72,19 +72,19 @@ namespace Pulumi.Mongodbatlas
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Set up cloud provider access in Atlas for GCP
-    ///     var setup = new Mongodbatlas.CloudProviderAccessSetup("setup", new()
+    ///     var setup = new Mongodbatlas.Index.CloudProviderAccessSetup("setup", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         ProviderName = "GCP",
     ///     });
     /// 
-    ///     var auth = new Mongodbatlas.CloudProviderAccessAuthorization("auth", new()
+    ///     var auth = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         RoleId = setup.RoleId,
     ///     });
     /// 
-    ///     var example = new Mongodbatlas.LogIntegration("example", new()
+    ///     var example = new Mongodbatlas.Index.LogIntegration("example", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Type = "GCS_LOG_EXPORT",
@@ -111,7 +111,7 @@ namespace Pulumi.Mongodbatlas
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Set up cloud provider access in Atlas for Azure
-    ///     var setup = new Mongodbatlas.CloudProviderAccessSetup("setup", new()
+    ///     var setup = new Mongodbatlas.Index.CloudProviderAccessSetup("setup", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         ProviderName = "AZURE",
@@ -126,7 +126,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var auth = new Mongodbatlas.CloudProviderAccessAuthorization("auth", new()
+    ///     var auth = new Mongodbatlas.Index.CloudProviderAccessAuthorization("auth", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         RoleId = setup.RoleId,
@@ -138,7 +138,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var example = new Mongodbatlas.LogIntegration("example", new()
+    ///     var example = new Mongodbatlas.Index.LogIntegration("example", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Type = "AZURE_LOG_EXPORT",
@@ -165,7 +165,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Mongodbatlas.LogIntegration("example", new()
+    ///     var example = new Mongodbatlas.Index.LogIntegration("example", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Type = "DATADOG_LOG_EXPORT",
@@ -190,7 +190,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Mongodbatlas.LogIntegration("example", new()
+    ///     var example = new Mongodbatlas.Index.LogIntegration("example", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Type = "SPLUNK_LOG_EXPORT",
@@ -215,7 +215,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Mongodbatlas.LogIntegration("example", new()
+    ///     var example = new Mongodbatlas.Index.LogIntegration("example", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Type = "OTEL_LOG_EXPORT",

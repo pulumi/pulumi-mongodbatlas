@@ -79,8 +79,8 @@ def get_private_endpoint_regional_mode(enabled: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_private as private
 
-    test_endpoint_regional_mode = private.index.EndpointRegionalMode("test", project_id=<PROJECT-ID>)
-    test = private.index.endpoint_regional_mode(project_id=test_endpoint_regional_mode["projectId"])
+    test_endpoint_regional_mode = private.EndpointRegionalMode("test", project_id=<PROJECT-ID>)
+    test = private.endpoint_regional_mode(project_id=test_endpoint_regional_mode["projectId"])
     ```
 
 
@@ -109,8 +109,8 @@ def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Opt
     import pulumi
     import pulumi_private as private
 
-    test_endpoint_regional_mode = private.index.EndpointRegionalMode("test", project_id=<PROJECT-ID>)
-    test = private.index.endpoint_regional_mode(project_id=test_endpoint_regional_mode["projectId"])
+    test_endpoint_regional_mode = private.EndpointRegionalMode("test", project_id=<PROJECT-ID>)
+    test = private.endpoint_regional_mode(project_id=test_endpoint_regional_mode["projectId"])
     ```
 
 

@@ -114,7 +114,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupGlobalClusterConfigOutput(ctx, mongodbatlas.GetGlobalClusterConfigOutputArgs{
+//			_ = mongodbatlas.GetGlobalClusterConfigOutput(ctx, mongodbatlas.GetGlobalClusterConfigOutputArgs{
 //				ProjectId:   configGlobalClusterConfig.ProjectId,
 //				ClusterName: configGlobalClusterConfig.ClusterName,
 //			}, nil)

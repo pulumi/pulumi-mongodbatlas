@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+        ///     var user = new Mongodbatlas.Index.DatabaseUser("user", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Username = "myUsername",
@@ -51,14 +51,14 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
         ///     {
         ///         ProjectId = user.ProjectId,
         ///         Username = user.Username,
         ///         MonthsUntilExpiration = 2,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetX509AuthenticationDatabaseUser.Invoke(new()
         ///     {
         ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
         ///         Username = testX509AuthenticationDatabaseUser.Username,
@@ -76,7 +76,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         CustomerX509Cas = @"-----BEGIN CERTIFICATE-----
@@ -98,7 +98,7 @@ namespace Pulumi.Mongodbatlas
         /// ",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetX509AuthenticationDatabaseUser.Invoke(new()
         ///     {
         ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
         ///     });
@@ -125,7 +125,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+        ///     var user = new Mongodbatlas.Index.DatabaseUser("user", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Username = "myUsername",
@@ -149,14 +149,14 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
         ///     {
         ///         ProjectId = user.ProjectId,
         ///         Username = user.Username,
         ///         MonthsUntilExpiration = 2,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetX509AuthenticationDatabaseUser.Invoke(new()
         ///     {
         ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
         ///         Username = testX509AuthenticationDatabaseUser.Username,
@@ -174,7 +174,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         CustomerX509Cas = @"-----BEGIN CERTIFICATE-----
@@ -196,7 +196,7 @@ namespace Pulumi.Mongodbatlas
         /// ",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetX509AuthenticationDatabaseUser.Invoke(new()
         ///     {
         ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
         ///     });
@@ -223,7 +223,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var user = new Mongodbatlas.DatabaseUser("user", new()
+        ///     var user = new Mongodbatlas.Index.DatabaseUser("user", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Username = "myUsername",
@@ -247,14 +247,14 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
         ///     {
         ///         ProjectId = user.ProjectId,
         ///         Username = user.Username,
         ///         MonthsUntilExpiration = 2,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetX509AuthenticationDatabaseUser.Invoke(new()
         ///     {
         ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
         ///         Username = testX509AuthenticationDatabaseUser.Username,
@@ -272,7 +272,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.X509AuthenticationDatabaseUser("test", new()
+        ///     var testX509AuthenticationDatabaseUser = new Mongodbatlas.Index.X509AuthenticationDatabaseUser("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         CustomerX509Cas = @"-----BEGIN CERTIFICATE-----
@@ -294,7 +294,7 @@ namespace Pulumi.Mongodbatlas
         /// ",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetX509AuthenticationDatabaseUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetX509AuthenticationDatabaseUser.Invoke(new()
         ///     {
         ///         ProjectId = testX509AuthenticationDatabaseUser.ProjectId,
         ///     });

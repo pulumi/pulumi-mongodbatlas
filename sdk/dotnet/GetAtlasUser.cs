@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUser.Invoke(new()
         ///     {
         ///         UserId = "&lt;USER_ID&gt;",
         ///     });
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUser.Invoke(new()
         ///     {
         ///         Username = "&lt;USERNAME&gt;",
         ///     });
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUser.Invoke(new()
         ///     {
         ///         UserId = "&lt;USER_ID&gt;",
         ///     });
@@ -92,7 +92,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUser.Invoke(new()
         ///     {
         ///         Username = "&lt;USERNAME&gt;",
         ///     });
@@ -121,7 +121,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUser.Invoke(new()
         ///     {
         ///         UserId = "&lt;USER_ID&gt;",
         ///     });
@@ -138,7 +138,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUser.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUser.Invoke(new()
         ///     {
         ///         Username = "&lt;USERNAME&gt;",
         ///     });

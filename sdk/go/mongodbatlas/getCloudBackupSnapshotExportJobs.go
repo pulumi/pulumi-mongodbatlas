@@ -51,7 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupCloudBackupSnapshotExportJobs(ctx, &mongodbatlas.LookupCloudBackupSnapshotExportJobsArgs{
+//			_, err = mongodbatlas.GetCloudBackupSnapshotExportJobs(ctx, &mongodbatlas.LookupCloudBackupSnapshotExportJobsArgs{
 //				ProjectId:   "{PROJECT_ID}",
 //				ClusterName: "{CLUSTER_NAME}",
 //			}, nil)

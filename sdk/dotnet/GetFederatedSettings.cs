@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var settings = Mongodbatlas.GetFederatedSettings.Invoke(new()
+        ///     var settings = Mongodbatlas.Index.GetFederatedSettings.Invoke(new()
         ///     {
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
         ///     });
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var settings = Mongodbatlas.GetFederatedSettings.Invoke(new()
+        ///     var settings = Mongodbatlas.Index.GetFederatedSettings.Invoke(new()
         ///     {
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
         ///     });
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var settings = Mongodbatlas.GetFederatedSettings.Invoke(new()
+        ///     var settings = Mongodbatlas.Index.GetFederatedSettings.Invoke(new()
         ///     {
         ///         OrgId = "627a9683e7f7f7ff7fe306f14",
         ///     });

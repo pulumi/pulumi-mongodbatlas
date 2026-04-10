@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupAtlasUsers(ctx, &mongodbatlas.LookupAtlasUsersArgs{
+//			_, err := mongodbatlas.GetAtlasUsers(ctx, &mongodbatlas.LookupAtlasUsersArgs{
 //				OrgId: pulumi.StringRef("<ORG_ID>"),
 //			}, nil)
 //			if err != nil {
@@ -57,7 +57,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupAtlasUsers(ctx, &mongodbatlas.LookupAtlasUsersArgs{
+//			_, err := mongodbatlas.GetAtlasUsers(ctx, &mongodbatlas.LookupAtlasUsersArgs{
 //				ProjectId: pulumi.StringRef("<PROJECT_ID>"),
 //			}, nil)
 //			if err != nil {
@@ -83,7 +83,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupAtlasUsers(ctx, &mongodbatlas.LookupAtlasUsersArgs{
+//			_, err := mongodbatlas.GetAtlasUsers(ctx, &mongodbatlas.LookupAtlasUsersArgs{
 //				TeamId: pulumi.StringRef("<TEAM_ID>"),
 //				OrgId:  pulumi.StringRef("<ORG_ID>"),
 //			}, nil)

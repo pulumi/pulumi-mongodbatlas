@@ -118,6 +118,10 @@ export class ServerlessInstance extends pulumi.CustomResource {
      */
     declare public readonly providerSettingsRegionName: pulumi.Output<string>;
     /**
+     * Unique 24-hexadecimal digit string that identifies the serverless instance.
+     */
+    declare public readonly serverlessInstanceId: pulumi.Output<string>;
+    /**
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     declare public readonly stateName: pulumi.Output<string>;
@@ -155,6 +159,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
             resourceInputs["providerSettingsBackingProviderName"] = state?.providerSettingsBackingProviderName;
             resourceInputs["providerSettingsProviderName"] = state?.providerSettingsProviderName;
             resourceInputs["providerSettingsRegionName"] = state?.providerSettingsRegionName;
+            resourceInputs["serverlessInstanceId"] = state?.serverlessInstanceId;
             resourceInputs["stateName"] = state?.stateName;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["terminationProtectionEnabled"] = state?.terminationProtectionEnabled;
@@ -180,6 +185,7 @@ export class ServerlessInstance extends pulumi.CustomResource {
             resourceInputs["providerSettingsBackingProviderName"] = args?.providerSettingsBackingProviderName;
             resourceInputs["providerSettingsProviderName"] = args?.providerSettingsProviderName;
             resourceInputs["providerSettingsRegionName"] = args?.providerSettingsRegionName;
+            resourceInputs["serverlessInstanceId"] = args?.serverlessInstanceId;
             resourceInputs["stateName"] = args?.stateName;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["terminationProtectionEnabled"] = args?.terminationProtectionEnabled;
@@ -247,6 +253,10 @@ export interface ServerlessInstanceState {
      */
     providerSettingsRegionName?: pulumi.Input<string>;
     /**
+     * Unique 24-hexadecimal digit string that identifies the serverless instance.
+     */
+    serverlessInstanceId?: pulumi.Input<string>;
+    /**
      * Stage of deployment of this serverless instance when the resource made its request.
      */
     stateName?: pulumi.Input<string>;
@@ -297,6 +307,10 @@ export interface ServerlessInstanceArgs {
      * Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
      */
     providerSettingsRegionName: pulumi.Input<string>;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the serverless instance.
+     */
+    serverlessInstanceId?: pulumi.Input<string>;
     /**
      * Stage of deployment of this serverless instance when the resource made its request.
      */

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupPrivateLinkEndpointService(ctx, &mongodbatlas.LookupPrivateLinkEndpointServiceArgs{
+//			_, err := mongodbatlas.GetPrivateLinkEndpointService(ctx, &mongodbatlas.LookupPrivateLinkEndpointServiceArgs{
 //				ProjectId:         thisMongodbatlasPrivatelinkEndpointService.ProjectId,
 //				PrivateLinkId:     thisMongodbatlasPrivatelinkEndpointService.PrivateLinkId,
 //				EndpointServiceId: thisMongodbatlasPrivatelinkEndpointService.EndpointServiceId,

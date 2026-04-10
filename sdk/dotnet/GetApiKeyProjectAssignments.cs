@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @this = new Mongodbatlas.ApiKey("this", new()
+        ///     var @this = new Mongodbatlas.Index.ApiKey("this", new()
         ///     {
         ///         OrgId = orgId,
         ///         Description = "Test API Key",
@@ -36,19 +36,19 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var firstProject = new Mongodbatlas.Project("first_project", new()
+        ///     var firstProject = new Mongodbatlas.Index.Project("first_project", new()
         ///     {
         ///         Name = "First Project",
         ///         OrgId = orgId,
         ///     });
         /// 
-        ///     var secondProject = new Mongodbatlas.Project("second_project", new()
+        ///     var secondProject = new Mongodbatlas.Index.Project("second_project", new()
         ///     {
         ///         Name = "Second Project",
         ///         OrgId = orgId,
         ///     });
         /// 
-        ///     var firstAssignmentApiKeyProjectAssignment = new Mongodbatlas.ApiKeyProjectAssignment("first_assignment", new()
+        ///     var firstAssignmentApiKeyProjectAssignment = new Mongodbatlas.Index.ApiKeyProjectAssignment("first_assignment", new()
         ///     {
         ///         ProjectId = firstProject.Id,
         ///         ApiKeyId = @this.ApiKeyId,
@@ -58,7 +58,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var secondAssignment = new Mongodbatlas.ApiKeyProjectAssignment("second_assignment", new()
+        ///     var secondAssignment = new Mongodbatlas.Index.ApiKeyProjectAssignment("second_assignment", new()
         ///     {
         ///         ProjectId = secondProject.Id,
         ///         ApiKeyId = @this.ApiKeyId,
@@ -69,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Add IP Access List Entry to Programmatic API Key 
-        ///     var thisAccessListApiKey = new Mongodbatlas.AccessListApiKey("this", new()
+        ///     var thisAccessListApiKey = new Mongodbatlas.Index.AccessListApiKey("this", new()
         ///     {
         ///         OrgId = orgId,
         ///         CidrBlock = "0.0.0.0/1",
@@ -77,14 +77,14 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Data source to read a single API key project assignment
-        ///     var firstAssignment = Mongodbatlas.GetApiKeyProjectAssignment.Invoke(new()
+        ///     var firstAssignment = Mongodbatlas.Index.GetApiKeyProjectAssignment.Invoke(new()
         ///     {
         ///         ProjectId = firstAssignmentApiKeyProjectAssignment.ProjectId,
         ///         ApiKeyId = firstAssignmentApiKeyProjectAssignment.ApiKeyId,
         ///     });
         /// 
         ///     // Data source to read all API key project assignments for a project
-        ///     var allAssignments = Mongodbatlas.GetApiKeyProjectAssignments.Invoke(new()
+        ///     var allAssignments = Mongodbatlas.Index.GetApiKeyProjectAssignments.Invoke(new()
         ///     {
         ///         ProjectId = firstProject.Id,
         ///     });
@@ -118,7 +118,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @this = new Mongodbatlas.ApiKey("this", new()
+        ///     var @this = new Mongodbatlas.Index.ApiKey("this", new()
         ///     {
         ///         OrgId = orgId,
         ///         Description = "Test API Key",
@@ -128,19 +128,19 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var firstProject = new Mongodbatlas.Project("first_project", new()
+        ///     var firstProject = new Mongodbatlas.Index.Project("first_project", new()
         ///     {
         ///         Name = "First Project",
         ///         OrgId = orgId,
         ///     });
         /// 
-        ///     var secondProject = new Mongodbatlas.Project("second_project", new()
+        ///     var secondProject = new Mongodbatlas.Index.Project("second_project", new()
         ///     {
         ///         Name = "Second Project",
         ///         OrgId = orgId,
         ///     });
         /// 
-        ///     var firstAssignmentApiKeyProjectAssignment = new Mongodbatlas.ApiKeyProjectAssignment("first_assignment", new()
+        ///     var firstAssignmentApiKeyProjectAssignment = new Mongodbatlas.Index.ApiKeyProjectAssignment("first_assignment", new()
         ///     {
         ///         ProjectId = firstProject.Id,
         ///         ApiKeyId = @this.ApiKeyId,
@@ -150,7 +150,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var secondAssignment = new Mongodbatlas.ApiKeyProjectAssignment("second_assignment", new()
+        ///     var secondAssignment = new Mongodbatlas.Index.ApiKeyProjectAssignment("second_assignment", new()
         ///     {
         ///         ProjectId = secondProject.Id,
         ///         ApiKeyId = @this.ApiKeyId,
@@ -161,7 +161,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Add IP Access List Entry to Programmatic API Key 
-        ///     var thisAccessListApiKey = new Mongodbatlas.AccessListApiKey("this", new()
+        ///     var thisAccessListApiKey = new Mongodbatlas.Index.AccessListApiKey("this", new()
         ///     {
         ///         OrgId = orgId,
         ///         CidrBlock = "0.0.0.0/1",
@@ -169,14 +169,14 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Data source to read a single API key project assignment
-        ///     var firstAssignment = Mongodbatlas.GetApiKeyProjectAssignment.Invoke(new()
+        ///     var firstAssignment = Mongodbatlas.Index.GetApiKeyProjectAssignment.Invoke(new()
         ///     {
         ///         ProjectId = firstAssignmentApiKeyProjectAssignment.ProjectId,
         ///         ApiKeyId = firstAssignmentApiKeyProjectAssignment.ApiKeyId,
         ///     });
         /// 
         ///     // Data source to read all API key project assignments for a project
-        ///     var allAssignments = Mongodbatlas.GetApiKeyProjectAssignments.Invoke(new()
+        ///     var allAssignments = Mongodbatlas.Index.GetApiKeyProjectAssignments.Invoke(new()
         ///     {
         ///         ProjectId = firstProject.Id,
         ///     });
@@ -210,7 +210,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @this = new Mongodbatlas.ApiKey("this", new()
+        ///     var @this = new Mongodbatlas.Index.ApiKey("this", new()
         ///     {
         ///         OrgId = orgId,
         ///         Description = "Test API Key",
@@ -220,19 +220,19 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var firstProject = new Mongodbatlas.Project("first_project", new()
+        ///     var firstProject = new Mongodbatlas.Index.Project("first_project", new()
         ///     {
         ///         Name = "First Project",
         ///         OrgId = orgId,
         ///     });
         /// 
-        ///     var secondProject = new Mongodbatlas.Project("second_project", new()
+        ///     var secondProject = new Mongodbatlas.Index.Project("second_project", new()
         ///     {
         ///         Name = "Second Project",
         ///         OrgId = orgId,
         ///     });
         /// 
-        ///     var firstAssignmentApiKeyProjectAssignment = new Mongodbatlas.ApiKeyProjectAssignment("first_assignment", new()
+        ///     var firstAssignmentApiKeyProjectAssignment = new Mongodbatlas.Index.ApiKeyProjectAssignment("first_assignment", new()
         ///     {
         ///         ProjectId = firstProject.Id,
         ///         ApiKeyId = @this.ApiKeyId,
@@ -242,7 +242,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var secondAssignment = new Mongodbatlas.ApiKeyProjectAssignment("second_assignment", new()
+        ///     var secondAssignment = new Mongodbatlas.Index.ApiKeyProjectAssignment("second_assignment", new()
         ///     {
         ///         ProjectId = secondProject.Id,
         ///         ApiKeyId = @this.ApiKeyId,
@@ -253,7 +253,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Add IP Access List Entry to Programmatic API Key 
-        ///     var thisAccessListApiKey = new Mongodbatlas.AccessListApiKey("this", new()
+        ///     var thisAccessListApiKey = new Mongodbatlas.Index.AccessListApiKey("this", new()
         ///     {
         ///         OrgId = orgId,
         ///         CidrBlock = "0.0.0.0/1",
@@ -261,14 +261,14 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Data source to read a single API key project assignment
-        ///     var firstAssignment = Mongodbatlas.GetApiKeyProjectAssignment.Invoke(new()
+        ///     var firstAssignment = Mongodbatlas.Index.GetApiKeyProjectAssignment.Invoke(new()
         ///     {
         ///         ProjectId = firstAssignmentApiKeyProjectAssignment.ProjectId,
         ///         ApiKeyId = firstAssignmentApiKeyProjectAssignment.ApiKeyId,
         ///     });
         /// 
         ///     // Data source to read all API key project assignments for a project
-        ///     var allAssignments = Mongodbatlas.GetApiKeyProjectAssignments.Invoke(new()
+        ///     var allAssignments = Mongodbatlas.Index.GetApiKeyProjectAssignments.Invoke(new()
         ///     {
         ///         ProjectId = firstProject.Id,
         ///     });

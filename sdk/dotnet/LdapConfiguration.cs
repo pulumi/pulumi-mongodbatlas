@@ -22,13 +22,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Project("test", new()
+    ///     var test = new Mongodbatlas.Index.Project("test", new()
     ///     {
     ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 
-    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+    ///     var testLdapConfiguration = new Mongodbatlas.Index.LdapConfiguration("test", new()
     ///     {
     ///         ProjectId = test.Id,
     ///         AuthenticationEnabled = true,
@@ -51,13 +51,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Project("test", new()
+    ///     var test = new Mongodbatlas.Index.Project("test", new()
     ///     {
     ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 
-    ///     var testLdapConfiguration = new Mongodbatlas.LdapConfiguration("test", new()
+    ///     var testLdapConfiguration = new Mongodbatlas.Index.LdapConfiguration("test", new()
     ///     {
     ///         ProjectId = test.Id,
     ///         AuthenticationEnabled = true,

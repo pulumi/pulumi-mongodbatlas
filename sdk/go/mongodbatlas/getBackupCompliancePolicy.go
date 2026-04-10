@@ -96,11 +96,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudBackupScheduleOutput(ctx, mongodbatlas.GetCloudBackupScheduleOutputArgs{
+//			_ = mongodbatlas.GetCloudBackupScheduleOutput(ctx, mongodbatlas.GetCloudBackupScheduleOutputArgs{
 //				ProjectId:   testCloudBackupSchedule.ProjectId,
 //				ClusterName: testCloudBackupSchedule.ClusterName,
 //			}, nil)
-//			_ = mongodbatlas.LookupBackupCompliancePolicyOutput(ctx, mongodbatlas.GetBackupCompliancePolicyOutputArgs{
+//			_ = mongodbatlas.GetBackupCompliancePolicyOutput(ctx, mongodbatlas.GetBackupCompliancePolicyOutputArgs{
 //				ProjectId: testCloudBackupSchedule.ID(),
 //			}, nil)
 //			_, err = mongodbatlas.NewBackupCompliancePolicy(ctx, "backup_policy", &mongodbatlas.BackupCompliancePolicyArgs{

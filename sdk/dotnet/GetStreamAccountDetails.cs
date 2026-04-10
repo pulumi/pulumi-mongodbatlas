@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var accountDetails = Mongodbatlas.GetStreamAccountDetails.Invoke(new()
+        ///     var accountDetails = Mongodbatlas.Index.GetStreamAccountDetails.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         CloudProvider = "aws",
@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var accountDetails = Mongodbatlas.GetStreamAccountDetails.Invoke(new()
+        ///     var accountDetails = Mongodbatlas.Index.GetStreamAccountDetails.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         CloudProvider = "aws",
@@ -93,7 +93,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var accountDetails = Mongodbatlas.GetStreamAccountDetails.Invoke(new()
+        ///     var accountDetails = Mongodbatlas.Index.GetStreamAccountDetails.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         CloudProvider = "aws",

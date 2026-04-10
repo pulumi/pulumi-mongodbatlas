@@ -41,7 +41,7 @@ import (
 //			_ = pulumi.All(testNetworkContainer.ProjectId, testNetworkContainer.ProviderName).ApplyT(func(_args []interface{}) (mongodbatlas.GetNetworkContainersResult, error) {
 //				projectId := _args[0].(string)
 //				providerName := _args[1].(*string)
-//				return mongodbatlas.GetNetworkContainersResult(interface{}(mongodbatlas.LookupNetworkContainers(ctx, &mongodbatlas.LookupNetworkContainersArgs{
+//				return mongodbatlas.GetNetworkContainersResult(interface{}(mongodbatlas.GetNetworkContainers(ctx, &mongodbatlas.LookupNetworkContainersArgs{
 //					ProjectId:    projectId,
 //					ProviderName: providerName,
 //				}, nil))), nil

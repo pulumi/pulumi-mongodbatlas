@@ -122,9 +122,9 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
             "resource_import",
         ])
     alerts = import_.results
-    outputs = std.index.flatten(input=[[] if alert.output == None else alert.output for i, alert in enumerate(alerts)])["result"]
-    output_values = std.index.compact(input=[o["value"] for i, o in enumerate(outputs)])["result"]
-    pulumi.export("alertOutput", std.index.join(separator="\\n",
+    outputs = std.flatten(input=[[] if alert.output == None else alert.output for i, alert in enumerate(alerts)])["result"]
+    output_values = std.compact(input=[o["value"] for i, o in enumerate(outputs)])["result"]
+    pulumi.export("alertOutput", std.join(separator="\\n",
         input=output_values)["result"])
     ```
 
@@ -173,9 +173,9 @@ def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional
             "resource_import",
         ])
     alerts = import_.results
-    outputs = std.index.flatten(input=[[] if alert.output == None else alert.output for i, alert in enumerate(alerts)])["result"]
-    output_values = std.index.compact(input=[o["value"] for i, o in enumerate(outputs)])["result"]
-    pulumi.export("alertOutput", std.index.join(separator="\\n",
+    outputs = std.flatten(input=[[] if alert.output == None else alert.output for i, alert in enumerate(alerts)])["result"]
+    output_values = std.compact(input=[o["value"] for i, o in enumerate(outputs)])["result"]
+    pulumi.export("alertOutput", std.join(separator="\\n",
         input=output_values)["result"])
     ```
 

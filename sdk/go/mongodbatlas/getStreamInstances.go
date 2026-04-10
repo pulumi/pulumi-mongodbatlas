@@ -32,14 +32,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// New (recommended)
-//			_, err := mongodbatlas.LookupStreamWorkspaces(ctx, &mongodbatlas.LookupStreamWorkspacesArgs{
+//			_, err := mongodbatlas.GetStreamWorkspaces(ctx, &mongodbatlas.LookupStreamWorkspacesArgs{
 //				ProjectId: "<PROJECT_ID>",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Old (deprecated)
-//			_, err = mongodbatlas.LookupStreamInstances(ctx, &mongodbatlas.LookupStreamInstancesArgs{
+//			_, err = mongodbatlas.GetStreamInstances(ctx, &mongodbatlas.LookupStreamInstancesArgs{
 //				ProjectId: "<PROJECT_ID>",
 //			}, nil)
 //			if err != nil {
@@ -65,7 +65,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupStreamInstances(ctx, &mongodbatlas.LookupStreamInstancesArgs{
+//			_, err := mongodbatlas.GetStreamInstances(ctx, &mongodbatlas.LookupStreamInstancesArgs{
 //				ProjectId: "<PROJECT_ID>",
 //			}, nil)
 //			if err != nil {

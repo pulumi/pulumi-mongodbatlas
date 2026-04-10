@@ -50,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAdvancedClustersOutput(ctx, mongodbatlas.GetAdvancedClustersOutputArgs{
+//			_ = mongodbatlas.GetAdvancedClustersOutput(ctx, mongodbatlas.GetAdvancedClustersOutputArgs{
 //				ProjectId: thisAdvancedCluster.ProjectId,
 //			}, nil)
 //			return nil
@@ -114,7 +114,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//			_ = mongodbatlas.GetAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
 //				ProjectId: thisAdvancedCluster.ProjectId,
 //				Name:      thisAdvancedCluster.Name,
 //			}, nil)
@@ -158,7 +158,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAdvancedClustersOutput(ctx, mongodbatlas.GetAdvancedClustersOutputArgs{
+//			_ = mongodbatlas.GetAdvancedClustersOutput(ctx, mongodbatlas.GetAdvancedClustersOutputArgs{
 //				ProjectId: thisAdvancedCluster.ProjectId,
 //			}, nil)
 //			return nil

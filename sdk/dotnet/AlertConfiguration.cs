@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     var test = new Mongodbatlas.Index.AlertConfiguration("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     var test = new Mongodbatlas.Index.AlertConfiguration("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         EventType = "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
@@ -124,7 +124,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     var test = new Mongodbatlas.Index.AlertConfiguration("test", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         EventType = "OUTSIDE_METRIC_THRESHOLD",
@@ -186,13 +186,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+    ///     var test = Mongodbatlas.Index.GetThirdPartyIntegration.Invoke(new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Type = "PAGER_DUTY",
     ///     });
     /// 
-    ///     var testAlertConfiguration = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     var testAlertConfiguration = new Mongodbatlas.Index.AlertConfiguration("test", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Enabled = true,

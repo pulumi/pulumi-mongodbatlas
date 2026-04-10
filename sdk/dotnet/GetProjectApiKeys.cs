@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectApiKeys.Invoke(new()
         ///     {
         ///         PageNum = 1,
         ///         ItemsPerPage = 5,
@@ -58,7 +58,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectApiKeys.Invoke(new()
         ///     {
         ///         PageNum = 1,
         ///         ItemsPerPage = 5,
@@ -88,7 +88,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetProjectApiKeys.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectApiKeys.Invoke(new()
         ///     {
         ///         PageNum = 1,
         ///         ItemsPerPage = 5,

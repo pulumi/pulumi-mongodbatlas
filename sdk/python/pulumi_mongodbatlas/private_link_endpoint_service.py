@@ -531,7 +531,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             project_id="<PROJECT_ID>",
             provider_name="AWS",
             region="US_EAST_1")
-        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+        ptfe_service = aws.VpcEndpoint("ptfe_service",
             vpc_id=vpc-7fc0a543,
             service_name=this.endpoint_service_name,
             vpc_endpoint_type=Interface,
@@ -555,7 +555,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             project_id=project_id,
             provider_name="AZURE",
             region="eastus2")
-        this_private_endpoint = azurerm.index.PrivateEndpoint("this",
+        this_private_endpoint = azurerm.PrivateEndpoint("this",
             name=endpoint-this,
             location=this_azurerm_resource_group.location,
             resource_group_name=resource_group_name,
@@ -586,12 +586,12 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             provider_name="GCP",
             region=gcp_region)
         # Create a Google Network
-        default = google.index.ComputeNetwork("default",
+        default = google.ComputeNetwork("default",
             project=gcp_project_id,
             name=my-network,
             auto_create_subnetworks=False)
         # Create a Google Sub Network
-        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+        default_compute_subnetwork = google.ComputeSubnetwork("default",
             project=default.project,
             name=my-subnet,
             ip_cidr_range=10.0.0.0/16,
@@ -600,7 +600,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
         default_compute_address = []
         for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+            default_compute_address.append(google.ComputeAddress(f"default-{range['value']}",
                 project=default_compute_subnetwork.project,
                 name=ftf-this{range.value},
                 subnetwork=default_compute_subnetwork.id,
@@ -611,7 +611,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
         default_compute_forwarding_rule = []
         for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+            default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{range['value']}",
                 target=this.service_attachment_names[range.value],
                 project=default_compute_address[range.value].project,
                 region=default_compute_address[range.value].region,
@@ -649,19 +649,19 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=gcp_region,
             port_mapping_enabled=True)
         # Create a Google Network
-        default = google.index.ComputeNetwork("default",
+        default = google.ComputeNetwork("default",
             project=gcp_project_id,
             name=my-network,
             auto_create_subnetworks=False)
         # Create a Google Sub Network
-        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+        default_compute_subnetwork = google.ComputeSubnetwork("default",
             project=default.project,
             name=my-subnet,
             ip_cidr_range=10.0.0.0/16,
             region=gcp_region,
             network=default.id)
         # Create Google Address (1 address for port-mapped architecture)
-        default_compute_address = google.index.ComputeAddress("default",
+        default_compute_address = google.ComputeAddress("default",
             project=default_compute_subnetwork.project,
             name=tf-this-psc-endpoint,
             subnetwork=default_compute_subnetwork.id,
@@ -670,7 +670,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=default_compute_subnetwork.region,
             opts = pulumi.ResourceOptions(depends_on=[this]))
         # Create Forwarding Rule (1 rule for port-mapped architecture)
-        default_compute_forwarding_rule = google.index.ComputeForwardingRule("default",
+        default_compute_forwarding_rule = google.ComputeForwardingRule("default",
             target=this.service_attachment_names[0],
             project=default_compute_address.project,
             region=default_compute_address.region,
@@ -745,7 +745,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             project_id="<PROJECT_ID>",
             provider_name="AWS",
             region="US_EAST_1")
-        ptfe_service = aws.index.VpcEndpoint("ptfe_service",
+        ptfe_service = aws.VpcEndpoint("ptfe_service",
             vpc_id=vpc-7fc0a543,
             service_name=this.endpoint_service_name,
             vpc_endpoint_type=Interface,
@@ -769,7 +769,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             project_id=project_id,
             provider_name="AZURE",
             region="eastus2")
-        this_private_endpoint = azurerm.index.PrivateEndpoint("this",
+        this_private_endpoint = azurerm.PrivateEndpoint("this",
             name=endpoint-this,
             location=this_azurerm_resource_group.location,
             resource_group_name=resource_group_name,
@@ -800,12 +800,12 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             provider_name="GCP",
             region=gcp_region)
         # Create a Google Network
-        default = google.index.ComputeNetwork("default",
+        default = google.ComputeNetwork("default",
             project=gcp_project_id,
             name=my-network,
             auto_create_subnetworks=False)
         # Create a Google Sub Network
-        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+        default_compute_subnetwork = google.ComputeSubnetwork("default",
             project=default.project,
             name=my-subnet,
             ip_cidr_range=10.0.0.0/16,
@@ -814,7 +814,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
         default_compute_address = []
         for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_address.append(google.index.ComputeAddress(f"default-{range['value']}",
+            default_compute_address.append(google.ComputeAddress(f"default-{range['value']}",
                 project=default_compute_subnetwork.project,
                 name=ftf-this{range.value},
                 subnetwork=default_compute_subnetwork.id,
@@ -825,7 +825,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
         default_compute_forwarding_rule = []
         for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_forwarding_rule.append(google.index.ComputeForwardingRule(f"default-{range['value']}",
+            default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{range['value']}",
                 target=this.service_attachment_names[range.value],
                 project=default_compute_address[range.value].project,
                 region=default_compute_address[range.value].region,
@@ -863,19 +863,19 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=gcp_region,
             port_mapping_enabled=True)
         # Create a Google Network
-        default = google.index.ComputeNetwork("default",
+        default = google.ComputeNetwork("default",
             project=gcp_project_id,
             name=my-network,
             auto_create_subnetworks=False)
         # Create a Google Sub Network
-        default_compute_subnetwork = google.index.ComputeSubnetwork("default",
+        default_compute_subnetwork = google.ComputeSubnetwork("default",
             project=default.project,
             name=my-subnet,
             ip_cidr_range=10.0.0.0/16,
             region=gcp_region,
             network=default.id)
         # Create Google Address (1 address for port-mapped architecture)
-        default_compute_address = google.index.ComputeAddress("default",
+        default_compute_address = google.ComputeAddress("default",
             project=default_compute_subnetwork.project,
             name=tf-this-psc-endpoint,
             subnetwork=default_compute_subnetwork.id,
@@ -884,7 +884,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=default_compute_subnetwork.region,
             opts = pulumi.ResourceOptions(depends_on=[this]))
         # Create Forwarding Rule (1 rule for port-mapped architecture)
-        default_compute_forwarding_rule = google.index.ComputeForwardingRule("default",
+        default_compute_forwarding_rule = google.ComputeForwardingRule("default",
             target=this.service_attachment_names[0],
             project=default_compute_address.project,
             region=default_compute_address.region,

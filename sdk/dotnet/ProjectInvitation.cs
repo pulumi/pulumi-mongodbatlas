@@ -35,7 +35,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
+    ///     var test = new Mongodbatlas.Index.ProjectInvitation("test", new()
     ///     {
     ///         Username = "test-acc-username",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.ProjectInvitation("test", new()
+    ///     var test = new Mongodbatlas.Index.ProjectInvitation("test", new()
     ///     {
     ///         Username = "test-acc-username",
     ///         ProjectId = "&lt;PROJECT-ID&gt;",

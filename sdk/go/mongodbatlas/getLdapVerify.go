@@ -70,7 +70,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupLdapVerifyOutput(ctx, mongodbatlas.GetLdapVerifyOutputArgs{
+//			_ = mongodbatlas.GetLdapVerifyOutput(ctx, mongodbatlas.GetLdapVerifyOutputArgs{
 //				ProjectId: testLdapVerify.ProjectId,
 //				RequestId: testLdapVerify.RequestId,
 //			}, nil)

@@ -197,7 +197,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			test, err := mongodbatlas.LookupThirdPartyIntegration(ctx, &mongodbatlas.LookupThirdPartyIntegrationArgs{
+//			test, err := mongodbatlas.GetThirdPartyIntegration(ctx, &mongodbatlas.LookupThirdPartyIntegrationArgs{
 //				ProjectId: "PROJECT ID",
 //				Type:      "PAGER_DUTY",
 //			}, nil)

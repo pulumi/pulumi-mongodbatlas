@@ -26,14 +26,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetPrivateLinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = thisPrivateLinkEndpoint.ProjectId,
         ///         PrivateLinkId = thisPrivateLinkEndpoint.PrivateLinkId,
@@ -66,14 +66,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetPrivateLinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = thisPrivateLinkEndpoint.ProjectId,
         ///         PrivateLinkId = thisPrivateLinkEndpoint.PrivateLinkId,
@@ -106,14 +106,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+        ///     var thisPrivateLinkEndpoint = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
         ///         Region = "US_EAST_1",
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetPrivateLinkEndpoint.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetPrivateLinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = thisPrivateLinkEndpoint.ProjectId,
         ///         PrivateLinkId = thisPrivateLinkEndpoint.PrivateLinkId,

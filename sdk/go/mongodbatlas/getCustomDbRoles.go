@@ -46,7 +46,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupCustomDbRoles(ctx, &mongodbatlas.LookupCustomDbRolesArgs{
+//			_, err = mongodbatlas.GetCustomDbRoles(ctx, &mongodbatlas.LookupCustomDbRolesArgs{
 //				ProjectId: testMongodbatlasCustomDbRole.ProjectId,
 //			}, nil)
 //			if err != nil {

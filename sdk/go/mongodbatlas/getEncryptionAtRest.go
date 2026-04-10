@@ -93,7 +93,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
+//			test := mongodbatlas.GetEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
 //				ProjectId: testEncryptionAtRest.ProjectId,
 //			}, nil)
 //			ctx.Export("isAwsKmsEncryptionAtRestValid", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {
@@ -133,7 +133,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
+//			test := mongodbatlas.GetEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
 //				ProjectId: testEncryptionAtRest.ProjectId,
 //			}, nil)
 //			ctx.Export("isAzureEncryptionAtRestValid", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {
@@ -173,7 +173,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test := mongodbatlas.LookupEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
+//			test := mongodbatlas.GetEncryptionAtRestOutput(ctx, mongodbatlas.GetEncryptionAtRestOutputArgs{
 //				ProjectId: testEncryptionAtRest.ProjectId,
 //			}, nil)
 //			ctx.Export("isGcpEncryptionAtRestValid", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {
