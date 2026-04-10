@@ -80,7 +80,7 @@ import * as utilities from "./utilities";
  *     networkName: "default",
  * });
  * // the following assumes a GCP provider is configured
- * const _default = google.index.ComputeNetwork({
+ * const _default = google.ComputeNetwork({
  *     name: "default",
  * });
  * // Create the GCP peer

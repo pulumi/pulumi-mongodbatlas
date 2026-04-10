@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAuditing = new Mongodbatlas.Auditing("test", new()
+        ///     var testAuditing = new Mongodbatlas.Index.Auditing("test", new()
         ///     {
         ///         ProjectId = "&lt;project-id&gt;",
         ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAuditing.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAuditing.Invoke(new()
         ///     {
         ///         ProjectId = testAuditing.Id,
         ///     });
@@ -58,7 +58,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAuditing = new Mongodbatlas.Auditing("test", new()
+        ///     var testAuditing = new Mongodbatlas.Index.Auditing("test", new()
         ///     {
         ///         ProjectId = "&lt;project-id&gt;",
         ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAuditing.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAuditing.Invoke(new()
         ///     {
         ///         ProjectId = testAuditing.Id,
         ///     });
@@ -91,7 +91,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testAuditing = new Mongodbatlas.Auditing("test", new()
+        ///     var testAuditing = new Mongodbatlas.Index.Auditing("test", new()
         ///     {
         ///         ProjectId = "&lt;project-id&gt;",
         ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",
@@ -99,7 +99,7 @@ namespace Pulumi.Mongodbatlas
         ///         Enabled = true,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetAuditing.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAuditing.Invoke(new()
         ///     {
         ///         ProjectId = testAuditing.Id,
         ///     });

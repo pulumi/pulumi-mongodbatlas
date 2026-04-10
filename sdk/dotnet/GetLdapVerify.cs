@@ -25,13 +25,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "NAME OF THE PROJECT",
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
+        ///     var testAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         Name = "ClusterName",
@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
+        ///     var testLdapVerify = new Mongodbatlas.Index.LdapVerify("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         Hostname = "HOSTNAME",
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetLdapVerify.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetLdapVerify.Invoke(new()
         ///     {
         ///         ProjectId = testLdapVerify.ProjectId,
         ///         RequestId = testLdapVerify.RequestId,
@@ -100,13 +100,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "NAME OF THE PROJECT",
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
+        ///     var testAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         Name = "ClusterName",
@@ -134,7 +134,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
+        ///     var testLdapVerify = new Mongodbatlas.Index.LdapVerify("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         Hostname = "HOSTNAME",
@@ -149,7 +149,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetLdapVerify.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetLdapVerify.Invoke(new()
         ///     {
         ///         ProjectId = testLdapVerify.ProjectId,
         ///         RequestId = testLdapVerify.RequestId,
@@ -175,13 +175,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProject = new Mongodbatlas.Project("test", new()
+        ///     var testProject = new Mongodbatlas.Index.Project("test", new()
         ///     {
         ///         Name = "NAME OF THE PROJECT",
         ///         OrgId = "ORG ID",
         ///     });
         /// 
-        ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
+        ///     var testAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         Name = "ClusterName",
@@ -209,7 +209,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
+        ///     var testLdapVerify = new Mongodbatlas.Index.LdapVerify("test", new()
         ///     {
         ///         ProjectId = testProject.Id,
         ///         Hostname = "HOSTNAME",
@@ -224,7 +224,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetLdapVerify.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetLdapVerify.Invoke(new()
         ///     {
         ///         ProjectId = testLdapVerify.ProjectId,
         ///         RequestId = testLdapVerify.RequestId,

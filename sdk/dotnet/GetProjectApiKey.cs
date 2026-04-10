@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProjectApiKey = new Mongodbatlas.ProjectApiKey("test", new()
+        ///     var testProjectApiKey = new Mongodbatlas.Index.ProjectApiKey("test", new()
         ///     {
         ///         Description = "Description of your API key",
         ///         ProjectAssignments = new[]
@@ -47,7 +47,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProjectApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectApiKey.Invoke(new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ApiKeyId = testMongodbatlasApiKey.ApiKeyId,
@@ -79,7 +79,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProjectApiKey = new Mongodbatlas.ProjectApiKey("test", new()
+        ///     var testProjectApiKey = new Mongodbatlas.Index.ProjectApiKey("test", new()
         ///     {
         ///         Description = "Description of your API key",
         ///         ProjectAssignments = new[]
@@ -95,7 +95,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProjectApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectApiKey.Invoke(new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ApiKeyId = testMongodbatlasApiKey.ApiKeyId,
@@ -127,7 +127,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProjectApiKey = new Mongodbatlas.ProjectApiKey("test", new()
+        ///     var testProjectApiKey = new Mongodbatlas.Index.ProjectApiKey("test", new()
         ///     {
         ///         Description = "Description of your API key",
         ///         ProjectAssignments = new[]
@@ -143,7 +143,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProjectApiKey.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectApiKey.Invoke(new()
         ///     {
         ///         ProjectId = "64259ee860c43338194b0f8e",
         ///         ApiKeyId = testMongodbatlasApiKey.ApiKeyId,

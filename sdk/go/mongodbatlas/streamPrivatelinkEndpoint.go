@@ -120,12 +120,12 @@ import (
 // return err
 // }
 // singularDatasource := test.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
-// return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.LookupStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
+// return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.GetStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
 // ProjectId: projectId,
 // Id: id,
 // }, nil))), nil
 // }).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
-// pluralDatasource, err := mongodbatlas.LookupStreamPrivatelinkEndpoints(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointsArgs{
+// pluralDatasource, err := mongodbatlas.GetStreamPrivatelinkEndpoints(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointsArgs{
 // ProjectId: projectId,
 // }, nil);
 // if err != nil {
@@ -235,7 +235,7 @@ import (
 //				return err
 //			}
 //			gcpConfluent := gcpConfluentStreamPrivatelinkEndpoint.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
-//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.LookupStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
+//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.GetStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
 //					ProjectId: projectId,
 //					Id:        id,
 //				}, nil))), nil

@@ -127,14 +127,14 @@ using Mongodbatlas = Pulumi.Mongodbatlas;
 return await Deployment.RunAsync(() =>
 {
     // Create a project
-    var @this = new Mongodbatlas.Project("this", new()
+    var @this = new Mongodbatlas.Index.Project("this", new()
     {
         Name = "my-project",
         OrgId = orgId,
     });
 
     // Create a cluster
-    var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+    var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
     {
         ProjectId = @this.Id,
         Name = "my-cluster",

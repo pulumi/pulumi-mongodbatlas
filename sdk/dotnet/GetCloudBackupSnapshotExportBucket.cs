@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.Index.CloudBackupSnapshotExportBucket("test", new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         IamRoleId = "{IAM_ROLE_ID}",
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         ///         CloudProvider = "AWS",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBucket.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshotExportBucket.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.Index.CloudBackupSnapshotExportBucket("test", new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         IamRoleId = "{IAM_ROLE_ID}",
@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas
         ///         CloudProvider = "AWS",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBucket.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshotExportBucket.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,
@@ -93,7 +93,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+        ///     var testCloudBackupSnapshotExportBucket = new Mongodbatlas.Index.CloudBackupSnapshotExportBucket("test", new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         IamRoleId = "{IAM_ROLE_ID}",
@@ -101,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         ///         CloudProvider = "AWS",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshotExportBucket.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshotExportBucket.Invoke(new()
         ///     {
         ///         ProjectId = "{PROJECT_ID}",
         ///         ExportBucketId = testCloudBackupSnapshotExportBucket.ExportBucketId,

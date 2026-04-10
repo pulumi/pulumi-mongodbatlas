@@ -35,7 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
+//			_ = mongodbatlas.GetCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
 //				ProjectId:    testRole.ProjectId,
 //				ProviderName: testRole.ProviderName,
 //				RoleId:       testRole.RoleId,
@@ -73,7 +73,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
+//			_ = mongodbatlas.GetCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
 //				ProjectId:    testRole.ProjectId,
 //				ProviderName: testRole.ProviderName,
 //				RoleId:       testRole.RoleId,
@@ -105,7 +105,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
+//			_ = mongodbatlas.GetCloudProviderAccessSetupOutput(ctx, mongodbatlas.GetCloudProviderAccessSetupOutputArgs{
 //				ProjectId:    testRole.ProjectId,
 //				ProviderName: testRole.ProviderName,
 //				RoleId:       testRole.RoleId,

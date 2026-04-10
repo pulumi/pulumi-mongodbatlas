@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testTwo = Mongodbatlas.GetServerlessInstance.Invoke(new()
+        ///     var testTwo = Mongodbatlas.Index.GetServerlessInstance.Invoke(new()
         ///     {
         ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
         ///         ProjectId = "&lt;PROJECT_ID &gt;",
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testTwo = Mongodbatlas.GetServerlessInstance.Invoke(new()
+        ///     var testTwo = Mongodbatlas.Index.GetServerlessInstance.Invoke(new()
         ///     {
         ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
         ///         ProjectId = "&lt;PROJECT_ID &gt;",
@@ -92,7 +92,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testTwo = Mongodbatlas.GetServerlessInstance.Invoke(new()
+        ///     var testTwo = Mongodbatlas.Index.GetServerlessInstance.Invoke(new()
         ///     {
         ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
         ///         ProjectId = "&lt;PROJECT_ID &gt;",

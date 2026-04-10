@@ -36,7 +36,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF CLUSTER",
@@ -81,7 +81,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Name = "auto-scale-cluster",
@@ -117,7 +117,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Read the effective (actual) values after Atlas scales
-    ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+    ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
     ///     {
     ///         ProjectId = thisAdvancedCluster.ProjectId,
     ///         Name = thisAdvancedCluster.Name,
@@ -144,7 +144,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF CLUSTER",
@@ -188,7 +188,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF CLUSTER",
@@ -227,7 +227,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF CLUSTER",
@@ -263,7 +263,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF CLUSTER",
@@ -303,7 +303,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF CLUSTER",
@@ -341,7 +341,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF CLUSTER",
@@ -396,7 +396,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Name = clusterName,
@@ -481,7 +481,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.AdvancedCluster("this", new()
+    ///     var @this = new Mongodbatlas.Index.AdvancedCluster("this", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Name = clusterName,

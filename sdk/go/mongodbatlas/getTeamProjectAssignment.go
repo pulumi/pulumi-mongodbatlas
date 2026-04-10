@@ -40,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupTeamProjectAssignmentOutput(ctx, mongodbatlas.GetTeamProjectAssignmentOutputArgs{
+//			_ = mongodbatlas.GetTeamProjectAssignmentOutput(ctx, mongodbatlas.GetTeamProjectAssignmentOutputArgs{
 //				ProjectId: thisTeamProjectAssignment.ProjectId,
 //				TeamId:    thisTeamProjectAssignment.TeamId,
 //			}, nil)

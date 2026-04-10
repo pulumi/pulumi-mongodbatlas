@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.ServerlessInstance("test", new()
+    ///     var test = new Mongodbatlas.Index.ServerlessInstance("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",
@@ -121,6 +121,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("providerSettingsRegionName")]
         public Output<string> ProviderSettingsRegionName { get; private set; } = null!;
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the serverless instance.
+        /// </summary>
+        [Output("serverlessInstanceId")]
+        public Output<string> ServerlessInstanceId { get; private set; } = null!;
 
         /// <summary>
         /// Stage of deployment of this serverless instance when the resource made its request.
@@ -237,6 +243,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProviderSettingsRegionName { get; set; } = null!;
 
         /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the serverless instance.
+        /// </summary>
+        [Input("serverlessInstanceId")]
+        public Input<string>? ServerlessInstanceId { get; set; }
+
+        /// <summary>
         /// Stage of deployment of this serverless instance when the resource made its request.
         /// </summary>
         [Input("stateName")]
@@ -347,6 +359,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("providerSettingsRegionName")]
         public Input<string>? ProviderSettingsRegionName { get; set; }
+
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the serverless instance.
+        /// </summary>
+        [Input("serverlessInstanceId")]
+        public Input<string>? ServerlessInstanceId { get; set; }
 
         /// <summary>
         /// Stage of deployment of this serverless instance when the resource made its request.

@@ -25,14 +25,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("test_pager_duty", new()
+        ///     var testPagerDuty = new Mongodbatlas.Index.ThirdPartyIntegration("test_pager_duty", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "PAGER_DUTY",
         ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
         ///     });
         /// 
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     var testDatadog = new Mongodbatlas.Index.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas
         ///         Region = "&lt;REGION&gt;",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetThirdPartyIntegrations.Invoke(new()
         ///     {
         ///         ProjectId = testPagerDuty.ProjectId,
         ///     });
@@ -65,14 +65,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("test_pager_duty", new()
+        ///     var testPagerDuty = new Mongodbatlas.Index.ThirdPartyIntegration("test_pager_duty", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "PAGER_DUTY",
         ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
         ///     });
         /// 
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     var testDatadog = new Mongodbatlas.Index.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas
         ///         Region = "&lt;REGION&gt;",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetThirdPartyIntegrations.Invoke(new()
         ///     {
         ///         ProjectId = testPagerDuty.ProjectId,
         ///     });
@@ -105,14 +105,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testPagerDuty = new Mongodbatlas.ThirdPartyIntegration("test_pager_duty", new()
+        ///     var testPagerDuty = new Mongodbatlas.Index.ThirdPartyIntegration("test_pager_duty", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "PAGER_DUTY",
         ///         ServiceKey = "&lt;PAGER-DUTY-SERVICE-KEY&gt;",
         ///     });
         /// 
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     var testDatadog = new Mongodbatlas.Index.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -120,7 +120,7 @@ namespace Pulumi.Mongodbatlas
         ///         Region = "&lt;REGION&gt;",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegrations.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetThirdPartyIntegrations.Invoke(new()
         ///     {
         ///         ProjectId = testPagerDuty.ProjectId,
         ///     });

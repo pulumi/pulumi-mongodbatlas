@@ -58,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAlertConfigurationOutput(ctx, mongodbatlas.GetAlertConfigurationOutputArgs{
+//			_ = mongodbatlas.GetAlertConfigurationOutput(ctx, mongodbatlas.GetAlertConfigurationOutputArgs{
 //				ProjectId:            testAlertConfiguration.ProjectId,
 //				AlertConfigurationId: testAlertConfiguration.AlertConfigurationId,
 //			}, nil)
@@ -114,7 +114,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAlertConfigurationOutput(ctx, mongodbatlas.GetAlertConfigurationOutputArgs{
+//			_ = mongodbatlas.GetAlertConfigurationOutput(ctx, mongodbatlas.GetAlertConfigurationOutputArgs{
 //				ProjectId:            testAlertConfiguration.ProjectId,
 //				AlertConfigurationId: testAlertConfiguration.AlertConfigurationId,
 //			}, nil)

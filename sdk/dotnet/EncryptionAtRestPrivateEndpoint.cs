@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ear = new Mongodbatlas.EncryptionAtRest("ear", new()
+    ///     var ear = new Mongodbatlas.Index.EncryptionAtRest("ear", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         AzureKeyVaultConfig = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultConfigArgs
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Creates private endpoint
-    ///     var endpoint = new Mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint", new()
+    ///     var endpoint = new Mongodbatlas.Index.EncryptionAtRestPrivateEndpoint("endpoint", new()
     ///     {
     ///         ProjectId = ear.ProjectId,
     ///         CloudProvider = "AZURE",
@@ -99,7 +99,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ear = new Mongodbatlas.EncryptionAtRest("ear", new()
+    ///     var ear = new Mongodbatlas.Index.EncryptionAtRest("ear", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         AwsKmsConfig = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsConfigArgs
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Creates private endpoint
-    ///     var endpoint = new Mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint", new()
+    ///     var endpoint = new Mongodbatlas.Index.EncryptionAtRestPrivateEndpoint("endpoint", new()
     ///     {
     ///         ProjectId = ear.ProjectId,
     ///         CloudProvider = "AWS",

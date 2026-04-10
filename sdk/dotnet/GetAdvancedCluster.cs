@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "auto-scale-cluster",
@@ -106,7 +106,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Read effective values after Atlas auto-scales the cluster
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -131,7 +131,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -178,7 +178,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -197,7 +197,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "flex-cluster",
@@ -220,7 +220,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -245,7 +245,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -272,7 +272,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -291,7 +291,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "auto-scale-cluster",
@@ -327,7 +327,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Read effective values after Atlas auto-scales the cluster
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -352,7 +352,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -399,7 +399,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -418,7 +418,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "flex-cluster",
@@ -441,7 +441,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -466,7 +466,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -493,7 +493,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -512,7 +512,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "auto-scale-cluster",
@@ -548,7 +548,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // Read effective values after Atlas auto-scales the cluster
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -573,7 +573,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -620,7 +620,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,
@@ -639,7 +639,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
+        ///     var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "flex-cluster",
@@ -662,7 +662,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetAdvancedCluster.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetAdvancedCluster.Invoke(new()
         ///     {
         ///         ProjectId = thisAdvancedCluster.ProjectId,
         ///         Name = thisAdvancedCluster.Name,

@@ -89,6 +89,8 @@ type ServerlessInstance struct {
 	ProviderSettingsProviderName pulumi.StringOutput `pulumi:"providerSettingsProviderName"`
 	// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
 	ProviderSettingsRegionName pulumi.StringOutput `pulumi:"providerSettingsRegionName"`
+	// Unique 24-hexadecimal digit string that identifies the serverless instance.
+	ServerlessInstanceId pulumi.StringOutput `pulumi:"serverlessInstanceId"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringOutput `pulumi:"stateName"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -166,6 +168,8 @@ type serverlessInstanceState struct {
 	ProviderSettingsProviderName *string `pulumi:"providerSettingsProviderName"`
 	// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
 	ProviderSettingsRegionName *string `pulumi:"providerSettingsRegionName"`
+	// Unique 24-hexadecimal digit string that identifies the serverless instance.
+	ServerlessInstanceId *string `pulumi:"serverlessInstanceId"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName *string `pulumi:"stateName"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -202,6 +206,8 @@ type ServerlessInstanceState struct {
 	ProviderSettingsProviderName pulumi.StringPtrInput
 	// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
 	ProviderSettingsRegionName pulumi.StringPtrInput
+	// Unique 24-hexadecimal digit string that identifies the serverless instance.
+	ServerlessInstanceId pulumi.StringPtrInput
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringPtrInput
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -234,6 +240,8 @@ type serverlessInstanceArgs struct {
 	ProviderSettingsProviderName string `pulumi:"providerSettingsProviderName"`
 	// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
 	ProviderSettingsRegionName string `pulumi:"providerSettingsRegionName"`
+	// Unique 24-hexadecimal digit string that identifies the serverless instance.
+	ServerlessInstanceId *string `pulumi:"serverlessInstanceId"`
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName *string `pulumi:"stateName"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -263,6 +271,8 @@ type ServerlessInstanceArgs struct {
 	ProviderSettingsProviderName pulumi.StringInput
 	// Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
 	ProviderSettingsRegionName pulumi.StringInput
+	// Unique 24-hexadecimal digit string that identifies the serverless instance.
+	ServerlessInstanceId pulumi.StringPtrInput
 	// Stage of deployment of this serverless instance when the resource made its request.
 	StateName pulumi.StringPtrInput
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -419,6 +429,11 @@ func (o ServerlessInstanceOutput) ProviderSettingsProviderName() pulumi.StringOu
 // Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
 func (o ServerlessInstanceOutput) ProviderSettingsRegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ProviderSettingsRegionName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the serverless instance.
+func (o ServerlessInstanceOutput) ServerlessInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerlessInstance) pulumi.StringOutput { return v.ServerlessInstanceId }).(pulumi.StringOutput)
 }
 
 // Stage of deployment of this serverless instance when the resource made its request.

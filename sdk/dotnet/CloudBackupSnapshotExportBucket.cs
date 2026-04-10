@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+    ///     var test = new Mongodbatlas.Index.CloudBackupSnapshotExportBucket("test", new()
     ///     {
     ///         ProjectId = "{PROJECT_ID}",
     ///         IamRoleId = "{IAM_ROLE_ID}",
@@ -47,7 +47,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.CloudBackupSnapshotExportBucket("test", new()
+    ///     var test = new Mongodbatlas.Index.CloudBackupSnapshotExportBucket("test", new()
     ///     {
     ///         ProjectId = "{PROJECT_ID}",
     ///         RoleId = "{ROLE_ID}",

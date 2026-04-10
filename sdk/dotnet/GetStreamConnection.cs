@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
@@ -44,7 +44,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
@@ -70,7 +70,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
@@ -90,7 +90,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
@@ -116,7 +116,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
@@ -136,7 +136,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Mongodbatlas.GetStreamConnection.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamConnection.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",

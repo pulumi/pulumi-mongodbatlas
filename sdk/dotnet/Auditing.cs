@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Auditing("test", new()
+    ///     var test = new Mongodbatlas.Index.Auditing("test", new()
     ///     {
     ///         ProjectId = "&lt;project-id&gt;",
     ///         AuditFilter = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}",

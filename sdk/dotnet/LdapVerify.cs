@@ -22,13 +22,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Project("test", new()
+    ///     var test = new Mongodbatlas.Index.Project("test", new()
     ///     {
     ///         Name = "NAME OF THE PROJECT",
     ///         OrgId = "ORG ID",
     ///     });
     /// 
-    ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
+    ///     var testAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("test", new()
     ///     {
     ///         ProjectId = test.Id,
     ///         Name = "NAME OF THE CLUSTER",
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var testLdapVerify = new Mongodbatlas.LdapVerify("test", new()
+    ///     var testLdapVerify = new Mongodbatlas.Index.LdapVerify("test", new()
     ///     {
     ///         ProjectId = test.Id,
     ///         Hostname = "HOSTNAME",

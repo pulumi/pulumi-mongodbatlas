@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProjectInvitation = new Mongodbatlas.ProjectInvitation("test", new()
+        ///     var testProjectInvitation = new Mongodbatlas.Index.ProjectInvitation("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProjectInvitation.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectInvitation.Invoke(new()
         ///     {
         ///         ProjectId = testProjectInvitation.ProjectId,
         ///         Username = testProjectInvitation.Username,
@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProjectInvitation = new Mongodbatlas.ProjectInvitation("test", new()
+        ///     var testProjectInvitation = new Mongodbatlas.Index.ProjectInvitation("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
@@ -77,7 +77,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProjectInvitation.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectInvitation.Invoke(new()
         ///     {
         ///         ProjectId = testProjectInvitation.ProjectId,
         ///         Username = testProjectInvitation.Username,
@@ -106,7 +106,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testProjectInvitation = new Mongodbatlas.ProjectInvitation("test", new()
+        ///     var testProjectInvitation = new Mongodbatlas.Index.ProjectInvitation("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
@@ -116,7 +116,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetProjectInvitation.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetProjectInvitation.Invoke(new()
         ///     {
         ///         ProjectId = testProjectInvitation.ProjectId,
         ///         Username = testProjectInvitation.Username,

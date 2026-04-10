@@ -25,21 +25,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ip = new Mongodbatlas.ProjectIpAccessList("ip", new()
+        ///     var ip = new Mongodbatlas.Index.ProjectIpAccessList("ip", new()
         ///     {
         ///         ProjectId = projectId,
         ///         IpAddress = "2.3.4.5",
         ///         Comment = "ip address test",
         ///     });
         /// 
-        ///     var cidr = new Mongodbatlas.ProjectIpAccessList("cidr", new()
+        ///     var cidr = new Mongodbatlas.Index.ProjectIpAccessList("cidr", new()
         ///     {
         ///         ProjectId = projectId,
         ///         CidrBlock = "1.2.3.4/32",
         ///         Comment = "cidr block test",
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetProjectIpAccessLists.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetProjectIpAccessLists.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });
@@ -64,21 +64,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ip = new Mongodbatlas.ProjectIpAccessList("ip", new()
+        ///     var ip = new Mongodbatlas.Index.ProjectIpAccessList("ip", new()
         ///     {
         ///         ProjectId = projectId,
         ///         IpAddress = "2.3.4.5",
         ///         Comment = "ip address test",
         ///     });
         /// 
-        ///     var cidr = new Mongodbatlas.ProjectIpAccessList("cidr", new()
+        ///     var cidr = new Mongodbatlas.Index.ProjectIpAccessList("cidr", new()
         ///     {
         ///         ProjectId = projectId,
         ///         CidrBlock = "1.2.3.4/32",
         ///         Comment = "cidr block test",
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetProjectIpAccessLists.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetProjectIpAccessLists.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });
@@ -103,21 +103,21 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ip = new Mongodbatlas.ProjectIpAccessList("ip", new()
+        ///     var ip = new Mongodbatlas.Index.ProjectIpAccessList("ip", new()
         ///     {
         ///         ProjectId = projectId,
         ///         IpAddress = "2.3.4.5",
         ///         Comment = "ip address test",
         ///     });
         /// 
-        ///     var cidr = new Mongodbatlas.ProjectIpAccessList("cidr", new()
+        ///     var cidr = new Mongodbatlas.Index.ProjectIpAccessList("cidr", new()
         ///     {
         ///         ProjectId = projectId,
         ///         CidrBlock = "1.2.3.4/32",
         ///         Comment = "cidr block test",
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetProjectIpAccessLists.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetProjectIpAccessLists.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });

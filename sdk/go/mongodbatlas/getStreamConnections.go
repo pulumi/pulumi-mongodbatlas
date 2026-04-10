@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupStreamConnections(ctx, &mongodbatlas.LookupStreamConnectionsArgs{
+//			_, err := mongodbatlas.GetStreamConnections(ctx, &mongodbatlas.LookupStreamConnectionsArgs{
 //				ProjectId:     "<PROJECT_ID>",
 //				WorkspaceName: pulumi.StringRef("<WORKSPACE_NAME>"),
 //			}, nil)

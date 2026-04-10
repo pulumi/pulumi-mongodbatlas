@@ -40,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAccessListApiKeyOutput(ctx, mongodbatlas.GetAccessListApiKeyOutputArgs{
+//			_ = mongodbatlas.GetAccessListApiKeyOutput(ctx, mongodbatlas.GetAccessListApiKeyOutputArgs{
 //				OrgId:     testAccessListApiKey.OrgId,
 //				IpAddress: testAccessListApiKey.IpAddress,
 //				ApiKeyId:  testAccessListApiKey.ApiKeyId,

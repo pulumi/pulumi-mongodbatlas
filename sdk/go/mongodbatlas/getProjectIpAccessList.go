@@ -36,7 +36,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
+//			_ = mongodbatlas.GetProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
 //				ProjectId: thisProjectIpAccessList.ProjectId,
 //				CidrBlock: thisProjectIpAccessList.CidrBlock,
 //			}, nil)
@@ -67,7 +67,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
+//			_ = mongodbatlas.GetProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
 //				ProjectId: thisProjectIpAccessList.ProjectId,
 //				IpAddress: thisProjectIpAccessList.IpAddress,
 //			}, nil)
@@ -121,7 +121,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
+//			_ = mongodbatlas.GetProjectIpAccessListOutput(ctx, mongodbatlas.GetProjectIpAccessListOutputArgs{
 //				ProjectId:        thisProjectIpAccessList.ProjectId,
 //				AwsSecurityGroup: thisProjectIpAccessList.AwsSecurityGroup,
 //			}, nil)

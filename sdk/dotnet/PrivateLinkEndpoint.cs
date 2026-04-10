@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "AWS",

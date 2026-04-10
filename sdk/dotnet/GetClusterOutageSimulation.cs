@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
+        ///     var outageSimulation = Mongodbatlas.Index.GetClusterOutageSimulation.Invoke(new()
         ///     {
         ///         ProjectId = "64707f06c519c20c3a2b1b03",
         ///         ClusterName = "Cluster0",
@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
+        ///     var outageSimulation = Mongodbatlas.Index.GetClusterOutageSimulation.Invoke(new()
         ///     {
         ///         ProjectId = "64707f06c519c20c3a2b1b03",
         ///         ClusterName = "Cluster0",
@@ -98,7 +98,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var outageSimulation = Mongodbatlas.GetClusterOutageSimulation.Invoke(new()
+        ///     var outageSimulation = Mongodbatlas.Index.GetClusterOutageSimulation.Invoke(new()
         ///     {
         ///         ProjectId = "64707f06c519c20c3a2b1b03",
         ///         ClusterName = "Cluster0",

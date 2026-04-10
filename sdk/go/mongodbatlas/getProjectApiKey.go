@@ -48,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupProjectApiKey(ctx, &mongodbatlas.LookupProjectApiKeyArgs{
+//			_, err = mongodbatlas.GetProjectApiKey(ctx, &mongodbatlas.LookupProjectApiKeyArgs{
 //				ProjectId: "64259ee860c43338194b0f8e",
 //				ApiKeyId:  testMongodbatlasApiKey.ApiKeyId,
 //			}, nil)

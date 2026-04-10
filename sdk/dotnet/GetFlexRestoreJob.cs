@@ -25,14 +25,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var restoreJob = Mongodbatlas.GetFlexRestoreJob.Invoke(new()
+        ///     var restoreJob = Mongodbatlas.Index.GetFlexRestoreJob.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
         ///         RestoreJobId = restoreJobId,
         ///     });
         /// 
-        ///     var restoreJobs = Mongodbatlas.GetFlexRestoreJobs.Invoke(new()
+        ///     var restoreJobs = Mongodbatlas.Index.GetFlexRestoreJobs.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
@@ -66,14 +66,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var restoreJob = Mongodbatlas.GetFlexRestoreJob.Invoke(new()
+        ///     var restoreJob = Mongodbatlas.Index.GetFlexRestoreJob.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
         ///         RestoreJobId = restoreJobId,
         ///     });
         /// 
-        ///     var restoreJobs = Mongodbatlas.GetFlexRestoreJobs.Invoke(new()
+        ///     var restoreJobs = Mongodbatlas.Index.GetFlexRestoreJobs.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
@@ -107,14 +107,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var restoreJob = Mongodbatlas.GetFlexRestoreJob.Invoke(new()
+        ///     var restoreJob = Mongodbatlas.Index.GetFlexRestoreJob.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
         ///         RestoreJobId = restoreJobId,
         ///     });
         /// 
-        ///     var restoreJobs = Mongodbatlas.GetFlexRestoreJobs.Invoke(new()
+        ///     var restoreJobs = Mongodbatlas.Index.GetFlexRestoreJobs.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,

@@ -118,7 +118,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
+        ///     var test = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("test", new()
         ///     {
         ///         ProjectId = projectId,
         ///         DnsDomain = privateLink.DnsDomain,
@@ -129,13 +129,13 @@ namespace Pulumi.Mongodbatlas
         ///         DnsSubDomains = privateLink.ZonalSubdomains,
         ///     });
         /// 
-        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     var singularDatasource = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Id = test.Id,
         ///     });
         /// 
-        ///     var pluralDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoints.Invoke(new()
+        ///     var pluralDatasource = Mongodbatlas.Index.GetStreamPrivatelinkEndpoints.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });
@@ -196,7 +196,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // PrivateLink for S3
-        ///     var @this = new Mongodbatlas.StreamPrivatelinkEndpoint("this", new()
+        ///     var @this = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
@@ -221,7 +221,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", new()
+        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("gcp_confluent", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "GCP",
@@ -236,7 +236,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var gcpConfluent = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     var gcpConfluent = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Id = gcpConfluentStreamPrivatelinkEndpoint.Id,
@@ -361,7 +361,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
+        ///     var test = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("test", new()
         ///     {
         ///         ProjectId = projectId,
         ///         DnsDomain = privateLink.DnsDomain,
@@ -372,13 +372,13 @@ namespace Pulumi.Mongodbatlas
         ///         DnsSubDomains = privateLink.ZonalSubdomains,
         ///     });
         /// 
-        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     var singularDatasource = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Id = test.Id,
         ///     });
         /// 
-        ///     var pluralDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoints.Invoke(new()
+        ///     var pluralDatasource = Mongodbatlas.Index.GetStreamPrivatelinkEndpoints.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });
@@ -439,7 +439,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // PrivateLink for S3
-        ///     var @this = new Mongodbatlas.StreamPrivatelinkEndpoint("this", new()
+        ///     var @this = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
@@ -464,7 +464,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", new()
+        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("gcp_confluent", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "GCP",
@@ -479,7 +479,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var gcpConfluent = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     var gcpConfluent = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Id = gcpConfluentStreamPrivatelinkEndpoint.Id,
@@ -604,7 +604,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = new Mongodbatlas.StreamPrivatelinkEndpoint("test", new()
+        ///     var test = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("test", new()
         ///     {
         ///         ProjectId = projectId,
         ///         DnsDomain = privateLink.DnsDomain,
@@ -615,13 +615,13 @@ namespace Pulumi.Mongodbatlas
         ///         DnsSubDomains = privateLink.ZonalSubdomains,
         ///     });
         /// 
-        ///     var singularDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     var singularDatasource = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Id = test.Id,
         ///     });
         /// 
-        ///     var pluralDatasource = Mongodbatlas.GetStreamPrivatelinkEndpoints.Invoke(new()
+        ///     var pluralDatasource = Mongodbatlas.Index.GetStreamPrivatelinkEndpoints.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///     });
@@ -682,7 +682,7 @@ namespace Pulumi.Mongodbatlas
         ///     });
         /// 
         ///     // PrivateLink for S3
-        ///     var @this = new Mongodbatlas.StreamPrivatelinkEndpoint("this", new()
+        ///     var @this = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "AWS",
@@ -707,7 +707,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.StreamPrivatelinkEndpoint("gcp_confluent", new()
+        ///     var gcpConfluentStreamPrivatelinkEndpoint = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("gcp_confluent", new()
         ///     {
         ///         ProjectId = projectId,
         ///         ProviderName = "GCP",
@@ -722,7 +722,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var gcpConfluent = Mongodbatlas.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     var gcpConfluent = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Id = gcpConfluentStreamPrivatelinkEndpoint.Id,

@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupTeamOutput(ctx, mongodbatlas.GetTeamOutputArgs{
+//			_ = mongodbatlas.GetTeamOutput(ctx, mongodbatlas.GetTeamOutputArgs{
 //				OrgId:  testTeam.OrgId,
 //				TeamId: testTeam.TeamId,
 //			}, nil)
@@ -73,7 +73,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupTeamOutput(ctx, mongodbatlas.GetTeamOutputArgs{
+//			_ = mongodbatlas.GetTeamOutput(ctx, mongodbatlas.GetTeamOutputArgs{
 //				OrgId: test.OrgId,
 //				Name:  test.Name,
 //			}, nil)

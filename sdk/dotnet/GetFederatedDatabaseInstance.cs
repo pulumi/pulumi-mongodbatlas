@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
@@ -48,7 +48,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
@@ -122,7 +122,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
@@ -142,7 +142,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
@@ -174,7 +174,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
@@ -216,7 +216,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
@@ -236,7 +236,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
@@ -268,7 +268,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetFederatedDatabaseInstance.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",

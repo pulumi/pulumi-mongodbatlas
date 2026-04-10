@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.Index.GetRolesOrgId.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.Index.GetRolesOrgId.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
@@ -77,7 +77,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetRolesOrgId.Invoke();
+        ///     var test = Mongodbatlas.Index.GetRolesOrgId.Invoke();
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {

@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("test", new()
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.Index.CloudBackupSnapshot("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -34,7 +34,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.Index.CloudBackupSnapshotRestoreJob("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshotRestoreJob.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshotRestoreJob.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshotRestoreJob.ProjectId,
         ///         ClusterName = testCloudBackupSnapshotRestoreJob.ClusterName,
@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("test", new()
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.Index.CloudBackupSnapshot("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.Index.CloudBackupSnapshotRestoreJob("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -102,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshotRestoreJob.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshotRestoreJob.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshotRestoreJob.ProjectId,
         ///         ClusterName = testCloudBackupSnapshotRestoreJob.ClusterName,
@@ -130,7 +130,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshot = new Mongodbatlas.CloudBackupSnapshot("test", new()
+        ///     var testCloudBackupSnapshot = new Mongodbatlas.Index.CloudBackupSnapshot("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -138,7 +138,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.CloudBackupSnapshotRestoreJob("test", new()
+        ///     var testCloudBackupSnapshotRestoreJob = new Mongodbatlas.Index.CloudBackupSnapshotRestoreJob("test", new()
         ///     {
         ///         ProjectId = "5cf5a45a9ccf6400e60981b6",
         ///         ClusterName = "MyCluster",
@@ -154,7 +154,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCloudBackupSnapshotRestoreJob.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshotRestoreJob.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshotRestoreJob.ProjectId,
         ///         ClusterName = testCloudBackupSnapshotRestoreJob.ClusterName,

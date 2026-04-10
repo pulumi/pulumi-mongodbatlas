@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
+        ///     var testDatabaseUser = new Mongodbatlas.Index.DatabaseUser("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         Password = "test-acc-password",
@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDbRoles.Invoke(new()
         ///     {
         ///         ProjectId = testMongodbatlasCustomDbRole.ProjectId,
         ///     });
@@ -69,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
+        ///     var testDatabaseUser = new Mongodbatlas.Index.DatabaseUser("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         Password = "test-acc-password",
@@ -90,7 +90,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDbRoles.Invoke(new()
         ///     {
         ///         ProjectId = testMongodbatlasCustomDbRole.ProjectId,
         ///     });
@@ -114,7 +114,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatabaseUser = new Mongodbatlas.DatabaseUser("test", new()
+        ///     var testDatabaseUser = new Mongodbatlas.Index.DatabaseUser("test", new()
         ///     {
         ///         Username = "test-acc-username",
         ///         Password = "test-acc-password",
@@ -135,7 +135,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCustomDbRoles.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCustomDbRoles.Invoke(new()
         ///     {
         ///         ProjectId = testMongodbatlasCustomDbRole.ProjectId,
         ///     });

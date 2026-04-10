@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisTeamProjectAssignment = new Mongodbatlas.TeamProjectAssignment("this", new()
+        ///     var thisTeamProjectAssignment = new Mongodbatlas.Index.TeamProjectAssignment("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         TeamId = teamId,
@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetTeamProjectAssignment.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetTeamProjectAssignment.Invoke(new()
         ///     {
         ///         ProjectId = thisTeamProjectAssignment.ProjectId,
         ///         TeamId = thisTeamProjectAssignment.TeamId,
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisTeamProjectAssignment = new Mongodbatlas.TeamProjectAssignment("this", new()
+        ///     var thisTeamProjectAssignment = new Mongodbatlas.Index.TeamProjectAssignment("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         TeamId = teamId,
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetTeamProjectAssignment.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetTeamProjectAssignment.Invoke(new()
         ///     {
         ///         ProjectId = thisTeamProjectAssignment.ProjectId,
         ///         TeamId = thisTeamProjectAssignment.TeamId,
@@ -102,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var thisTeamProjectAssignment = new Mongodbatlas.TeamProjectAssignment("this", new()
+        ///     var thisTeamProjectAssignment = new Mongodbatlas.Index.TeamProjectAssignment("this", new()
         ///     {
         ///         ProjectId = projectId,
         ///         TeamId = teamId,
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         ///         },
         ///     });
         /// 
-        ///     var @this = Mongodbatlas.GetTeamProjectAssignment.Invoke(new()
+        ///     var @this = Mongodbatlas.Index.GetTeamProjectAssignment.Invoke(new()
         ///     {
         ///         ProjectId = thisTeamProjectAssignment.ProjectId,
         ///         TeamId = thisTeamProjectAssignment.TeamId,

@@ -70,7 +70,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			test := mongodbatlas.LookupPushBasedLogExportOutput(ctx, mongodbatlas.GetPushBasedLogExportOutputArgs{
+//			test := mongodbatlas.GetPushBasedLogExportOutput(ctx, mongodbatlas.GetPushBasedLogExportOutputArgs{
 //				ProjectId: testPushBasedLogExport.ProjectId,
 //			}, nil)
 //			ctx.Export("test", test.ApplyT(func(test mongodbatlas.GetPushBasedLogExportResult) (*string, error) {

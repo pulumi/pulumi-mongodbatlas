@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupProjectInvitationOutput(ctx, mongodbatlas.GetProjectInvitationOutputArgs{
+//			_ = mongodbatlas.GetProjectInvitationOutput(ctx, mongodbatlas.GetProjectInvitationOutputArgs{
 //				ProjectId: testProjectInvitation.ProjectId,
 //				Username:  testProjectInvitation.Username,
 //			}, nil)

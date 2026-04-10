@@ -44,7 +44,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     var cluster_test = new Mongodbatlas.Index.Cluster("cluster-test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         Name = "cluster-test",
@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Cluster("test", new()
+    ///     var test = new Mongodbatlas.Index.Cluster("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         Name = "test",
@@ -129,7 +129,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Cluster("test", new()
+    ///     var test = new Mongodbatlas.Index.Cluster("test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         Name = "test",
@@ -171,7 +171,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     var cluster_test = new Mongodbatlas.Index.Cluster("cluster-test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         Name = "cluster-test-multi-region",
@@ -226,7 +226,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     var cluster_test = new Mongodbatlas.Index.Cluster("cluster-test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         Name = "cluster-test-global",
@@ -281,7 +281,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cluster_test = new Mongodbatlas.Cluster("cluster-test", new()
+    ///     var cluster_test = new Mongodbatlas.Index.Cluster("cluster-test", new()
     ///     {
     ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
     ///         Name = "cluster-test-global",

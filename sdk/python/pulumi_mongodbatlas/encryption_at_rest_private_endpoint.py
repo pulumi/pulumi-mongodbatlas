@@ -290,7 +290,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             region_name=azure_region_name)
         key_vault_resource_id = f"/subscriptions/{azure_subscription_id}/resourceGroups/{azure_resource_group_name}/providers/Microsoft.KeyVault/vaults/{azure_key_vault_name}"
         # Approves private endpoint connection from Azure Key Vault
-        approval = azapi.index.UpdateResource("approval",
+        approval = azapi.UpdateResource("approval",
             type=Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01,
             name=endpoint.private_endpoint_connection_name,
             parent_id=key_vault_resource_id,
@@ -399,7 +399,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             region_name=azure_region_name)
         key_vault_resource_id = f"/subscriptions/{azure_subscription_id}/resourceGroups/{azure_resource_group_name}/providers/Microsoft.KeyVault/vaults/{azure_key_vault_name}"
         # Approves private endpoint connection from Azure Key Vault
-        approval = azapi.index.UpdateResource("approval",
+        approval = azapi.UpdateResource("approval",
             type=Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01,
             name=endpoint.private_endpoint_connection_name,
             parent_id=key_vault_resource_id,

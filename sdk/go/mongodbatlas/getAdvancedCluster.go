@@ -50,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//			_ = mongodbatlas.GetAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
 //				ProjectId: thisAdvancedCluster.ProjectId,
 //				Name:      thisAdvancedCluster.Name,
 //			}, nil)
@@ -105,7 +105,7 @@ import (
 //				return err
 //			}
 //			// Read effective values after Atlas auto-scales the cluster
-//			this := mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//			this := mongodbatlas.GetAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
 //				ProjectId:          thisAdvancedCluster.ProjectId,
 //				Name:               thisAdvancedCluster.Name,
 //				UseEffectiveFields: pulumi.Bool(true),
@@ -175,7 +175,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//			_ = mongodbatlas.GetAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
 //				ProjectId: thisAdvancedCluster.ProjectId,
 //				Name:      thisAdvancedCluster.Name,
 //			}, nil)
@@ -219,7 +219,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
+//			_ = mongodbatlas.GetAdvancedClusterOutput(ctx, mongodbatlas.GetAdvancedClusterOutputArgs{
 //				ProjectId: thisAdvancedCluster.ProjectId,
 //				Name:      thisAdvancedCluster.Name,
 //			}, nil)

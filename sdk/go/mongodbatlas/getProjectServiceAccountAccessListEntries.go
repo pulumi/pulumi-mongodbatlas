@@ -64,7 +64,7 @@ import (
 //				return err
 //			}
 //			// Data source to read a single Access List entry for the Project Service Account
-//			this := mongodbatlas.LookupProjectServiceAccountAccessListEntryOutput(ctx, mongodbatlas.GetProjectServiceAccountAccessListEntryOutputArgs{
+//			this := mongodbatlas.GetProjectServiceAccountAccessListEntryOutput(ctx, mongodbatlas.GetProjectServiceAccountAccessListEntryOutputArgs{
 //				ProjectId: cidr.ProjectId,
 //				ClientId:  cidr.ClientId,
 //				CidrBlock: cidr.CidrBlock,
@@ -73,7 +73,7 @@ import (
 //				return &this.CidrBlock, nil
 //			}).(pulumi.StringPtrOutput))
 //			// Data source to read all Access List entries for the Project Service Account
-//			thisGetProjectServiceAccountAccessListEntries := mongodbatlas.LookupProjectServiceAccountAccessListEntriesOutput(ctx, mongodbatlas.GetProjectServiceAccountAccessListEntriesOutputArgs{
+//			thisGetProjectServiceAccountAccessListEntries := mongodbatlas.GetProjectServiceAccountAccessListEntriesOutput(ctx, mongodbatlas.GetProjectServiceAccountAccessListEntriesOutputArgs{
 //				ProjectId: thisProjectServiceAccount.ProjectId,
 //				ClientId:  thisProjectServiceAccount.ClientId,
 //			}, nil)

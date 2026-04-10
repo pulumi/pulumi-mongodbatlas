@@ -40,7 +40,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupNetworkContainerOutput(ctx, mongodbatlas.GetNetworkContainerOutputArgs{
+//			_ = mongodbatlas.GetNetworkContainerOutput(ctx, mongodbatlas.GetNetworkContainerOutputArgs{
 //				ProjectId:   testNetworkContainer.ProjectId,
 //				ContainerId: testNetworkContainer.ID(),
 //			}, nil)

@@ -32,7 +32,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// New (recommended)
-//			_, err := mongodbatlas.LookupStreamWorkspace(ctx, &mongodbatlas.LookupStreamWorkspaceArgs{
+//			_, err := mongodbatlas.GetStreamWorkspace(ctx, &mongodbatlas.LookupStreamWorkspaceArgs{
 //				ProjectId:     "<PROJECT_ID>",
 //				WorkspaceName: "<WORKSPACE_NAME>",
 //			}, nil)
@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			// Old (deprecated)
-//			_, err = mongodbatlas.LookupStreamInstance(ctx, &mongodbatlas.LookupStreamInstanceArgs{
+//			_, err = mongodbatlas.GetStreamInstance(ctx, &mongodbatlas.LookupStreamInstanceArgs{
 //				ProjectId:    "<PROJECT_ID>",
 //				InstanceName: "<INSTANCE_NAME>",
 //			}, nil)
@@ -67,7 +67,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupStreamInstance(ctx, &mongodbatlas.LookupStreamInstanceArgs{
+//			_, err := mongodbatlas.GetStreamInstance(ctx, &mongodbatlas.LookupStreamInstanceArgs{
 //				ProjectId:    "<PROJECT_ID>",
 //				InstanceName: "<INSTANCE_NAME>",
 //			}, nil)

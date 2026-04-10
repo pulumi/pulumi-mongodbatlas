@@ -31,7 +31,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ProviderName = "AWS",
@@ -53,7 +53,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "AZURE",
@@ -100,7 +100,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,
@@ -123,7 +123,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "GCP",
@@ -185,7 +185,7 @@ namespace Pulumi.Mongodbatlas
     ///             LoadBalancingScheme = "",
     ///         }));
     ///     }
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
     ///     {
     ///         Endpoints = defaultComputeAddress.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
     ///         {
@@ -226,7 +226,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "GCP",
@@ -281,7 +281,7 @@ namespace Pulumi.Mongodbatlas
     ///         LoadBalancingScheme = "",
     ///     });
     /// 
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,

@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
+    ///     var test = new Mongodbatlas.Index.AccessListApiKey("test", new()
     ///     {
     ///         OrgId = "&lt;ORG_ID&gt;",
     ///         CidrBlock = "1.2.3.4/32",
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.AccessListApiKey("test", new()
+    ///     var test = new Mongodbatlas.Index.AccessListApiKey("test", new()
     ///     {
     ///         OrgId = "&lt;ORG_ID&gt;",
     ///         IpAddress = "2.3.4.5",

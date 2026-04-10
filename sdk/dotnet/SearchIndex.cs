@@ -23,7 +23,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test_basic_search_index = new Mongodbatlas.SearchIndex("test-basic-search-index", new()
+    ///     var test_basic_search_index = new Mongodbatlas.Index.SearchIndex("test-basic-search-index", new()
     ///     {
     ///         Name = "test-basic-search-index",
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
@@ -47,7 +47,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test_basic_search_vector = new Mongodbatlas.SearchIndex("test-basic-search-vector", new()
+    ///     var test_basic_search_vector = new Mongodbatlas.Index.SearchIndex("test-basic-search-vector", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test_advanced_search_index = new Mongodbatlas.SearchIndex("test-advanced-search-index", new()
+    ///     var test_advanced_search_index = new Mongodbatlas.Index.SearchIndex("test-advanced-search-index", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ClusterName = "&lt;CLUSTER_NAME&gt;",
@@ -157,7 +157,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var conf_dynamic = new Mongodbatlas.SearchIndex("conf-dynamic", new()
+    ///     var conf_dynamic = new Mongodbatlas.Index.SearchIndex("conf-dynamic", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ClusterName = "&lt;CLUSTER_NAME&gt;",

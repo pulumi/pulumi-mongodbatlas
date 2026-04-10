@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupProjectApiKeys(ctx, &mongodbatlas.LookupProjectApiKeysArgs{
+//			_, err := mongodbatlas.GetProjectApiKeys(ctx, &mongodbatlas.LookupProjectApiKeysArgs{
 //				PageNum:      pulumi.IntRef(1),
 //				ItemsPerPage: pulumi.IntRef(5),
 //				ProjectId:    "32b6e34b3d91647abb20e7b8",

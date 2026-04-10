@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			example, err := mongodbatlas.LookupLogIntegration(ctx, &mongodbatlas.LookupLogIntegrationArgs{
+//			example, err := mongodbatlas.GetLogIntegration(ctx, &mongodbatlas.LookupLogIntegrationArgs{
 //				ProjectId:     exampleMongodbatlasLogIntegration.ProjectId,
 //				IntegrationId: exampleMongodbatlasLogIntegration.IntegrationId,
 //			}, nil)

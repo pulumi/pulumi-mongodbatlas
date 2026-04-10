@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     var testDatadog = new Mongodbatlas.Index.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas
         ///         Region = "&lt;REGION&gt;",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetThirdPartyIntegration.Invoke(new()
         ///     {
         ///         ProjectId = testDatadog.ProjectId,
         ///         Type = "DATADOG",
@@ -57,7 +57,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     var testDatadog = new Mongodbatlas.Index.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -65,7 +65,7 @@ namespace Pulumi.Mongodbatlas
         ///         Region = "&lt;REGION&gt;",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetThirdPartyIntegration.Invoke(new()
         ///     {
         ///         ProjectId = testDatadog.ProjectId,
         ///         Type = "DATADOG",
@@ -90,7 +90,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testDatadog = new Mongodbatlas.ThirdPartyIntegration("test_datadog", new()
+        ///     var testDatadog = new Mongodbatlas.Index.ThirdPartyIntegration("test_datadog", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///         Type = "DATADOG",
@@ -98,7 +98,7 @@ namespace Pulumi.Mongodbatlas
         ///         Region = "&lt;REGION&gt;",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetThirdPartyIntegration.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetThirdPartyIntegration.Invoke(new()
         ///     {
         ///         ProjectId = testDatadog.ProjectId,
         ///         Type = "DATADOG",

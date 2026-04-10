@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.ProjectApiKey("test", new()
+    ///     var test = new Mongodbatlas.Index.ProjectApiKey("test", new()
     ///     {
     ///         Description = "Description of your API key",
     ///         ProjectAssignments = new[]
@@ -57,7 +57,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.ProjectApiKey("test", new()
+    ///     var test = new Mongodbatlas.Index.ProjectApiKey("test", new()
     ///     {
     ///         Description = "Description of your API key",
     ///         ProjectAssignments = new[]

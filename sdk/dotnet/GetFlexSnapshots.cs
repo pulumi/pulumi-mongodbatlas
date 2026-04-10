@@ -25,14 +25,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var snapshot = Mongodbatlas.GetFlexSnapshot.Invoke(new()
+        ///     var snapshot = Mongodbatlas.Index.GetFlexSnapshot.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
         ///         SnapshotId = snapshotId,
         ///     });
         /// 
-        ///     var snapshots = Mongodbatlas.GetFlexSnapshots.Invoke(new()
+        ///     var snapshots = Mongodbatlas.Index.GetFlexSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
@@ -66,14 +66,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var snapshot = Mongodbatlas.GetFlexSnapshot.Invoke(new()
+        ///     var snapshot = Mongodbatlas.Index.GetFlexSnapshot.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
         ///         SnapshotId = snapshotId,
         ///     });
         /// 
-        ///     var snapshots = Mongodbatlas.GetFlexSnapshots.Invoke(new()
+        ///     var snapshots = Mongodbatlas.Index.GetFlexSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
@@ -107,14 +107,14 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var snapshot = Mongodbatlas.GetFlexSnapshot.Invoke(new()
+        ///     var snapshot = Mongodbatlas.Index.GetFlexSnapshot.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,
         ///         SnapshotId = snapshotId,
         ///     });
         /// 
-        ///     var snapshots = Mongodbatlas.GetFlexSnapshots.Invoke(new()
+        ///     var snapshots = Mongodbatlas.Index.GetFlexSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         Name = example_cluster.Name,

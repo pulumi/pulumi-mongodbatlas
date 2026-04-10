@@ -53,7 +53,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudBackupSnapshotRestoreJobOutput(ctx, mongodbatlas.GetCloudBackupSnapshotRestoreJobOutputArgs{
+//			_ = mongodbatlas.GetCloudBackupSnapshotRestoreJobOutput(ctx, mongodbatlas.GetCloudBackupSnapshotRestoreJobOutputArgs{
 //				ProjectId:            testCloudBackupSnapshotRestoreJob.ProjectId,
 //				ClusterName:          testCloudBackupSnapshotRestoreJob.ClusterName,
 //				SnapshotRestoreJobId: testCloudBackupSnapshotRestoreJob.SnapshotRestoreJobId,

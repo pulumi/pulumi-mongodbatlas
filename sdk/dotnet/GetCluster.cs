@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     var testCluster = new Mongodbatlas.Index.Cluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         ///         ProviderInstanceSizeName = "M40",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCluster.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCluster.Invoke(new()
         ///     {
         ///         ProjectId = testCluster.ProjectId,
         ///         Name = testCluster.Name,
@@ -95,7 +95,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     var testCluster = new Mongodbatlas.Index.Cluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -123,7 +123,7 @@ namespace Pulumi.Mongodbatlas
         ///         ProviderInstanceSizeName = "M40",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCluster.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCluster.Invoke(new()
         ///     {
         ///         ProjectId = testCluster.ProjectId,
         ///         Name = testCluster.Name,
@@ -157,7 +157,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCluster = new Mongodbatlas.Cluster("test", new()
+        ///     var testCluster = new Mongodbatlas.Index.Cluster("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         Name = "cluster-test",
@@ -185,7 +185,7 @@ namespace Pulumi.Mongodbatlas
         ///         ProviderInstanceSizeName = "M40",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetCluster.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetCluster.Invoke(new()
         ///     {
         ///         ProjectId = testCluster.ProjectId,
         ///         Name = testCluster.Name,

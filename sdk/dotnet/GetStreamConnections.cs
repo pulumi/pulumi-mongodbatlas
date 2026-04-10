@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetStreamConnections.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetStreamConnections.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
@@ -49,7 +49,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetStreamConnections.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetStreamConnections.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetStreamConnections.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetStreamConnections.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         WorkspaceName = "&lt;WORKSPACE_NAME&gt;",

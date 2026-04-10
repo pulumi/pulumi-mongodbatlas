@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupStreamWorkspaces(ctx, &mongodbatlas.LookupStreamWorkspacesArgs{
+//			_, err := mongodbatlas.GetStreamWorkspaces(ctx, &mongodbatlas.LookupStreamWorkspacesArgs{
 //				ProjectId: "<PROJECT_ID>",
 //			}, nil)
 //			if err != nil {

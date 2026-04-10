@@ -34,7 +34,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			plural, err := mongodbatlas.LookupEncryptionAtRestPrivateEndpoints(ctx, &mongodbatlas.LookupEncryptionAtRestPrivateEndpointsArgs{
+//			plural, err := mongodbatlas.GetEncryptionAtRestPrivateEndpoints(ctx, &mongodbatlas.LookupEncryptionAtRestPrivateEndpointsArgs{
 //				ProjectId:     atlasProjectId,
 //				CloudProvider: "AZURE",
 //			}, nil)
@@ -61,7 +61,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			plural, err := mongodbatlas.LookupEncryptionAtRestPrivateEndpoints(ctx, &mongodbatlas.LookupEncryptionAtRestPrivateEndpointsArgs{
+//			plural, err := mongodbatlas.GetEncryptionAtRestPrivateEndpoints(ctx, &mongodbatlas.LookupEncryptionAtRestPrivateEndpointsArgs{
 //				ProjectId:     atlasProjectId,
 //				CloudProvider: "AWS",
 //			}, nil)

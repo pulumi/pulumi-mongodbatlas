@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
+        ///     var testNetworkContainer = new Mongodbatlas.Index.NetworkContainer("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
         ///         RegionName = "US_EAST_1",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetNetworkContainer.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetNetworkContainer.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkContainer.ProjectId,
         ///         ContainerId = testNetworkContainer.Id,
@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
+        ///     var testNetworkContainer = new Mongodbatlas.Index.NetworkContainer("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
         ///         RegionName = "US_EAST_1",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetNetworkContainer.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetNetworkContainer.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkContainer.ProjectId,
         ///         ContainerId = testNetworkContainer.Id,
@@ -105,7 +105,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testNetworkContainer = new Mongodbatlas.NetworkContainer("test", new()
+        ///     var testNetworkContainer = new Mongodbatlas.Index.NetworkContainer("test", new()
         ///     {
         ///         ProjectId = "&lt;YOUR-PROJECT-ID&gt;",
         ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
         ///         RegionName = "US_EAST_1",
         ///     });
         /// 
-        ///     var test = Mongodbatlas.GetNetworkContainer.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetNetworkContainer.Invoke(new()
         ///     {
         ///         ProjectId = testNetworkContainer.ProjectId,
         ///         ContainerId = testNetworkContainer.Id,

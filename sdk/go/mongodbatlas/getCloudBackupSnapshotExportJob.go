@@ -51,7 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupCloudBackupSnapshotExportJobOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportJobOutputArgs{
+//			_ = mongodbatlas.GetCloudBackupSnapshotExportJobOutput(ctx, mongodbatlas.GetCloudBackupSnapshotExportJobOutputArgs{
 //				ProjectId:   pulumi.String("{PROJECT_ID}"),
 //				ClusterName: pulumi.String("{CLUSTER_NAME}"),
 //				ExportJobId: testCloudBackupSnapshotExportJob.ExportJobId,

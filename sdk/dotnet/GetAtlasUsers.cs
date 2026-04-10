@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///     });
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         TeamId = "&lt;TEAM_ID&gt;",
         ///         OrgId = "&lt;ORG_ID&gt;",
@@ -93,7 +93,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///     });
@@ -111,7 +111,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -129,7 +129,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         TeamId = "&lt;TEAM_ID&gt;",
         ///         OrgId = "&lt;ORG_ID&gt;",
@@ -158,7 +158,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         OrgId = "&lt;ORG_ID&gt;",
         ///     });
@@ -176,7 +176,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -194,7 +194,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetAtlasUsers.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetAtlasUsers.Invoke(new()
         ///     {
         ///         TeamId = "&lt;TEAM_ID&gt;",
         ///         OrgId = "&lt;ORG_ID&gt;",

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupFederatedQueryLimit(ctx, &mongodbatlas.LookupFederatedQueryLimitArgs{
+//			_, err := mongodbatlas.GetFederatedQueryLimit(ctx, &mongodbatlas.LookupFederatedQueryLimitArgs{
 //				ProjectId:  "PROJECT_ID",
 //				TenantName: "FEDERATED_DATABASE_INSTANCE_NAME",
 //				LimitName:  "LIMIT_NAME",

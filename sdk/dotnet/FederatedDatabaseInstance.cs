@@ -24,7 +24,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     var test = new Mongodbatlas.Index.FederatedDatabaseInstance("test", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
@@ -84,7 +84,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     var test = new Mongodbatlas.Index.FederatedDatabaseInstance("test", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
@@ -162,7 +162,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     var test = new Mongodbatlas.Index.FederatedDatabaseInstance("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED DATABASE_INSTANCE&gt;",
@@ -235,7 +235,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.FederatedDatabaseInstance("test", new()
+    ///     var test = new Mongodbatlas.Index.FederatedDatabaseInstance("test", new()
     ///     {
     ///         ProjectId = "PROJECT ID",
     ///         Name = "NAME OF THE FEDERATED DATABASE INSTANCE",

@@ -45,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupProjectOutput(ctx, mongodbatlas.GetProjectOutputArgs{
+//			_ = mongodbatlas.GetProjectOutput(ctx, mongodbatlas.GetProjectOutputArgs{
 //				ProjectId: testProject.ID(),
 //			}, nil)
 //			return nil
@@ -80,7 +80,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupProjectOutput(ctx, mongodbatlas.GetProjectOutputArgs{
+//			_ = mongodbatlas.GetProjectOutput(ctx, mongodbatlas.GetProjectOutputArgs{
 //				Name: testProject.Name,
 //			}, nil)
 //			return nil

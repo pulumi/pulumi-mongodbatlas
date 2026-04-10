@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var outageSimulation = new Mongodbatlas.ClusterOutageSimulation("outage_simulation", new()
+    ///     var outageSimulation = new Mongodbatlas.Index.ClusterOutageSimulation("outage_simulation", new()
     ///     {
     ///         ProjectId = "64707f06c519c20c3a2b1b03",
     ///         ClusterName = "Cluster0",

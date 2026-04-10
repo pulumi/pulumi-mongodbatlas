@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example_clusterFlexCluster = new Mongodbatlas.FlexCluster("example-cluster", new()
+    ///     var example_clusterFlexCluster = new Mongodbatlas.Index.FlexCluster("example-cluster", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Name = clusterName,
@@ -38,13 +38,13 @@ namespace Pulumi.Mongodbatlas
     ///         TerminationProtectionEnabled = true,
     ///     });
     /// 
-    ///     var example_cluster = Mongodbatlas.GetFlexCluster.Invoke(new()
+    ///     var example_cluster = Mongodbatlas.Index.GetFlexCluster.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
     ///         Name = example_clusterFlexCluster.Name,
     ///     });
     /// 
-    ///     var example_clusters = Mongodbatlas.GetFlexClusters.Invoke(new()
+    ///     var example_clusters = Mongodbatlas.Index.GetFlexClusters.Invoke(new()
     ///     {
     ///         ProjectId = projectId,
     ///     });

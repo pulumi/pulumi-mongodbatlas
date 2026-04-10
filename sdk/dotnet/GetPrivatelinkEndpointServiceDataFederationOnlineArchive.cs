@@ -24,13 +24,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     var atlas_project = new Mongodbatlas.Index.Project("atlas-project", new()
         ///     {
         ///         OrgId = atlasOrgId,
         ///         Name = atlasProjectName,
         ///     });
         /// 
-        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     var test = new Mongodbatlas.Index.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
         ///     {
         ///         ProjectId = atlas_project.Id,
         ///         EndpointId = "vpce-046cf43c79424d4c9",
@@ -40,7 +40,7 @@ namespace Pulumi.Mongodbatlas
         ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
         ///     });
         /// 
-        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
+        ///     var testDataSource = Mongodbatlas.Index.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
         ///     {
         ///         ProjectId = atlas_project.Id,
         ///         EndpointId = test.EndpointId,
@@ -65,13 +65,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     var atlas_project = new Mongodbatlas.Index.Project("atlas-project", new()
         ///     {
         ///         OrgId = atlasOrgId,
         ///         Name = atlasProjectName,
         ///     });
         /// 
-        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     var test = new Mongodbatlas.Index.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
         ///     {
         ///         ProjectId = atlas_project.Id,
         ///         EndpointId = "vpce-046cf43c79424d4c9",
@@ -81,7 +81,7 @@ namespace Pulumi.Mongodbatlas
         ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
         ///     });
         /// 
-        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
+        ///     var testDataSource = Mongodbatlas.Index.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
         ///     {
         ///         ProjectId = atlas_project.Id,
         ///         EndpointId = test.EndpointId,
@@ -106,13 +106,13 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
+        ///     var atlas_project = new Mongodbatlas.Index.Project("atlas-project", new()
         ///     {
         ///         OrgId = atlasOrgId,
         ///         Name = atlasProjectName,
         ///     });
         /// 
-        ///     var test = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+        ///     var test = new Mongodbatlas.Index.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
         ///     {
         ///         ProjectId = atlas_project.Id,
         ///         EndpointId = "vpce-046cf43c79424d4c9",
@@ -122,7 +122,7 @@ namespace Pulumi.Mongodbatlas
         ///         CustomerEndpointDnsName = "vpce-046cf43c79424d4c9-nmls2y9k.vpce-svc-0824460b72e1a420e.us-east-1.vpce.amazonaws.com",
         ///     });
         /// 
-        ///     var testDataSource = Mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
+        ///     var testDataSource = Mongodbatlas.Index.GetPrivatelinkEndpointServiceDataFederationOnlineArchive.Invoke(new()
         ///     {
         ///         ProjectId = atlas_project.Id,
         ///         EndpointId = test.EndpointId,

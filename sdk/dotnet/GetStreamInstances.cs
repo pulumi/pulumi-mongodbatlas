@@ -29,13 +29,13 @@ namespace Pulumi.Mongodbatlas
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // New (recommended)
-        ///     var example = Mongodbatlas.GetStreamWorkspaces.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamWorkspaces.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
         /// 
         ///     // Old (deprecated)
-        ///     var exampleGetStreamInstances = Mongodbatlas.GetStreamInstances.Invoke(new()
+        ///     var exampleGetStreamInstances = Mongodbatlas.Index.GetStreamInstances.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -53,7 +53,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetStreamInstances.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetStreamInstances.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -82,13 +82,13 @@ namespace Pulumi.Mongodbatlas
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // New (recommended)
-        ///     var example = Mongodbatlas.GetStreamWorkspaces.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamWorkspaces.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
         /// 
         ///     // Old (deprecated)
-        ///     var exampleGetStreamInstances = Mongodbatlas.GetStreamInstances.Invoke(new()
+        ///     var exampleGetStreamInstances = Mongodbatlas.Index.GetStreamInstances.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -106,7 +106,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetStreamInstances.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetStreamInstances.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -135,13 +135,13 @@ namespace Pulumi.Mongodbatlas
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // New (recommended)
-        ///     var example = Mongodbatlas.GetStreamWorkspaces.Invoke(new()
+        ///     var example = Mongodbatlas.Index.GetStreamWorkspaces.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
         /// 
         ///     // Old (deprecated)
-        ///     var exampleGetStreamInstances = Mongodbatlas.GetStreamInstances.Invoke(new()
+        ///     var exampleGetStreamInstances = Mongodbatlas.Index.GetStreamInstances.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });
@@ -159,7 +159,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var test = Mongodbatlas.GetStreamInstances.Invoke(new()
+        ///     var test = Mongodbatlas.Index.GetStreamInstances.Invoke(new()
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///     });

@@ -58,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupDatabaseUserOutput(ctx, mongodbatlas.GetDatabaseUserOutputArgs{
+//			_ = mongodbatlas.GetDatabaseUserOutput(ctx, mongodbatlas.GetDatabaseUserOutputArgs{
 //				ProjectId: testDatabaseUser.ProjectId,
 //				Username:  testDatabaseUser.Username,
 //			}, nil)
@@ -97,7 +97,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupDatabaseUserOutput(ctx, mongodbatlas.GetDatabaseUserOutputArgs{
+//			_ = mongodbatlas.GetDatabaseUserOutput(ctx, mongodbatlas.GetDatabaseUserOutputArgs{
 //				Username:         testDatabaseUser.Username,
 //				ProjectId:        pulumi.String("6414908c207f4d22f4d8f232"),
 //				AuthDatabaseName: pulumi.String("admin"),

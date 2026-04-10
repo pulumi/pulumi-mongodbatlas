@@ -29,49 +29,51 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// thisServiceAccount, err := mongodbatlas.NewServiceAccount(ctx, "this", &mongodbatlas.ServiceAccountArgs{
-// OrgId: pulumi.Any(orgId),
-// Name: pulumi.String("example-service-account"),
-// Description: pulumi.String("Example Service Account"),
-// Roles: pulumi.StringArray{
-// pulumi.String("ORG_MEMBER"),
-// },
-// SecretExpiresAfterHours: pulumi.Int(2160),
-// })
-// if err != nil {
-// return err
-// }
-// thisServiceAccountProjectAssignment, err := mongodbatlas.NewServiceAccountProjectAssignment(ctx, "this", &mongodbatlas.ServiceAccountProjectAssignmentArgs{
-// ProjectId: pulumi.Any(projectId),
-// ClientId: thisServiceAccount.ClientId,
-// Roles: pulumi.StringArray{
-// pulumi.String("GROUP_READ_ONLY"),
-// },
-// })
-// if err != nil {
-// return err
-// }
-// this := mongodbatlas.LookupServiceAccountProjectAssignmentOutput(ctx, mongodbatlas.GetServiceAccountProjectAssignmentOutputArgs{
-// ProjectId: thisServiceAccountProjectAssignment.ProjectId,
-// ClientId: thisServiceAccountProjectAssignment.ClientId,
-// }, nil);
-// thisGetServiceAccountProjectAssignments := thisServiceAccount.ClientId.ApplyT(func(clientId string) (mongodbatlas.GetServiceAccountProjectAssignmentsResult, error) {
-// return mongodbatlas.GetServiceAccountProjectAssignmentsResult(interface{}(mongodbatlas.LookupServiceAccountProjectAssignments(ctx, &mongodbatlas.LookupServiceAccountProjectAssignmentsArgs{
-// OrgId: orgId,
-// ClientId: clientId,
-// }, nil))), nil
-// }).(mongodbatlas.GetServiceAccountProjectAssignmentsResultOutput)
-// ctx.Export("serviceAccountProjectRoles", this.ApplyT(func(this mongodbatlas.GetServiceAccountProjectAssignmentResult) (interface{}, error) {
-// return this.Roles, nil
-// }).(pulumi.Interface{}Output))
-// ctx.Export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.ApplyT(func(thisGetServiceAccountProjectAssignments mongodbatlas.GetServiceAccountProjectAssignmentsResult) ([]mongodbatlas.GetServiceAccountProjectAssignmentsResult, error) {
-// return []mongodbatlas.GetServiceAccountProjectAssignmentsResult(thisGetServiceAccountProjectAssignments.Results), nil
-// }).([]mongodbatlas.GetServiceAccountProjectAssignmentsResultOutput))
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			thisServiceAccount, err := mongodbatlas.NewServiceAccount(ctx, "this", &mongodbatlas.ServiceAccountArgs{
+//				OrgId:       pulumi.Any(orgId),
+//				Name:        pulumi.String("example-service-account"),
+//				Description: pulumi.String("Example Service Account"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("ORG_MEMBER"),
+//				},
+//				SecretExpiresAfterHours: pulumi.Int(2160),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			thisServiceAccountProjectAssignment, err := mongodbatlas.NewServiceAccountProjectAssignment(ctx, "this", &mongodbatlas.ServiceAccountProjectAssignmentArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				ClientId:  thisServiceAccount.ClientId,
+//				Roles: pulumi.StringArray{
+//					pulumi.String("GROUP_READ_ONLY"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			this := mongodbatlas.GetServiceAccountProjectAssignmentOutput(ctx, mongodbatlas.GetServiceAccountProjectAssignmentOutputArgs{
+//				ProjectId: thisServiceAccountProjectAssignment.ProjectId,
+//				ClientId:  thisServiceAccountProjectAssignment.ClientId,
+//			}, nil)
+//			thisGetServiceAccountProjectAssignments := thisServiceAccount.ClientId.ApplyT(func(clientId string) (mongodbatlas.GetServiceAccountProjectAssignmentsResult, error) {
+//				return mongodbatlas.GetServiceAccountProjectAssignmentsResult(interface{}(mongodbatlas.GetServiceAccountProjectAssignments(ctx, &mongodbatlas.LookupServiceAccountProjectAssignmentsArgs{
+//					OrgId:    orgId,
+//					ClientId: clientId,
+//				}, nil))), nil
+//			}).(mongodbatlas.GetServiceAccountProjectAssignmentsResultOutput)
+//			ctx.Export("serviceAccountProjectRoles", this.ApplyT(func(this mongodbatlas.GetServiceAccountProjectAssignmentResult) (interface{}, error) {
+//				return this.Roles, nil
+//			}).(pulumi.AnyOutput))
+//			ctx.Export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.ApplyT(func(thisGetServiceAccountProjectAssignments mongodbatlas.GetServiceAccountProjectAssignmentsResult) ([]mongodbatlas.GetServiceAccountProjectAssignmentsResult, error) {
+//				return []mongodbatlas.GetServiceAccountProjectAssignmentsResult(thisGetServiceAccountProjectAssignments.Results), nil
+//			}).([]mongodbatlas.GetServiceAccountProjectAssignmentsResultOutput))
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import

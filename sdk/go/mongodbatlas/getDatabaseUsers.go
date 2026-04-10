@@ -58,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupDatabaseUsersOutput(ctx, mongodbatlas.GetDatabaseUsersOutputArgs{
+//			_ = mongodbatlas.GetDatabaseUsersOutput(ctx, mongodbatlas.GetDatabaseUsersOutputArgs{
 //				ProjectId: testDatabaseUser.ProjectId,
 //			}, nil)
 //			return nil
@@ -95,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupDatabaseUsers(ctx, &mongodbatlas.LookupDatabaseUsersArgs{
+//			_, err = mongodbatlas.GetDatabaseUsers(ctx, &mongodbatlas.LookupDatabaseUsersArgs{
 //				ProjectId: "6414908c207f4d22f4d8f232",
 //			}, nil)
 //			if err != nil {

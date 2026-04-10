@@ -33,7 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.LookupClusterOutageSimulation(ctx, &mongodbatlas.LookupClusterOutageSimulationArgs{
+//			_, err := mongodbatlas.GetClusterOutageSimulation(ctx, &mongodbatlas.LookupClusterOutageSimulationArgs{
 //				ProjectId:   "64707f06c519c20c3a2b1b03",
 //				ClusterName: "Cluster0",
 //			}, nil)

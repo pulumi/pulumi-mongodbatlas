@@ -38,7 +38,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
+//			_ = mongodbatlas.GetMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
 //				ProjectId: testMaintenanceWindow.ID(),
 //			}, nil)
 //			return nil
@@ -66,7 +66,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = mongodbatlas.LookupMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
+//			_ = mongodbatlas.GetMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
 //				ProjectId: testMaintenanceWindow.ID(),
 //			}, nil)
 //			return nil

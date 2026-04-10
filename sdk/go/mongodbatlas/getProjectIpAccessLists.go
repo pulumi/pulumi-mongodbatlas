@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.LookupProjectIpAccessLists(ctx, &mongodbatlas.LookupProjectIpAccessListsArgs{
+//			_, err = mongodbatlas.GetProjectIpAccessLists(ctx, &mongodbatlas.LookupProjectIpAccessListsArgs{
 //				ProjectId: projectId,
 //			}, nil)
 //			if err != nil {

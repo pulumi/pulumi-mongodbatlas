@@ -71,7 +71,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			example := mongodbatlas.LookupSearchDeploymentOutput(ctx, mongodbatlas.GetSearchDeploymentOutputArgs{
+//			example := mongodbatlas.GetSearchDeploymentOutput(ctx, mongodbatlas.GetSearchDeploymentOutputArgs{
 //				ProjectId:   exampleSearchDeployment.ProjectId,
 //				ClusterName: exampleSearchDeployment.ClusterName,
 //			}, nil)
