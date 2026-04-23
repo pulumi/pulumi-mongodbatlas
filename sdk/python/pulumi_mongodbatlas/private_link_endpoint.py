@@ -23,7 +23,8 @@ class PrivateLinkEndpointArgs:
                  provider_name: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
                  delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 supported_remote_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a PrivateLinkEndpoint resource.
 
@@ -33,6 +34,7 @@ class PrivateLinkEndpointArgs:
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.bool] port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_remote_regions: List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
         """
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "provider_name", provider_name)
@@ -41,6 +43,8 @@ class PrivateLinkEndpointArgs:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if port_mapping_enabled is not None:
             pulumi.set(__self__, "port_mapping_enabled", port_mapping_enabled)
+        if supported_remote_regions is not None:
+            pulumi.set(__self__, "supported_remote_regions", supported_remote_regions)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -103,6 +107,18 @@ class PrivateLinkEndpointArgs:
     def port_mapping_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
         pulumi.set(self, "port_mapping_enabled", value)
 
+    @_builtins.property
+    @pulumi.getter(name="supportedRemoteRegions")
+    def supported_remote_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
+        """
+        return pulumi.get(self, "supported_remote_regions")
+
+    @supported_remote_regions.setter
+    def supported_remote_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "supported_remote_regions", value)
+
 
 @pulumi.input_type
 class _PrivateLinkEndpointState:
@@ -122,7 +138,8 @@ class _PrivateLinkEndpointState:
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  region_name: Optional[pulumi.Input[_builtins.str]] = None,
                  service_attachment_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
+                 supported_remote_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering PrivateLinkEndpoint resources.
 
@@ -147,6 +164,7 @@ class _PrivateLinkEndpointState:
                * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
                * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
                * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_remote_regions: List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
         """
         if delete_on_create_timeout is not None:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
@@ -180,6 +198,8 @@ class _PrivateLinkEndpointState:
             pulumi.set(__self__, "service_attachment_names", service_attachment_names)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if supported_remote_regions is not None:
+            pulumi.set(__self__, "supported_remote_regions", supported_remote_regions)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
@@ -378,6 +398,18 @@ class _PrivateLinkEndpointState:
     def status(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "status", value)
 
+    @_builtins.property
+    @pulumi.getter(name="supportedRemoteRegions")
+    def supported_remote_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
+        """
+        return pulumi.get(self, "supported_remote_regions")
+
+    @supported_remote_regions.setter
+    def supported_remote_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "supported_remote_regions", value)
+
 
 @pulumi.type_token("mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint")
 class PrivateLinkEndpoint(pulumi.CustomResource):
@@ -390,6 +422,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 supported_remote_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         `PrivateLinkEndpoint` provides a Private Endpoint resource. This represents a [Private Endpoint Service](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) that can be created in an Atlas project.
@@ -412,6 +445,22 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             project_id=project_id,
             provider_name="AWS",
             region="US_EAST_1")
+        ```
+
+        ### AWS Cross-Region Private Endpoint
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cross_region = mongodbatlas.PrivateLinkEndpoint("cross_region",
+            project_id=project_id,
+            provider_name="AWS",
+            region="US_EAST_1",
+            supported_remote_regions=[
+                "EU_WEST_1",
+                "AP_SOUTHEAST_1",
+            ])
         ```
 
         ### Further Examples
@@ -440,6 +489,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
                Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_remote_regions: List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
         """
         ...
     @overload
@@ -468,6 +518,22 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             project_id=project_id,
             provider_name="AWS",
             region="US_EAST_1")
+        ```
+
+        ### AWS Cross-Region Private Endpoint
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        cross_region = mongodbatlas.PrivateLinkEndpoint("cross_region",
+            project_id=project_id,
+            provider_name="AWS",
+            region="US_EAST_1",
+            supported_remote_regions=[
+                "EU_WEST_1",
+                "AP_SOUTHEAST_1",
+            ])
         ```
 
         ### Further Examples
@@ -508,6 +574,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 supported_remote_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -528,6 +595,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
+            __props__.__dict__["supported_remote_regions"] = supported_remote_regions
             __props__.__dict__["endpoint_group_names"] = None
             __props__.__dict__["endpoint_service_name"] = None
             __props__.__dict__["error_message"] = None
@@ -564,7 +632,8 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
             region: Optional[pulumi.Input[_builtins.str]] = None,
             region_name: Optional[pulumi.Input[_builtins.str]] = None,
             service_attachment_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None) -> 'PrivateLinkEndpoint':
+            status: Optional[pulumi.Input[_builtins.str]] = None,
+            supported_remote_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'PrivateLinkEndpoint':
         """
         Get an existing PrivateLinkEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -593,6 +662,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
                * `INITIATING` - Atlas is creating the load balancer and the GCP Private Service Connect service.
                * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
                * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_remote_regions: List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -614,6 +684,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         __props__.__dict__["region_name"] = region_name
         __props__.__dict__["service_attachment_names"] = service_attachment_names
         __props__.__dict__["status"] = status
+        __props__.__dict__["supported_remote_regions"] = supported_remote_regions
         return PrivateLinkEndpoint(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -748,4 +819,12 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="supportedRemoteRegions")
+    def supported_remote_regions(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
+        """
+        return pulumi.get(self, "supported_remote_regions")
 

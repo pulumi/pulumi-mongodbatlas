@@ -98,6 +98,12 @@ export interface GetFederatedDatabaseInstanceResult {
      */
     readonly id: string;
     readonly name: string;
+    /**
+     * The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+     * * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+     */
+    readonly privateEndpointHostnames: outputs.GetFederatedDatabaseInstancePrivateEndpointHostname[];
     readonly projectId: string;
     /**
      * Current state of the Federated Database Instance:

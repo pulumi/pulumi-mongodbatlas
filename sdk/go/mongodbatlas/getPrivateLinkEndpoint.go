@@ -107,6 +107,8 @@ type LookupPrivateLinkEndpointResult struct {
 	// * `FAILED` - A system failure occurred.
 	// * `DELETING` - Atlas is deleting the Private Link service.
 	Status string `pulumi:"status"`
+	// List of additional AWS regions that can connect to the endpoint service.
+	SupportedRemoteRegions []string `pulumi:"supportedRemoteRegions"`
 }
 
 func LookupPrivateLinkEndpointOutput(ctx *pulumi.Context, args LookupPrivateLinkEndpointOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateLinkEndpointResultOutput {
@@ -223,6 +225,11 @@ func (o LookupPrivateLinkEndpointResultOutput) ServiceAttachmentNames() pulumi.S
 // * `DELETING` - Atlas is deleting the Private Link service.
 func (o LookupPrivateLinkEndpointResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// List of additional AWS regions that can connect to the endpoint service.
+func (o LookupPrivateLinkEndpointResultOutput) SupportedRemoteRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupPrivateLinkEndpointResult) []string { return v.SupportedRemoteRegions }).(pulumi.StringArrayOutput)
 }
 
 func init() {

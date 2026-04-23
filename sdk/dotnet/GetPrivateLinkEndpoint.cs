@@ -246,6 +246,10 @@ namespace Pulumi.Mongodbatlas
         /// * `DELETING` - Atlas is deleting the Private Link service.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// List of additional AWS regions that can connect to the endpoint service.
+        /// </summary>
+        public readonly ImmutableArray<string> SupportedRemoteRegions;
 
         [OutputConstructor]
         private GetPrivateLinkEndpointResult(
@@ -277,7 +281,9 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<string> serviceAttachmentNames,
 
-            string status)
+            string status,
+
+            ImmutableArray<string> supportedRemoteRegions)
         {
             EndpointGroupNames = endpointGroupNames;
             EndpointServiceName = endpointServiceName;
@@ -294,6 +300,7 @@ namespace Pulumi.Mongodbatlas
             RegionName = regionName;
             ServiceAttachmentNames = serviceAttachmentNames;
             Status = status;
+            SupportedRemoteRegions = supportedRemoteRegions;
         }
     }
 }

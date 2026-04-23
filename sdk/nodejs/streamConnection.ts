@@ -203,6 +203,39 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example GCPPubSub Connection with Private Service Connect
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const gcpSetup = new mongodbatlas.CloudProviderAccessSetup("gcp_setup", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ * });
+ * const gcpAuth = new mongodbatlas.CloudProviderAccessAuthorization("gcp_auth", {
+ *     projectId: projectId,
+ *     roleId: gcpSetup.roleId,
+ * });
+ * const exampleGcpPubsubPsc = new mongodbatlas.StreamConnection("example_gcp_pubsub_psc", {
+ *     projectId: projectId,
+ *     workspaceName: example.workspaceName,
+ *     connectionName: "GCPPubSubPSCConnection",
+ *     type: "GCPPubSub",
+ *     gcp: {
+ *         serviceAccountId: gcpSetup.gcpConfigs.apply(gcpConfigs => gcpConfigs[0].serviceAccountForAtlas),
+ *     },
+ *     networking: {
+ *         access: {
+ *             type: "PRIVATE_LINK",
+ *             connectionId: gcpPubsub.id,
+ *         },
+ *     },
+ * }, {
+ *     dependsOn: [gcpAuth],
+ * });
+ * ```
+ *
  * ### Example Https Connection
  *
  * ```typescript

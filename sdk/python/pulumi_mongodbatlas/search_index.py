@@ -882,6 +882,14 @@ class SearchIndex(pulumi.CustomResource):
             }])
         ```
 
+        ## Import
+
+        You can import search indexes using `project_id`, `cluster_name`, and `index_id` as in the following example:
+
+        ```sh
+        $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+        ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1062,6 +1070,14 @@ class SearchIndex(pulumi.CustomResource):
         ]
         \"\"\",
             }])
+        ```
+
+        ## Import
+
+        You can import search indexes using `project_id`, `cluster_name`, and `index_id` as in the following example:
+
+        ```sh
+        $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
         ```
 
 

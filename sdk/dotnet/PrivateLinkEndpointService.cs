@@ -38,7 +38,7 @@ namespace Pulumi.Mongodbatlas
     ///         Region = "US_EAST_1",
     ///     });
     /// 
-    ///     var ptfeService = new Aws.Index.VpcEndpoint("ptfe_service", new()
+    ///     var thisVpcEndpoint = new Aws.Index.VpcEndpoint("this", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
     ///         ServiceName = @this.EndpointServiceName,
@@ -57,7 +57,57 @@ namespace Pulumi.Mongodbatlas
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,
-    ///         EndpointServiceId = ptfeService.Id,
+    ///         EndpointServiceId = thisVpcEndpoint.Id,
+    ///         ProviderName = "AWS",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Example with AWS Cross-Region
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Aws = Pulumi.Aws;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
+    ///     {
+    ///         ProjectId = "&lt;PROJECT_ID&gt;",
+    ///         ProviderName = "AWS",
+    ///         Region = "EU_WEST_1",
+    ///         SupportedRemoteRegions = new[]
+    ///         {
+    ///             "US_EAST_1",
+    ///         },
+    ///     });
+    /// 
+    ///     var thisVpcEndpoint = new Aws.Index.VpcEndpoint("this", new()
+    ///     {
+    ///         VpcId = "vpc-7fc0a543",
+    ///         ServiceName = @this.EndpointServiceName,
+    ///         VpcEndpointType = "Interface",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             "subnet-de0406d2",
+    ///         },
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             "sg-3f238186",
+    ///         },
+    ///         Region = "us-east-1",
+    ///         ServiceRegion = "eu-west-1",
+    ///     });
+    /// 
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
+    ///     {
+    ///         ProjectId = @this.ProjectId,
+    ///         PrivateLinkId = @this.PrivateLinkId,
+    ///         EndpointServiceId = thisVpcEndpoint.Id,
     ///         ProviderName = "AWS",
     ///     });
     /// 

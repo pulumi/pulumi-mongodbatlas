@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  *             .region("US_EAST_1")
  *             .build());
  * 
- *         var ptfeService = new VpcEndpoint("ptfeService", VpcEndpointArgs.builder()
+ *         var thisVpcEndpoint = new VpcEndpoint("thisVpcEndpoint", VpcEndpointArgs.builder()
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName(this_.endpointServiceName())
  *             .vpcEndpointType("Interface")
@@ -73,7 +73,64 @@ import javax.annotation.Nullable;
  *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
  *             .projectId(this_.projectId())
  *             .privateLinkId(this_.privateLinkId())
- *             .endpointServiceId(ptfeService.id())
+ *             .endpointServiceId(thisVpcEndpoint.id())
+ *             .providerName("AWS")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Example with AWS Cross-Region
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import com.pulumi.aws.VpcEndpoint;
+ * import com.pulumi.aws.VpcEndpointArgs;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var this_ = new PrivateLinkEndpoint("this", PrivateLinkEndpointArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .providerName("AWS")
+ *             .region("EU_WEST_1")
+ *             .supportedRemoteRegions("US_EAST_1")
+ *             .build());
+ * 
+ *         var thisVpcEndpoint = new VpcEndpoint("thisVpcEndpoint", VpcEndpointArgs.builder()
+ *             .vpcId("vpc-7fc0a543")
+ *             .serviceName(this_.endpointServiceName())
+ *             .vpcEndpointType("Interface")
+ *             .subnetIds(List.of("subnet-de0406d2"))
+ *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .region("us-east-1")
+ *             .serviceRegion("eu-west-1")
+ *             .build());
+ * 
+ *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
+ *             .projectId(this_.projectId())
+ *             .privateLinkId(this_.privateLinkId())
+ *             .endpointServiceId(thisVpcEndpoint.id())
  *             .providerName("AWS")
  *             .build());
  * 

@@ -250,6 +250,71 @@ namespace Pulumi.Mongodbatlas
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### GCP Pub/Sub Private Service Connect
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "GCP",
+        ///                         RegionName = "US_EAST_4",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpPubsubStreamPrivatelinkEndpoint = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("gcp_pubsub", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "GCP",
+        ///         Vendor = "PUBSUB",
+        ///         Region = gcpRegion,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             cluster,
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpPubsub = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = gcpPubsubStreamPrivatelinkEndpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = gcpPubsubStreamPrivatelinkEndpoint.Id,
+        ///         ["privatelinkEndpointState"] = gcpPubsub.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+        ///         ["dnsDomain"] = gcpPubsubStreamPrivatelinkEndpoint.DnsDomain,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetStreamPrivatelinkEndpointResult> InvokeAsync(GetStreamPrivatelinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointArgs(), options.WithDefaults());
@@ -493,6 +558,71 @@ namespace Pulumi.Mongodbatlas
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### GCP Pub/Sub Private Service Connect
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "GCP",
+        ///                         RegionName = "US_EAST_4",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpPubsubStreamPrivatelinkEndpoint = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("gcp_pubsub", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "GCP",
+        ///         Vendor = "PUBSUB",
+        ///         Region = gcpRegion,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             cluster,
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpPubsub = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = gcpPubsubStreamPrivatelinkEndpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = gcpPubsubStreamPrivatelinkEndpoint.Id,
+        ///         ["privatelinkEndpointState"] = gcpPubsub.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+        ///         ["dnsDomain"] = gcpPubsubStreamPrivatelinkEndpoint.DnsDomain,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointResult> Invoke(GetStreamPrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
@@ -733,6 +863,71 @@ namespace Pulumi.Mongodbatlas
         ///         ["privatelinkEndpointId"] = gcpConfluentStreamPrivatelinkEndpoint.Id,
         ///         ["privatelinkEndpointState"] = gcpConfluent.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
         ///         ["serviceAttachmentUris"] = gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### GCP Pub/Sub Private Service Connect
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "GCP",
+        ///                         RegionName = "US_EAST_4",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpPubsubStreamPrivatelinkEndpoint = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("gcp_pubsub", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ProviderName = "GCP",
+        ///         Vendor = "PUBSUB",
+        ///         Region = gcpRegion,
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             cluster,
+        ///         },
+        ///     });
+        /// 
+        ///     var gcpPubsub = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Id = gcpPubsubStreamPrivatelinkEndpoint.Id,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = gcpPubsubStreamPrivatelinkEndpoint.Id,
+        ///         ["privatelinkEndpointState"] = gcpPubsub.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+        ///         ["dnsDomain"] = gcpPubsubStreamPrivatelinkEndpoint.DnsDomain,
         ///     };
         /// });
         /// ```

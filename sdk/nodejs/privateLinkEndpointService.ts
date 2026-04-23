@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     region: "US_EAST_1",
  * });
- * const ptfeService = new aws.index.VpcEndpoint("ptfe_service", {
+ * const thisVpcEndpoint = new aws.index.VpcEndpoint("this", {
  *     vpcId: "vpc-7fc0a543",
  *     serviceName: _this.endpointServiceName,
  *     vpcEndpointType: "Interface",
@@ -39,7 +39,37 @@ import * as utilities from "./utilities";
  * const thisPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("this", {
  *     projectId: _this.projectId,
  *     privateLinkId: _this.privateLinkId,
- *     endpointServiceId: ptfeService.id,
+ *     endpointServiceId: thisVpcEndpoint.id,
+ *     providerName: "AWS",
+ * });
+ * ```
+ *
+ * ## Example with AWS Cross-Region
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as aws from "@pulumi/aws";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const _this = new mongodbatlas.PrivateLinkEndpoint("this", {
+ *     projectId: "<PROJECT_ID>",
+ *     providerName: "AWS",
+ *     region: "EU_WEST_1",
+ *     supportedRemoteRegions: ["US_EAST_1"],
+ * });
+ * const thisVpcEndpoint = new aws.index.VpcEndpoint("this", {
+ *     vpcId: "vpc-7fc0a543",
+ *     serviceName: _this.endpointServiceName,
+ *     vpcEndpointType: "Interface",
+ *     subnetIds: ["subnet-de0406d2"],
+ *     securityGroupIds: ["sg-3f238186"],
+ *     region: "us-east-1",
+ *     serviceRegion: "eu-west-1",
+ * });
+ * const thisPrivateLinkEndpointService = new mongodbatlas.PrivateLinkEndpointService("this", {
+ *     projectId: _this.projectId,
+ *     privateLinkId: _this.privateLinkId,
+ *     endpointServiceId: thisVpcEndpoint.id,
  *     providerName: "AWS",
  * });
  * ```

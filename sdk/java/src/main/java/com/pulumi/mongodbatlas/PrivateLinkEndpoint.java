@@ -62,6 +62,44 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### AWS Cross-Region Private Endpoint
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpoint;
+ * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var crossRegion = new PrivateLinkEndpoint("crossRegion", PrivateLinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("AWS")
+ *             .region("US_EAST_1")
+ *             .supportedRemoteRegions(            
+ *                 "EU_WEST_1",
+ *                 "AP_SOUTHEAST_1")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Further Examples
  * - AWS PrivateLink Endpoint
  * - Azure PrivateLink Endpoint
@@ -315,6 +353,20 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
      */
     public Output<String> status() {
         return this.status;
+    }
+    /**
+     * List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+     * 
+     */
+    @Export(name="supportedRemoteRegions", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> supportedRemoteRegions;
+
+    /**
+     * @return List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+     * 
+     */
+    public Output<Optional<List<String>>> supportedRemoteRegions() {
+        return Codegen.optional(this.supportedRemoteRegions);
     }
 
     /**

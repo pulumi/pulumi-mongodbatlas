@@ -12,10 +12,6 @@ import java.util.Objects;
 
 @CustomType
 public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     private String id;
     private String projectId;
     /**
@@ -25,10 +21,6 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvo
     private List<GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult> results;
 
     private GetPrivatelinkEndpointServiceDataFederationOnlineArchivesInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

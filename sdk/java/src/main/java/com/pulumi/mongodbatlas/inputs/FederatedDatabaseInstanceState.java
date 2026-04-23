@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigArgs;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceDataProcessRegionArgs;
+import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstancePrivateEndpointHostnameArgs;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageDatabaseArgs;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceStorageStoreArgs;
 import java.lang.String;
@@ -92,6 +93,21 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * 
+     */
+    @Import(name="privateEndpointHostnames")
+    private @Nullable Output<List<FederatedDatabaseInstancePrivateEndpointHostnameArgs>> privateEndpointHostnames;
+
+    /**
+     * @return The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * 
+     */
+    public Optional<Output<List<FederatedDatabaseInstancePrivateEndpointHostnameArgs>>> privateEndpointHostnames() {
+        return Optional.ofNullable(this.privateEndpointHostnames);
     }
 
     /**
@@ -243,6 +259,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         this.dataProcessRegion = $.dataProcessRegion;
         this.hostnames = $.hostnames;
         this.name = $.name;
+        this.privateEndpointHostnames = $.privateEndpointHostnames;
         this.projectId = $.projectId;
         this.state = $.state;
         this.storageDatabases = $.storageDatabases;
@@ -373,6 +390,37 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param privateEndpointHostnames The list of private endpoint hostnames assigned to the Federated Database Instance.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpointHostnames(@Nullable Output<List<FederatedDatabaseInstancePrivateEndpointHostnameArgs>> privateEndpointHostnames) {
+            $.privateEndpointHostnames = privateEndpointHostnames;
+            return this;
+        }
+
+        /**
+         * @param privateEndpointHostnames The list of private endpoint hostnames assigned to the Federated Database Instance.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpointHostnames(List<FederatedDatabaseInstancePrivateEndpointHostnameArgs> privateEndpointHostnames) {
+            return privateEndpointHostnames(Output.of(privateEndpointHostnames));
+        }
+
+        /**
+         * @param privateEndpointHostnames The list of private endpoint hostnames assigned to the Federated Database Instance.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateEndpointHostnames(FederatedDatabaseInstancePrivateEndpointHostnameArgs... privateEndpointHostnames) {
+            return privateEndpointHostnames(List.of(privateEndpointHostnames));
         }
 
         /**

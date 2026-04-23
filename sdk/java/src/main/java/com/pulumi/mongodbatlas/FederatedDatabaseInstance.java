@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceState;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceCloudProviderConfig;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceDataProcessRegion;
+import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstancePrivateEndpointHostname;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceStorageDatabase;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceStorageStore;
 import java.lang.String;
@@ -357,6 +358,20 @@ public class FederatedDatabaseInstance extends com.pulumi.resources.CustomResour
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * 
+     */
+    @Export(name="privateEndpointHostnames", refs={List.class,FederatedDatabaseInstancePrivateEndpointHostname.class}, tree="[0,1]")
+    private Output<List<FederatedDatabaseInstancePrivateEndpointHostname>> privateEndpointHostnames;
+
+    /**
+     * @return The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * 
+     */
+    public Output<List<FederatedDatabaseInstancePrivateEndpointHostname>> privateEndpointHostnames() {
+        return this.privateEndpointHostnames;
     }
     /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.

@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -94,6 +95,21 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         return this.region;
     }
 
+    /**
+     * List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+     * 
+     */
+    @Import(name="supportedRemoteRegions")
+    private @Nullable Output<List<String>> supportedRemoteRegions;
+
+    /**
+     * @return List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+     * 
+     */
+    public Optional<Output<List<String>>> supportedRemoteRegions() {
+        return Optional.ofNullable(this.supportedRemoteRegions);
+    }
+
     private PrivateLinkEndpointArgs() {}
 
     private PrivateLinkEndpointArgs(PrivateLinkEndpointArgs $) {
@@ -102,6 +118,7 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
         this.projectId = $.projectId;
         this.providerName = $.providerName;
         this.region = $.region;
+        this.supportedRemoteRegions = $.supportedRemoteRegions;
     }
 
     public static Builder builder() {
@@ -227,6 +244,37 @@ public final class PrivateLinkEndpointArgs extends com.pulumi.resources.Resource
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param supportedRemoteRegions List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder supportedRemoteRegions(@Nullable Output<List<String>> supportedRemoteRegions) {
+            $.supportedRemoteRegions = supportedRemoteRegions;
+            return this;
+        }
+
+        /**
+         * @param supportedRemoteRegions List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder supportedRemoteRegions(List<String> supportedRemoteRegions) {
+            return supportedRemoteRegions(Output.of(supportedRemoteRegions));
+        }
+
+        /**
+         * @param supportedRemoteRegions List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder supportedRemoteRegions(String... supportedRemoteRegions) {
+            return supportedRemoteRegions(List.of(supportedRemoteRegions));
         }
 
         public PrivateLinkEndpointArgs build() {

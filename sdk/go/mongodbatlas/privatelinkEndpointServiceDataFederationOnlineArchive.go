@@ -76,10 +76,15 @@ import (
 //
 // ## Import
 //
-// Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `projectId`--`endpointId`, e.g.
+// Import the Private Endpoint Service resource for Data Federation and Online Archive using the project ID and endpoint ID in either of the following formats:
+//
+// - `project_id--endpoint_id`
+// - `project_id/endpoint_id`
 //
 // ```sh
 // $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934--vpce-3bf78b0ddee411ba1
+//
+// $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934/vpce-3bf78b0ddee411ba1
 // ```
 //
 // See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) Documentation for more information.
@@ -87,9 +92,11 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchive struct {
 	pulumi.CustomResourceState
 
 	// Human-readable string to associate with this private endpoint.
-	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	Comment pulumi.StringOutput `pulumi:"comment"`
 	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
-	CustomerEndpointDnsName pulumi.StringPtrOutput `pulumi:"customerEndpointDnsName"`
+	CustomerEndpointDnsName pulumi.StringOutput `pulumi:"customerEndpointDnsName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
 	EndpointId pulumi.StringOutput `pulumi:"endpointId"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -97,7 +104,9 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchive struct {
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
+	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+	Timeouts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput `pulumi:"timeouts"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -145,6 +154,8 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	Comment *string `pulumi:"comment"`
 	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName *string `pulumi:"customerEndpointDnsName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
 	EndpointId *string `pulumi:"endpointId"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -153,6 +164,8 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	ProviderName *string `pulumi:"providerName"`
 	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region *string `pulumi:"region"`
+	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+	Timeouts *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts `pulumi:"timeouts"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type *string `pulumi:"type"`
 }
@@ -162,6 +175,8 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	Comment pulumi.StringPtrInput
 	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
 	EndpointId pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -170,6 +185,8 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	ProviderName pulumi.StringPtrInput
 	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringPtrInput
+	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+	Timeouts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type pulumi.StringPtrInput
 }
@@ -183,6 +200,8 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	Comment *string `pulumi:"comment"`
 	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName *string `pulumi:"customerEndpointDnsName"`
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
 	EndpointId string `pulumi:"endpointId"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -191,6 +210,8 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	ProviderName string `pulumi:"providerName"`
 	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region *string `pulumi:"region"`
+	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+	Timeouts *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts `pulumi:"timeouts"`
 }
 
 // The set of arguments for constructing a PrivatelinkEndpointServiceDataFederationOnlineArchive resource.
@@ -199,6 +220,8 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	Comment pulumi.StringPtrInput
 	// Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
 	CustomerEndpointDnsName pulumi.StringPtrInput
+	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+	DeleteOnCreateTimeout pulumi.BoolPtrInput
 	// Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
 	EndpointId pulumi.StringInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -207,6 +230,8 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	ProviderName pulumi.StringInput
 	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringPtrInput
+	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+	Timeouts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput
 }
 
 func (PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs) ElementType() reflect.Type {
@@ -297,17 +322,22 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ToPrivateli
 }
 
 // Human-readable string to associate with this private endpoint.
-func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Comment() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringPtrOutput {
-		return v.Comment
-	}).(pulumi.StringPtrOutput)
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringOutput { return v.Comment }).(pulumi.StringOutput)
 }
 
 // Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
-func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) CustomerEndpointDnsName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringPtrOutput {
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) CustomerEndpointDnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringOutput {
 		return v.CustomerEndpointDnsName
-	}).(pulumi.StringPtrOutput)
+	}).(pulumi.StringOutput)
+}
+
+// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) DeleteOnCreateTimeout() pulumi.BoolOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.BoolOutput {
+		return v.DeleteOnCreateTimeout
+	}).(pulumi.BoolOutput)
 }
 
 // Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
@@ -330,8 +360,15 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ProviderNam
 }
 
 // Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
-func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Timeouts() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+		return v.Timeouts
+	}).(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput)
 }
 
 // Human-readable label that identifies the resource type associated with this private endpoint.

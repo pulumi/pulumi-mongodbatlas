@@ -22,6 +22,8 @@ public final class GetStreamPrivatelinkEndpointsResult {
      *     * AWS provider with CONFLUENT vendor.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
      */
     private String dnsDomain;
@@ -92,7 +94,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
      *     
-     *     * **GCP**: CONFLUENT
+     *     * **GCP**: CONFLUENT and PUBSUB
      * 
      */
     private String vendor;
@@ -111,6 +113,8 @@ public final class GetStreamPrivatelinkEndpointsResult {
      *     * AWS provider with CONFLUENT vendor.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
      */
     public String dnsDomain() {
@@ -207,7 +211,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
      *     
-     *     * **GCP**: CONFLUENT
+     *     * **GCP**: CONFLUENT and PUBSUB
      * 
      */
     public String vendor() {

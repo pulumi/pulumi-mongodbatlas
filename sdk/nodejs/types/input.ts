@@ -1552,6 +1552,11 @@ export interface FederatedDatabaseInstanceDataProcessRegion {
     region: pulumi.Input<string>;
 }
 
+export interface FederatedDatabaseInstancePrivateEndpointHostname {
+    hostname?: pulumi.Input<string>;
+    privateEndpoint?: pulumi.Input<string>;
+}
+
 export interface FederatedDatabaseInstanceStorageDatabase {
     collections?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollection>[]>;
     maxWildcardCollections?: pulumi.Input<number>;
@@ -2197,6 +2202,21 @@ export interface PrivateLinkEndpointServiceEndpoint {
     status?: pulumi.Input<string>;
 }
 
+export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: pulumi.Input<string>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: pulumi.Input<string>;
+}
+
 export interface ProjectApiKeyProjectAssignment {
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -2570,7 +2590,7 @@ export interface StreamConnectionTimeouts {
      */
     create?: pulumi.Input<string>;
     /**
-     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
      */
     delete?: pulumi.Input<string>;
     /**

@@ -165,9 +165,6 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly string ProjectId;
         /// <summary>

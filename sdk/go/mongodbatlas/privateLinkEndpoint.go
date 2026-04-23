@@ -50,6 +50,38 @@ import (
 //
 // ```
 //
+// ### AWS Cross-Region Private Endpoint
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "cross_region", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ProviderName: pulumi.String("AWS"),
+//				Region:       pulumi.String("US_EAST_1"),
+//				SupportedRemoteRegions: pulumi.StringArray{
+//					pulumi.String("EU_WEST_1"),
+//					pulumi.String("AP_SOUTHEAST_1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Further Examples
 // - AWS PrivateLink Endpoint
 // - Azure PrivateLink Endpoint
@@ -106,6 +138,8 @@ type PrivateLinkEndpoint struct {
 	// * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
 	// * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+	SupportedRemoteRegions pulumi.StringArrayOutput `pulumi:"supportedRemoteRegions"`
 }
 
 // NewPrivateLinkEndpoint registers a new resource with the given unique name, arguments, and options.
@@ -184,6 +218,8 @@ type privateLinkEndpointState struct {
 	// * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
 	// * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
 	Status *string `pulumi:"status"`
+	// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+	SupportedRemoteRegions []string `pulumi:"supportedRemoteRegions"`
 }
 
 type PrivateLinkEndpointState struct {
@@ -224,6 +260,8 @@ type PrivateLinkEndpointState struct {
 	// * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
 	// * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
 	Status pulumi.StringPtrInput
+	// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+	SupportedRemoteRegions pulumi.StringArrayInput
 }
 
 func (PrivateLinkEndpointState) ElementType() reflect.Type {
@@ -242,6 +280,8 @@ type privateLinkEndpointArgs struct {
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
 	Region string `pulumi:"region"`
+	// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+	SupportedRemoteRegions []string `pulumi:"supportedRemoteRegions"`
 }
 
 // The set of arguments for constructing a PrivateLinkEndpoint resource.
@@ -257,6 +297,8 @@ type PrivateLinkEndpointArgs struct {
 	// Cloud provider region in which you want to create the private endpoint connection.
 	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
 	Region pulumi.StringInput
+	// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+	SupportedRemoteRegions pulumi.StringArrayInput
 }
 
 func (PrivateLinkEndpointArgs) ElementType() reflect.Type {
@@ -429,6 +471,11 @@ func (o PrivateLinkEndpointOutput) ServiceAttachmentNames() pulumi.StringArrayOu
 // * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
 func (o PrivateLinkEndpointOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpoint) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
+func (o PrivateLinkEndpointOutput) SupportedRemoteRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *PrivateLinkEndpoint) pulumi.StringArrayOutput { return v.SupportedRemoteRegions }).(pulumi.StringArrayOutput)
 }
 
 type PrivateLinkEndpointArrayOutput struct{ *pulumi.OutputState }

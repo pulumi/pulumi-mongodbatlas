@@ -167,6 +167,8 @@ __all__ = [
     'FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict',
     'FederatedDatabaseInstanceDataProcessRegionArgs',
     'FederatedDatabaseInstanceDataProcessRegionArgsDict',
+    'FederatedDatabaseInstancePrivateEndpointHostnameArgs',
+    'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict',
     'FederatedDatabaseInstanceStorageDatabaseArgs',
     'FederatedDatabaseInstanceStorageDatabaseArgsDict',
     'FederatedDatabaseInstanceStorageDatabaseCollectionArgs',
@@ -225,6 +227,8 @@ __all__ = [
     'OrganizationServiceAccountSecretArgsDict',
     'PrivateLinkEndpointServiceEndpointArgs',
     'PrivateLinkEndpointServiceEndpointArgsDict',
+    'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs',
+    'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict',
     'ProjectApiKeyProjectAssignmentArgs',
     'ProjectApiKeyProjectAssignmentArgsDict',
     'ProjectIpAccessListTimeoutsArgs',
@@ -7600,6 +7604,39 @@ class FederatedDatabaseInstanceDataProcessRegionArgs:
         pulumi.set(self, "region", value)
 
 
+class FederatedDatabaseInstancePrivateEndpointHostnameArgsDict(TypedDict):
+    hostname: NotRequired[pulumi.Input[_builtins.str]]
+    private_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+
+@pulumi.input_type
+class FederatedDatabaseInstancePrivateEndpointHostnameArgs:
+    def __init__(__self__, *,
+                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if private_endpoint is not None:
+            pulumi.set(__self__, "private_endpoint", private_endpoint)
+
+    @_builtins.property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "hostname", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        return pulumi.get(self, "private_endpoint")
+
+    @private_endpoint.setter
+    def private_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_endpoint", value)
+
+
 class FederatedDatabaseInstanceStorageDatabaseArgsDict(TypedDict):
     collections: NotRequired[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgsDict']]]]
     max_wildcard_collections: NotRequired[pulumi.Input[_builtins.int]]
@@ -9752,6 +9789,75 @@ class PrivateLinkEndpointServiceEndpointArgs:
         pulumi.set(self, "status", value)
 
 
+class PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict(TypedDict):
+    create: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+    delete: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+    """
+    update: NotRequired[pulumi.Input[_builtins.str]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+
+@pulumi.input_type
+class PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete: Optional[pulumi.Input[_builtins.str]] = None,
+                 update: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param pulumi.Input[_builtins.str] update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "update", value)
+
+
 class ProjectApiKeyProjectAssignmentArgsDict(TypedDict):
     project_id: pulumi.Input[_builtins.str]
     """
@@ -11457,7 +11563,7 @@ class StreamConnectionTimeoutsArgsDict(TypedDict):
     """
     delete: NotRequired[pulumi.Input[_builtins.str]]
     """
-    The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+    The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
     """
     update: NotRequired[pulumi.Input[_builtins.str]]
     """
@@ -11472,7 +11578,7 @@ class StreamConnectionTimeoutsArgs:
                  update: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
-        :param pulumi.Input[_builtins.str] delete: The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        :param pulumi.Input[_builtins.str] delete: The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
         :param pulumi.Input[_builtins.str] update: The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
         """
         if create is not None:
@@ -11498,7 +11604,7 @@ class StreamConnectionTimeoutsArgs:
     @pulumi.getter
     def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
         """
         return pulumi.get(self, "delete")
 

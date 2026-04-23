@@ -45,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ptfeService, err := aws.NewVpcEndpoint(ctx, "ptfe_service", &aws.VpcEndpointArgs{
+//			thisVpcEndpoint, err := aws.NewVpcEndpoint(ctx, "this", &aws.VpcEndpointArgs{
 //				VpcId:           "vpc-7fc0a543",
 //				ServiceName:     this.EndpointServiceName,
 //				VpcEndpointType: "Interface",
@@ -62,7 +62,64 @@ import (
 //			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "this", &mongodbatlas.PrivateLinkEndpointServiceArgs{
 //				ProjectId:         this.ProjectId,
 //				PrivateLinkId:     this.PrivateLinkId,
-//				EndpointServiceId: ptfeService.Id,
+//				EndpointServiceId: thisVpcEndpoint.Id,
+//				ProviderName:      pulumi.String("AWS"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example with AWS Cross-Region
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws"
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := mongodbatlas.NewPrivateLinkEndpoint(ctx, "this", &mongodbatlas.PrivateLinkEndpointArgs{
+//				ProjectId:    pulumi.String("<PROJECT_ID>"),
+//				ProviderName: pulumi.String("AWS"),
+//				Region:       pulumi.String("EU_WEST_1"),
+//				SupportedRemoteRegions: pulumi.StringArray{
+//					pulumi.String("US_EAST_1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			thisVpcEndpoint, err := aws.NewVpcEndpoint(ctx, "this", &aws.VpcEndpointArgs{
+//				VpcId:           "vpc-7fc0a543",
+//				ServiceName:     this.EndpointServiceName,
+//				VpcEndpointType: "Interface",
+//				SubnetIds: []string{
+//					"subnet-de0406d2",
+//				},
+//				SecurityGroupIds: []string{
+//					"sg-3f238186",
+//				},
+//				Region:        "us-east-1",
+//				ServiceRegion: "eu-west-1",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewPrivateLinkEndpointService(ctx, "this", &mongodbatlas.PrivateLinkEndpointServiceArgs{
+//				ProjectId:         this.ProjectId,
+//				PrivateLinkId:     this.PrivateLinkId,
+//				EndpointServiceId: thisVpcEndpoint.Id,
 //				ProviderName:      pulumi.String("AWS"),
 //			})
 //			if err != nil {

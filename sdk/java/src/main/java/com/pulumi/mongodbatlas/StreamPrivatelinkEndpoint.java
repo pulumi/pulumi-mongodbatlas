@@ -224,12 +224,84 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### GCP Pub/Sub Private Service Connect
+ * 
+ * &gt; **NOTE:** A GCP cluster must be provisioned in the same region before creating a GCP Pub/Sub private endpoint.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+ * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+ * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+ *             .projectId(projectId)
+ *             .name(clusterName)
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("GCP")
+ *                     .regionName("US_EAST_4")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var gcpPubsubStreamPrivatelinkEndpoint = new StreamPrivatelinkEndpoint("gcpPubsubStreamPrivatelinkEndpoint", StreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("GCP")
+ *             .vendor("PUBSUB")
+ *             .region(gcpRegion)
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(cluster)
+ *                 .build());
+ * 
+ *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .id(_id)
+ *             .build()));
+ * 
+ *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
+ *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
+ *         ctx.export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.dnsDomain());
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Further Examples
  * - AWS Confluent PrivateLink
  * - Confluent Dedicated Cluster
  * - AWS MSK PrivateLink
  * - AWS S3 PrivateLink
  * - GCP Confluent PrivateLink
+ * - GCP Pub/Sub Private Service Connect
  * - Azure PrivateLink
  * 
  */
@@ -255,10 +327,12 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     * AWS provider with CONFLUENT vendor.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
      */
     @Export(name="dnsDomain", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> dnsDomain;
+    private Output<String> dnsDomain;
 
     /**
      * @return The domain hostname. Required for the following provider and vendor combinations:
@@ -266,10 +340,12 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     * AWS provider with CONFLUENT vendor.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
      */
-    public Output<Optional<String>> dnsDomain() {
-        return Codegen.optional(this.dnsDomain);
+    public Output<String> dnsDomain() {
+        return this.dnsDomain;
     }
     /**
      * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn&#39;t use subdomains, you must set this to the empty array [].
@@ -432,7 +508,7 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
      *     
-     *     * **GCP**: CONFLUENT
+     *     * **GCP**: CONFLUENT and PUBSUB
      * 
      */
     @Export(name="vendor", refs={String.class}, tree="[0]")
@@ -445,7 +521,7 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
      *     
-     *     * **GCP**: CONFLUENT
+     *     * **GCP**: CONFLUENT and PUBSUB
      * 
      */
     public Output<String> vendor() {

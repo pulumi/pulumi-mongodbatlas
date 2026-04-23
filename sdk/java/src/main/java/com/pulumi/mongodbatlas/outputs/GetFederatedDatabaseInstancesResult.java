@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultCloudProviderConfig;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultDataProcessRegion;
+import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultPrivateEndpointHostname;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultStorageDatabase;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancesResultStorageStore;
 import java.lang.String;
@@ -23,6 +24,13 @@ public final class GetFederatedDatabaseInstancesResult {
      */
     private List<String> hostnames;
     private String name;
+    /**
+     * @return The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+     * * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+     * 
+     */
+    private List<GetFederatedDatabaseInstancesResultPrivateEndpointHostname> privateEndpointHostnames;
     /**
      * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      * 
@@ -101,6 +109,15 @@ public final class GetFederatedDatabaseInstancesResult {
     }
     public String name() {
         return this.name;
+    }
+    /**
+     * @return The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+     * * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+     * 
+     */
+    public List<GetFederatedDatabaseInstancesResultPrivateEndpointHostname> privateEndpointHostnames() {
+        return this.privateEndpointHostnames;
     }
     /**
      * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -185,6 +202,7 @@ public final class GetFederatedDatabaseInstancesResult {
         private List<GetFederatedDatabaseInstancesResultDataProcessRegion> dataProcessRegions;
         private List<String> hostnames;
         private String name;
+        private List<GetFederatedDatabaseInstancesResultPrivateEndpointHostname> privateEndpointHostnames;
         private String projectId;
         private String state;
         private List<GetFederatedDatabaseInstancesResultStorageDatabase> storageDatabases;
@@ -196,6 +214,7 @@ public final class GetFederatedDatabaseInstancesResult {
     	      this.dataProcessRegions = defaults.dataProcessRegions;
     	      this.hostnames = defaults.hostnames;
     	      this.name = defaults.name;
+    	      this.privateEndpointHostnames = defaults.privateEndpointHostnames;
     	      this.projectId = defaults.projectId;
     	      this.state = defaults.state;
     	      this.storageDatabases = defaults.storageDatabases;
@@ -244,6 +263,17 @@ public final class GetFederatedDatabaseInstancesResult {
             return this;
         }
         @CustomType.Setter
+        public Builder privateEndpointHostnames(List<GetFederatedDatabaseInstancesResultPrivateEndpointHostname> privateEndpointHostnames) {
+            if (privateEndpointHostnames == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResult", "privateEndpointHostnames");
+            }
+            this.privateEndpointHostnames = privateEndpointHostnames;
+            return this;
+        }
+        public Builder privateEndpointHostnames(GetFederatedDatabaseInstancesResultPrivateEndpointHostname... privateEndpointHostnames) {
+            return privateEndpointHostnames(List.of(privateEndpointHostnames));
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetFederatedDatabaseInstancesResult", "projectId");
@@ -287,6 +317,7 @@ public final class GetFederatedDatabaseInstancesResult {
             _resultValue.dataProcessRegions = dataProcessRegions;
             _resultValue.hostnames = hostnames;
             _resultValue.name = name;
+            _resultValue.privateEndpointHostnames = privateEndpointHostnames;
             _resultValue.projectId = projectId;
             _resultValue.state = state;
             _resultValue.storageDatabases = storageDatabases;

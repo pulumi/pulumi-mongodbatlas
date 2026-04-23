@@ -412,6 +412,71 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example GCPPubSub Connection with Private Service Connect
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetup;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorization;
+ * import com.pulumi.mongodbatlas.CloudProviderAccessAuthorizationArgs;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionGcpArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingAccessArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpSetup = new CloudProviderAccessSetup("gcpSetup", CloudProviderAccessSetupArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("GCP")
+ *             .build());
+ * 
+ *         var gcpAuth = new CloudProviderAccessAuthorization("gcpAuth", CloudProviderAccessAuthorizationArgs.builder()
+ *             .projectId(projectId)
+ *             .roleId(gcpSetup.roleId())
+ *             .build());
+ * 
+ *         var exampleGcpPubsubPsc = new StreamConnection("exampleGcpPubsubPsc", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.workspaceName())
+ *             .connectionName("GCPPubSubPSCConnection")
+ *             .type("GCPPubSub")
+ *             .gcp(StreamConnectionGcpArgs.builder()
+ *                 .serviceAccountId(gcpSetup.gcpConfigs().applyValue(_gcpConfigs -> _gcpConfigs[0].serviceAccountForAtlas()))
+ *                 .build())
+ *             .networking(StreamConnectionNetworkingArgs.builder()
+ *                 .access(StreamConnectionNetworkingAccessArgs.builder()
+ *                     .type("PRIVATE_LINK")
+ *                     .connectionId(gcpPubsub.id())
+ *                     .build())
+ *                 .build())
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(gcpAuth)
+ *                 .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Example Https Connection
  * 
  * <pre>

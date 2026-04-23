@@ -824,6 +824,35 @@ class StreamConnection(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
         ```
 
+        ### Example GCPPubSub Connection with Private Service Connect
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        gcp_setup = mongodbatlas.CloudProviderAccessSetup("gcp_setup",
+            project_id=project_id,
+            provider_name="GCP")
+        gcp_auth = mongodbatlas.CloudProviderAccessAuthorization("gcp_auth",
+            project_id=project_id,
+            role_id=gcp_setup.role_id)
+        example_gcp_pubsub_psc = mongodbatlas.StreamConnection("example_gcp_pubsub_psc",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="GCPPubSubPSCConnection",
+            type="GCPPubSub",
+            gcp={
+                "service_account_id": gcp_setup.gcp_configs[0].service_account_for_atlas,
+            },
+            networking={
+                "access": {
+                    "type": "PRIVATE_LINK",
+                    "connection_id": gcp_pubsub["id"],
+                },
+            },
+            opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
+        ```
+
         ### Example Https Connection
 
         ```python
@@ -1143,6 +1172,35 @@ class StreamConnection(pulumi.CustomResource):
             type="GCPPubSub",
             gcp={
                 "service_account_id": gcp_setup.gcp_configs[0].service_account_for_atlas,
+            },
+            opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
+        ```
+
+        ### Example GCPPubSub Connection with Private Service Connect
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        gcp_setup = mongodbatlas.CloudProviderAccessSetup("gcp_setup",
+            project_id=project_id,
+            provider_name="GCP")
+        gcp_auth = mongodbatlas.CloudProviderAccessAuthorization("gcp_auth",
+            project_id=project_id,
+            role_id=gcp_setup.role_id)
+        example_gcp_pubsub_psc = mongodbatlas.StreamConnection("example_gcp_pubsub_psc",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="GCPPubSubPSCConnection",
+            type="GCPPubSub",
+            gcp={
+                "service_account_id": gcp_setup.gcp_configs[0].service_account_for_atlas,
+            },
+            networking={
+                "access": {
+                    "type": "PRIVATE_LINK",
+                    "connection_id": gcp_pubsub["id"],
+                },
             },
             opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
         ```

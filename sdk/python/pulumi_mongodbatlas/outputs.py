@@ -92,6 +92,7 @@ __all__ = [
     'FederatedDatabaseInstanceCloudProviderConfigAws',
     'FederatedDatabaseInstanceCloudProviderConfigAzure',
     'FederatedDatabaseInstanceDataProcessRegion',
+    'FederatedDatabaseInstancePrivateEndpointHostname',
     'FederatedDatabaseInstanceStorageDatabase',
     'FederatedDatabaseInstanceStorageDatabaseCollection',
     'FederatedDatabaseInstanceStorageDatabaseCollectionDataSource',
@@ -121,6 +122,7 @@ __all__ = [
     'OrganizationServiceAccount',
     'OrganizationServiceAccountSecret',
     'PrivateLinkEndpointServiceEndpoint',
+    'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts',
     'ProjectApiKeyProjectAssignment',
     'ProjectIpAccessListTimeouts',
     'ProjectIpAddresses',
@@ -298,6 +300,7 @@ __all__ = [
     'GetFederatedDatabaseInstanceCloudProviderConfigAwResult',
     'GetFederatedDatabaseInstanceCloudProviderConfigAzureResult',
     'GetFederatedDatabaseInstanceDataProcessRegionResult',
+    'GetFederatedDatabaseInstancePrivateEndpointHostnameResult',
     'GetFederatedDatabaseInstanceStorageDatabaseResult',
     'GetFederatedDatabaseInstanceStorageDatabaseCollectionResult',
     'GetFederatedDatabaseInstanceStorageDatabaseCollectionDataSourceResult',
@@ -311,6 +314,7 @@ __all__ = [
     'GetFederatedDatabaseInstancesResultCloudProviderConfigAwResult',
     'GetFederatedDatabaseInstancesResultCloudProviderConfigAzureResult',
     'GetFederatedDatabaseInstancesResultDataProcessRegionResult',
+    'GetFederatedDatabaseInstancesResultPrivateEndpointHostnameResult',
     'GetFederatedDatabaseInstancesResultStorageDatabaseResult',
     'GetFederatedDatabaseInstancesResultStorageDatabaseCollectionResult',
     'GetFederatedDatabaseInstancesResultStorageDatabaseCollectionDataSourceResult',
@@ -6464,6 +6468,44 @@ class FederatedDatabaseInstanceDataProcessRegion(dict):
 
 
 @pulumi.output_type
+class FederatedDatabaseInstancePrivateEndpointHostname(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateEndpoint":
+            suggest = "private_endpoint"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FederatedDatabaseInstancePrivateEndpointHostname. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FederatedDatabaseInstancePrivateEndpointHostname.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FederatedDatabaseInstancePrivateEndpointHostname.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 hostname: Optional[_builtins.str] = None,
+                 private_endpoint: Optional[_builtins.str] = None):
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if private_endpoint is not None:
+            pulumi.set(__self__, "private_endpoint", private_endpoint)
+
+    @_builtins.property
+    @pulumi.getter
+    def hostname(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "hostname")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "private_endpoint")
+
+
+@pulumi.output_type
 class FederatedDatabaseInstanceStorageDatabase(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -8231,6 +8273,49 @@ class PrivateLinkEndpointServiceEndpoint(dict):
 
 
 @pulumi.output_type
+class PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+
+@pulumi.output_type
 class ProjectApiKeyProjectAssignment(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9547,7 +9632,7 @@ class StreamConnectionTimeouts(dict):
                  update: Optional[_builtins.str] = None):
         """
         :param _builtins.str create: The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
-        :param _builtins.str delete: The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        :param _builtins.str delete: The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
         :param _builtins.str update: The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
         """
         if create is not None:
@@ -9569,7 +9654,7 @@ class StreamConnectionTimeouts(dict):
     @pulumi.getter
     def delete(self) -> Optional[_builtins.str]:
         """
-        The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+        The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
         """
         return pulumi.get(self, "delete")
 
@@ -19209,6 +19294,25 @@ class GetFederatedDatabaseInstanceDataProcessRegionResult(dict):
 
 
 @pulumi.output_type
+class GetFederatedDatabaseInstancePrivateEndpointHostnameResult(dict):
+    def __init__(__self__, *,
+                 hostname: _builtins.str,
+                 private_endpoint: _builtins.str):
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "private_endpoint", private_endpoint)
+
+    @_builtins.property
+    @pulumi.getter
+    def hostname(self) -> _builtins.str:
+        return pulumi.get(self, "hostname")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> _builtins.str:
+        return pulumi.get(self, "private_endpoint")
+
+
+@pulumi.output_type
 class GetFederatedDatabaseInstanceStorageDatabaseResult(dict):
     def __init__(__self__, *,
                  collections: Sequence['outputs.GetFederatedDatabaseInstanceStorageDatabaseCollectionResult'],
@@ -19580,12 +19684,16 @@ class GetFederatedDatabaseInstancesResultResult(dict):
                  data_process_regions: Sequence['outputs.GetFederatedDatabaseInstancesResultDataProcessRegionResult'],
                  hostnames: Sequence[_builtins.str],
                  name: _builtins.str,
+                 private_endpoint_hostnames: Sequence['outputs.GetFederatedDatabaseInstancesResultPrivateEndpointHostnameResult'],
                  project_id: _builtins.str,
                  state: _builtins.str,
                  storage_databases: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageDatabaseResult'],
                  storage_stores: Sequence['outputs.GetFederatedDatabaseInstancesResultStorageStoreResult']):
         """
         :param Sequence[_builtins.str] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
+        :param Sequence['GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs'] private_endpoint_hostnames: The list of private endpoint hostnames assigned to the Federated Database Instance.
+               * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+               * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
         :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param _builtins.str state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -19636,6 +19744,7 @@ class GetFederatedDatabaseInstancesResultResult(dict):
         pulumi.set(__self__, "data_process_regions", data_process_regions)
         pulumi.set(__self__, "hostnames", hostnames)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "private_endpoint_hostnames", private_endpoint_hostnames)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "storage_databases", storage_databases)
@@ -19663,6 +19772,16 @@ class GetFederatedDatabaseInstancesResultResult(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpointHostnames")
+    def private_endpoint_hostnames(self) -> Sequence['outputs.GetFederatedDatabaseInstancesResultPrivateEndpointHostnameResult']:
+        """
+        The list of private endpoint hostnames assigned to the Federated Database Instance.
+        * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+        * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+        """
+        return pulumi.get(self, "private_endpoint_hostnames")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -19896,6 +20015,25 @@ class GetFederatedDatabaseInstancesResultDataProcessRegionResult(dict):
         Name of the region to which the Federated Instance routes client connections for data processing.
         """
         return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetFederatedDatabaseInstancesResultPrivateEndpointHostnameResult(dict):
+    def __init__(__self__, *,
+                 hostname: _builtins.str,
+                 private_endpoint: _builtins.str):
+        pulumi.set(__self__, "hostname", hostname)
+        pulumi.set(__self__, "private_endpoint", private_endpoint)
+
+    @_builtins.property
+    @pulumi.getter
+    def hostname(self) -> _builtins.str:
+        return pulumi.get(self, "hostname")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpoint")
+    def private_endpoint(self) -> _builtins.str:
+        return pulumi.get(self, "private_endpoint")
 
 
 @pulumi.output_type
@@ -24133,7 +24271,8 @@ class GetPrivatelinkEndpointsResultResult(dict):
                  private_link_service_resource_id: _builtins.str,
                  region_name: _builtins.str,
                  service_attachment_names: Sequence[_builtins.str],
-                 status: _builtins.str):
+                 status: _builtins.str,
+                 supported_remote_regions: Sequence[_builtins.str]):
         """
         :param Sequence[_builtins.str] endpoint_group_names: List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
         :param _builtins.str endpoint_service_name: Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
@@ -24153,6 +24292,7 @@ class GetPrivatelinkEndpointsResultResult(dict):
                * `WAITING_FOR_USER` - The Atlas network load balancer and VPC endpoint service are created and ready to receive connection requests. When you receive this status, create an interface endpoint to continue configuring the AWS PrivateLink connection.
                * `FAILED` - A system failure occurred.
                * `DELETING` - Atlas is deleting the Private Link service.
+        :param Sequence[_builtins.str] supported_remote_regions: List of additional AWS regions that can connect to the endpoint service.
         """
         pulumi.set(__self__, "endpoint_group_names", endpoint_group_names)
         pulumi.set(__self__, "endpoint_service_name", endpoint_service_name)
@@ -24166,6 +24306,7 @@ class GetPrivatelinkEndpointsResultResult(dict):
         pulumi.set(__self__, "region_name", region_name)
         pulumi.set(__self__, "service_attachment_names", service_attachment_names)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "supported_remote_regions", supported_remote_regions)
 
     @_builtins.property
     @pulumi.getter(name="endpointGroupNames")
@@ -24268,6 +24409,14 @@ class GetPrivatelinkEndpointsResultResult(dict):
         * `DELETING` - Atlas is deleting the Private Link service.
         """
         return pulumi.get(self, "status")
+
+    @_builtins.property
+    @pulumi.getter(name="supportedRemoteRegions")
+    def supported_remote_regions(self) -> Sequence[_builtins.str]:
+        """
+        List of additional AWS regions that can connect to the endpoint service.
+        """
+        return pulumi.get(self, "supported_remote_regions")
 
 
 @pulumi.output_type
@@ -28236,10 +28385,12 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         """
         :param _builtins.str arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
         :param _builtins.str dns_domain: The domain hostname. Required for the following provider and vendor combinations:
-               				
+               
                	* AWS provider with CONFLUENT vendor.
                
                	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+               
+               	* For GCP provider with PUBSUB vendor, the API computes this process.
         :param Sequence[_builtins.str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         :param _builtins.str error_message: Error message if the connection is in a failed state.
         :param _builtins.str id: The ID of the Private Link connection.
@@ -28258,7 +28409,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                
                	* **Azure**: EVENTHUB and CONFLUENT
                
-               	* **GCP**: CONFLUENT
+               	* **GCP**: CONFLUENT and PUBSUB
         """
         pulumi.set(__self__, "arn", arn)
         pulumi.set(__self__, "dns_domain", dns_domain)
@@ -28289,10 +28440,12 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     def dns_domain(self) -> _builtins.str:
         """
         The domain hostname. Required for the following provider and vendor combinations:
-        				
+
         	* AWS provider with CONFLUENT vendor.
 
         	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+
+        	* For GCP provider with PUBSUB vendor, the API computes this process.
         """
         return pulumi.get(self, "dns_domain")
 
@@ -28402,7 +28555,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
 
         	* **Azure**: EVENTHUB and CONFLUENT
 
-        	* **GCP**: CONFLUENT
+        	* **GCP**: CONFLUENT and PUBSUB
         """
         return pulumi.get(self, "vendor")
 

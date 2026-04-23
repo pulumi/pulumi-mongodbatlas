@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceCloudProviderConfig;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceDataProcessRegion;
+import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstancePrivateEndpointHostname;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageDatabase;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceStorageStore;
 import java.lang.String;
@@ -28,6 +29,13 @@ public final class GetFederatedDatabaseInstanceResult {
      */
     private String id;
     private String name;
+    /**
+     * @return The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+     * * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+     * 
+     */
+    private List<GetFederatedDatabaseInstancePrivateEndpointHostname> privateEndpointHostnames;
     private String projectId;
     /**
      * @return Current state of the Federated Database Instance:
@@ -110,6 +118,15 @@ public final class GetFederatedDatabaseInstanceResult {
     public String name() {
         return this.name;
     }
+    /**
+     * @return The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+     * * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+     * 
+     */
+    public List<GetFederatedDatabaseInstancePrivateEndpointHostname> privateEndpointHostnames() {
+        return this.privateEndpointHostnames;
+    }
     public String projectId() {
         return this.projectId;
     }
@@ -190,6 +207,7 @@ public final class GetFederatedDatabaseInstanceResult {
         private List<String> hostnames;
         private String id;
         private String name;
+        private List<GetFederatedDatabaseInstancePrivateEndpointHostname> privateEndpointHostnames;
         private String projectId;
         private String state;
         private List<GetFederatedDatabaseInstanceStorageDatabase> storageDatabases;
@@ -202,6 +220,7 @@ public final class GetFederatedDatabaseInstanceResult {
     	      this.hostnames = defaults.hostnames;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
+    	      this.privateEndpointHostnames = defaults.privateEndpointHostnames;
     	      this.projectId = defaults.projectId;
     	      this.state = defaults.state;
     	      this.storageDatabases = defaults.storageDatabases;
@@ -258,6 +277,17 @@ public final class GetFederatedDatabaseInstanceResult {
             return this;
         }
         @CustomType.Setter
+        public Builder privateEndpointHostnames(List<GetFederatedDatabaseInstancePrivateEndpointHostname> privateEndpointHostnames) {
+            if (privateEndpointHostnames == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "privateEndpointHostnames");
+            }
+            this.privateEndpointHostnames = privateEndpointHostnames;
+            return this;
+        }
+        public Builder privateEndpointHostnames(GetFederatedDatabaseInstancePrivateEndpointHostname... privateEndpointHostnames) {
+            return privateEndpointHostnames(List.of(privateEndpointHostnames));
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceResult", "projectId");
@@ -302,6 +332,7 @@ public final class GetFederatedDatabaseInstanceResult {
             _resultValue.hostnames = hostnames;
             _resultValue.id = id;
             _resultValue.name = name;
+            _resultValue.privateEndpointHostnames = privateEndpointHostnames;
             _resultValue.projectId = projectId;
             _resultValue.state = state;
             _resultValue.storageDatabases = storageDatabases;

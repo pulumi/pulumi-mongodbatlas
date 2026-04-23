@@ -37,6 +37,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      *     * AWS provider with CONFLUENT vendor.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
      */
     @Import(name="dnsDomain")
@@ -48,6 +50,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      *     * AWS provider with CONFLUENT vendor.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
      */
     public Optional<Output<String>> dnsDomain() {
@@ -226,7 +230,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
      *     
-     *     * **GCP**: CONFLUENT
+     *     * **GCP**: CONFLUENT and PUBSUB
      * 
      */
     @Import(name="vendor")
@@ -239,7 +243,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
      *     
      *     * **Azure**: EVENTHUB and CONFLUENT
      *     
-     *     * **GCP**: CONFLUENT
+     *     * **GCP**: CONFLUENT and PUBSUB
      * 
      */
     public Optional<Output<String>> vendor() {
@@ -310,6 +314,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          *     * AWS provider with CONFLUENT vendor.
          *     
          *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+         *     
+         *     * For GCP provider with PUBSUB vendor, the API computes this process.
          * 
          * @return builder
          * 
@@ -325,6 +331,8 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          *     * AWS provider with CONFLUENT vendor.
          *     
          *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+         *     
+         *     * For GCP provider with PUBSUB vendor, the API computes this process.
          * 
          * @return builder
          * 
@@ -591,7 +599,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          *     
          *     * **Azure**: EVENTHUB and CONFLUENT
          *     
-         *     * **GCP**: CONFLUENT
+         *     * **GCP**: CONFLUENT and PUBSUB
          * 
          * @return builder
          * 
@@ -608,7 +616,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          *     
          *     * **Azure**: EVENTHUB and CONFLUENT
          *     
-         *     * **GCP**: CONFLUENT
+         *     * **GCP**: CONFLUENT and PUBSUB
          * 
          * @return builder
          * 

@@ -273,6 +273,8 @@ type FederatedDatabaseInstance struct {
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The list of private endpoint hostnames assigned to the Federated Database Instance.
+	PrivateEndpointHostnames FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput `pulumi:"privateEndpointHostnames"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
@@ -372,6 +374,8 @@ type federatedDatabaseInstanceState struct {
 	Hostnames []string `pulumi:"hostnames"`
 	// Name of the Atlas Federated Database Instance.
 	Name *string `pulumi:"name"`
+	// The list of private endpoint hostnames assigned to the Federated Database Instance.
+	PrivateEndpointHostnames []FederatedDatabaseInstancePrivateEndpointHostname `pulumi:"privateEndpointHostnames"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
@@ -439,6 +443,8 @@ type FederatedDatabaseInstanceState struct {
 	Hostnames pulumi.StringArrayInput
 	// Name of the Atlas Federated Database Instance.
 	Name pulumi.StringPtrInput
+	// The list of private endpoint hostnames assigned to the Federated Database Instance.
+	PrivateEndpointHostnames FederatedDatabaseInstancePrivateEndpointHostnameArrayInput
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// Current state of the Federated Database Instance:
@@ -733,6 +739,13 @@ func (o FederatedDatabaseInstanceOutput) Hostnames() pulumi.StringArrayOutput {
 // Name of the Atlas Federated Database Instance.
 func (o FederatedDatabaseInstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The list of private endpoint hostnames assigned to the Federated Database Instance.
+func (o FederatedDatabaseInstanceOutput) PrivateEndpointHostnames() FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstance) FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+		return v.PrivateEndpointHostnames
+	}).(FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput)
 }
 
 // The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.

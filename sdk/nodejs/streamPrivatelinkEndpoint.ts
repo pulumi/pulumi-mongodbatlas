@@ -143,12 +143,54 @@ import * as utilities from "./utilities";
  * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
  * ```
  *
+ * ### GCP Pub/Sub Private Service Connect
+ *
+ * > **NOTE:** A GCP cluster must be provisioned in the same region before creating a GCP Pub/Sub private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "GCP",
+ *             regionName: "US_EAST_4",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const gcpPubsubStreamPrivatelinkEndpoint = new mongodbatlas.StreamPrivatelinkEndpoint("gcp_pubsub", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     vendor: "PUBSUB",
+ *     region: gcpRegion,
+ * }, {
+ *     dependsOn: [cluster],
+ * });
+ * const gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
+ * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
+ * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
+ * ```
+ *
  * ### Further Examples
  * - AWS Confluent PrivateLink
  * - Confluent Dedicated Cluster
  * - AWS MSK PrivateLink
  * - AWS S3 PrivateLink
  * - GCP Confluent PrivateLink
+ * - GCP Pub/Sub Private Service Connect
  * - Azure PrivateLink
  */
 export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
@@ -185,12 +227,14 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
     declare public readonly arn: pulumi.Output<string | undefined>;
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
-     * 				
+     *
      * 	* AWS provider with CONFLUENT vendor.
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *
+     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
-    declare public readonly dnsDomain: pulumi.Output<string | undefined>;
+    declare public readonly dnsDomain: pulumi.Output<string>;
     /**
      * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
      */
@@ -242,7 +286,7 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
      *
      * 	* **Azure**: EVENTHUB and CONFLUENT
      *
-     * 	* **GCP**: CONFLUENT
+     * 	* **GCP**: CONFLUENT and PUBSUB
      */
     declare public readonly vendor: pulumi.Output<string>;
 
@@ -314,10 +358,12 @@ export interface StreamPrivatelinkEndpointState {
     arn?: pulumi.Input<string>;
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
-     * 				
+     *
      * 	* AWS provider with CONFLUENT vendor.
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *
+     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain?: pulumi.Input<string>;
     /**
@@ -371,7 +417,7 @@ export interface StreamPrivatelinkEndpointState {
      *
      * 	* **Azure**: EVENTHUB and CONFLUENT
      *
-     * 	* **GCP**: CONFLUENT
+     * 	* **GCP**: CONFLUENT and PUBSUB
      */
     vendor?: pulumi.Input<string>;
 }
@@ -386,10 +432,12 @@ export interface StreamPrivatelinkEndpointArgs {
     arn?: pulumi.Input<string>;
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
-     * 				
+     *
      * 	* AWS provider with CONFLUENT vendor.
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *
+     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain?: pulumi.Input<string>;
     /**
@@ -423,7 +471,7 @@ export interface StreamPrivatelinkEndpointArgs {
      *
      * 	* **Azure**: EVENTHUB and CONFLUENT
      *
-     * 	* **GCP**: CONFLUENT
+     * 	* **GCP**: CONFLUENT and PUBSUB
      */
     vendor: pulumi.Input<string>;
 }

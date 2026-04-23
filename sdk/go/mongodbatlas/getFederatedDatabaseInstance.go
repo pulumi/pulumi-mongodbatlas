@@ -141,9 +141,13 @@ type LookupFederatedDatabaseInstanceResult struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames []string `pulumi:"hostnames"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string `pulumi:"id"`
-	Name      string `pulumi:"name"`
-	ProjectId string `pulumi:"projectId"`
+	Id   string `pulumi:"id"`
+	Name string `pulumi:"name"`
+	// The list of private endpoint hostnames assigned to the Federated Database Instance.
+	// * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+	// * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+	PrivateEndpointHostnames []GetFederatedDatabaseInstancePrivateEndpointHostname `pulumi:"privateEndpointHostnames"`
+	ProjectId                string                                                `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
 	// * `DELETED` - The Federated Database Instance was deleted.
@@ -254,6 +258,15 @@ func (o LookupFederatedDatabaseInstanceResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupFederatedDatabaseInstanceResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedDatabaseInstanceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The list of private endpoint hostnames assigned to the Federated Database Instance.
+// * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+// * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+func (o LookupFederatedDatabaseInstanceResultOutput) PrivateEndpointHostnames() GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return o.ApplyT(func(v LookupFederatedDatabaseInstanceResult) []GetFederatedDatabaseInstancePrivateEndpointHostname {
+		return v.PrivateEndpointHostnames
+	}).(GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput)
 }
 
 func (o LookupFederatedDatabaseInstanceResultOutput) ProjectId() pulumi.StringOutput {

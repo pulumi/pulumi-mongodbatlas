@@ -189,9 +189,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string CustomerEndpointDnsName;
         public readonly string EndpointId;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly string ProjectId;
         /// <summary>

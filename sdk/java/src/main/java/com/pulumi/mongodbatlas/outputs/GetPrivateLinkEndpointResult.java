@@ -81,6 +81,11 @@ public final class GetPrivateLinkEndpointResult {
      * 
      */
     private String status;
+    /**
+     * @return List of additional AWS regions that can connect to the endpoint service.
+     * 
+     */
+    private List<String> supportedRemoteRegions;
 
     private GetPrivateLinkEndpointResult() {}
     /**
@@ -182,6 +187,13 @@ public final class GetPrivateLinkEndpointResult {
     public String status() {
         return this.status;
     }
+    /**
+     * @return List of additional AWS regions that can connect to the endpoint service.
+     * 
+     */
+    public List<String> supportedRemoteRegions() {
+        return this.supportedRemoteRegions;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -207,6 +219,7 @@ public final class GetPrivateLinkEndpointResult {
         private String regionName;
         private List<String> serviceAttachmentNames;
         private String status;
+        private List<String> supportedRemoteRegions;
         public Builder() {}
         public Builder(GetPrivateLinkEndpointResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -225,6 +238,7 @@ public final class GetPrivateLinkEndpointResult {
     	      this.regionName = defaults.regionName;
     	      this.serviceAttachmentNames = defaults.serviceAttachmentNames;
     	      this.status = defaults.status;
+    	      this.supportedRemoteRegions = defaults.supportedRemoteRegions;
         }
 
         @CustomType.Setter
@@ -359,6 +373,17 @@ public final class GetPrivateLinkEndpointResult {
             this.status = status;
             return this;
         }
+        @CustomType.Setter
+        public Builder supportedRemoteRegions(List<String> supportedRemoteRegions) {
+            if (supportedRemoteRegions == null) {
+              throw new MissingRequiredPropertyException("GetPrivateLinkEndpointResult", "supportedRemoteRegions");
+            }
+            this.supportedRemoteRegions = supportedRemoteRegions;
+            return this;
+        }
+        public Builder supportedRemoteRegions(String... supportedRemoteRegions) {
+            return supportedRemoteRegions(List.of(supportedRemoteRegions));
+        }
         public GetPrivateLinkEndpointResult build() {
             final var _resultValue = new GetPrivateLinkEndpointResult();
             _resultValue.endpointGroupNames = endpointGroupNames;
@@ -376,6 +401,7 @@ public final class GetPrivateLinkEndpointResult {
             _resultValue.regionName = regionName;
             _resultValue.serviceAttachmentNames = serviceAttachmentNames;
             _resultValue.status = status;
+            _resultValue.supportedRemoteRegions = supportedRemoteRegions;
             return _resultValue;
         }
     }

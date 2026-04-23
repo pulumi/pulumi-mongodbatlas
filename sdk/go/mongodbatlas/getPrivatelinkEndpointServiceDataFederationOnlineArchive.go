@@ -79,9 +79,8 @@ type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult struct {
 	// (Optional) Human-readable label to identify VPC endpoint DNS name.
 	CustomerEndpointDnsName string `pulumi:"customerEndpointDnsName"`
 	EndpointId              string `pulumi:"endpointId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id        string `pulumi:"id"`
-	ProjectId string `pulumi:"projectId"`
+	Id                      string `pulumi:"id"`
+	ProjectId               string `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
 	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
@@ -142,7 +141,6 @@ func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput)
 	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string { return v.EndpointId }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string { return v.Id }).(pulumi.StringOutput)
 }

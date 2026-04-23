@@ -249,12 +249,81 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### GCP Pub/Sub Private Service Connect
+    /// 
+    /// &gt; **NOTE:** A GCP cluster must be provisioned in the same region before creating a GCP Pub/Sub private endpoint.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Name = clusterName,
+    ///         ClusterType = "REPLICASET",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "GCP",
+    ///                         RegionName = "US_EAST_4",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var gcpPubsubStreamPrivatelinkEndpoint = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("gcp_pubsub", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "GCP",
+    ///         Vendor = "PUBSUB",
+    ///         Region = gcpRegion,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             cluster,
+    ///         },
+    ///     });
+    /// 
+    ///     var gcpPubsub = Mongodbatlas.Index.GetStreamPrivatelinkEndpoint.Invoke(new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Id = gcpPubsubStreamPrivatelinkEndpoint.Id,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["privatelinkEndpointId"] = gcpPubsubStreamPrivatelinkEndpoint.Id,
+    ///         ["privatelinkEndpointState"] = gcpPubsub.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
+    ///         ["dnsDomain"] = gcpPubsubStreamPrivatelinkEndpoint.DnsDomain,
+    ///     };
+    /// });
+    /// ```
+    /// 
     /// ### Further Examples
     /// - AWS Confluent PrivateLink
     /// - Confluent Dedicated Cluster
     /// - AWS MSK PrivateLink
     /// - AWS S3 PrivateLink
     /// - GCP Confluent PrivateLink
+    /// - GCP Pub/Sub Private Service Connect
     /// - Azure PrivateLink
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")]
@@ -268,13 +337,15 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The domain hostname. Required for the following provider and vendor combinations:
-        /// 				
+        /// 
         /// 	* AWS provider with CONFLUENT vendor.
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// 
+        /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
         /// </summary>
         [Output("dnsDomain")]
-        public Output<string?> DnsDomain { get; private set; } = null!;
+        public Output<string> DnsDomain { get; private set; } = null!;
 
         /// <summary>
         /// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
@@ -349,7 +420,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
         /// 
-        /// 	* **GCP**: CONFLUENT
+        /// 	* **GCP**: CONFLUENT and PUBSUB
         /// </summary>
         [Output("vendor")]
         public Output<string> Vendor { get; private set; } = null!;
@@ -408,10 +479,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The domain hostname. Required for the following provider and vendor combinations:
-        /// 				
+        /// 
         /// 	* AWS provider with CONFLUENT vendor.
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// 
+        /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
         /// </summary>
         [Input("dnsDomain")]
         public Input<string>? DnsDomain { get; set; }
@@ -471,7 +544,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
         /// 
-        /// 	* **GCP**: CONFLUENT
+        /// 	* **GCP**: CONFLUENT and PUBSUB
         /// </summary>
         [Input("vendor", required: true)]
         public Input<string> Vendor { get; set; } = null!;
@@ -492,10 +565,12 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// The domain hostname. Required for the following provider and vendor combinations:
-        /// 				
+        /// 
         /// 	* AWS provider with CONFLUENT vendor.
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// 
+        /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
         /// </summary>
         [Input("dnsDomain")]
         public Input<string>? DnsDomain { get; set; }
@@ -585,7 +660,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
         /// 
-        /// 	* **GCP**: CONFLUENT
+        /// 	* **GCP**: CONFLUENT and PUBSUB
         /// </summary>
         [Input("vendor")]
         public Input<string>? Vendor { get; set; }

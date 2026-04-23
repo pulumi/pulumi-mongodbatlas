@@ -26,7 +26,7 @@ class GetPrivateLinkEndpointResult:
     """
     A collection of values returned by getPrivateLinkEndpoint.
     """
-    def __init__(__self__, endpoint_group_names=None, endpoint_service_name=None, error_message=None, id=None, interface_endpoints=None, port_mapping_enabled=None, private_endpoints=None, private_link_id=None, private_link_service_name=None, private_link_service_resource_id=None, project_id=None, provider_name=None, region_name=None, service_attachment_names=None, status=None):
+    def __init__(__self__, endpoint_group_names=None, endpoint_service_name=None, error_message=None, id=None, interface_endpoints=None, port_mapping_enabled=None, private_endpoints=None, private_link_id=None, private_link_service_name=None, private_link_service_resource_id=None, project_id=None, provider_name=None, region_name=None, service_attachment_names=None, status=None, supported_remote_regions=None):
         if endpoint_group_names and not isinstance(endpoint_group_names, list):
             raise TypeError("Expected argument 'endpoint_group_names' to be a list")
         pulumi.set(__self__, "endpoint_group_names", endpoint_group_names)
@@ -72,6 +72,9 @@ class GetPrivateLinkEndpointResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if supported_remote_regions and not isinstance(supported_remote_regions, list):
+            raise TypeError("Expected argument 'supported_remote_regions' to be a list")
+        pulumi.set(__self__, "supported_remote_regions", supported_remote_regions)
 
     @_builtins.property
     @pulumi.getter(name="endpointGroupNames")
@@ -190,6 +193,14 @@ class GetPrivateLinkEndpointResult:
         """
         return pulumi.get(self, "status")
 
+    @_builtins.property
+    @pulumi.getter(name="supportedRemoteRegions")
+    def supported_remote_regions(self) -> Sequence[_builtins.str]:
+        """
+        List of additional AWS regions that can connect to the endpoint service.
+        """
+        return pulumi.get(self, "supported_remote_regions")
+
 
 class AwaitableGetPrivateLinkEndpointResult(GetPrivateLinkEndpointResult):
     # pylint: disable=using-constant-test
@@ -211,7 +222,8 @@ class AwaitableGetPrivateLinkEndpointResult(GetPrivateLinkEndpointResult):
             provider_name=self.provider_name,
             region_name=self.region_name,
             service_attachment_names=self.service_attachment_names,
-            status=self.status)
+            status=self.status,
+            supported_remote_regions=self.supported_remote_regions)
 
 
 def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
@@ -270,7 +282,8 @@ def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
         provider_name=pulumi.get(__ret__, 'provider_name'),
         region_name=pulumi.get(__ret__, 'region_name'),
         service_attachment_names=pulumi.get(__ret__, 'service_attachment_names'),
-        status=pulumi.get(__ret__, 'status'))
+        status=pulumi.get(__ret__, 'status'),
+        supported_remote_regions=pulumi.get(__ret__, 'supported_remote_regions'))
 def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
                                      project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                      provider_name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -326,4 +339,5 @@ def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_bui
         provider_name=pulumi.get(__response__, 'provider_name'),
         region_name=pulumi.get(__response__, 'region_name'),
         service_attachment_names=pulumi.get(__response__, 'service_attachment_names'),
-        status=pulumi.get(__response__, 'status')))
+        status=pulumi.get(__response__, 'status'),
+        supported_remote_regions=pulumi.get(__response__, 'supported_remote_regions')))

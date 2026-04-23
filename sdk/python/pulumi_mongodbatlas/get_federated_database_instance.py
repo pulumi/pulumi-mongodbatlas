@@ -28,7 +28,7 @@ class GetFederatedDatabaseInstanceResult:
     """
     A collection of values returned by getFederatedDatabaseInstance.
     """
-    def __init__(__self__, cloud_provider_configs=None, data_process_regions=None, hostnames=None, id=None, name=None, project_id=None, state=None, storage_databases=None, storage_stores=None):
+    def __init__(__self__, cloud_provider_configs=None, data_process_regions=None, hostnames=None, id=None, name=None, private_endpoint_hostnames=None, project_id=None, state=None, storage_databases=None, storage_stores=None):
         if cloud_provider_configs and not isinstance(cloud_provider_configs, list):
             raise TypeError("Expected argument 'cloud_provider_configs' to be a list")
         pulumi.set(__self__, "cloud_provider_configs", cloud_provider_configs)
@@ -44,6 +44,9 @@ class GetFederatedDatabaseInstanceResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if private_endpoint_hostnames and not isinstance(private_endpoint_hostnames, list):
+            raise TypeError("Expected argument 'private_endpoint_hostnames' to be a list")
+        pulumi.set(__self__, "private_endpoint_hostnames", private_endpoint_hostnames)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -87,6 +90,16 @@ class GetFederatedDatabaseInstanceResult:
     @pulumi.getter
     def name(self) -> _builtins.str:
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpointHostnames")
+    def private_endpoint_hostnames(self) -> Sequence['outputs.GetFederatedDatabaseInstancePrivateEndpointHostnameResult']:
+        """
+        The list of private endpoint hostnames assigned to the Federated Database Instance.
+        * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+        * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+        """
+        return pulumi.get(self, "private_endpoint_hostnames")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -170,6 +183,7 @@ class AwaitableGetFederatedDatabaseInstanceResult(GetFederatedDatabaseInstanceRe
             hostnames=self.hostnames,
             id=self.id,
             name=self.name,
+            private_endpoint_hostnames=self.private_endpoint_hostnames,
             project_id=self.project_id,
             state=self.state,
             storage_databases=self.storage_databases,
@@ -244,6 +258,7 @@ def get_federated_database_instance(cloud_provider_configs: Optional[Sequence[Un
         hostnames=pulumi.get(__ret__, 'hostnames'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
+        private_endpoint_hostnames=pulumi.get(__ret__, 'private_endpoint_hostnames'),
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'),
         storage_databases=pulumi.get(__ret__, 'storage_databases'),
@@ -315,6 +330,7 @@ def get_federated_database_instance_output(cloud_provider_configs: Optional[pulu
         hostnames=pulumi.get(__response__, 'hostnames'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
+        private_endpoint_hostnames=pulumi.get(__response__, 'private_endpoint_hostnames'),
         project_id=pulumi.get(__response__, 'project_id'),
         state=pulumi.get(__response__, 'state'),
         storage_databases=pulumi.get(__response__, 'storage_databases'),

@@ -66,9 +66,6 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult 
      */
     readonly customerEndpointDnsName: string;
     readonly endpointId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly projectId: string;
     /**
