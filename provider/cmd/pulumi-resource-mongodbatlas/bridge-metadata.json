@@ -467,6 +467,9 @@
                     "hostnames": {
                         "maxItemsOne": false
                     },
+                    "private_endpoint_hostnames": {
+                        "maxItemsOne": false
+                    },
                     "storage_databases": {
                         "maxItemsOne": false,
                         "elem": {
@@ -724,6 +727,9 @@
                         "maxItemsOne": false
                     },
                     "service_attachment_names": {
+                        "maxItemsOne": false
+                    },
+                    "supported_remote_regions": {
                         "maxItemsOne": false
                     }
                 }
@@ -1859,6 +1865,9 @@
                     "hostnames": {
                         "maxItemsOne": false
                     },
+                    "private_endpoint_hostnames": {
+                        "maxItemsOne": false
+                    },
                     "storage_databases": {
                         "maxItemsOne": false,
                         "elem": {
@@ -1943,6 +1952,9 @@
                                     "maxItemsOne": false
                                 },
                                 "hostnames": {
+                                    "maxItemsOne": false
+                                },
+                                "private_endpoint_hostnames": {
                                     "maxItemsOne": false
                                 },
                                 "storage_databases": {
@@ -2542,6 +2554,9 @@
                     },
                     "service_attachment_names": {
                         "maxItemsOne": false
+                    },
+                    "supported_remote_regions": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2585,6 +2600,9 @@
                                     "maxItemsOne": false
                                 },
                                 "service_attachment_names": {
+                                    "maxItemsOne": false
+                                },
+                                "supported_remote_regions": {
                                     "maxItemsOne": false
                                 }
                             }
@@ -3299,7 +3317,7 @@
             "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode": 0,
             "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint": 0,
             "mongodbatlas:index/privateLinkEndpointService:PrivateLinkEndpointService": 0,
-            "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive": 0,
+            "mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive": 1,
             "mongodbatlas:index/project:Project": 1,
             "mongodbatlas:index/projectApiKey:ProjectApiKey": 0,
             "mongodbatlas:index/projectInvitation:ProjectInvitation": 0,
@@ -3404,8 +3422,8 @@
             "mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode": 0,
             "mongodbatlas:index/getPrivateLinkEndpoint:getPrivateLinkEndpoint": 0,
             "mongodbatlas:index/getPrivateLinkEndpointService:getPrivateLinkEndpointService": 0,
-            "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive": 0,
-            "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives": 0,
+            "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive": 1,
+            "mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchives:getPrivatelinkEndpointServiceDataFederationOnlineArchives": 1,
             "mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints": 1,
             "mongodbatlas:index/getProject:getProject": 1,
             "mongodbatlas:index/getProjectApiKey:getProjectApiKey": 0,
