@@ -249,6 +249,70 @@ import (
 //	}
 //
 // ```
+//
+// ### GCP Pub/Sub Private Service Connect
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cluster, err := mongodbatlas.NewAdvancedCluster(ctx, "cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.Any(projectId),
+//				Name:        pulumi.Any(clusterName),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("GCP"),
+//								RegionName:   pulumi.String("US_EAST_4"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gcpPubsubStreamPrivatelinkEndpoint, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "gcp_pubsub", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ProviderName: pulumi.String("GCP"),
+//				Vendor:       pulumi.String("PUBSUB"),
+//				Region:       pulumi.Any(gcpRegion),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				cluster,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			gcpPubsub := gcpPubsubStreamPrivatelinkEndpoint.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
+//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.GetStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
+//					ProjectId: projectId,
+//					Id:        id,
+//				}, nil))), nil
+//			}).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+//			ctx.Export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.ID())
+//			ctx.Export("privatelinkEndpointState", gcpPubsub.ApplyT(func(gcpPubsub mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
+//				return &gcpPubsub.State, nil
+//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.DnsDomain)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupStreamPrivatelinkEndpoint(ctx *pulumi.Context, args *LookupStreamPrivatelinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupStreamPrivatelinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamPrivatelinkEndpointResult

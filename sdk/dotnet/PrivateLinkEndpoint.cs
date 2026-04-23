@@ -40,6 +40,31 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### AWS Cross-Region Private Endpoint
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var crossRegion = new Mongodbatlas.Index.PrivateLinkEndpoint("cross_region", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "AWS",
+    ///         Region = "US_EAST_1",
+    ///         SupportedRemoteRegions = new[]
+    ///         {
+    ///             "EU_WEST_1",
+    ///             "AP_SOUTHEAST_1",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Further Examples
     /// - AWS PrivateLink Endpoint
     /// - Azure PrivateLink Endpoint
@@ -161,6 +186,12 @@ namespace Pulumi.Mongodbatlas
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `RegionName` is supported by default and must not be included.
+        /// </summary>
+        [Output("supportedRemoteRegions")]
+        public Output<ImmutableArray<string>> SupportedRemoteRegions { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a PrivateLinkEndpoint resource with the given unique name, arguments, and options.
@@ -237,6 +268,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
+
+        [Input("supportedRemoteRegions")]
+        private InputList<string>? _supportedRemoteRegions;
+
+        /// <summary>
+        /// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `RegionName` is supported by default and must not be included.
+        /// </summary>
+        public InputList<string> SupportedRemoteRegions
+        {
+            get => _supportedRemoteRegions ?? (_supportedRemoteRegions = new InputList<string>());
+            set => _supportedRemoteRegions = value;
+        }
 
         public PrivateLinkEndpointArgs()
         {
@@ -370,6 +413,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("supportedRemoteRegions")]
+        private InputList<string>? _supportedRemoteRegions;
+
+        /// <summary>
+        /// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `RegionName` is supported by default and must not be included.
+        /// </summary>
+        public InputList<string> SupportedRemoteRegions
+        {
+            get => _supportedRemoteRegions ?? (_supportedRemoteRegions = new InputList<string>());
+            set => _supportedRemoteRegions = value;
+        }
 
         public PrivateLinkEndpointState()
         {

@@ -1552,6 +1552,11 @@ export interface FederatedDatabaseInstanceDataProcessRegion {
     region: string;
 }
 
+export interface FederatedDatabaseInstancePrivateEndpointHostname {
+    hostname: string;
+    privateEndpoint: string;
+}
+
 export interface FederatedDatabaseInstanceStorageDatabase {
     collections: outputs.FederatedDatabaseInstanceStorageDatabaseCollection[];
     maxWildcardCollections: number;
@@ -5070,6 +5075,11 @@ export interface GetFederatedDatabaseInstanceDataProcessRegion {
     region: string;
 }
 
+export interface GetFederatedDatabaseInstancePrivateEndpointHostname {
+    hostname: string;
+    privateEndpoint: string;
+}
+
 export interface GetFederatedDatabaseInstanceStorageDatabase {
     collections: outputs.GetFederatedDatabaseInstanceStorageDatabaseCollection[];
     maxWildcardCollections: number;
@@ -5164,6 +5174,12 @@ export interface GetFederatedDatabaseInstancesResult {
      */
     hostnames: string[];
     name: string;
+    /**
+     * The list of private endpoint hostnames assigned to the Federated Database Instance.
+     * * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+     * * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+     */
+    privateEndpointHostnames: outputs.GetFederatedDatabaseInstancesResultPrivateEndpointHostname[];
     /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
@@ -5276,6 +5292,11 @@ export interface GetFederatedDatabaseInstancesResultDataProcessRegion {
      * Name of the region to which the Federated Instance routes client connections for data processing.
      */
     region: string;
+}
+
+export interface GetFederatedDatabaseInstancesResultPrivateEndpointHostname {
+    hostname: string;
+    privateEndpoint: string;
 }
 
 export interface GetFederatedDatabaseInstancesResultStorageDatabase {
@@ -6741,6 +6762,10 @@ export interface GetPrivatelinkEndpointsResult {
      * * `DELETING` - Atlas is deleting the Private Link service.
      */
     status: string;
+    /**
+     * List of additional AWS regions that can connect to the endpoint service.
+     */
+    supportedRemoteRegions: string[];
 }
 
 export interface GetProjectApiKeyProjectAssignment {
@@ -8147,10 +8172,12 @@ export interface GetStreamPrivatelinkEndpointsResult {
     arn: string;
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
-     * 				
+     *
      * 	* AWS provider with CONFLUENT vendor.
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *
+     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain: string;
     /**
@@ -8208,7 +8235,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      *
      * 	* **Azure**: EVENTHUB and CONFLUENT
      *
-     * 	* **GCP**: CONFLUENT
+     * 	* **GCP**: CONFLUENT and PUBSUB
      */
     vendor: string;
 }
@@ -8756,6 +8783,21 @@ export interface PrivateLinkEndpointServiceEndpoint {
     status: string;
 }
 
+export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: string;
+}
+
 export interface ProjectApiKeyProjectAssignment {
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -9122,7 +9164,7 @@ export interface StreamConnectionTimeouts {
      */
     create?: string;
     /**
-     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
      */
     delete?: string;
     /**

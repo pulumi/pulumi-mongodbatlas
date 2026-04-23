@@ -336,6 +336,62 @@ import (
 //
 // ```
 //
+// ### Example GCPPubSub Connection with Private Service Connect
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			gcpSetup, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "gcp_setup", &mongodbatlas.CloudProviderAccessSetupArgs{
+//				ProjectId:    pulumi.Any(projectId),
+//				ProviderName: pulumi.String("GCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			gcpAuth, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "gcp_auth", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				RoleId:    gcpSetup.RoleId,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewStreamConnection(ctx, "example_gcp_pubsub_psc", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				WorkspaceName:  pulumi.Any(example.WorkspaceName),
+//				ConnectionName: pulumi.String("GCPPubSubPSCConnection"),
+//				Type:           pulumi.String("GCPPubSub"),
+//				Gcp: &mongodbatlas.StreamConnectionGcpArgs{
+//					ServiceAccountId: gcpSetup.GcpConfigs.ApplyT(func(gcpConfigs []mongodbatlas.CloudProviderAccessSetupGcpConfig) (*string, error) {
+//						return &gcpConfigs[0].ServiceAccountForAtlas, nil
+//					}).(pulumi.StringPtrOutput),
+//				},
+//				Networking: &mongodbatlas.StreamConnectionNetworkingArgs{
+//					Access: &mongodbatlas.StreamConnectionNetworkingAccessArgs{
+//						Type:         pulumi.String("PRIVATE_LINK"),
+//						ConnectionId: pulumi.Any(gcpPubsub.Id),
+//					},
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				gcpAuth,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example Https Connection
 //
 // ```go

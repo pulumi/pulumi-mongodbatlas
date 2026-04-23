@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchive']
 
@@ -24,7 +26,9 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
                  provider_name: pulumi.Input[_builtins.str],
                  comment: Optional[pulumi.Input[_builtins.str]] = None,
                  customer_endpoint_dns_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
+                 region: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeouts: Optional[pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a PrivatelinkEndpointServiceDataFederationOnlineArchive resource.
 
@@ -33,7 +37,9 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
+        :param pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs'] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "project_id", project_id)
@@ -42,8 +48,12 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
             pulumi.set(__self__, "comment", comment)
         if customer_endpoint_dns_name is not None:
             pulumi.set(__self__, "customer_endpoint_dns_name", customer_endpoint_dns_name)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
@@ -106,6 +116,18 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
         pulumi.set(self, "customer_endpoint_dns_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -117,32 +139,50 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs:
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs']]:
+        """
+        The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+        """
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
 
 @pulumi.input_type
 class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[_builtins.str]] = None,
                  customer_endpoint_dns_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeouts: Optional[pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs']] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivatelinkEndpointServiceDataFederationOnlineArchive resources.
 
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
+        :param pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs'] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
         if customer_endpoint_dns_name is not None:
             pulumi.set(__self__, "customer_endpoint_dns_name", customer_endpoint_dns_name)
+        if delete_on_create_timeout is not None:
+            pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
         if project_id is not None:
@@ -151,6 +191,8 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
             pulumi.set(__self__, "provider_name", provider_name)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -177,6 +219,18 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
     @customer_endpoint_dns_name.setter
     def customer_endpoint_dns_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "customer_endpoint_dns_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
+
+    @delete_on_create_timeout.setter
+    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
@@ -228,6 +282,18 @@ class _PrivatelinkEndpointServiceDataFederationOnlineArchiveState:
 
     @_builtins.property
     @pulumi.getter
+    def timeouts(self) -> Optional[pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs']]:
+        """
+        The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+        """
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: Optional[pulumi.Input['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
+    @_builtins.property
+    @pulumi.getter
     def type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Human-readable label that identifies the resource type associated with this private endpoint.
@@ -247,10 +313,12 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[_builtins.str]] = None,
                  customer_endpoint_dns_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeouts: Optional[pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
@@ -289,10 +357,15 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         ## Import
 
-        Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
+        Import the Private Endpoint Service resource for Data Federation and Online Archive using the project ID and endpoint ID in either of the following formats:
+
+        - `project_id--endpoint_id`
+        - `project_id/endpoint_id`
 
         ```sh
         $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934--vpce-3bf78b0ddee411ba1
+
+        $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934/vpce-3bf78b0ddee411ba1
         ```
 
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) Documentation for more information.
@@ -302,10 +375,12 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
+        :param pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
         """
         ...
     @overload
@@ -350,10 +425,15 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         ## Import
 
-        Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `project_id`--`endpoint_id`, e.g.
+        Import the Private Endpoint Service resource for Data Federation and Online Archive using the project ID and endpoint ID in either of the following formats:
+
+        - `project_id--endpoint_id`
+        - `project_id/endpoint_id`
 
         ```sh
         $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934--vpce-3bf78b0ddee411ba1
+
+        $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934/vpce-3bf78b0ddee411ba1
         ```
 
         See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) Documentation for more information.
@@ -376,10 +456,12 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[_builtins.str]] = None,
                  customer_endpoint_dns_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
                  endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 timeouts: Optional[pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -391,6 +473,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["customer_endpoint_dns_name"] = customer_endpoint_dns_name
+            __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
             if endpoint_id is None and not opts.urn:
                 raise TypeError("Missing required property 'endpoint_id'")
             __props__.__dict__["endpoint_id"] = endpoint_id
@@ -401,6 +484,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                 raise TypeError("Missing required property 'provider_name'")
             __props__.__dict__["provider_name"] = provider_name
             __props__.__dict__["region"] = region
+            __props__.__dict__["timeouts"] = timeouts
             __props__.__dict__["type"] = None
         super(PrivatelinkEndpointServiceDataFederationOnlineArchive, __self__).__init__(
             'mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive',
@@ -414,10 +498,12 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[_builtins.str]] = None,
             customer_endpoint_dns_name: Optional[pulumi.Input[_builtins.str]] = None,
+            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
             endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             provider_name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
+            timeouts: Optional[pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None) -> 'PrivatelinkEndpointServiceDataFederationOnlineArchive':
         """
         Get an existing PrivatelinkEndpointServiceDataFederationOnlineArchive resource's state with the given name, id, and optional extra
@@ -428,10 +514,12 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] comment: Human-readable string to associate with this private endpoint.
         :param pulumi.Input[_builtins.str] customer_endpoint_dns_name: Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
+        :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] endpoint_id: Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
+        :param pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -440,16 +528,18 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["customer_endpoint_dns_name"] = customer_endpoint_dns_name
+        __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
         __props__.__dict__["endpoint_id"] = endpoint_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["provider_name"] = provider_name
         __props__.__dict__["region"] = region
+        __props__.__dict__["timeouts"] = timeouts
         __props__.__dict__["type"] = type
         return PrivatelinkEndpointServiceDataFederationOnlineArchive(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
-    def comment(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def comment(self) -> pulumi.Output[_builtins.str]:
         """
         Human-readable string to associate with this private endpoint.
         """
@@ -457,11 +547,19 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
     @_builtins.property
     @pulumi.getter(name="customerEndpointDnsName")
-    def customer_endpoint_dns_name(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def customer_endpoint_dns_name(self) -> pulumi.Output[_builtins.str]:
         """
         Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
         """
         return pulumi.get(self, "customer_endpoint_dns_name")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteOnCreateTimeout")
+    def delete_on_create_timeout(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        """
+        return pulumi.get(self, "delete_on_create_timeout")
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
@@ -489,11 +587,19 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def region(self) -> pulumi.Output[_builtins.str]:
         """
         Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Output[Optional['outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts']]:
+        """
+        The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+        """
+        return pulumi.get(self, "timeouts")
 
     @_builtins.property
     @pulumi.getter

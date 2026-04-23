@@ -19,10 +19,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string Arn;
         /// <summary>
         /// The domain hostname. Required for the following provider and vendor combinations:
-        /// 				
+        /// 
         /// 	* AWS provider with CONFLUENT vendor.
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// 
+        /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
         /// </summary>
         public readonly string DnsDomain;
         /// <summary>
@@ -80,7 +82,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// 
         /// 	* **Azure**: EVENTHUB and CONFLUENT
         /// 
-        /// 	* **GCP**: CONFLUENT
+        /// 	* **GCP**: CONFLUENT and PUBSUB
         /// </summary>
         public readonly string Vendor;
 

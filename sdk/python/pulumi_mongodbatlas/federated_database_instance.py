@@ -221,6 +221,7 @@ class _FederatedDatabaseInstanceState:
                  data_process_region: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
                  hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_endpoint_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  state: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
@@ -239,6 +240,7 @@ class _FederatedDatabaseInstanceState:
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]] private_endpoint_hostnames: The list of private endpoint hostnames assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -293,6 +295,8 @@ class _FederatedDatabaseInstanceState:
             pulumi.set(__self__, "hostnames", hostnames)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_endpoint_hostnames is not None:
+            pulumi.set(__self__, "private_endpoint_hostnames", private_endpoint_hostnames)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if state is not None:
@@ -356,6 +360,18 @@ class _FederatedDatabaseInstanceState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpointHostnames")
+    def private_endpoint_hostnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]]:
+        """
+        The list of private endpoint hostnames assigned to the Federated Database Instance.
+        """
+        return pulumi.get(self, "private_endpoint_hostnames")
+
+    @private_endpoint_hostnames.setter
+    def private_endpoint_hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]]):
+        pulumi.set(self, "private_endpoint_hostnames", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -892,6 +908,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["storage_databases"] = storage_databases
             __props__.__dict__["storage_stores"] = storage_stores
             __props__.__dict__["hostnames"] = None
+            __props__.__dict__["private_endpoint_hostnames"] = None
             __props__.__dict__["state"] = None
         super(FederatedDatabaseInstance, __self__).__init__(
             'mongodbatlas:index/federatedDatabaseInstance:FederatedDatabaseInstance',
@@ -907,6 +924,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
             data_process_region: Optional[pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
             hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
+            private_endpoint_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             state: Optional[pulumi.Input[_builtins.str]] = None,
             storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
@@ -929,6 +947,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict']]]] private_endpoint_hostnames: The list of private endpoint hostnames assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -983,6 +1002,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["data_process_region"] = data_process_region
         __props__.__dict__["hostnames"] = hostnames
         __props__.__dict__["name"] = name
+        __props__.__dict__["private_endpoint_hostnames"] = private_endpoint_hostnames
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["state"] = state
         __props__.__dict__["storage_databases"] = storage_databases
@@ -1027,6 +1047,14 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="privateEndpointHostnames")
+    def private_endpoint_hostnames(self) -> pulumi.Output[Sequence['outputs.FederatedDatabaseInstancePrivateEndpointHostname']]:
+        """
+        The list of private endpoint hostnames assigned to the Federated Database Instance.
+        """
+        return pulumi.get(self, "private_endpoint_hostnames")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

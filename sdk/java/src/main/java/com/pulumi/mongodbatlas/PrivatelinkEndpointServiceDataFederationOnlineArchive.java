@@ -10,6 +10,8 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveState;
+import com.pulumi.mongodbatlas.outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -81,10 +83,15 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `projectId`--`endpointId`, e.g.
+ * Import the Private Endpoint Service resource for Data Federation and Online Archive using the project ID and endpoint ID in either of the following formats:
+ * 
+ * - `project_id--endpoint_id`
+ * - `project_id/endpoint_id`
  * 
  * ```sh
  * $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934--vpce-3bf78b0ddee411ba1
+ * 
+ * $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934/vpce-3bf78b0ddee411ba1
  * ```
  * 
  * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) Documentation for more information.
@@ -97,28 +104,42 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * 
      */
     @Export(name="comment", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> comment;
+    private Output<String> comment;
 
     /**
      * @return Human-readable string to associate with this private endpoint.
      * 
      */
-    public Output<Optional<String>> comment() {
-        return Codegen.optional(this.comment);
+    public Output<String> comment() {
+        return this.comment;
     }
     /**
      * Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      * 
      */
     @Export(name="customerEndpointDnsName", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> customerEndpointDnsName;
+    private Output<String> customerEndpointDnsName;
 
     /**
      * @return Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      * 
      */
-    public Output<Optional<String>> customerEndpointDnsName() {
-        return Codegen.optional(this.customerEndpointDnsName);
+    public Output<String> customerEndpointDnsName() {
+        return this.customerEndpointDnsName;
+    }
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Export(name="deleteOnCreateTimeout", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Output<Boolean> deleteOnCreateTimeout() {
+        return this.deleteOnCreateTimeout;
     }
     /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
@@ -167,14 +188,28 @@ public class PrivatelinkEndpointServiceDataFederationOnlineArchive extends com.p
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> region;
+    private Output<String> region;
 
     /**
      * @return Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
+    }
+    /**
+     * The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+     * 
+     */
+    @Export(name="timeouts", refs={PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts> timeouts;
+
+    /**
+     * @return The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+     * 
+     */
+    public Output<Optional<PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
     }
     /**
      * Human-readable label that identifies the resource type associated with this private endpoint.

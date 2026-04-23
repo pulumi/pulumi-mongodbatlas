@@ -6,6 +6,8 @@ package com.pulumi.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.inputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -44,6 +46,21 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
      */
     public Optional<Output<String>> customerEndpointDnsName() {
         return Optional.ofNullable(this.customerEndpointDnsName);
+    }
+
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    @Import(name="deleteOnCreateTimeout")
+    private @Nullable Output<Boolean> deleteOnCreateTimeout;
+
+    /**
+     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * 
+     */
+    public Optional<Output<Boolean>> deleteOnCreateTimeout() {
+        return Optional.ofNullable(this.deleteOnCreateTimeout);
     }
 
     /**
@@ -106,15 +123,32 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+     * 
+     */
+    @Import(name="timeouts")
+    private @Nullable Output<PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs> timeouts;
+
+    /**
+     * @return The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+     * 
+     */
+    public Optional<Output<PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
     private PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs() {}
 
     private PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs(PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs $) {
         this.comment = $.comment;
         this.customerEndpointDnsName = $.customerEndpointDnsName;
+        this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.endpointId = $.endpointId;
         this.projectId = $.projectId;
         this.providerName = $.providerName;
         this.region = $.region;
+        this.timeouts = $.timeouts;
     }
 
     public static Builder builder() {
@@ -175,6 +209,27 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
          */
         public Builder customerEndpointDnsName(String customerEndpointDnsName) {
             return customerEndpointDnsName(Output.of(customerEndpointDnsName));
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(@Nullable Output<Boolean> deleteOnCreateTimeout) {
+            $.deleteOnCreateTimeout = deleteOnCreateTimeout;
+            return this;
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
+            return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
         }
 
         /**
@@ -259,6 +314,27 @@ public final class PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs ext
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param timeouts The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeouts(@Nullable Output<PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        /**
+         * @param timeouts The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder timeouts(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
         }
 
         public PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs build() {

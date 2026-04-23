@@ -120,6 +120,10 @@ export interface GetPrivateLinkEndpointResult {
      * * `DELETING` - Atlas is deleting the Private Link service.
      */
     readonly status: string;
+    /**
+     * List of additional AWS regions that can connect to the endpoint service.
+     */
+    readonly supportedRemoteRegions: string[];
 }
 /**
  * `mongodbatlas.PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project

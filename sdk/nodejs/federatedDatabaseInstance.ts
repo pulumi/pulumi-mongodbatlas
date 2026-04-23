@@ -227,6 +227,10 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
+     * The list of private endpoint hostnames assigned to the Federated Database Instance.
+     */
+    declare public /*out*/ readonly privateEndpointHostnames: pulumi.Output<outputs.FederatedDatabaseInstancePrivateEndpointHostname[]>;
+    /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
     declare public readonly projectId: pulumi.Output<string>;
@@ -301,6 +305,7 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
             resourceInputs["dataProcessRegion"] = state?.dataProcessRegion;
             resourceInputs["hostnames"] = state?.hostnames;
             resourceInputs["name"] = state?.name;
+            resourceInputs["privateEndpointHostnames"] = state?.privateEndpointHostnames;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["state"] = state?.state;
             resourceInputs["storageDatabases"] = state?.storageDatabases;
@@ -317,6 +322,7 @@ export class FederatedDatabaseInstance extends pulumi.CustomResource {
             resourceInputs["storageDatabases"] = args?.storageDatabases;
             resourceInputs["storageStores"] = args?.storageStores;
             resourceInputs["hostnames"] = undefined /*out*/;
+            resourceInputs["privateEndpointHostnames"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -351,6 +357,10 @@ export interface FederatedDatabaseInstanceState {
      * Name of the Atlas Federated Database Instance.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The list of private endpoint hostnames assigned to the Federated Database Instance.
+     */
+    privateEndpointHostnames?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstancePrivateEndpointHostname>[]>;
     /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */

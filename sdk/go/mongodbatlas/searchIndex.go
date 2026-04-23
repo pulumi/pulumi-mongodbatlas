@@ -220,6 +220,14 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// You can import search indexes using `projectId`, `clusterName`, and `indexId` as in the following example:
+//
+// ```sh
+// $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+// ```
 type SearchIndex struct {
 	pulumi.CustomResourceState
 

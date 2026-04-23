@@ -366,6 +366,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         public readonly string Name;
+        /// <summary>
+        /// The list of private endpoint hostnames assigned to the Federated Database Instance.
+        /// * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+        /// * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstancePrivateEndpointHostnameResult> PrivateEndpointHostnames;
         public readonly string ProjectId;
         /// <summary>
         /// Current state of the Federated Database Instance:
@@ -433,6 +439,8 @@ namespace Pulumi.Mongodbatlas
 
             string name,
 
+            ImmutableArray<Outputs.GetFederatedDatabaseInstancePrivateEndpointHostnameResult> privateEndpointHostnames,
+
             string projectId,
 
             string state,
@@ -446,6 +454,7 @@ namespace Pulumi.Mongodbatlas
             Hostnames = hostnames;
             Id = id;
             Name = name;
+            PrivateEndpointHostnames = privateEndpointHostnames;
             ProjectId = projectId;
             State = state;
             StorageDatabases = storageDatabases;

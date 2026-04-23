@@ -531,7 +531,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             project_id="<PROJECT_ID>",
             provider_name="AWS",
             region="US_EAST_1")
-        ptfe_service = aws.VpcEndpoint("ptfe_service",
+        this_vpc_endpoint = aws.VpcEndpoint("this",
             vpc_id=vpc-7fc0a543,
             service_name=this.endpoint_service_name,
             vpc_endpoint_type=Interface,
@@ -540,7 +540,34 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
             project_id=this.project_id,
             private_link_id=this.private_link_id,
-            endpoint_service_id=ptfe_service["id"],
+            endpoint_service_id=this_vpc_endpoint["id"],
+            provider_name="AWS")
+        ```
+
+        ## Example with AWS Cross-Region
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="EU_WEST_1",
+            supported_remote_regions=["US_EAST_1"])
+        this_vpc_endpoint = aws.VpcEndpoint("this",
+            vpc_id=vpc-7fc0a543,
+            service_name=this.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186],
+            region=us-east-1,
+            service_region=eu-west-1)
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            endpoint_service_id=this_vpc_endpoint["id"],
             provider_name="AWS")
         ```
 
@@ -745,7 +772,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             project_id="<PROJECT_ID>",
             provider_name="AWS",
             region="US_EAST_1")
-        ptfe_service = aws.VpcEndpoint("ptfe_service",
+        this_vpc_endpoint = aws.VpcEndpoint("this",
             vpc_id=vpc-7fc0a543,
             service_name=this.endpoint_service_name,
             vpc_endpoint_type=Interface,
@@ -754,7 +781,34 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
             project_id=this.project_id,
             private_link_id=this.private_link_id,
-            endpoint_service_id=ptfe_service["id"],
+            endpoint_service_id=this_vpc_endpoint["id"],
+            provider_name="AWS")
+        ```
+
+        ## Example with AWS Cross-Region
+
+        ```python
+        import pulumi
+        import pulumi_aws as aws
+        import pulumi_mongodbatlas as mongodbatlas
+
+        this = mongodbatlas.PrivateLinkEndpoint("this",
+            project_id="<PROJECT_ID>",
+            provider_name="AWS",
+            region="EU_WEST_1",
+            supported_remote_regions=["US_EAST_1"])
+        this_vpc_endpoint = aws.VpcEndpoint("this",
+            vpc_id=vpc-7fc0a543,
+            service_name=this.endpoint_service_name,
+            vpc_endpoint_type=Interface,
+            subnet_ids=[subnet-de0406d2],
+            security_group_ids=[sg-3f238186],
+            region=us-east-1,
+            service_region=eu-west-1)
+        this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
+            project_id=this.project_id,
+            private_link_id=this.private_link_id,
+            endpoint_service_id=this_vpc_endpoint["id"],
             provider_name="AWS")
         ```
 

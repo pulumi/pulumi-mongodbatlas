@@ -71,7 +71,6 @@ type LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs struct {
 
 // A collection of values returned by getPrivatelinkEndpointServiceDataFederationOnlineArchives.
 type LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult struct {
-	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Private Endpoint Service
@@ -112,7 +111,6 @@ func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.Id }).(pulumi.StringOutput)
 }

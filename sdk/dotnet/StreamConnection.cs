@@ -286,6 +286,57 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example GCPPubSub Connection with Private Service Connect
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpSetup = new Mongodbatlas.Index.CloudProviderAccessSetup("gcp_setup", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "GCP",
+    ///     });
+    /// 
+    ///     var gcpAuth = new Mongodbatlas.Index.CloudProviderAccessAuthorization("gcp_auth", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         RoleId = gcpSetup.RoleId,
+    ///     });
+    /// 
+    ///     var exampleGcpPubsubPsc = new Mongodbatlas.Index.StreamConnection("example_gcp_pubsub_psc", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.WorkspaceName,
+    ///         ConnectionName = "GCPPubSubPSCConnection",
+    ///         Type = "GCPPubSub",
+    ///         Gcp = new Mongodbatlas.Inputs.StreamConnectionGcpArgs
+    ///         {
+    ///             ServiceAccountId = gcpSetup.GcpConfigs.Apply(gcpConfigs =&gt; gcpConfigs[0].ServiceAccountForAtlas),
+    ///         },
+    ///         Networking = new Mongodbatlas.Inputs.StreamConnectionNetworkingArgs
+    ///         {
+    ///             Access = new Mongodbatlas.Inputs.StreamConnectionNetworkingAccessArgs
+    ///             {
+    ///                 Type = "PRIVATE_LINK",
+    ///                 ConnectionId = gcpPubsub.Id,
+    ///             },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             gcpAuth,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example Https Connection
     /// 
     /// ```csharp

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -44,10 +46,15 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * Private Endpoint Service resource for Data Federation and Online Archive can be imported using project ID, endpoint ID, in the format `projectId`--`endpointId`, e.g.
+ * Import the Private Endpoint Service resource for Data Federation and Online Archive using the project ID and endpoint ID in either of the following formats:
+ *
+ * - `project_id--endpoint_id`
+ * - `project_id/endpoint_id`
  *
  * ```sh
  * $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934--vpce-3bf78b0ddee411ba1
+ *
+ * $ pulumi import mongodbatlas:index/privatelinkEndpointServiceDataFederationOnlineArchive:PrivatelinkEndpointServiceDataFederationOnlineArchive example 1112222b3bf99403840e8934/vpce-3bf78b0ddee411ba1
  * ```
  *
  * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint) Documentation for more information.
@@ -83,11 +90,15 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
     /**
      * Human-readable string to associate with this private endpoint.
      */
-    declare public readonly comment: pulumi.Output<string | undefined>;
+    declare public readonly comment: pulumi.Output<string>;
     /**
      * Human-readable label to identify VPC endpoint DNS name. If defined, you must also specify a value for `region`.
      */
-    declare public readonly customerEndpointDnsName: pulumi.Output<string | undefined>;
+    declare public readonly customerEndpointDnsName: pulumi.Output<string>;
+    /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean>;
     /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
      */
@@ -103,7 +114,11 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
     /**
      * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      */
-    declare public readonly region: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string>;
+    /**
+     * The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+     */
+    declare public readonly timeouts: pulumi.Output<outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts | undefined>;
     /**
      * Human-readable label that identifies the resource type associated with this private endpoint.
      */
@@ -124,10 +139,12 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
             const state = argsOrState as PrivatelinkEndpointServiceDataFederationOnlineArchiveState | undefined;
             resourceInputs["comment"] = state?.comment;
             resourceInputs["customerEndpointDnsName"] = state?.customerEndpointDnsName;
+            resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
             resourceInputs["endpointId"] = state?.endpointId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["providerName"] = state?.providerName;
             resourceInputs["region"] = state?.region;
+            resourceInputs["timeouts"] = state?.timeouts;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs | undefined;
@@ -142,10 +159,12 @@ export class PrivatelinkEndpointServiceDataFederationOnlineArchive extends pulum
             }
             resourceInputs["comment"] = args?.comment;
             resourceInputs["customerEndpointDnsName"] = args?.customerEndpointDnsName;
+            resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
             resourceInputs["endpointId"] = args?.endpointId;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["providerName"] = args?.providerName;
             resourceInputs["region"] = args?.region;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["type"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -166,6 +185,10 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveState {
      */
     customerEndpointDnsName?: pulumi.Input<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
      */
     endpointId?: pulumi.Input<string>;
@@ -181,6 +204,10 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveState {
      * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+     */
+    timeouts?: pulumi.Input<inputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts>;
     /**
      * Human-readable label that identifies the resource type associated with this private endpoint.
      */
@@ -200,6 +227,10 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs {
      */
     customerEndpointDnsName?: pulumi.Input<string>;
     /**
+     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     */
+    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    /**
      * Unique 22-character alphanumeric string that identifies the private endpoint. See [Atlas Data Federation supports Amazon Web Services private endpoints using the AWS PrivateLink feature](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createDataFederationPrivateEndpoint).
      */
     endpointId: pulumi.Input<string>;
@@ -215,4 +246,8 @@ export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs {
      * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+     */
+    timeouts?: pulumi.Input<inputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts>;
 }

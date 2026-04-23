@@ -21,10 +21,6 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
      */
     private String customerEndpointDnsName;
     private String endpointId;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     private String id;
     private String projectId;
     /**
@@ -61,10 +57,6 @@ public final class GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResul
     public String endpointId() {
         return this.endpointId;
     }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

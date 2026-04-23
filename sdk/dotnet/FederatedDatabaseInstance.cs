@@ -293,6 +293,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The list of private endpoint hostnames assigned to the Federated Database Instance.
+        /// </summary>
+        [Output("privateEndpointHostnames")]
+        public Output<ImmutableArray<Outputs.FederatedDatabaseInstancePrivateEndpointHostname>> PrivateEndpointHostnames { get; private set; } = null!;
+
+        /// <summary>
         /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         /// </summary>
         [Output("projectId")]
@@ -541,6 +547,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("privateEndpointHostnames")]
+        private InputList<Inputs.FederatedDatabaseInstancePrivateEndpointHostnameGetArgs>? _privateEndpointHostnames;
+
+        /// <summary>
+        /// The list of private endpoint hostnames assigned to the Federated Database Instance.
+        /// </summary>
+        public InputList<Inputs.FederatedDatabaseInstancePrivateEndpointHostnameGetArgs> PrivateEndpointHostnames
+        {
+            get => _privateEndpointHostnames ?? (_privateEndpointHostnames = new InputList<Inputs.FederatedDatabaseInstancePrivateEndpointHostnameGetArgs>());
+            set => _privateEndpointHostnames = value;
+        }
 
         /// <summary>
         /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.

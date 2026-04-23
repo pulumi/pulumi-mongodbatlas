@@ -144,6 +144,44 @@ import * as utilities from "./utilities";
  * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
  * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
  * ```
+ *
+ * ### GCP Pub/Sub Private Service Connect
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "GCP",
+ *             regionName: "US_EAST_4",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const gcpPubsubStreamPrivatelinkEndpoint = new mongodbatlas.StreamPrivatelinkEndpoint("gcp_pubsub", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     vendor: "PUBSUB",
+ *     region: gcpRegion,
+ * }, {
+ *     dependsOn: [cluster],
+ * });
+ * const gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
+ * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
+ * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
+ * ```
  */
 export function getStreamPrivatelinkEndpoints(args: GetStreamPrivatelinkEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamPrivatelinkEndpointsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -307,6 +345,44 @@ export interface GetStreamPrivatelinkEndpointsResult {
  * export const privatelinkEndpointId = gcpConfluentStreamPrivatelinkEndpoint.id;
  * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
  * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
+ * ```
+ *
+ * ### GCP Pub/Sub Private Service Connect
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "GCP",
+ *             regionName: "US_EAST_4",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const gcpPubsubStreamPrivatelinkEndpoint = new mongodbatlas.StreamPrivatelinkEndpoint("gcp_pubsub", {
+ *     projectId: projectId,
+ *     providerName: "GCP",
+ *     vendor: "PUBSUB",
+ *     region: gcpRegion,
+ * }, {
+ *     dependsOn: [cluster],
+ * });
+ * const gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ *     projectId: projectId,
+ *     id: id,
+ * }));
+ * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
+ * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
+ * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
  * ```
  */
 export function getStreamPrivatelinkEndpointsOutput(args: GetStreamPrivatelinkEndpointsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamPrivatelinkEndpointsResult> {

@@ -12779,6 +12779,106 @@ func (o FederatedDatabaseInstanceDataProcessRegionPtrOutput) Region() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
+type FederatedDatabaseInstancePrivateEndpointHostname struct {
+	Hostname        *string `pulumi:"hostname"`
+	PrivateEndpoint *string `pulumi:"privateEndpoint"`
+}
+
+// FederatedDatabaseInstancePrivateEndpointHostnameInput is an input type that accepts FederatedDatabaseInstancePrivateEndpointHostnameArgs and FederatedDatabaseInstancePrivateEndpointHostnameOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstancePrivateEndpointHostnameInput` via:
+//
+//	FederatedDatabaseInstancePrivateEndpointHostnameArgs{...}
+type FederatedDatabaseInstancePrivateEndpointHostnameInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstancePrivateEndpointHostnameOutput() FederatedDatabaseInstancePrivateEndpointHostnameOutput
+	ToFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(context.Context) FederatedDatabaseInstancePrivateEndpointHostnameOutput
+}
+
+type FederatedDatabaseInstancePrivateEndpointHostnameArgs struct {
+	Hostname        pulumi.StringPtrInput `pulumi:"hostname"`
+	PrivateEndpoint pulumi.StringPtrInput `pulumi:"privateEndpoint"`
+}
+
+func (FederatedDatabaseInstancePrivateEndpointHostnameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (i FederatedDatabaseInstancePrivateEndpointHostnameArgs) ToFederatedDatabaseInstancePrivateEndpointHostnameOutput() FederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return i.ToFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstancePrivateEndpointHostnameArgs) ToFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(ctx context.Context) FederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstancePrivateEndpointHostnameOutput)
+}
+
+// FederatedDatabaseInstancePrivateEndpointHostnameArrayInput is an input type that accepts FederatedDatabaseInstancePrivateEndpointHostnameArray and FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstancePrivateEndpointHostnameArrayInput` via:
+//
+//	FederatedDatabaseInstancePrivateEndpointHostnameArray{ FederatedDatabaseInstancePrivateEndpointHostnameArgs{...} }
+type FederatedDatabaseInstancePrivateEndpointHostnameArrayInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput() FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput
+	ToFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(context.Context) FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput
+}
+
+type FederatedDatabaseInstancePrivateEndpointHostnameArray []FederatedDatabaseInstancePrivateEndpointHostnameInput
+
+func (FederatedDatabaseInstancePrivateEndpointHostnameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (i FederatedDatabaseInstancePrivateEndpointHostnameArray) ToFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput() FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return i.ToFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstancePrivateEndpointHostnameArray) ToFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput)
+}
+
+type FederatedDatabaseInstancePrivateEndpointHostnameOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstancePrivateEndpointHostnameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstancePrivateEndpointHostnameOutput) ToFederatedDatabaseInstancePrivateEndpointHostnameOutput() FederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstancePrivateEndpointHostnameOutput) ToFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(ctx context.Context) FederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstancePrivateEndpointHostnameOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstancePrivateEndpointHostname) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+func (o FederatedDatabaseInstancePrivateEndpointHostnameOutput) PrivateEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstancePrivateEndpointHostname) *string { return v.PrivateEndpoint }).(pulumi.StringPtrOutput)
+}
+
+type FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) ToFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput() FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) ToFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(ctx context.Context) FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) Index(i pulumi.IntInput) FederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FederatedDatabaseInstancePrivateEndpointHostname {
+		return vs[0].([]FederatedDatabaseInstancePrivateEndpointHostname)[vs[1].(int)]
+	}).(FederatedDatabaseInstancePrivateEndpointHostnameOutput)
+}
+
 type FederatedDatabaseInstanceStorageDatabase struct {
 	Collections            []FederatedDatabaseInstanceStorageDatabaseCollection `pulumi:"collections"`
 	MaxWildcardCollections *int                                                 `pulumi:"maxWildcardCollections"`
@@ -16935,6 +17035,181 @@ func (o PrivateLinkEndpointServiceEndpointArrayOutput) Index(i pulumi.IntInput) 
 	}).(PrivateLinkEndpointServiceEndpointOutput)
 }
 
+type PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsInput is an input type that accepts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs and PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput values.
+// You can construct a concrete instance of `PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsInput` via:
+//
+//	PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs{...}
+type PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsInput interface {
+	pulumi.Input
+
+	ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput
+	ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutputWithContext(context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput
+}
+
+type PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts)(nil)).Elem()
+}
+
+func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput {
+	return i.ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutputWithContext(context.Background())
+}
+
+func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput)
+}
+
+func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return i.ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput).ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(ctx)
+}
+
+// PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput is an input type that accepts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs, PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtr and PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput values.
+// You can construct a concrete instance of `PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput` via:
+//
+//	        PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput
+	ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput
+}
+
+type privatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrType PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs
+
+func PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtr(v *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput {
+	return (*privatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrType)(v)
+}
+
+func (*privatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts)(nil)).Elem()
+}
+
+func (i *privatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrType) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return i.ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *privatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrType) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput)
+}
+
+type PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts)(nil)).Elem()
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput {
+	return o
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput {
+	return o
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return o.ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts {
+		return &v
+	}).(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts)(nil)).Elem()
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return o
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput) ToPrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutputWithContext(ctx context.Context) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput {
+	return o
+}
+
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput) Elem() PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts
+		return ret
+	}).(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type ProjectApiKeyProjectAssignment struct {
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
@@ -21062,7 +21337,7 @@ func (o StreamConnectionSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
 type StreamConnectionTimeouts struct {
 	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
 	Create *string `pulumi:"create"`
-	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
 	Delete *string `pulumi:"delete"`
 	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
 	Update *string `pulumi:"update"`
@@ -21082,7 +21357,7 @@ type StreamConnectionTimeoutsInput interface {
 type StreamConnectionTimeoutsArgs struct {
 	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
 	Create pulumi.StringPtrInput `pulumi:"create"`
-	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
 	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
 	Update pulumi.StringPtrInput `pulumi:"update"`
@@ -21170,7 +21445,7 @@ func (o StreamConnectionTimeoutsOutput) Create() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
 func (o StreamConnectionTimeoutsOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
 }
@@ -21214,7 +21489,7 @@ func (o StreamConnectionTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
 func (o StreamConnectionTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionTimeouts) *string {
 		if v == nil {
@@ -40654,6 +40929,106 @@ func (o GetFederatedDatabaseInstanceDataProcessRegionArrayOutput) Index(i pulumi
 	}).(GetFederatedDatabaseInstanceDataProcessRegionOutput)
 }
 
+type GetFederatedDatabaseInstancePrivateEndpointHostname struct {
+	Hostname        string `pulumi:"hostname"`
+	PrivateEndpoint string `pulumi:"privateEndpoint"`
+}
+
+// GetFederatedDatabaseInstancePrivateEndpointHostnameInput is an input type that accepts GetFederatedDatabaseInstancePrivateEndpointHostnameArgs and GetFederatedDatabaseInstancePrivateEndpointHostnameOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancePrivateEndpointHostnameInput` via:
+//
+//	GetFederatedDatabaseInstancePrivateEndpointHostnameArgs{...}
+type GetFederatedDatabaseInstancePrivateEndpointHostnameInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancePrivateEndpointHostnameOutput() GetFederatedDatabaseInstancePrivateEndpointHostnameOutput
+	ToGetFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(context.Context) GetFederatedDatabaseInstancePrivateEndpointHostnameOutput
+}
+
+type GetFederatedDatabaseInstancePrivateEndpointHostnameArgs struct {
+	Hostname        pulumi.StringInput `pulumi:"hostname"`
+	PrivateEndpoint pulumi.StringInput `pulumi:"privateEndpoint"`
+}
+
+func (GetFederatedDatabaseInstancePrivateEndpointHostnameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancePrivateEndpointHostnameArgs) ToGetFederatedDatabaseInstancePrivateEndpointHostnameOutput() GetFederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return i.ToGetFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancePrivateEndpointHostnameArgs) ToGetFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancePrivateEndpointHostnameOutput)
+}
+
+// GetFederatedDatabaseInstancePrivateEndpointHostnameArrayInput is an input type that accepts GetFederatedDatabaseInstancePrivateEndpointHostnameArray and GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancePrivateEndpointHostnameArrayInput` via:
+//
+//	GetFederatedDatabaseInstancePrivateEndpointHostnameArray{ GetFederatedDatabaseInstancePrivateEndpointHostnameArgs{...} }
+type GetFederatedDatabaseInstancePrivateEndpointHostnameArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput() GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput
+	ToGetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(context.Context) GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput
+}
+
+type GetFederatedDatabaseInstancePrivateEndpointHostnameArray []GetFederatedDatabaseInstancePrivateEndpointHostnameInput
+
+func (GetFederatedDatabaseInstancePrivateEndpointHostnameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancePrivateEndpointHostnameArray) ToGetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput() GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return i.ToGetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancePrivateEndpointHostnameArray) ToGetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput)
+}
+
+type GetFederatedDatabaseInstancePrivateEndpointHostnameOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancePrivateEndpointHostnameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancePrivateEndpointHostnameOutput) ToGetFederatedDatabaseInstancePrivateEndpointHostnameOutput() GetFederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancePrivateEndpointHostnameOutput) ToGetFederatedDatabaseInstancePrivateEndpointHostnameOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancePrivateEndpointHostnameOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancePrivateEndpointHostname) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o GetFederatedDatabaseInstancePrivateEndpointHostnameOutput) PrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancePrivateEndpointHostname) string { return v.PrivateEndpoint }).(pulumi.StringOutput)
+}
+
+type GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancePrivateEndpointHostname)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) ToGetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput() GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) ToGetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstancePrivateEndpointHostnameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancePrivateEndpointHostname {
+		return vs[0].([]GetFederatedDatabaseInstancePrivateEndpointHostname)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstancePrivateEndpointHostnameOutput)
+}
+
 type GetFederatedDatabaseInstanceStorageDatabase struct {
 	Collections            []GetFederatedDatabaseInstanceStorageDatabaseCollection `pulumi:"collections"`
 	MaxWildcardCollections int                                                     `pulumi:"maxWildcardCollections"`
@@ -41647,6 +42022,10 @@ type GetFederatedDatabaseInstancesResult struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames []string `pulumi:"hostnames"`
 	Name      string   `pulumi:"name"`
+	// The list of private endpoint hostnames assigned to the Federated Database Instance.
+	// * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+	// * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+	PrivateEndpointHostnames []GetFederatedDatabaseInstancesResultPrivateEndpointHostname `pulumi:"privateEndpointHostnames"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
@@ -41715,6 +42094,10 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
 	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
 	Name      pulumi.StringInput      `pulumi:"name"`
+	// The list of private endpoint hostnames assigned to the Federated Database Instance.
+	// * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+	// * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+	PrivateEndpointHostnames GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayInput `pulumi:"privateEndpointHostnames"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Current state of the Federated Database Instance:
@@ -41836,6 +42219,15 @@ func (o GetFederatedDatabaseInstancesResultOutput) Hostnames() pulumi.StringArra
 
 func (o GetFederatedDatabaseInstancesResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The list of private endpoint hostnames assigned to the Federated Database Instance.
+// * `private_endpoint_hostnames.#.hostname` -  Human-readable label that identifies the host.
+// * `private_endpoint_hostnames.#.private_endpoint` - Human-readable label that identifies the private endpoint.
+func (o GetFederatedDatabaseInstancesResultOutput) PrivateEndpointHostnames() GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) []GetFederatedDatabaseInstancesResultPrivateEndpointHostname {
+		return v.PrivateEndpointHostnames
+	}).(GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput)
 }
 
 // The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -42393,6 +42785,106 @@ func (o GetFederatedDatabaseInstancesResultDataProcessRegionArrayOutput) Index(i
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancesResultDataProcessRegion {
 		return vs[0].([]GetFederatedDatabaseInstancesResultDataProcessRegion)[vs[1].(int)]
 	}).(GetFederatedDatabaseInstancesResultDataProcessRegionOutput)
+}
+
+type GetFederatedDatabaseInstancesResultPrivateEndpointHostname struct {
+	Hostname        string `pulumi:"hostname"`
+	PrivateEndpoint string `pulumi:"privateEndpoint"`
+}
+
+// GetFederatedDatabaseInstancesResultPrivateEndpointHostnameInput is an input type that accepts GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs and GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultPrivateEndpointHostnameInput` via:
+//
+//	GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs{...}
+type GetFederatedDatabaseInstancesResultPrivateEndpointHostnameInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput() GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput
+	ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput
+}
+
+type GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs struct {
+	Hostname        pulumi.StringInput `pulumi:"hostname"`
+	PrivateEndpoint pulumi.StringInput `pulumi:"privateEndpoint"`
+}
+
+func (GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultPrivateEndpointHostname)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput() GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput {
+	return i.ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput)
+}
+
+// GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayInput is an input type that accepts GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArray and GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayInput` via:
+//
+//	GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArray{ GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs{...} }
+type GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput() GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput
+	ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput
+}
+
+type GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArray []GetFederatedDatabaseInstancesResultPrivateEndpointHostnameInput
+
+func (GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultPrivateEndpointHostname)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArray) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput() GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput {
+	return i.ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArray) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput)
+}
+
+type GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultPrivateEndpointHostname)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput() GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultPrivateEndpointHostname) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+func (o GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput) PrivateEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultPrivateEndpointHostname) string { return v.PrivateEndpoint }).(pulumi.StringOutput)
+}
+
+type GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultPrivateEndpointHostname)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput() GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput) ToGetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancesResultPrivateEndpointHostname {
+		return vs[0].([]GetFederatedDatabaseInstancesResultPrivateEndpointHostname)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput)
 }
 
 type GetFederatedDatabaseInstancesResultStorageDatabase struct {
@@ -51806,6 +52298,8 @@ type GetPrivatelinkEndpointsResult struct {
 	// * `FAILED` - A system failure occurred.
 	// * `DELETING` - Atlas is deleting the Private Link service.
 	Status string `pulumi:"status"`
+	// List of additional AWS regions that can connect to the endpoint service.
+	SupportedRemoteRegions []string `pulumi:"supportedRemoteRegions"`
 }
 
 // GetPrivatelinkEndpointsResultInput is an input type that accepts GetPrivatelinkEndpointsResultArgs and GetPrivatelinkEndpointsResultOutput values.
@@ -51850,6 +52344,8 @@ type GetPrivatelinkEndpointsResultArgs struct {
 	// * `FAILED` - A system failure occurred.
 	// * `DELETING` - Atlas is deleting the Private Link service.
 	Status pulumi.StringInput `pulumi:"status"`
+	// List of additional AWS regions that can connect to the endpoint service.
+	SupportedRemoteRegions pulumi.StringArrayInput `pulumi:"supportedRemoteRegions"`
 }
 
 func (GetPrivatelinkEndpointsResultArgs) ElementType() reflect.Type {
@@ -51967,6 +52463,11 @@ func (o GetPrivatelinkEndpointsResultOutput) ServiceAttachmentNames() pulumi.Str
 // * `DELETING` - Atlas is deleting the Private Link service.
 func (o GetPrivatelinkEndpointsResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// List of additional AWS regions that can connect to the endpoint service.
+func (o GetPrivatelinkEndpointsResultOutput) SupportedRemoteRegions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPrivatelinkEndpointsResult) []string { return v.SupportedRemoteRegions }).(pulumi.StringArrayOutput)
 }
 
 type GetPrivatelinkEndpointsResultArrayOutput struct{ *pulumi.OutputState }
@@ -59996,6 +60497,8 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	//     * AWS provider with CONFLUENT vendor.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+	//
+	//     * For GCP provider with PUBSUB vendor, the API computes this process.
 	DnsDomain string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
@@ -60027,7 +60530,7 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	//
 	//     * **Azure**: EVENTHUB and CONFLUENT
 	//
-	//     * **GCP**: CONFLUENT
+	//     * **GCP**: CONFLUENT and PUBSUB
 	Vendor string `pulumi:"vendor"`
 }
 
@@ -60050,6 +60553,8 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	//     * AWS provider with CONFLUENT vendor.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+	//
+	//     * For GCP provider with PUBSUB vendor, the API computes this process.
 	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains pulumi.StringArrayInput `pulumi:"dnsSubDomains"`
@@ -60081,7 +60586,7 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	//
 	//     * **Azure**: EVENTHUB and CONFLUENT
 	//
-	//     * **GCP**: CONFLUENT
+	//     * **GCP**: CONFLUENT and PUBSUB
 	Vendor pulumi.StringInput `pulumi:"vendor"`
 }
 
@@ -60146,6 +60651,8 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
 //   - AWS provider with CONFLUENT vendor.
 //
 //   - AZURE provider with EVENTHUB or CONFLUENT vendor.
+//
+//   - For GCP provider with PUBSUB vendor, the API computes this process.
 func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
 }
@@ -60216,7 +60723,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) State() pulumi.StringOutput {
 //
 //   - **Azure**: EVENTHUB and CONFLUENT
 //
-//   - **GCP**: CONFLUENT
+//   - **GCP**: CONFLUENT and PUBSUB
 func (o GetStreamPrivatelinkEndpointsResultOutput) Vendor() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Vendor }).(pulumi.StringOutput)
 }
@@ -62010,6 +62517,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceDataProcessRegionInput)(nil)).Elem(), FederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceDataProcessRegionPtrInput)(nil)).Elem(), FederatedDatabaseInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstancePrivateEndpointHostnameInput)(nil)).Elem(), FederatedDatabaseInstancePrivateEndpointHostnameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstancePrivateEndpointHostnameArrayInput)(nil)).Elem(), FederatedDatabaseInstancePrivateEndpointHostnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageDatabaseInput)(nil)).Elem(), FederatedDatabaseInstanceStorageDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageDatabaseArrayInput)(nil)).Elem(), FederatedDatabaseInstanceStorageDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceStorageDatabaseCollectionInput)(nil)).Elem(), FederatedDatabaseInstanceStorageDatabaseCollectionArgs{})
@@ -62068,6 +62577,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountSecretArrayInput)(nil)).Elem(), OrganizationServiceAccountSecretArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateLinkEndpointServiceEndpointArrayInput)(nil)).Elem(), PrivateLinkEndpointServiceEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsInput)(nil)).Elem(), PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput)(nil)).Elem(), PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyProjectAssignmentInput)(nil)).Elem(), ProjectApiKeyProjectAssignmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectApiKeyProjectAssignmentArrayInput)(nil)).Elem(), ProjectApiKeyProjectAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectIpAccessListTimeoutsInput)(nil)).Elem(), ProjectIpAccessListTimeoutsArgs{})
@@ -62393,6 +62904,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAzureArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceDataProcessRegionInput)(nil)).Elem(), GetFederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceDataProcessRegionArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceDataProcessRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancePrivateEndpointHostnameInput)(nil)).Elem(), GetFederatedDatabaseInstancePrivateEndpointHostnameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancePrivateEndpointHostnameArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancePrivateEndpointHostnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageDatabaseInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageDatabaseArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceStorageDatabaseCollectionInput)(nil)).Elem(), GetFederatedDatabaseInstanceStorageDatabaseCollectionArgs{})
@@ -62419,6 +62932,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultDataProcessRegionInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultDataProcessRegionArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultDataProcessRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultPrivateEndpointHostnameInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageDatabaseInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageDatabaseArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultStorageDatabaseCollectionInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultStorageDatabaseCollectionArgs{})
@@ -62853,6 +63368,8 @@ func init() {
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceDataProcessRegionPtrOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstancePrivateEndpointHostnameOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstancePrivateEndpointHostnameArrayOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageDatabaseOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceStorageDatabaseCollectionOutput{})
@@ -62911,6 +63428,8 @@ func init() {
 	pulumi.RegisterOutputType(OrganizationServiceAccountSecretArrayOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointOutput{})
 	pulumi.RegisterOutputType(PrivateLinkEndpointServiceEndpointArrayOutput{})
+	pulumi.RegisterOutputType(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsOutput{})
+	pulumi.RegisterOutputType(PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(ProjectApiKeyProjectAssignmentOutput{})
 	pulumi.RegisterOutputType(ProjectApiKeyProjectAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(ProjectIpAccessListTimeoutsOutput{})
@@ -63236,6 +63755,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceDataProcessRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancePrivateEndpointHostnameOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancePrivateEndpointHostnameArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageDatabaseOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceStorageDatabaseCollectionOutput{})
@@ -63262,6 +63783,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultDataProcessRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageDatabaseOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultStorageDatabaseCollectionOutput{})

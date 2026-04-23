@@ -182,6 +182,14 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// You can import search indexes using `ProjectId`, `ClusterName`, and `IndexId` as in the following example:
+    /// 
+    /// ```sh
+    /// $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+    /// ```
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/searchIndex:SearchIndex")]
     public partial class SearchIndex : global::Pulumi.CustomResource

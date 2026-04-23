@@ -53,9 +53,6 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs {
  * A collection of values returned by getPrivatelinkEndpointServiceDataFederationOnlineArchives.
  */
 export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly projectId: string;
     /**

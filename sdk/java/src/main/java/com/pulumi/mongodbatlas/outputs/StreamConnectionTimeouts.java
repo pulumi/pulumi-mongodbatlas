@@ -17,7 +17,7 @@ public final class StreamConnectionTimeouts {
      */
     private @Nullable String create;
     /**
-     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
      * 
      */
     private @Nullable String delete;
@@ -36,7 +36,7 @@ public final class StreamConnectionTimeouts {
         return Optional.ofNullable(this.create);
     }
     /**
-     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `10m` (10 minutes).
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
      * 
      */
     public Optional<String> delete() {
