@@ -31,14 +31,14 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ProviderName = "AWS",
     ///         Region = "US_EAST_1",
     ///     });
     /// 
-    ///     var thisVpcEndpoint = new Aws.Index.VpcEndpoint("this", new()
+    ///     var thisVpcEndpoint = new Aws.VpcEndpoint("this", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
     ///         ServiceName = @this.EndpointServiceName,
@@ -53,7 +53,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,
@@ -75,7 +75,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         ProviderName = "AWS",
@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var thisVpcEndpoint = new Aws.Index.VpcEndpoint("this", new()
+    ///     var thisVpcEndpoint = new Aws.VpcEndpoint("this", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
     ///         ServiceName = @this.EndpointServiceName,
@@ -103,7 +103,7 @@ namespace Pulumi.Mongodbatlas
     ///         ServiceRegion = "eu-west-1",
     ///     });
     /// 
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,
@@ -125,14 +125,14 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "AZURE",
     ///         Region = "eastus2",
     ///     });
     /// 
-    ///     var thisPrivateEndpoint = new Azurerm.Index.PrivateEndpoint("this", new()
+    ///     var thisPrivateEndpoint = new Azurerm.PrivateEndpoint("this", new()
     ///     {
     ///         Name = "endpoint-this",
     ///         Location = thisAzurermResourceGroup.Location,
@@ -150,7 +150,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,
@@ -173,7 +173,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "GCP",
@@ -181,7 +181,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create a Google Network
-    ///     var @default = new Google.Index.ComputeNetwork("default", new()
+    ///     var @default = new Google.ComputeNetwork("default", new()
     ///     {
     ///         Project = gcpProjectId,
     ///         Name = "my-network",
@@ -189,7 +189,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create a Google Sub Network
-    ///     var defaultComputeSubnetwork = new Google.Index.ComputeSubnetwork("default", new()
+    ///     var defaultComputeSubnetwork = new Google.ComputeSubnetwork("default", new()
     ///     {
     ///         Project = @default.Project,
     ///         Name = "my-subnet",
@@ -199,11 +199,11 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
-    ///     var defaultComputeAddress = new List&lt;Google.Index.ComputeAddress&gt;();
+    ///     var defaultComputeAddress = new List&lt;Google.ComputeAddress&gt;();
     ///     for (var rangeIndex = 0; rangeIndex &lt; 50; rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
-    ///         defaultComputeAddress.Add(new Google.Index.ComputeAddress($"default-{range.Value}", new()
+    ///         defaultComputeAddress.Add(new Google.ComputeAddress($"default-{range.Value}", new()
     ///         {
     ///             Project = defaultComputeSubnetwork.Project,
     ///             Name = $"tf-this{range.Value}",
@@ -220,11 +220,11 @@ namespace Pulumi.Mongodbatlas
     ///         }));
     ///     }
     ///     // Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
-    ///     var defaultComputeForwardingRule = new List&lt;Google.Index.ComputeForwardingRule&gt;();
+    ///     var defaultComputeForwardingRule = new List&lt;Google.ComputeForwardingRule&gt;();
     ///     for (var rangeIndex = 0; rangeIndex &lt; 50; rangeIndex++)
     ///     {
     ///         var range = new { Value = rangeIndex };
-    ///         defaultComputeForwardingRule.Add(new Google.Index.ComputeForwardingRule($"default-{range.Value}", new()
+    ///         defaultComputeForwardingRule.Add(new Google.ComputeForwardingRule($"default-{range.Value}", new()
     ///         {
     ///             Target = @this.ServiceAttachmentNames[range.Value],
     ///             Project = defaultComputeAddress[range.Value].Project,
@@ -235,7 +235,7 @@ namespace Pulumi.Mongodbatlas
     ///             LoadBalancingScheme = "",
     ///         }));
     ///     }
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
     ///     {
     ///         Endpoints = defaultComputeAddress.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
     ///         {
@@ -276,7 +276,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "GCP",
@@ -285,7 +285,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create a Google Network
-    ///     var @default = new Google.Index.ComputeNetwork("default", new()
+    ///     var @default = new Google.ComputeNetwork("default", new()
     ///     {
     ///         Project = gcpProjectId,
     ///         Name = "my-network",
@@ -293,7 +293,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create a Google Sub Network
-    ///     var defaultComputeSubnetwork = new Google.Index.ComputeSubnetwork("default", new()
+    ///     var defaultComputeSubnetwork = new Google.ComputeSubnetwork("default", new()
     ///     {
     ///         Project = @default.Project,
     ///         Name = "my-subnet",
@@ -303,7 +303,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create Google Address (1 address for port-mapped architecture)
-    ///     var defaultComputeAddress = new Google.Index.ComputeAddress("default", new()
+    ///     var defaultComputeAddress = new Google.ComputeAddress("default", new()
     ///     {
     ///         Project = defaultComputeSubnetwork.Project,
     ///         Name = "tf-this-psc-endpoint",
@@ -320,7 +320,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create Forwarding Rule (1 rule for port-mapped architecture)
-    ///     var defaultComputeForwardingRule = new Google.Index.ComputeForwardingRule("default", new()
+    ///     var defaultComputeForwardingRule = new Google.ComputeForwardingRule("default", new()
     ///     {
     ///         Target = @this.ServiceAttachmentNames[0],
     ///         Project = defaultComputeAddress.Project,
@@ -331,7 +331,7 @@ namespace Pulumi.Mongodbatlas
     ///         LoadBalancingScheme = "",
     ///     });
     /// 
-    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.Index.PrivateLinkEndpointService("this", new()
+    ///     var thisPrivateLinkEndpointService = new Mongodbatlas.PrivateLinkEndpointService("this", new()
     ///     {
     ///         ProjectId = @this.ProjectId,
     ///         PrivateLinkId = @this.PrivateLinkId,

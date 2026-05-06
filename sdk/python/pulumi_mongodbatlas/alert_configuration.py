@@ -369,7 +369,7 @@ class AlertConfiguration(pulumi.CustomResource):
             metric_threshold_config={
                 "metric_name": "ASSERT_REGULAR",
                 "operator": "LESS_THAN",
-                "threshold": 99,
+                "threshold": float(99),
                 "units": "RAW",
                 "mode": "AVERAGE",
             })
@@ -400,7 +400,7 @@ class AlertConfiguration(pulumi.CustomResource):
             }],
             threshold_config={
                 "operator": "LESS_THAN",
-                "threshold": 1,
+                "threshold": float(1),
                 "units": "HOURS",
             })
         ```
@@ -444,7 +444,7 @@ class AlertConfiguration(pulumi.CustomResource):
             metric_threshold_config={
                 "metric_name": "ASSERT_REGULAR",
                 "operator": "LESS_THAN",
-                "threshold": 99,
+                "threshold": float(99),
                 "units": "RAW",
                 "mode": "AVERAGE",
             })
@@ -531,7 +531,7 @@ class AlertConfiguration(pulumi.CustomResource):
             metric_threshold_config={
                 "metric_name": "ASSERT_REGULAR",
                 "operator": "LESS_THAN",
-                "threshold": 99,
+                "threshold": float(99),
                 "units": "RAW",
                 "mode": "AVERAGE",
             })
@@ -562,7 +562,7 @@ class AlertConfiguration(pulumi.CustomResource):
             }],
             threshold_config={
                 "operator": "LESS_THAN",
-                "threshold": 1,
+                "threshold": float(1),
                 "units": "HOURS",
             })
         ```
@@ -606,7 +606,7 @@ class AlertConfiguration(pulumi.CustomResource):
             metric_threshold_config={
                 "metric_name": "ASSERT_REGULAR",
                 "operator": "LESS_THAN",
-                "threshold": 99,
+                "threshold": float(99),
                 "units": "RAW",
                 "mode": "AVERAGE",
             })

@@ -33,12 +33,12 @@ import * as utilities from "./utilities";
  *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     },
  * });
- * const test = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
- *     projectId: projectId,
- *     clusterName: clusterName,
+ * const test = mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
+ *     projectId: testCloudBackupSnapshotRestoreJob.projectId,
+ *     clusterName: testCloudBackupSnapshotRestoreJob.clusterName,
  *     pageNum: 1,
  *     itemsPerPage: 5,
- * }));
+ * });
  * ```
  */
 export function getCloudBackupSnapshotRestoreJobs(args: GetCloudBackupSnapshotRestoreJobsArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudBackupSnapshotRestoreJobsResult> {
@@ -119,12 +119,12 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
  *         targetProjectId: "5cf5a45a9ccf6400e60981b6",
  *     },
  * });
- * const test = pulumi.all([testCloudBackupSnapshotRestoreJob.projectId, testCloudBackupSnapshotRestoreJob.clusterName]).apply(([projectId, clusterName]) => mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
- *     projectId: projectId,
- *     clusterName: clusterName,
+ * const test = mongodbatlas.getCloudBackupSnapshotRestoreJobsOutput({
+ *     projectId: testCloudBackupSnapshotRestoreJob.projectId,
+ *     clusterName: testCloudBackupSnapshotRestoreJob.clusterName,
  *     pageNum: 1,
  *     itemsPerPage: 5,
- * }));
+ * });
  * ```
  */
 export function getCloudBackupSnapshotRestoreJobsOutput(args: GetCloudBackupSnapshotRestoreJobsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudBackupSnapshotRestoreJobsResult> {

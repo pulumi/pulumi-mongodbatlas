@@ -327,7 +327,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
             tenant_name="FederatedDatabseInstance0",
             limit_name="bytesProcessed.weekly",
             overrun_policy="BLOCK",
-            value=5147483648)
+            value=int(5147483648))
         ```
 
         ### Further Examples
@@ -382,7 +382,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
             tenant_name="FederatedDatabseInstance0",
             limit_name="bytesProcessed.weekly",
             overrun_policy="BLOCK",
-            value=5147483648)
+            value=int(5147483648))
         ```
 
         ### Further Examples

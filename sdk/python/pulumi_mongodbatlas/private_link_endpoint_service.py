@@ -650,7 +650,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoints=[{
                 "ip_address": entry["value"]["address"],
                 "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
-            } for entry in [{"key": k, "value": v} for k, v in default_compute_address.items()]],
+            } for entry in [{"key": k, "value": v} for k, v in sorted(default_compute_address.items())]],
             project_id=this.project_id,
             private_link_id=this.private_link_id,
             provider_name="GCP",
@@ -891,7 +891,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoints=[{
                 "ip_address": entry["value"]["address"],
                 "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
-            } for entry in [{"key": k, "value": v} for k, v in default_compute_address.items()]],
+            } for entry in [{"key": k, "value": v} for k, v in sorted(default_compute_address.items())]],
             project_id=this.project_id,
             private_link_id=this.private_link_id,
             provider_name="GCP",

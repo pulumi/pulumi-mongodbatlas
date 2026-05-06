@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ear = new Mongodbatlas.Index.EncryptionAtRest("ear", new()
+    ///     var ear = new Mongodbatlas.EncryptionAtRest("ear", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         AzureKeyVaultConfig = new Mongodbatlas.Inputs.EncryptionAtRestAzureKeyVaultConfigArgs
@@ -56,7 +56,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Creates private endpoint
-    ///     var endpoint = new Mongodbatlas.Index.EncryptionAtRestPrivateEndpoint("endpoint", new()
+    ///     var endpoint = new Mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint", new()
     ///     {
     ///         ProjectId = ear.ProjectId,
     ///         CloudProvider = "AZURE",
@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
     ///     var keyVaultResourceId = $"/subscriptions/{azureSubscriptionId}/resourceGroups/{azureResourceGroupName}/providers/Microsoft.KeyVault/vaults/{azureKeyVaultName}";
     /// 
     ///     // Approves private endpoint connection from Azure Key Vault
-    ///     var approval = new Azapi.Index.UpdateResource("approval", new()
+    ///     var approval = new Azapi.UpdateResource("approval", new()
     ///     {
     ///         Type = "Microsoft.KeyVault/Vaults/PrivateEndpointConnections@2023-07-01",
     ///         Name = endpoint.PrivateEndpointConnectionName,
@@ -99,7 +99,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ear = new Mongodbatlas.Index.EncryptionAtRest("ear", new()
+    ///     var ear = new Mongodbatlas.EncryptionAtRest("ear", new()
     ///     {
     ///         ProjectId = atlasProjectId,
     ///         AwsKmsConfig = new Mongodbatlas.Inputs.EncryptionAtRestAwsKmsConfigArgs
@@ -113,7 +113,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Creates private endpoint
-    ///     var endpoint = new Mongodbatlas.Index.EncryptionAtRestPrivateEndpoint("endpoint", new()
+    ///     var endpoint = new Mongodbatlas.EncryptionAtRestPrivateEndpoint("endpoint", new()
     ///     {
     ///         ProjectId = ear.ProjectId,
     ///         CloudProvider = "AWS",

@@ -134,10 +134,10 @@ def get_federated_settings_org_role_mappings(federation_settings_id: Optional[_b
             "GROUP_DATA_ACCESS_READ_ONLY",
             "GROUP_READ_ONLY",
         ])
-    role_mappings = org_group_role_mapping_import.id.apply(lambda id: mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=id,
+    role_mappings = mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=org_group_role_mapping_import.id,
         org_id="627a9683e7f7f7ff7fe306f14",
         page_num=1,
-        items_per_page=5))
+        items_per_page=5)
     ```
 
 
@@ -196,10 +196,10 @@ def get_federated_settings_org_role_mappings_output(federation_settings_id: Opti
             "GROUP_DATA_ACCESS_READ_ONLY",
             "GROUP_READ_ONLY",
         ])
-    role_mappings = org_group_role_mapping_import.id.apply(lambda id: mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=id,
+    role_mappings = mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=org_group_role_mapping_import.id,
         org_id="627a9683e7f7f7ff7fe306f14",
         page_num=1,
-        items_per_page=5))
+        items_per_page=5)
     ```
 
 

@@ -37,12 +37,12 @@ import * as utilities from "./utilities";
  *         "GROUP_READ_ONLY",
  *     ],
  * });
- * const roleMappings = orgGroupRoleMappingImport.id.apply(id => mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
- *     federationSettingsId: id,
+ * const roleMappings = mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
+ *     federationSettingsId: orgGroupRoleMappingImport.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     pageNum: 1,
  *     itemsPerPage: 5,
- * }));
+ * });
  * ```
  */
 export function getFederatedSettingsOrgRoleMappings(args: GetFederatedSettingsOrgRoleMappingsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingsResult> {
@@ -126,12 +126,12 @@ export interface GetFederatedSettingsOrgRoleMappingsResult {
  *         "GROUP_READ_ONLY",
  *     ],
  * });
- * const roleMappings = orgGroupRoleMappingImport.id.apply(id => mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
- *     federationSettingsId: id,
+ * const roleMappings = mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
+ *     federationSettingsId: orgGroupRoleMappingImport.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     pageNum: 1,
  *     itemsPerPage: 5,
- * }));
+ * });
  * ```
  */
 export function getFederatedSettingsOrgRoleMappingsOutput(args: GetFederatedSettingsOrgRoleMappingsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingsResult> {

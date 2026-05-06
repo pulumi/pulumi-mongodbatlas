@@ -486,7 +486,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     "point_in_time": True,
                     "target_cluster_name": cluster_test["name"],
                     "target_project_id": cluster_test["projectId"],
-                    "point_in_time_utc_seconds": point_in_time_utc_seconds,
+                    "point_in_time_utc_seconds": int(point_in_time_utc_seconds),
                 }))
         ```
 
@@ -651,7 +651,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     "point_in_time": True,
                     "target_cluster_name": cluster_test["name"],
                     "target_project_id": cluster_test["projectId"],
-                    "point_in_time_utc_seconds": point_in_time_utc_seconds,
+                    "point_in_time_utc_seconds": int(point_in_time_utc_seconds),
                 }))
         ```
 

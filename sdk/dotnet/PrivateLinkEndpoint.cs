@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @this = new Mongodbatlas.Index.PrivateLinkEndpoint("this", new()
+    ///     var @this = new Mongodbatlas.PrivateLinkEndpoint("this", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "AWS",
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var crossRegion = new Mongodbatlas.Index.PrivateLinkEndpoint("cross_region", new()
+    ///     var crossRegion = new Mongodbatlas.PrivateLinkEndpoint("cross_region", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "AWS",

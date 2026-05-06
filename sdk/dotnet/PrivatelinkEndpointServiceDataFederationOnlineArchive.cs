@@ -25,13 +25,13 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var atlas_project = new Mongodbatlas.Index.Project("atlas-project", new()
+    ///     var atlas_project = new Mongodbatlas.Project("atlas-project", new()
     ///     {
     ///         OrgId = atlasOrgId,
     ///         Name = atlasProjectName,
     ///     });
     /// 
-    ///     var test = new Aws.Index.VpcEndpoint("test", new()
+    ///     var test = new Aws.VpcEndpoint("test", new()
     ///     {
     ///         VpcId = "vpc-7fc0a543",
     ///         ServiceName = "&lt;SERVICE-NAME&gt;",
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var testPrivatelinkEndpointServiceDataFederationOnlineArchive = new Mongodbatlas.Index.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
+    ///     var testPrivatelinkEndpointServiceDataFederationOnlineArchive = new Mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive("test", new()
     ///     {
     ///         ProjectId = atlas_project.Id,
     ///         EndpointId = test.Id,
