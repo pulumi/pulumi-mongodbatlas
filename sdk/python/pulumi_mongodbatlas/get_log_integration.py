@@ -27,7 +27,7 @@ class GetLogIntegrationResult:
     """
     A collection of values returned by getLogIntegration.
     """
-    def __init__(__self__, api_key=None, bucket_name=None, hec_token=None, hec_url=None, iam_role_id=None, id=None, integration_id=None, kms_key=None, log_types=None, otel_endpoint=None, otel_supplied_headers=None, prefix_path=None, project_id=None, region=None, role_id=None, storage_account_name=None, storage_container_name=None, type=None):
+    def __init__(__self__, api_key=None, bucket_name=None, hec_token=None, hec_url=None, iam_role_id=None, id=None, integration_id=None, kms_key=None, log_types=None, otel_endpoint=None, otel_supplied_headers=None, prefix_path=None, project_id=None, region=None, role_id=None, storage_account_name=None, storage_container_name=None, type=None, use_legacy_path_structure=None):
         if api_key and not isinstance(api_key, str):
             raise TypeError("Expected argument 'api_key' to be a str")
         pulumi.set(__self__, "api_key", api_key)
@@ -82,6 +82,9 @@ class GetLogIntegrationResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+        if use_legacy_path_structure and not isinstance(use_legacy_path_structure, bool):
+            raise TypeError("Expected argument 'use_legacy_path_structure' to be a bool")
+        pulumi.set(__self__, "use_legacy_path_structure", use_legacy_path_structure)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
@@ -188,6 +191,11 @@ class GetLogIntegrationResult:
         """
         return pulumi.get(self, "type")
 
+    @_builtins.property
+    @pulumi.getter(name="useLegacyPathStructure")
+    def use_legacy_path_structure(self) -> _builtins.bool:
+        return pulumi.get(self, "use_legacy_path_structure")
+
 
 class AwaitableGetLogIntegrationResult(GetLogIntegrationResult):
     # pylint: disable=using-constant-test
@@ -212,7 +220,8 @@ class AwaitableGetLogIntegrationResult(GetLogIntegrationResult):
             role_id=self.role_id,
             storage_account_name=self.storage_account_name,
             storage_container_name=self.storage_container_name,
-            type=self.type)
+            type=self.type,
+            use_legacy_path_structure=self.use_legacy_path_structure)
 
 
 def get_log_integration(integration_id: Optional[_builtins.str] = None,
@@ -265,7 +274,8 @@ def get_log_integration(integration_id: Optional[_builtins.str] = None,
         role_id=pulumi.get(__ret__, 'role_id'),
         storage_account_name=pulumi.get(__ret__, 'storage_account_name'),
         storage_container_name=pulumi.get(__ret__, 'storage_container_name'),
-        type=pulumi.get(__ret__, 'type'))
+        type=pulumi.get(__ret__, 'type'),
+        use_legacy_path_structure=pulumi.get(__ret__, 'use_legacy_path_structure'))
 def get_log_integration_output(integration_id: Optional[pulumi.Input[_builtins.str]] = None,
                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLogIntegrationResult]:
@@ -315,4 +325,5 @@ def get_log_integration_output(integration_id: Optional[pulumi.Input[_builtins.s
         role_id=pulumi.get(__response__, 'role_id'),
         storage_account_name=pulumi.get(__response__, 'storage_account_name'),
         storage_container_name=pulumi.get(__response__, 'storage_container_name'),
-        type=pulumi.get(__response__, 'type')))
+        type=pulumi.get(__response__, 'type'),
+        use_legacy_path_structure=pulumi.get(__response__, 'use_legacy_path_structure')))

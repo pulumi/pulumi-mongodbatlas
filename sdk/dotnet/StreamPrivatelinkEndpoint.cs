@@ -317,6 +317,69 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Azure Blob Storage Privatelink
+    /// 
+    /// &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Name = clusterName,
+    ///         ClusterType = "REPLICASET",
+    ///         ReplicationSpecs = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+    ///             {
+    ///                 RegionConfigs = new[]
+    ///                 {
+    ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+    ///                     {
+    ///                         Priority = 7,
+    ///                         ProviderName = "AZURE",
+    ///                         RegionName = "US_EAST_2",
+    ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+    ///                         {
+    ///                             InstanceSize = "M10",
+    ///                             NodeCount = 3,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var @this = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("this", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Vendor = "AZURE_BLOB_STORAGE",
+    ///         ProviderName = "AZURE",
+    ///         Region = atlasRegion,
+    ///         DnsDomain = $"{storageAccountName}.blob.core.windows.net",
+    ///         ServiceEndpointId = $"/subscriptions/{current.SubscriptionId}/resourceGroups/{azureResourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             cluster,
+    ///             blobEndpoint,
+    ///         },
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["privatelinkEndpointId"] = @this.Id,
+    ///     };
+    /// });
+    /// ```
+    /// 
     /// ### Further Examples
     /// - AWS Confluent PrivateLink
     /// - Confluent Dedicated Cluster
@@ -325,6 +388,7 @@ namespace Pulumi.Mongodbatlas
     /// - GCP Confluent PrivateLink
     /// - GCP Pub/Sub Private Service Connect
     /// - Azure PrivateLink
+    /// - Azure Blob Storage PrivateLink
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")]
     public partial class StreamPrivatelinkEndpoint : global::Pulumi.CustomResource
@@ -341,6 +405,8 @@ namespace Pulumi.Mongodbatlas
         /// 	* AWS provider with CONFLUENT vendor.
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// 
+        /// 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
         /// 
         /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
         /// </summary>
@@ -402,7 +468,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<string>> ServiceAttachmentUris { get; private set; } = null!;
 
         /// <summary>
-        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         /// </summary>
         [Output("serviceEndpointId")]
         public Output<string?> ServiceEndpointId { get; private set; } = null!;
@@ -418,7 +484,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 	* **AWS**: MSK, CONFLUENT, and S3
         /// 
-        /// 	* **Azure**: EVENTHUB and CONFLUENT
+        /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
         /// 
         /// 	* **GCP**: CONFLUENT and PUBSUB
         /// </summary>
@@ -484,6 +550,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
         /// 
+        /// 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+        /// 
         /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
         /// </summary>
         [Input("dnsDomain")]
@@ -532,7 +600,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         /// </summary>
         [Input("serviceEndpointId")]
         public Input<string>? ServiceEndpointId { get; set; }
@@ -542,7 +610,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 	* **AWS**: MSK, CONFLUENT, and S3
         /// 
-        /// 	* **Azure**: EVENTHUB and CONFLUENT
+        /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
         /// 
         /// 	* **GCP**: CONFLUENT and PUBSUB
         /// </summary>
@@ -569,6 +637,8 @@ namespace Pulumi.Mongodbatlas
         /// 	* AWS provider with CONFLUENT vendor.
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+        /// 
+        /// 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
         /// 
         /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
         /// </summary>
@@ -642,7 +712,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         /// </summary>
         [Input("serviceEndpointId")]
         public Input<string>? ServiceEndpointId { get; set; }
@@ -658,7 +728,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// 	* **AWS**: MSK, CONFLUENT, and S3
         /// 
-        /// 	* **Azure**: EVENTHUB and CONFLUENT
+        /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
         /// 
         /// 	* **GCP**: CONFLUENT and PUBSUB
         /// </summary>

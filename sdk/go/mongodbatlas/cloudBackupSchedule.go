@@ -14,9 +14,7 @@ import (
 
 // `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
 //
-// > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
-//
-// > **NOTE:** If you need to remove the `CloudBackupSchedule`, read this guide.
+// > **NOTE:** If a Backup Compliance Policy is enabled on the project, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the policy (see [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy)). To allow `terraform destroy` to remove the associated `AdvancedCluster` without being blocked by the policy, set `skipDestroy = true`. See the delete cluster guide for background and legacy workarounds.
 //
 // > **NOTE:** When creating a backup schedule you **must either** use the `dependsOn` clause to indicate the cluster to which it refers **or** specify the values of `projectId` and `clusterName` as reference of the cluster resource (e.g. `clusterName = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
 //
@@ -364,6 +362,8 @@ type CloudBackupSchedule struct {
 	ReferenceMinuteOfHour pulumi.IntOutput `pulumi:"referenceMinuteOfHour"`
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 	RestoreWindowDays pulumi.IntOutput `pulumi:"restoreWindowDays"`
+	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+	SkipDestroy pulumi.BoolPtrOutput `pulumi:"skipDestroy"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	//
 	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -442,6 +442,8 @@ type cloudBackupScheduleState struct {
 	ReferenceMinuteOfHour *int `pulumi:"referenceMinuteOfHour"`
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
+	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+	SkipDestroy *bool `pulumi:"skipDestroy"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	//
 	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -485,6 +487,8 @@ type CloudBackupScheduleState struct {
 	ReferenceMinuteOfHour pulumi.IntPtrInput
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 	RestoreWindowDays pulumi.IntPtrInput
+	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+	SkipDestroy pulumi.BoolPtrInput
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	//
 	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -526,6 +530,8 @@ type cloudBackupScheduleArgs struct {
 	ReferenceMinuteOfHour *int `pulumi:"referenceMinuteOfHour"`
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
+	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+	SkipDestroy *bool `pulumi:"skipDestroy"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	//
 	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -564,6 +570,8 @@ type CloudBackupScheduleArgs struct {
 	ReferenceMinuteOfHour pulumi.IntPtrInput
 	// Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 	RestoreWindowDays pulumi.IntPtrInput
+	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+	SkipDestroy pulumi.BoolPtrInput
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 	//
 	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -745,6 +753,11 @@ func (o CloudBackupScheduleOutput) ReferenceMinuteOfHour() pulumi.IntOutput {
 // Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
 func (o CloudBackupScheduleOutput) RestoreWindowDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.IntOutput { return v.RestoreWindowDays }).(pulumi.IntOutput)
+}
+
+// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+func (o CloudBackupScheduleOutput) SkipDestroy() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolPtrOutput { return v.SkipDestroy }).(pulumi.BoolPtrOutput)
 }
 
 // Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.

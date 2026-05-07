@@ -337,6 +337,43 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example Azure Blob Storage Connection with Private Link
+    /// 
+    /// &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleAzureBlobPrivateLink = new Mongodbatlas.Index.StreamConnection("example_azure_blob_private_link", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.WorkspaceName,
+    ///         ConnectionName = "AzureBlobStoragePLConnection",
+    ///         Type = "AzureBlobStorage",
+    ///         Azure = new Mongodbatlas.Inputs.StreamConnectionAzureArgs
+    ///         {
+    ///             ServicePrincipalId = "&lt;AZURE_SERVICE_PRINCIPAL_ID&gt;",
+    ///             StorageAccountName = "&lt;AZURE_STORAGE_ACCOUNT_NAME&gt;",
+    ///             Region = "&lt;AZURE_REGION&gt;",
+    ///         },
+    ///         Networking = new Mongodbatlas.Inputs.StreamConnectionNetworkingArgs
+    ///         {
+    ///             Access = new Mongodbatlas.Inputs.StreamConnectionNetworkingAccessArgs
+    ///             {
+    ///                 Type = "PRIVATE_LINK",
+    ///                 ConnectionId = azureBlob.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example Https Connection
     /// 
     /// ```csharp

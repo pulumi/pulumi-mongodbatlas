@@ -77,6 +77,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        /// </summary>
+        public readonly bool UseLegacyPathStructure;
 
         [OutputConstructor]
         private GetLogIntegrationsResultResult(
@@ -110,7 +114,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string storageContainerName,
 
-            string type)
+            string type,
+
+            bool useLegacyPathStructure)
         {
             ApiKey = apiKey;
             BucketName = bucketName;
@@ -128,6 +134,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             StorageAccountName = storageAccountName;
             StorageContainerName = storageContainerName;
             Type = type;
+            UseLegacyPathStructure = useLegacyPathStructure;
         }
     }
 }

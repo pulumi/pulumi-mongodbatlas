@@ -236,6 +236,33 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Azure Blob Storage Connection with Private Link
+ *
+ * > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const exampleAzureBlobPrivateLink = new mongodbatlas.StreamConnection("example_azure_blob_private_link", {
+ *     projectId: projectId,
+ *     workspaceName: example.workspaceName,
+ *     connectionName: "AzureBlobStoragePLConnection",
+ *     type: "AzureBlobStorage",
+ *     azure: {
+ *         servicePrincipalId: "<AZURE_SERVICE_PRINCIPAL_ID>",
+ *         storageAccountName: "<AZURE_STORAGE_ACCOUNT_NAME>",
+ *         region: "<AZURE_REGION>",
+ *     },
+ *     networking: {
+ *         access: {
+ *             type: "PRIVATE_LINK",
+ *             connectionId: azureBlob.id,
+ *         },
+ *     },
+ * });
+ * ```
+ *
  * ### Example Https Connection
  *
  * ```typescript

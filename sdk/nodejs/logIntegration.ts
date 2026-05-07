@@ -40,6 +40,7 @@ import * as utilities from "./utilities";
  *     bucketName: logBucket.bucket,
  *     iamRoleId: auth.roleId,
  *     prefixPath: "atlas-logs",
+ *     useLegacyPathStructure: useLegacyPathStructure,
  * });
  * ```
  *
@@ -254,6 +255,10 @@ export class LogIntegration extends pulumi.CustomResource {
      * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
     declare public readonly type: pulumi.Output<string>;
+    /**
+     * Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     */
+    declare public readonly useLegacyPathStructure: pulumi.Output<boolean>;
 
     /**
      * Create a LogIntegration resource with the given unique name, arguments, and options.
@@ -285,6 +290,7 @@ export class LogIntegration extends pulumi.CustomResource {
             resourceInputs["storageAccountName"] = state?.storageAccountName;
             resourceInputs["storageContainerName"] = state?.storageContainerName;
             resourceInputs["type"] = state?.type;
+            resourceInputs["useLegacyPathStructure"] = state?.useLegacyPathStructure;
         } else {
             const args = argsOrState as LogIntegrationArgs | undefined;
             if (args?.logTypes === undefined && !opts.urn) {
@@ -312,6 +318,7 @@ export class LogIntegration extends pulumi.CustomResource {
             resourceInputs["storageAccountName"] = args?.storageAccountName;
             resourceInputs["storageContainerName"] = args?.storageContainerName;
             resourceInputs["type"] = args?.type;
+            resourceInputs["useLegacyPathStructure"] = args?.useLegacyPathStructure;
             resourceInputs["integrationId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -393,6 +400,10 @@ export interface LogIntegrationState {
      * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
     type?: pulumi.Input<string>;
+    /**
+     * Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     */
+    useLegacyPathStructure?: pulumi.Input<boolean>;
 }
 
 /**
@@ -463,4 +474,8 @@ export interface LogIntegrationArgs {
      * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
     type: pulumi.Input<string>;
+    /**
+     * Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     */
+    useLegacyPathStructure?: pulumi.Input<boolean>;
 }

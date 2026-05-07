@@ -22565,7 +22565,8 @@ class GetLogIntegrationsResultResult(dict):
                  role_id: _builtins.str,
                  storage_account_name: _builtins.str,
                  storage_container_name: _builtins.str,
-                 type: _builtins.str):
+                 type: _builtins.str,
+                 use_legacy_path_structure: _builtins.bool):
         """
         :param _builtins.str api_key: Applies to type: DATADOG_LOG_EXPORT. API key for authentication.
         :param _builtins.str bucket_name: Applies to type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
@@ -22583,6 +22584,7 @@ class GetLogIntegrationsResultResult(dict):
         :param _builtins.str storage_account_name: Applies to type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
         :param _builtins.str storage_container_name: Applies to type: AZURE_LOG_EXPORT. Storage container name for log files.
         :param _builtins.str type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        :param _builtins.bool use_legacy_path_structure: Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
         """
         pulumi.set(__self__, "api_key", api_key)
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -22600,6 +22602,7 @@ class GetLogIntegrationsResultResult(dict):
         pulumi.set(__self__, "storage_account_name", storage_account_name)
         pulumi.set(__self__, "storage_container_name", storage_container_name)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "use_legacy_path_structure", use_legacy_path_structure)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
@@ -22728,6 +22731,14 @@ class GetLogIntegrationsResultResult(dict):
         Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="useLegacyPathStructure")
+    def use_legacy_path_structure(self) -> _builtins.bool:
+        """
+        Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        """
+        return pulumi.get(self, "use_legacy_path_structure")
 
 
 @pulumi.output_type
@@ -28390,6 +28401,8 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                
                	* AZURE provider with EVENTHUB or CONFLUENT vendor.
                
+               	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+               
                	* For GCP provider with PUBSUB vendor, the API computes this process.
         :param Sequence[_builtins.str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         :param _builtins.str error_message: Error message if the connection is in a failed state.
@@ -28401,13 +28414,13 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         :param _builtins.str provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param _builtins.str region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         :param Sequence[_builtins.str] service_attachment_uris: List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
-        :param _builtins.str service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        :param _builtins.str service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         :param _builtins.str state: Status of the connection.
         :param _builtins.str vendor: Vendor that manages the endpoint. The following are the vendor values per provider:
                
                	* **AWS**: MSK, CONFLUENT, and S3
                
-               	* **Azure**: EVENTHUB and CONFLUENT
+               	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
                
                	* **GCP**: CONFLUENT and PUBSUB
         """
@@ -28444,6 +28457,8 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         	* AWS provider with CONFLUENT vendor.
 
         	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+
+        	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 
         	* For GCP provider with PUBSUB vendor, the API computes this process.
         """
@@ -28533,7 +28548,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="serviceEndpointId")
     def service_endpoint_id(self) -> _builtins.str:
         """
-        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         """
         return pulumi.get(self, "service_endpoint_id")
 
@@ -28553,7 +28568,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
 
         	* **AWS**: MSK, CONFLUENT, and S3
 
-        	* **Azure**: EVENTHUB and CONFLUENT
+        	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 
         	* **GCP**: CONFLUENT and PUBSUB
         """

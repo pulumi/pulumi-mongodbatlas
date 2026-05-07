@@ -56,6 +56,7 @@ namespace Pulumi.Mongodbatlas
     ///         BucketName = logBucket.Bucket,
     ///         IamRoleId = auth.RoleId,
     ///         PrefixPath = "atlas-logs",
+    ///         UseLegacyPathStructure = useLegacyPathStructure,
     ///     });
     /// 
     /// });
@@ -344,6 +345,12 @@ namespace Pulumi.Mongodbatlas
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
+        /// <summary>
+        /// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        /// </summary>
+        [Output("useLegacyPathStructure")]
+        public Output<bool> UseLegacyPathStructure { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a LogIntegration resource with the given unique name, arguments, and options.
@@ -528,6 +535,12 @@ namespace Pulumi.Mongodbatlas
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        /// </summary>
+        [Input("useLegacyPathStructure")]
+        public Input<bool>? UseLegacyPathStructure { get; set; }
+
         public LogIntegrationArgs()
         {
         }
@@ -673,6 +686,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        /// </summary>
+        [Input("useLegacyPathStructure")]
+        public Input<bool>? UseLegacyPathStructure { get; set; }
 
         public LogIntegrationState()
         {

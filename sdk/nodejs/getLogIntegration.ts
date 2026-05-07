@@ -86,6 +86,7 @@ export interface GetLogIntegrationResult {
      * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
     readonly type: string;
+    readonly useLegacyPathStructure: boolean;
 }
 /**
  * `mongodbatlas.LogIntegration` describes the configuration of a log integration at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.

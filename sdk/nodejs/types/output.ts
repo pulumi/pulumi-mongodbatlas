@@ -6221,6 +6221,10 @@ export interface GetLogIntegrationsResult {
      * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
     type: string;
+    /**
+     * Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     */
+    useLegacyPathStructure: boolean;
 }
 
 export interface GetLogIntegrationsResultOtelSuppliedHeader {
@@ -8177,6 +8181,8 @@ export interface GetStreamPrivatelinkEndpointsResult {
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
      *
+     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+     *
      * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain: string;
@@ -8221,7 +8227,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     serviceAttachmentUris: string[];
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      */
     serviceEndpointId: string;
     /**
@@ -8233,7 +8239,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      *
      * 	* **AWS**: MSK, CONFLUENT, and S3
      *
-     * 	* **Azure**: EVENTHUB and CONFLUENT
+     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *
      * 	* **GCP**: CONFLUENT and PUBSUB
      */

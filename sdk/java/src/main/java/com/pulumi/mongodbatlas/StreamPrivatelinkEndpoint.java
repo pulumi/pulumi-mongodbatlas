@@ -295,6 +295,72 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Azure Blob Storage Privatelink
+ * 
+ * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AdvancedCluster;
+ * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+ * import com.pulumi.resources.CustomResourceOptions;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+ *             .projectId(projectId)
+ *             .name(clusterName)
+ *             .clusterType("REPLICASET")
+ *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+ *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+ *                     .priority(7)
+ *                     .providerName("AZURE")
+ *                     .regionName("US_EAST_2")
+ *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+ *                         .instanceSize("M10")
+ *                         .nodeCount(3)
+ *                         .build())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .vendor("AZURE_BLOB_STORAGE")
+ *             .providerName("AZURE")
+ *             .region(atlasRegion)
+ *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+ *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+ *             .build(), CustomResourceOptions.builder()
+ *                 .dependsOn(                
+ *                     cluster,
+ *                     blobEndpoint)
+ *                 .build());
+ * 
+ *         ctx.export("privatelinkEndpointId", this_.id());
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Further Examples
  * - AWS Confluent PrivateLink
  * - Confluent Dedicated Cluster
@@ -303,6 +369,7 @@ import javax.annotation.Nullable;
  * - GCP Confluent PrivateLink
  * - GCP Pub/Sub Private Service Connect
  * - Azure PrivateLink
+ * - Azure Blob Storage PrivateLink
  * 
  */
 @ResourceType(type="mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint")
@@ -328,6 +395,8 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
      *     
+     *     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+     *     
      *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
      */
@@ -340,6 +409,8 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      *     * AWS provider with CONFLUENT vendor.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
      *     
      *     * For GCP provider with PUBSUB vendor, the API computes this process.
      * 
@@ -474,14 +545,14 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return Codegen.optional(this.serviceAttachmentUris);
     }
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      * 
      */
     @Export(name="serviceEndpointId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceEndpointId;
 
     /**
-     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      * 
      */
     public Output<Optional<String>> serviceEndpointId() {
@@ -506,7 +577,7 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      * 
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
-     *     * **Azure**: EVENTHUB and CONFLUENT
+     *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *     
      *     * **GCP**: CONFLUENT and PUBSUB
      * 
@@ -519,7 +590,7 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
      * 
      *     * **AWS**: MSK, CONFLUENT, and S3
      *     
-     *     * **Azure**: EVENTHUB and CONFLUENT
+     *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *     
      *     * **GCP**: CONFLUENT and PUBSUB
      * 

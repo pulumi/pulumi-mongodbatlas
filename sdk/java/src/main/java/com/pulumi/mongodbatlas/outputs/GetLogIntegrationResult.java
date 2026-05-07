@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetLogIntegrationOtelSuppliedHeader;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -50,6 +51,7 @@ public final class GetLogIntegrationResult {
      * 
      */
     private String type;
+    private Boolean useLegacyPathStructure;
 
     private GetLogIntegrationResult() {}
     public String apiKey() {
@@ -126,6 +128,9 @@ public final class GetLogIntegrationResult {
     public String type() {
         return this.type;
     }
+    public Boolean useLegacyPathStructure() {
+        return this.useLegacyPathStructure;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -154,6 +159,7 @@ public final class GetLogIntegrationResult {
         private String storageAccountName;
         private String storageContainerName;
         private String type;
+        private Boolean useLegacyPathStructure;
         public Builder() {}
         public Builder(GetLogIntegrationResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -175,6 +181,7 @@ public final class GetLogIntegrationResult {
     	      this.storageAccountName = defaults.storageAccountName;
     	      this.storageContainerName = defaults.storageContainerName;
     	      this.type = defaults.type;
+    	      this.useLegacyPathStructure = defaults.useLegacyPathStructure;
         }
 
         @CustomType.Setter
@@ -327,6 +334,14 @@ public final class GetLogIntegrationResult {
             this.type = type;
             return this;
         }
+        @CustomType.Setter
+        public Builder useLegacyPathStructure(Boolean useLegacyPathStructure) {
+            if (useLegacyPathStructure == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "useLegacyPathStructure");
+            }
+            this.useLegacyPathStructure = useLegacyPathStructure;
+            return this;
+        }
         public GetLogIntegrationResult build() {
             final var _resultValue = new GetLogIntegrationResult();
             _resultValue.apiKey = apiKey;
@@ -347,6 +362,7 @@ public final class GetLogIntegrationResult {
             _resultValue.storageAccountName = storageAccountName;
             _resultValue.storageContainerName = storageContainerName;
             _resultValue.type = type;
+            _resultValue.useLegacyPathStructure = useLegacyPathStructure;
             return _resultValue;
         }
     }

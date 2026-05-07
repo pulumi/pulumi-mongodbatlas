@@ -329,6 +329,43 @@ def get_stream_privatelink_endpoint(id: Optional[_builtins.str] = None,
     pulumi.export("privatelinkEndpointState", gcp_pubsub.state)
     pulumi.export("dnsDomain", gcp_pubsub_stream_privatelink_endpoint.dns_domain)
     ```
+
+    ### Azure Blob Storage Privatelink
+
+    > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    cluster = mongodbatlas.AdvancedCluster("cluster",
+        project_id=project_id,
+        name=cluster_name,
+        cluster_type="REPLICASET",
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AZURE",
+                "region_name": "US_EAST_2",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
+    this = mongodbatlas.StreamPrivatelinkEndpoint("this",
+        project_id=project_id,
+        vendor="AZURE_BLOB_STORAGE",
+        provider_name="AZURE",
+        region=atlas_region,
+        dns_domain=f"{storage_account_name}.blob.core.windows.net",
+        service_endpoint_id=f"/subscriptions/{current['subscriptionId']}/resourceGroups/{azure_resource_group}/providers/Microsoft.Storage/storageAccounts/{storage_account_name}",
+        opts = pulumi.ResourceOptions(depends_on=[
+                cluster,
+                blob_endpoint,
+            ]))
+    pulumi.export("privatelinkEndpointId", this.id)
+    ```
     """
     __args__ = dict()
     __args__['id'] = id
@@ -508,6 +545,43 @@ def get_stream_privatelink_endpoint_output(id: Optional[pulumi.Input[_builtins.s
     pulumi.export("privatelinkEndpointId", gcp_pubsub_stream_privatelink_endpoint.id)
     pulumi.export("privatelinkEndpointState", gcp_pubsub.state)
     pulumi.export("dnsDomain", gcp_pubsub_stream_privatelink_endpoint.dns_domain)
+    ```
+
+    ### Azure Blob Storage Privatelink
+
+    > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    cluster = mongodbatlas.AdvancedCluster("cluster",
+        project_id=project_id,
+        name=cluster_name,
+        cluster_type="REPLICASET",
+        replication_specs=[{
+            "region_configs": [{
+                "priority": 7,
+                "provider_name": "AZURE",
+                "region_name": "US_EAST_2",
+                "electable_specs": {
+                    "instance_size": "M10",
+                    "node_count": 3,
+                },
+            }],
+        }])
+    this = mongodbatlas.StreamPrivatelinkEndpoint("this",
+        project_id=project_id,
+        vendor="AZURE_BLOB_STORAGE",
+        provider_name="AZURE",
+        region=atlas_region,
+        dns_domain=f"{storage_account_name}.blob.core.windows.net",
+        service_endpoint_id=f"/subscriptions/{current['subscriptionId']}/resourceGroups/{azure_resource_group}/providers/Microsoft.Storage/storageAccounts/{storage_account_name}",
+        opts = pulumi.ResourceOptions(depends_on=[
+                cluster,
+                blob_endpoint,
+            ]))
+    pulumi.export("privatelinkEndpointId", this.id)
     ```
     """
     __args__ = dict()

@@ -48616,6 +48616,8 @@ type GetLogIntegrationsResult struct {
 	StorageContainerName string `pulumi:"storageContainerName"`
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type string `pulumi:"type"`
+	// Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+	UseLegacyPathStructure bool `pulumi:"useLegacyPathStructure"`
 }
 
 // GetLogIntegrationsResultInput is an input type that accepts GetLogIntegrationsResultArgs and GetLogIntegrationsResultOutput values.
@@ -48662,6 +48664,8 @@ type GetLogIntegrationsResultArgs struct {
 	StorageContainerName pulumi.StringInput `pulumi:"storageContainerName"`
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringInput `pulumi:"type"`
+	// Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+	UseLegacyPathStructure pulumi.BoolInput `pulumi:"useLegacyPathStructure"`
 }
 
 func (GetLogIntegrationsResultArgs) ElementType() reflect.Type {
@@ -48795,6 +48799,11 @@ func (o GetLogIntegrationsResultOutput) StorageContainerName() pulumi.StringOutp
 // Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 func (o GetLogIntegrationsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+func (o GetLogIntegrationsResultOutput) UseLegacyPathStructure() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLogIntegrationsResult) bool { return v.UseLegacyPathStructure }).(pulumi.BoolOutput)
 }
 
 type GetLogIntegrationsResultArrayOutput struct{ *pulumi.OutputState }
@@ -60498,6 +60507,8 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
+	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
 	DnsDomain string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
@@ -60520,7 +60531,7 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	Region string `pulumi:"region"`
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId string `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State string `pulumi:"state"`
@@ -60528,7 +60539,7 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	//
 	//     * **AWS**: MSK, CONFLUENT, and S3
 	//
-	//     * **Azure**: EVENTHUB and CONFLUENT
+	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
 	//     * **GCP**: CONFLUENT and PUBSUB
 	Vendor string `pulumi:"vendor"`
@@ -60554,6 +60565,8 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
+	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
 	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
@@ -60576,7 +60589,7 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	Region pulumi.StringInput `pulumi:"region"`
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris pulumi.StringArrayInput `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId pulumi.StringInput `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State pulumi.StringInput `pulumi:"state"`
@@ -60584,7 +60597,7 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	//
 	//     * **AWS**: MSK, CONFLUENT, and S3
 	//
-	//     * **Azure**: EVENTHUB and CONFLUENT
+	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
 	//     * **GCP**: CONFLUENT and PUBSUB
 	Vendor pulumi.StringInput `pulumi:"vendor"`
@@ -60652,6 +60665,8 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
 //
 //   - AZURE provider with EVENTHUB or CONFLUENT vendor.
 //
+//   - AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+//
 //   - For GCP provider with PUBSUB vendor, the API computes this process.
 func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
@@ -60707,7 +60722,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceAttachmentUris() pulum
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.ServiceAttachmentUris }).(pulumi.StringArrayOutput)
 }
 
-// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceEndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ServiceEndpointId }).(pulumi.StringOutput)
 }
@@ -60721,7 +60736,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) State() pulumi.StringOutput {
 //
 //   - **AWS**: MSK, CONFLUENT, and S3
 //
-//   - **Azure**: EVENTHUB and CONFLUENT
+//   - **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 //
 //   - **GCP**: CONFLUENT and PUBSUB
 func (o GetStreamPrivatelinkEndpointsResultOutput) Vendor() pulumi.StringOutput {
