@@ -853,6 +853,32 @@ class StreamConnection(pulumi.CustomResource):
             opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
         ```
 
+        ### Example Azure Blob Storage Connection with Private Link
+
+        > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_azure_blob_private_link = mongodbatlas.StreamConnection("example_azure_blob_private_link",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="AzureBlobStoragePLConnection",
+            type="AzureBlobStorage",
+            azure={
+                "service_principal_id": "<AZURE_SERVICE_PRINCIPAL_ID>",
+                "storage_account_name": "<AZURE_STORAGE_ACCOUNT_NAME>",
+                "region": "<AZURE_REGION>",
+            },
+            networking={
+                "access": {
+                    "type": "PRIVATE_LINK",
+                    "connection_id": azure_blob["id"],
+                },
+            })
+        ```
+
         ### Example Https Connection
 
         ```python
@@ -1203,6 +1229,32 @@ class StreamConnection(pulumi.CustomResource):
                 },
             },
             opts = pulumi.ResourceOptions(depends_on=[gcp_auth]))
+        ```
+
+        ### Example Azure Blob Storage Connection with Private Link
+
+        > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        example_azure_blob_private_link = mongodbatlas.StreamConnection("example_azure_blob_private_link",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="AzureBlobStoragePLConnection",
+            type="AzureBlobStorage",
+            azure={
+                "service_principal_id": "<AZURE_SERVICE_PRINCIPAL_ID>",
+                "storage_account_name": "<AZURE_STORAGE_ACCOUNT_NAME>",
+                "region": "<AZURE_REGION>",
+            },
+            networking={
+                "access": {
+                    "type": "PRIVATE_LINK",
+                    "connection_id": azure_blob["id"],
+                },
+            })
         ```
 
         ### Example Https Connection

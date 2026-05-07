@@ -180,6 +180,46 @@ import * as utilities from "./utilities";
  * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
  * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
  * ```
+ *
+ * ### Azure Blob Storage Privatelink
+ *
+ * > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AZURE",
+ *             regionName: "US_EAST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const _this = new mongodbatlas.StreamPrivatelinkEndpoint("this", {
+ *     projectId: projectId,
+ *     vendor: "AZURE_BLOB_STORAGE",
+ *     providerName: "AZURE",
+ *     region: atlasRegion,
+ *     dnsDomain: `${storageAccountName}.blob.core.windows.net`,
+ *     serviceEndpointId: `/subscriptions/${current.subscriptionId}/resourceGroups/${azureResourceGroup}/providers/Microsoft.Storage/storageAccounts/${storageAccountName}`,
+ * }, {
+ *     dependsOn: [
+ *         cluster,
+ *         blobEndpoint,
+ *     ],
+ * });
+ * export const privatelinkEndpointId = _this.id;
+ * ```
  */
 export function getStreamPrivatelinkEndpoint(args: GetStreamPrivatelinkEndpointArgs, opts?: pulumi.InvokeOptions): Promise<GetStreamPrivatelinkEndpointResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -392,6 +432,46 @@ export interface GetStreamPrivatelinkEndpointResult {
  * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
  * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
  * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
+ * ```
+ *
+ * ### Azure Blob Storage Privatelink
+ *
+ * > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AZURE",
+ *             regionName: "US_EAST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const _this = new mongodbatlas.StreamPrivatelinkEndpoint("this", {
+ *     projectId: projectId,
+ *     vendor: "AZURE_BLOB_STORAGE",
+ *     providerName: "AZURE",
+ *     region: atlasRegion,
+ *     dnsDomain: `${storageAccountName}.blob.core.windows.net`,
+ *     serviceEndpointId: `/subscriptions/${current.subscriptionId}/resourceGroups/${azureResourceGroup}/providers/Microsoft.Storage/storageAccounts/${storageAccountName}`,
+ * }, {
+ *     dependsOn: [
+ *         cluster,
+ *         blobEndpoint,
+ *     ],
+ * });
+ * export const privatelinkEndpointId = _this.id;
  * ```
  */
 export function getStreamPrivatelinkEndpointOutput(args: GetStreamPrivatelinkEndpointOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetStreamPrivatelinkEndpointResult> {

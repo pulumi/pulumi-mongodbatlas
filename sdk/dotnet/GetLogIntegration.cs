@@ -192,6 +192,7 @@ namespace Pulumi.Mongodbatlas
         /// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         /// </summary>
         public readonly string Type;
+        public readonly bool UseLegacyPathStructure;
 
         [OutputConstructor]
         private GetLogIntegrationResult(
@@ -229,7 +230,9 @@ namespace Pulumi.Mongodbatlas
 
             string storageContainerName,
 
-            string type)
+            string type,
+
+            bool useLegacyPathStructure)
         {
             ApiKey = apiKey;
             BucketName = bucketName;
@@ -249,6 +252,7 @@ namespace Pulumi.Mongodbatlas
             StorageAccountName = storageAccountName;
             StorageContainerName = storageContainerName;
             Type = type;
+            UseLegacyPathStructure = useLegacyPathStructure;
         }
     }
 }

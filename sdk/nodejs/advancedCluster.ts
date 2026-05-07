@@ -678,6 +678,8 @@ export class AdvancedCluster extends pulumi.CustomResource {
     declare public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+     *
+     * > **NOTE:** If the major version is modified outside of Terraform, the provider will emit a warning at plan time, along with an empty plan. Update this attribute in your configuration to match the current version to clear the warning. In an upcoming major version of the provider, this drift will result in a non-empty plan.
      */
     declare public readonly mongoDbMajorVersion: pulumi.Output<string>;
     /**
@@ -939,6 +941,8 @@ export interface AdvancedClusterState {
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+     *
+     * > **NOTE:** If the major version is modified outside of Terraform, the provider will emit a warning at plan time, along with an empty plan. Update this attribute in your configuration to match the current version to clear the warning. In an upcoming major version of the provider, this drift will result in a non-empty plan.
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**
@@ -1089,6 +1093,8 @@ export interface AdvancedClusterArgs {
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+     *
+     * > **NOTE:** If the major version is modified outside of Terraform, the provider will emit a warning at plan time, along with an empty plan. Update this attribute in your configuration to match the current version to clear the warning. In an upcoming major version of the provider, this drift will result in a non-empty plan.
      */
     mongoDbMajorVersion?: pulumi.Input<string>;
     /**

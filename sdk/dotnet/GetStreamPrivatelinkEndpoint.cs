@@ -315,6 +315,69 @@ namespace Pulumi.Mongodbatlas
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### Azure Blob Storage Privatelink
+        /// 
+        /// &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AZURE",
+        ///                         RegionName = "US_EAST_2",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var @this = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("this", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Vendor = "AZURE_BLOB_STORAGE",
+        ///         ProviderName = "AZURE",
+        ///         Region = atlasRegion,
+        ///         DnsDomain = $"{storageAccountName}.blob.core.windows.net",
+        ///         ServiceEndpointId = $"/subscriptions/{current.SubscriptionId}/resourceGroups/{azureResourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             cluster,
+        ///             blobEndpoint,
+        ///         },
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetStreamPrivatelinkEndpointResult> InvokeAsync(GetStreamPrivatelinkEndpointArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointArgs(), options.WithDefaults());
@@ -623,6 +686,69 @@ namespace Pulumi.Mongodbatlas
         ///     };
         /// });
         /// ```
+        /// 
+        /// ### Azure Blob Storage Privatelink
+        /// 
+        /// &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AZURE",
+        ///                         RegionName = "US_EAST_2",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var @this = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("this", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Vendor = "AZURE_BLOB_STORAGE",
+        ///         ProviderName = "AZURE",
+        ///         Region = atlasRegion,
+        ///         DnsDomain = $"{storageAccountName}.blob.core.windows.net",
+        ///         ServiceEndpointId = $"/subscriptions/{current.SubscriptionId}/resourceGroups/{azureResourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             cluster,
+        ///             blobEndpoint,
+        ///         },
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = @this.Id,
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetStreamPrivatelinkEndpointResult> Invoke(GetStreamPrivatelinkEndpointInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetStreamPrivatelinkEndpointResult>("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", args ?? new GetStreamPrivatelinkEndpointInvokeArgs(), options.WithDefaults());
@@ -928,6 +1054,69 @@ namespace Pulumi.Mongodbatlas
         ///         ["privatelinkEndpointId"] = gcpPubsubStreamPrivatelinkEndpoint.Id,
         ///         ["privatelinkEndpointState"] = gcpPubsub.Apply(getStreamPrivatelinkEndpointResult =&gt; getStreamPrivatelinkEndpointResult.State),
         ///         ["dnsDomain"] = gcpPubsubStreamPrivatelinkEndpoint.DnsDomain,
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ### Azure Blob Storage Privatelink
+        /// 
+        /// &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var cluster = new Mongodbatlas.Index.AdvancedCluster("cluster", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Name = clusterName,
+        ///         ClusterType = "REPLICASET",
+        ///         ReplicationSpecs = new[]
+        ///         {
+        ///             new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecArgs
+        ///             {
+        ///                 RegionConfigs = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigArgs
+        ///                     {
+        ///                         Priority = 7,
+        ///                         ProviderName = "AZURE",
+        ///                         RegionName = "US_EAST_2",
+        ///                         ElectableSpecs = new Mongodbatlas.Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs
+        ///                         {
+        ///                             InstanceSize = "M10",
+        ///                             NodeCount = 3,
+        ///                         },
+        ///                     },
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var @this = new Mongodbatlas.Index.StreamPrivatelinkEndpoint("this", new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         Vendor = "AZURE_BLOB_STORAGE",
+        ///         ProviderName = "AZURE",
+        ///         Region = atlasRegion,
+        ///         DnsDomain = $"{storageAccountName}.blob.core.windows.net",
+        ///         ServiceEndpointId = $"/subscriptions/{current.SubscriptionId}/resourceGroups/{azureResourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccountName}",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn =
+        ///         {
+        ///             cluster,
+        ///             blobEndpoint,
+        ///         },
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["privatelinkEndpointId"] = @this.Id,
         ///     };
         /// });
         /// ```

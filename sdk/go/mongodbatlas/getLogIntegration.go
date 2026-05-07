@@ -87,7 +87,8 @@ type LookupLogIntegrationResult struct {
 	StorageAccountName   string `pulumi:"storageAccountName"`
 	StorageContainerName string `pulumi:"storageContainerName"`
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
-	Type string `pulumi:"type"`
+	Type                   string `pulumi:"type"`
+	UseLegacyPathStructure bool   `pulumi:"useLegacyPathStructure"`
 }
 
 func LookupLogIntegrationOutput(ctx *pulumi.Context, args LookupLogIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupLogIntegrationResultOutput {
@@ -201,6 +202,10 @@ func (o LookupLogIntegrationResultOutput) StorageContainerName() pulumi.StringOu
 // Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 func (o LookupLogIntegrationResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupLogIntegrationResultOutput) UseLegacyPathStructure() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLogIntegrationResult) bool { return v.UseLegacyPathStructure }).(pulumi.BoolOutput)
 }
 
 func init() {

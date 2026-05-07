@@ -27,9 +27,7 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
  * 
- * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
- * 
- * &gt; **NOTE:** If you need to remove the `mongodbatlas.CloudBackupSchedule`, read this guide.
+ * &gt; **NOTE:** If a Backup Compliance Policy is enabled on the project, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the policy (see [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy)). To allow `terraform destroy` to remove the associated `mongodbatlas.AdvancedCluster` without being blocked by the policy, set `skipDestroy = true`. See the delete cluster guide for background and legacy workarounds.
  * 
  * &gt; **NOTE:** When creating a backup schedule you **must either** use the `dependsOn` clause to indicate the cluster to which it refers **or** specify the values of `projectId` and `clusterName` as reference of the cluster resource (e.g. `clusterName = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
  * 
@@ -583,6 +581,20 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> restoreWindowDays() {
         return this.restoreWindowDays;
+    }
+    /**
+     * Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+     * 
+     */
+    @Export(name="skipDestroy", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> skipDestroy;
+
+    /**
+     * @return Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+     * 
+     */
+    public Output<Optional<Boolean>> skipDestroy() {
+        return Codegen.optional(this.skipDestroy);
     }
     /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.

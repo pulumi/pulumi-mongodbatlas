@@ -392,6 +392,48 @@ import (
 //
 // ```
 //
+// ### Example Azure Blob Storage Connection with Private Link
+//
+// > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamConnection(ctx, "example_azure_blob_private_link", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				WorkspaceName:  pulumi.Any(example.WorkspaceName),
+//				ConnectionName: pulumi.String("AzureBlobStoragePLConnection"),
+//				Type:           pulumi.String("AzureBlobStorage"),
+//				Azure: &mongodbatlas.StreamConnectionAzureArgs{
+//					ServicePrincipalId: pulumi.String("<AZURE_SERVICE_PRINCIPAL_ID>"),
+//					StorageAccountName: pulumi.String("<AZURE_STORAGE_ACCOUNT_NAME>"),
+//					Region:             pulumi.String("<AZURE_REGION>"),
+//				},
+//				Networking: &mongodbatlas.StreamConnectionNetworkingArgs{
+//					Access: &mongodbatlas.StreamConnectionNetworkingAccessArgs{
+//						Type:         pulumi.String("PRIVATE_LINK"),
+//						ConnectionId: pulumi.Any(azureBlob.Id),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example Https Connection
 //
 // ```go

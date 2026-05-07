@@ -184,6 +184,46 @@ import * as utilities from "./utilities";
  * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
  * ```
  *
+ * ### Azure Blob Storage Privatelink
+ *
+ * > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const cluster = new mongodbatlas.AdvancedCluster("cluster", {
+ *     projectId: projectId,
+ *     name: clusterName,
+ *     clusterType: "REPLICASET",
+ *     replicationSpecs: [{
+ *         regionConfigs: [{
+ *             priority: 7,
+ *             providerName: "AZURE",
+ *             regionName: "US_EAST_2",
+ *             electableSpecs: {
+ *                 instanceSize: "M10",
+ *                 nodeCount: 3,
+ *             },
+ *         }],
+ *     }],
+ * });
+ * const _this = new mongodbatlas.StreamPrivatelinkEndpoint("this", {
+ *     projectId: projectId,
+ *     vendor: "AZURE_BLOB_STORAGE",
+ *     providerName: "AZURE",
+ *     region: atlasRegion,
+ *     dnsDomain: `${storageAccountName}.blob.core.windows.net`,
+ *     serviceEndpointId: `/subscriptions/${current.subscriptionId}/resourceGroups/${azureResourceGroup}/providers/Microsoft.Storage/storageAccounts/${storageAccountName}`,
+ * }, {
+ *     dependsOn: [
+ *         cluster,
+ *         blobEndpoint,
+ *     ],
+ * });
+ * export const privatelinkEndpointId = _this.id;
+ * ```
+ *
  * ### Further Examples
  * - AWS Confluent PrivateLink
  * - Confluent Dedicated Cluster
@@ -192,6 +232,7 @@ import * as utilities from "./utilities";
  * - GCP Confluent PrivateLink
  * - GCP Pub/Sub Private Service Connect
  * - Azure PrivateLink
+ * - Azure Blob Storage PrivateLink
  */
 export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
     /**
@@ -231,6 +272,8 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
      * 	* AWS provider with CONFLUENT vendor.
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *
+     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
      *
      * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
@@ -272,7 +315,7 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
      */
     declare public readonly serviceAttachmentUris: pulumi.Output<string[] | undefined>;
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      */
     declare public readonly serviceEndpointId: pulumi.Output<string | undefined>;
     /**
@@ -284,7 +327,7 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
      *
      * 	* **AWS**: MSK, CONFLUENT, and S3
      *
-     * 	* **Azure**: EVENTHUB and CONFLUENT
+     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *
      * 	* **GCP**: CONFLUENT and PUBSUB
      */
@@ -363,6 +406,8 @@ export interface StreamPrivatelinkEndpointState {
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
      *
+     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+     *
      * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain?: pulumi.Input<string>;
@@ -403,7 +448,7 @@ export interface StreamPrivatelinkEndpointState {
      */
     serviceAttachmentUris?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      */
     serviceEndpointId?: pulumi.Input<string>;
     /**
@@ -415,7 +460,7 @@ export interface StreamPrivatelinkEndpointState {
      *
      * 	* **AWS**: MSK, CONFLUENT, and S3
      *
-     * 	* **Azure**: EVENTHUB and CONFLUENT
+     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *
      * 	* **GCP**: CONFLUENT and PUBSUB
      */
@@ -436,6 +481,8 @@ export interface StreamPrivatelinkEndpointArgs {
      * 	* AWS provider with CONFLUENT vendor.
      *
      * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *
+     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
      *
      * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
@@ -461,7 +508,7 @@ export interface StreamPrivatelinkEndpointArgs {
      */
     serviceAttachmentUris?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html).
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      */
     serviceEndpointId?: pulumi.Input<string>;
     /**
@@ -469,7 +516,7 @@ export interface StreamPrivatelinkEndpointArgs {
      *
      * 	* **AWS**: MSK, CONFLUENT, and S3
      *
-     * 	* **Azure**: EVENTHUB and CONFLUENT
+     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *
      * 	* **GCP**: CONFLUENT and PUBSUB
      */

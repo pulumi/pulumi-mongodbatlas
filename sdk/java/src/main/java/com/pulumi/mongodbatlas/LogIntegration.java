@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.LogIntegrationArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.LogIntegrationState;
 import com.pulumi.mongodbatlas.outputs.LogIntegrationOtelSuppliedHeader;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -75,6 +76,7 @@ import javax.annotation.Nullable;
  *             .bucketName(logBucket.bucket())
  *             .iamRoleId(auth.roleId())
  *             .prefixPath("atlas-logs")
+ *             .useLegacyPathStructure(useLegacyPathStructure)
  *             .build());
  * 
  *     }
@@ -561,6 +563,20 @@ public class LogIntegration extends com.pulumi.resources.CustomResource {
      */
     public Output<String> type() {
         return this.type;
+    }
+    /**
+     * Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     * 
+     */
+    @Export(name="useLegacyPathStructure", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> useLegacyPathStructure;
+
+    /**
+     * @return Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     * 
+     */
+    public Output<Boolean> useLegacyPathStructure() {
+        return this.useLegacyPathStructure;
     }
 
     /**

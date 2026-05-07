@@ -35985,6 +35985,72 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args) {
         return getStreamPrivatelinkEndpoint(args, InvokeOptions.Empty);
@@ -36261,6 +36327,72 @@ public final class MongodbatlasFunctions {
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
      *         ctx.export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.dnsDomain());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
      *     }
      * }
      * }
@@ -36547,6 +36679,72 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
@@ -36823,6 +37021,72 @@ public final class MongodbatlasFunctions {
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
      *         ctx.export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.dnsDomain());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
      *     }
      * }
      * }
@@ -37109,6 +37373,72 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointResult> getStreamPrivatelinkEndpointPlain(GetStreamPrivatelinkEndpointPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint", TypeShape.of(GetStreamPrivatelinkEndpointResult.class), args, Utilities.withVersion(options));
@@ -37385,6 +37715,72 @@ public final class MongodbatlasFunctions {
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
      *         ctx.export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.dnsDomain());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
      *     }
      * }
      * }
@@ -37671,6 +38067,72 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpointsPlain(GetStreamPrivatelinkEndpointsPlainArgs args) {
         return getStreamPrivatelinkEndpointsPlain(args, InvokeOptions.Empty);
@@ -37947,6 +38409,72 @@ public final class MongodbatlasFunctions {
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
      *         ctx.export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.dnsDomain());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
      *     }
      * }
      * }
@@ -38233,6 +38761,72 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetStreamPrivatelinkEndpointsInvokeResult> getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", TypeShape.of(GetStreamPrivatelinkEndpointsInvokeResult.class), args, Utilities.withVersion(options));
@@ -38509,6 +39103,72 @@ public final class MongodbatlasFunctions {
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
      *         ctx.export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.dnsDomain());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Azure Blob Storage Privatelink
+     * 
+     * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+     * import com.pulumi.resources.CustomResourceOptions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var cluster = new AdvancedCluster("cluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .priority(7)
+     *                     .providerName("AZURE")
+     *                     .regionName("US_EAST_2")
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize("M10")
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var this_ = new StreamPrivatelinkEndpoint("this", StreamPrivatelinkEndpointArgs.builder()
+     *             .projectId(projectId)
+     *             .vendor("AZURE_BLOB_STORAGE")
+     *             .providerName("AZURE")
+     *             .region(atlasRegion)
+     *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .build(), CustomResourceOptions.builder()
+     *                 .dependsOn(                
+     *                     cluster,
+     *                     blobEndpoint)
+     *                 .build());
+     * 
+     *         ctx.export("privatelinkEndpointId", this_.id());
      *     }
      * }
      * }

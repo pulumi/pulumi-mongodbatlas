@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetLogIntegrationsResultOtelSuppliedHeader;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -92,6 +93,11 @@ public final class GetLogIntegrationsResult {
      * 
      */
     private String type;
+    /**
+     * @return Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     * 
+     */
+    private Boolean useLegacyPathStructure;
 
     private GetLogIntegrationsResult() {}
     /**
@@ -206,6 +212,13 @@ public final class GetLogIntegrationsResult {
     public String type() {
         return this.type;
     }
+    /**
+     * @return Applies to type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     * 
+     */
+    public Boolean useLegacyPathStructure() {
+        return this.useLegacyPathStructure;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -232,6 +245,7 @@ public final class GetLogIntegrationsResult {
         private String storageAccountName;
         private String storageContainerName;
         private String type;
+        private Boolean useLegacyPathStructure;
         public Builder() {}
         public Builder(GetLogIntegrationsResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -251,6 +265,7 @@ public final class GetLogIntegrationsResult {
     	      this.storageAccountName = defaults.storageAccountName;
     	      this.storageContainerName = defaults.storageContainerName;
     	      this.type = defaults.type;
+    	      this.useLegacyPathStructure = defaults.useLegacyPathStructure;
         }
 
         @CustomType.Setter
@@ -387,6 +402,14 @@ public final class GetLogIntegrationsResult {
             this.type = type;
             return this;
         }
+        @CustomType.Setter
+        public Builder useLegacyPathStructure(Boolean useLegacyPathStructure) {
+            if (useLegacyPathStructure == null) {
+              throw new MissingRequiredPropertyException("GetLogIntegrationsResult", "useLegacyPathStructure");
+            }
+            this.useLegacyPathStructure = useLegacyPathStructure;
+            return this;
+        }
         public GetLogIntegrationsResult build() {
             final var _resultValue = new GetLogIntegrationsResult();
             _resultValue.apiKey = apiKey;
@@ -405,6 +428,7 @@ public final class GetLogIntegrationsResult {
             _resultValue.storageAccountName = storageAccountName;
             _resultValue.storageContainerName = storageContainerName;
             _resultValue.type = type;
+            _resultValue.useLegacyPathStructure = useLegacyPathStructure;
             return _resultValue;
         }
     }

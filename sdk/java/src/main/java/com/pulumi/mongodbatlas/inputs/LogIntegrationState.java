@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.LogIntegrationOtelSuppliedHeaderArgs;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -272,6 +273,21 @@ public final class LogIntegrationState extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     * 
+     */
+    @Import(name="useLegacyPathStructure")
+    private @Nullable Output<Boolean> useLegacyPathStructure;
+
+    /**
+     * @return Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+     * 
+     */
+    public Optional<Output<Boolean>> useLegacyPathStructure() {
+        return Optional.ofNullable(this.useLegacyPathStructure);
+    }
+
     private LogIntegrationState() {}
 
     private LogIntegrationState(LogIntegrationState $) {
@@ -292,6 +308,7 @@ public final class LogIntegrationState extends com.pulumi.resources.ResourceArgs
         this.storageAccountName = $.storageAccountName;
         this.storageContainerName = $.storageContainerName;
         this.type = $.type;
+        this.useLegacyPathStructure = $.useLegacyPathStructure;
     }
 
     public static Builder builder() {
@@ -687,6 +704,27 @@ public final class LogIntegrationState extends com.pulumi.resources.ResourceArgs
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        /**
+         * @param useLegacyPathStructure Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useLegacyPathStructure(@Nullable Output<Boolean> useLegacyPathStructure) {
+            $.useLegacyPathStructure = useLegacyPathStructure;
+            return this;
+        }
+
+        /**
+         * @param useLegacyPathStructure Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder useLegacyPathStructure(Boolean useLegacyPathStructure) {
+            return useLegacyPathStructure(Output.of(useLegacyPathStructure));
         }
 
         public LogIntegrationState build() {

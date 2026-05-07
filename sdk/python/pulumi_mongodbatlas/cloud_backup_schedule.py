@@ -34,6 +34,7 @@ class CloudBackupScheduleArgs:
                  reference_hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[_builtins.int]] = None,
                  restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  update_snapshots: Optional[pulumi.Input[_builtins.bool]] = None,
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -54,6 +55,7 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
         :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -83,6 +85,8 @@ class CloudBackupScheduleArgs:
             pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
         if restore_window_days is not None:
             pulumi.set(__self__, "restore_window_days", restore_window_days)
+        if skip_destroy is not None:
+            pulumi.set(__self__, "skip_destroy", skip_destroy)
         if update_snapshots is not None:
             pulumi.set(__self__, "update_snapshots", update_snapshots)
         if use_org_and_group_names_in_export_prefix is not None:
@@ -247,6 +251,18 @@ class CloudBackupScheduleArgs:
         pulumi.set(self, "restore_window_days", value)
 
     @_builtins.property
+    @pulumi.getter(name="skipDestroy")
+    def skip_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+        """
+        return pulumi.get(self, "skip_destroy")
+
+    @skip_destroy.setter
+    def skip_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_destroy", value)
+
+    @_builtins.property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -292,6 +308,7 @@ class _CloudBackupScheduleState:
                  reference_hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[_builtins.int]] = None,
                  restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  update_snapshots: Optional[pulumi.Input[_builtins.bool]] = None,
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[_builtins.bool]] = None):
         """
@@ -315,6 +332,7 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
         :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -352,6 +370,8 @@ class _CloudBackupScheduleState:
             pulumi.set(__self__, "reference_minute_of_hour", reference_minute_of_hour)
         if restore_window_days is not None:
             pulumi.set(__self__, "restore_window_days", restore_window_days)
+        if skip_destroy is not None:
+            pulumi.set(__self__, "skip_destroy", skip_destroy)
         if update_snapshots is not None:
             pulumi.set(__self__, "update_snapshots", update_snapshots)
         if use_org_and_group_names_in_export_prefix is not None:
@@ -552,6 +572,18 @@ class _CloudBackupScheduleState:
         pulumi.set(self, "restore_window_days", value)
 
     @_builtins.property
+    @pulumi.getter(name="skipDestroy")
+    def skip_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+        """
+        return pulumi.get(self, "skip_destroy")
+
+    @skip_destroy.setter
+    def skip_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "skip_destroy", value)
+
+    @_builtins.property
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
@@ -597,15 +629,14 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  reference_hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[_builtins.int]] = None,
                  restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  update_snapshots: Optional[pulumi.Input[_builtins.bool]] = None,
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
         `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
 
-        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
-
-        > **NOTE:** If you need to remove the `CloudBackupSchedule`, read this guide.
+        > **NOTE:** If a Backup Compliance Policy is enabled on the project, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the policy (see [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy)). To allow `terraform destroy` to remove the associated `AdvancedCluster` without being blocked by the policy, set `skip_destroy = true`. See the delete cluster guide for background and legacy workarounds.
 
         > **NOTE:** When creating a backup schedule you **must either** use the `depends_on` clause to indicate the cluster to which it refers **or** specify the values of `project_id` and `cluster_name` as reference of the cluster resource (e.g. `cluster_name = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
 
@@ -827,6 +858,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
         :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -841,9 +873,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         """
         `CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
 
-        > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the Backup Compliance Policy.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
-
-        > **NOTE:** If you need to remove the `CloudBackupSchedule`, read this guide.
+        > **NOTE:** If a Backup Compliance Policy is enabled on the project, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the policy (see [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy)). To allow `terraform destroy` to remove the associated `AdvancedCluster` without being blocked by the policy, set `skip_destroy = true`. See the delete cluster guide for background and legacy workarounds.
 
         > **NOTE:** When creating a backup schedule you **must either** use the `depends_on` clause to indicate the cluster to which it refers **or** specify the values of `project_id` and `cluster_name` as reference of the cluster resource (e.g. `cluster_name = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.
 
@@ -1076,6 +1106,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
                  reference_hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
                  reference_minute_of_hour: Optional[pulumi.Input[_builtins.int]] = None,
                  restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 skip_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
                  update_snapshots: Optional[pulumi.Input[_builtins.bool]] = None,
                  use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
@@ -1104,6 +1135,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
             __props__.__dict__["reference_hour_of_day"] = reference_hour_of_day
             __props__.__dict__["reference_minute_of_hour"] = reference_minute_of_hour
             __props__.__dict__["restore_window_days"] = restore_window_days
+            __props__.__dict__["skip_destroy"] = skip_destroy
             __props__.__dict__["update_snapshots"] = update_snapshots
             __props__.__dict__["use_org_and_group_names_in_export_prefix"] = use_org_and_group_names_in_export_prefix
             __props__.__dict__["cluster_id"] = None
@@ -1135,6 +1167,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
             reference_hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
             reference_minute_of_hour: Optional[pulumi.Input[_builtins.int]] = None,
             restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
+            skip_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
             update_snapshots: Optional[pulumi.Input[_builtins.bool]] = None,
             use_org_and_group_names_in_export_prefix: Optional[pulumi.Input[_builtins.bool]] = None) -> 'CloudBackupSchedule':
         """
@@ -1162,6 +1195,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] reference_hour_of_day: UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
+        :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
         :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
@@ -1187,6 +1221,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         __props__.__dict__["reference_hour_of_day"] = reference_hour_of_day
         __props__.__dict__["reference_minute_of_hour"] = reference_minute_of_hour
         __props__.__dict__["restore_window_days"] = restore_window_days
+        __props__.__dict__["skip_destroy"] = skip_destroy
         __props__.__dict__["update_snapshots"] = update_snapshots
         __props__.__dict__["use_org_and_group_names_in_export_prefix"] = use_org_and_group_names_in_export_prefix
         return CloudBackupSchedule(resource_name, opts=opts, __props__=__props__)
@@ -1320,6 +1355,14 @@ class CloudBackupSchedule(pulumi.CustomResource):
         Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         """
         return pulumi.get(self, "restore_window_days")
+
+    @_builtins.property
+    @pulumi.getter(name="skipDestroy")
+    def skip_destroy(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
+        """
+        return pulumi.get(self, "skip_destroy")
 
     @_builtins.property
     @pulumi.getter(name="updateSnapshots")

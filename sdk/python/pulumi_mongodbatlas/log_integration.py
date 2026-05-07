@@ -36,7 +36,8 @@ class LogIntegrationArgs:
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a LogIntegration resource.
 
@@ -56,6 +57,7 @@ class LogIntegrationArgs:
         :param pulumi.Input[_builtins.str] role_id: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
         :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
         :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
+        :param pulumi.Input[_builtins.bool] use_legacy_path_structure: Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
         """
         pulumi.set(__self__, "log_types", log_types)
         pulumi.set(__self__, "project_id", project_id)
@@ -86,6 +88,8 @@ class LogIntegrationArgs:
             pulumi.set(__self__, "storage_account_name", storage_account_name)
         if storage_container_name is not None:
             pulumi.set(__self__, "storage_container_name", storage_container_name)
+        if use_legacy_path_structure is not None:
+            pulumi.set(__self__, "use_legacy_path_structure", use_legacy_path_structure)
 
     @_builtins.property
     @pulumi.getter(name="logTypes")
@@ -279,6 +283,18 @@ class LogIntegrationArgs:
     def storage_container_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "storage_container_name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="useLegacyPathStructure")
+    def use_legacy_path_structure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        """
+        return pulumi.get(self, "use_legacy_path_structure")
+
+    @use_legacy_path_structure.setter
+    def use_legacy_path_structure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_legacy_path_structure", value)
+
 
 @pulumi.input_type
 class _LogIntegrationState:
@@ -299,7 +315,8 @@ class _LogIntegrationState:
                  role_id: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering LogIntegration resources.
 
@@ -320,6 +337,7 @@ class _LogIntegrationState:
         :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
         :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        :param pulumi.Input[_builtins.bool] use_legacy_path_structure: Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
         """
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
@@ -355,6 +373,8 @@ class _LogIntegrationState:
             pulumi.set(__self__, "storage_container_name", storage_container_name)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if use_legacy_path_structure is not None:
+            pulumi.set(__self__, "use_legacy_path_structure", use_legacy_path_structure)
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
@@ -560,6 +580,18 @@ class _LogIntegrationState:
     def type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "type", value)
 
+    @_builtins.property
+    @pulumi.getter(name="useLegacyPathStructure")
+    def use_legacy_path_structure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        """
+        return pulumi.get(self, "use_legacy_path_structure")
+
+    @use_legacy_path_structure.setter
+    def use_legacy_path_structure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "use_legacy_path_structure", value)
+
 
 @pulumi.type_token("mongodbatlas:index/logIntegration:LogIntegration")
 class LogIntegration(pulumi.CustomResource):
@@ -583,6 +615,7 @@ class LogIntegration(pulumi.CustomResource):
                  storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         """
         `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs at 1-minute intervals. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
@@ -615,7 +648,8 @@ class LogIntegration(pulumi.CustomResource):
             log_types=["MONGOD_AUDIT"],
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth.role_id,
-            prefix_path="atlas-logs")
+            prefix_path="atlas-logs",
+            use_legacy_path_structure=use_legacy_path_structure)
         ```
 
         ### Google Cloud Storage (GCS)
@@ -743,6 +777,7 @@ class LogIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
         :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        :param pulumi.Input[_builtins.bool] use_legacy_path_structure: Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
         """
         ...
     @overload
@@ -781,7 +816,8 @@ class LogIntegration(pulumi.CustomResource):
             log_types=["MONGOD_AUDIT"],
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth.role_id,
-            prefix_path="atlas-logs")
+            prefix_path="atlas-logs",
+            use_legacy_path_structure=use_legacy_path_structure)
         ```
 
         ### Google Cloud Storage (GCS)
@@ -922,6 +958,7 @@ class LogIntegration(pulumi.CustomResource):
                  storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
                  storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
+                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -953,6 +990,7 @@ class LogIntegration(pulumi.CustomResource):
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
+            __props__.__dict__["use_legacy_path_structure"] = use_legacy_path_structure
             __props__.__dict__["integration_id"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["apiKey", "hecToken", "otelSuppliedHeaders"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -982,7 +1020,8 @@ class LogIntegration(pulumi.CustomResource):
             role_id: Optional[pulumi.Input[_builtins.str]] = None,
             storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
             storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'LogIntegration':
+            type: Optional[pulumi.Input[_builtins.str]] = None,
+            use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None) -> 'LogIntegration':
         """
         Get an existing LogIntegration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1007,6 +1046,7 @@ class LogIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] storage_account_name: Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
         :param pulumi.Input[_builtins.str] storage_container_name: Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        :param pulumi.Input[_builtins.bool] use_legacy_path_structure: Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1029,6 +1069,7 @@ class LogIntegration(pulumi.CustomResource):
         __props__.__dict__["storage_account_name"] = storage_account_name
         __props__.__dict__["storage_container_name"] = storage_container_name
         __props__.__dict__["type"] = type
+        __props__.__dict__["use_legacy_path_structure"] = use_legacy_path_structure
         return LogIntegration(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -1166,4 +1207,12 @@ class LogIntegration(pulumi.CustomResource):
         Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="useLegacyPathStructure")
+    def use_legacy_path_structure(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+        """
+        return pulumi.get(self, "use_legacy_path_structure")
 

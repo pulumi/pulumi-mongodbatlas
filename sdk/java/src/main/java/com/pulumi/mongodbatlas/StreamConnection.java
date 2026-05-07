@@ -477,6 +477,58 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example Azure Blob Storage Connection with Private Link
+ * 
+ * &gt; **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionAzureArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingAccessArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleAzureBlobPrivateLink = new StreamConnection("exampleAzureBlobPrivateLink", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.workspaceName())
+ *             .connectionName("AzureBlobStoragePLConnection")
+ *             .type("AzureBlobStorage")
+ *             .azure(StreamConnectionAzureArgs.builder()
+ *                 .servicePrincipalId("<AZURE_SERVICE_PRINCIPAL_ID>")
+ *                 .storageAccountName("<AZURE_STORAGE_ACCOUNT_NAME>")
+ *                 .region("<AZURE_REGION>")
+ *                 .build())
+ *             .networking(StreamConnectionNetworkingArgs.builder()
+ *                 .access(StreamConnectionNetworkingAccessArgs.builder()
+ *                     .type("PRIVATE_LINK")
+ *                     .connectionId(azureBlob.id())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Example Https Connection
  * 
  * <pre>

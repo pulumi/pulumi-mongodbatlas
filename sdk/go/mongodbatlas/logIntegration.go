@@ -58,9 +58,10 @@ import (
 //				LogTypes: pulumi.StringArray{
 //					pulumi.String("MONGOD_AUDIT"),
 //				},
-//				BucketName: pulumi.Any(logBucket.Bucket),
-//				IamRoleId:  auth.RoleId,
-//				PrefixPath: pulumi.String("atlas-logs"),
+//				BucketName:             pulumi.Any(logBucket.Bucket),
+//				IamRoleId:              auth.RoleId,
+//				PrefixPath:             pulumi.String("atlas-logs"),
+//				UseLegacyPathStructure: pulumi.Any(useLegacyPathStructure),
 //			})
 //			if err != nil {
 //				return err
@@ -321,6 +322,8 @@ type LogIntegration struct {
 	StorageContainerName pulumi.StringPtrOutput `pulumi:"storageContainerName"`
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+	UseLegacyPathStructure pulumi.BoolOutput `pulumi:"useLegacyPathStructure"`
 }
 
 // NewLogIntegration registers a new resource with the given unique name, arguments, and options.
@@ -411,6 +414,8 @@ type logIntegrationState struct {
 	StorageContainerName *string `pulumi:"storageContainerName"`
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type *string `pulumi:"type"`
+	// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+	UseLegacyPathStructure *bool `pulumi:"useLegacyPathStructure"`
 }
 
 type LogIntegrationState struct {
@@ -448,6 +453,8 @@ type LogIntegrationState struct {
 	StorageContainerName pulumi.StringPtrInput
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringPtrInput
+	// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+	UseLegacyPathStructure pulumi.BoolPtrInput
 }
 
 func (LogIntegrationState) ElementType() reflect.Type {
@@ -487,6 +494,8 @@ type logIntegrationArgs struct {
 	StorageContainerName *string `pulumi:"storageContainerName"`
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type string `pulumi:"type"`
+	// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+	UseLegacyPathStructure *bool `pulumi:"useLegacyPathStructure"`
 }
 
 // The set of arguments for constructing a LogIntegration resource.
@@ -523,6 +532,8 @@ type LogIntegrationArgs struct {
 	StorageContainerName pulumi.StringPtrInput
 	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 	Type pulumi.StringInput
+	// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+	UseLegacyPathStructure pulumi.BoolPtrInput
 }
 
 func (LogIntegrationArgs) ElementType() reflect.Type {
@@ -695,6 +706,11 @@ func (o LogIntegrationOutput) StorageContainerName() pulumi.StringPtrOutput {
 // Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
 func (o LogIntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogIntegration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
+func (o LogIntegrationOutput) UseLegacyPathStructure() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LogIntegration) pulumi.BoolOutput { return v.UseLegacyPathStructure }).(pulumi.BoolOutput)
 }
 
 type LogIntegrationArrayOutput struct{ *pulumi.OutputState }

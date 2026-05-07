@@ -313,6 +313,66 @@ import (
 //	}
 //
 // ```
+//
+// ### Azure Blob Storage Privatelink
+//
+// > **NOTE:** An Azure cluster must be provisioned in the same region before creating an Azure Blob Storage private endpoint.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cluster, err := mongodbatlas.NewAdvancedCluster(ctx, "cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:   pulumi.Any(projectId),
+//				Name:        pulumi.Any(clusterName),
+//				ClusterType: pulumi.String("REPLICASET"),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AZURE"),
+//								RegionName:   pulumi.String("US_EAST_2"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			this, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "this", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+//				ProjectId:         pulumi.Any(projectId),
+//				Vendor:            pulumi.String("AZURE_BLOB_STORAGE"),
+//				ProviderName:      pulumi.String("AZURE"),
+//				Region:            pulumi.Any(atlasRegion),
+//				DnsDomain:         pulumi.Sprintf("%v.blob.core.windows.net", storageAccountName),
+//				ServiceEndpointId: pulumi.Sprintf("/subscriptions/%v/resourceGroups/%v/providers/Microsoft.Storage/storageAccounts/%v", current.SubscriptionId, azureResourceGroup, storageAccountName),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				cluster,
+//				blobEndpoint,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("privatelinkEndpointId", this.ID())
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupStreamPrivatelinkEndpoint(ctx *pulumi.Context, args *LookupStreamPrivatelinkEndpointArgs, opts ...pulumi.InvokeOption) (*LookupStreamPrivatelinkEndpointResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupStreamPrivatelinkEndpointResult
